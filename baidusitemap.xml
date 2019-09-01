@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://hyliang96.github.io/2019/05/25/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E8%A3%85pytorch/main/</loc>
+    <lastmod>2019-09-01</lastmod>
+  </url>  <url>
     <loc>https://hyliang96.github.io/2019/08/25/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain/main/</loc>
     <lastmod>2019-08-25</lastmod>
   </url>  <url>
@@ -42,9 +45,6 @@
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7/github%E5%A4%9A%E5%B8%90%E5%8F%B7/</loc>
     <lastmod>2019-07-01</lastmod>
-  </url>  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E8%A3%85pytorch/main/</loc>
-    <lastmod>2019-05-27</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2017/10/25/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E7%9A%84tensorboard/main/</loc>
     <lastmod>2019-05-27</lastmod>
