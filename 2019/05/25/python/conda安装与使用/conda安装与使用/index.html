@@ -113,7 +113,7 @@
 <meta property="og:description" content="[TOC] 参考链接conda文档 Linux下Anaconda的安装使用与卸载 anaconda的使用和环境管理 安装anaconda参见Linux下Anaconda的安装使用与卸载  在PC上，去Anaconda官网，获得安装包的下载链接  Download for Your Preferred Platform下，选Linux，根据需要选Python版本和操作系统位数 右键点击下载按钮，选复">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://hyliang96.github.io/2019/05/25/python/conda安装与使用/conda安装与使用/conda%E5%AE%89%E8%A3%85.png">
-<meta property="og:updated_time" content="2019-08-12T06:23:39.849Z">
+<meta property="og:updated_time" content="2019-09-02T16:16:21.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="anaconda安装与使用">
 <meta name="twitter:description" content="[TOC] 参考链接conda文档 Linux下Anaconda的安装使用与卸载 anaconda的使用和环境管理 安装anaconda参见Linux下Anaconda的安装使用与卸载  在PC上，去Anaconda官网，获得安装包的下载链接  Download for Your Preferred Platform下，选Linux，根据需要选Python版本和操作系统位数 右键点击下载按钮，选复">
@@ -438,7 +438,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-12 14:23:39" itemprop="dateModified" datetime="2019-08-12T14:23:39+08:00">2019-08-12</time>
+                <time title="修改时间：2019-09-03 00:16:21" itemprop="dateModified" datetime="2019-09-03T00:16:21+08:00">2019-09-03</time>
               
             
           </span>
@@ -491,7 +491,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">5.9k</span>
+                <span title="本文字数">6.1k</span>
               
 
               
@@ -505,7 +505,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">5 分钟</span>
+                <span title="阅读时长">6 分钟</span>
               
             </div>
           
@@ -692,7 +692,7 @@
 </ul>
 <p>原环境所在路径：</p>
 <ul>
-<li>可将别的电脑上<code>anaconda/envs/原环境名</code>文件夹拷过来，其环境下用conda和pip安装的python与非python包，克隆后仍皆可用<span id="anchor">锚点</span></li>
+<li>可将别的电脑上<code>anaconda/envs/原环境名</code>文件夹拷过来，其环境下用conda和pip安装的python与非python包，克隆后仍皆可用   <span id="anchor">锚点</span></li>
 <li>也可是本机上的<code>anaconda/envs/原环境名</code>文件夹</li>
 </ul>
 </li>
@@ -729,10 +729,14 @@
 <blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; Traceback (most recent call last):</span><br><span class="line">&gt;   File &quot;/home/haoyu/ENV/localENV/anaconda3/bin/conda&quot;, line 12, in &lt;module&gt;</span><br><span class="line">&gt;     from conda.cli import main</span><br><span class="line">&gt; ModuleNotFoundError: No module named &apos;conda&apos;</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h4 id="对策"><a href="#对策" class="headerlink" title="对策"></a>对策</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-2018.12-Linux-x86_64.sh -u</span><br></pre></td></tr></table></figure>
+<h4 id="对策"><a href="#对策" class="headerlink" title="对策"></a>对策</h4><h5 id="更新式重装"><a href="#更新式重装" class="headerlink" title="更新式重装"></a>更新式重装</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-2018.12-Linux-x86_64.sh -u</span><br></pre></td></tr></table></figure>
 
 <p>安装过程中选择之前的<code>&lt;anaconda根目录&gt;</code></p>
-<p>重装anaconda，但anaconda的base换机及其他自定义环境均会保留</p>
+<p>注：<code>bash Anaconda3-2018.12-Linux-x86_64.sh -h</code>显示 <code>-u</code> 表示 “update an existing installation”，如此更新式重装anaconda，但anaconda的base环境及其他自定义环境均会保留</p>
+<h5 id="重装"><a href="#重装" class="headerlink" title="重装"></a>重装</h5><p>若依旧不能解决上述bug，则删掉之前的<code>&lt;anaconda根目录&gt;</code>，然后重装anaconda</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda3-2018.12-Linux-x86_64.sh</span><br></pre></td></tr></table></figure>
+
+<p>anaconda的base环境及其他自定义环境均不会保留</p>
 
       
     </div>
@@ -796,8 +800,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/25/python/jupyter_notebook配置与使用/jupyter_notebook配置与使用/" rel="next" title="ipython与jupyter notebook安装配置使用">
-                <i class="fa fa-chevron-left"></i> ipython与jupyter notebook安装配置使用
+              <a href="/2019/05/25/服务器连接/sshfs/sshfs/" rel="next" title="sshfs">
+                <i class="fa fa-chevron-left"></i> sshfs
               </a>
             
           </div>
@@ -987,7 +991,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">1.</span> <span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装anaconda"><span class="nav-number">2.</span> <span class="nav-text">安装anaconda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卸载"><span class="nav-number">4.</span> <span class="nav-text">卸载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda下安装包-软件"><span class="nav-number">5.</span> <span class="nav-text">conda下安装包/软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python的包"><span class="nav-number">5.1.</span> <span class="nav-text">python的包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#conda命令概述"><span class="nav-number">5.1.1.</span> <span class="nav-text">conda命令概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#包的管理"><span class="nav-number">5.1.2.</span> <span class="nav-text">包的管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#conda与pip的区别"><span class="nav-number">5.1.3.</span> <span class="nav-text">conda与pip的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非python软件"><span class="nav-number">5.2.</span> <span class="nav-text">非python软件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">5.2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#效果"><span class="nav-number">5.2.2.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装网页链接与安装命令"><span class="nav-number">5.2.3.</span> <span class="nav-text">安装网页链接与安装命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟环境"><span class="nav-number">6.</span> <span class="nav-text">虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不兼容"><span class="nav-number">7.</span> <span class="nav-text">不兼容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#matplotlib"><span class="nav-number">7.1.</span> <span class="nav-text">matplotlib</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#报错"><span class="nav-number"></span> <span class="nav-text">报错</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#anaconda报错-ImportError-No-module-named-conda-cli"><span class="nav-number">1.</span> <span class="nav-text">anaconda报错 ImportError: No module named conda.cli</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#症状"><span class="nav-number">1.0.1.</span> <span class="nav-text">症状</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对策"><span class="nav-number">1.0.2.</span> <span class="nav-text">对策</span></a></li></ol></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">1.</span> <span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装anaconda"><span class="nav-number">2.</span> <span class="nav-text">安装anaconda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">3.</span> <span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卸载"><span class="nav-number">4.</span> <span class="nav-text">卸载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda下安装包-软件"><span class="nav-number">5.</span> <span class="nav-text">conda下安装包/软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python的包"><span class="nav-number">5.1.</span> <span class="nav-text">python的包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#conda命令概述"><span class="nav-number">5.1.1.</span> <span class="nav-text">conda命令概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#包的管理"><span class="nav-number">5.1.2.</span> <span class="nav-text">包的管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#conda与pip的区别"><span class="nav-number">5.1.3.</span> <span class="nav-text">conda与pip的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非python软件"><span class="nav-number">5.2.</span> <span class="nav-text">非python软件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">5.2.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#效果"><span class="nav-number">5.2.2.</span> <span class="nav-text">效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装网页链接与安装命令"><span class="nav-number">5.2.3.</span> <span class="nav-text">安装网页链接与安装命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟环境"><span class="nav-number">6.</span> <span class="nav-text">虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不兼容"><span class="nav-number">7.</span> <span class="nav-text">不兼容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#matplotlib"><span class="nav-number">7.1.</span> <span class="nav-text">matplotlib</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#报错"><span class="nav-number"></span> <span class="nav-text">报错</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#anaconda报错-ImportError-No-module-named-conda-cli"><span class="nav-number">1.</span> <span class="nav-text">anaconda报错 ImportError: No module named conda.cli</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#症状"><span class="nav-number">1.0.1.</span> <span class="nav-text">症状</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对策"><span class="nav-number">1.0.2.</span> <span class="nav-text">对策</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#更新式重装"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">更新式重装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#重装"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">重装</span></a></li></ol></li></ol></li></ol></li></div>
             
 
           </div>
