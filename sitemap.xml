@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hyliang96.github.io/2019/05/25/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vim%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97/vim%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97/</loc>
+    
+    <lastmod>2019-09-04T15:14:35.719Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hyliang96.github.io/2019/05/25/python/conda%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/conda%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
     
     <lastmod>2019-09-02T16:16:21.057Z</lastmod>
@@ -187,13 +194,6 @@
     <loc>https://hyliang96.github.io/2019/05/25/shell/bash%E8%AE%BE%E7%BD%AE/bash%E8%AE%BE%E7%BD%AE/</loc>
     
     <lastmod>2019-05-25T12:17:40.356Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vim%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97/vim%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97/</loc>
-    
-    <lastmod>2019-05-25T12:15:22.912Z</lastmod>
     
   </url>
   
