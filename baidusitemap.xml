@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://hyliang96.github.io/2019/06/03/python/%E7%94%A8tqdm%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1/%E7%94%A8tqdm%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1/</loc>
+    <lastmod>2019-09-05</lastmod>
+  </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vim%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97/vim%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97/</loc>
     <lastmod>2019-09-04</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/python/conda%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/conda%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
-    <lastmod>2019-09-02</lastmod>
-  </url>  <url>
-    <loc>https://hyliang96.github.io/2019/06/03/python/%E7%94%A8tqdm%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1/%E7%94%A8tqdm%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1/</loc>
     <lastmod>2019-09-02</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E8%A3%85pytorch/main/</loc>
