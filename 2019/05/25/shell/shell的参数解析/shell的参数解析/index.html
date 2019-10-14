@@ -105,17 +105,17 @@
 
 
 
-  <meta name="description" content="使用规则1bash或zsh getopt_demo.sh 一堆参数 # 其前中后均可有 余参数   格式化参数：即-开头的参数，若无法依照希望的方式解析，就会报错      短参数 长参数    无选项 -a –a-long   必有选项 -boption  或 -b option或 -b&amp;#39;op tions&amp;#39;  或 -b &amp;#39;op tion&amp;#39; --b-long opt">
+  <meta name="description" content="getopt使用规则1bash或zsh getopt_demo.sh 一堆参数 # 其前中后均可有 余参数   格式化参数：即-开头的参数，若无法依照希望的方式解析，就会报错      短参数 长参数    无选项 -a –a-long   必有选项 -boption  或 -b option或 -b&amp;#39;op tions&amp;#39;  或 -b &amp;#39;op tion&amp;#39; --b-lo">
 <meta property="og:type" content="article">
 <meta property="og:title" content="shell的参数解析">
 <meta property="og:url" content="https://hyliang96.github.io/2019/05/25/shell/shell的参数解析/shell的参数解析/index.html">
 <meta property="og:site_name" content="丹炉志">
-<meta property="og:description" content="使用规则1bash或zsh getopt_demo.sh 一堆参数 # 其前中后均可有 余参数   格式化参数：即-开头的参数，若无法依照希望的方式解析，就会报错      短参数 长参数    无选项 -a –a-long   必有选项 -boption  或 -b option或 -b&amp;#39;op tions&amp;#39;  或 -b &amp;#39;op tion&amp;#39; --b-long opt">
+<meta property="og:description" content="getopt使用规则1bash或zsh getopt_demo.sh 一堆参数 # 其前中后均可有 余参数   格式化参数：即-开头的参数，若无法依照希望的方式解析，就会报错      短参数 长参数    无选项 -a –a-long   必有选项 -boption  或 -b option或 -b&amp;#39;op tions&amp;#39;  或 -b &amp;#39;op tion&amp;#39; --b-lo">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-27T07:43:10.466Z">
+<meta property="og:updated_time" content="2019-10-12T14:54:55.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="shell的参数解析">
-<meta name="twitter:description" content="使用规则1bash或zsh getopt_demo.sh 一堆参数 # 其前中后均可有 余参数   格式化参数：即-开头的参数，若无法依照希望的方式解析，就会报错      短参数 长参数    无选项 -a –a-long   必有选项 -boption  或 -b option或 -b&amp;#39;op tions&amp;#39;  或 -b &amp;#39;op tion&amp;#39; --b-long opt">
+<meta name="twitter:description" content="getopt使用规则1bash或zsh getopt_demo.sh 一堆参数 # 其前中后均可有 余参数   格式化参数：即-开头的参数，若无法依照希望的方式解析，就会报错      短参数 长参数    无选项 -a –a-long   必有选项 -boption  或 -b option或 -b&amp;#39;op tions&amp;#39;  或 -b &amp;#39;op tion&amp;#39; --b-lo">
 
 
 
@@ -436,7 +436,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-27 15:43:10" itemprop="dateModified" datetime="2019-05-27T15:43:10+08:00">2019-05-27</time>
+                <time title="修改时间：2019-10-12 22:54:55" itemprop="dateModified" datetime="2019-10-12T22:54:55+08:00">2019-10-12</time>
               
             
           </span>
@@ -489,7 +489,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.9k</span>
+                <span title="本文字数">2.4k</span>
               
 
               
@@ -523,7 +523,7 @@
       
 
       
-        <h2 id="使用规则"><a href="#使用规则" class="headerlink" title="使用规则"></a>使用规则</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash或zsh getopt_demo.sh 一堆参数 <span class="comment"># 其前中后均可有 余参数</span></span><br></pre></td></tr></table></figure>
+        <h1 id="getopt"><a href="#getopt" class="headerlink" title="getopt"></a>getopt</h1><h2 id="使用规则"><a href="#使用规则" class="headerlink" title="使用规则"></a>使用规则</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash或zsh getopt_demo.sh 一堆参数 <span class="comment"># 其前中后均可有 余参数</span></span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>格式化参数：即<code>-</code>开头的参数，若无法依照希望的方式解析，就会报错</li>
@@ -571,6 +571,20 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用规则</span></span><br><span class="line"><span class="comment"># bash/zsh getopt_demo.sh 一堆参数，其前中后均可有 余参数</span></span><br><span class="line"><span class="comment"># 格式化参数：以'-'开头，必需符合本代码的解析要求</span></span><br><span class="line">    <span class="comment">#             短参数                           长参数</span></span><br><span class="line">    <span class="comment"># 无选项       -a                              --a-long</span></span><br><span class="line">    <span class="comment"># 必有选项     -bss          -b ss             --b-long ss</span></span><br><span class="line">    <span class="comment">#             -b'sds sds'   -b 'sds sds'      --b-long 'sds sds'</span></span><br><span class="line">    <span class="comment"># 可有选项若无  -c                              --c-long</span></span><br><span class="line">    <span class="comment"># 可有选项若有  -css          -c'sds sds'  只可短参数，选项与参数间不得有空格</span></span><br><span class="line"><span class="comment"># 余参数：不以'-'开头</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数预处理</span></span><br><span class="line">TEMP=$(getopt \</span><br><span class="line">    -o      ab:c:: \</span><br><span class="line">    --long  a-long,b-long:,c-long:: \</span><br><span class="line">    -n      <span class="string">'参数解析错误'</span> \</span><br><span class="line">    -- s    <span class="string">"<span class="variable">$@</span>"</span>)</span><br><span class="line"><span class="comment"># 写法</span></span><br><span class="line">    <span class="comment">#   -o     短参数 不需要分隔符</span></span><br><span class="line">    <span class="comment">#   --long 长参数 用','分隔</span></span><br><span class="line">    <span class="comment">#   ``无选项  `:`必有选项  `::` 可由选项</span></span><br><span class="line"><span class="keyword">if</span> [ $? != 0 ] ; <span class="keyword">then</span> <span class="built_in">echo</span> <span class="string">"格式化的参数解析错误，正在退出"</span> &gt;&amp;2 ; <span class="built_in">exit</span> 1 ; <span class="keyword">fi</span></span><br><span class="line"><span class="built_in">eval</span> <span class="built_in">set</span> -- <span class="string">"<span class="variable">$TEMP</span>"</span> <span class="comment"># 将复制给 $1, $2, ...</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 处理参数</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">true</span> ; <span class="keyword">do</span> <span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></span><br><span class="line">    <span class="comment"># 无选项</span></span><br><span class="line">    -a|--a-long)  <span class="built_in">echo</span> opt a ; <span class="built_in">shift</span> ;;</span><br><span class="line">    <span class="comment"># 必有选项</span></span><br><span class="line">    -b|--b-long)  <span class="built_in">echo</span> opt b arg <span class="string">"<span class="variable">$2</span>"</span> ; <span class="built_in">shift</span> 2 ;;</span><br><span class="line">    <span class="comment"># 可省选项</span></span><br><span class="line">    -c|--c-long) <span class="keyword">case</span> <span class="string">"<span class="variable">$2</span>"</span> <span class="keyword">in</span></span><br><span class="line">        <span class="comment"># 无选项</span></span><br><span class="line">        <span class="string">""</span>)  <span class="built_in">echo</span> opt c no arg ; <span class="built_in">shift</span> 2 ;;</span><br><span class="line">        <span class="comment"># 有选项</span></span><br><span class="line">        *)   <span class="built_in">echo</span> opt c arg <span class="string">"<span class="variable">$2</span>"</span> ; <span class="built_in">shift</span> 2 ;;  <span class="keyword">esac</span> ;;</span><br><span class="line">    <span class="comment"># '--'后是 余参数</span></span><br><span class="line">    --) <span class="built_in">shift</span> ; <span class="built_in">break</span> ;;</span><br><span class="line">    <span class="comment"># 处理参数的代码错误</span></span><br><span class="line">    *) <span class="built_in">echo</span> <span class="string">"参数处理错误"</span> ; <span class="built_in">exit</span> 1 ;;</span><br><span class="line"><span class="keyword">esac</span> ; <span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 余下参数</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span>; <span class="keyword">do</span></span><br><span class="line">   <span class="built_in">echo</span> rest <span class="string">"<span class="variable">$i</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="snippets"><a href="#snippets" class="headerlink" title="snippets"></a>snippets</h2><p>为了方便些getopt，我已经将上述模板写成sublime、vscode、vim的snippet</p>
+<h1 id="徒手解析"><a href="#徒手解析" class="headerlink" title="徒手解析"></a>徒手解析</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="built_in">test</span> <span class="variable">$#</span> -gt 0; <span class="keyword">do</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">"<span class="variable">$1</span>"</span> <span class="keyword">in</span></span><br><span class="line">        -&lt;短参数1&gt;)  相应代码 ;; <span class="comment"># 短参数</span></span><br><span class="line">        -&lt;短参数2&gt;)  相应代码 ;; <span class="comment"># 短参数</span></span><br><span class="line">        --&lt;长参数1&gt;) 相应代码 ;; <span class="comment"># 长参数</span></span><br><span class="line">        --&lt;长参数2&gt;) 相应代码 ;; <span class="comment"># 长参数</span></span><br><span class="line">        -*)         相应代码 ;; <span class="comment"># 剩余短参数</span></span><br><span class="line">        --*)        相应代码 ;; <span class="comment"># 剩余长参数</span></span><br><span class="line">        *)          相应代码 ;; <span class="comment"># 非参数</span></span><br><span class="line">    <span class="keyword">esac</span></span><br><span class="line">    <span class="built_in">shift</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+
+<p>注：</p>
+<ul>
+<li><code>;;</code>前可以换行，详见下</li>
+<li><code>-某某)</code>后可以换行，详见下</li>
+<li>相应代码可以再接受参数，例如</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-&lt;短参数1&gt;) </span><br><span class="line">	<span class="keyword">if</span> [ <span class="string">"<span class="variable">$&#123;2:0:1&#125;</span>"</span> != <span class="string">'-'</span> ]; <span class="keyword">then</span></span><br><span class="line">		相应代码来处理<span class="variable">$2</span></span><br><span class="line">		<span class="built_in">shift</span></span><br><span class="line">	<span class="keyword">fi</span></span><br><span class="line">	;;</span><br></pre></td></tr></table></figure>
+
+<p>缺点：</p>
+<ul>
+<li>仅此一个：不支持解析相邻的短参数 <code>-lAd</code>，必需写成<code>-l -A -d</code></li>
+</ul>
 
       
     </div>
@@ -634,8 +648,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/25/服务器连接/ssh/ssh/" rel="next" title="ssh配置">
-                <i class="fa fa-chevron-left"></i> ssh配置
+              <a href="/2019/05/25/服务器连接/rsync/rsync教程/" rel="next" title="rsync教程">
+                <i class="fa fa-chevron-left"></i> rsync教程
               </a>
             
           </div>
@@ -644,8 +658,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/25/python/virtualenv教程/virtualenv教程/" rel="prev" title="virtualenv 教程">
-                virtualenv 教程 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/25/python/python语法笔记/python语法笔记/" rel="prev" title="我的python使用tips">
+                我的python使用tips <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -825,7 +839,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用规则"><span class="nav-number">1.</span> <span class="nav-text">使用规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码写法"><span class="nav-number">2.</span> <span class="nav-text">代码写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#snippets"><span class="nav-number">3.</span> <span class="nav-text">snippets</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#getopt"><span class="nav-number">1.</span> <span class="nav-text">getopt</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用规则"><span class="nav-number">1.1.</span> <span class="nav-text">使用规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码写法"><span class="nav-number">1.2.</span> <span class="nav-text">代码写法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#snippets"><span class="nav-number">1.3.</span> <span class="nav-text">snippets</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#徒手解析"><span class="nav-number">2.</span> <span class="nav-text">徒手解析</span></a></li></ol></div>
             
 
           </div>
@@ -867,7 +881,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">196k</span>
+    <span title="站点总字数">198k</span>
   
 
   
@@ -878,7 +892,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">2:58</span>
+    <span title="站点阅读时长">3:01</span>
   
 </div>
 
