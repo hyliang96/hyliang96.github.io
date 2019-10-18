@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hyliang96.github.io/2019/05/25/linux%E6%9D%82%E9%A1%B9/Linux%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/Linux%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/</loc>
+    
+    <lastmod>2019-10-18T04:44:12.931Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hyliang96.github.io/2019/05/25/shell/bash%E5%8F%8Azsh%E8%AF%AD%E6%B3%95/bash%E5%8F%8Azsh%E8%AF%AD%E6%B3%95/</loc>
+    
+    <lastmod>2019-10-17T13:11:49.689Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E7%BB%88%E7%AB%AF/iterm2%E7%AC%94%E8%AE%B0/iterm2%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2019-10-17T07:56:52.344Z</lastmod>
@@ -12,13 +26,6 @@
     <loc>https://hyliang96.github.io/2019/05/25/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90/</loc>
     
     <lastmod>2019-10-17T07:56:52.338Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/shell/bash%E5%8F%8Azsh%E8%AF%AD%E6%B3%95/bash%E5%8F%8Azsh%E8%AF%AD%E6%B3%95/</loc>
-    
-    <lastmod>2019-10-17T07:56:52.337Z</lastmod>
     
   </url>
   
@@ -72,7 +79,7 @@
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/2019/05/25/python/notebook%E9%85%8D%E8%89%B2%E6%9B%B4%E6%8D%A2/notebook%E9%85%8D%E8%89%B2%E6%9B%B4%E6%8D%A2/</loc>
+    <loc>https://hyliang96.github.io/2019/05/25/python/python%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/python%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/</loc>
     
     <lastmod>2019-10-08T12:35:23.000Z</lastmod>
     
@@ -86,7 +93,7 @@
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/2019/05/25/python/python%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/python%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://hyliang96.github.io/2019/05/25/python/notebook%E9%85%8D%E8%89%B2%E6%9B%B4%E6%8D%A2/notebook%E9%85%8D%E8%89%B2%E6%9B%B4%E6%8D%A2/</loc>
     
     <lastmod>2019-10-08T12:35:23.000Z</lastmod>
     
@@ -101,27 +108,6 @@
   
   <url>
     <loc>https://hyliang96.github.io/2019/06/03/python/%E7%94%A8tqdm%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1/main/</loc>
-    
-    <lastmod>2019-10-08T12:35:23.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hyliang96.github.io/2017/10/25/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E7%9A%84tensorboard/main/</loc>
-    
-    <lastmod>2019-10-08T12:35:23.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E8%A3%85pytorch/main/</loc>
-    
-    <lastmod>2019-10-08T12:35:23.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/%E7%BB%88%E7%AB%AF/tmux%E7%94%A8%E6%B3%95/tmux%E7%94%A8%E6%B3%95/</loc>
     
     <lastmod>2019-10-08T12:35:23.000Z</lastmod>
     
@@ -149,6 +135,20 @@
   </url>
   
   <url>
+    <loc>https://hyliang96.github.io/2017/10/25/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E7%9A%84tensorboard/main/</loc>
+    
+    <lastmod>2019-10-08T12:35:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hyliang96.github.io/2019/05/25/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E8%A3%85pytorch/main/</loc>
+    
+    <lastmod>2019-10-08T12:35:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E7%BC%96%E8%BE%91%E5%99%A8IDE/pycharm.md/main/</loc>
     
     <lastmod>2019-10-08T12:35:23.000Z</lastmod>
@@ -163,6 +163,13 @@
   </url>
   
   <url>
+    <loc>https://hyliang96.github.io/2019/05/25/%E7%BB%88%E7%AB%AF/tmux%E7%94%A8%E6%B3%95/tmux%E7%94%A8%E6%B3%95/</loc>
+    
+    <lastmod>2019-10-08T12:35:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hyliang96.github.io/2016/08/01/c%E4%B8%8Ecpp/cpp%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/main/</loc>
     
     <lastmod>2019-10-08T12:35:23.000Z</lastmod>
@@ -170,7 +177,7 @@
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/2019/05/25/linux%E6%9D%82%E9%A1%B9/Linux%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/Linux%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/</loc>
+    <loc>https://hyliang96.github.io/2019/05/25/shell/bash%E8%AE%BE%E7%BD%AE/bash%E8%AE%BE%E7%BD%AE/</loc>
     
     <lastmod>2019-10-08T12:35:23.000Z</lastmod>
     
@@ -199,13 +206,6 @@
   
   <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/vnc_debug%E6%97%A5%E5%BF%97/vnc_debug%E6%97%A5%E5%BF%97/</loc>
-    
-    <lastmod>2019-10-08T12:35:23.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/shell/bash%E8%AE%BE%E7%BD%AE/bash%E8%AE%BE%E7%BD%AE/</loc>
     
     <lastmod>2019-10-08T12:35:23.000Z</lastmod>
     
