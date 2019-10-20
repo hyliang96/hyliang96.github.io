@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://hyliang96.github.io/2019/05/25/linux%E6%9D%82%E9%A1%B9/Linux%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/Linux%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/</loc>
-    <lastmod>2019-10-18</lastmod>
+    <loc>https://hyliang96.github.io/2019/10/20/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/</loc>
+    <lastmod>2019-10-20</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/shell/bash%E5%8F%8Azsh%E8%AF%AD%E6%B3%95/bash%E5%8F%8Azsh%E8%AF%AD%E6%B3%95/</loc>
-    <lastmod>2019-10-17</lastmod>
+    <lastmod>2019-10-20</lastmod>
+  </url>  <url>
+    <loc>https://hyliang96.github.io/2019/05/25/linux%E6%9D%82%E9%A1%B9/Linux%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/Linux%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86/</loc>
+    <lastmod>2019-10-18</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E7%BB%88%E7%AB%AF/iterm2%E7%AC%94%E8%AE%B0/iterm2%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2019-10-17</lastmod>
@@ -22,10 +25,10 @@
     <loc>https://hyliang96.github.io/2019/05/25/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vim%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97.md/main/</loc>
     <lastmod>2019-10-09</lastmod>
   </url>  <url>
-    <loc>https://hyliang96.github.io/2019/07/27/c%E4%B8%8Ecpp/make%E7%BC%96%E8%AF%91/main/</loc>
+    <loc>https://hyliang96.github.io/2019/05/25/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7/github%E5%A4%9A%E5%B8%90%E5%8F%B7/</loc>
     <lastmod>2019-10-08</lastmod>
   </url>  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7/github%E5%A4%9A%E5%B8%90%E5%8F%B7/</loc>
+    <loc>https://hyliang96.github.io/2019/07/27/c%E4%B8%8Ecpp/make%E7%BC%96%E8%AF%91/main/</loc>
     <lastmod>2019-10-08</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/linux%E6%9D%82%E9%A1%B9/matlab%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/matlab%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/</loc>
@@ -34,10 +37,16 @@
     <loc>https://hyliang96.github.io/2019/05/25/linux%E6%9D%82%E9%A1%B9/%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7/%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7/</loc>
     <lastmod>2019-10-08</lastmod>
   </url>  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/python/python%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/python%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://hyliang96.github.io/2019/05/25/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E8%A3%85pytorch/main/</loc>
     <lastmod>2019-10-08</lastmod>
   </url>  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/python/python%E5%AE%89%E8%A3%85%E5%8D%B8%E8%BD%BD/python%E5%AE%89%E8%A3%85%E5%8D%B8%E8%BD%BD/</loc>
+    <loc>https://hyliang96.github.io/2017/10/25/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E7%9A%84tensorboard/main/</loc>
+    <lastmod>2019-10-08</lastmod>
+  </url>  <url>
+    <loc>https://hyliang96.github.io/2016/08/01/c%E4%B8%8Ecpp/cpp%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/main/</loc>
+    <lastmod>2019-10-08</lastmod>
+  </url>  <url>
+    <loc>https://hyliang96.github.io/2019/05/25/shell/bash%E8%AE%BE%E7%BD%AE/bash%E8%AE%BE%E7%BD%AE/</loc>
     <lastmod>2019-10-08</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/python/notebook%E9%85%8D%E8%89%B2%E6%9B%B4%E6%8D%A2/notebook%E9%85%8D%E8%89%B2%E6%9B%B4%E6%8D%A2/</loc>
@@ -49,34 +58,28 @@
     <loc>https://hyliang96.github.io/2019/06/03/python/%E7%94%A8tqdm%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1/main/</loc>
     <lastmod>2019-10-08</lastmod>
   </url>  <url>
+    <loc>https://hyliang96.github.io/2019/05/25/python/python%E5%AE%89%E8%A3%85%E5%8D%B8%E8%BD%BD/python%E5%AE%89%E8%A3%85%E5%8D%B8%E8%BD%BD/</loc>
+    <lastmod>2019-10-08</lastmod>
+  </url>  <url>
+    <loc>https://hyliang96.github.io/2019/05/25/python/python%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/python%E8%AF%AD%E6%B3%95%E7%AC%94%E8%AE%B0/</loc>
+    <lastmod>2019-10-08</lastmod>
+  </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync/rsync%E6%95%99%E7%A8%8B/</loc>
     <lastmod>2019-10-08</lastmod>
   </url>  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/ssh/ssh/</loc>
+    <loc>https://hyliang96.github.io/2019/05/25/%E7%BB%88%E7%AB%AF/tmux%E7%94%A8%E6%B3%95/tmux%E7%94%A8%E6%B3%95/</loc>
     <lastmod>2019-10-08</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/vnc%E6%A1%8C%E9%9D%A2%E8%BD%AC%E5%8F%91/vnc%E6%A1%8C%E9%9D%A2%E8%BD%AC%E5%8F%91/</loc>
     <lastmod>2019-10-08</lastmod>
   </url>  <url>
-    <loc>https://hyliang96.github.io/2017/10/25/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E7%9A%84tensorboard/main/</loc>
-    <lastmod>2019-10-08</lastmod>
-  </url>  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E8%A3%85pytorch/main/</loc>
+    <loc>https://hyliang96.github.io/2019/05/25/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/ssh/ssh/</loc>
     <lastmod>2019-10-08</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E7%BC%96%E8%BE%91%E5%99%A8IDE/pycharm.md/main/</loc>
     <lastmod>2019-10-08</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode.md/main/</loc>
-    <lastmod>2019-10-08</lastmod>
-  </url>  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/%E7%BB%88%E7%AB%AF/tmux%E7%94%A8%E6%B3%95/tmux%E7%94%A8%E6%B3%95/</loc>
-    <lastmod>2019-10-08</lastmod>
-  </url>  <url>
-    <loc>https://hyliang96.github.io/2016/08/01/c%E4%B8%8Ecpp/cpp%E5%85%A5%E9%97%A8%E7%AC%94%E8%AE%B0/main/</loc>
-    <lastmod>2019-10-08</lastmod>
-  </url>  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/shell/bash%E8%AE%BE%E7%BD%AE/bash%E8%AE%BE%E7%BD%AE/</loc>
     <lastmod>2019-10-08</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/python/conda%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/conda%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8/</loc>
