@@ -105,17 +105,17 @@
 
 
 
-  <meta name="description" content="zsh的自动补全zsh-completions是zsh官方支持的自动补全包 使用antigen管理zsh插件的话，zsh-completions的路径在~/.antigen/bundles/zsh-users/zsh-completions、src，其下有众多文件名如_xxxx，分别定义了xxx命令的补全。 zsh 有一路径$fpath，内容如">
+  <meta name="description" content="zsh的自动补全zsh-completions是zsh官方支持的自动补全包 使用antigen管理zsh插件的话，zsh-completions的路径在~/.antigen/bundles/zsh-users/zsh-completions/src，其下有众多文件名如_xxx，分别定义了xxx命令的补全。 机理zsh 有一数组 $fpath，内容如 1declare -p fpath   12&amp;g">
 <meta property="og:type" content="article">
 <meta property="og:title" content="zsh自动补全的复用">
 <meta property="og:url" content="https://hyliang96.github.io/2019/10/20/shell/zsh自动补全的复用.md/main/index.html">
 <meta property="og:site_name" content="丹炉志">
-<meta property="og:description" content="zsh的自动补全zsh-completions是zsh官方支持的自动补全包 使用antigen管理zsh插件的话，zsh-completions的路径在~/.antigen/bundles/zsh-users/zsh-completions、src，其下有众多文件名如_xxxx，分别定义了xxx命令的补全。 zsh 有一路径$fpath，内容如">
+<meta property="og:description" content="zsh的自动补全zsh-completions是zsh官方支持的自动补全包 使用antigen管理zsh插件的话，zsh-completions的路径在~/.antigen/bundles/zsh-users/zsh-completions/src，其下有众多文件名如_xxx，分别定义了xxx命令的补全。 机理zsh 有一数组 $fpath，内容如 1declare -p fpath   12&amp;g">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-20T08:41:06.990Z">
+<meta property="og:updated_time" content="2019-10-20T15:34:27.277Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zsh自动补全的复用">
-<meta name="twitter:description" content="zsh的自动补全zsh-completions是zsh官方支持的自动补全包 使用antigen管理zsh插件的话，zsh-completions的路径在~/.antigen/bundles/zsh-users/zsh-completions、src，其下有众多文件名如_xxxx，分别定义了xxx命令的补全。 zsh 有一路径$fpath，内容如">
+<meta name="twitter:description" content="zsh的自动补全zsh-completions是zsh官方支持的自动补全包 使用antigen管理zsh插件的话，zsh-completions的路径在~/.antigen/bundles/zsh-users/zsh-completions/src，其下有众多文件名如_xxx，分别定义了xxx命令的补全。 机理zsh 有一数组 $fpath，内容如 1declare -p fpath   12&amp;g">
 
 
 
@@ -419,7 +419,7 @@
                 
               
 
-              <time title="创建时间：2019-10-20 04:00:00 04:00:00" itemprop="dateCreated datePublished" datetime="2019-10-20T04:00:00+08:00">2019-10-20 04:00:00</time>
+              <time title="创建时间：2019-10-20 15:36:45 15:36:45" itemprop="dateCreated datePublished" datetime="2019-10-20T15:36:45+08:00">2019-10-20 15:36:45</time>
             
 
             
@@ -436,7 +436,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-20 16:41:06 16:41:06" itemprop="dateModified" datetime="2019-10-20T16:41:06+08:00">2019-10-20 16:41:06</time>
+                <time title="修改时间：2019-10-20 23:34:27 23:34:27" itemprop="dateModified" datetime="2019-10-20T23:34:27+08:00">2019-10-20 23:34:27</time>
               
             
           </span>
@@ -502,7 +502,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">174</span>
+                <span title="本文字数">3.7k</span>
               
 
               
@@ -516,7 +516,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">1 分钟</span>
+                <span title="阅读时长">3 分钟</span>
               
             </div>
           
@@ -537,8 +537,49 @@
 
       
         <h2 id="zsh的自动补全"><a href="#zsh的自动补全" class="headerlink" title="zsh的自动补全"></a>zsh的自动补全</h2><p><code>zsh-completions</code>是zsh官方支持的自动补全包</p>
-<p>使用<code>antigen</code>管理zsh插件的话，<code>zsh-completions</code>的路径在<code>~/.antigen/bundles/zsh-users/zsh-completions、src</code>，其下有众多文件名如<code>_xxxx</code>，分别定义了<code>xxx</code>命令的补全。</p>
-<p>zsh 有一路径<code>$fpath</code>，内容如</p>
+<p>使用<code>antigen</code>管理zsh插件的话，<code>zsh-completions</code>的路径在<code>~/.antigen/bundles/zsh-users/zsh-completions/src</code>，其下有众多文件名如<code>_xxx</code>，分别定义了<code>xxx</code>命令的补全。</p>
+<h3 id="机理"><a href="#机理" class="headerlink" title="机理"></a>机理</h3><p>zsh 有一数组 <code>$fpath</code>，内容如</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">declare</span> -p fpath</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; typeset -a fpath=( /usr/local/share/zsh/site-functions /Users/mac/.autojump/functions /usr/share/zsh/site-functions /usr/share/zsh/5.3/functions /Users/mac/.antigen/bundles/robbyrussell/oh-my-zsh/lib /Users/mac/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/autojump /Users/mac/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/pip /Users/mac/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/svn-fast-info /Users/mac/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/colorize /Users/mac/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/github /Users/mac/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/python /Users/mac/.antigen/bundles/zsh-users/zsh-autosuggestions /Users/mac/.antigen/bundles/zsh-users/zsh-completions /Users/mac/.antigen/bundles/Vifon/deer /Users/mac/.antigen/bundles/willghatch/zsh-cdr /Users/mac/.antigen/bundles/zsh-users/zsh-syntax-highlighting /Users/mac/.antigen/bundles/zsh-users/zsh-completions/src )</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>表示zsh启动时会从这些路径下加载<code>_xxx</code>文件，当zsh加载fpath所有文件后，会生成相应的<code>_xxx</code>函数，例如</p>
+<p><code>~/.antigen/bundles/zsh-users/zsh-completions/src/_tmuxp</code>文件定义了<code>_tmuxp</code>自动补全函数，(未定义<code>_tmux</code>函数)，而zsh加载后会自动生成<code>_tmux</code>函数</p>
+<h3 id="复用zsh的自动补全函数"><a href="#复用zsh的自动补全函数" class="headerlink" title="复用zsh的自动补全函数"></a>复用zsh的自动补全函数</h3><p><a href="https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org" target="_blank" rel="noopener">参见</a></p>
+<h4 id="基本原理"><a href="#基本原理" class="headerlink" title="基本原理"></a>基本原理</h4><ul>
+<li><p>直接复用：<code>bar</code> 函数 要 复用<code>foo</code>函数的自动补全</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 函数 bar的定义可写在其前</span></span><br><span class="line">compdef _foo bar</span><br><span class="line"><span class="comment"># 函数 bar的定义也可写在其后</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>复用带参的：<code>bar</code> 函数 要 复用 <code>foo &lt;一个或多个参数&gt;</code> 的自动补全</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建一个空函数foo_copy_comp，使其补全与foo同</span></span><br><span class="line"><span class="function"><span class="title">foo_copy_comp</span></span>() &#123; : &#125;</span><br><span class="line">compdef _foo foo_copy_comp</span><br><span class="line"><span class="comment"># zsh的自动补全支持alias，故而bar的自动补全与'foo &lt;一个或多个参数&gt;'命令同</span></span><br><span class="line"><span class="built_in">alias</span> bar=<span class="string">'foo_copy_comp &lt;一个或多个参数&gt;'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 函数 bar的定义要写在其后</span></span><br><span class="line"><span class="function"><span class="title">bar</span></span>()&#123;  </span><br><span class="line">  <span class="comment"># ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  当bar函数定义后，alias bar与bar函数共存：</p>
+<ul>
+<li><code>which bar</code> 返回的是” alias bar=’foo_copy_comp &lt;一个或多个参数&gt;’ “</li>
+<li><code>bar &lt;TAB键&gt;</code> 会显示<code>foo &lt;一个或多个参数&gt;</code>命令之后的自动补全</li>
+<li>运行<code>bar &lt;其他参数&gt;</code>命令，会执行<code>bar</code> 函数，而非alias bar</li>
+</ul>
+</li>
+</ul>
+<h4 id="配置示例"><a href="#配置示例" class="headerlink" title="配置示例"></a>配置示例</h4><ul>
+<li><p>关闭全局的<code>compinit</code>：在全局<code>zshrc</code>文件( mac: <code>/etc/zshrc</code>, linux:<code>/etc/zsh/zshrc</code> ) 中，搜<code>compinit</code>，若发现如下内容，则将<code>skip_global_compinit=1</code>解除注释；若没发现<code>compinit</code>，则不管。</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># If you don't want compinit called here, place the line</span></span><br><span class="line"><span class="comment"># skip_global_compinit=1    # 这行要解注释</span></span><br><span class="line"><span class="comment"># in your $ZDOTDIR/.zshenv or $ZDOTDIR/.zprofile</span></span><br><span class="line"><span class="keyword">if</span> [[ -z <span class="string">"<span class="variable">$skip_global_compinit</span>"</span> ]]; <span class="keyword">then</span></span><br><span class="line">  <span class="built_in">autoload</span> -U compinit</span><br><span class="line">  compinit</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>  这样设置的原因是：在<code>~/.zshrc</code>中需要运行<code>autoload -U compinit &amp;&amp; compinit</code>(如下一段)，来使得<code>compdef</code>有定义。但是运行这个比较花时间，全局<code>zshrc</code>文件没必要也运行一遍。</p>
+<p>  注： 每次启动zsh（不论登录、非登录，交互、非交互），先会运行全局<code>zshrc</code>文件，再运行<code>~/.zshrc</code>。</p>
+</li>
+<li><p>配置自动补全：在<code>~/.zshrc</code>中写</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 初始化zsh的自动补全，从而conpdef函数有定义了</span></span><br><span class="line"><span class="built_in">autoload</span> -U compinit &amp;&amp; compinit</span><br><span class="line"><span class="comment"># ----------直接复用--------------</span></span><br><span class="line"><span class="comment"># auto_rsync 函数 复用 rsync的补全函数</span></span><br><span class="line">compdef _rsync auto_rsync</span><br><span class="line"><span class="comment"># ---------复用带参的--------------</span></span><br><span class="line"><span class="comment"># itm 函数 复用 'tmux -CC attach -t' 的补全函数</span></span><br><span class="line"><span class="function"><span class="title">tmux_itm</span></span>() &#123;   :    &#125;</span><br><span class="line">compdef _tmux tmux_itm</span><br><span class="line"><span class="built_in">alias</span> itm=<span class="string">'tmux_itm -CC attach -t'</span></span><br><span class="line"><span class="comment"># -------------------------------------------</span></span><br><span class="line"><span class="comment"># 允许在有`alias foo=...`时，再定义函数`foo() &#123;  .... &#125;`</span></span><br><span class="line"><span class="built_in">set</span> -o ALIAS_FUNC_DEF &gt; /dev/null 2&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>定义被补全的函数：在<code>~/.zshrc</code>中，配置自动补全的后面写</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ----------直接复用--------------</span></span><br><span class="line"><span class="comment"># 之后可以定义 auto_rsync, itm 函数</span></span><br><span class="line"><span class="comment"># 带断点续传的rsync</span></span><br><span class="line"><span class="function"><span class="title">auto_rsync</span></span>() &#123;</span><br><span class="line">	<span class="built_in">local</span> retry_time=180</span><br><span class="line">	<span class="keyword">while</span> [ 1 ]</span><br><span class="line">	<span class="keyword">do</span></span><br><span class="line">		rsync -aHhvzP $*</span><br><span class="line">		<span class="keyword">if</span> [ <span class="string">"$?"</span> = <span class="string">"0"</span> ]</span><br><span class="line">		<span class="keyword">then</span></span><br><span class="line">			<span class="built_in">echo</span> <span class="string">"rsync completed normally"</span></span><br><span class="line">			<span class="built_in">break</span></span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="built_in">echo</span> <span class="string">"Rsync failure. Backing off and retrying in <span class="variable">$retry_time</span> seconds..."</span></span><br><span class="line">			sleep <span class="variable">$retry_time</span></span><br><span class="line">		<span class="keyword">fi</span></span><br><span class="line">	<span class="keyword">done</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment"># ---------复用带参的--------------</span></span><br><span class="line"><span class="comment"># 覆盖 alias itm='tmux_itm -CC attach -t'</span></span><br><span class="line"><span class="function"><span class="title">itm</span></span>() &#123;</span><br><span class="line">    <span class="comment"># 注意：若已经定义了alias itm，需要把前三个参数`-CC attach -t`过掉</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="string">"<span class="variable">$(alias itm 2&gt; /dev/null)</span>"</span> != <span class="string">''</span> ]; <span class="keyword">then</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> &#123;1..3&#125;; <span class="keyword">do</span> <span class="built_in">shift</span>; <span class="keyword">done</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$#</span> = 0 ]; <span class="keyword">then</span></span><br><span class="line">        tmux -CC attach || tmux -CC new -s default</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="built_in">local</span> session=<span class="string">"<span class="variable">$1</span>"</span></span><br><span class="line">        tmux -CC attach -t <span class="string">"<span class="variable">$&#123;session&#125;</span>"</span> || tmux -CC new -s <span class="string">"<span class="variable">$&#123;session&#125;</span>"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意：复用<code>foo &lt;n个参数&gt;</code>，要仿照上面的代码，把前n个参数过掉。</p>
 
       
     </div>
@@ -788,7 +829,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh的自动补全"><span class="nav-number">1.</span> <span class="nav-text">zsh的自动补全</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh的自动补全"><span class="nav-number">1.</span> <span class="nav-text">zsh的自动补全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#机理"><span class="nav-number">1.1.</span> <span class="nav-text">机理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复用zsh的自动补全函数"><span class="nav-number">1.2.</span> <span class="nav-text">复用zsh的自动补全函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本原理"><span class="nav-number">1.2.1.</span> <span class="nav-text">基本原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置示例"><span class="nav-number">1.2.2.</span> <span class="nav-text">配置示例</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -830,7 +871,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">198k</span>
+    <span title="站点总字数">202k</span>
   
 
   
@@ -841,7 +882,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">3:01</span>
+    <span title="站点阅读时长">3:03</span>
   
 </div>
 
