@@ -105,17 +105,17 @@
 
 
 
-  <meta name="description" content="[TOC] 引号单引号：仅\转义 双引号：${xxx}(变量)、`xx` (命令返回)、\转义 反引号：  `xx`   &amp;lt;=&amp;gt; $(xx)：用当前shell执行xx命令，将其返回为无名变量。例如  1234echo `ls`echo $(ls)result=`ls`result=$(ls)   `bash -c &amp;quot;xx&amp;quot;`   &amp;lt;=&amp;gt; $(bash -">
+  <meta name="description" content="[TOC] 引号单引号：所有都不转义 $&amp;#39;xxx&amp;#39;: 仅\某转义 双引号：${xxx}(变量)、`xx` $()(命令返回)、\某转义 反引号：  `xx`   完全等价于  $(xx)：用当前shell执行xx命令，将其返回为无名变量。例如  1234echo `ls`echo $(ls)result=`ls`result=$(ls)   `bash -c &amp;quot;xx&amp;qu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="bash及zsh语法">
 <meta property="og:url" content="https://hyliang96.github.io/2019/05/25/shell/bash及zsh语法/bash及zsh语法/index.html">
 <meta property="og:site_name" content="丹炉志">
-<meta property="og:description" content="[TOC] 引号单引号：仅\转义 双引号：${xxx}(变量)、`xx` (命令返回)、\转义 反引号：  `xx`   &amp;lt;=&amp;gt; $(xx)：用当前shell执行xx命令，将其返回为无名变量。例如  1234echo `ls`echo $(ls)result=`ls`result=$(ls)   `bash -c &amp;quot;xx&amp;quot;`   &amp;lt;=&amp;gt; $(bash -">
+<meta property="og:description" content="[TOC] 引号单引号：所有都不转义 $&amp;#39;xxx&amp;#39;: 仅\某转义 双引号：${xxx}(变量)、`xx` $()(命令返回)、\某转义 反引号：  `xx`   完全等价于  $(xx)：用当前shell执行xx命令，将其返回为无名变量。例如  1234echo `ls`echo $(ls)result=`ls`result=$(ls)   `bash -c &amp;quot;xx&amp;qu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-30T19:28:53.580Z">
+<meta property="og:updated_time" content="2019-11-06T12:25:51.424Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bash及zsh语法">
-<meta name="twitter:description" content="[TOC] 引号单引号：仅\转义 双引号：${xxx}(变量)、`xx` (命令返回)、\转义 反引号：  `xx`   &amp;lt;=&amp;gt; $(xx)：用当前shell执行xx命令，将其返回为无名变量。例如  1234echo `ls`echo $(ls)result=`ls`result=$(ls)   `bash -c &amp;quot;xx&amp;quot;`   &amp;lt;=&amp;gt; $(bash -">
+<meta name="twitter:description" content="[TOC] 引号单引号：所有都不转义 $&amp;#39;xxx&amp;#39;: 仅\某转义 双引号：${xxx}(变量)、`xx` $()(命令返回)、\某转义 反引号：  `xx`   完全等价于  $(xx)：用当前shell执行xx命令，将其返回为无名变量。例如  1234echo `ls`echo $(ls)result=`ls`result=$(ls)   `bash -c &amp;quot;xx&amp;qu">
 
 
 
@@ -436,7 +436,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-31 03:28:53 03:28:53" itemprop="dateModified" datetime="2019-10-31T03:28:53+08:00">2019-10-31 03:28:53</time>
+                <time title="修改时间：2019-11-06 20:25:51 20:25:51" itemprop="dateModified" datetime="2019-11-06T20:25:51+08:00">2019-11-06 20:25:51</time>
               
             
           </span>
@@ -502,7 +502,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">18k</span>
+                <span title="本文字数">19k</span>
               
 
               
@@ -537,18 +537,19 @@
 
       
         <p>[TOC]</p>
-<h1 id="引号"><a href="#引号" class="headerlink" title="引号"></a>引号</h1><p>单引号：仅<code>\</code>转义</p>
-<p>双引号：<code>${xxx}</code>(变量)、<code>`xx`</code> (命令返回)、<code>\</code>转义</p>
+<h1 id="引号"><a href="#引号" class="headerlink" title="引号"></a>引号</h1><p>单引号：所有都不转义</p>
+<p><code>$&#39;xxx&#39;</code>: 仅<code>\某</code>转义</p>
+<p>双引号：<code>${xxx}</code>(变量)、<code>`xx`</code> <code>$()</code>(命令返回)、<code>\某</code>转义</p>
 <p>反引号：</p>
 <ul>
-<li><code>`xx`</code>   &lt;=&gt; <code>$(xx)</code>：用<strong>当前shell</strong>执行<code>xx</code>命令，将其返回为无名变量。例如</li>
+<li><code>`xx`</code>   完全等价于  <code>$(xx)</code>：用<strong>当前shell</strong>执行<code>xx</code>命令，将其返回为无名变量。例如</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> `ls`</span><br><span class="line"><span class="built_in">echo</span> $(ls)</span><br><span class="line">result=`ls`</span><br><span class="line">result=$(ls)</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li><code>`bash -c &quot;xx&quot;`</code>   &lt;=&gt; <code>$(bash -c &quot;xx&quot;)</code>：用<strong>bash</strong>执行<code>xx</code>命令，将其返回为无名变量</li>
+<li><code>`bash -c &quot;xx&quot;`</code>   完全等价于  <code>$(bash -c &quot;xx&quot;)</code>：用<strong>bash</strong>执行<code>xx</code>命令，将其返回为无名变量</li>
 </ul>
-<p>输出：<code>`xx`</code>   &lt;=&gt; <code>$(xx)</code>只获得<code>xx</code>命令的正常输出(<code>&gt;&amp;1</code>)，不获得</p>
+<p>输出：<code>`xx`</code>   完全等价于  <code>$(xx)</code>只获得<code>xx</code>命令的正常输出(<code>&gt;&amp;1</code>)，不获得</p>
 <ul>
 <li><code>xx</code>的报错报警输出(<code>&gt;&amp;2</code>)仍然打印在屏幕</li>
 <li><code>xx</code>重定向到文件的输出<code>&gt;文件</code></li>
@@ -579,7 +580,7 @@
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ( 判断语句 ); <span class="keyword">then</span></span><br><span class="line">	do_something</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [ 判断语句 ]; <span class="keyword">then</span></span><br><span class="line">	do_something</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> [[ 判断语句 ]]; <span class="keyword">then</span></span><br><span class="line">	do_something</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 
 <p>或</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">( 判断语句 ) &amp;&amp; do_something</span><br><span class="line">[ 判断语句 ] &amp;&amp; do_something</span><br><span class="line">[[ 判断语句] ] &amp;&amp; do_something</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">( 判断语句 ) &amp;&amp; do_something <span class="comment">#  否定条件则写作： ( ! [ 判断语句 ]  ) &amp;&amp; do_something</span></span><br><span class="line">[ 判断语句 ] &amp;&amp; do_something</span><br><span class="line">[[ 判断语句] ] &amp;&amp; do_something</span><br></pre></td></tr></table></figure>
 
 <h2 id="判断语句"><a href="#判断语句" class="headerlink" title="判断语句"></a>判断语句</h2><p><a href="https://blog.csdn.net/ithomer/article/details/6836382?utm_source=copy" target="_blank" rel="noopener">参考</a></p>
 <table>
@@ -1007,7 +1008,7 @@
 <h2 id="字符串拼接"><a href="#字符串拼接" class="headerlink" title="字符串拼接"></a>字符串拼接</h2><p>以下适用于zsh和bash</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string=<span class="string">"<span class="variable">$&#123;sting1&#125;</span><span class="variable">$&#123;string2&#125;</span>"</span></span><br><span class="line">string+=<span class="string">"<span class="variable">$&#123;sting2&#125;</span>"</span></span><br><span class="line">string+=<span class="string">'xxxxxx'</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="字符串转数组"><a href="#字符串转数组" class="headerlink" title="字符串转数组"></a>字符串转数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string=&quot;1:2:3:4 :5&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="字符串转数组"><a href="#字符串转数组" class="headerlink" title="字符串转数组"></a>字符串转数组</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">string=&quot;1:2:3::4 :5&quot;</span><br></pre></td></tr></table></figure>
 
 <p><strong>zsh专用</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array=(&quot;$&#123;(@s/【分割字符串】/)string&#125;&quot;)</span><br></pre></td></tr></table></figure>
@@ -1015,9 +1016,10 @@
 <figure class="highlight zsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">array=(<span class="string">"<span class="variable">$&#123;(@s/:/)string&#125;</span>"</span>)</span><br><span class="line">array=(<span class="string">"<span class="variable">$&#123;(@s/\n/)string&#125;</span>"</span>)</span><br></pre></td></tr></table></figure>
 
 <p><strong>bash与zsh通用</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">OLD_IFS=<span class="string">"<span class="variable">$IFS</span>"</span></span><br><span class="line">IFS=<span class="string">"【分割字符】"</span>  <span class="comment"># 必需是单个字符，但可以是汉字</span></span><br><span class="line"><span class="comment"># 如果是转义字符需加 $'\某'，如换行，需要写成  $'\n'</span></span><br><span class="line">array=($(<span class="built_in">echo</span> -E <span class="string">"<span class="variable">$string</span>"</span>))</span><br><span class="line">IFS=<span class="string">"<span class="variable">$OLD_IFS</span>"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">hadopt=<span class="literal">false</span></span><br><span class="line">[ -n <span class="string">"<span class="variable">$ZSH_VERSION</span>"</span> ] &amp;&amp; [ <span class="string">"<span class="variable">$(setopt | grep shwordsplit)</span>"</span> != <span class="string">''</span> ] &amp;&amp; \</span><br><span class="line">    hadopt=<span class="literal">true</span> &amp;&amp; <span class="built_in">setopt</span> sh_word_split <span class="comment"># 若为 zsh则开sh_word_split选项</span></span><br><span class="line">OLD_IFS=<span class="string">"<span class="variable">$IFS</span>"</span> ; IFS=<span class="string">"【 分割字符】"</span> <span class="comment"># " # 必需是单个字符，但可以是汉字</span></span><br><span class="line"><span class="comment"># 如果是转义字符需加 $'\某'，如换行，需要写成  $'\n'，必需是单引号</span></span><br><span class="line">array=($(<span class="built_in">echo</span> -E <span class="string">"<span class="variable">$string</span>"</span>))</span><br><span class="line">IFS=<span class="string">"<span class="variable">$OLD_IFS</span>"</span></span><br><span class="line">[ -n <span class="string">"<span class="variable">$ZSH_VERSION</span>"</span> ] &amp;&amp; [ <span class="string">"<span class="variable">$hadopt</span>"</span> = <span class="literal">false</span> ] &amp;&amp; <span class="built_in">unsetopt</span> sh_word_split <span class="comment"># 若原先没开此选项则关之</span></span><br></pre></td></tr></table></figure>
 
-<p>例如直接将返回</p>
+<p><code>zsh</code> 默认是没有开<code>sh_word_split</code>选项的，没开的话，得到的array=<code>(&quot;${string}&quot;)</code></p>
+<p>执行<code>setopt</code>命令查看开了哪些选项，若见’shwordsplot’则开了此选项</p>
 <h2 id="字符串替换"><a href="#字符串替换" class="headerlink" title="字符串替换"></a>字符串替换</h2><p>以下适用于<code>zsh</code>和<code>bash</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;string/旧子串/新子串&#125;</span>   <span class="comment">#  替换首个旧子串</span></span><br><span class="line"><span class="variable">$&#123;string//旧子串/新子串&#125;</span>  <span class="comment">#  替换所有旧子串</span></span><br></pre></td></tr></table></figure>
 
@@ -1226,37 +1228,36 @@
 
 <h2 id="命令返回数组"><a href="#命令返回数组" class="headerlink" title="命令返回数组"></a>命令返回数组</h2><p><code>$(命令)</code> 或 <code>`命令`</code> </p>
 <ul>
-<li>在<code>zsh</code>中返回一个字符串（不论多少行），</li>
-<li>在<code>bash</code>中返回数组(自带切分，而不是以空格或换行符切分)。</li>
+<li>在<code>zsh</code>/<code>bash</code>中返回一个字符串（不论多少行），输入给函数或for，则会自动用空格分割。</li>
+<li>而不是返回数组(自带切分，而不是以空格或换行符切分)。</li>
 </ul>
-<p>返回送给<code>for</code>或者返回给函数，皆是如此。</p>
-<ul>
-<li><p>例：在一个文件夹下有<code>file1</code> <code>file with space</code> <code>有空格的 中文文件</code>，</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回给for</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(ls); <span class="keyword">do</span> </span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"|<span class="variable">$i</span>|"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="comment"># 或返回给函数</span></span><br><span class="line"><span class="function"><span class="title">f</span></span>() &#123;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span>; <span class="keyword">do</span> </span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"|<span class="variable">$i</span>|"</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">&#125;</span><br><span class="line">f $(ls)</span><br></pre></td></tr></table></figure>
+<p>例：在一个文件夹下有<code>file1</code> <code>file with space</code> <code>有空格的 中文文件</code>，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 返回给for</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(ls); <span class="keyword">do</span> </span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"|<span class="variable">$i</span>|"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="comment"># 或返回给函数</span></span><br><span class="line"><span class="function"><span class="title">f</span></span>() &#123;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span>; <span class="keyword">do</span> </span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"|<span class="variable">$i</span>|"</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">&#125;</span><br><span class="line">f $(ls)</span><br></pre></td></tr></table></figure>
 
-<p>  在bash下返回</p>
+<p>在bash下返回</p>
 <blockquote>
 <p>|file1|</p>
 <p>| file with space|</p>
 <p>|有空格的 中文文件|</p>
 </blockquote>
-<p>  在zsh下返回</p>
+<p>在zsh/bash下返回</p>
 <blockquote>
 <p>|file1|<br>|file|<br>|with|<br>|space|<br>|有空格的|<br>|中文文件|</p>
 </blockquote>
-</li>
+<ul>
 <li><p>解决办法：将<code>命令</code>结果分行返回( 如<code>ls -1</code> 一个文件返回一行)，然后设置<code>IFS=$&#39;\n&#39;</code> ，则返回给<code>for</code>或<code>函数</code>的均是数组</p>
-  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">OLD_IFS=<span class="string">"<span class="variable">$IFS</span>"</span></span><br><span class="line">IFS=$<span class="string">'\n'</span></span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line"><span class="comment"># 返回给for</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> $(ls -1); <span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"|<span class="variable">$i</span>|"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="comment"># 或返回给函数</span></span><br><span class="line">f $(ls)</span><br><span class="line"><span class="comment"># ---</span></span><br><span class="line">IFS=<span class="string">"<span class="variable">$OLD_IFS</span>"</span></span><br></pre></td></tr></table></figure>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">    hadopt=<span class="literal">false</span></span><br><span class="line">    [ -n <span class="string">"<span class="variable">$ZSH_VERSION</span>"</span> ] &amp;&amp; [ <span class="string">"<span class="variable">$(setopt | grep shwordsplit)</span>"</span> != <span class="string">''</span> ] &amp;&amp; \</span><br><span class="line">        hadopt=<span class="literal">true</span> &amp;&amp; <span class="built_in">setopt</span> sh_word_split <span class="comment"># 若为 zsh则开sh_word_split选项</span></span><br><span class="line">    OLD_IFS=<span class="string">"<span class="variable">$IFS</span>"</span>; IFS=$<span class="string">'\n'</span></span><br><span class="line">    <span class="comment"># ---</span></span><br><span class="line">    <span class="comment"># 返回给for</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> $(ls -1); <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"|<span class="variable">$i</span>|"</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">    <span class="comment"># 或返回给函数</span></span><br><span class="line">    f $(ls)</span><br><span class="line">    <span class="comment"># ---</span></span><br><span class="line">IFS=<span class="string">"<span class="variable">$OLD_IFS</span>"</span></span><br><span class="line">    [ -n <span class="string">"<span class="variable">$ZSH_VERSION</span>"</span> ] &amp;&amp; [ <span class="string">"<span class="variable">$hadopt</span>"</span> = <span class="literal">false</span> ] &amp;&amp; <span class="built_in">unsetopt</span> sh_word_split <span class="comment"># 若原先没开此选项则关之</span></span><br></pre></td></tr></table></figure>
 
-<p>  结果</p>
-<blockquote>
-<p>|file1|</p>
-<p>| file with space|</p>
-<p>|有空格的 中文文件|</p>
-</blockquote>
+
 </li>
 </ul>
-<h2 id="数组传入传出函数"><a href="#数组传入传出函数" class="headerlink" title="数组传入传出函数"></a>数组传入传出函数</h2><p>以下适用于zsh和bash</p>
+<pre><code>结果
+
+&gt; |file1|
+&gt;
+&gt; | file with space|
+&gt;
+&gt; |有空格的 中文文件|</code></pre><h2 id="数组传入传出函数"><a href="#数组传入传出函数" class="headerlink" title="数组传入传出函数"></a>数组传入传出函数</h2><p>以下适用于zsh和bash</p>
 <h3 id="法一-传入-quot-array-quot"><a href="#法一-传入-quot-array-quot" class="headerlink" title="法一 传入&quot;${array[@]}&quot;"></a>法一 <code>传入&quot;${array[@]}&quot;</code></h3><p>以下适用于zsh和bash，向文件或函数传入数组</p>
 <p><strong>传入数组</strong></p>
 <p>写法：</p>
@@ -1467,8 +1468,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/25/终端/iterm2笔记/iterm2笔记/" rel="prev" title="iterm2配置与使用">
-                iterm2配置与使用 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/25/linux杂项/Linux系统知识/Linux系统知识/" rel="prev" title="linux系统知识">
+                linux系统知识 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1689,7 +1690,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">208k</span>
+    <span title="站点总字数">211k</span>
   
 
   
@@ -1700,7 +1701,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">3:09</span>
+    <span title="站点阅读时长">3:12</span>
   
 </div>
 
