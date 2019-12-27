@@ -108,11 +108,11 @@
   <meta name="description" content="[TOC] 引号单引号：所有都不转义 $&amp;#39;xxx&amp;#39;: 仅\某转义 双引号：${xxx}(变量)、`xx` $()(命令返回)、\某转义 反引号：  `xx`   完全等价于  $(xx)：用当前shell执行xx命令，将其返回为无名变量。例如  1234echo `ls`echo $(ls)result=`ls`result=$(ls)   `bash -c &amp;quot;xx&amp;qu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="bash及zsh语法">
-<meta property="og:url" content="https://hyliang96.github.io/2019/05/25/shell/bash及zsh语法/bash及zsh语法/index.html">
+<meta property="og:url" content="https://hyliang96.github.io/2019/05/25/shell/bash及zsh语法.md/main/index.html">
 <meta property="og:site_name" content="丹炉志">
 <meta property="og:description" content="[TOC] 引号单引号：所有都不转义 $&amp;#39;xxx&amp;#39;: 仅\某转义 双引号：${xxx}(变量)、`xx` $()(命令返回)、\某转义 反引号：  `xx`   完全等价于  $(xx)：用当前shell执行xx命令，将其返回为无名变量。例如  1234echo `ls`echo $(ls)result=`ls`result=$(ls)   `bash -c &amp;quot;xx&amp;qu">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-08T09:06:00.662Z">
+<meta property="og:updated_time" content="2019-12-27T09:15:13.287Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bash及zsh语法">
 <meta name="twitter:description" content="[TOC] 引号单引号：所有都不转义 $&amp;#39;xxx&amp;#39;: 仅\某转义 双引号：${xxx}(变量)、`xx` $()(命令返回)、\某转义 反引号：  `xx`   完全等价于  $(xx)：用当前shell执行xx命令，将其返回为无名变量。例如  1234echo `ls`echo $(ls)result=`ls`result=$(ls)   `bash -c &amp;quot;xx&amp;qu">
@@ -123,7 +123,7 @@
 
   
   
-  <link rel="canonical" href="https://hyliang96.github.io/2019/05/25/shell/bash及zsh语法/bash及zsh语法/">
+  <link rel="canonical" href="https://hyliang96.github.io/2019/05/25/shell/bash及zsh语法.md/main/">
 
 
 
@@ -376,7 +376,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/2019/05/25/shell/bash及zsh语法/bash及zsh语法/">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/2019/05/25/shell/bash及zsh语法.md/main/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="三清小道">
@@ -436,7 +436,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-11-08 17:06:00 17:06:00" itemprop="dateModified" datetime="2019-11-08T17:06:00+08:00">2019-11-08 17:06:00</time>
+                <time title="修改时间：2019-12-27 17:15:13 17:15:13" itemprop="dateModified" datetime="2019-12-27T17:15:13+08:00">2019-12-27 17:15:13</time>
               
             
           </span>
@@ -472,8 +472,8 @@
                 </span>
             
                 <span class="post-meta-item-text">评论数：</span>
-                <a href="/2019/05/25/shell/bash及zsh语法/bash及zsh语法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/25/shell/bash及zsh语法/bash及zsh语法/" itemprop="commentCount"></span>
+                <a href="/2019/05/25/shell/bash及zsh语法.md/main/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/25/shell/bash及zsh语法.md/main/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -502,7 +502,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">19k</span>
+                <span title="本文字数">21k</span>
               
 
               
@@ -516,7 +516,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">18 分钟</span>
+                <span title="阅读时长">19 分钟</span>
               
             </div>
           
@@ -846,6 +846,73 @@
 <p>例如</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;提示句&gt;? [Y|N]n</span><br><span class="line"># 回答否的操作</span><br></pre></td></tr></table></figure>
 
+<h1 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h1><h2 id="输入重定向"><a href="#输入重定向" class="headerlink" title="输入重定向"></a>输入重定向</h2><h2 id="lt-与-lt-lt"><a href="#lt-与-lt-lt" class="headerlink" title="&lt; 与 &lt;&lt;"></a><code>&lt;</code> 与 <code>&lt;&lt;</code></h2><p>基础用法? 学一下</p>
+<h2 id="输出重定向"><a href="#输出重定向" class="headerlink" title="输出重定向"></a>输出重定向</h2><h3 id="gt-与-gt-gt"><a href="#gt-与-gt-gt" class="headerlink" title="&gt; 与 &gt;&gt;"></a><code>&gt;</code> 与 <code>&gt;&gt;</code></h3><p>写文件的模式</p>
+<ul>
+<li><code>&gt;</code>： write模式：即若有文件，则重写文件；若无文件，则新创而写之</li>
+<li><code>&gt;&gt;</code>： append模式：即若有文件，则追加到文件尾；若无文件，则新创而写之</li>
+</ul>
+<p>标准输出、标准错误重定向到文件</p>
+<ul>
+<li><code>命令 &gt;文件名</code>=<code>命令 1&gt;文件名</code> ：重定向标准输出到文件，write模式</li>
+<li><code>命令 2&gt;文件名</code>：重定向标准错误到文件，write模式</li>
+<li>上述 <code>&gt;</code>改为 <code>&gt;&gt;</code>，即变成append模式</li>
+<li>（<code>&gt;</code>or <code>&gt;&gt;</code>） 与<code>文件名</code>之间可以有空格。</li>
+</ul>
+<p>常用文件名</p>
+<ul>
+<li><code>/dev/null</code>：可无限写入、但不保存内容的“黑洞“文件</li>
+<li><code>&amp;1</code>：标准输出，会显示在显示屏</li>
+<li><code>&amp;2</code>：标准错误，也会显示在显示屏</li>
+</ul>
+<p>标准输出、标准错误相互重定向</p>
+<ul>
+<li><code>2&gt;&amp;1</code>：将标准错误重定向到标准输出——标准错误不再有原标准错误的内容，而标准输出同时有远标准错误、标准输出的内容。</li>
+<li><code>1&amp;&gt;2</code>：将标准输出重定向到标准错误，效果同上理</li>
+</ul>
+<p>重定向的组合命令：重定向从后往前执行，如 <code>命令 &gt;文件名 2&amp;&gt;1</code> 先执行  <code>2&amp;&gt;1</code> 后执行 <code>&gt;文件名</code></p>
+<ul>
+<li><code>命令 &amp;&gt;文件名</code> = <code>命令 &gt;文件名 2&amp;&gt;1</code> （≠ <code>命令 2&amp;&gt;1 &gt;文件名</code>）：标准输入和输出都重定向到文件，write模式</li>
+<li><code>命令 &amp;&gt;&gt;文件名</code>= <code>命令 &gt;&gt;文件名 2&amp;&gt;1</code> （≠ <code>命令 2&amp;&gt;1 &gt;&gt;文件名</code>）：标准输入和输出都重定向到文件，append模式</li>
+<li>上述不等的原因是，重定向从后往前执行</li>
+</ul>
+<p>缺点:</p>
+<ul>
+<li><code>&gt;</code>和 <code>&gt;&gt;</code> 不支持 sudo 重定向: 例如当执行 <code>sudo 命令 &gt;文件</code>, 仅 <code>命令</code> 是用 sudo 执行的, 重定向写文件用的是普通用户, 故若此文件仅 root 可写, 则会写入向失败. 可以使用 <code>tee</code> 来解决这个需求</li>
+</ul>
+<h3 id="tee-推荐"><a href="#tee-推荐" class="headerlink" title="tee [推荐]"></a>tee [推荐]</h3><p>基础用法</p>
+<ul>
+<li><code>命令 | tee 文件</code>: write 模式 将命令的<strong>标准输出</strong>写在文件, 同时输出在终端</li>
+<li><code>命令 | tee -a 文件</code>: append 模式 将命令的标准输出写在文件, 同时输出在终端</li>
+</ul>
+<p>变体用法</p>
+<ul>
+<li><code>命令 | tee [-a] 文件 &gt;/dev/null</code>: 仅将命令的标准输出写在文件, 标准输出<strong>不输出在终端</strong>, 标准错误才输出在终端</li>
+<li><code>命令 | tee [-a] 文件 &gt;/dev/null 2&gt;&amp;1</code>: 仅将命令的标准输出写在文件, 标准输出/标准错误均<strong>不输出在终端</strong></li>
+<li><code>命令 2&gt;&amp;1 | tee [-a] 文件</code>: 将命令的<strong>标准错误</strong>与标准输出写到文件, 同时输出在终端</li>
+<li><code>命令 | sudo tee [-a] 文件</code> : 普通用户执行命令, <strong>sudo 模式重定向</strong>其标准输出到文件</li>
+<li><code>sudo 命令 | sudo tee [-a] 文件</code> : sudo 用户执行命令, <strong>sudo 模式重定向</strong>其标准输出到文件</li>
+</ul>
+<p>优点: </p>
+<ul>
+<li>支持写到文件, 同时显示或不显示在终端</li>
+<li>支持 sudo 写入到文件</li>
+</ul>
+<h3 id="dd"><a href="#dd" class="headerlink" title="dd"></a>dd</h3><p>基础用法</p>
+<ul>
+<li><code>命令 | dd of=文件</code>: write模式, 将命令的<strong>标准输出</strong>写在文件, 其标准输出<strong>不输出在终端</strong>, 标准错误才输出在终端</li>
+<li><code>命令 | dd of=文件 oflag=append conv=notrunc</code> : append模式, 将命令的标准输出写在文件, 标准输出<strong>不输出在终端</strong></li>
+</ul>
+<p>变体用法</p>
+<ul>
+<li><code>命令 2&gt;&amp;1 | dd of=文件</code>: write模式, 将命令的<strong>标准输出</strong>/<strong>标准错误</strong>写在文件, <strong>均不输出在终端</strong></li>
+<li><code>命令 | sudo dd of=文件</code>: 用普通账号运行命令; write模式, 用 sudo 模式将命令的标准输出写在文件, 标准错误才输出在终端</li>
+<li><code>命令 | sudo dd of=文件</code>: 用 sudo 运行命令; write模式, 用 sudo 模式将命令的标准输出写在文件, 标准错误才输出在终端</li>
+</ul>
+<p>缺点: </p>
+<ul>
+<li>写到文件的同时无法显示在终端</li>
+</ul>
 <h1 id="后台运行"><a href="#后台运行" class="headerlink" title="后台运行"></a>后台运行</h1><h2 id="前台运行-重定向输出"><a href="#前台运行-重定向输出" class="headerlink" title="前台运行+重定向输出"></a>前台运行+重定向输出</h2><p>前台运行，在这个窗口输新命令无法立即执行</p>
 <p>但又看不见输出的结果，输出都写入了文件中</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输出写到文件，文件原来的内容全删</span></span><br><span class="line">&#123;</span><br><span class="line">   命令1</span><br><span class="line">   命令2</span><br><span class="line">   ...</span><br><span class="line">&#125; &gt;&amp; 文件名    <span class="comment"># 等价于  &gt; 文件名 2&gt;&amp;1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出追加写到文件名的屁股后面</span></span><br><span class="line">&#123;</span><br><span class="line">   命令1</span><br><span class="line">   命令2</span><br><span class="line">   ...</span><br><span class="line">&#125; &gt;&gt;&amp; 文件名  <span class="comment"># 等价于  &gt; 文件名 2&gt;&amp;1</span></span><br></pre></td></tr></table></figure>
@@ -1444,8 +1511,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/25/shell/zsh安装配置教程/zsh安装配置教程/" rel="next" title="zsh安装配置教程">
-                <i class="fa fa-chevron-left"></i> zsh安装配置教程
+              <a href="/2019/05/25/编辑器IDE/vim配置日志.md/main/" rel="next" title="vim配置日志">
+                <i class="fa fa-chevron-left"></i> vim配置日志
               </a>
             
           </div>
@@ -1454,8 +1521,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/25/linux杂项/Linux系统知识/Linux系统知识/" rel="prev" title="linux系统知识">
-                linux系统知识 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/25/shell/zsh安装配置教程/zsh安装配置教程/" rel="prev" title="zsh安装配置教程">
+                zsh安装配置教程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1531,7 +1598,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">43</span>
+                    <span class="site-state-item-count">48</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1570,7 +1637,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">11</span>
+                      
+                    
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1636,7 +1705,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引号"><span class="nav-number">1.</span> <span class="nav-text">引号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#局部变量"><span class="nav-number">2.</span> <span class="nav-text">局部变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判断"><span class="nav-number">3.</span> <span class="nav-text">判断</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">3.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断语句"><span class="nav-number">3.2.</span> <span class="nav-text">判断语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑运算"><span class="nav-number">3.3.</span> <span class="nav-text">逻辑运算</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入"><span class="nav-number">4.</span> <span class="nav-text">输入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#get-one-char"><span class="nav-number">4.1.</span> <span class="nav-text">get one char</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#询问Y-N"><span class="nav-number">4.2.</span> <span class="nav-text">询问Y/N</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后台运行"><span class="nav-number">5.</span> <span class="nav-text">后台运行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前台运行-重定向输出"><span class="nav-number">5.1.</span> <span class="nav-text">前台运行+重定向输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后台运行结束插播短信"><span class="nav-number">5.2.</span> <span class="nav-text">后台运行结束插播短信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后台运行结束不插播短信-输出重定向"><span class="nav-number">5.3.</span> <span class="nav-text">后台运行结束不插播短信+输出重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后台运行结束插播短信-输出重定向"><span class="nav-number">5.4.</span> <span class="nav-text">后台运行结束插播短信+输出重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多进程后台运行-运行完集中输出"><span class="nav-number">5.5.</span> <span class="nav-text">多进程后台运行+运行完集中输出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串"><span class="nav-number">6.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串取子串"><span class="nav-number">6.1.</span> <span class="nav-text">字符串取子串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#string-始-长-从0开始"><span class="nav-number">6.1.1.</span> <span class="nav-text">{string:始:长} (从0开始)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string-始-止-从1开始"><span class="nav-number">6.1.2.</span> <span class="nav-text">$string[始,止] (从1开始)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历字符串"><span class="nav-number">6.2.</span> <span class="nav-text">遍历字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串拼接"><span class="nav-number">6.3.</span> <span class="nav-text">字符串拼接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串转数组"><span class="nav-number">6.4.</span> <span class="nav-text">字符串转数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串替换"><span class="nav-number">6.5.</span> <span class="nav-text">字符串替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">6.6.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用sed命令"><span class="nav-number">6.6.1.</span> <span class="nav-text">使用sed命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出"><span class="nav-number">6.7.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入-1"><span class="nav-number">6.8.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转义"><span class="nav-number">6.9.</span> <span class="nav-text">转义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">7.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示数组"><span class="nav-number">7.1.</span> <span class="nav-text">显示数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组取元素"><span class="nav-number">7.2.</span> <span class="nav-text">数组取元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否是数组"><span class="nav-number">7.3.</span> <span class="nav-text">判断是否是数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组赋值与拼接"><span class="nav-number">7.4.</span> <span class="nav-text">数组赋值与拼接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成range"><span class="nav-number">7.5.</span> <span class="nav-text">生成range</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一组range"><span class="nav-number">7.5.1.</span> <span class="nav-text">一组range</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多组range拼接起来"><span class="nav-number">7.5.2.</span> <span class="nav-text">多组range拼接起来</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从文件加载数组"><span class="nav-number">7.6.</span> <span class="nav-text">从文件加载数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历数组"><span class="nav-number">7.7.</span> <span class="nav-text">遍历数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令返回数组"><span class="nav-number">7.8.</span> <span class="nav-text">命令返回数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#法二-用declare-p-array作为表示"><span class="nav-number">7.8.1.</span> <span class="nav-text">法二 用declare -p array作为表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法三-修改分隔符"><span class="nav-number">7.8.2.</span> <span class="nav-text">法三 修改分隔符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用传参——在函数中修改参数"><span class="nav-number">7.9.</span> <span class="nav-text">引用传参——在函数中修改参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行数组"><span class="nav-number">7.10.</span> <span class="nav-text">运行数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误的做法"><span class="nav-number">7.10.1.</span> <span class="nav-text">错误的做法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正确的做法"><span class="nav-number">7.10.2.</span> <span class="nav-text">正确的做法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#引号"><span class="nav-number">1.</span> <span class="nav-text">引号</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#局部变量"><span class="nav-number">2.</span> <span class="nav-text">局部变量</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#判断"><span class="nav-number">3.</span> <span class="nav-text">判断</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">3.1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断语句"><span class="nav-number">3.2.</span> <span class="nav-text">判断语句</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#逻辑运算"><span class="nav-number">3.3.</span> <span class="nav-text">逻辑运算</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#输入"><span class="nav-number">4.</span> <span class="nav-text">输入</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#get-one-char"><span class="nav-number">4.1.</span> <span class="nav-text">get one char</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#询问Y-N"><span class="nav-number">4.2.</span> <span class="nav-text">询问Y/N</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#重定向"><span class="nav-number">5.</span> <span class="nav-text">重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#输入重定向"><span class="nav-number">5.1.</span> <span class="nav-text">输入重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lt-与-lt-lt"><span class="nav-number">5.2.</span> <span class="nav-text">&lt; 与 &lt;&lt;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出重定向"><span class="nav-number">5.3.</span> <span class="nav-text">输出重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#gt-与-gt-gt"><span class="nav-number">5.3.1.</span> <span class="nav-text">&gt; 与 &gt;&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tee-推荐"><span class="nav-number">5.3.2.</span> <span class="nav-text">tee [推荐]</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dd"><span class="nav-number">5.3.3.</span> <span class="nav-text">dd</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后台运行"><span class="nav-number">6.</span> <span class="nav-text">后台运行</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前台运行-重定向输出"><span class="nav-number">6.1.</span> <span class="nav-text">前台运行+重定向输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后台运行结束插播短信"><span class="nav-number">6.2.</span> <span class="nav-text">后台运行结束插播短信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后台运行结束不插播短信-输出重定向"><span class="nav-number">6.3.</span> <span class="nav-text">后台运行结束不插播短信+输出重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后台运行结束插播短信-输出重定向"><span class="nav-number">6.4.</span> <span class="nav-text">后台运行结束插播短信+输出重定向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多进程后台运行-运行完集中输出"><span class="nav-number">6.5.</span> <span class="nav-text">多进程后台运行+运行完集中输出</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字符串"><span class="nav-number">7.</span> <span class="nav-text">字符串</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串取子串"><span class="nav-number">7.1.</span> <span class="nav-text">字符串取子串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#string-始-长-从0开始"><span class="nav-number">7.1.1.</span> <span class="nav-text">{string:始:长} (从0开始)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#string-始-止-从1开始"><span class="nav-number">7.1.2.</span> <span class="nav-text">$string[始,止] (从1开始)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历字符串"><span class="nav-number">7.2.</span> <span class="nav-text">遍历字符串</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串拼接"><span class="nav-number">7.3.</span> <span class="nav-text">字符串拼接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串转数组"><span class="nav-number">7.4.</span> <span class="nav-text">字符串转数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符串替换"><span class="nav-number">7.5.</span> <span class="nav-text">字符串替换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正则表达式"><span class="nav-number">7.6.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用sed命令"><span class="nav-number">7.6.1.</span> <span class="nav-text">使用sed命令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输出"><span class="nav-number">7.7.</span> <span class="nav-text">输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#输入-1"><span class="nav-number">7.8.</span> <span class="nav-text">输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转义"><span class="nav-number">7.9.</span> <span class="nav-text">转义</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组"><span class="nav-number">8.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#显示数组"><span class="nav-number">8.1.</span> <span class="nav-text">显示数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组取元素"><span class="nav-number">8.2.</span> <span class="nav-text">数组取元素</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断是否是数组"><span class="nav-number">8.3.</span> <span class="nav-text">判断是否是数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组赋值与拼接"><span class="nav-number">8.4.</span> <span class="nav-text">数组赋值与拼接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生成range"><span class="nav-number">8.5.</span> <span class="nav-text">生成range</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一组range"><span class="nav-number">8.5.1.</span> <span class="nav-text">一组range</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多组range拼接起来"><span class="nav-number">8.5.2.</span> <span class="nav-text">多组range拼接起来</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从文件加载数组"><span class="nav-number">8.6.</span> <span class="nav-text">从文件加载数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#遍历数组"><span class="nav-number">8.7.</span> <span class="nav-text">遍历数组</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令返回数组"><span class="nav-number">8.8.</span> <span class="nav-text">命令返回数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#法二-用declare-p-array作为表示"><span class="nav-number">8.8.1.</span> <span class="nav-text">法二 用declare -p array作为表示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法三-修改分隔符"><span class="nav-number">8.8.2.</span> <span class="nav-text">法三 修改分隔符</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用传参——在函数中修改参数"><span class="nav-number">8.9.</span> <span class="nav-text">引用传参——在函数中修改参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#运行数组"><span class="nav-number">8.10.</span> <span class="nav-text">运行数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#错误的做法"><span class="nav-number">8.10.1.</span> <span class="nav-text">错误的做法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正确的做法"><span class="nav-number">8.10.2.</span> <span class="nav-text">正确的做法</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1678,7 +1747,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">229k</span>
+    <span title="站点总字数">248k</span>
   
 
   
@@ -1689,7 +1758,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">3:28</span>
+    <span title="站点阅读时长">3:45</span>
   
 </div>
 
