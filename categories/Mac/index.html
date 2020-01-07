@@ -107,7 +107,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="丹炉志">
-<meta property="og:url" content="https://hyliang96.github.io/categories/mac/index.html">
+<meta property="og:url" content="https://hyliang96.github.io/categories/Mac/index.html">
 <meta property="og:site_name" content="丹炉志">
 <meta property="og:locale" content="zh-CN">
 <meta name="twitter:card" content="summary">
@@ -119,7 +119,7 @@
 
   
   
-  <link rel="canonical" href="https://hyliang96.github.io/categories/mac/">
+  <link rel="canonical" href="https://hyliang96.github.io/categories/Mac/">
 
 
 
@@ -129,7 +129,7 @@
   };
 </script>
 
-  <title>分类: mac | 丹炉志</title>
+  <title>分类: Mac | 丹炉志</title>
   
 
 
@@ -382,7 +382,7 @@
 
     <div id="posts" class="posts-collapse">
       <div class="collection-title">
-        <h1>mac<small>分类</small>
+        <h1>Mac<small>分类</small>
         </h1>
       </div>
 
@@ -394,17 +394,121 @@
 
       <h2 class="post-title">
         
-          <a class="post-title-link" href="/2019/12/18/mac/mac上使用X11.md/main/" itemprop="url">
+          <a class="post-title-link" href="/2019/08/25/mac/mac永久添加私钥到keyChain/main/" itemprop="url">
             
-              <span itemprop="name">mac上使用X11</span>
+              <span itemprop="name">mac永久添加私钥到keyChain</span>
             
           </a>
         
       </h2>
 
       <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-18T18:42:32+08:00" content="2019-12-18 18:42:32">
-          12-18
+        <time class="post-time" itemprop="dateCreated" datetime="2019-08-25T20:17:00+08:00" content="2019-08-25 20:17:00">
+          08-25
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2019/05/25/mac/mac开机启动项/mac开机启动项/" itemprop="url">
+            
+              <span itemprop="name">mac开机启动项设置</span>
+            
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-25T04:03:03+08:00" content="2019-05-25 04:03:03">
+          05-25
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2019/05/25/mac/mac符号/mac符号/" itemprop="url">
+            
+              <span itemprop="name">Mac按键符号</span>
+            
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-25T04:03:03+08:00" content="2019-05-25 04:03:03">
+          05-25
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2019/05/25/mac/mac特有命令/mac特有命令/" itemprop="url">
+            
+              <span itemprop="name">mac 命令行专属命令</span>
+            
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-25T04:03:03+08:00" content="2019-05-25 04:03:03">
+          05-25
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2019/05/25/mac/移动硬盘的文件系统格式.md/main/" itemprop="url">
+            
+              <span itemprop="name">mac的移动硬盘分区方案</span>
+            
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-05-25T04:03:03+08:00" content="2019-05-25 04:03:03">
+          05-25
         </time>
       </div>
 
@@ -1066,113 +1170,6 @@
             $('.search-icon').click(inputEventFunction);
             input.addEventListener('keypress', function (event) {
               if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-<script>
-  $('.highlight').not('.gist .highlight').each(function(i, e) {
-    var $wrap = $('<div>').addClass('highlight-wrap');
-    $(e).after($wrap);
-    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
-      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
-        return $(e).text();
-      }).toArray().join('\n');
-      var ta = document.createElement('textarea');
-      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
-      ta.style.top = yPosition + 'px'; // Prevent page scroll
-      ta.style.position = 'absolute';
-      ta.style.opacity = '0';
-      ta.readOnly = true;
-      ta.value = code;
-      document.body.appendChild(ta);
-      ta.select();
-      ta.setSelectionRange(0, code.length);
-      ta.readOnly = false;
-      var result = document.execCommand('copy');
-      
-        if (result) $(this).text('复制成功');
-        else $(this).text('复制失败');
-      
-      ta.blur(); // For iOS
-      $(this).blur();
-    })).on('mouseleave', function(e) {
-      var $b = $(this).find('.copy-btn');
-      setTimeout(function() {
-        $b.text('复制');
-      }, 300);
-    }).append(e);
-  })
-</script>
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
-</html>
-         if (event.keyCode === 13) {
                 inputEventFunction();
               }
             });
