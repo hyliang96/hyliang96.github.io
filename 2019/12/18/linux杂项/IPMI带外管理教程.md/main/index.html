@@ -115,7 +115,7 @@
 <meta property="og:image" content="https://hyliang96.github.io/2019/12/18/linux杂项/IPMI带外管理教程.md/main/ScreenShot%202019-12-19%2023.54.27.png">
 <meta property="og:image" content="https://hyliang96.github.io/2019/12/18/linux杂项/IPMI带外管理教程.md/main/mceclip1.png">
 <meta property="og:image" content="https://hyliang96.github.io/2019/12/18/linux杂项/IPMI带外管理教程.md/main/mceclip2.png">
-<meta property="og:updated_time" content="2019-12-27T09:30:48.951Z">
+<meta property="og:updated_time" content="2019-12-31T15:05:45.414Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IPMI带外管理教程">
 <meta name="twitter:description" content="参考：Ipmitool工具的使用方式 ipmi带外管理 IPMI介绍需求有的时候，ssh无法连接到服务器，如  死机，需要重启 服务器的临时路由表配错，造成ssh无法访问服务器，需要重启  类似情况，为了能不亲自去机房就管理服务器，需要使用远程控制装置，也即带外管理，IPMI即是其中一种。 带外管理 经过服务器所在的工作网络 来连接服务器（如通过ssh），此通道名曰数据通道。由数据通道理服务器，称">
@@ -440,7 +440,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-12-27 17:30:48 17:30:48" itemprop="dateModified" datetime="2019-12-27T17:30:48+08:00">2019-12-27 17:30:48</time>
+                <time title="修改时间：2019-12-31 23:05:45 23:05:45" itemprop="dateModified" datetime="2019-12-31T23:05:45+08:00">2019-12-31 23:05:45</time>
               
             
           </span>
@@ -506,7 +506,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">11k</span>
+                <span title="本文字数">12k</span>
               
 
               
@@ -520,7 +520,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">10 分钟</span>
+                <span title="阅读时长">11 分钟</span>
               
             </div>
           
@@ -603,8 +603,28 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipmitool user <span class="built_in">set</span> name &lt;用户编号&gt; &lt;用户名&gt;</span><br></pre></td></tr></table></figure>
 
 <p>如</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool user <span class="built_in">set</span> name 3 test1</span><br><span class="line">sudo ipmitool user list </span><br><span class="line">ID  Name	     Callin  Link Auth	IPMI Msg   Channel Priv Limit</span><br><span class="line">2   ADMIN            <span class="literal">true</span>    <span class="literal">false</span>      <span class="literal">false</span>      Unknown (0x00)</span><br><span class="line">3   test1            <span class="literal">true</span>    <span class="literal">false</span>      <span class="literal">false</span>      Unknown (0x00)</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool user <span class="built_in">set</span> name 3 test1</span><br><span class="line">sudo ipmitool user list </span><br><span class="line"><span class="comment"># 得到</span></span><br><span class="line"><span class="comment"># ID  Name	     Callin  Link Auth	IPMI Msg   Channel Priv Limit</span></span><br><span class="line"><span class="comment"># 2   ADMIN      true    false      false      Unknown (0x00)</span></span><br><span class="line"><span class="comment"># 3   test1      true    false      false      Unknown (0x00)</span></span><br></pre></td></tr></table></figure>
 
+<ul>
+<li><p>修改用户权限</p>
+<p>若权限不对, 则执行以下命令, </p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ipmitool channel setaccess 1 2 callin=on link=off ipmi=off privilege=0x4 </span><br><span class="line"><span class="comment"># 1 是 channel 号, 一般不改</span></span><br><span class="line"><span class="comment"># 2是用户号, 根据`sudo ipmitool user list 1`返回的用户号来写</span></span><br><span class="line"><span class="comment"># Privilege-level=Administrator</span></span><br></pre></td></tr></table></figure>
+
+<p> 得到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ID  Name       Callin  Link Auth  IPMI Msg   Channel Priv Limit</span><br><span class="line">2   ADMIN      true    false      false      ADMINISTRATOR</span><br></pre></td></tr></table></figure>
+
+<p>Privilege levels <code>privilege</code> 的取值</p>
+<ul>
+<li><code>0x0</code> - Unknown [初始化为这个, 可以不改]</li>
+<li><code>0x1</code> - Callbac</li>
+<li><code>0x2</code> - User</li>
+<li><code>0x3</code> - Operator</li>
+<li><code>0x4</code> - Administrator [如果要改, 一般就设成这个]</li>
+<li><code>0x5</code> - OEM Proprietary</li>
+<li><code>0xF</code> - No Access</li>
+</ul>
 <ul>
 <li>设置用户密码</li>
 </ul>
@@ -999,7 +1019,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">49</span>
+                    <span class="site-state-item-count">50</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1134,7 +1154,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
@@ -1148,7 +1168,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">250k</span>
+    <span title="站点总字数">257k</span>
   
 
   
@@ -1159,7 +1179,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">3:47</span>
+    <span title="站点阅读时长">3:54</span>
   
 </div>
 
