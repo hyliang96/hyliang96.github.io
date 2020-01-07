@@ -1870,7 +1870,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #e882ff;
+  background: #01a72e;
 }
 .feed-link,
 .chat {
@@ -3095,15 +3095,23 @@ ul.breadcrumb li+li:last-child {
   }
 }
 body {
-  background: url("https://source.unsplash.com/random/1600x900");
+  background: url("/images/mountain.png");
+/* background:url(https://source.unsplash.com/random/1600x900); */
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 50% 50%;
+/* width: 50%; */
+/* height: 50%; */
+  background-size: 100% 100%;
 }
-.main-inner {
-  margin-top: 60px;
-  padding: 60px 60px 60px 60px;
-  background: #fff;
-  opacity: 0.8;
-  min-height: 500px;
+.content-wrap {
+  opacity: 0.95;
+}
+.sidebar {
+  opacity: 0.95;
+}
+.header-inner {
+  background: rgba(255,255,255,0.95);
+}
+.popup {
+  opacity: 0.95;
 }
