@@ -1,0 +1,2027 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+
+
+
+
+  <meta name="google-site-verification" content="googlea11e02188a68446d.html">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.ico?v=7.1.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.ico?v=7.1.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: false,
+    fastclick: false,
+    lazyload: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="环境：ubuntu 16 实验室服务器 时间：2018年8月6日 [TOC] 介绍zsh：是一款强大的虚拟终端，用以他替代shell， 其配置较为复杂 oh my zsh ：来配置zsh antigen ：zsh的包（即插件）管理器，让我们以类似apt-get的方式来安装zsh的包。其官方会提供已经配置好的oh my zsh和一些常用zsh包。 zsh安装 安装zsh  实验室各台服务器上已安装z">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zsh安装配置教程">
+<meta property="og:url" content="https://hyliang96.github.io/2019/05/25/器/shell/zsh安装配置教程/zsh安装配置教程/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="环境：ubuntu 16 实验室服务器 时间：2018年8月6日 [TOC] 介绍zsh：是一款强大的虚拟终端，用以他替代shell， 其配置较为复杂 oh my zsh ：来配置zsh antigen ：zsh的包（即插件）管理器，让我们以类似apt-get的方式来安装zsh的包。其官方会提供已经配置好的oh my zsh和一些常用zsh包。 zsh安装 安装zsh  实验室各台服务器上已安装z">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-01-07T15:55:26.093Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="zsh安装配置教程">
+<meta name="twitter:description" content="环境：ubuntu 16 实验室服务器 时间：2018年8月6日 [TOC] 介绍zsh：是一款强大的虚拟终端，用以他替代shell， 其配置较为复杂 oh my zsh ：来配置zsh antigen ：zsh的包（即插件）管理器，让我们以类似apt-get的方式来安装zsh的包。其官方会提供已经配置好的oh my zsh和一些常用zsh包。 zsh安装 安装zsh  实验室各台服务器上已安装z">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="https://hyliang96.github.io/2019/05/25/器/shell/zsh安装配置教程/zsh安装配置教程/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>zsh安装配置教程 | 丹炉志</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<script type="text/javascript" src="/lib/zclip/clipboard.min.js"></script>    
+<script type="text/javascript" src="/js/src/custom.js"></script>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">丹炉志</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">玄之又玄众妙之门</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/2019/05/25/器/shell/zsh安装配置教程/zsh安装配置教程/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="三清小道">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">zsh安装配置教程
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-05-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25 04:03:03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-01-07 23:55:26 23:55:26" itemprop="dateModified" datetime="2020-01-07T23:55:26+08:00">2020-01-07 23:55:26</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/器/" itemprop="url" rel="index"><span itemprop="name">器</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/器/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/05/25/器/shell/zsh安装配置教程/zsh安装配置教程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/05/25/器/shell/zsh安装配置教程/zsh安装配置教程/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">16k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">14 分钟</span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>环境：ubuntu 16 实验室服务器</p>
+<p>时间：2018年8月6日</p>
+<p>[TOC]</p>
+<h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p><code>zsh</code>：是一款强大的虚拟终端，用以他替代shell， 其配置较为复杂</p>
+<p><code>oh my zsh</code> ：来配置zsh</p>
+<p><a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fzsh-users%2Fantigen" target="_blank" rel="noopener"><code>antigen</code></a> ：zsh的包（即插件）管理器，让我们以类似apt-get的方式来安装zsh的包。其官方会提供已经配置好的oh my zsh和一些常用zsh包。</p>
+<h2 id="zsh安装"><a href="#zsh安装" class="headerlink" title="zsh安装"></a>zsh安装</h2><ul>
+<li><p>安装zsh</p>
+<ul>
+<li>实验室各台服务器上已安装zsh，如未安装，可叫管理员</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get -y install zsh</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>mac上</p>
+<ul>
+<li><p>mac系统自带的zsh</p>
+<p>在<code>/bin/zsh</code>，但版本老了，建议另外安装新版本</p>
+<p><code>zsh --version</code>，返回<code>zsh 5.3 (x86_64-apple-darwin18.0)</code></p>
+</li>
+<li><p>另外安装新版本的zsh</p>
+<p>不覆盖系统自带的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install zsh</span><br></pre></td></tr></table></figure>
+
+<p>安装到 <code>/usr/local/Cellar/zsh/版本号</code></p>
+<p>并会自动创建链接<code>/usr/local/bin/zsh -&gt; ../Cellar/zsh/5.7.1/bin/zsh*</code></p>
+<p>安装后，<code>zsh --version</code>，返回<code>/usr/local/bin/zsh</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>修改为默认shell，即用zsh于替代shell，每次登陆或开新的终端都开zsh而不是shell</p>
+<ul>
+<li><p>只改个人的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chsh -s `<span class="built_in">which</span> zsh`</span><br><span class="line"><span class="comment"># 然后输入个人的密码</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>改整个系统的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo chsh -s `<span class="built_in">which</span> zsh`</span><br><span class="line"><span class="comment"># 然后输入root密码</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>重登服务器则生效</p>
+</li>
+<li><p>如上述方法不生效，则修改在<code>~/.profile</code> 第一行中加入</p>
+</li>
+<li><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -t 1 ]; <span class="keyword">then</span></span><br><span class="line"><span class="comment"># [ -t FD ]  如果文件描述符 FD 打开且指向一个终端则为真。 </span></span><br><span class="line"><span class="comment"># 文件描述符1表示stdout(即屏幕输出)</span></span><br><span class="line"><span class="comment"># [ -t 1 ] = true (此脚本输出到屏幕)，false(其他，如此脚本输出到文件或pipe)</span></span><br><span class="line">	<span class="built_in">exec</span> zsh</span><br><span class="line">	<span class="comment"># exec含义：开zsh替代当前sehll</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>例如在WSL（windows的linux子系统）中，使用cmder打开shell，需要做此次修改。</p>
+</li>
+<li><p>如果切换帐号后无法使用 zsh， 则<code>. ~/.zshrc</code></p>
+</li>
+</ul>
+<h2 id="antigen"><a href="#antigen" class="headerlink" title="antigen"></a>antigen</h2><h3 id="安装antigen"><a href="#安装antigen" class="headerlink" title="安装antigen"></a>安装antigen</h3><h4 id="导入配置"><a href="#导入配置" class="headerlink" title="导入配置"></a>导入配置</h4><p>从网上导入zsh的配置文件到<code>~/.zshrc</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -L https://raw.githubusercontent.com/skywind3000/vim/master/etc/zshrc.zsh &gt; ~/.zshrc</span><br><span class="line"><span class="comment">#   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span></span><br><span class="line"><span class="comment">#                                  Dload  Upload   Total   Spent    Left  Speed</span></span><br><span class="line"><span class="comment"># 100  5388  100  5388    0     0   8482      0 --:--:-- --:--:-- --:--:--  8607</span></span><br></pre></td></tr></table></figure>
+
+<p>然后输入<code>zsh</code>命令，即开始自动安装插件</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">zsh</span><br><span class="line"><span class="comment"># Installing antigen ...</span></span><br><span class="line"><span class="comment">#   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span></span><br><span class="line"><span class="comment">#                                  Dload  Upload   Total   Spent    Left  Speed</span></span><br><span class="line"><span class="comment">#   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0</span></span><br><span class="line"><span class="comment">#   0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0</span></span><br><span class="line"><span class="comment"># 100 58503  100 58503    0     0  17045      0  0:00:03  0:00:03 --:--:-- 17045</span></span><br><span class="line"><span class="comment"># move /tmp/antigen.zsh to /Users/$USER/.local/bin/antigen.zsh</span></span><br><span class="line"><span class="comment"># Installing robbyrussell/oh-my-zsh!...</span></span><br><span class="line"><span class="comment"># Installing rupa/z!...</span></span><br><span class="line"><span class="comment"># Installing zsh-users/zsh-autosuggestions!...</span></span><br><span class="line"><span class="comment"># Installing zsh-users/zsh-completions!...</span></span><br><span class="line"><span class="comment"># Installing Vifon/deer!...</span></span><br><span class="line"><span class="comment"># Installing willghatch/zsh-cdr!...</span></span><br><span class="line"><span class="comment"># Installing zsh-users/zsh-syntax-highlighting!...</span></span><br></pre></td></tr></table></figure>
+
+<p>此<code>~/.zshrc</code>功效：</p>
+<ul>
+<li><p>antigen未装则装之：创建<code>~/.antigen</code>, <code>~/.local</code>，导入antigen配置<code>curl -L git.io/antigen &gt;  .local/bin/antigen.zsh</code></p>
+</li>
+<li><p>用antigen加载zsh包，你可根据需要修改<code>~/.zshrc</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">antigen bundle 包的名称 <span class="comment"># 注释掉则不加载此包</span></span><br></pre></td></tr></table></figure>
+
+<p>该命令用于下载和安装插件，如果插件已安装，那么就加载该插件</p>
+</li>
+<li><p>如果出现警告：zsh compinit: insecure directories, run compaudit for list.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -R 755 ~/.antigen</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="点文件"><a href="#点文件" class="headerlink" title="点文件"></a>点文件</h3><h4 id="zsh的点文件"><a href="#zsh的点文件" class="headerlink" title="zsh的点文件"></a><a href="https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout" target="_blank" rel="noopener">zsh的点文件</a></h4><table>
+<thead>
+<tr>
+<th>自上而下执行</th>
+<th>触发条件</th>
+<th>{ ssh登录<a href="zsh为系统的默认shell">^ 1</a>、tmux开新窗口<a href="zsh为tmux的默认shell">^ 2</a> } [^3]</th>
+<th>ssh登出<a href="zsh为系统的默认shell">^ 1</a></th>
+<th><code>zsh</code>开一个新的zsh窗口</th>
+<th><code>zsh 文件</code>或<code>zsh -c “命令”</code></th>
+<th><code>ssh 服务器  命令</code><a href="zsh为系统的默认shell">^ 1</a></th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>~/.zshenv</td>
+<td>启动zsh总执行</td>
+<td>执行</td>
+<td>x</td>
+<td>执行</td>
+<td>执行</td>
+<td>执行</td>
+<td>环境变量、alias</td>
+</tr>
+<tr>
+<td>~/.zprofile</td>
+<td>登录</td>
+<td>执行</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>登录设置，如文件同步</td>
+</tr>
+<tr>
+<td>~/.zshrc</td>
+<td>启动zsh交互</td>
+<td>执行</td>
+<td>x</td>
+<td>执行</td>
+<td>x</td>
+<td>x</td>
+<td>交互界面、zsh插件（都是交互用的）</td>
+</tr>
+<tr>
+<td>~/.zlogin</td>
+<td>登录</td>
+<td>执行</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>登录设置；与.zprofile仅执行先后不同，会都执行</td>
+</tr>
+<tr>
+<td>~/.zlogout</td>
+<td>登出</td>
+<td>x（不执行之意）</td>
+<td>执行</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>登出打扫</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>自动触发：上述点文件皆直接被“触发条件”触发，不用在一文件内要写<code>. 另一个点文件</code> ，该机制与bash不同</p>
+</li>
+<li><p>不执行bash的点文件：zsh为系统的默认shell、zsh为tmux的默认shell时，每次登陆或开新tmux窗口时皆然</p>
+</li>
+</ul>
+<h4 id="修改点文件"><a href="#修改点文件" class="headerlink" title="修改点文件"></a>修改点文件</h4><p><strong>之前的触发关系是</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">                                           开新shell</span><br><span class="line">                                               ↓</span><br><span class="line">登录 -&gt; ~/.profile (系统环境配置)-&gt; ~/.bashrc (shell环境配置) -&gt; ~/.bash_aliases (设置别名命令)</span><br></pre></td></tr></table></figure>
+
+<p><strong>若<code>chsh -s `which zsh`</code>修改成功</strong></p>
+<p>每次登录都直接进入zsh，则需改为如下触发关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">~/.zshenv         ~/.zshrc        ~/.zprofile          ~/.zlogout</span><br><span class="line">     ↓               ↓                                     ↓</span><br><span class="line">~/.profile  →   ~/.bash_aliases                       ~/.bash_logout</span><br></pre></td></tr></table></figure>
+
+<p>做法如下：</p>
+<ul>
+<li><code>~/.profile</code>中的<code>. ~/bashrc</code> 改为<code>. ~/bash_aliases</code> </li>
+<li><code>~/.bashrc</code> 不动，闲置不用了，被<code>~/.zshrc</code>代替</li>
+<li>修改<code>~/.zshrc</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># .zshenv只写</span></span><br><span class="line">[ -f ~/.profile ] &amp;&amp; . ~/.profile</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加在.zshrc开头，之后每次编辑~/.zshrc，请确保它在最开头</span></span><br><span class="line">[ -f ~/.profile ] &amp;&amp; . ~/.profile</span><br><span class="line"><span class="comment"># 加在.zshrc结尾，之后每次编辑~/.zshrc，请确保它在最结尾，不然zshrc中其他配置会覆盖其alias</span></span><br><span class="line">[ -f ~/.bash_aliases ] &amp;&amp; . ~/.bash_aliases</span><br><span class="line"></span><br><span class="line"><span class="comment"># ~/.zprofile 写登录同步文件的命令</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ~/.zlogout只写</span></span><br><span class="line">[ -f ~/.bash_logout ] &amp;&amp; . ~/.bash_logout</span><br></pre></td></tr></table></figure>
+
+<p><strong>若<code>chsh -s `which zsh`</code>修改不成功</strong></p>
+<p>登录不自动进入zsh，则每次登录启动的是bash，运行的是<code>~/.profile</code></p>
+<p>需修改为如下触发关系</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">		                   开新zsh</span><br><span class="line">		                     ↓</span><br><span class="line">登录 -&gt;  ~/.profile  -&gt;   ~/.zshrc (zsh包，环境配置)</span><br><span class="line">                             \------&gt; ~/.profile_for_zsh, ~/.bash_aliases</span><br></pre></td></tr></table></figure>
+
+<p>方法如下</p>
+<ul>
+<li><code>cp ~/.profile ~/.profile_for_zsh</code></li>
+<li>删除<code>~/.profile_for_zsh</code>中的<code>. ~/.bashrc</code>和<code>. ~/.bash_aliases</code></li>
+<li>将<code>~/.profile</code>清空，只写入</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -t 1 ]; <span class="keyword">then</span> </span><br><span class="line"><span class="comment"># 判断是否是交互shell</span></span><br><span class="line"><span class="comment"># whether file descriptor 1 (the shell's standard output) is connected to a terminal</span></span><br><span class="line">	<span class="built_in">exec</span> zsh</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>修改<code>~/.zshrc</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加在.zshrc开头，之后每次编辑~/.zshrc，请确保它在最开头</span></span><br><span class="line">[ -f ~/.profile_for_zsh ] &amp;&amp; . ~/.profile_for_zsh <span class="comment"># 个人环境变量设置</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加在.zshrc结尾，之后每次编辑~/.zshrc，请确保它在最结尾</span></span><br><span class="line">[ -f ~/.bash_aliases ] &amp;&amp;. ~/.bash_aliases <span class="comment"># 个人别名、小脚本设置</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="MAC上-zshenv设的-PATH前被加别的路径"><a href="#MAC上-zshenv设的-PATH前被加别的路径" class="headerlink" title="MAC上.zshenv设的$PATH前被加别的路径"></a>MAC上.zshenv设的$PATH前被加别的路径</h3><p><strong>问题描述</strong></p>
+<p>在mac上，zsh登录式启动，在<code>.zshenv</code>中设置的PATH，前方覆盖了别的路径，例如：</p>
+<ul>
+<li><p>在<code>~/.zshenv</code>中设置了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span>  PATH=/Users/<span class="variable">$USER</span>/anaconda/bin:/Users/<span class="variable">$USER</span>/shareENV/<span class="built_in">local</span>/bin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>但是zsh登录式启动后，<code>echo $PATH</code>，返回的头几行是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/bin</span><br><span class="line">/usr/bin</span><br><span class="line">/bin</span><br><span class="line">/usr/sbin</span><br><span class="line">/sbin</span><br><span class="line">/Users/$USER/anaconda/bin</span><br><span class="line">/Users/$USER/shareENV/local/bin</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><strong>原因分析</strong></p>
+<ul>
+<li><p>zsh登录式启动，执行顺序点文件顺序是：… →<code>~/.zshenv</code> → <code>/etc/zprofile</code> → <code>~/.zprofile</code> → …</p>
+</li>
+<li><p>在bash登录式启动，执行顺序点文件顺序是：… →<code>/etc/profile</code> → <code>~/.profile</code> </p>
+<p>​                                            ↓ 手动执行             ↓ 手动执行</p>
+<p>​                                                <code>/etc/bashrc</code>        <code>~/.bashrc</code></p>
+</li>
+</ul>
+<ul>
+<li><p>在Mac上， <code>/etc/zprofile</code>和<code>/etc/profile</code>都有以下内容（在linux上， <code>/etc/zprofile</code>为空）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># system-wide environment settings for zsh(1)</span></span><br><span class="line"><span class="keyword">if</span> [ -x /usr/libexec/path_helper ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">eval</span> `/usr/libexec/path_helper -s`</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>/usr/libexec/path_helper</code>是Mac上专有的可执行文件，用于将别处设置的系统级的$PATH，添加到当前PATH的开头</p>
+<p>所添加的内容为</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">---------------------------------------------</span><br><span class="line">                       /etc/paths文件中的路径</span><br><span class="line">/usr/local/bin             </span><br><span class="line">/usr/bin</span><br><span class="line">/bin</span><br><span class="line">/usr/sbin</span><br><span class="line">/sbin                    </span><br><span class="line">---------------------------------------------</span><br><span class="line">                       其他地方设置的系统$PATH</span><br><span class="line">/Library/TeX/texbin</span><br><span class="line">/usr/local/aria2/bin</span><br><span class="line">/opt/X11/bin</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>故zsh登录启动时，先执行<code>~/.zshenv</code>中的修改PATH，而后被path_helper在前面加上了系统级的$PATH</p>
+</li>
+<li><p>而bash登录启动无此问题，因为是先执行path_helper，再执行<code>~/.profile</code>中的修改PATH</p>
+</li>
+</ul>
+<p><strong>解决办法</strong></p>
+<p><a href="https://github.com/sorin-ionescu/prezto/issues/381#issuecomment-294549773" target="_blank" rel="noopener">参考</a></p>
+<ul>
+<li><p>法一：若有root权限，建议用本法，所有用户可解决此问题</p>
+<p>  修改<code>/etc/zprofile</code>，把<code>$PATH</code>复制一份到<code>$PATH_SAVE</code>，执行<code>path_helper</code>修改<code>$$PATH</code>，然后再把<code>$PATH_SAVE</code>粘到<code>$PATH</code>前面</p>
+<p>  将 <code>/etc/zprofile</code>中的</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># system-wide environment settings for zsh(1)</span></span><br><span class="line"><span class="keyword">if</span> [ -x /usr/libexec/path_helper ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">eval</span> `/usr/libexec/path_helper -s`</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<p>  改为</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># save the $PATH set in ~/.zshenv, to prevent `path_helper` appand the</span></span><br><span class="line"><span class="comment"># paths in /etc/zprofile on the begining of $PATH</span></span><br><span class="line"><span class="built_in">export</span> PATH_SAVE=<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># system-wide environment settings for zsh(1)</span></span><br><span class="line"><span class="keyword">if</span> [ -x /usr/libexec/path_helper ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">eval</span> `/usr/libexec/path_helper -s`</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># this block means</span></span><br><span class="line"><span class="comment">#     eport PATH=$PATH_SAVE:$PATH</span></span><br><span class="line"><span class="comment">#     and then remove repeated paths in PATH</span></span><br><span class="line"><span class="comment">#     and then unset PATH_SAVE</span></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$PATH_SAVE</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">  PATH_SAVE=:<span class="variable">$PATH_SAVE</span>:;</span><br><span class="line">  PATH=<span class="variable">$PATH</span>:</span><br><span class="line">  <span class="keyword">while</span> [ -n <span class="string">"<span class="variable">$PATH</span>"</span> ]; <span class="keyword">do</span></span><br><span class="line">   x=<span class="variable">$&#123;PATH%%:*&#125;</span>  <span class="comment"># the first remaining entry</span></span><br><span class="line">   <span class="keyword">case</span> <span class="variable">$PATH_SAVE</span> <span class="keyword">in</span></span><br><span class="line">     *:<span class="variable">$x</span>:*) ;;  <span class="comment"># already there</span></span><br><span class="line">     *) PATH_SAVE=<span class="variable">$PATH_SAVE</span><span class="variable">$x</span>: ;;  <span class="comment"># not there yet</span></span><br><span class="line">   <span class="keyword">esac</span></span><br><span class="line">   PATH=<span class="variable">$&#123;PATH#*:&#125;</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line">  PATH=<span class="variable">$&#123;PATH_SAVE:1:-1&#125;</span></span><br><span class="line">  <span class="built_in">unset</span> PATH_SAVE x</span><br><span class="line">  <span class="built_in">export</span> PATH</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>法二：若无root权限</p>
+<p>  在 <code>~/.zshenv</code>结尾写</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> PATH_SAVE=<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+
+<p>  在 <code>~/.zprofile</code>开头写</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># this block means</span></span><br><span class="line"><span class="comment">#     eport PATH=$PATH_SAVE:$PATH</span></span><br><span class="line"><span class="comment">#     and then remove repeated paths in PATH</span></span><br><span class="line"><span class="comment">#     and then unset PATH_SAVE</span></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$PATH_SAVE</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">  PATH_SAVE=:<span class="variable">$PATH_SAVE</span>:;</span><br><span class="line">  PATH=<span class="variable">$PATH</span>:</span><br><span class="line">  <span class="keyword">while</span> [ -n <span class="string">"<span class="variable">$PATH</span>"</span> ]; <span class="keyword">do</span></span><br><span class="line">   x=<span class="variable">$&#123;PATH%%:*&#125;</span>  <span class="comment"># the first remaining entry</span></span><br><span class="line">   <span class="keyword">case</span> <span class="variable">$PATH_SAVE</span> <span class="keyword">in</span></span><br><span class="line">     *:<span class="variable">$x</span>:*) ;;  <span class="comment"># already there</span></span><br><span class="line">     *) PATH_SAVE=<span class="variable">$PATH_SAVE</span><span class="variable">$x</span>: ;;  <span class="comment"># not there yet</span></span><br><span class="line">   <span class="keyword">esac</span></span><br><span class="line">   PATH=<span class="variable">$&#123;PATH#*:&#125;</span></span><br><span class="line">  <span class="keyword">done</span></span><br><span class="line">  PATH=<span class="variable">$&#123;PATH_SAVE:1:-1&#125;</span></span><br><span class="line">  <span class="built_in">unset</span> PATH_SAVE x</span><br><span class="line">  <span class="built_in">export</span> PATH</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="换zsh的主题"><a href="#换zsh的主题" class="headerlink" title="换zsh的主题"></a>换zsh的主题</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 搜索"antigen use oh-my-zsh"，其下一行加</span></span><br><span class="line">antigen theme agnoster <span class="comment"># 换主题 # ys , agnoster # 参考：https://github.com/robbyrussell/oh-my-zsh/wiki/themes</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="中文"><a href="#中文" class="headerlink" title="中文"></a>中文</h3><p>若出现中文乱码，说明未设置zsh默认编码为utf8</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在~/.zshenv中</span></span><br><span class="line"><span class="built_in">export</span> LC_ALL=en_US.UTF-8</span><br><span class="line"><span class="built_in">export</span> LANG=en_US.UTF-8</span><br></pre></td></tr></table></figure>
+
+<h3 id="命令行下配色"><a href="#命令行下配色" class="headerlink" title="命令行下配色"></a>命令行下配色</h3><p>Mac需要另外设置命令行下的配色，<code>vim ~/.zshrc</code>, 加在source ~/.bash_aliases之前</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 命令行下的配色</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># -------------------- alias to ls -----------------</span></span><br><span class="line"><span class="comment"># 显(xxx)隐(.xxx) 文件(xxx)文件夹(xxx/) 用户名 大小 创建日期 大小用GMk格式 </span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">'ls -alFGh'</span></span><br><span class="line"><span class="comment"># 显(xxx)隐(.xxx) 文件与文件夹不区分(xxx)</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">'ls -AG'</span></span><br><span class="line"><span class="comment"># 显 文件(xxx)文件夹(xxx/)</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">'ls -CFG'</span></span><br><span class="line"><span class="comment"># 上色 文件(白)文件夹(紫)</span></span><br><span class="line"><span class="built_in">alias</span> ls=<span class="string">'ls -G'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># -------------------- alias to grep ------------------</span></span><br><span class="line"><span class="comment"># 上色</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">'grep --color'</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">'egrep --color'</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">'fgrep --color'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ------------- 命令行使用Coreutils 配色方案 ----------</span></span><br><span class="line"><span class="comment"># 采用Coreutils的gdircolor配色，修改~/.dir_colors(自定义配色)</span></span><br><span class="line"><span class="comment"># 以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）</span></span><br><span class="line"><span class="comment"># 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...</span></span><br><span class="line"><span class="keyword">if</span> brew list | grep coreutils &gt; /dev/null ; <span class="keyword">then</span></span><br><span class="line">	PATH=<span class="string">"<span class="variable">$(brew --prefix coreutils)</span>/libexec/gnubin:<span class="variable">$PATH</span>"</span></span><br><span class="line">	<span class="built_in">alias</span> ls=<span class="string">'ls -F --show-control-chars --color=auto'</span></span><br><span class="line">	<span class="built_in">eval</span> `gdircolors -b <span class="variable">$HOME</span>/.dir_colors`</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p><a href="https://blog.csdn.net/u011054333/article/details/79314095" target="_blank" rel="noopener">详见</a></p>
+<h2 id="autojump"><a href="#autojump" class="headerlink" title="autojump"></a>autojump</h2><p>antigen无法自动安装autojump，故需要手动安装之，然后加入autojump的搜索路径</p>
+<h3 id="安装autojump"><a href="#安装autojump" class="headerlink" title="安装autojump"></a>安装autojump</h3><p>autojump 是一个命令行工具，它允许你可以直接跳转到你喜爱的目录，而不受当前所在目录的限制</p>
+<p>首先安装autojump，如果你用 Mac，可以使用 brew 安装：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install autojump</span><br></pre></td></tr></table></figure>
+
+<p>如果是 Linux，去下载 autojump 的最新版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在任意一个目录下</span></span><br><span class="line">git <span class="built_in">clone</span> git://github.com/joelthelion/autojump.git</span><br><span class="line"><span class="built_in">cd</span> autojump</span><br><span class="line">./install.py</span><br></pre></td></tr></table></figure>
+
+<p>安装成功会返回如下，要用<code>autojump</code>命令，需先<code>. ~/.autojump/etc/profile.d/autojump.sh</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Please manually add the following line(s) to ~/.zshrc:</span><br><span class="line"></span><br><span class="line">	[[ -s ~/.autojump/etc/profile.d/autojump.sh ]] &amp;&amp; source ~/.autojump/etc/profile.d/autojump.sh</span><br><span class="line"></span><br><span class="line">	autoload -U compinit &amp;&amp; compinit -u</span><br><span class="line"></span><br><span class="line">Please restart terminal(s) before running autojump.</span><br></pre></td></tr></table></figure>
+
+<p>autojump 安装到<code>~/.autojump/</code>，下载得的 <code>autojump/</code>可删</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm autojump</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置autojump"><a href="#配置autojump" class="headerlink" title="配置autojump"></a>配置autojump</h3><ul>
+<li>Linux需要先改antigen搜索autojump安装路径的脚本</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim ~/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/autojump/autojump.plugin.zsh</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文件开头改成</span></span><br><span class="line"><span class="keyword">if</span> [ -f <span class="variable">$HOME</span>/.autojump/etc/profile.d/autojump.sh ]; <span class="keyword">then</span> <span class="comment"># manual user-local installation</span></span><br><span class="line">    . <span class="variable">$HOME</span>/.autojump/etc/profile.d/autojump.sh</span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$commands</span>[autojump] ]; <span class="keyword">then</span> <span class="comment"># check if autojump is installed</span></span><br></pre></td></tr></table></figure>
+
+<p>而后修改<code>~/.zshrc</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 搜索"antigen use oh-my-zsh"，其下一行加</span></span><br><span class="line">antigen bundle autojump <span class="comment"># 使用 antigen 加载 zsh；注释此行则不加载</span></span><br></pre></td></tr></table></figure>
+
+<p>若设置为要加载，重新登录zsh则<code>autojump</code>命令生效</p>
+<ul>
+<li>Mac直接改<code>~/.zshrc</code>即可</li>
+</ul>
+<h3 id="使用autojump"><a href="#使用autojump" class="headerlink" title="使用autojump"></a>使用autojump</h3><p><a href="https://linux.cn/article-3401-1.html" target="_blank" rel="noopener">详见</a></p>
+<h2 id="tmux启动设置"><a href="#tmux启动设置" class="headerlink" title="tmux启动设置"></a>tmux启动设置</h2><ul>
+<li>令tmux启动pane时开zsh，而不是开shell （Linux中会遇到，mac中不会，但也可做此设置）</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> vim ~/.tmux.conf</span><br></pre></td></tr></table></figure>
+
+<p>加一行</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 开一个窗口，自动启动zsh作为<span class="keyword">shell</span></span><br><span class="line"><span class="keyword">set</span>-option -g default-<span class="keyword">shell</span> /bin/zsh</span><br></pre></td></tr></table></figure>
+
+<p>则重启tmux，或在tmux的窗口中，执行<code>ctrl+b :source-file ~/.tmux.conf</code>，更改即生效</p>
+<h2 id="卸载antigen"><a href="#卸载antigen" class="headerlink" title="卸载antigen"></a>卸载antigen</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm ~/.antigen -rf</span><br><span class="line">rm ~/.<span class="built_in">local</span> -rf <span class="comment"># 删前手动检查一下，其下是否有不是antigen的文件</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="zsh的自动补全"><a href="#zsh的自动补全" class="headerlink" title="zsh的自动补全"></a>zsh的自动补全</h1><h2 id="复用现有命令的自动补全"><a href="#复用现有命令的自动补全" class="headerlink" title="复用现有命令的自动补全"></a>复用现有命令的自动补全</h2><p>在<code>~/.bash_aliases</code>中设置</p>
+<ul>
+<li>凡如下设置的<code>[新命令]</code>会自动继承<code>[现有命令]</code>的zsh自动补全</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias [新命令]=&apos;[现有命令] ...其他参数&apos;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>[新命令]</code>(函数)继承<code>[现有命令]</code>的zsh自动补全</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 该alias会使得 [新命令] 继承[现有命令]的zsh自动补全</span></span><br><span class="line"><span class="built_in">alias</span> [新命令]=<span class="string">'[现有命令]'</span></span><br><span class="line"><span class="comment"># 该函数会覆盖'alias [新命令]'</span></span><br><span class="line"><span class="keyword">function</span> [新命令]()</span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="zsh语法和bash的区别"><a href="#zsh语法和bash的区别" class="headerlink" title="zsh语法和bash的区别"></a>zsh语法和bash的区别</h1><h3 id="判断是在zsh还是bash"><a href="#判断是在zsh还是bash" class="headerlink" title="判断是在zsh还是bash"></a>判断是在zsh还是bash</h3><p>以下判断方法对于所有情况都奏效，不论是登录、非登录，交互、非交互</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$ZSH_VERSION</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">   <span class="comment"># 当前 用zsh</span></span><br><span class="line"><span class="keyword">elif</span> [ -n <span class="string">"<span class="variable">$BASH_VERSION</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">   <span class="comment"># 当前用 Bash / sh / 直接运行可执行文件</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="comment"># 当前 用其他终端</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="感叹号"><a href="#感叹号" class="headerlink" title="感叹号"></a>感叹号</h3><p>zsh的感叹号不论是否在方括号内，都是表示历史记录功能</p>
+<p>bash的感叹号在方括号内表示非，不在方括号内时表示历史记录</p>
+<p>例如输出当前目录下所有隐藏文件与文件夹</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> .[!.]* </span><br><span class="line"><span class="comment"># bash下正常执行,输出当前目录下所有隐藏文件与文件夹</span></span><br><span class="line"><span class="comment"># zsh下报错</span></span><br><span class="line"><span class="comment">#     zsh: event not found: .]</span></span><br><span class="line"><span class="comment"># 这是因为zsh把`!.]`理解成以`.]`开头的历史命令</span></span><br><span class="line"><span class="built_in">echo</span> .[<span class="string">'!'</span>.]* </span><br><span class="line"><span class="comment"># bash下正常执行,输出当前目录下所有隐藏文件与文件夹</span></span><br><span class="line"><span class="comment"># bash下输出</span></span><br><span class="line"><span class="comment">#      ..</span></span><br><span class="line"><span class="comment"># 这是因为bash把`.['!'.]* `理解成第一个字符是"."，第二个字符是引号感叹号或句点，而后是任意字符(可空)</span></span><br></pre></td></tr></table></figure>
+
+<p>zsh中：<code>.*</code>等价于<code>.[&#39;!&#39;.]*</code>，都不包含<code>..</code>，只包含此目录下所有隐藏文件与文件夹</p>
+<p>bash中：<code>.*</code>包含都不包含<code>..</code>和此目录下所有隐藏文件与文件夹；<code>.[!.]*</code>才不包含<code>..</code>，只包含此目录下所有隐藏文件与文件夹</p>
+<h1 id="shell的状态类型"><a href="#shell的状态类型" class="headerlink" title="shell的状态类型"></a>shell的状态类型</h1><h3 id="预备知识——shell的状态类型"><a href="#预备知识——shell的状态类型" class="headerlink" title="预备知识——shell的状态类型"></a>预备知识——shell的状态类型</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>交互</th>
+<th>非交互</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>登录</td>
+<td>ssh登录服务器; 打开iTerm2登录笔记本</td>
+<td><code>ssh &lt;服务器&gt; &lt;命令&gt;</code></td>
+</tr>
+<tr>
+<td>非登录</td>
+<td><code>zsh或bash</code></td>
+<td><code>zsh或bash -c &#39;&lt;命令&gt;&#39;</code>或<code>zsh或bash 文件</code></td>
+</tr>
+</tbody></table>
+<h3 id="判断方法"><a href="#判断方法" class="headerlink" title="判断方法"></a>判断方法</h3><p>参考：<a href="https://zhuanlan.zhihu.com/p/47819029" target="_blank" rel="noopener">千万别混淆 Bash/Zsh 的四种运行模式</a></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>bash</th>
+<th>zsh</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>是否是登录</td>
+<td><code>if [[ $0 = -* ]]</code> 或<code>if [[ $(shopt login_shell) = *on ]]</code></td>
+<td><code>if [[ -o login ]]</code></td>
+</tr>
+<tr>
+<td>是否交互</td>
+<td><code>if [[ $- = *i* ]]</code></td>
+<td><code>if [[ -o interactive ]]</code> 或 <code>if [[ $- = *i* ]]</code></td>
+</tr>
+</tbody></table>
+<p>在任何bash环境下，以下两种的结果相同</p>
+<ul>
+<li>文件中写&lt;判断命令&gt;再<code>. 文件</code></li>
+<li>直接执行&lt;判断命令&gt;</li>
+</ul>
+<p><strong>示例</strong></p>
+<table>
+<thead>
+<tr>
+<th>场景 \  返回  \ &lt;命令&gt;</th>
+<th><code>echo $-</code></th>
+<th><code>echo $0</code></th>
+<th>是否是登录</th>
+<th>是否交互</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>bash 为默认shell，ssh登录后，执行命令</td>
+<td>himBH</td>
+<td>-bash</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>ssh登录后，<code>bash</code> 后，执行命令</td>
+<td>himBH</td>
+<td>bash</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>bash  -c &#39;&lt;命令&gt;&#39;</code></td>
+<td>hBc</td>
+<td>bash</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>在当前位置执行<code>bash 文件</code>，文件中有&lt;命令&gt;</td>
+<td>hB</td>
+<td>&lt;文件相对当前位置的路径&gt;</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>场景 \  返回  \ &lt;命令&gt;</th>
+<th><code>echo $-</code></th>
+<th><code>echo $0</code></th>
+<th>是否是登录</th>
+<th>是否交互</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>zsh为默认shell，ssh登录后，执行命令</td>
+<td>3569JNRXZghiklms</td>
+<td>-zsh</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>ssh登录后，<code>zsh</code> 后，执行命令</td>
+<td>3569JNRXZghikms</td>
+<td>zsh</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>zsh  -c &#39;&lt;命令&gt;&#39;</code></td>
+<td>569X</td>
+<td>zsh</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>在当前位置执行<code>zsh 文件</code>，文件中有&lt;命令&gt;</td>
+<td>569X</td>
+<td>&lt;文件相对当前位置的路径&gt;</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody></table>
+<h1 id="zsh和bash共存的用户目录组织逻辑"><a href="#zsh和bash共存的用户目录组织逻辑" class="headerlink" title="zsh和bash共存的用户目录组织逻辑"></a>zsh和bash共存的用户目录组织逻辑</h1><ul>
+<li>各种shell的dot 文件</li>
+<li>CONF、shareENV、serverENV、localENV分开</li>
+</ul>
+<h3 id="文件夹结构"><a href="#文件夹结构" class="headerlink" title="文件夹结构"></a>文件夹结构</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/home/$USER/</span><br><span class="line">	一堆软链接点文件，指向CONF下的文件，详见下[#软连接]</span><br><span class="line">	init_script/</span><br><span class="line">		系统环境安装脚本</span><br><span class="line">	ENV/</span><br><span class="line">		CONF/</span><br><span class="line">			一堆软链接点文件，指向shareENV、serverENV、localENV下的文件，详见下[#软连接]</span><br><span class="line">		shareENV/     ------- 一个repo，笔记本、服务器共用，每次登录登出时同步</span><br><span class="line">			local/</span><br><span class="line">				bin/</span><br><span class="line">				man/</span><br><span class="line">				...</span><br><span class="line">			script/</span><br><span class="line">			shell_config/</span><br><span class="line">				zsh、bash、所有shell通用的点文件</span><br><span class="line">			app_config/</span><br><span class="line">				tmux、ipython、jupyter通用的点文件</span><br><span class="line">		serverENV/    ------- 一个repo，服务器共用，每次登录登出时同步</span><br><span class="line">			(结构同shareENV/)</span><br><span class="line">			app_config/</span><br><span class="line">				.shadowsocks    : shadowsocks ips</span><br><span class="line">			nvim/             : neovim 的镜像及其解压文件夹</span><br><span class="line">			...</span><br><span class="line">		localENV/     ------- 一个文件夹，该服务器自己用的，不同步</span><br><span class="line">			(结构同shareENV/)</span><br><span class="line">		其他共享ENV ------- 一个repo，在我的一些电脑之间共用，每次登录登出时同步</span><br><span class="line">			(结构同shareENV/)</span><br></pre></td></tr></table></figure>
+
+<h3 id="我设计的点文件的加载逻辑"><a href="#我设计的点文件的加载逻辑" class="headerlink" title="我设计的点文件的加载逻辑"></a>我设计的点文件的加载逻辑</h3><p>执行顺序从上到下</p>
+<table>
+<thead>
+<tr>
+<th>执行场景</th>
+<th>自定义共用文件</th>
+<th>zsh</th>
+<th>bash</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>总执行</td>
+<td>.env: 定义环境变量、定义登录登出的文件同步函数；非交互则加载.aliases</td>
+<td>.zshenv: <strong>总是触发</strong>; 加载.env</td>
+<td>.bash_env: <strong>登录但非交互 触发</strong>; 加载.env</td>
+</tr>
+<tr>
+<td></td>
+<td>.aliases: 包括别名和shell函数</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>登录</td>
+<td>.login: git pull共享文件</td>
+<td>.zprofile: <strong>登录触发</strong>;加载.login</td>
+<td>.bash_profile: <strong>登录触发</strong>; 加载.bash_env, .login, .bashrc</td>
+</tr>
+<tr>
+<td>交互</td>
+<td>无</td>
+<td>.zshrc: <strong>交互触发</strong>; 交互则加载.aliases</td>
+<td>.bashrc: <strong>非登录但交互 触发</strong>; 若非登录则加载.bash_env, 交互则加载.aliases</td>
+</tr>
+<tr>
+<td>登出</td>
+<td>.logout: git push共享文件; 打扫卫生</td>
+<td>.zlogout: <strong>登出触发</strong>;加载.logout</td>
+<td>.bash_logout: <strong>登出触发</strong>;加载.logout</td>
+</tr>
+</tbody></table>
+<p>触发：即系统自动加载此文件的触发条件</p>
+<p>加载：即在此文件内，source了别的文件</p>
+<p>登出：不论是敲命令(<code>exit</code> <code>logout</code> <code>reboot</code>)登出，还是ssh连接中断(如客户端直接关闭iTerm窗口、断网)，都会触发登出文件。</p>
+<p><strong>特别设置</strong></p>
+<p>bash的非交互需要额外设置</p>
+<ul>
+<li><p>登录式的非交互：                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           若bash是默认shell，<code>ssh &lt;服务器&gt; &lt;命令&gt;</code>，不执行<code>~/.bash_env</code>，<strong>没有找到办法</strong>；只能</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh &lt;服务器&gt; <span class="string">'. ~/.bash_env &amp;&amp; &lt;命令&gt;’</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>非登录式的非交互：<code>bash -c &#39;&lt;命令&gt;&#39;</code>或<code>bash 文件</code>，在.env中添加一行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> BASH_ENV=~/.bash_env   <span class="comment"># 可登录后，非交互bash加载之</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>zsh 在上述情况都会自动加载<code>~/.zshenv</code>，无需另外设置</p>
+<h3 id="软链接"><a href="#软链接" class="headerlink" title="软链接"></a>软链接</h3><h4 id="HOME"><a href="#HOME" class="headerlink" title="$HOME/"></a><code>$HOME/</code></h4><p><code>$HOME=/home/$USER/ENV/CONF</code></p>
+<p><code>$shareENV=/home/$USER/ENV/shareENV</code></p>
+<p><code>$serverENV=/home/$USER/ENV/serverENV</code></p>
+<table>
+<thead>
+<tr>
+<th>源文件</th>
+<th>目标文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>$HOME/</code></td>
+<td><code>$shareENV/app/</code></td>
+</tr>
+<tr>
+<td>.gitignore_global</td>
+<td>../shareENV/app_config/.gitignore_global</td>
+</tr>
+<tr>
+<td>.gitconfig</td>
+<td>../shareENV/app_config/.gitconfig</td>
+</tr>
+<tr>
+<td>.ipython</td>
+<td>../shareENV/app_config/.ipython/</td>
+</tr>
+<tr>
+<td>.jupyter</td>
+<td>../shareENV/app_config/.jupyter/</td>
+</tr>
+<tr>
+<td>.tmux.conf</td>
+<td>../shareENV/app_config/.tmux.conf</td>
+</tr>
+<tr>
+<td>.vimrc.bundles</td>
+<td>../shareENV/app_config/vim/.vimrc.bundles</td>
+</tr>
+<tr>
+<td>.vim</td>
+<td>../shareENV/app_config/vim/.vim/</td>
+</tr>
+<tr>
+<td>.vimrc</td>
+<td>../shareENV/app_config/vim/.vimrc</td>
+</tr>
+<tr>
+<td><code>$HOME/</code></td>
+<td><code>$serverENV/app/</code></td>
+</tr>
+<tr>
+<td>.shadowsocks</td>
+<td>../serverENV/app_config/.shadowsocks/</td>
+</tr>
+<tr>
+<td><code>$HOME/</code></td>
+<td><code>$shareENV/shell_config/</code></td>
+</tr>
+<tr>
+<td>.autojump</td>
+<td>../shareENV/shell_config/.autojump/</td>
+</tr>
+<tr>
+<td><code>$HOME/</code></td>
+<td><code>$$ENV/.shell_config/</code></td>
+</tr>
+<tr>
+<td>.env</td>
+<td>../CONF/.shell_config/.env</td>
+</tr>
+</tbody></table>
+<h4 id="home-USER"><a href="#home-USER" class="headerlink" title="/home/$USER/"></a><code>/home/$USER/</code></h4><table>
+<thead>
+<tr>
+<th>源文件</th>
+<th>目标文件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/home/$USER/</code></td>
+<td><code>$HOME</code></td>
+</tr>
+<tr>
+<td>.bash_env</td>
+<td>ENV/CONF/.bash_env</td>
+</tr>
+<tr>
+<td>.bash_history</td>
+<td>ENV/CONF/.bash_history</td>
+</tr>
+<tr>
+<td>.cache</td>
+<td>ENV/CONF/.cache/</td>
+</tr>
+<tr>
+<td>.env</td>
+<td>ENV/CONF/.shell_config/.env</td>
+</tr>
+<tr>
+<td>.bash_profile</td>
+<td>ENV/CONF/.bash_profile</td>
+</tr>
+<tr>
+<td>.ssh</td>
+<td>ENV/CONF/.ssh/</td>
+</tr>
+<tr>
+<td>.zcompdump</td>
+<td>ENV/CONF/.zcompdump</td>
+</tr>
+<tr>
+<td>.zshenv</td>
+<td>ENV/CONF/.zshenv</td>
+</tr>
+</tbody></table>
+<p># </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+      <div>
+        <div id="reward-container">
+  <div>如果觉得文本对您有帮助，欢迎打赏</div>
+  <button id="reward-button" disable="enable" onclick="var qr = document.getElementById(&quot;qr&quot;); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/wechatpay.jpg" alt="三清小道 微信支付">
+        <p>微信支付</p>
+      </div>
+    
+      
+      
+        
+      
+      <div style="display: inline-block">
+        <img src="/images/alipay.jpg" alt="三清小道 支付宝">
+        <p>支付宝</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/25/器/shell/bash及zsh语法/main/" rel="next" title="bash及zsh语法">
+                <i class="fa fa-chevron-left"></i> bash及zsh语法
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/25/器/编辑器IDE/vim配置/main/" rel="prev" title="vim配置">
+                vim配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpg" alt="三清小道">
+            
+              <p class="site-author-name" itemprop="name">三清小道</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">51</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/hyliang96" title="GitHub &rarr; https://github.com/hyliang96" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:hyliang96@gmail.com" title="E-Mail &rarr; mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.</span> <span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh安装"><span class="nav-number">2.</span> <span class="nav-text">zsh安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#antigen"><span class="nav-number">3.</span> <span class="nav-text">antigen</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装antigen"><span class="nav-number">3.1.</span> <span class="nav-text">安装antigen</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#导入配置"><span class="nav-number">3.1.1.</span> <span class="nav-text">导入配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#点文件"><span class="nav-number">3.2.</span> <span class="nav-text">点文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zsh的点文件"><span class="nav-number">3.2.1.</span> <span class="nav-text">zsh的点文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改点文件"><span class="nav-number">3.2.2.</span> <span class="nav-text">修改点文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC上-zshenv设的-PATH前被加别的路径"><span class="nav-number">3.3.</span> <span class="nav-text">MAC上.zshenv设的$PATH前被加别的路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#换zsh的主题"><span class="nav-number">3.4.</span> <span class="nav-text">换zsh的主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中文"><span class="nav-number">3.5.</span> <span class="nav-text">中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令行下配色"><span class="nav-number">3.6.</span> <span class="nav-text">命令行下配色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用"><span class="nav-number">4.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#autojump"><span class="nav-number">5.</span> <span class="nav-text">autojump</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装autojump"><span class="nav-number">5.1.</span> <span class="nav-text">安装autojump</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置autojump"><span class="nav-number">5.2.</span> <span class="nav-text">配置autojump</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用autojump"><span class="nav-number">5.3.</span> <span class="nav-text">使用autojump</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tmux启动设置"><span class="nav-number">6.</span> <span class="nav-text">tmux启动设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#卸载antigen"><span class="nav-number">7.</span> <span class="nav-text">卸载antigen</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh的自动补全"><span class="nav-number"></span> <span class="nav-text">zsh的自动补全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#复用现有命令的自动补全"><span class="nav-number">1.</span> <span class="nav-text">复用现有命令的自动补全</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh语法和bash的区别"><span class="nav-number"></span> <span class="nav-text">zsh语法和bash的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断是在zsh还是bash"><span class="nav-number">0.1.</span> <span class="nav-text">判断是在zsh还是bash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#感叹号"><span class="nav-number">0.2.</span> <span class="nav-text">感叹号</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shell的状态类型"><span class="nav-number"></span> <span class="nav-text">shell的状态类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预备知识——shell的状态类型"><span class="nav-number">0.1.</span> <span class="nav-text">预备知识——shell的状态类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断方法"><span class="nav-number">0.2.</span> <span class="nav-text">判断方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh和bash共存的用户目录组织逻辑"><span class="nav-number"></span> <span class="nav-text">zsh和bash共存的用户目录组织逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件夹结构"><span class="nav-number">0.1.</span> <span class="nav-text">文件夹结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#我设计的点文件的加载逻辑"><span class="nav-number">0.2.</span> <span class="nav-text">我设计的点文件的加载逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#软链接"><span class="nav-number">0.3.</span> <span class="nav-text">软链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HOME"><span class="nav-number">0.3.1.</span> <span class="nav-text">$HOME/</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#home-USER"><span class="nav-number">0.3.2.</span> <span class="nav-text">/home/$USER/</span></a></li></ol></li></ol></li></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">三清小道</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点总字数：</span>
+    
+    <span title="站点总字数">261k</span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    
+    <span title="站点阅读时长">3:57</span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.1"></script>
+
+  <script src="/js/motion.js?v=7.1.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.1"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.1"></script>
+<script src="/js/post-details.js?v=7.1.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: false,
+    appId: 'YSCc68UI3RsuryNKpvptdOXi-gzGzoHsz',
+    appKey: 'Jr8VUnJKXSNjdKRBVYhY95Ng',
+    placeholder: 'ヾﾉ≧∀≦)o来啊，快活啊!',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: 'zh-cn' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === '') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+<script>
+  $('.highlight').not('.gist .highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
