@@ -112,10 +112,25 @@
 <meta property="og:site_name" content="丹炉志">
 <meta property="og:description" content="GIT学习笔记教程猴子都能看懂的GIT入门 配置忽略一个repovim repo的根目录 或 其下任意一个文件夹中，创建.gitignore，则适用于.gitignore所在的文件夹 12345678910111213141516171819202122232425# 注释# 以下文件会被忽略# 相对本.gitignore文件所在文件夹的 路径/path/relative/to/here# 相对本">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-07T15:55:26.153Z">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2002.19.49.png">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2002.59.11.png">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2003.03.33.png">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2003.05.22.png">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2003.01.04.png">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2002.28.46.png">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2002.25.59.png">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/private.draft/%25E5%25BE%2585%25E5%258A%259E%25E4%25BA%258B%25E9%25A1%25B9/ScreenShot%25202020-01-11%252002.28.46.png">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-13%2016.21.31.png">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/759200-20160806092744747-1816899042.png">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/image-20200113214519713.png">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/image-20200113214619559.png">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/image-20200113213842403.png">
+<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-13%2021.37.05.png">
+<meta property="og:updated_time" content="2020-01-15T19:56:08.392Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git学习笔记">
 <meta name="twitter:description" content="GIT学习笔记教程猴子都能看懂的GIT入门 配置忽略一个repovim repo的根目录 或 其下任意一个文件夹中，创建.gitignore，则适用于.gitignore所在的文件夹 12345678910111213141516171819202122232425# 注释# 以下文件会被忽略# 相对本.gitignore文件所在文件夹的 路径/path/relative/to/here# 相对本">
+<meta name="twitter:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2002.19.49.png">
 
 
 
@@ -572,7 +587,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-07 23:55:26 23:55:26" itemprop="dateModified" datetime="2020-01-07T23:55:26+08:00">2020-01-07 23:55:26</time>
+                <time title="修改时间：2020-01-16 03:56:08 03:56:08" itemprop="dateModified" datetime="2020-01-16T03:56:08+08:00">2020-01-16 03:56:08</time>
               
             
           </span>
@@ -645,7 +660,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.7k</span>
+                <span title="本文字数">6.6k</span>
               
 
               
@@ -659,7 +674,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">2 分钟</span>
+                <span title="阅读时长">6 分钟</span>
               
             </div>
           
@@ -699,18 +714,173 @@
 <li>.DS_Store: 记录该文件夹下各文件在访达下的布局</li>
 <li>在Mac用Macfusion访问linux服务器上的git项目，需ignore上述文件</li>
 </ul>
-<h2 id="checkout的逻辑"><a href="#checkout的逻辑" class="headerlink" title="checkout的逻辑"></a>checkout的逻辑</h2><h3 id="一切改动可带走"><a href="#一切改动可带走" class="headerlink" title="一切改动可带走"></a>一切改动可带走</h3><p>当前即便有改动(包括如下这些)，也可以<code>git checkout</code>到任何别的分支、别的节点</p>
+<h2 id="文件的状态"><a href="#文件的状态" class="headerlink" title="文件的状态"></a>文件的状态</h2><p>其中 ignore是忽略的文件, HEAD是当前所在节点的那次提交版本, index是暂存( <code>git add</code> 即 <code>git stage</code>)所生成的文件索引, wkdir是工作目录</p>
+<p> ignore/HEAD/index/wkdir[file] = None if 其中无此file else 其中此file的内容</p>
+<p>文件的状态分如下几种, git的判断机制是</p>
 <ul>
-<li>未被暂存的 [新文件、文件修改]</li>
-<li>文件暂存(<code>git add</code>)</li>
-<li>文件删除(<code>git rm</code>)</li>
+<li>不存在的文件: ignore[file] == HEAD[file] == index[file] == wkdir[file] == None</li>
+<li>存在的文件: ! ( ignore[file] == HEAD[file] == index[file] == wkdir[file] == None)<ul>
+<li>忽略的文件:  None != ignore[file]</li>
+<li>未被忽略的文件:  None == ignore[file]  and ! (HEAD[file] == index[file] == wkdir[file] == None)</li>
 </ul>
-<p>这些改动均会被带到checkout后</p>
+</li>
+</ul>
+<p>其中未被忽略的文件进一步判断:</p>
+<ul>
+<li><p>提交文件 <code>commited</code>: None != HEAD[file] == index[file] == wkdir[file]</p>
+</li>
+<li><p>未提交/不干净的文件 <code>uncommited</code>: index[file] != wkdir[file]  or  HEAD[file] != index[file]</p>
+<ul>
+<li><p>未跟踪: <code>untracked</code>: None == index[file]  != wkdir[file] </p>
+</li>
+<li><p>未暂存: None != index[file]  != wkdir[file] </p>
+<p><code>unstaged modified</code>: None != index[file] != wkdir[file] != None</p>
+<p><code>unstaged deleted</code>: None != index[file] !=  wkdir[file] == None</p>
+</li>
+<li><p>暂存: HEAD[file] != index[file]</p>
+<p><code>staged new file</code>: None == HEAD[file]  != index[file]</p>
+<p><code>staged modified</code>: None !=  HEAD[file] != index[file] != None</p>
+<p><code>staged deleted</code>: None !=  HEAD[file] != index[file] == None     and    HEAD[file] != index[f] for any f in index</p>
+<p><code>staged renamed: file1-&gt; file2</code>:  None != HEAD[file1] != index[file1] == None    and  HEAD[file1] == index[file2]</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="checkout的逻辑"><a href="#checkout的逻辑" class="headerlink" title="checkout的逻辑"></a>checkout的逻辑</h2><h3 id="改动可否带走"><a href="#改动可否带走" class="headerlink" title="改动可否带走"></a>改动可否带走</h3><p>执行上述两命令成功的充要条件为: 一切当前不干净的文件(未跟踪/跟踪未暂存/暂存未提交), 在<code>git checkout</code>去往节点和<code>HEAD</code>节点中完全一样(是否被跟踪一样, 文件内容一样)</p>
+<p>执行后, 原来不干净的文件, 其内容/是否被跟踪/是否被暂存 均完全未变</p>
 <h3 id="从历史节点开分支"><a href="#从历史节点开分支" class="headerlink" title="从历史节点开分支"></a>从历史节点开分支</h3><h4 id="去历史节点试着修改"><a href="#去历史节点试着修改" class="headerlink" title="去历史节点试着修改"></a>去历史节点试着修改</h4><p>checkout到历史的节点，可以试着做改动，然后提交(<code>git commit</code>)，会变成一个临时分支，而不改动历史。</p>
 <p>这个临时分支，只有一个节点hash码、没有分支名。例如下图，checkout到历史节点<code>cf8e102</code>，修改完一些文件再提交，产生临时分支节点<code>883ed24</code></p>
 <p>![屏幕快照 2019-08-19 20.12.00](git笔记/屏幕快照 2019-08-19 20.12.00.png)</p>
 <h4 id="将修改存成分支"><a href="#将修改存成分支" class="headerlink" title="将修改存成分支"></a>将修改存成分支</h4><p>处在临时分支节点，可以执行<code>git branch 分支 &amp;&amp; git checkout 分支</code> （等价于 <code>git checkout -b 分支</code>），从而使得临时分支变成一个有名字的分支。</p>
 <p>若checkout到别的节点，再<code>git log</code>就不显示这个临时节点了，但是仍然可以<code>git checkout [临时节点的hash码]</code>到这个临时节点。</p>
+<h2 id="stash"><a href="#stash" class="headerlink" title="stash"></a>stash</h2><blockquote>
+<p>  我们有时会遇到这样的情况，正在dev分支开发新功能，做到一半时有人过来反馈一个bug，让马上解决，但是新功能做到了一半你又不想提交，这时就可以使用git stash命令先把当前进度保存起来，然后切换到另一个分支去修改bug，修改完提交后，再切回dev分支，使用git stash pop来恢复之前的进度继续开发新功能。下面来看一下git stash命令的常见用法.</p>
+</blockquote>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p><a href="https://www.yiibai.com/git/git_stash.html" target="_blank" rel="noopener">https://www.yiibai.com/git/git_stash.html</a></p>
+<p><a href="https://blog.csdn.net/qq_32452623/article/details/76100140" target="_blank" rel="noopener">https://blog.csdn.net/qq_32452623/article/details/76100140</a></p>
+<p><a href="https://blog.csdn.net/daguanjia11/article/details/73810577" target="_blank" rel="noopener">https://blog.csdn.net/daguanjia11/article/details/73810577</a></p>
+<p><a href="http://www.softwhy.com/article-8630-1.html" target="_blank" rel="noopener">git stash save与git stash push区别</a>:</p>
+<p> save是阉割版的push, 当前推荐使用git stash push命令,  save不能指定只存哪个目录, save 写mesage的格式和push不同</p>
+<h3 id="储藏"><a href="#储藏" class="headerlink" title="储藏"></a>储藏</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git stash [push [--patch] [-k|--[no-]keep-index] [-q|--quiet]</span><br><span class="line">		       [-u|--include-untracked] [-a|--all] [-m &lt;message&gt;]</span><br><span class="line">		       [-- &lt;pathspec&gt;...]]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>无 <code>-u</code>无<code>-a</code>:  不存未跟踪的文件; 只存跟踪且修改了的文件(不论是否add)</li>
+</ul>
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2002.19.49.png" alt="ScreenShot 2020-01-11 02.19.49"></p>
+<ul>
+<li>加<code>-u</code>无<code>-a</code>: 还存未跟踪的文件, 但不存忽略的文件</li>
+<li>有<code>-a</code>: 还存未跟踪的文件, 也不存忽略的文件, 故<code>-a</code> 包含了<code>-u</code></li>
+</ul>
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2002.59.11.png" alt="ScreenShot 2020-01-11 02.59.11"></p>
+<ul>
+<li>被存的文件都回到HEAD时的样子(包括文件的有无,文件的内容); 未跟踪的文件不变</li>
+</ul>
+<h3 id="查看储藏"><a href="#查看储藏" class="headerlink" title="查看储藏"></a>查看储藏</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash list</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>会显示整个分支图中(不仅仅是HEAD的)的所有储藏</li>
+</ul>
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2003.03.33.png" alt="ScreenShot 2020-01-11 03.03.33"></p>
+<p>  其中 <code>stash@{0}</code>等, 是stash编号; 在glg中显示的节点hash ( 位于 三角 的最顶上的那个点) 也可以做stash编号</p>
+<ul>
+<li><p><code>glg</code> 只显示  <code>stash@{0}</code> , 此即当前的stash, 整个分支图中仅此一个. 此stash即<code>git stash</code>各个命令里可缺省的stash编号</p>
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2003.05.22.png" alt="ScreenShot 2020-01-11 03.05.22"></p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash show [&lt;stash编号&gt;]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>会显示跟踪的文件的增删改</p>
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2003.01.04.png" alt="ScreenShot 2020-01-11 03.01.04"></p>
+</li>
+</ul>
+<h3 id="取出储藏"><a href="#取出储藏" class="headerlink" title="取出储藏"></a>取出储藏</h3><p>当当前目录有储藏的文件改动了, 则无法取出储藏</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash pop [stash编号] [--index]</span><br></pre></td></tr></table></figure>
+
+<p>等价于 <code>git stash apply [stash编号] [--index]; git stash drop [stash编号]</code></p>
+<ul>
+<li>不加—index: 原来跟踪且修改的文件还原, 现在都没git add</li>
+<li>加 index: 原来跟踪且修改的文件还原, 分别还原到add和没add的状态</li>
+<li><code>glg</code> 和 <code>git stash list</code>中看不到这个储藏了</li>
+</ul>
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2002.28.46.png" alt="ScreenShot 2020-01-11 02.28.46"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash apply [stash编号] [--index]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>不加—index: 原来跟踪且修改的文件还原, 现在都没git add</li>
+<li>加 index: 原来跟踪且修改的文件还原, 分别还原到add和没add的状态</li>
+<li>glg 和 <code>git stash list</code>中还能到这个储藏了</li>
+</ul>
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2002.25.59.png" alt="ScreenShot 2020-01-11 02.25.59"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash drop [stash编号]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>当前文件的状态不变</li>
+<li>glg 和 <code>git stash list</code>中不能到这个储藏了</li>
+</ul>
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/../../private.draft/%25E5%25BE%2585%25E5%258A%259E%25E4%25BA%258B%25E9%25A1%25B9/ScreenShot%25202020-01-11%252002.28.46.png" alt="ScreenShot 2020-01-11 02.28.46"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash clear</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>等价于 <code>git stash drop [stash编号]</code> 对于所有 <code>[stash编号]</code></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash branch &lt;branchname&gt; [&lt;stash编号&gt;] [--index]</span><br></pre></td></tr></table></figure>
+
+<p>等价于 <code>git stash pop [&lt;stash编号&gt;] [--index]; gb &lt;branchname&gt;</code></p>
+<h3 id="取消apply储藏"><a href="#取消apply储藏" class="headerlink" title="取消apply储藏"></a>取消apply储藏</h3><p>在某些情况下，可能想应用储藏的修改，在进行了一些其他的修改后，又要取消之前所应用储藏的修改。Git没有提供类似于 <code>stash unapply</code>的命令，但是可以通过取消该储藏的补丁达到同样的效果：</p>
+<h3 id="法一"><a href="#法一" class="headerlink" title="法一"></a>法一</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git stash show -p [stash编号] | git apply -R</span><br></pre></td></tr></table></figure>
+
+<p>可能会想要新建一个別名，在你的 Git 里增加一个 <code>stash-unapply</code>命令，这样更有效率。例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.stash-unapply '!git stash show -p | git apply -R'</span><br><span class="line">git stash apply # 不能有 --index</span><br><span class="line"><span class="meta">#</span><span class="bash"> (... work work work <span class="comment"># 不能改储藏的文件)</span></span></span><br><span class="line">git stash-unapply # 不会还原 git stash push -u 所储存的未跟踪文件 </span><br><span class="line"><span class="meta">#</span><span class="bash"> 回到干净的目录</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="法二"><a href="#法二" class="headerlink" title="法二"></a>法二</h3><p>如果在应用储藏前, 目录是干净的, 则可直接</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> <span class="string">"`git rev-parse --show-toplevel`"</span>  <span class="comment"># 来到当前repo的根目录</span></span><br><span class="line">git reset HEAD  <span class="comment"># 取消暂存(git add)的所有文件</span></span><br><span class="line">git checkout  . <span class="comment"># 取消被跟踪文件的所有修改</span></span><br><span class="line">git clean -df  <span class="comment"># 删除未跟踪也未被忽略的文件夹(-d)和文件(-f)</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="rebase"><a href="#rebase" class="headerlink" title="rebase"></a>rebase</h2><p>带上sub-branch一起rebase</p>
+<p><a href="https://stackoverflow.com/questions/32652293/automatically-rebase-git-sub-branches" target="_blank" rel="noopener">https://stackoverflow.com/questions/32652293/automatically-rebase-git-sub-branches</a></p>
+<p><a href="http://voidcanvas.com/how-to-rebase-a-branch-when-the-parent-is-rebased-with-another/" target="_blank" rel="noopener">http://voidcanvas.com/how-to-rebase-a-branch-when-the-parent-is-rebased-with-another/</a></p>
+<p><a href="https://stackoverflow.com/questions/43711961/rebase-a-branch-that-has-child-branches" target="_blank" rel="noopener">https://stackoverflow.com/questions/43711961/rebase-a-branch-that-has-child-branches</a></p>
+<p>rebase 一棵树 <a href="https://stackoverflow.com/questions/14504029/git-rebase-subtree/45861361#45861361" target="_blank" rel="noopener">https://stackoverflow.com/questions/14504029/git-rebase-subtree/45861361#45861361</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout dev</span><br><span class="line">git rebase --preserve-merges master</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-13%2016.21.31.png" alt="ScreenShot 2020-01-13 16.21.31"></p>
+<p><a href="https://stackoverflow.com/questions/15915430/what-exactly-does-gits-rebase-preserve-merges-do-and-why" target="_blank" rel="noopener">What exactly does git’s “rebase –preserve-merges” do (and why?)</a></p>
+<p>Rebase a tree: <a href="https://stackoverflow.com/questions/17315285/rebasing-a-tree-a-commit-branch-and-all-its-children" target="_blank" rel="noopener">https://stackoverflow.com/questions/17315285/rebasing-a-tree-a-commit-branch-and-all-its-children</a></p>
+<p><a href="https://stackoverflow.com/questions/17106840/git-rebase-with-branches-whole-tree" target="_blank" rel="noopener">https://stackoverflow.com/questions/17106840/git-rebase-with-branches-whole-tree</a></p>
+<h3 id="化解冲突：git-merge-与-git-rebase-中的-ours-和-theirs"><a href="#化解冲突：git-merge-与-git-rebase-中的-ours-和-theirs" class="headerlink" title="化解冲突：git merge 与 git rebase 中的 ours 和 theirs"></a>化解冲突：git merge 与 git rebase 中的 ours 和 theirs</h3><p><a href="https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/" target="_blank" rel="noopener">https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/</a></p>
+<h3 id="rebase的缺点"><a href="#rebase的缺点" class="headerlink" title="rebase的缺点"></a>rebase的缺点</h3><p>私有分支每次commit后都要rebase一下</p>
+<p>考虑如下几个问题：</p>
+<ol>
+<li>为什么git rebase会产生连环冲突，git merge不会</li>
+<li>为什么有时候git rebase会产生冲突，git merge不会</li>
+<li>有A和B两个分支，为什么A merge B和B merge A是等价的，而rebase的操作却不是</li>
+<li>为什么push后merge可以保留正确运行的commit，而rebase不会</li>
+</ol>
+<ul>
+<li><input disabled type="checkbox"> <p>交到公共分支: <code>git merge --squash</code> 或 <code>git merge --no-ff!</code></p>
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/759200-20160806092744747-1816899042.png" alt="img"></p>
+</li>
+<li><input disabled type="checkbox"> <p>冲突的化解: <a href="https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/" target="_blank" rel="noopener">https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/</a>: 使 rebase 中 ours 和 theirs 的定义与 merge 截然相反。因此，在使用 ours 与 theirs 时请格外小心。</p>
+</li>
+<li><input disabled type="checkbox"> <p>批量化解冲突: 我写了 <a href="https://gist.github.com/bitmingw/414c1781412f4ece07087ab6f2ce42f8" target="_blank" rel="noopener">一个批量处理脚本</a>（需要科学上网）。这个脚本根据设定的规则自动执行指令，让我在三分钟之内完成了一个14步（以 <code>git rebase --continue</code> 计）</p>
+</li>
+</ul>
+<h2 id="git-rebase-的例子"><a href="#git-rebase-的例子" class="headerlink" title="git rebase 的例子"></a>git rebase 的例子</h2><ul>
+<li>当前</li>
+</ul>
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/image-20200113214519713.png" alt="image-20200113214519713"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git rebase dev</span><br><span class="line"><span class="comment"># 或</span></span><br><span class="line">git rebase --onto dev a2405ce f1</span><br></pre></td></tr></table></figure>
+
+<p>得到</p>
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/image-20200113214619559.png" alt="image-20200113214619559"></p>
+<ul>
+<li>当前</li>
+</ul>
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/image-20200113213842403.png" alt="image-20200113213842403"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"> git rebase dev</span><br><span class="line"> <span class="comment"># 或</span></span><br><span class="line">git rebase --onto dev a2405ce f1</span><br></pre></td></tr></table></figure>
+
+<p>得到</p>
+<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-13%2021.37.05.png" alt="ScreenShot 2020-01-13 21.37.05"></p>
 
       
     </div>
@@ -774,8 +944,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/25/器/linux杂项/docker使用教程/docker使用笔记/" rel="next" title="docker使用教程">
-                <i class="fa fa-chevron-left"></i> docker使用教程
+              <a href="/2019/05/25/器/python/ipython与jupyter_notebook安装配置使用/jupyter_notebook配置与使用/" rel="next" title="ipython与jupyter_notebook安装配置使用">
+                <i class="fa fa-chevron-left"></i> ipython与jupyter_notebook安装配置使用
               </a>
             
           </div>
@@ -784,8 +954,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/25/器/git/github多帐号/github多帐号/" rel="prev" title="github多帐号">
-                github多帐号 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/25/器/服务器连接/vnc安装方法/vnc桌面转发/" rel="prev" title="vnc安装方法">
+                vnc安装方法 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -861,7 +1031,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">50</span>
+                    <span class="site-state-item-count">51</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -968,7 +1138,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT学习笔记"><span class="nav-number">1.</span> <span class="nav-text">GIT学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#教程"><span class="nav-number">1.1.</span> <span class="nav-text">教程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">1.2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略"><span class="nav-number">1.2.1.</span> <span class="nav-text">忽略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个repo"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">一个repo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局（整个电脑）"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">全局（整个电脑）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">作用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#checkout的逻辑"><span class="nav-number">1.3.</span> <span class="nav-text">checkout的逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一切改动可带走"><span class="nav-number">1.3.1.</span> <span class="nav-text">一切改动可带走</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从历史节点开分支"><span class="nav-number">1.3.2.</span> <span class="nav-text">从历史节点开分支</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#去历史节点试着修改"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">去历史节点试着修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将修改存成分支"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">将修改存成分支</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT学习笔记"><span class="nav-number">1.</span> <span class="nav-text">GIT学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#教程"><span class="nav-number">1.1.</span> <span class="nav-text">教程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">1.2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略"><span class="nav-number">1.2.1.</span> <span class="nav-text">忽略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个repo"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">一个repo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局（整个电脑）"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">全局（整个电脑）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">作用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件的状态"><span class="nav-number">1.3.</span> <span class="nav-text">文件的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#checkout的逻辑"><span class="nav-number">1.4.</span> <span class="nav-text">checkout的逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#改动可否带走"><span class="nav-number">1.4.1.</span> <span class="nav-text">改动可否带走</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从历史节点开分支"><span class="nav-number">1.4.2.</span> <span class="nav-text">从历史节点开分支</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#去历史节点试着修改"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">去历史节点试着修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将修改存成分支"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">将修改存成分支</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stash"><span class="nav-number">1.5.</span> <span class="nav-text">stash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">1.5.1.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#储藏"><span class="nav-number">1.5.2.</span> <span class="nav-text">储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看储藏"><span class="nav-number">1.5.3.</span> <span class="nav-text">查看储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取出储藏"><span class="nav-number">1.5.4.</span> <span class="nav-text">取出储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消apply储藏"><span class="nav-number">1.5.5.</span> <span class="nav-text">取消apply储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法一"><span class="nav-number">1.5.6.</span> <span class="nav-text">法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法二"><span class="nav-number">1.5.7.</span> <span class="nav-text">法二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rebase"><span class="nav-number">1.6.</span> <span class="nav-text">rebase</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#化解冲突：git-merge-与-git-rebase-中的-ours-和-theirs"><span class="nav-number">1.6.1.</span> <span class="nav-text">化解冲突：git merge 与 git rebase 中的 ours 和 theirs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rebase的缺点"><span class="nav-number">1.6.2.</span> <span class="nav-text">rebase的缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-rebase-的例子"><span class="nav-number">1.7.</span> <span class="nav-text">git rebase 的例子</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1010,7 +1180,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">257k</span>
+    <span title="站点总字数">267k</span>
   
 
   
@@ -1021,7 +1191,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">3:54</span>
+    <span title="站点阅读时长">4:03</span>
   
 </div>
 
