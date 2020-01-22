@@ -121,12 +121,11 @@
 <meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-11%2002.25.59.png">
 <meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/private.draft/%25E5%25BE%2585%25E5%258A%259E%25E4%25BA%258B%25E9%25A1%25B9/ScreenShot%25202020-01-11%252002.28.46.png">
 <meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-13%2016.21.31.png">
-<meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/759200-20160806092744747-1816899042.png">
 <meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/image-20200113214519713.png">
 <meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/image-20200113214619559.png">
 <meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/image-20200113213842403.png">
 <meta property="og:image" content="https://hyliang96.github.io/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-13%2021.37.05.png">
-<meta property="og:updated_time" content="2020-01-15T19:56:08.392Z">
+<meta property="og:updated_time" content="2020-01-22T12:55:46.253Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="git学习笔记">
 <meta name="twitter:description" content="GIT学习笔记教程猴子都能看懂的GIT入门 配置忽略一个repovim repo的根目录 或 其下任意一个文件夹中，创建.gitignore，则适用于.gitignore所在的文件夹 12345678910111213141516171819202122232425# 注释# 以下文件会被忽略# 相对本.gitignore文件所在文件夹的 路径/path/relative/to/here# 相对本">
@@ -587,7 +586,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-16 03:56:08 03:56:08" itemprop="dateModified" datetime="2020-01-16T03:56:08+08:00">2020-01-16 03:56:08</time>
+                <time title="修改时间：2020-01-22 20:55:46 20:55:46" itemprop="dateModified" datetime="2020-01-22T20:55:46+08:00">2020-01-22 20:55:46</time>
               
             
           </span>
@@ -660,7 +659,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">6.6k</span>
+                <span title="本文字数">8.6k</span>
               
 
               
@@ -674,7 +673,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">6 分钟</span>
+                <span title="阅读时长">8 分钟</span>
               
             </div>
           
@@ -847,25 +846,84 @@
 <p><a href="https://stackoverflow.com/questions/15915430/what-exactly-does-gits-rebase-preserve-merges-do-and-why" target="_blank" rel="noopener">What exactly does git’s “rebase –preserve-merges” do (and why?)</a></p>
 <p>Rebase a tree: <a href="https://stackoverflow.com/questions/17315285/rebasing-a-tree-a-commit-branch-and-all-its-children" target="_blank" rel="noopener">https://stackoverflow.com/questions/17315285/rebasing-a-tree-a-commit-branch-and-all-its-children</a></p>
 <p><a href="https://stackoverflow.com/questions/17106840/git-rebase-with-branches-whole-tree" target="_blank" rel="noopener">https://stackoverflow.com/questions/17106840/git-rebase-with-branches-whole-tree</a></p>
-<h3 id="化解冲突：git-merge-与-git-rebase-中的-ours-和-theirs"><a href="#化解冲突：git-merge-与-git-rebase-中的-ours-和-theirs" class="headerlink" title="化解冲突：git merge 与 git rebase 中的 ours 和 theirs"></a>化解冲突：git merge 与 git rebase 中的 ours 和 theirs</h3><p><a href="https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/" target="_blank" rel="noopener">https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/</a></p>
-<h3 id="rebase的缺点"><a href="#rebase的缺点" class="headerlink" title="rebase的缺点"></a>rebase的缺点</h3><p>私有分支每次commit后都要rebase一下</p>
-<p>考虑如下几个问题：</p>
-<ol>
-<li>为什么git rebase会产生连环冲突，git merge不会</li>
-<li>为什么有时候git rebase会产生冲突，git merge不会</li>
-<li>有A和B两个分支，为什么A merge B和B merge A是等价的，而rebase的操作却不是</li>
-<li>为什么push后merge可以保留正确运行的commit，而rebase不会</li>
-</ol>
+<h3 id="对比rebase-merge的化解冲突"><a href="#对比rebase-merge的化解冲突" class="headerlink" title="对比rebase/merge的化解冲突"></a>对比rebase/merge的化解冲突</h3><p><a href="https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/" target="_blank" rel="noopener">参考</a></p>
+<h4 id="merge"><a href="#merge" class="headerlink" title="merge"></a>merge</h4><p>初始状态: 当前分支是A</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">o-A(ours,HEAD)</span><br><span class="line">             </span><br><span class="line"> o-o-B(theirs)</span><br></pre></td></tr></table></figure>
+
+<p>执行  <code>git merge B</code>, 得到最终状态:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">o-o(ours:原A)-A(HEAD)</span><br><span class="line">             /</span><br><span class="line"> o-o-B(theirs)</span><br></pre></td></tr></table></figure>
+
+<p>若中间发生冲突, 文件中显示</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line">A的内容</span><br><span class="line">=======</span><br><span class="line">B的内容</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; B分支名</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决冲突的方法</strong></p>
 <ul>
-<li><input disabled type="checkbox"> <p>交到公共分支: <code>git merge --squash</code> 或 <code>git merge --no-ff!</code></p>
-<p><img src="/2019/05/25/器/git/git学习笔记/git笔记/759200-20160806092744747-1816899042.png" alt="img"></p>
+<li><p>手动修改冲突的文件</p>
 </li>
-<li><input disabled type="checkbox"> <p>冲突的化解: <a href="https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/" target="_blank" rel="noopener">https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/</a>: 使 rebase 中 ours 和 theirs 的定义与 merge 截然相反。因此，在使用 ours 与 theirs 时请格外小心。</p>
+<li><p>只保留A, 或只保留B</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout --ours 冲突的文件(夹)名       <span class="comment"># =&gt; 保留A的内容</span></span><br><span class="line">git checkout --theirs 冲突的文件(夹)名     <span class="comment"># =&gt; 保留B的内容</span></span><br></pre></td></tr></table></figure>
+
+<p>若要对repo内所有文件采样上述策略, 则 <code>冲突的文件(夹)名</code> 写作 <code>&quot;$(git rev-parse --show-toplevel 2&gt; /dev/null)”</code></p>
 </li>
-<li><input disabled type="checkbox"> <p>批量化解冲突: 我写了 <a href="https://gist.github.com/bitmingw/414c1781412f4ece07087ab6f2ce42f8" target="_blank" rel="noopener">一个批量处理脚本</a>（需要科学上网）。这个脚本根据设定的规则自动执行指令，让我在三分钟之内完成了一个14步（以 <code>git rebase --continue</code> 计）</p>
+<li><p><del>整个repo都保留B的内容, 也可执行 <code>git merge —skip</code></del>, 这个命令不存在, 只能</p>
 </li>
 </ul>
-<h2 id="git-rebase-的例子"><a href="#git-rebase-的例子" class="headerlink" title="git rebase 的例子"></a>git rebase 的例子</h2><ul>
+<p>解决完冲突, 执行 <code>git add -A &quot;$(git rev-parse --show-toplevel 2&gt; /dev/null)&quot;</code>, 然后 <code>git commit</code> , 则来到最终状态. 注: <code>git merge --continue</code>命令在老版本的git没有, 如git2.7.4没有, git2.20.1有.</p>
+<p>若放弃merge, 则执行 <code>git merge --abort</code>, 则回到初始状态.</p>
+<h4 id="rebase-1"><a href="#rebase-1" class="headerlink" title="rebase"></a>rebase</h4><p>初始状态: 当前分支是A</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   A1-A2-A(HEAD)</span><br><span class="line"> /</span><br><span class="line">o-o-B</span><br></pre></td></tr></table></figure>
+
+<p>执行 <code>git rebase A</code></p>
+<p>则git内部会先 <code>git checkout B</code>, 得到<strong>中间状态</strong>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">   A1-A2-A(theirs)</span><br><span class="line"> /</span><br><span class="line">o-o-B(ours,HEAD)</span><br></pre></td></tr></table></figure>
+
+<p>再将A分支rebase, 然后 <code>git checkout A</code> , 从而变成最终状态:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">      A1-A2-A(HEAD)</span><br><span class="line">     /</span><br><span class="line">o-o-B</span><br></pre></td></tr></table></figure>
+
+<p>若发生冲突, 则当前处在中间状态. 冲突的文件所显示如下, HEAD所指的分支正好和merge冲突时相反</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD</span><br><span class="line">B的内容</span><br><span class="line">=======</span><br><span class="line">A的内容</span><br><span class="line">&gt;&gt;&gt;&gt;&gt;&gt;&gt; 当前所rebase的A的某次提交的message (即A1或A2的message)</span><br></pre></td></tr></table></figure>
+
+<p><strong>解决冲突的方法:</strong></p>
+<ul>
+<li><p>手动修改冲突的文件</p>
+</li>
+<li><p>只保留A, 或只保留B: 解决冲突的命令中, ours和theirs 也与merge冲突时相反</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git checkout --ours 冲突的文件(夹)名    <span class="comment"># =&gt; 保留B的内容</span></span><br><span class="line">git checkout --theirs 冲突的文件(夹)名  <span class="comment"># =&gt; 保留A的内容</span></span><br></pre></td></tr></table></figure>
+
+<p>若要对repo内所有文件采样上述策略, 则则 <code>冲突的文件(夹)名</code> 写作 <code>&quot;$(git rev-parse --show-toplevel 2&gt; /dev/null)”</code></p>
+</li>
+<li><p>整个repo都保留A的内容, 也可执行 <code>git rebase —skip</code>. 区别如下</p>
+<p><code>git rebase —skip</code> (推荐 ): 若某文件, B 分支删除 而A分支当前冲突的commit有, 则此命令会删除此文件<br><code>git checkout --ours &quot;$(git rev-parse --show-toplevel 2&gt; /dev/null)&quot;</code>: 若某文件, B 分支删除 而A分支当前冲突的commit有, 则此命令不会删除此文件</p>
+</li>
+</ul>
+<p>解决完冲突, 执行 <code>git add -A &quot;$(git rev-parse --show-toplevel 2&gt; /dev/null)&quot;</code>, 然后<code>git rebase --continue</code>, 则来到最终状态</p>
+<p>若放弃merge, 则执行 <code>git rebase --abort</code>, 则回到初始状态.</p>
+<p><strong>批量化解冲突:</strong></p>
+<p><a href="https://gist.github.com/bitmingw/414c1781412f4ece07087ab6f2ce42f8" target="_blank" rel="noopener">一个批量处理脚本</a>。这个脚本根据设定的规则自动执行指令，让我在三分钟之内完成了一个14步（以 <code>git rebase --continue</code> 计）</p>
+<h3 id="rebase的缺点"><a href="#rebase的缺点" class="headerlink" title="rebase的缺点"></a>rebase的缺点</h3><ul>
+<li><p>git rebase会产生连环冲突，git merge不会</p>
+<p>这是因为</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  A1-A2-A3(A)</span><br><span class="line"> /</span><br><span class="line">B1-B2-B3(B)</span><br></pre></td></tr></table></figure>
+
+<p>在A, <code>git rebase B</code>, 则会依次将 A1, A2, A3 rebase 到 B3. 若B3中某文件与A1-A3均冲突, 就会连环冲突. </p>
+<p>例如B1中有文件a, B3中无文件a, 而A1-A3均修改了文件a, 则要保留B3的文件, 则会连环冲突, 中间有三次要执行若<code>git rebase —skip</code> `来化解冲突, 保留B3的文件. 最终rebase结束将无a文件.</p>
+</li>
+<li><p>有时git rebase会产生冲突，git merge不会</p>
+<p>如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  A1-A2(A)</span><br><span class="line"> /</span><br><span class="line">B1-B2-B3(B)</span><br></pre></td></tr></table></figure>
+
+<p>B1有文件a, B2,B3未动a, 动了别的文件; A1将a删除, A2将a恢复了a.</p>
+<p>则在A, <code>git merge B</code>, 不会出冲突. 而 <code>git rebase B</code> 则在rebase A1时会冲突.</p>
+</li>
+<li><p>push后merge可以原样保留正确运行的历史commit，而rebase不会</p>
+<p>例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">  A1-A2(A)</span><br><span class="line"> /</span><br><span class="line">B1-B2-B3(B)</span><br></pre></td></tr></table></figure>
+
+<p>在A, <code>git rebase B</code>, 则得到的A1节点, 是由 B3  <code>git merge A1</code>所得. 故A1节点内容可能发生变化, 从而未被能正确运行.</p>
+<p>而在A, <code>git merge B</code>, 则A1节点未改动, 故A1还能正确运行.</p>
+</li>
+</ul>
+<h3 id="git-rebase-的例子"><a href="#git-rebase-的例子" class="headerlink" title="git rebase 的例子"></a>git rebase 的例子</h3><ul>
 <li>当前</li>
 </ul>
 <p><img src="/2019/05/25/器/git/git学习笔记/git笔记/image-20200113214519713.png" alt="image-20200113214519713"></p>
@@ -881,6 +939,8 @@
 
 <p>得到</p>
 <p><img src="/2019/05/25/器/git/git学习笔记/git笔记/ScreenShot%202020-01-13%2021.37.05.png" alt="ScreenShot 2020-01-13 21.37.05"></p>
+<h2 id="cherry-pick"><a href="#cherry-pick" class="headerlink" title="cherry-pick"></a>cherry-pick</h2><p>教程: <a href="https://blog.csdn.net/FightFightFight/article/details/81039050" target="_blank" rel="noopener">git cherry-pick的使用</a>  <a href="https://blog.csdn.net/qq_32452623/article/details/79449534" target="_blank" rel="noopener">cherry-pick 挑好看的小樱桃</a></p>
+<p>不存在<code>git cherry-pick —squash</code>, 得用 <code>git cherry-pick -n</code>, <a href="https://stackoverflow.com/questions/35123108/cherry-pick-and-squash-a-range-of-commits-into-a-subdirectory-or-subtree" target="_blank" rel="noopener">详见</a></p>
 
       
     </div>
@@ -944,8 +1004,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/25/器/python/anaconda安装与使用/conda安装与使用/" rel="next" title="anaconda安装与使用">
-                <i class="fa fa-chevron-left"></i> anaconda安装与使用
+              <a href="/2019/05/25/器/python/ipython与jupyter_notebook安装配置使用/jupyter_notebook配置与使用/" rel="next" title="ipython与jupyter_notebook安装配置使用">
+                <i class="fa fa-chevron-left"></i> ipython与jupyter_notebook安装配置使用
               </a>
             
           </div>
@@ -1138,7 +1198,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT学习笔记"><span class="nav-number">1.</span> <span class="nav-text">GIT学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#教程"><span class="nav-number">1.1.</span> <span class="nav-text">教程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">1.2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略"><span class="nav-number">1.2.1.</span> <span class="nav-text">忽略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个repo"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">一个repo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局（整个电脑）"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">全局（整个电脑）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">作用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件的状态"><span class="nav-number">1.3.</span> <span class="nav-text">文件的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#checkout的逻辑"><span class="nav-number">1.4.</span> <span class="nav-text">checkout的逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#改动可否带走"><span class="nav-number">1.4.1.</span> <span class="nav-text">改动可否带走</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从历史节点开分支"><span class="nav-number">1.4.2.</span> <span class="nav-text">从历史节点开分支</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#去历史节点试着修改"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">去历史节点试着修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将修改存成分支"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">将修改存成分支</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stash"><span class="nav-number">1.5.</span> <span class="nav-text">stash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">1.5.1.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#储藏"><span class="nav-number">1.5.2.</span> <span class="nav-text">储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看储藏"><span class="nav-number">1.5.3.</span> <span class="nav-text">查看储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取出储藏"><span class="nav-number">1.5.4.</span> <span class="nav-text">取出储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消apply储藏"><span class="nav-number">1.5.5.</span> <span class="nav-text">取消apply储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法一"><span class="nav-number">1.5.6.</span> <span class="nav-text">法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法二"><span class="nav-number">1.5.7.</span> <span class="nav-text">法二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rebase"><span class="nav-number">1.6.</span> <span class="nav-text">rebase</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#化解冲突：git-merge-与-git-rebase-中的-ours-和-theirs"><span class="nav-number">1.6.1.</span> <span class="nav-text">化解冲突：git merge 与 git rebase 中的 ours 和 theirs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rebase的缺点"><span class="nav-number">1.6.2.</span> <span class="nav-text">rebase的缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-rebase-的例子"><span class="nav-number">1.7.</span> <span class="nav-text">git rebase 的例子</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT学习笔记"><span class="nav-number">1.</span> <span class="nav-text">GIT学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#教程"><span class="nav-number">1.1.</span> <span class="nav-text">教程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置"><span class="nav-number">1.2.</span> <span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#忽略"><span class="nav-number">1.2.1.</span> <span class="nav-text">忽略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一个repo"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">一个repo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#全局（整个电脑）"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">全局（整个电脑）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#作用"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">作用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件的状态"><span class="nav-number">1.3.</span> <span class="nav-text">文件的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#checkout的逻辑"><span class="nav-number">1.4.</span> <span class="nav-text">checkout的逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#改动可否带走"><span class="nav-number">1.4.1.</span> <span class="nav-text">改动可否带走</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从历史节点开分支"><span class="nav-number">1.4.2.</span> <span class="nav-text">从历史节点开分支</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#去历史节点试着修改"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">去历史节点试着修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将修改存成分支"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">将修改存成分支</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stash"><span class="nav-number">1.5.</span> <span class="nav-text">stash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#参考"><span class="nav-number">1.5.1.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#储藏"><span class="nav-number">1.5.2.</span> <span class="nav-text">储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看储藏"><span class="nav-number">1.5.3.</span> <span class="nav-text">查看储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取出储藏"><span class="nav-number">1.5.4.</span> <span class="nav-text">取出储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消apply储藏"><span class="nav-number">1.5.5.</span> <span class="nav-text">取消apply储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法一"><span class="nav-number">1.5.6.</span> <span class="nav-text">法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#法二"><span class="nav-number">1.5.7.</span> <span class="nav-text">法二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rebase"><span class="nav-number">1.6.</span> <span class="nav-text">rebase</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对比rebase-merge的化解冲突"><span class="nav-number">1.6.1.</span> <span class="nav-text">对比rebase/merge的化解冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#merge"><span class="nav-number">1.6.1.1.</span> <span class="nav-text">merge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rebase-1"><span class="nav-number">1.6.1.2.</span> <span class="nav-text">rebase</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rebase的缺点"><span class="nav-number">1.6.2.</span> <span class="nav-text">rebase的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-rebase-的例子"><span class="nav-number">1.6.3.</span> <span class="nav-text">git rebase 的例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cherry-pick"><span class="nav-number">1.7.</span> <span class="nav-text">cherry-pick</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1180,7 +1240,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">271k</span>
+    <span title="站点总字数">273k</span>
   
 
   
@@ -1191,7 +1251,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">4:07</span>
+    <span title="站点阅读时长">4:09</span>
   
 </div>
 
