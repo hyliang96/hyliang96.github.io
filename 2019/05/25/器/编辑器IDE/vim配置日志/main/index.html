@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="丹炉志">
 <meta property="og:description" content="其他vim的配置项目vim化做sublimehttps://github.com/fatih/subvim https://github.com/grigio/vim-sublime 字体vim-plugvim-plug是增强版的vundle，新支持：并行、动态加载插件，节约内存 教程：https://vim.ink/vim-plug.html https://github.com/junegun">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-12T07:05:14.574Z">
+<meta property="og:updated_time" content="2020-01-27T19:53:19.912Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vim配置日志">
 <meta name="twitter:description" content="其他vim的配置项目vim化做sublimehttps://github.com/fatih/subvim https://github.com/grigio/vim-sublime 字体vim-plugvim-plug是增强版的vundle，新支持：并行、动态加载插件，节约内存 教程：https://vim.ink/vim-plug.html https://github.com/junegun">
@@ -572,7 +572,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-12 15:05:14 15:05:14" itemprop="dateModified" datetime="2020-01-12T15:05:14+08:00">2020-01-12 15:05:14</time>
+                <time title="修改时间：2020-01-28 03:53:19 03:53:19" itemprop="dateModified" datetime="2020-01-28T03:53:19+08:00">2020-01-28 03:53:19</time>
               
             
           </span>
@@ -708,16 +708,25 @@
 <h3 id="文件内容搜索-跳转"><a href="#文件内容搜索-跳转" class="headerlink" title="文件内容搜索+跳转"></a>文件内容搜索+跳转</h3><p><strong>速度</strong>：<code>vimgrep</code> (vim自带的全局搜搜) &lt;<code>ack.vim</code>插件 &lt;<code>ag.vim</code> 插件</p>
 <p><code>ctrlsf</code> 插件：支持 ack/ag/pt/rg 四种搜索后端，支持跳转，支持异步搜索(即搜索时不影响当前编辑)</p>
 <p><a href="https://blog.burntsushi.net/ripgrep/" target="_blank" rel="noopener">后端的比较</a></p>
+<p>推荐<code>rg</code></p>
 <ul>
 <li>速度和准确率: ack, pt &lt; ag &lt; rg (命令行下最快的文件内容搜索)</li>
 <li>rg支持Unicode，跨linux/windows/mac平台</li>
-<li><a href="https://github.com/BurntSushi/ripgrep#installation" target="_blank" rel="noopener">安装rg的方法</a></li>
-<li>mac</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install ripgrep</span><br></pre></td></tr></table></figure>
-
+<p><a href="https://github.com/BurntSushi/ripgrep#installation" target="_blank" rel="noopener">安装rg的方法</a></p>
 <ul>
-<li><strong>Debian</strong> 及其派生( 如 <strong>Ubuntu</strong>)</li>
+<li><p>Unbuntu</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install ripgrep</span><br></pre></td></tr></table></figure>
+
+<p>  若报错曰apt没有找到ripgrep包</p>
+<p>  则先执行</p>
+  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:x4121/ripgrep</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt install ripgrep</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mac</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install ripgrep</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Debian</strong> 及其派生( 如 <strong>Ubuntu</strong>)</p>
+</li>
 </ul>
 <p><a href="https://gist.github.com/kostaz/6e0cf1eee35a34cd6589ec15b58e682c" target="_blank" rel="noopener">https://gist.github.com/kostaz/6e0cf1eee35a34cd6589ec15b58e682c</a></p>
 <p><a href="https://segmentfault.com/a/1190000016170184" target="_blank" rel="noopener">https://segmentfault.com/a/1190000016170184</a></p>
@@ -1445,7 +1454,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">53</span>
+                    <span class="site-state-item-count">54</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1596,7 +1605,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">274k</span>
+    <span title="站点总字数">279k</span>
   
 
   
@@ -1607,7 +1616,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">4:09</span>
+    <span title="站点阅读时长">4:13</span>
   
 </div>
 
