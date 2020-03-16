@@ -271,18 +271,18 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[virtualenv_教程]]></title>
-    <url>%2F2019%2F05%2F25%2F%E5%99%A8%2Fpython%2Fvirtualenv_%E6%95%99%E7%A8%8B%2Fvirtualenv%E6%95%99%E7%A8%8B%2F</url>
-    <content type="text"><![CDATA[virtualenv 教程参考资料： 安装与使用说明 Python–Virtualenv简明教程 安装通过pip安装virtualenv： 1$ pip install virtualenv 测试你的安装 1$ virtualenv --version 创建环境查看你机子上不同版本python的地址1234which pythonwhich python2which python2.7... 会返回一个地址，是你需要的python所在&lt;地址&gt;，复制它 创建虚拟环境创建方法可在任意选定&lt;目录&gt;创建虚拟环境 1&lt;目录&gt;$ virtualenv --python=&lt;地址&gt; &lt;虚拟环境的名字&gt; 创建后，&lt;目录&gt;下会生成&lt;虚拟环境的名字&gt;文件夹，其下有bin/，include/，lib/ &lt;目录&gt;可为用户根目录（即~/)，用于创建整个用户的虚拟环境 &lt;目录&gt;可为工程目录，用于创建本工程使用的虚拟环境 权限不足1The program &apos;virtualenv&apos; is currently not installed. To run &apos;virtualenv&apos; please ask your administrator to install the package &apos;python-virtualenv&apos; 请服务器管理员安装python-virtualenv 1sudo pip install virtualenv 使用安装python的包装pip的软件，必须先到虚拟环境所在目录 1cd &lt;目录&gt; 输入一下命令激活python的虚拟环境 1&lt;目录&gt;$ source bin/activate 激活成功后，用户名前会加(&lt;目录&gt;) 此时，输入以下命令装软件 1(&lt;目录&gt;)用户名@服务器名: 当前目录$ pip install &lt;软件&gt; 安装完成后，从虚拟环境出来 1(&lt;目录&gt;)用户名@服务器名: deactivate 使用python及python的包 当&lt;目录&gt;为在用户根目录（即~/)时： 只要该用户登录，无需source bin/activate激活，即可在任意目录下，使用虚拟环境（包括python版本及python包），但不能pip install 安装pyhton包 当&lt;目录&gt;为某pyhton工程文件夹： 只有在该工程目录，输入source bin/activate激活后，才能使用该虚拟环境的包括python版本及python包，即pip install 安装pyhton包，在任意目录下均可使用]]></content>
+    <title><![CDATA[pip使用方法]]></title>
+    <url>%2F2019%2F05%2F25%2F%E5%99%A8%2Fpython%2Fpip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%2Fpip%2F</url>
+    <content type="text"><![CDATA[pip使用方法 装包 1pip install 包 卸包 1pip uninstall 包 升级到最新版本 1pip install -U 包 升级/降级到制定版本 1pip install -U 包==版本号 上述方法，令包为pip，即可 卸/升级/降级 pip 自己 看有哪些包 1pip list 看装了的包的信息 1pip show 包]]></content>
       <categories>
         <category>器</category>
         <category>python</category>
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[pip使用方法]]></title>
-    <url>%2F2019%2F05%2F25%2F%E5%99%A8%2Fpython%2Fpip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%2Fpip%2F</url>
-    <content type="text"><![CDATA[pip使用方法 装包 1pip install 包 卸包 1pip uninstall 包 升级到最新版本 1pip install -U 包 升级/降级到制定版本 1pip install -U 包==版本号 上述方法，令包为pip，即可 卸/升级/降级 pip 自己 看有哪些包 1pip list 看装了的包的信息 1pip show 包]]></content>
+    <title><![CDATA[virtualenv_教程]]></title>
+    <url>%2F2019%2F05%2F25%2F%E5%99%A8%2Fpython%2Fvirtualenv_%E6%95%99%E7%A8%8B%2Fvirtualenv%E6%95%99%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[virtualenv 教程参考资料： 安装与使用说明 Python–Virtualenv简明教程 安装通过pip安装virtualenv： 1$ pip install virtualenv 测试你的安装 1$ virtualenv --version 创建环境查看你机子上不同版本python的地址1234which pythonwhich python2which python2.7... 会返回一个地址，是你需要的python所在&lt;地址&gt;，复制它 创建虚拟环境创建方法可在任意选定&lt;目录&gt;创建虚拟环境 1&lt;目录&gt;$ virtualenv --python=&lt;地址&gt; &lt;虚拟环境的名字&gt; 创建后，&lt;目录&gt;下会生成&lt;虚拟环境的名字&gt;文件夹，其下有bin/，include/，lib/ &lt;目录&gt;可为用户根目录（即~/)，用于创建整个用户的虚拟环境 &lt;目录&gt;可为工程目录，用于创建本工程使用的虚拟环境 权限不足1The program &apos;virtualenv&apos; is currently not installed. To run &apos;virtualenv&apos; please ask your administrator to install the package &apos;python-virtualenv&apos; 请服务器管理员安装python-virtualenv 1sudo pip install virtualenv 使用安装python的包装pip的软件，必须先到虚拟环境所在目录 1cd &lt;目录&gt; 输入一下命令激活python的虚拟环境 1&lt;目录&gt;$ source bin/activate 激活成功后，用户名前会加(&lt;目录&gt;) 此时，输入以下命令装软件 1(&lt;目录&gt;)用户名@服务器名: 当前目录$ pip install &lt;软件&gt; 安装完成后，从虚拟环境出来 1(&lt;目录&gt;)用户名@服务器名: deactivate 使用python及python的包 当&lt;目录&gt;为在用户根目录（即~/)时： 只要该用户登录，无需source bin/activate激活，即可在任意目录下，使用虚拟环境（包括python版本及python包），但不能pip install 安装pyhton包 当&lt;目录&gt;为某pyhton工程文件夹： 只有在该工程目录，输入source bin/activate激活后，才能使用该虚拟环境的包括python版本及python包，即pip install 安装pyhton包，在任意目录下均可使用]]></content>
       <categories>
         <category>器</category>
         <category>python</category>
