@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="丹炉志">
 <meta property="og:description" content="环境：ubuntu 16 实验室服务器 时间：2018年8月6日 [TOC] 介绍zsh：是一款强大的虚拟终端，用以他替代shell， 其配置较为复杂 oh my zsh ：来配置zsh antigen ：zsh的包（即插件）管理器，让我们以类似apt-get的方式来安装zsh的包。其官方会提供已经配置好的oh my zsh和一些常用zsh包。 zsh安装 安装zsh  实验室各台服务器上已安装z">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-22T17:36:08.901Z">
+<meta property="og:updated_time" content="2020-06-10T14:11:54.352Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zsh安装配置教程">
 <meta name="twitter:description" content="环境：ubuntu 16 实验室服务器 时间：2018年8月6日 [TOC] 介绍zsh：是一款强大的虚拟终端，用以他替代shell， 其配置较为复杂 oh my zsh ：来配置zsh antigen ：zsh的包（即插件）管理器，让我们以类似apt-get的方式来安装zsh的包。其官方会提供已经配置好的oh my zsh和一些常用zsh包。 zsh安装 安装zsh  实验室各台服务器上已安装z">
@@ -572,7 +572,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-23 01:36:08 01:36:08" itemprop="dateModified" datetime="2020-01-23T01:36:08+08:00">2020-01-23 01:36:08</time>
+                <time title="修改时间：2020-06-10 22:11:54 22:11:54" itemprop="dateModified" datetime="2020-06-10T22:11:54+08:00">2020-06-10 22:11:54</time>
               
             
           </span>
@@ -1007,7 +1007,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 该alias会使得 [新命令] 继承[现有命令]的zsh自动补全</span></span><br><span class="line"><span class="built_in">alias</span> [新命令]=<span class="string">'[现有命令]'</span></span><br><span class="line"><span class="comment"># 该函数会覆盖'alias [新命令]'</span></span><br><span class="line"><span class="keyword">function</span> [新命令]()</span><br><span class="line">&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="zsh语法和bash的区别"><a href="#zsh语法和bash的区别" class="headerlink" title="zsh语法和bash的区别"></a>zsh语法和bash的区别</h1><h3 id="判断是在zsh还是bash"><a href="#判断是在zsh还是bash" class="headerlink" title="判断是在zsh还是bash"></a>判断是在zsh还是bash</h3><p>以下判断方法对于所有情况都奏效，不论是登录、非登录，交互、非交互</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$ZSH_VERSION</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">   <span class="comment"># 当前 用zsh</span></span><br><span class="line"><span class="keyword">elif</span> [ -n <span class="string">"<span class="variable">$BASH_VERSION</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">   <span class="comment"># 当前用 Bash / sh / 直接运行可执行文件</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="comment"># 当前 用其他终端</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ZSH_NAME 可换为 BASH_VERSION</span></span><br><span class="line"><span class="keyword">if</span> [ -n <span class="string">"<span class="variable">$ZSH_NAME</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">   <span class="comment"># 当前 用zsh</span></span><br><span class="line"><span class="keyword">elif</span> [ -n <span class="string">"<span class="variable">$BASH_VERSION</span>"</span> ]; <span class="keyword">then</span></span><br><span class="line">   <span class="comment"># 当前用 Bash / sh / 直接运行可执行文件</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">   <span class="comment"># 当前 用其他终端</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="感叹号"><a href="#感叹号" class="headerlink" title="感叹号"></a>感叹号</h3><p>zsh的感叹号不论是否在方括号内，都是表示历史记录功能</p>
 <p>bash的感叹号在方括号内表示非，不在方括号内时表示历史记录</p>
@@ -1390,8 +1390,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/25/器/编辑器IDE/vim配置.md/main/" rel="prev" title="vim配置">
-                vim配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/25/器/编辑器IDE/Sublime安装配置使用教程.md/main/" rel="prev" title="Sublime安装配置使用教程">
+                Sublime安装配置使用教程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1467,7 +1467,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-count">59</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1622,7 +1622,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">306k</span>
+    <span title="站点总字数">309k</span>
   
 
   
@@ -1633,7 +1633,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">4:38</span>
+    <span title="站点阅读时长">4:40</span>
   
 </div>
 

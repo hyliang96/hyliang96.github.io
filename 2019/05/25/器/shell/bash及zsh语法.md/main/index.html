@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="丹炉志">
 <meta property="og:description" content="[TOC] 引号单引号：所有都不转义 $&amp;#39;xxx&amp;#39;: 仅\某转义 双引号, &amp;lt;&amp;lt;EOF/&amp;lt;&amp;lt;-EOF ：${xxx}(变量)、`xx` $()(命令返回) 转义, 用 \$ \`xxx\`取消转义;  \某 不转义 echo -E 字符串: 输出  \某 不转义 echo [-e] 字符串: 输出 \某 转义, -e即默认选项 可省去 反引号：  `xx`">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-21T10:09:39.289Z">
+<meta property="og:updated_time" content="2020-06-10T12:44:41.224Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bash及zsh语法">
 <meta name="twitter:description" content="[TOC] 引号单引号：所有都不转义 $&amp;#39;xxx&amp;#39;: 仅\某转义 双引号, &amp;lt;&amp;lt;EOF/&amp;lt;&amp;lt;-EOF ：${xxx}(变量)、`xx` $()(命令返回) 转义, 用 \$ \`xxx\`取消转义;  \某 不转义 echo -E 字符串: 输出  \某 不转义 echo [-e] 字符串: 输出 \某 转义, -e即默认选项 可省去 反引号：  `xx`">
@@ -572,7 +572,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-21 18:09:39 18:09:39" itemprop="dateModified" datetime="2020-03-21T18:09:39+08:00">2020-03-21 18:09:39</time>
+                <time title="修改时间：2020-06-10 20:44:41 20:44:41" itemprop="dateModified" datetime="2020-06-10T20:44:41+08:00">2020-06-10 20:44:41</time>
               
             
           </span>
@@ -645,7 +645,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">25k</span>
+                <span title="本文字数">26k</span>
               
 
               
@@ -1210,6 +1210,7 @@
 <h2 id="多进程后台运行-运行完集中输出"><a href="#多进程后台运行-运行完集中输出" class="headerlink" title="多进程后台运行+运行完集中输出"></a>多进程后台运行+运行完集中输出</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">rand=<span class="string">"<span class="variable">$RANDOM</span>"</span></span><br><span class="line">log_file=<span class="string">"/tmp/parallels<span class="variable">$rand</span>"</span></span><br><span class="line">(</span><br><span class="line">    <span class="keyword">for</span> 范围; <span class="keyword">do</span></span><br><span class="line">    &#123;</span><br><span class="line">        命令</span><br><span class="line">    &#125; &gt;&gt; 2&gt;&amp;1 <span class="variable">$log_file</span> &amp;</span><br><span class="line">    <span class="comment"># &amp;: 多进程后台运行</span></span><br><span class="line">    <span class="comment"># &gt;&gt;  $log_file        # stdout 存入$log_fil</span></span><br><span class="line">    <span class="comment"># &gt;&gt; 2&gt;&amp;1 $log_file    # stdout, warning, error  存入$log_fil</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">    <span class="built_in">wait</span></span><br><span class="line">) &gt;&amp; /dev/null <span class="comment"># stdout, warning, error, 包含 后台运行开始和结束的短信</span></span><br><span class="line">cat <span class="variable">$log_file</span> <span class="comment"># 集中输出运行结果</span></span><br><span class="line">rm <span class="variable">$log_file</span></span><br></pre></td></tr></table></figure>
 
 <h1 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h1><p><a href="https://segmentfault.com/a/1190000010885665" target="_blank" rel="noopener">Zsh 开发指南（第二篇 字符串处理之常用操作）</a></p>
+<p>以下的 <code>string</code>可以取做 <code>1</code> <code>2</code> …,  表示是函数或脚本的第1,2,…个参数, 如 <code>${1:4}</code> 表示第1个参数的左起第4个字符(0开始计数)及往后的子串</p>
 <h2 id="字符串取子串"><a href="#字符串取子串" class="headerlink" title="字符串取子串"></a>字符串取子串</h2><h3 id="string-始-长-从0开始-bash-zsh-支持-string-始-gt-0-止-lt-0-仅zsh支持"><a href="#string-始-长-从0开始-bash-zsh-支持-string-始-gt-0-止-lt-0-仅zsh支持" class="headerlink" title="{string:始:长} (从0开始) bash/zsh 支持, {string:始&gt;=0:止&lt;0} 仅zsh支持"></a><code>{string:始:长} (从0开始)</code> bash/zsh 支持, <code>{string:始&gt;=0:止&lt;0}</code> 仅zsh支持</h3><table>
 <thead>
 <tr>
@@ -1588,13 +1589,13 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">array=($(&lt;file_path))</span><br></pre></td></tr></table></figure>
 
 <h2 id="遍历数组"><a href="#遍历数组" class="headerlink" title="遍历数组"></a>遍历数组</h2><p>正确写法：以下适用于<code>zsh</code>和<code>bash</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自定义的数组</span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;array[@]&#125;</span>"</span>; <span class="keyword">do</span></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="comment"># 传入函数或文件的参数</span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span>; <span class="keyword">do</span></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自定义的数组</span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> <span class="string">"<span class="variable">$&#123;array[@]&#125;</span>"</span>; <span class="keyword">do</span></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="comment"># 传入函数或文件的参数</span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span>; <span class="keyword">do</span></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历数组 (1 2 3 4)</span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> 1 2 3 4; <span class="keyword">do</span></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="comment"># 遍通配符路径 </span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> ./*.zip ../*; <span class="keyword">do</span></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 
 <p>错误写法：</p>
 <ul>
 <li>以下写法，<code>zsh</code> 会正常遍历数组；<code>bash</code> 只遍历到数组首个元素就结束了遍历。</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自定义的数组</span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> <span class="variable">$array</span>; <span class="keyword">do</span></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="comment"># 传入函数或文件的参数</span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> <span class="variable">$@</span>; <span class="keyword">do</span></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 自定义的数组</span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> <span class="variable">$array</span>; <span class="keyword">do</span></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 传入函数或文件的参数</span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> <span class="variable">$@</span>; <span class="keyword">do</span></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍历数组 (1 2 3 4)</span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> (1 2 3 4); <span class="keyword">do</span></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 遍通配符路径 </span></span><br><span class="line"><span class="keyword">for</span> idx <span class="keyword">in</span> $(ls ./*.zip ../*); <span class="keyword">do</span></span><br><span class="line">	<span class="comment"># 这样会把 被匹配到的文件夹向下列出一级, 例如</span></span><br><span class="line">	<span class="comment"># house.zip  object_vox.zip  object.zip  room.zip  ../suncg_data.zip  texture.zip</span></span><br><span class="line"></span><br><span class="line">	<span class="comment"># ../suncg_data:</span></span><br><span class="line">	<span class="comment"># house  object  object_vox  room  texture</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># ../suncg_data_old:</span></span><br><span class="line">  <span class="comment"># house  object  object_vox  room  suncg_room_json  suncg_room_obj  texture</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># ../suncg_data.zip_extract:</span></span><br><span class="line">  <span class="comment"># house.zip  object_vox.zip  object.zip  room.zip  texture.zip</span></span><br><span class="line">	...</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="命令返回数组"><a href="#命令返回数组" class="headerlink" title="命令返回数组"></a>命令返回数组</h2><p><code>$(命令)</code> 或 <code>`命令`</code> </p>
 <ul>
@@ -1901,7 +1902,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-count">59</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2056,7 +2057,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">306k</span>
+    <span title="站点总字数">309k</span>
   
 
   
@@ -2067,7 +2068,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">4:38</span>
+    <span title="站点阅读时长">4:40</span>
   
 </div>
 
