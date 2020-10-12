@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/shell/zsh%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.md/main/</loc>
+    
+    <lastmod>2020-10-12T08:17:47.020Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/</loc>
+    
+    <lastmod>2020-10-10T08:37:14.505Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hyliang96.github.io/2020/01/07/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E5%BC%80%E6%9C%BA%E7%95%8C%E9%9D%A2.md/main/</loc>
+    
+    <lastmod>2020-10-09T05:09:53.161Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://hyliang96.github.io/2020/10/02/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/tensorboard%20PermissionError%2013.md/main/</loc>
     
     <lastmod>2020-10-02T09:07:17.969Z</lastmod>
@@ -114,13 +135,6 @@
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/shell/zsh%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.md/main/</loc>
-    
-    <lastmod>2020-06-10T14:11:54.352Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/docker%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md/main/</loc>
     
     <lastmod>2020-06-07T10:02:12.076Z</lastmod>
@@ -187,13 +201,6 @@
     <loc>https://hyliang96.github.io/2020/01/24/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vim-%E6%90%9C%E7%B4%A2%E6%9B%BF%E6%8D%A2%E6%8F%92%E4%BB%B6.md/main/</loc>
     
     <lastmod>2020-02-08T07:56:51.909Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hyliang96.github.io/2020/01/07/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E5%BC%80%E6%9C%BA%E7%95%8C%E9%9D%A2.md/main/</loc>
-    
-    <lastmod>2020-02-01T05:31:00.239Z</lastmod>
     
   </url>
   
@@ -327,13 +334,6 @@
     <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/mac/mac_%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%93%E5%B1%9E%E5%91%BD%E4%BB%A4.md/main/</loc>
     
     <lastmod>2020-01-07T15:55:26.098Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/</loc>
-    
-    <lastmod>2020-01-07T15:55:26.096Z</lastmod>
     
   </url>
   
