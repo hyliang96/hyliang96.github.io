@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="丹炉志">
 <meta property="og:description" content="[TOC] ssh别名、免密登录别名登陆参考1, 参考2 本地电脑上，打开~/.ssh/config文件 1vim ~/.ssh/config  编写格式如下 12345678910111213Host 服务器别名1    HostName 服务器ip或网址1    Port 端口号1    User 用户名1    IdentityFile ~/.ssh/id_rsaHost 服务器别名2">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-03-18T06:42:11.058Z">
+<meta property="og:updated_time" content="2020-11-04T09:37:11.318Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh配置">
 <meta name="twitter:description" content="[TOC] ssh别名、免密登录别名登陆参考1, 参考2 本地电脑上，打开~/.ssh/config文件 1vim ~/.ssh/config  编写格式如下 12345678910111213Host 服务器别名1    HostName 服务器ip或网址1    Port 端口号1    User 用户名1    IdentityFile ~/.ssh/id_rsaHost 服务器别名2">
@@ -572,7 +572,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-18 14:42:11 14:42:11" itemprop="dateModified" datetime="2020-03-18T14:42:11+08:00">2020-03-18 14:42:11</time>
+                <time title="修改时间：2020-11-04 17:37:11 17:37:11" itemprop="dateModified" datetime="2020-11-04T17:37:11+08:00">2020-11-04 17:37:11</time>
               
             
           </span>
@@ -726,10 +726,10 @@
 <li><p><code>-C 注释</code>  默认为<code>&quot;$USER@$(hostname)&quot;</code>提供一个新注释，</p>
 </li>
 </ul>
-<h3 id="发送公钥到目标机器"><a href="#发送公钥到目标机器" class="headerlink" title="发送公钥到目标机器"></a>发送公钥到目标机器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id (-i (公钥路径))  (-p 端口号) 用户名@服务器</span><br></pre></td></tr></table></figure>
+<h3 id="发送公钥到目标机器"><a href="#发送公钥到目标机器" class="headerlink" title="发送公钥到目标机器"></a>发送公钥到目标机器</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id (-i (公钥或对应私钥路径))  (-p 端口号) 用户名@服务器</span><br></pre></td></tr></table></figure>
 
 <p>或使用别名发送</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id (-i (公钥路径)) 服务器别名</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id (-i (公钥或对应私钥路径)) 服务器别名</span><br></pre></td></tr></table></figure>
 
 <p>然后输入服务器密码，即可将本地公钥<code>公钥路径</code> （缺省为<code>~/.ssh/id_rsa.pub</code>）全文复制，粘贴进服务器的<code>~/.ssh/authorized_keys</code>文件中。凡可免密访此服之私钥，其对应公钥皆保存在<code>~/.ssh/authorized_keys</code>中。</p>
 <h3 id="免密登录-1"><a href="#免密登录-1" class="headerlink" title="免密登录"></a>免密登录</h3><p>本地电脑</p>
@@ -900,8 +900,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/25/器/服务器连接/vnc安装方法.md/main/" rel="next" title="vnc安装方法">
-                <i class="fa fa-chevron-left"></i> vnc安装方法
+              <a href="/2019/05/25/器/服务器连接/sshfs.md/main/" rel="next" title="sshfs">
+                <i class="fa fa-chevron-left"></i> sshfs
               </a>
             
           </div>
@@ -910,8 +910,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/25/器/服务器连接/sshfs.md/main/" rel="prev" title="sshfs">
-                sshfs <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/25/器/服务器连接/rsync教程.md/main/" rel="prev" title="rsync教程">
+                rsync教程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1142,7 +1142,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">319k</span>
+    <span title="站点总字数">323k</span>
   
 
   
@@ -1153,7 +1153,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">4:50</span>
+    <span title="站点阅读时长">4:53</span>
   
 </div>
 
