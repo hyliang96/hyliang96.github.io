@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="丹炉志">
 <meta property="og:description" content="环境：ubuntu 16 实验室服务器 时间：2018年8月6日 [TOC] 介绍zsh：是一款强大的虚拟终端，用以他替代shell， 其配置较为复杂 oh my zsh ：zsh的一套强大配置 antigen ：zsh的包（即插件）管理器，让我们以类似apt-get的方式来安装zsh的包。其官方会提供已经配置好的oh my zsh和一些常用zsh包。 zsh安装 安装zsh  实验室各台服务器上">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-06T19:11:45.817Z">
+<meta property="og:updated_time" content="2020-11-07T12:01:12.331Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="zsh安装配置教程">
 <meta name="twitter:description" content="环境：ubuntu 16 实验室服务器 时间：2018年8月6日 [TOC] 介绍zsh：是一款强大的虚拟终端，用以他替代shell， 其配置较为复杂 oh my zsh ：zsh的一套强大配置 antigen ：zsh的包（即插件）管理器，让我们以类似apt-get的方式来安装zsh的包。其官方会提供已经配置好的oh my zsh和一些常用zsh包。 zsh安装 安装zsh  实验室各台服务器上">
@@ -572,7 +572,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-11-07 03:11:45 03:11:45" itemprop="dateModified" datetime="2020-11-07T03:11:45+08:00">2020-11-07 03:11:45</time>
+                <time title="修改时间：2020-11-07 20:01:12 20:01:12" itemprop="dateModified" datetime="2020-11-07T20:01:12+08:00">2020-11-07 20:01:12</time>
               
             
           </span>
@@ -891,14 +891,12 @@
 </ul>
 <p><strong>原因分析</strong></p>
 <ul>
-<li><p>zsh登录式启动，执行顺序点文件顺序是：… →<code>~/.zshenv</code> → <code>/etc/zprofile</code> → <code>~/.zprofile</code> → …</p>
+<li><p>zsh登录式启动，执行顺序点文件顺序是</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">... →`~/.zshenv` → `/etc/zprofile` → `~/.zprofile` → ...</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>在bash登录式启动，执行顺序点文件顺序是：… →<code>/etc/profile</code> → <code>~/.profile</code> </p>
-<p>​                                            ↓ 手动执行             ↓ 手动执行</p>
-<p>​                                                <code>/etc/bashrc</code>        <code>~/.bashrc</code></p>
+<li><p>在bash登录式启动，执行顺序点文件顺序是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">... → /etc/profile → ~/.profile</span><br><span class="line"> 		↓ 手动执行       ↓ 手动执行</span><br><span class="line">      /etc/bashrc    ~/.bashrc</span><br></pre></td></tr></table></figure>
 </li>
-</ul>
-<ul>
 <li><p>在Mac上， <code>/etc/zprofile</code>和<code>/etc/profile</code>都有以下内容（在linux上， <code>/etc/zprofile</code>为空）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># system-wide environment settings for zsh(1)</span></span><br><span class="line"><span class="keyword">if</span> [ -x /usr/libexec/path_helper ]; <span class="keyword">then</span></span><br><span class="line">    <span class="built_in">eval</span> `/usr/libexec/path_helper -s`</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
 </li>
@@ -1364,7 +1362,6 @@
 <td>ENV/CONF/.zshenv</td>
 </tr>
 </tbody></table>
-<p># </p>
 
       
     </div>
@@ -1438,8 +1435,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/25/器/shell/bash设置.md/main/" rel="prev" title="bash设置">
-                bash设置 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/25/器/shell/shell的参数解析.md/main/" rel="prev" title="shell的参数解析">
+                shell的参数解析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1515,7 +1512,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">62</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1670,7 +1667,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">323k</span>
+    <span title="站点总字数">326k</span>
   
 
   
@@ -1681,7 +1678,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">4:53</span>
+    <span title="站点阅读时长">4:56</span>
   
 </div>
 
