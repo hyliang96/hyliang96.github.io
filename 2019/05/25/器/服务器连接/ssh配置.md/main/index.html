@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="丹炉志">
 <meta property="og:description" content="[TOC] ssh别名、免密登录别名登陆参考1, 参考2 本地电脑上，打开~/.ssh/config文件 1vim ~/.ssh/config  编写格式如下 12345678910111213Host 服务器别名1    HostName 服务器ip或网址1    Port 端口号1    User 用户名1    IdentityFile ~/.ssh/id_rsaHost 服务器别名2">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-04T09:37:11.318Z">
+<meta property="og:updated_time" content="2020-11-11T10:16:31.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ssh配置">
 <meta name="twitter:description" content="[TOC] ssh别名、免密登录别名登陆参考1, 参考2 本地电脑上，打开~/.ssh/config文件 1vim ~/.ssh/config  编写格式如下 12345678910111213Host 服务器别名1    HostName 服务器ip或网址1    Port 端口号1    User 用户名1    IdentityFile ~/.ssh/id_rsaHost 服务器别名2">
@@ -572,7 +572,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-11-04 17:37:11 17:37:11" itemprop="dateModified" datetime="2020-11-04T17:37:11+08:00">2020-11-04 17:37:11</time>
+                <time title="修改时间：2020-11-11 18:16:31 18:16:31" itemprop="dateModified" datetime="2020-11-11T18:16:31+08:00">2020-11-11 18:16:31</time>
               
             
           </span>
@@ -645,7 +645,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.4k</span>
+                <span title="本文字数">3.6k</span>
               
 
               
@@ -793,8 +793,9 @@
 <td><code>-R 服务器端口:localhost:本机端口</code></td>
 </tr>
 </tbody></table>
-<h2 id="跳板连接"><a href="#跳板连接" class="headerlink" title="跳板连接"></a>跳板连接</h2><p>以<code>[跳板]</code>机器为跳板，连接<code>[目标]</code>机器，需在<code>~/.ssh/config</code>配置</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Host [目标]</span><br><span class="line">    HostName [从跳板机访问目标机器用的ip]</span><br><span class="line">    User [目标机用户名]</span><br><span class="line">    ForwardAgent yes</span><br><span class="line">    ProxyCommand ssh -q -W %h:%p [跳板]</span><br><span class="line">    # 登陆目标机永用的私钥所在位置</span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br><span class="line"></span><br><span class="line">Host [跳板]</span><br><span class="line">  HostName [从本地访问跳板机用的ip]</span><br><span class="line">	User [跳板机用户名]</span><br><span class="line">	# 登陆跳板机的私钥所在位置</span><br><span class="line">	IdentityFile ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+<h2 id="跳板连接"><a href="#跳板连接" class="headerlink" title="跳板连接"></a>跳板连接</h2><p><a href="https://zhuanlan.zhihu.com/p/74193910" target="_blank" rel="noopener">参考</a></p>
+<p>以<code>[跳板]</code>机器为跳板，连接<code>[目标]</code>机器，需在<code>~/.ssh/config</code>配置</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Host [目标]</span><br><span class="line">    HostName [从跳板机访问目标机器用的ip]</span><br><span class="line">    User [目标机用户名]</span><br><span class="line">    <span class="comment"># 登陆目标机永用的私钥所在位置</span></span><br><span class="line">    IdentityFile ~/.ssh/id_rsa</span><br><span class="line">    <span class="comment"># 允许跳板机用本机私钥登录目标机器</span></span><br><span class="line">    ForwardAgent yes</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 法一: OpenSSH 版本&gt;= 7.3; 或 autossh </span></span><br><span class="line">    ProxyJump [跳板]</span><br><span class="line"></span><br><span class="line">	<span class="comment"># 法二: OpenSSH 版本&lt; 7.3, 不支持以使用ProxyJump, 可使用ProxyCommand; 但autossh不支持用ProxyCommand</span></span><br><span class="line">    <span class="comment"># ProxyCommand ssh -q -W %h:%p [跳板]</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Host [跳板]</span><br><span class="line">  HostName [从本地访问跳板机用的ip]</span><br><span class="line">	User [跳板机用户名]</span><br><span class="line">	<span class="comment"># 登陆跳板机的私钥所在位置</span></span><br><span class="line">	IdentityFile ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
 
 <p>这样设置后，以下软件的用法和直接连接目标机器一样</p>
 <p><code>ssh</code>（包括端口转发功能），<code>sshfs</code>，<code>scp</code>，<code>sftp</code>，<code>rsync</code>，在iTerm2上对着远程的文件右键下载文件</p>
@@ -900,8 +901,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/25/器/服务器连接/vnc安装方法.md/main/" rel="next" title="vnc安装方法">
-                <i class="fa fa-chevron-left"></i> vnc安装方法
+              <a href="/2019/05/25/器/服务器连接/sshfs.md/main/" rel="next" title="sshfs">
+                <i class="fa fa-chevron-left"></i> sshfs
               </a>
             
           </div>
@@ -910,8 +911,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/25/器/服务器连接/sshfs.md/main/" rel="prev" title="sshfs">
-                sshfs <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/25/器/shell/zsh安装配置教程.md/main/" rel="prev" title="zsh安装配置教程">
+                zsh安装配置教程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1153,7 +1154,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">4:58</span>
+    <span title="站点阅读时长">4:59</span>
   
 </div>
 
