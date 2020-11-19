@@ -125,7 +125,8 @@
 <meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/服务器连接/IPMI带外管理教程.md/main/mceclip1.png">
 <meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/服务器连接/IPMI带外管理教程.md/main/mceclip2.png">
 <meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/服务器连接/IPMI带外管理教程.md/main/Configuration-SSL-Certification-Menu.png">
-<meta property="og:updated_time" content="2020-04-08T10:05:03.797Z">
+<meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/服务器连接/IPMI带外管理教程.md/main/image-20201119231400452.png">
+<meta property="og:updated_time" content="2020-11-19T18:06:38.767Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IPMI带外管理教程">
 <meta name="twitter:description" content="参考：Ipmitool工具的使用方式 ipmi带外管理 IPMI介绍需求有的时候，ssh无法连接到服务器，如  死机，需要重启 服务器的临时路由表配错，造成ssh无法访问服务器，需要重启  类似情况，为了能不亲自去机房就管理服务器，需要使用远程控制装置，也即带外管理，IPMI即是其中一种。 带外管理 经过服务器所在的工作网络 来连接服务器（如通过ssh），此通道名曰数据通道。由数据通道理服务器，称">
@@ -586,7 +587,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-04-08 18:05:03 18:05:03" itemprop="dateModified" datetime="2020-04-08T18:05:03+08:00">2020-04-08 18:05:03</time>
+                <time title="修改时间：2020-11-20 02:06:38 02:06:38" itemprop="dateModified" datetime="2020-11-20T02:06:38+08:00">2020-11-20 02:06:38</time>
               
             
           </span>
@@ -659,7 +660,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">16k</span>
+                <span title="本文字数">18k</span>
               
 
               
@@ -673,7 +674,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">14 分钟</span>
+                <span title="阅读时长">16 分钟</span>
               
             </div>
           
@@ -744,45 +745,72 @@
 </li>
 </ul>
 <h3 id="配置imp账号"><a href="#配置imp账号" class="headerlink" title="配置imp账号"></a>配置imp账号</h3><ul>
-<li>查看用户</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool user list</span><br></pre></td></tr></table></figure>
+<li><p>查看通道</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool channel info [&lt;通道号&gt;==0,1,2,3...,12, 无13, 14,15; 缺省=15]</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ID  Name	     Callin  Link Auth	IPMI Msg   Channel Priv Limit</span><br><span class="line">2   ADMIN            true    false      false      Unknown (0x00)</span><br></pre></td></tr></table></figure>
+<p>一般 15号通道返回, 表示支持网页图形界面控制, 此通道的用户需要开<code>ipmi=on</code>权限, 才能用网页远程控制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Channel 0xf info:</span><br><span class="line">  Channel Medium Type   : System Interface</span><br><span class="line">  Channel Protocol Type : KCS</span><br><span class="line">  Session Support       : session-less</span><br><span class="line">  Active Session Count  : 0</span><br><span class="line">  Protocol Vendor ID    : 7154</span><br></pre></td></tr></table></figure>
+
+<p>1号通道返回如下, 表示支持 ipmi 协议, 此通道的用户需要开<code>ipmi=on</code>权限, 才能用ipmi命令搞远程控制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Channel 0x1 info:</span><br><span class="line">  Channel Medium Type   : 802.3 LAN</span><br><span class="line">  Channel Protocol Type : IPMB-1.0</span><br><span class="line">  Session Support       : multi-session</span><br><span class="line">  Active Session Count  : 0</span><br><span class="line">  Protocol Vendor ID    : 7154</span><br><span class="line">  Volatile(active) Settings</span><br><span class="line">    Alerting            : enabled</span><br><span class="line">    Per-message Auth    : enabled</span><br><span class="line">    User Level Auth     : enabled</span><br><span class="line">    Access Mode         : always available</span><br><span class="line">  Non-Volatile Settings</span><br><span class="line">    Alerting            : enabled</span><br><span class="line">    Per-message Auth    : enabled</span><br><span class="line">    User Level Auth     : enabled</span><br><span class="line">    Access Mode         : always available</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>查看用户</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool user list [&lt;通道号&gt;==0,1,2,3...,12, 无13, 14,15; 缺省=15]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">ID  Name	     Callin  Link Auth	IPMI Msg   Channel Priv Limit</span><br><span class="line">1                    true    false      false      Unknown (0x00)</span><br><span class="line">2   ADMIN            true    false      false      Unknown (0x00)</span><br><span class="line">3                    true    false      false      Unknown (0x00)</span><br><span class="line">4                    true    false      false      Unknown (0x00)</span><br><span class="line">5                    true    false      false      Unknown (0x00)</span><br><span class="line">6                    true    false      false      Unknown (0x00)</span><br><span class="line">7                    true    false      false      Unknown (0x00)</span><br><span class="line">8                    true    false      false      Unknown (0x00)</span><br><span class="line">9                    true    false      false      Unknown (0x00)</span><br><span class="line">10                   true    false      false      Unknown (0x00)</span><br></pre></td></tr></table></figure>
+
+<p>一般服务器出厂自带的用户名<code>ADMIN</code>，其出厂权限如下:</p>
+<ul>
+<li>15号通道, 即缺省通道</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool user list <span class="comment"># 缺省channel号 是 15</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ID  Name	         Callin  Link Auth	IPMI Msg   Channel Priv Limit</span><br><span class="line">2   ADMIN            true    false      false      Unknown (0x00)   </span><br><span class="line">【下面的命令用此id=2】【需callin=true,浏览器才能登录】</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>增加用户 或 修改用户名：&lt;用户编号&gt;=1,2,3…</li>
+<li>1号通道</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipmitool user <span class="built_in">set</span> name &lt;用户编号&gt; &lt;用户名&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool user list 1 <span class="comment"># 1 是channel 号, 一般不改</span></span><br></pre></td></tr></table></figure>
 
-<p>如</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool user <span class="built_in">set</span> name 3 test1</span><br><span class="line">sudo ipmitool user list </span><br><span class="line"><span class="comment"># 得到</span></span><br><span class="line"><span class="comment"># ID  Name	     Callin  Link Auth	IPMI Msg   Channel Priv Limit</span></span><br><span class="line"><span class="comment"># 2   ADMIN      true    false      false      Unknown (0x00)</span></span><br><span class="line"><span class="comment"># 3   test1      true    false      false      Unknown (0x00)</span></span><br></pre></td></tr></table></figure>
+<p>返回</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ID  Name	         Callin  Link Auth	IPMI Msg   Channel Priv Limit</span><br><span class="line">2   ADMIN            false    false      true         ADMINISTRATOR (0x00)   </span><br><span class="line">【IPMI=true才能使用ipmi的命令行登录】</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>若返回如上, 则不需要改用户权限</p>
+</li>
+<li><p>若权限不对, 则执行以下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool channel setaccess   2 callin=on link=off ipmi=on privilege=0x0 <span class="comment"># 缺省channel号 是 0</span></span><br><span class="line"><span class="comment"># 和</span></span><br><span class="line">sudo ipmitool channel setaccess 1 2 callin=off link=off ipmi=on privilege=0x4 <span class="comment"># 1 是 channel 号</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 2是用户号, 根据`sudo ipmitool user list [1]`返回的用户号来写</span></span><br><span class="line"><span class="comment"># Privilege-level=Administrator</span></span><br></pre></td></tr></table></figure>
 
+<p>   Privilege levels <code>privilege</code> 的取值</p>
 <ul>
-<li><p>修改用户权限</p>
-<p>若权限不对, 则执行以下命令, </p>
+<li><p><code>0x0</code> - Unknown [初始化为这个, 可以不改]</p>
+</li>
+<li><p><code>0x1</code> - Callbac</p>
+</li>
+<li><p><code>0x2</code> - User</p>
+</li>
+<li><p><code>0x3</code> - Operator</p>
+</li>
+<li><p><code>0x4</code> - Administrator [如果要改, 一般就设成这个]</p>
+</li>
+<li><p><code>0x5</code> - OEM Proprietary</p>
+</li>
+<li><p><code>0xF</code> - No Access</p>
 </li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ipmitool channel setaccess 1 2 callin=on link=off ipmi=off privilege=0x4 </span><br><span class="line"><span class="comment"># 1 是 channel 号, 一般不改</span></span><br><span class="line"><span class="comment"># 2是用户号, 根据`sudo ipmitool user list 1`返回的用户号来写</span></span><br><span class="line"><span class="comment"># Privilege-level=Administrator</span></span><br></pre></td></tr></table></figure>
-
-<p> 得到</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ID  Name       Callin  Link Auth  IPMI Msg   Channel Priv Limit</span><br><span class="line">2   ADMIN      true    false      false      ADMINISTRATOR</span><br></pre></td></tr></table></figure>
-
-<p>Privilege levels <code>privilege</code> 的取值</p>
-<ul>
-<li><code>0x0</code> - Unknown [初始化为这个, 可以不改]</li>
-<li><code>0x1</code> - Callbac</li>
-<li><code>0x2</code> - User</li>
-<li><code>0x3</code> - Operator</li>
-<li><code>0x4</code> - Administrator [如果要改, 一般就设成这个]</li>
-<li><code>0x5</code> - OEM Proprietary</li>
-<li><code>0xF</code> - No Access</li>
+<p>得到上述所需权限</p>
+</li>
 </ul>
 <ul>
-<li>设置用户密码</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipmitool user <span class="built_in">set</span> password &lt;用户编号&gt; &lt;密码&gt;</span><br></pre></td></tr></table></figure>
+<li><p>交互地修改密码</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool user <span class="built_in">set</span> password 2</span><br></pre></td></tr></table></figure>
 
+<p>然后输入两边密码 <code>junipmi</code></p>
+<p>或直接非交互地执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool user <span class="built_in">set</span> password 2 &lt;密码&gt;  &amp;&amp; sudo sed -i <span class="string">'$d'</span> /root/.zsh_history</span><br></pre></td></tr></table></figure>
+
+<p>删去最后1行 避免暴露密码</p>
+</li>
+</ul>
 <h2 id="数据线路与管理线路"><a href="#数据线路与管理线路" class="headerlink" title="数据线路与管理线路"></a>数据线路与管理线路</h2><h3 id="线路连接"><a href="#线路连接" class="headerlink" title="线路连接"></a>线路连接</h3><p>ipmi的网口接线有两种方法：</p>
 <ul>
 <li>独立线路：<ul>
@@ -1089,8 +1117,8 @@
 <p><code>0xb8 0x0b</code> = <code>0x0bb8</code> x 100ms = 300 s</p>
 </li>
 </ul>
-<h2 id="https不安全-SSL证书过期"><a href="#https不安全-SSL证书过期" class="headerlink" title="https不安全-SSL证书过期"></a>https不安全-SSL证书过期</h2><p><a href="https://www.bytesizedalex.com/supermicro-ipmi-ssl-tls-certificate-replacement/" target="_blank" rel="noopener">参考</a></p>
-<p>有效教程: <a href="http://pkolesni.blogspot.com/2018/02/how-to-replace-supermicro-ipmi-ssl-tls.html" target="_blank" rel="noopener">http://pkolesni.blogspot.com/2018/02/how-to-replace-supermicro-ipmi-ssl-tls.html</a></p>
+<h2 id="https不安全-SSL证书过期"><a href="#https不安全-SSL证书过期" class="headerlink" title="https不安全-SSL证书过期"></a>https不安全-SSL证书过期</h2><h3 id="服务器端添加自签名证书"><a href="#服务器端添加自签名证书" class="headerlink" title="服务器端添加自签名证书"></a>服务器端添加自签名证书</h3><p><a href="https://www.bytesizedalex.com/supermicro-ipmi-ssl-tls-certificate-replacement/" target="_blank" rel="noopener">参考</a></p>
+<p><a href="http://pkolesni.blogspot.com/2018/02/how-to-replace-supermicro-ipmi-ssl-tls.html" target="_blank" rel="noopener">有效教程</a></p>
 <p>创私钥  <code>ipmi.pem</code> </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl genrsa -out ipmi.pem 2048</span><br></pre></td></tr></table></figure>
 
@@ -1100,12 +1128,29 @@
 <p>交互输入如下</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">You are about to be asked to enter information that will be incorporated</span><br><span class="line">into your certificate request.</span><br><span class="line">What you are about to enter is what is called a Distinguished Name or a DN.</span><br><span class="line">There are quite a few fields but you can leave some blank</span><br><span class="line">For some fields there will be a default value,</span><br><span class="line">If you enter &apos;.&apos;, the field will be left blank.</span><br><span class="line">-----</span><br><span class="line">Country Name (2 letter code) [AU]:CN</span><br><span class="line">State or Province Name (full name) [Some-State]:Beijing</span><br><span class="line">Locality Name (eg, city) []:Beijing</span><br><span class="line">Organization Name (eg, company) [Internet Widgits Pty Ltd]:THU</span><br><span class="line">Organizational Unit Name (eg, section) []:TSAIL</span><br><span class="line">Common Name (e.g. server FQDN or YOUR name) []:localhost  </span><br><span class="line">		# 其他的项目可以乱填，但这个必须写【localhost】，才能用ssh -L端口映射ipmi到localhost后，能安全地连接ipmi</span><br><span class="line">Email Address []:tsial@mail.tsinghua.edu.cn</span><br><span class="line"></span><br><span class="line">Please enter the following &apos;extra&apos; attributes</span><br><span class="line">to be sent with your certificate request</span><br><span class="line">A challenge password []:</span><br><span class="line">An optional company name []:</span><br></pre></td></tr></table></figure>
 
-<p>用私钥 <code>ipmi.pem</code> 签证书 <code>ipmi.cert</code>, 有效3000天</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -req -days 3000 -<span class="keyword">in</span> ipmi.cert  -signkey ipmi.pem -out ipmi.cert</span><br></pre></td></tr></table></figure>
+<p>用私钥 <code>ipmi.pem</code> 签证书 <code>ipmi.cert</code>, 有效820天 (tls服务器证书有效期必需&lt;=825天 <a href="https://segmentfault.com/q/1010000020699053" target="_blank" rel="noopener">出处</a>)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">openssl x509 -req -days 820 -<span class="keyword">in</span> ipmi.cert  -signkey ipmi.pem -out ipmi.cert</span><br></pre></td></tr></table></figure>
 
-<p>然后将  <code>ipmi.pem</code> 上传到 <code>New SSL Certificate</code>,  <code>ipmi.cert</code> 上传到 <code>New Private Key</code>, 再点 <code>Update</code>.</p>
+<p>然后将  <code>ipmi.cert</code> 上传到 <code>New SSL Certificate</code>,  <code>ipmi.pem</code> 上传到 <code>New Private Key</code>, 再点 <code>Update</code>.</p>
 <p><img src="/2020/01/07/器/服务器连接/IPMI带外管理教程.md/main/Configuration-SSL-Certification-Menu.png" alt="img"></p>
 <p>若显示提交成功, 则会重启ipmi设备 (不是操作系统重启), 一分钟后重新登录此页面, 则有了一个自签名的SSL证书.</p>
+<h3 id="浏览器端设置"><a href="#浏览器端设置" class="headerlink" title="浏览器端设置"></a>浏览器端设置</h3><h4 id="把刚才的证书添加到本地的钥匙串"><a href="#把刚才的证书添加到本地的钥匙串" class="headerlink" title="把刚才的证书添加到本地的钥匙串"></a>把刚才的证书添加到本地的钥匙串</h4><ul>
+<li>mac:</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 若仅为当前用户添加, catalina系统还允许如此操作</span></span><br><span class="line">security import ipmi.pem  -k ~/Library/Keychains/login.keychain</span><br><span class="line"><span class="comment"># 若需为所有用户添加, 但catalina系统不允许如此操作了</span></span><br><span class="line">sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ipmi.pem</span><br></pre></td></tr></table></figure>
+
+<h4 id="设置浏览器允许访问不安全的localhost"><a href="#设置浏览器允许访问不安全的localhost" class="headerlink" title="设置浏览器允许访问不安全的localhost"></a>设置浏览器允许访问不安全的localhost</h4><ul>
+<li>chrome 浏览器 访问如下url</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chrome://flags/#allow-insecure-localhost</span><br></pre></td></tr></table></figure>
+
+<img src="/2020/01/07/器/服务器连接/IPMI带外管理教程.md/main/image-20201119231400452.png" alt="image-20201119231400452" style="zoom:50%;">
+
+<p>此项改成enable, 即可访问 <code>https://127.0.0.1:&lt;端口&gt;</code></p>
+<ul>
+<li>firefox: 无需设置即可访问 <code>https://127.0.0.1:&lt;端口&gt;</code></li>
+<li>safari: 可直接访问<code>https://localhost:&lt;端口&gt;</code>; 若无法访问之, 可访问 <code>https://127.0.0.1:&lt;端口&gt;</code>; 欲修复<code>https://localhost:&lt;端口&gt;</code>的访问, 需</li>
+</ul>
 <h1 id="其他参考资料"><a href="#其他参考资料" class="headerlink" title="其他参考资料"></a>其他参考资料</h1><p><a href="https://blog.csdn.net/whatday/article/details/88016972" target="_blank" rel="noopener">看门狗的原理</a></p>
 <p><a href="https://github.com/erik-smit/oohhh-what-does-this-ipmi-doooo-no-deedee-nooooo/blob/master/1-discovering/snippets/Computercheese/IPMI-BMC%20Watchdog%20Timer%20Commands.txt" target="_blank" rel="noopener">ipmitool watchdog 使用示例</a></p>
 <p><a href="https://support.huawei.com/enterprise/zh/doc/EDOC1000061915/528f51d3/configuring-the-ibmc-by-using-the-ipmitool" target="_blank" rel="noopener">ipmitool命令文档</a></p>
@@ -1376,7 +1421,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IPMI介绍"><span class="nav-number">1.</span> <span class="nav-text">IPMI介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求"><span class="nav-number">1.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带外管理"><span class="nav-number">1.2.</span> <span class="nav-text">带外管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPMI的原理"><span class="nav-number">1.3.</span> <span class="nav-text">IPMI的原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置IPMI"><span class="nav-number">2.</span> <span class="nav-text">配置IPMI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装ipmitool"><span class="nav-number">2.1.</span> <span class="nav-text">安装ipmitool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ipmi的网络配置"><span class="nav-number">2.2.</span> <span class="nav-text">ipmi的网络配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置imp账号"><span class="nav-number">2.3.</span> <span class="nav-text">配置imp账号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据线路与管理线路"><span class="nav-number">3.</span> <span class="nav-text">数据线路与管理线路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线路连接"><span class="nav-number">3.1.</span> <span class="nav-text">线路连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ip设置"><span class="nav-number">3.2.</span> <span class="nav-text">ip设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NAT"><span class="nav-number">3.3.</span> <span class="nav-text">NAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ipmi各种连接端口"><span class="nav-number">3.4.</span> <span class="nav-text">ipmi各种连接端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从外部连接ipmi"><span class="nav-number">4.</span> <span class="nav-text">从外部连接ipmi</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器"><span class="nav-number">4.1.</span> <span class="nav-text">浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桌面远程操控"><span class="nav-number">4.2.</span> <span class="nav-text">桌面远程操控</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器中iKVM-HTML5"><span class="nav-number">4.2.1.</span> <span class="nav-text">浏览器中iKVM/HTML5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Java-iKVM-Viewer"><span class="nav-number">4.2.2.</span> <span class="nav-text">使用Java iKVM Viewer</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#获得jnlp文件"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">获得jnlp文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#端口修改"><span class="nav-number">4.2.2.2.</span> <span class="nav-text">端口修改</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启动远程连接"><span class="nav-number">4.2.2.3.</span> <span class="nav-text">启动远程连接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#终端"><span class="nav-number">4.3.</span> <span class="nav-text">终端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令格式"><span class="nav-number">4.3.1.</span> <span class="nav-text">命令格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用的-lt-ipmi的命令-gt"><span class="nav-number">4.3.2.</span> <span class="nav-text">常用的&lt;ipmi的命令&gt;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器死机处置办法"><span class="nav-number">5.</span> <span class="nav-text">服务器死机处置办法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用浏览器重启"><span class="nav-number">5.1.</span> <span class="nav-text">用浏览器重启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用命令重启"><span class="nav-number">5.2.</span> <span class="nav-text">用命令重启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程控制开机界面"><span class="nav-number">5.3.</span> <span class="nav-text">远程控制开机界面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#看门狗安装"><span class="nav-number">6.</span> <span class="nav-text">看门狗安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#看门狗原理"><span class="nav-number">6.1.</span> <span class="nav-text">看门狗原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装配置方法-手动执行"><span class="nav-number">6.2.</span> <span class="nav-text">安装配置方法 手动执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装与测试脚本"><span class="nav-number">6.3.</span> <span class="nav-text">安装与测试脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消看门狗"><span class="nav-number">6.4.</span> <span class="nav-text">取消看门狗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#没有reset持续倒计时-抢救方法"><span class="nav-number">6.5.</span> <span class="nav-text">没有reset持续倒计时 - 抢救方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#看门狗的开关"><span class="nav-number">6.6.</span> <span class="nav-text">看门狗的开关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#看门狗行为设置"><span class="nav-number">6.7.</span> <span class="nav-text">看门狗行为设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#https不安全-SSL证书过期"><span class="nav-number">7.</span> <span class="nav-text">https不安全-SSL证书过期</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#其他参考资料"><span class="nav-number"></span> <span class="nav-text">其他参考资料</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IPMI介绍"><span class="nav-number">1.</span> <span class="nav-text">IPMI介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求"><span class="nav-number">1.1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带外管理"><span class="nav-number">1.2.</span> <span class="nav-text">带外管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IPMI的原理"><span class="nav-number">1.3.</span> <span class="nav-text">IPMI的原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置IPMI"><span class="nav-number">2.</span> <span class="nav-text">配置IPMI</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装ipmitool"><span class="nav-number">2.1.</span> <span class="nav-text">安装ipmitool</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ipmi的网络配置"><span class="nav-number">2.2.</span> <span class="nav-text">ipmi的网络配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置imp账号"><span class="nav-number">2.3.</span> <span class="nav-text">配置imp账号</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据线路与管理线路"><span class="nav-number">3.</span> <span class="nav-text">数据线路与管理线路</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#线路连接"><span class="nav-number">3.1.</span> <span class="nav-text">线路连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ip设置"><span class="nav-number">3.2.</span> <span class="nav-text">ip设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NAT"><span class="nav-number">3.3.</span> <span class="nav-text">NAT</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ipmi各种连接端口"><span class="nav-number">3.4.</span> <span class="nav-text">ipmi各种连接端口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从外部连接ipmi"><span class="nav-number">4.</span> <span class="nav-text">从外部连接ipmi</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器"><span class="nav-number">4.1.</span> <span class="nav-text">浏览器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#桌面远程操控"><span class="nav-number">4.2.</span> <span class="nav-text">桌面远程操控</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#浏览器中iKVM-HTML5"><span class="nav-number">4.2.1.</span> <span class="nav-text">浏览器中iKVM/HTML5</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用Java-iKVM-Viewer"><span class="nav-number">4.2.2.</span> <span class="nav-text">使用Java iKVM Viewer</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#获得jnlp文件"><span class="nav-number">4.2.2.1.</span> <span class="nav-text">获得jnlp文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#端口修改"><span class="nav-number">4.2.2.2.</span> <span class="nav-text">端口修改</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#启动远程连接"><span class="nav-number">4.2.2.3.</span> <span class="nav-text">启动远程连接</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#终端"><span class="nav-number">4.3.</span> <span class="nav-text">终端</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#命令格式"><span class="nav-number">4.3.1.</span> <span class="nav-text">命令格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用的-lt-ipmi的命令-gt"><span class="nav-number">4.3.2.</span> <span class="nav-text">常用的&lt;ipmi的命令&gt;</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器死机处置办法"><span class="nav-number">5.</span> <span class="nav-text">服务器死机处置办法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用浏览器重启"><span class="nav-number">5.1.</span> <span class="nav-text">用浏览器重启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用命令重启"><span class="nav-number">5.2.</span> <span class="nav-text">用命令重启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#远程控制开机界面"><span class="nav-number">5.3.</span> <span class="nav-text">远程控制开机界面</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#看门狗安装"><span class="nav-number">6.</span> <span class="nav-text">看门狗安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#看门狗原理"><span class="nav-number">6.1.</span> <span class="nav-text">看门狗原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装配置方法-手动执行"><span class="nav-number">6.2.</span> <span class="nav-text">安装配置方法 手动执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装与测试脚本"><span class="nav-number">6.3.</span> <span class="nav-text">安装与测试脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取消看门狗"><span class="nav-number">6.4.</span> <span class="nav-text">取消看门狗</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#没有reset持续倒计时-抢救方法"><span class="nav-number">6.5.</span> <span class="nav-text">没有reset持续倒计时 - 抢救方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#看门狗的开关"><span class="nav-number">6.6.</span> <span class="nav-text">看门狗的开关</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#看门狗行为设置"><span class="nav-number">6.7.</span> <span class="nav-text">看门狗行为设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#https不安全-SSL证书过期"><span class="nav-number">7.</span> <span class="nav-text">https不安全-SSL证书过期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务器端添加自签名证书"><span class="nav-number">7.1.</span> <span class="nav-text">服务器端添加自签名证书</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器端设置"><span class="nav-number">7.2.</span> <span class="nav-text">浏览器端设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#把刚才的证书添加到本地的钥匙串"><span class="nav-number">7.2.1.</span> <span class="nav-text">把刚才的证书添加到本地的钥匙串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设置浏览器允许访问不安全的localhost"><span class="nav-number">7.2.2.</span> <span class="nav-text">设置浏览器允许访问不安全的localhost</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#其他参考资料"><span class="nav-number"></span> <span class="nav-text">其他参考资料</span></a></li></div>
             
 
           </div>
@@ -1418,7 +1463,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">331k</span>
+    <span title="站点总字数">333k</span>
   
 
   
@@ -1429,7 +1474,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">5:01</span>
+    <span title="站点阅读时长">5:03</span>
   
 </div>
 
