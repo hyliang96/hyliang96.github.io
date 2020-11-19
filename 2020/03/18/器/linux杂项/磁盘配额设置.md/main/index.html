@@ -105,20 +105,20 @@
 
 
 
-  <meta name="description" content="目录下统计磁盘用量法一 使用duc (推荐)1234sudo apt install duc # install ducsudo duc index -fHpx &amp;lt;dir&amp;gt; # build the index of any &amp;lt;dir&amp;gt; to a dataset file $HOME/.duc.db# it which will be upated every time wh">
+  <meta name="description" content="目录下统计磁盘用量法一 使用duc (推荐)仅能统计磁盘大小, 不能统计文件数目. 是按照子文件夹来统计, 而不是文件归属的用户来统计. 1234sudo apt install duc # install ducsudo duc index -fHpx &amp;lt;dir&amp;gt; # build the index of any &amp;lt;dir&amp;gt; to a dataset file $HOME">
 <meta property="og:type" content="article">
 <meta property="og:title" content="磁盘配额设置">
 <meta property="og:url" content="https://hyliang96.github.io/2020/03/18/器/linux杂项/磁盘配额设置.md/main/index.html">
 <meta property="og:site_name" content="丹炉志">
-<meta property="og:description" content="目录下统计磁盘用量法一 使用duc (推荐)1234sudo apt install duc # install ducsudo duc index -fHpx &amp;lt;dir&amp;gt; # build the index of any &amp;lt;dir&amp;gt; to a dataset file $HOME/.duc.db# it which will be upated every time wh">
+<meta property="og:description" content="目录下统计磁盘用量法一 使用duc (推荐)仅能统计磁盘大小, 不能统计文件数目. 是按照子文件夹来统计, 而不是文件归属的用户来统计. 1234sudo apt install duc # install ducsudo duc index -fHpx &amp;lt;dir&amp;gt; # build the index of any &amp;lt;dir&amp;gt; to a dataset file $HOME">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://hyliang96.github.io/2020/03/18/器/linux杂项/磁盘配额设置.md/main/Check-User-Quota-on-Disk.png">
 <meta property="og:image" content="https://hyliang96.github.io/2020/03/18/器/linux杂项/磁盘配额设置.md/main/Verify-User-Quota-Limit.png">
 <meta property="og:image" content="https://hyliang96.github.io/2020/03/18/器/linux杂项/磁盘配额设置.md/main/Generate-Quota-Reports.png">
-<meta property="og:updated_time" content="2020-11-19T13:58:22.865Z">
+<meta property="og:updated_time" content="2020-11-19T20:17:06.629Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="磁盘配额设置">
-<meta name="twitter:description" content="目录下统计磁盘用量法一 使用duc (推荐)1234sudo apt install duc # install ducsudo duc index -fHpx &amp;lt;dir&amp;gt; # build the index of any &amp;lt;dir&amp;gt; to a dataset file $HOME/.duc.db# it which will be upated every time wh">
+<meta name="twitter:description" content="目录下统计磁盘用量法一 使用duc (推荐)仅能统计磁盘大小, 不能统计文件数目. 是按照子文件夹来统计, 而不是文件归属的用户来统计. 1234sudo apt install duc # install ducsudo duc index -fHpx &amp;lt;dir&amp;gt; # build the index of any &amp;lt;dir&amp;gt; to a dataset file $HOME">
 <meta name="twitter:image" content="https://hyliang96.github.io/2020/03/18/器/linux杂项/磁盘配额设置.md/main/Check-User-Quota-on-Disk.png">
 
 
@@ -576,7 +576,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-11-19 21:58:22 21:58:22" itemprop="dateModified" datetime="2020-11-19T21:58:22+08:00">2020-11-19 21:58:22</time>
+                <time title="修改时间：2020-11-20 04:17:06 04:17:06" itemprop="dateModified" datetime="2020-11-20T04:17:06+08:00">2020-11-20 04:17:06</time>
               
             
           </span>
@@ -649,7 +649,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">5.2k</span>
+                <span title="本文字数">5.3k</span>
               
 
               
@@ -683,9 +683,11 @@
       
 
       
-        <h2 id="目录下统计磁盘用量"><a href="#目录下统计磁盘用量" class="headerlink" title="目录下统计磁盘用量"></a>目录下统计磁盘用量</h2><h3 id="法一-使用duc-推荐"><a href="#法一-使用duc-推荐" class="headerlink" title="法一 使用duc (推荐)"></a>法一 使用<a href="http://duc.zevv.nl" target="_blank" rel="noopener">duc</a> (推荐)</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install duc <span class="comment"># install duc</span></span><br><span class="line">sudo duc index -fHpx &lt;dir&gt; <span class="comment"># build the index of any &lt;dir&gt; to a dataset file $HOME/.duc.db</span></span><br><span class="line"><span class="comment"># it which will be upated every time when things under &lt;dir&gt; change</span></span><br><span class="line">sudo duc ls -Fg &lt;dir&gt; <span class="comment"># list the subdirs and their size of &lt;dir&gt;, No wait times</span></span><br></pre></td></tr></table></figure>
+        <h2 id="目录下统计磁盘用量"><a href="#目录下统计磁盘用量" class="headerlink" title="目录下统计磁盘用量"></a>目录下统计磁盘用量</h2><h3 id="法一-使用duc-推荐"><a href="#法一-使用duc-推荐" class="headerlink" title="法一 使用duc (推荐)"></a>法一 使用<a href="http://duc.zevv.nl" target="_blank" rel="noopener">duc</a> (推荐)</h3><p>仅能统计磁盘大小, 不能统计文件数目. 是按照子文件夹来统计, 而不是文件归属的用户来统计.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install duc <span class="comment"># install duc</span></span><br><span class="line">sudo duc index -fHpx &lt;dir&gt; <span class="comment"># build the index of any &lt;dir&gt; to a dataset file $HOME/.duc.db</span></span><br><span class="line"><span class="comment"># it which will be upated every time when things under &lt;dir&gt; change</span></span><br><span class="line">sudo duc ls -Fg &lt;dir&gt; <span class="comment"># list the subdirs and their size of &lt;dir&gt;, No wait times</span></span><br></pre></td></tr></table></figure>
 
-<h3 id="法二-使用quota"><a href="#法二-使用quota" class="headerlink" title="法二 使用quota"></a>法二 使用quota</h3><p>使用quota, 只统计每个用户的用量, 不用限制用户的使用</p>
+<h3 id="法二-使用quota"><a href="#法二-使用quota" class="headerlink" title="法二 使用quota"></a>法二 使用quota</h3><p>使用quota, 只统计每个用户的磁盘大小和文件数目用量, 不用限制用户的使用.</p>
+<p>可以按文件归属的用户来统计, 也可以按照子文件夹来统计.</p>
 <h2 id="quota安装与配置"><a href="#quota安装与配置" class="headerlink" title="quota安装与配置"></a>quota安装与配置</h2><p>本文在此<a href="https://www.howtoing.com/set-filesystem-disk-quotas-on-ubuntu" target="_blank" rel="noopener">教程</a>上修改. 其他参考: <a href="http://cn.linux.vbird.org/linux_basic/fedora_4/0420quota-fc4.php" target="_blank" rel="noopener">鸟哥</a>.</p>
 <h3 id="安装quota"><a href="#安装quota" class="headerlink" title="安装quota"></a>安装quota</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install quota -y</span><br><span class="line">sudo quota --version</span><br></pre></td></tr></table></figure>
 
@@ -706,9 +708,18 @@
 <h3 id="更新文件系统挂载选项"><a href="#更新文件系统挂载选项" class="headerlink" title="更新文件系统挂载选项"></a>更新文件系统挂载选项</h3><ul>
 <li><p>通过修改 <code>/etc/fstab</code> 文件来决定哪些文件系统需要使用quota</p>
 <p><code>sudo vim /etc/fstab</code>, 找到需要的文件系统 (如<code>/</code>) 所在行, 第四字段尾部增加<code>,usrquota,grpquota</code>选项, 这样会对此文件系统启用对用户和用户组的限额.</p>
+<p>例如:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/dev/mapper/jungpu21--vg-root /               ext4    errors=remount-ro,usrquota,grpquota 0       1</span><br></pre></td></tr></table></figure>
 
-<p>注: 查看文件系统的格式 <code>df -T -h</code>, <code>-T</code> 显示文件系统, <code>-h</code> 可读的磁盘大小</p>
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/dev/mapper/jungpu21--vg-root /               ext4    defaults,usrquota,grpquota 0       1</span><br></pre></td></tr></table></figure>
+
+<p><strong>注:</strong></p>
+<ul>
+<li>查看文件系统的格式 <code>df -T -h</code>, <code>-T</code> 显示文件系统, <code>-h</code> 可读的磁盘大小</li>
+<li>第四字段若为<code>defaults</code>, 表示所有选项全部使用默认配置, 包括rw, suid, dev, exec, auto, nouser, 和 async。一般用户没有特殊需求，直接使用 <code>defaults</code> 就可以了</li>
+<li>若 <code>/etc/fstab</code> 中已有不同于<code>defaults</code>的选项, 把<code>,usrquota,grpquota</code>加在已有的选项后即可</li>
+</ul>
 </li>
 <li><p>重新挂载文件系统，以使更改生效</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mount -o remount /</span><br></pre></td></tr></table></figure>
@@ -730,7 +741,7 @@
 <ul>
 <li><code>-u</code> ：表示将创建基于用户的配额文件。</li>
 <li><code>-g</code> ：表示将创建基于组的配额文件。</li>
-<li><code>-m: disables remounting of the file system as a read-only while at the same time gives accurate results in an environment where the user keeps saving files. The **m**</code> 在安装过程中<code>-m: disables remounting of the file system as a read-only while at the same time gives accurate results in an environment where the user keeps saving files. The **m**</code>选项不是必需的。</li>
+<li><code>-m</code>: disables remounting of the file system as a read-only while at the same time gives accurate results in an environment where the user keeps saving files. 在安装过程中此选项不是必需的。</li>
 </ul>
 <p>确认已创建  <code>aquota.group</code>  与 <code>aquota.user</code> 文件.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls <span class="variable">$mount_point</span> | grep aquota</span><br></pre></td></tr></table></figure>
