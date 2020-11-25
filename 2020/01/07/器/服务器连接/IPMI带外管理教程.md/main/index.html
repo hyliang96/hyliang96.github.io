@@ -126,7 +126,7 @@
 <meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/服务器连接/IPMI带外管理教程.md/main/mceclip2.png">
 <meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/服务器连接/IPMI带外管理教程.md/main/Configuration-SSL-Certification-Menu.png">
 <meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/服务器连接/IPMI带外管理教程.md/main/image-20201119231400452.png">
-<meta property="og:updated_time" content="2020-11-20T07:08:02.675Z">
+<meta property="og:updated_time" content="2020-11-25T09:13:53.128Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IPMI带外管理教程">
 <meta name="twitter:description" content="参考：Ipmitool工具的使用方式 ipmi带外管理 IPMI介绍需求有的时候，ssh无法连接到服务器，如  死机，需要重启 服务器的临时路由表配错，造成ssh无法访问服务器，需要重启  类似情况，为了能不亲自去机房就管理服务器，需要使用远程控制装置，也即带外管理，IPMI即是其中一种。 带外管理 经过服务器所在的工作网络 来连接服务器（如通过ssh），此通道名曰数据通道。由数据通道理服务器，称">
@@ -587,7 +587,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-11-20 15:08:02 15:08:02" itemprop="dateModified" datetime="2020-11-20T15:08:02+08:00">2020-11-20 15:08:02</time>
+                <time title="修改时间：2020-11-25 17:13:53 17:13:53" itemprop="dateModified" datetime="2020-11-25T17:13:53+08:00">2020-11-25 17:13:53</time>
               
             
           </span>
@@ -1028,7 +1028,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool mc watchdog get</span><br></pre></td></tr></table></figure>
 
 <p>返回</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Watchdog Timer Use:     SMS/OS (0x44)</span><br><span class="line">Watchdog Timer Is:      Started/Running   # 需要是Started/Running</span><br><span class="line">Watchdog Timer Actions: Hard Reset (0x01) # 需要是Hard Reset </span><br><span class="line">Pre-timeout interval:   0 seconds</span><br><span class="line">Timer Expiration Flags: 0x00</span><br><span class="line">Initial Countdown:      300 sec</span><br><span class="line">Present Countdown:      292 sec  # 多执行几次 这个数不小于 300 - 10 （喂狗间隔）</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Watchdog Timer Use:     SMS/OS (0x44)</span><br><span class="line">Watchdog Timer Is:      Started/Running   # 需要是Started/Running</span><br><span class="line">Watchdog Timer Actions: Hard Reset (0x01) # 需要是Hard Reset </span><br><span class="line">Pre-timeout interval:   0 seconds</span><br><span class="line">Timer Expiration Flags: 0x10</span><br><span class="line">Initial Countdown:      300 sec</span><br><span class="line">Present Countdown:      292 sec  # 多执行几次 这个数不小于 300 - 10 （喂狗间隔）</span><br></pre></td></tr></table></figure>
 
 
 </li>
@@ -1096,14 +1096,14 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool mc watchdog reset</span><br></pre></td></tr></table></figure>
 
-<h3 id="看门狗行为设置"><a href="#看门狗行为设置" class="headerlink" title="看门狗行为设置"></a>看门狗行为设置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool raw  0x06 0x24 0x04 0x&lt;XX&gt; 0x00 0x00 0x&lt;YY&gt; 0x&lt;ZZ&gt;</span><br><span class="line"><span class="comment"># sudo ipmitool raw  | 0x06 0x24 | 0x04 0x&lt;XX&gt; 0x00 0x00 0x&lt;YY&gt; 0x&lt;ZZ&gt;</span></span><br><span class="line"><span class="comment">#                    |所设是看门狗 | 设置参数</span></span><br></pre></td></tr></table></figure>
+<h3 id="看门狗行为设置"><a href="#看门狗行为设置" class="headerlink" title="看门狗行为设置"></a>看门狗行为设置</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool raw      0x06 0x24   0x04 0x&lt;XX&gt; 0x00 0x10 0x&lt;YY&gt; 0x&lt;ZZ&gt;</span><br><span class="line"><span class="comment"># sudo ipmitool raw  | 0x06 0x24 | 0x04 0x&lt;XX&gt; 0x00 0x10 0x&lt;YY&gt; 0x&lt;ZZ&gt;</span></span><br><span class="line"><span class="comment">#                    |所设是看门狗 | 设置参数</span></span><br></pre></td></tr></table></figure>
 
 <p><code>0x06 0x24</code>：所设置是看门狗</p>
 <ul>
 <li>第一段 netfn： <code>0x06</code> = “App Application Requests”</li>
 <li>第二段 cmd：<code>0x24</code> = “Set Watchdog Timer”</li>
 </ul>
-<p><code>0x04 0x&lt;XX&gt; 0x00 0x00 0x&lt;YY&gt; 0x&lt;ZZ&gt;</code> ：看门狗的设置参数，<a href="https://sourceforge.net/p/ipmitool/mailman/ipmitool-devel/thread/4380D254.90908@eurus.dti.ne.jp/" target="_blank" rel="noopener">详见</a>。以下只讲解action和实践，<a href="https://advantech-ncg.zendesk.com/hc/en-us/articles/360028285872-How-to-use-ipmitool-command-to-set-BMC-watchdog-timer-" target="_blank" rel="noopener">来源</a> ： </p>
+<p><code>0x04 0x&lt;XX&gt; 0x00 0x10 0x&lt;YY&gt; 0x&lt;ZZ&gt;</code> ：看门狗的设置参数，<a href="https://sourceforge.net/p/ipmitool/mailman/ipmitool-devel/thread/4380D254.90908@eurus.dti.ne.jp/" target="_blank" rel="noopener">详见</a>。以下只讲解action和实践，<a href="https://advantech-ncg.zendesk.com/hc/en-us/articles/360028285872-How-to-use-ipmitool-command-to-set-BMC-watchdog-timer-" target="_blank" rel="noopener">来源</a> ： </p>
 <ul>
 <li>action：<code>0x&lt;XX&gt;</code></li>
 </ul>
