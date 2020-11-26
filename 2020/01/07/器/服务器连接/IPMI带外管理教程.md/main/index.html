@@ -126,7 +126,7 @@
 <meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/服务器连接/IPMI带外管理教程.md/main/mceclip2.png">
 <meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/服务器连接/IPMI带外管理教程.md/main/Configuration-SSL-Certification-Menu.png">
 <meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/服务器连接/IPMI带外管理教程.md/main/image-20201119231400452.png">
-<meta property="og:updated_time" content="2020-11-25T09:13:53.128Z">
+<meta property="og:updated_time" content="2020-11-26T06:36:40.697Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="IPMI带外管理教程">
 <meta name="twitter:description" content="参考：Ipmitool工具的使用方式 ipmi带外管理 IPMI介绍需求有的时候，ssh无法连接到服务器，如  死机，需要重启 服务器的临时路由表配错，造成ssh无法访问服务器，需要重启  类似情况，为了能不亲自去机房就管理服务器，需要使用远程控制装置，也即带外管理，IPMI即是其中一种。 带外管理 经过服务器所在的工作网络 来连接服务器（如通过ssh），此通道名曰数据通道。由数据通道理服务器，称">
@@ -587,7 +587,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-11-25 17:13:53 17:13:53" itemprop="dateModified" datetime="2020-11-25T17:13:53+08:00">2020-11-25 17:13:53</time>
+                <time title="修改时间：2020-11-26 14:36:40 14:36:40" itemprop="dateModified" datetime="2020-11-26T14:36:40+08:00">2020-11-26 14:36:40</time>
               
             
           </span>
@@ -801,7 +801,7 @@
 </li>
 </ul>
 <ul>
-<li><p>交互地修改密码</p>
+<li><p>交互地修改密码: 对所有通道的第2号用户重设密码</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ipmitool user <span class="built_in">set</span> password 2</span><br></pre></td></tr></table></figure>
 
 <p>然后输入两边密码 <code>junipmi</code></p>
