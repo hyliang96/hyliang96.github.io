@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://hyliang96.github.io/2020/08/12/%E5%99%A8/mac/mac_%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85.md/main/</loc>
-    <lastmod>2020-12-16</lastmod>
+    <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/shell/bash%E5%8F%8Azsh%E8%AF%AD%E6%B3%95.md/main/</loc>
+    <lastmod>2021-01-02</lastmod>
+  </url>  <url>
+    <loc>https://hyliang96.github.io/2021/01/02/%E5%99%A8/mac/%E6%B3%A8%E9%94%80icloud%E5%90%8E%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1.md/main/</loc>
+    <lastmod>2021-01-01</lastmod>
+  </url>  <url>
+    <loc>https://hyliang96.github.io/2021/01/02/%E5%99%A8/mac/mac_%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85.md/main/</loc>
+    <lastmod>2021-01-01</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/shell/zsh%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.md/main/</loc>
-    <lastmod>2020-12-14</lastmod>
+    <lastmod>2020-12-18</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2020/12/11/%E5%99%A8/%E8%BE%93%E5%85%A5%E6%B3%95/%E5%B0%8F%E9%B9%A4%E9%9F%B3%E5%BD%A2%E7%A0%81.md/main/</loc>
-    <lastmod>2020-12-11</lastmod>
-  </url>  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/shell/bash%E5%8F%8Azsh%E8%AF%AD%E6%B3%95.md/main/</loc>
-    <lastmod>2020-12-10</lastmod>
+    <lastmod>2020-12-17</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vim%E9%85%8D%E7%BD%AE%E6%97%A5%E5%BF%97.md/main/</loc>
     <lastmod>2020-11-30</lastmod>
@@ -55,7 +58,7 @@
     <loc>https://hyliang96.github.io/2020/01/07/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E5%BC%80%E6%9C%BA%E7%95%8C%E9%9D%A2.md/main/</loc>
     <lastmod>2020-10-09</lastmod>
   </url>  <url>
-    <loc>https://hyliang96.github.io/2020/10/02/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/tensorboard%20PermissionError%2013.md/main/</loc>
+    <loc>https://hyliang96.github.io/2020/10/02/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/tensorboard-PermissionError-13.md/main/</loc>
     <lastmod>2020-10-02</lastmod>
   </url>  <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/python/anaconda%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</loc>

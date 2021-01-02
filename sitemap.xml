@@ -2,30 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://hyliang96.github.io/2020/08/12/%E5%99%A8/mac/mac_%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85.md/main/</loc>
+    <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/shell/bash%E5%8F%8Azsh%E8%AF%AD%E6%B3%95.md/main/</loc>
     
-    <lastmod>2020-12-16T13:40:26.568Z</lastmod>
+    <lastmod>2021-01-02T06:29:37.574Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hyliang96.github.io/2021/01/02/%E5%99%A8/mac/%E6%B3%A8%E9%94%80icloud%E5%90%8E%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1.md/main/</loc>
+    
+    <lastmod>2021-01-01T17:00:05.837Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://hyliang96.github.io/2021/01/02/%E5%99%A8/mac/mac_%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85.md/main/</loc>
+    
+    <lastmod>2021-01-01T17:00:05.732Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/shell/zsh%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.md/main/</loc>
     
-    <lastmod>2020-12-14T15:45:13.042Z</lastmod>
+    <lastmod>2020-12-18T09:37:20.610Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://hyliang96.github.io/2020/12/11/%E5%99%A8/%E8%BE%93%E5%85%A5%E6%B3%95/%E5%B0%8F%E9%B9%A4%E9%9F%B3%E5%BD%A2%E7%A0%81.md/main/</loc>
     
-    <lastmod>2020-12-11T10:37:11.589Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://hyliang96.github.io/2019/05/25/%E5%99%A8/shell/bash%E5%8F%8Azsh%E8%AF%AD%E6%B3%95.md/main/</loc>
-    
-    <lastmod>2020-12-10T13:01:32.029Z</lastmod>
+    <lastmod>2020-12-17T21:31:23.595Z</lastmod>
     
   </url>
   
@@ -128,7 +135,7 @@
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/2020/10/02/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/tensorboard%20PermissionError%2013.md/main/</loc>
+    <loc>https://hyliang96.github.io/2020/10/02/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/tensorboard-PermissionError-13.md/main/</loc>
     
     <lastmod>2020-10-02T09:07:17.969Z</lastmod>
     
