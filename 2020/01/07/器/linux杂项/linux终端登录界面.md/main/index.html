@@ -113,7 +113,7 @@
 <meta property="og:description" content="自定制终端登录界面用sudo创建可执行文件/etc/update-motd.d/&amp;lt;执行序号&amp;gt;-文件名（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如 ![ScreenShot 2019-12-04 17.59.39](main/ScreenShot 2019-12-04 17.59.39.png) 安装方法安装依">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/linux杂项/linux终端登录界面.md/main/ScreenShot%202019-12-04%2017.59.39.png">
-<meta property="og:updated_time" content="2020-01-07T15:55:26.052Z">
+<meta property="og:updated_time" content="2021-01-03T09:11:11.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux终端登录界面">
 <meta name="twitter:description" content="自定制终端登录界面用sudo创建可执行文件/etc/update-motd.d/&amp;lt;执行序号&amp;gt;-文件名（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如 ![ScreenShot 2019-12-04 17.59.39](main/ScreenShot 2019-12-04 17.59.39.png) 安装方法安装依">
@@ -574,7 +574,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-07 23:55:26 23:55:26" itemprop="dateModified" datetime="2020-01-07T23:55:26+08:00">2020-01-07 23:55:26</time>
+                <time title="修改时间：2021-01-03 17:11:11 17:11:11" itemprop="dateModified" datetime="2021-01-03T17:11:11+08:00">2021-01-03 17:11:11</time>
               
             
           </span>
@@ -699,7 +699,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">/usr/bin/figlet <span class="string">"<span class="variable">$(hostname)</span>"</span> | /usr/games/lolcat -f</span><br></pre></td></tr></table></figure>
 
 <h3 id="配置开机输出-磁盘使用"><a href="#配置开机输出-磁盘使用" class="headerlink" title="配置开机输出-磁盘使用"></a>配置开机输出-磁盘使用</h3><p>预期效果</p>
-<p>![ScreenShot 2019-12-04 17.59.39的副本 2](main/ScreenShot 2019-12-04 17.59.39的副本 2.png)</p>
+<p>![ScreenShot 2019-12-04 17.59.39的副本 2](main/ScreenShot 2019-12-04 17.59.39的副本-2.png)</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tmp=<span class="string">'/etc/update-motd.d/35-diskspace'</span></span><br><span class="line">sudo touch <span class="variable">$tmp</span></span><br><span class="line">sudo chmod a+x <span class="variable">$tmp</span></span><br><span class="line">sudo vim <span class="variable">$tmp</span></span><br></pre></td></tr></table></figure>
 
 <p>vim中写入</p>

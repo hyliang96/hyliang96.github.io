@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="丹炉志">
 <meta property="og:description" content="执行命令或文件以下对zsh与bash同时成立 参考 下述文件为shell语言的脚本，常见为.sh文件或.bash_xxxx类文件 在当前shell执行 使用当前shell的变量/函数/当前路径, , 不论是否export 创、变、删的 变量/函数/当前路,  不论是否export,  都会保存在当前shell里面  source 文件（等价于 . 文件）  文件不必有可执行权限 命令 , { 命令">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-01-02T06:29:37.574Z">
+<meta property="og:updated_time" content="2021-01-03T07:05:27.285Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bash及zsh语法">
 <meta name="twitter:description" content="执行命令或文件以下对zsh与bash同时成立 参考 下述文件为shell语言的脚本，常见为.sh文件或.bash_xxxx类文件 在当前shell执行 使用当前shell的变量/函数/当前路径, , 不论是否export 创、变、删的 变量/函数/当前路,  不论是否export,  都会保存在当前shell里面  source 文件（等价于 . 文件）  文件不必有可执行权限 命令 , { 命令">
@@ -572,7 +572,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2021-01-02 14:29:37 14:29:37" itemprop="dateModified" datetime="2021-01-02T14:29:37+08:00">2021-01-02 14:29:37</time>
+                <time title="修改时间：2021-01-03 15:05:27 15:05:27" itemprop="dateModified" datetime="2021-01-03T15:05:27+08:00">2021-01-03 15:05:27</time>
               
             
           </span>
@@ -1292,7 +1292,7 @@
 <ul>
 <li>不保留结尾空白字符和开头空白字符</li>
 </ul>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> -r -d <span class="string">''</span> var &lt;&lt; EOF</span><br><span class="line">  多行内容1</span><br><span class="line">  多行内容2 </span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">read</span> -r -d <span class="string">''</span> var &lt;&lt; EOF</span><br><span class="line">  多行内容1</span><br><span class="line">  多行内容2 </span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或将命令块的返回作为多行字符串返回给var</span></span><br><span class="line"><span class="built_in">read</span> -r -d <span class="string">''</span> var &lt; &lt;(命令块)</span><br></pre></td></tr></table></figure>
 
 
 </li>
