@@ -105,18 +105,21 @@
 
 
 
-  <meta name="description" content="自定制终端登录界面用sudo创建可执行文件/etc/update-motd.d/&amp;lt;执行序号&amp;gt;-文件名（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如 ![ScreenShot 2019-12-04 17.59.39](main/ScreenShot 2019-12-04 17.59.39.png) 安装方法安装依">
+  <meta name="description" content="自定制终端登录界面用sudo创建可执行文件/etc/update-motd.d/&amp;lt;执行序号&amp;gt;-文件名（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如  安装方法安装依赖 lolcat 让终端输出彩虹色  figlet 让终端创建字符图案   1sudo apt install lolcat figlet  配置开">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux终端登录界面">
 <meta property="og:url" content="https://hyliang96.github.io/2020/01/07/器/linux杂项/linux终端登录界面.md/main/index.html">
 <meta property="og:site_name" content="丹炉志">
-<meta property="og:description" content="自定制终端登录界面用sudo创建可执行文件/etc/update-motd.d/&amp;lt;执行序号&amp;gt;-文件名（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如 ![ScreenShot 2019-12-04 17.59.39](main/ScreenShot 2019-12-04 17.59.39.png) 安装方法安装依">
+<meta property="og:description" content="自定制终端登录界面用sudo创建可执行文件/etc/update-motd.d/&amp;lt;执行序号&amp;gt;-文件名（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如  安装方法安装依赖 lolcat 让终端输出彩虹色  figlet 让终端创建字符图案   1sudo apt install lolcat figlet  配置开">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/linux杂项/linux终端登录界面.md/main/ScreenShot%202019-12-04%2017.59.39.png">
-<meta property="og:updated_time" content="2021-01-03T09:11:11.370Z">
+<meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/linux杂项/linux终端登录界面.md/main/ScreenShot%202019-12-04%2017.59.39%E7%9A%84%E5%89%AF%E6%9C%AC.png">
+<meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/linux杂项/linux终端登录界面.md/main/ScreenShot%202019-12-04%2017.59.39%E7%9A%84%E5%89%AF%E6%9C%AC-2.png">
+<meta property="og:image" content="https://hyliang96.github.io/2020/01/07/器/linux杂项/linux终端登录界面.md/main/ScreenShot%202019-12-04%2017.59.39.png">
+<meta property="og:updated_time" content="2021-01-07T09:05:10.330Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux终端登录界面">
-<meta name="twitter:description" content="自定制终端登录界面用sudo创建可执行文件/etc/update-motd.d/&amp;lt;执行序号&amp;gt;-文件名（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如 ![ScreenShot 2019-12-04 17.59.39](main/ScreenShot 2019-12-04 17.59.39.png) 安装方法安装依">
+<meta name="twitter:description" content="自定制终端登录界面用sudo创建可执行文件/etc/update-motd.d/&amp;lt;执行序号&amp;gt;-文件名（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如  安装方法安装依赖 lolcat 让终端输出彩虹色  figlet 让终端创建字符图案   1sudo apt install lolcat figlet  配置开">
 <meta name="twitter:image" content="https://hyliang96.github.io/2020/01/07/器/linux杂项/linux终端登录界面.md/main/ScreenShot%202019-12-04%2017.59.39.png">
 
 
@@ -574,7 +577,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2021-01-03 17:11:11 17:11:11" itemprop="dateModified" datetime="2021-01-03T17:11:11+08:00">2021-01-03 17:11:11</time>
+                <time title="修改时间：2021-01-07 17:05:10 17:05:10" itemprop="dateModified" datetime="2021-01-07T17:05:10+08:00">2021-01-07 17:05:10</time>
               
             
           </span>
@@ -647,7 +650,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">2k</span>
+                <span title="本文字数">1.8k</span>
               
 
               
@@ -682,7 +685,7 @@
 
       
         <h2 id="自定制终端登录界面"><a href="#自定制终端登录界面" class="headerlink" title="自定制终端登录界面"></a>自定制终端登录界面</h2><p>用sudo创建可执行文件<code>/etc/update-motd.d/&lt;执行序号&gt;-文件名</code>（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如</p>
-<p>![ScreenShot 2019-12-04 17.59.39](main/ScreenShot 2019-12-04 17.59.39.png)</p>
+<p><img src="/2020/01/07/器/linux杂项/linux终端登录界面.md/main/ScreenShot%202019-12-04%2017.59.39.png" alt="ScreenShot 2019-12-04 17.59.39"></p>
 <h2 id="安装方法"><a href="#安装方法" class="headerlink" title="安装方法"></a>安装方法</h2><h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><ul>
 <li><p><code>lolcat</code> 让终端输出彩虹色</p>
 </li>
@@ -692,14 +695,14 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install lolcat figlet</span><br></pre></td></tr></table></figure>
 
 <h3 id="配置开机输出-hostname"><a href="#配置开机输出-hostname" class="headerlink" title="配置开机输出-hostname"></a>配置开机输出-hostname</h3><p>预期效果</p>
-<p>![ScreenShot 2019-12-04 17.59.39的副本](main/ScreenShot 2019-12-04 17.59.39的副本.png)</p>
+<p><img src="/2020/01/07/器/linux杂项/linux终端登录界面.md/main/ScreenShot%202019-12-04%2017.59.39%E7%9A%84%E5%89%AF%E6%9C%AC.png" alt="ScreenShot 2019-12-04 17.59.39的副本"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tmp=<span class="string">'/etc/update-motd.d/10-hostname-color'</span></span><br><span class="line">sudo touch <span class="variable">$tmp</span></span><br><span class="line">sudo chmod a+x <span class="variable">$tmp</span></span><br><span class="line">sudo vim <span class="variable">$tmp</span></span><br></pre></td></tr></table></figure>
 
 <p>vim中写入</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line">/usr/bin/figlet <span class="string">"<span class="variable">$(hostname)</span>"</span> | /usr/games/lolcat -f</span><br></pre></td></tr></table></figure>
 
 <h3 id="配置开机输出-磁盘使用"><a href="#配置开机输出-磁盘使用" class="headerlink" title="配置开机输出-磁盘使用"></a>配置开机输出-磁盘使用</h3><p>预期效果</p>
-<p>![ScreenShot 2019-12-04 17.59.39的副本 2](main/ScreenShot 2019-12-04 17.59.39的副本-2.png)</p>
+<p><img src="/2020/01/07/器/linux杂项/linux终端登录界面.md/main/ScreenShot%202019-12-04%2017.59.39%E7%9A%84%E5%89%AF%E6%9C%AC-2.png" alt="ScreenShot 2019-12-04 17.59.39的副本 2"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tmp=<span class="string">'/etc/update-motd.d/35-diskspace'</span></span><br><span class="line">sudo touch <span class="variable">$tmp</span></span><br><span class="line">sudo chmod a+x <span class="variable">$tmp</span></span><br><span class="line">sudo vim <span class="variable">$tmp</span></span><br></pre></td></tr></table></figure>
 
 <p>vim中写入</p>
