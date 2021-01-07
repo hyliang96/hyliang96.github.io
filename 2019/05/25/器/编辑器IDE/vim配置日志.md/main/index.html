@@ -112,7 +112,7 @@
 <meta property="og:site_name" content="丹炉志">
 <meta property="og:description" content="其他vim的配置项目vim化做sublimehttps://github.com/fatih/subvim https://github.com/grigio/vim-sublime 字体vim-plugvim-plug是增强版的vundle，新支持：并行、动态加载插件，节约内存 教程：https://vim.ink/vim-plug.html https://github.com/junegun">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-11-30T12:37:44.179Z">
+<meta property="og:updated_time" content="2021-01-07T12:43:08.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="vim配置日志">
 <meta name="twitter:description" content="其他vim的配置项目vim化做sublimehttps://github.com/fatih/subvim https://github.com/grigio/vim-sublime 字体vim-plugvim-plug是增强版的vundle，新支持：并行、动态加载插件，节约内存 教程：https://vim.ink/vim-plug.html https://github.com/junegun">
@@ -572,7 +572,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-11-30 20:37:44 20:37:44" itemprop="dateModified" datetime="2020-11-30T20:37:44+08:00">2020-11-30 20:37:44</time>
+                <time title="修改时间：2021-01-07 20:43:08 20:43:08" itemprop="dateModified" datetime="2021-01-07T20:43:08+08:00">2021-01-07 20:43:08</time>
               
             
           </span>
@@ -951,10 +951,27 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">neovim &lt;<span class="built_in">test</span>-file.sh&gt;</span><br></pre></td></tr></table></figure>
 
 <p>输入一些内容，看看是否能不按tab就自动补全，若能则ycm编译成功。我通过上法成功了。</p>
-<h3 id="升级vim"><a href="#升级vim" class="headerlink" title="升级vim"></a>升级vim</h3><h4 id="vim版本太老会出现的问题"><a href="#vim版本太老会出现的问题" class="headerlink" title="vim版本太老会出现的问题"></a>vim版本太老会出现的问题</h4><h5 id="开启vim时报错"><a href="#开启vim时报错" class="headerlink" title="开启vim时报错"></a>开启<code>vim</code>时报错</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">YouCompleteMe unavailable: requires Vim compiled with Python (2.7.1+ or 3.4+) support.</span><br><span class="line">UltiSnips requires py &gt;= 2.7 or py3</span><br></pre></td></tr></table></figure>
+<h3 id="升级vim"><a href="#升级vim" class="headerlink" title="升级vim"></a>升级vim</h3><h4 id="vim版本太老会出现的问题"><a href="#vim版本太老会出现的问题" class="headerlink" title="vim版本太老会出现的问题"></a>vim版本太老会出现的问题</h4><h5 id="开启vim时报错"><a href="#开启vim时报错" class="headerlink" title="开启vim时报错"></a>开启<code>vim</code>时报错</h5><ul>
+<li>Python (2.7.1+ or 3.4+)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">YouCompleteMe unavailable: requires Vim compiled with Python (2.7.1+ or 3.4+) support.</span><br><span class="line">UltiSnips requires py &gt;= 2.7 or py3</span><br></pre></td></tr></table></figure>
 
-<p>是因为当前用的vim版本不支持python2与python3。判断方法：执行<code>vim --version</code> ，显示有<code>-python</code> 和 <code>-python3</code>（减号表示不支持，加号表示支持）。</p>
+<p>是因为当前用的(n)vim版本不支持python2与python3。</p>
+<p>vim的判断方法：执行<code>vim --version</code> ，显示有<code>-python</code> 和 <code>-python3</code>（减号表示不支持，加号表示支持）, 则皆不支持。</p>
+<ul>
+<li>Python (3.6.0+)</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">YouCompleteMe unavailable: requires Vim compiled with Python (3.6.0+) support.</span><br></pre></td></tr></table></figure>
+
+<p>是因为当前用的(n)vim版本不支持python3 (&gt;=3.6.0)。</p>
+<p>vim的判断方法：执行<code>vim --version</code> ，显示有 <code>-python3</code>（减号表示不支持，加号表示支持）, 则不支持。</p>
+<ul>
+<li>对策</li>
+</ul>
 <p>需要安装新版本的vim来解决此问题。</p>
+<p>mac上的nvim: </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew upgrade nvim</span><br></pre></td></tr></table></figure>
+
 <h5 id="utf8不支持"><a href="#utf8不支持" class="headerlink" title="utf8不支持"></a>utf8不支持</h5><p>若vim没有python2,python3,clipboard, 有conceal，并不会出现utf8不支持，应当是其他原因造成的</p>
 <h4 id="conda安装vim"><a href="#conda安装vim" class="headerlink" title="conda安装vim"></a>conda安装vim</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">conda install -c conda-forge vim</span><br></pre></td></tr></table></figure>
 
@@ -1407,8 +1424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/25/器/编辑器IDE/vscode安装配置.md/main/" rel="next" title="vscode安装配置">
-                <i class="fa fa-chevron-left"></i> vscode安装配置
+              <a href="/2017/10/25/器/炼丹框架/TensorboardX：在pytorch上用Tensorboard.md/main/" rel="next" title="TensorboardX：在pytorch上用Tensorboard">
+                <i class="fa fa-chevron-left"></i> TensorboardX：在pytorch上用Tensorboard
               </a>
             
           </div>
@@ -1417,8 +1434,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/05/25/器/编辑器IDE/vim配置.md/main/" rel="prev" title="vim配置">
-                vim配置 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/05/25/器/编辑器IDE/vscode安装配置.md/main/" rel="prev" title="vscode安装配置">
+                vscode安装配置 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
