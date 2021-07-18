@@ -123,7 +123,7 @@
 <meta property="og:image" content="https://hyliang96.github.io/2020/11/07/器/mac/mac外接显示屏开启HiDPI.md/main/image-20201110061457868.png">
 <meta property="og:image" content="https://hyliang96.github.io/2020/11/07/器/mac/mac外接显示屏开启HiDPI.md/main/image-20201110061347850.png">
 <meta property="og:image" content="https://hyliang96.github.io/2020/11/07/器/mac/mac外接显示屏开启HiDPI.md/main/image-20201110063029206.png">
-<meta property="og:updated_time" content="2021-01-21T11:16:32.000Z">
+<meta property="og:updated_time" content="2021-06-06T10:55:48.960Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac外接显示屏开启HiDPI">
 <meta name="twitter:description" content="分辨率与HiDPI电脑显示器分辨率16:9 显示器  1080p: 1920x1080 = 3 x 40 x (16:9)  2k: 2560x1440  = 4 x 40 x (16:9) 4k: 3840×2160 = 6 x 40 x (16:9) = 1080p 长宽均2倍 5k: 5120X2880 = 8 x 40 x (16:9) = 2k 长宽均2倍  HiDPI的原理WxH Hi">
@@ -584,7 +584,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2021-01-21 19:16:32 19:16:32" itemprop="dateModified" datetime="2021-01-21T19:16:32+08:00">2021-01-21 19:16:32</time>
+                <time title="修改时间：2021-06-06 18:55:48 18:55:48" itemprop="dateModified" datetime="2021-06-06T18:55:48+08:00">2021-06-06 18:55:48</time>
               
             
           </span>
@@ -657,7 +657,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">5.3k</span>
+                <span title="本文字数">8.2k</span>
               
 
               
@@ -671,7 +671,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">5 分钟</span>
+                <span title="阅读时长">7 分钟</span>
               
             </div>
           
@@ -829,6 +829,20 @@
 <td>4021</td>
 </tr>
 </tbody></table>
+<h1 id="通用技巧"><a href="#通用技巧" class="headerlink" title="通用技巧"></a>通用技巧</h1><h2 id="SIP"><a href="#SIP" class="headerlink" title="SIP"></a>SIP</h2><h3 id="判断是否开启了SIP"><a href="#判断是否开启了SIP" class="headerlink" title="判断是否开启了SIP"></a>判断是否开启了SIP</h3><p>终端执行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">csrutil status</span><br></pre></td></tr></table></figure>
+
+<p>返回<code>System Integrity Protection status: enabled.</code> 则为开启了</p>
+<p>返回<code>System Integrity Protection status: disabled</code> 则为关闭了</p>
+<h3 id="关闭SIP"><a href="#关闭SIP" class="headerlink" title="关闭SIP"></a>关闭SIP</h3><p>重启电脑，并在开机声响起后按住command+R, 直到出现苹果logo, 进入recovery mode</p>
+<p>开Terminal，在终端输入关闭SIP的命令行语句：<code>csrutil disable</code></p>
+<h3 id="开启SIP"><a href="#开启SIP" class="headerlink" title="开启SIP"></a>开启SIP</h3><p>重启电脑，并在开机声响起后按住command+R, 直到出现苹果logo, 进入recovery mode</p>
+<p>开Terminal，在终端输入关闭SIP的命令行语句：<code>csrutil enable</code></p>
+<h2 id="系统的HiDPI选项"><a href="#系统的HiDPI选项" class="headerlink" title="系统的HiDPI选项"></a>系统的HiDPI选项</h2><h3 id="开启系统的HiDPI选项"><a href="#开启系统的HiDPI选项" class="headerlink" title="开启系统的HiDPI选项"></a>开启系统的HiDPI选项</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo defaults write /Library/Preferences/com.apple.windowserver.plist DisplayResolutionEnabled -bool <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="查看系统的HiDPI选项"><a href="#查看系统的HiDPI选项" class="headerlink" title="查看系统的HiDPI选项"></a>查看系统的HiDPI选项</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults <span class="built_in">read</span> /Library/Preferences/com.apple.windowserver.plist DisplayResolutionEnabled</span><br></pre></td></tr></table></figure>
+
+<p>返回的是 <code>1</code> 或 <code>true</code>, 则开启了系统的HiDPI选项; 若返回<code>0</code>或<code>false</code>则为开启.</p>
 <h1 id="mac外接2k显示器开启HiDPI"><a href="#mac外接2k显示器开启HiDPI" class="headerlink" title="mac外接2k显示器开启HiDPI"></a>mac外接2k显示器开启HiDPI</h1><p>mac内建想显示器会开HiDPI</p>
 <p>mac 外接 4k 显示器, 会自动开HiDPI, 支持以下几种HiDPI, 以下观看距离是我自己摸索的:</p>
 <ul>
@@ -841,7 +855,7 @@
 <img src="/2020/11/07/器/mac/mac外接显示屏开启HiDPI.md/main/image-20201107235631208.png" alt="image-20201107235631208" style="zoom:50%;">
 
 <p>mac 外接 2k 显示器, 会若使用2560x1440分辨率, 字体过小; 若使用1920x1080分辨率, 则字体模糊, 这是因为, mac 没有给2k显示器开HiDPI. 需要自己开HiDPI, 开方法如下. <a href="https://zhuanlan.zhihu.com/p/36913571" target="_blank" rel="noopener">参考</a>.</p>
-<h2 id="法一-一键脚本-RCM-推荐-免费-简洁"><a href="#法一-一键脚本-RCM-推荐-免费-简洁" class="headerlink" title="法一, 一键脚本+RCM (推荐, 免费, 简洁)"></a>法一, <a href="https://github.com/xzhih/one-key-hidpi/" target="_blank" rel="noopener">一键脚本</a>+RCM (推荐, 免费, 简洁)</h2><ul>
+<h2 id="法一-一键脚本-RDM-推荐-免费-简洁"><a href="#法一-一键脚本-RDM-推荐-免费-简洁" class="headerlink" title="法一, 一键脚本+RDM (推荐, 免费, 简洁)"></a>法一, <a href="https://github.com/xzhih/one-key-hidpi/" target="_blank" rel="noopener">一键脚本</a>+RDM (推荐, 免费, 简洁)</h2><ul>
 <li>暂时关闭SIP</li>
 </ul>
 <p>重启电脑，并在开机声响起后按住command+R, 直到出现苹果logo, 进入recovery mode</p>
@@ -851,6 +865,10 @@
 </ul>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo defaults write /Library/Preferences/com.apple.windowserver.plist DisplayResolutionEnabled -bool <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 
+<p>若开启成功, 则</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults <span class="built_in">read</span> /Library/Preferences/com.apple.windowserver.plist DisplayResolutionEnabled</span><br></pre></td></tr></table></figure>
+
+<p>返回的是 <code>1</code> 或 <code>true</code></p>
 <ul>
 <li><p>运行如下命令, 选择显示器, 选择是否开HiDPI,</p>
 <p><img src="/2020/11/07/器/mac/mac外接显示屏开启HiDPI.md/main/run-zh.jpg" alt="运行"></p>
@@ -874,7 +892,8 @@
 <p>开Terminal，在终端输入关闭SIP的命令行语句：<code>csrutil enable</code></p>
 </li>
 </ul>
-<h2 id="法二-徒手配置显示器文件-RDM-不推荐-当法一三无效时-用此法总能生效"><a href="#法二-徒手配置显示器文件-RDM-不推荐-当法一三无效时-用此法总能生效" class="headerlink" title="法二, 徒手配置显示器文件+RDM (不推荐, 当法一三无效时, 用此法总能生效)"></a>法二, 徒手配置显示器文件+RDM (不推荐, 当法一三无效时, 用此法总能生效)</h2><ul>
+<h2 id="法二-徒手配置显示器文件-RDM-不推荐-当法一三无效时-用此法总能生效"><a href="#法二-徒手配置显示器文件-RDM-不推荐-当法一三无效时-用此法总能生效" class="headerlink" title="法二, 徒手配置显示器文件+RDM (不推荐, 当法一三无效时, 用此法总能生效)"></a>法二, 徒手配置显示器文件+RDM (不推荐, 当法一三无效时, 用此法总能生效)</h2><p><a href="https://wacky.one/blog/macos-hi-dpi/#copy-conf" target="_blank" rel="noopener">参考</a></p>
+<ul>
 <li>暂时关闭SIP</li>
 </ul>
 <p>重启电脑，并在开机声响起后按住command+R, 直到出现苹果logo, 进入recovery mode</p>
@@ -897,15 +916,20 @@
 <li><p>访问:<a href="https://comsysto.github.io/Display-Override-PropertyList-File-Parser-and-Generator-with-HiDPI-Support-For-Scaled-Resolutions/" target="_blank" rel="noopener">配置文件生成网站</a> 填入: DisplayProductName, DisplayProductID, DisplayVendorID, </p>
 </li>
 <li><p>添加你需要的分别率 <a href="https://www.jianshu.com/p/bcb0f04bfd96" target="_blank" rel="noopener">参考</a></p>
-<p>添加 2mx2n, 会开启mxn的HiDPI版, 和2mx2n 的普通版(即强行缩放版, 会模糊)</p>
+<p>添加 2mx2n (勾选HiDPI) 和 mxn (勾选HiDPI), 以开启mxn的HiDPI版</p>
+<p>原因:</p>
 <blockquote>
 <p>  因为这个是前者的2倍，只有添加这个，前者才能以HIDPI的形式被打开，原理应该是强制让系统运行在 2nx2m 的分辨率下再打开的 mxn 的HIDPI，通过全屏截图的分辨率来看猜想是正确的，所以对机器显卡性能有点要求</p>
 </blockquote>
 </li>
 <li><p>点击下载</p>
 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line">dpiFile=</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Vendor_ID_dec=$( printf &apos;%d&apos; $&#123;Vendor_ID&#125; )</span><br><span class="line">Product_ID_dec=$( printf &apos;%d&apos; $&#123;Product_ID&#125; )</span><br><span class="line"></span><br><span class="line">cat &lt;&lt;EOF &gt;&gt;$&#123;dpiFile&#125;</span><br><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span><br><span class="line">&lt;!-- Generated Using: https://wacky.one/blog/macos-hi-dpi/#copy-conf --&gt;</span><br><span class="line">&lt;!-- By wacky6 --&gt;</span><br><span class="line">&lt;plist version=&quot;1.0&quot;&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line">    &lt;key&gt;DisplayVendorID&lt;/key&gt;</span><br><span class="line">    &lt;integer&gt;$&#123;Vendor_ID_dec&#125;&lt;/integer&gt;</span><br><span class="line">    &lt;key&gt;DisplayProductID&lt;/key&gt;</span><br><span class="line">    &lt;integer&gt;$&#123;Product_ID_dec&#125;&lt;/integer&gt;</span><br><span class="line">    &lt;key&gt;scale-resolutions&lt;/key&gt;</span><br><span class="line">    &lt;array&gt;</span><br><span class="line">EOF</span><br><span class="line"></span><br><span class="line">for res in $@; do</span><br><span class="line">	# res=1920x1080</span><br><span class="line">	if [[ ! $&#123;res&#125; =~ ^[0-9]+x[0-9]+$ ]]; then</span><br><span class="line">		echo &quot;$&#123;res&#125; is not in proper format &lt;wedth&gt;x&lt;height&gt; like 1920x1080&quot;</span><br><span class="line">		continue</span><br><span class="line">	fi</span><br><span class="line">	width=$(echo $&#123;res&#125; | cut -d x -f 1)</span><br><span class="line">	height=$(echo $&#123;res&#125; | cut -d x -f 2)</span><br><span class="line">	</span><br><span class="line">	if [ ! $&#123;width&#125; -gt 0 ] 2&gt;/dev/null; then</span><br><span class="line">		echo &quot;parsed width &apos;$&#123;width&#125;&apos; is not a positive number&quot;</span><br><span class="line">		continue</span><br><span class="line">	fi</span><br><span class="line">	if [ ! $&#123;height&#125; -gt 0 ] 2&gt;/dev/null; then</span><br><span class="line">		echo &quot;parsed height &apos;$&#123;height&#125;&apos; is not a positive number&quot;</span><br><span class="line">		continue</span><br><span class="line">	fi</span><br><span class="line">	</span><br><span class="line">	basic=$(printf &apos;%08x %08x&apos; $(($&#123;width&#125; * 2)) $(($&#123;height&#125; * 2)) | xxd -r -p | base64)</span><br><span class="line">	hidpi=$(printf &apos;%08x %08x&apos; $(($&#123;width&#125; * 2)) $(($&#123;height&#125; * 2)) | xxd -r -p | base64)</span><br><span class="line">	cat &lt;&lt;EOF &gt;&gt;$&#123;dpiFile&#125;</span><br><span class="line">        &lt;data&gt;$&#123;basic:0:11&#125;AAAABACAAAA==&lt;/data&gt;    &lt;!-- $&#123;res&#125;, basic --&gt;</span><br><span class="line">        &lt;data&gt;$&#123;hidpi:0:11&#125;AAAABACAAAA==&lt;/data&gt;    &lt;!-- $&#123;res&#125;, hidpi --&gt;</span><br><span class="line">EOF</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">cat &lt;&lt;EOF &gt;&gt;$&#123;dpiFile&#125;</span><br><span class="line">    &lt;/array&gt;</span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;/plist&gt;</span><br><span class="line">EOF</span><br></pre></td></tr></table></figure>
+
+<ul>
 <li><p>安装配置文件</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mount -uw / <span class="comment"># 克服系统目录'/'是只读的问题</span></span><br><span class="line">sudo mkdir -p /System/Library/Displays/Contents/Resources/Overrides/DisplayVendorID-&lt;16进制-vendor-id&gt;</span><br><span class="line">sudo cp ~/Downloads/DisplayProductID-&lt;16进制-display-id&gt;.plist /System/Library/Displays/Contents/Resources/Overrides/DisplayVendorID-&lt;16进制-vendor-id&gt;/DisplayProductID-&lt;16进制-display-id&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sudo mount -uw / # 克服系统目录'/'是只读的问题</span></span><br><span class="line"><span class="comment"># DIR=/System/Library/Displays/Contents/Resources/Overrides</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># OS X 10.11及以上</span></span><br><span class="line">DIR=/Library/Displays/Contents/Resources/Overrides</span><br><span class="line"><span class="comment"># OS X 10.10及以下</span></span><br><span class="line"><span class="comment"># DIR=/Library/Displays/Overrides</span></span><br><span class="line"></span><br><span class="line">Vendor_ID=&lt;16进制-vendor-id&gt;</span><br><span class="line">Product_ID=&lt;16进制-product-id&gt;</span><br><span class="line"></span><br><span class="line">CONF_PATH=<span class="variable">$&#123;DIR&#125;</span>/DisplayVendorID-<span class="variable">$&#123;Vendor_ID&#125;</span>/DisplayProductID-<span class="variable">$&#123;Product_ID&#125;</span></span><br><span class="line">sudo mkdir -p $( dirname <span class="variable">$&#123;CONF_PATH&#125;</span> )</span><br><span class="line">sudo cp ~/Downloads/DisplayProductID-<span class="variable">$&#123;Product_ID&#125;</span>.plist <span class="variable">$&#123;CONF_PATH&#125;</span></span><br></pre></td></tr></table></figure>
 
 <p>注意要cp完的文件是没有<code>.plist</code>扩展名的</p>
 </li>
@@ -1215,7 +1239,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分辨率与HiDPI"><span class="nav-number">1.</span> <span class="nav-text">分辨率与HiDPI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#电脑显示器分辨率"><span class="nav-number">1.1.</span> <span class="nav-text">电脑显示器分辨率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HiDPI的原理"><span class="nav-number">1.2.</span> <span class="nav-text">HiDPI的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示器分辨率选择推荐"><span class="nav-number">1.3.</span> <span class="nav-text">显示器分辨率选择推荐</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mac外接2k显示器开启HiDPI"><span class="nav-number">2.</span> <span class="nav-text">mac外接2k显示器开启HiDPI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#法一-一键脚本-RCM-推荐-免费-简洁"><span class="nav-number">2.1.</span> <span class="nav-text">法一, 一键脚本+RCM (推荐, 免费, 简洁)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#法二-徒手配置显示器文件-RDM-不推荐-当法一三无效时-用此法总能生效"><span class="nav-number">2.2.</span> <span class="nav-text">法二, 徒手配置显示器文件+RDM (不推荐, 当法一三无效时, 用此法总能生效)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#法三-SwitchResX-也推荐-功能强大"><span class="nav-number">2.3.</span> <span class="nav-text">法三, *SwitchResX *(也推荐, 功能强大)</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分辨率与HiDPI"><span class="nav-number">1.</span> <span class="nav-text">分辨率与HiDPI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#电脑显示器分辨率"><span class="nav-number">1.1.</span> <span class="nav-text">电脑显示器分辨率</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HiDPI的原理"><span class="nav-number">1.2.</span> <span class="nav-text">HiDPI的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#显示器分辨率选择推荐"><span class="nav-number">1.3.</span> <span class="nav-text">显示器分辨率选择推荐</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#通用技巧"><span class="nav-number">2.</span> <span class="nav-text">通用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SIP"><span class="nav-number">2.1.</span> <span class="nav-text">SIP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#判断是否开启了SIP"><span class="nav-number">2.1.1.</span> <span class="nav-text">判断是否开启了SIP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关闭SIP"><span class="nav-number">2.1.2.</span> <span class="nav-text">关闭SIP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开启SIP"><span class="nav-number">2.1.3.</span> <span class="nav-text">开启SIP</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统的HiDPI选项"><span class="nav-number">2.2.</span> <span class="nav-text">系统的HiDPI选项</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#开启系统的HiDPI选项"><span class="nav-number">2.2.1.</span> <span class="nav-text">开启系统的HiDPI选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看系统的HiDPI选项"><span class="nav-number">2.2.2.</span> <span class="nav-text">查看系统的HiDPI选项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mac外接2k显示器开启HiDPI"><span class="nav-number">3.</span> <span class="nav-text">mac外接2k显示器开启HiDPI</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#法一-一键脚本-RDM-推荐-免费-简洁"><span class="nav-number">3.1.</span> <span class="nav-text">法一, 一键脚本+RDM (推荐, 免费, 简洁)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#法二-徒手配置显示器文件-RDM-不推荐-当法一三无效时-用此法总能生效"><span class="nav-number">3.2.</span> <span class="nav-text">法二, 徒手配置显示器文件+RDM (不推荐, 当法一三无效时, 用此法总能生效)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#法三-SwitchResX-也推荐-功能强大"><span class="nav-number">3.3.</span> <span class="nav-text">法三, *SwitchResX *(也推荐, 功能强大)</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1257,7 +1281,7 @@
     
       <span class="post-meta-item-text">站点总字数：</span>
     
-    <span title="站点总字数">344k</span>
+    <span title="站点总字数">347k</span>
   
 
   
@@ -1268,7 +1292,7 @@
     
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
     
-    <span title="站点阅读时长">5:13</span>
+    <span title="站点阅读时长">5:15</span>
   
 </div>
 
