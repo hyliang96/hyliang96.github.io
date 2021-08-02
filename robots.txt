@@ -16,5 +16,5 @@ Allow: /about/
 # Disallow: /live2dw/
 # Disallow: /vendors/
 
-Sitemap: http://blog.lianghy.ml/sitemap.xml
-Sitemap: http://blog.lianghy.ml/baidu_sitemap.xml
+Sitemap: https://blog.lianghy.ml/sitemap.xml
+Sitemap: https://blog.lianghy.ml/baidu_sitemap.xml
