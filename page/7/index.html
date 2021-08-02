@@ -314,12 +314,14 @@
           <h2 id="自动操作文件分类"><a class="header-anchor" href="#自动操作文件分类"></a>自动操作文件分类</h2>
 <p>使用 mac 自带的app <code>/Application/Automator.app</code> (自动操作), 可以创建自动工作流.</p>
 <p>用此app新建文件, 会创建到 <code>/Users/&lt;username&gt;/Library/Services/</code> 目录, 创建文件格式有好几种, 如下图所.</p>
+<p><img data-src="/%E5%99%A8/mac/%E8%87%AA%E5%8A%A8%E6%93%8D%E4%BD%9C.md/main/image-20201118181847738.png" alt="image-20201118181847738"></p>
+<p>以下简要介绍其中的一些文件格式及其用法:</p>
+<h3 id="工作流程"><a class="header-anchor" href="#工作流程"></a>工作流程</h3>
+<p>默认图标为 <img data-src="/%E5%99%A8/mac/%E8%87%AA%E5%8A%A8%E6%93%8D%E4%BD%9C.md/main/image-20201118190053854.png" alt="image-20201118190053854" style="zoom:33%;"></p>
+<p>在访达张扩展名为 .workflow, 用 Automator.app 上打开 显示的扩展名 也是  .workflow.</p>
+<p><img data-src="/%E5%99%A8/mac/%E8%87%AA%E5%8A%A8%E6%93%8D%E4%BD%9C.md/main/image-20201118201408081.png" alt="image-20201118201408081"></p>
+<p>无法绑定快捷键, 无法在右键菜单中出现出现</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/mac/%E8%87%AA%E5%8A%A8%E6%93%8D%E4%BD%9C.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -448,12 +450,24 @@
 <p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 一般能解决问题.</p>
 </li>
 </ul>
+<p>若还是跳转https, 则继续下述操作</p>
+<ul>
+<li>
+<p>⌘+Q 退出Safari</p>
+</li>
+<li>
+<p>运行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>重启操作系统</p>
+</li>
+<li>
+<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 几乎都能解决.</p>
+</li>
+</ul>
+
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/mac/%E7%A6%81%E6%AD%A2safar%E4%BB%8Ehttp%E8%B7%B3%E8%BD%AC%E5%88%B0https.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -571,12 +585,16 @@
           <h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
 <p>注销iCloud时, <strong>若误点”不保留”</strong> icloud所同步的文档, 则系统会将所同步的文档删除, 例如若之前<code>桌面</code>和<code>文稿</code>被iCloud同步, 注销iCloud后则桌面被完全清空.</p>
 <h2 id="解决方法"><a class="header-anchor" href="#解决方法"></a>解决方法</h2>
+<p>有以下三种解决方案</p>
+<h3 id="等待icloud自己下载"><a class="header-anchor" href="#等待icloud自己下载"></a>等待icloud自己下载</h3>
+<p>登录<a target="_blank" rel="noopener" href="https://www.icloud.com">网页版iCloud</a>, 回想一些你近期及远期使用过的文件, 检查icloud是否包含他们.</p>
+<p>若检查发现文件有所缺漏, 则说明是由于iCloud容量用尽, 故而只将<code>桌面</code>和<code>文稿</code>中的文件同步了一部分. 此时需要使用<a href="#%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0icloud%E5%BD%92%E6%A1%A3" title="推荐">使用本地icloud归档</a>去恢复.</p>
+<p>若检查发现文件齐全, 则可本地重新登录iCloud, 然后等iCloud从云上下载之前同步的文件. 需要网络条件好. 约要半小时.</p>
+<p>注意:</p>
+<ul>
+<li>不要从网页版iCloud上直接下载之前同步的文件, 因为网页版iCloud不支持下载文件夹, 只能一个个文件下载.</li>
+</ul>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/mac/%E6%B3%A8%E9%94%80icloud%E5%90%8E%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -694,12 +712,25 @@
           <h1 id="分辨率与HiDPI"><a class="header-anchor" href="#分辨率与HiDPI"></a>分辨率与HiDPI</h1>
 <h2 id="电脑显示器分辨率"><a class="header-anchor" href="#电脑显示器分辨率"></a>电脑显示器分辨率</h2>
 <p>16:9 显示器</p>
+<ul>
+<li>1080p: 1920x1080 = 3 x 40 x (16:9)</li>
+<li>2k: 2560x1440  = 4 x 40 x (16:9)</li>
+<li>4k: 3840×2160 = 6 x 40 x (16:9) = 1080p 长宽均2倍</li>
+<li>5k: 5120X2880 = 8 x 40 x (16:9) = 2k 长宽均2倍</li>
+</ul>
+<h2 id="HiDPI的原理"><a class="header-anchor" href="#HiDPI的原理"></a>HiDPI的原理</h2>
+<p>WxH HiDPI, 即将原本渲染到WxH屏的内容(图像/文字/图形), 现在直接渲染到2Wx2H分辨率, 再由实际屏(分辨率为W’xH’), 上/下采样到W’xH’来显示.</p>
+<p>两种实用的特殊情况:</p>
+<ul>
+<li>有下采样的: 若2W&gt;=W’&gt;W, 2H&gt;=H’&gt;H, 则在高分屏(W’xH’), 下采样显示两倍低分屏(2Wx2H)的内容, 内容大小与低分屏(WxH)等大, 但细节更多.</li>
+<li>无下采样的: 若2W=W’, 2H=H’, 则将原本渲染低分屏(WxH)到1x1个像素内容, 现在直接渲染到2x2个像素, 高分屏(W’xH’)可以直接显示两倍低分屏(2Wx2H), 无需下采样环节, 故而<strong>这比前述情况HiDPI更清晰的.</strong></li>
+</ul>
+<p>注意:</p>
+<ul>
+<li>如果不考虑点阵字体的渲染, 仅考虑矢量字体/图像/图形的渲染, 则不要求一定W和W’可约, H和H’可约, 或者H/H’=1/2, 任何 W’,W, H’,H的情形 (即便它们互质), 皆可在整个屏幕的范围内实现HiDPI. 即不是成倍缩放, 而是&quot;无极缩放&quot;.</li>
+<li>若W/W’!=H/H’, 可以通过屏幕上下/左右空出一些像素不使用, 来实现WxH HiDPI.</li>
+</ul>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/mac/mac%E5%A4%96%E6%8E%A5%E6%98%BE%E7%A4%BA%E5%B1%8F%E5%BC%80%E5%90%AFHiDPI.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -899,6 +930,9 @@
 </table>
 <p><img data-src="/%E5%99%A8/mac/mac%E4%B8%8A%E8%AF%BB%E5%8F%96ntfs.md/main/v2-cacc571eedb04c2fb116e64bb02733ac_720w.jpg" alt="img"></p>
 
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1014,12 +1048,14 @@
           <h1 id="系统级locate"><a class="header-anchor" href="#系统级locate"></a>系统级locate</h1>
 <p>以下用于搜整个系统的文件</p>
 <h2 id="首次使用locate"><a class="header-anchor" href="#首次使用locate"></a>首次使用locate</h2>
+<p>初次使用locate前, 需要执行以下命令, 开启一个开机自启进程, 用以创建 <code>locate</code> 的数据库</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> launchctl load -w /System/Library/LaunchDaemons/com.apple.locate.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>一段时间后, 命令执行完, <code>locate</code>数据库初次创建好, 此后可以 <code>locate (部分)文件名</code> 查找文件的路径</p>
+<p>此自启进程会每周重建一次数据库, 如果你需要修改更新的频率, 详见下文 <a href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0">数据库自动更新</a></p>
+<h2 id="手动-建立-更新数据库"><a class="header-anchor" href="#手动-建立-更新数据库"></a>手动 建立/更新数据库</h2>
+<p>LInux下: 运行命令 <code>sudo updatedb</code></p>
+<p>Mac下: 运行命令 <code>sudo /usr/libexec/locate.updatedb</code>,</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/mac/Mac%E4%B8%8A%E4%BD%BF%E7%94%A8locate.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1137,12 +1173,24 @@
           <h2 id="第三方的软件-xxx-app-已损坏-无法打开"><a class="header-anchor" href="#第三方的软件-xxx-app-已损坏-无法打开"></a>第三方的软件  <code>xxx.app 已损坏, 无法打开</code></h2>
 <p><code>xxx.app</code> 安装后, 初次打开时显示 <code>xxx.app 已损坏, 无法打开</code>， 原因是 Mac在安装第三方的软件的时候会对第三方的身份做check. 若显示  <code>xxx.app 已损坏, 无法打开</code>,</p>
 <h3 id="开全局的允许安装任意来源的app"><a class="header-anchor" href="#开全局的允许安装任意来源的app"></a>开全局的允许安装任意来源的app</h3>
+<p>只需要在<code>系统偏好设置 </code> -&gt; <code>安全与隐私</code> -&gt; <code>通用设置</code> 中</p>
+<ul>
+<li>
+<p>若<code>任何来源</code> 选项被苹果隐藏起来了，如下图, 则运行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> spctl --master-disable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<p><img data-src="/%E5%99%A8/mac/mac_%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85.md/main/v2-6d5737e6a0f07394b8c07a48980f2e0a_720w.jpg" alt="img"></p>
+<ul>
+<li>点击左下角的锁图标, 输入用户密码</li>
+<li>然后选择选择 <code>任何来源</code> 然后选择 <code>仍要运行</code> 即可运行第三方的软件</li>
+</ul>
+<p><img data-src="/%E5%99%A8/mac/mac_%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85.md/main/v2-64a193723017abb571e65cd63c694c42_720w.jpg" alt="img"></p>
+<ul>
+<li>若初次打开<code>xxx.app</code>仍然时显示 <code>xxx.app 已损坏, 无法打开</code>，重装<code>xxx.app</code>, 然后再打开<code>xxx.app</code>, 则可成功打开</li>
+</ul>
+<h3 id="授权单个app安装-macOS-Catalina-10-15-Catalina-10-15-4"><a class="header-anchor" href="#授权单个app安装-macOS-Catalina-10-15-Catalina-10-15-4"></a>授权单个app安装 (macOS &gt;=Catalina 10.15, &lt;Catalina 10.15.4)</h3>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/mac/mac_%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1260,12 +1308,17 @@
           <h2 id="目录下统计磁盘用量"><a class="header-anchor" href="#目录下统计磁盘用量"></a>目录下统计磁盘用量</h2>
 <h3 id="法一-使用duc-推荐"><a class="header-anchor" href="#法一-使用duc-推荐"></a>法一 使用<a target="_blank" rel="noopener" href="http://duc.zevv.nl">duc</a> (推荐)</h3>
 <p>仅能统计磁盘大小, 不能统计文件数目. 是按照子文件夹来统计, 而不是文件归属的用户来统计.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> duc <span class="token comment"># install duc</span>
+<span class="token function">sudo</span> duc index -fHpx <span class="token operator">&lt;</span>dir<span class="token operator">></span> <span class="token comment"># build the index of any &lt;dir> to a dataset file $HOME/.duc.db</span>
+<span class="token comment"># it which will be upated every time when things under &lt;dir> change</span>
+<span class="token function">sudo</span> duc <span class="token function">ls</span> -Fg <span class="token operator">&lt;</span>dir<span class="token operator">></span> <span class="token comment"># list the subdirs and their size of &lt;dir>, No wait times</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="法二-使用quota"><a class="header-anchor" href="#法二-使用quota"></a>法二 使用quota</h3>
+<p>使用quota, 只统计每个用户的磁盘大小和文件数目用量, 不用限制用户的使用.</p>
+<p>可以按文件归属的用户来统计, 也可以按照子文件夹来统计.</p>
+<h2 id="quota安装与配置"><a class="header-anchor" href="#quota安装与配置"></a>quota安装与配置</h2>
+<p>本文在此<a target="_blank" rel="noopener" href="https://www.howtoing.com/set-filesystem-disk-quotas-on-ubuntu">教程</a>上修改. 其他参考: <a target="_blank" rel="noopener" href="http://cn.linux.vbird.org/linux_basic/fedora_4/0420quota-fc4.php">鸟哥</a>.</p>
+<h3 id="安装quota"><a class="header-anchor" href="#安装quota"></a>安装quota</h3>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/%E7%A3%81%E7%9B%98%E9%85%8D%E9%A2%9D%E8%AE%BE%E7%BD%AE.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1388,12 +1441,14 @@
         各个版本的cuda对应的各个版本的cudnn的安装包
     README.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h1 id="cuDNN与cuda之间的关系"><a class="header-anchor" href="#cuDNN与cuda之间的关系"></a>cuDNN与cuda之间的关系</h1>
+<p>cuda：显卡计算的加速库，可用于渲染、神经网络等等</p>
+<p>cudnn：神经网络加速库文件，依赖于cuda，大幅优化显卡上的神经网络计算，比cuda加速两倍以上</p>
+<p>nccl：多显卡通讯加速，可加速神经网络多卡训练</p>
+<h1 id="直接用apt安装"><a class="header-anchor" href="#直接用apt安装"></a>直接用apt安装</h1>
+<p><a target="_blank" rel="noopener" href="https://gist.github.com/bogdan-kulynych/f64eb148eeef9696c70d485a76e42c3a">参见</a></p>
+<h1 id="徒手安装教程"><a class="header-anchor" href="#徒手安装教程"></a>徒手安装教程</h1>
+<p>参考：</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/cuda%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       

@@ -314,12 +314,47 @@
           <h1 id="vnc安装方法"><a class="header-anchor" href="#vnc安装方法"></a>vnc安装方法</h1>
 <h2 id="安装配置VNC"><a class="header-anchor" href="#安装配置VNC"></a>安装配置VNC</h2>
 <h3 id="服务器"><a class="header-anchor" href="#服务器"></a>服务器</h3>
+<h4 id="依赖安装"><a class="header-anchor" href="#依赖安装"></a>依赖安装</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> tightvncserver xfce4 xfce4-goodies powerline fonts-powerline ttf-wqy-zenhei  autocutsel fcitx-googlepinyin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>详解</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> tightvncserver      <span class="token comment"># 桌面转发服务端</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> xfce4 xfce4-goodies <span class="token comment"># 桌面及桌面程序</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> powerline fonts-powerline <span class="token comment"># powerline字体，以便终端下显示</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> ttf-wqy-zenhei <span class="token comment"># 中文字体</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> autocutsel <span class="token comment"># 客户端和服务器的复制黏贴同步</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> fcitx-googlepinyin <span class="token comment"># 中文输入法</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h4 id="配置"><a class="header-anchor" href="#配置"></a>配置</h4>
+<p>将以下alias添加到<code>~/.bashrc</code>之类的文件，然后source之</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function-name function">vncs</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> -eq <span class="token number">0</span> <span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"start"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        vncserver :1 -geometry 1366x768
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"stop"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        vncserver -kill :1
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"restart"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        vncserver -kill :1
+        vncserver :1 -geometry 1366x768
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"passwd"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        vncpasswd
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"config"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        <span class="token function">vim</span> ~/.vnc/xstartup
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"help"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">'Usage: vnc [ start(default)) | stop | restart | passwd | config | help ]'</span>
+    <span class="token keyword">else</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">'Usage: vnc [ start(default)) | stop | restart | passwd | config | help ]'</span>
+    <span class="token keyword">fi</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>设置密码：<code>vncs passwd</code> 即 <code>vncpasswd</code>，然后在交互提示下设置密码，可选择设置只读密码</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/vnc%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -437,12 +472,15 @@
           <p>[TOC]</p>
 <h2 id="基础命令"><a class="header-anchor" href="#基础命令"></a>基础命令</h2>
 <h2 id="mkdir"><a class="header-anchor" href="#mkdir"></a>mkdir</h2>
+<p>检查文件夹路径存在否，若不存在则创建路径中各级文件夹，若存在则啥也不做也不报错</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> -p <span class="token operator">&lt;</span>新建文件夹路径<span class="token operator">></span>
+<span class="token function">mkdir</span> <span class="token operator">&lt;</span>新建文件夹路径<span class="token operator">></span> -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="路径"><a class="header-anchor" href="#路径"></a>路径</h2>
+<h3 id="相对于绝对路径"><a class="header-anchor" href="#相对于绝对路径"></a>相对于绝对路径</h3>
+<p>绝对: /xx/xxx/xxx</p>
+<p>相对：xx/xx/xxx</p>
+<h3 id="程序中写"><a class="header-anchor" href="#程序中写"></a>程序中写</h3>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%B3%BB%E7%BB%9F%E7%9F%A5%E8%AF%86.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -560,12 +598,27 @@
           <h1 id="安装教程"><a class="header-anchor" href="#安装教程"></a>安装教程</h1>
 <p>适用于：linux上装matlab</p>
 <h2 id="目录结构"><a class="header-anchor" href="#目录结构"></a>目录结构</h2>
+<blockquote>
+<p>matlab2018b<br>
+├── 安装教程<br>
+│   ├── <a target="_blank" rel="noopener" href="http://README.md">README.md</a><br>
+├── docs<br>
+│   ├── FAQ.txt<br>
+│   ├── MATLAB安装手册.docx<br>
+│   └── 技术支持.docx<br>
+├── installer_input.txt<br>
+├── network.lic<br>
+├── R2018b_glnxa64_dvd1.iso<br>
+├── R2018b_glnxa64_dvd2.iso<br>
+└── sn.txt</p>
+</blockquote>
+<p>用于安装清华校园版，只能在清华内网使用，服务器可用之</p>
+<h2 id="下载来源"><a class="header-anchor" href="#下载来源"></a>下载来源</h2>
+<p>-X参数可使用Xserver</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -X <span class="token operator">&lt;</span>服务器名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>用firefox打开清华的计算软件资源网站</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">firefox https://its.tsinghua.edu.cn/column/jsrj/1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/matlab%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -709,12 +762,17 @@
 </tr>
 </tbody>
 </table>
+<h2 id="7z"><a class="header-anchor" href="#7z"></a>7z</h2>
+<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
+<h4 id="apt-get安装"><a class="header-anchor" href="#apt-get安装"></a>apt-get安装</h4>
+<p>推荐<code>p7zip-full</code> 和<code>p7zip-rar</code>都装</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip <span class="token comment"># 包含7zr（最小的7zip归档工具），只支持7z格式。</span>
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip-full <span class="token comment"># 包含完整7z，支持7z、LZMA2、XZ、ZIP、CAB、GZIP、BZIP2、ARJ、TAR、CPIO、RPM、ISO和DEB格式，不支持rar</span>
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip-rar <span class="token comment"># 只支持RAR格式</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="conda安装"><a class="header-anchor" href="#conda安装"></a>conda安装</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c bioconda p7zip <span class="token comment"># 安装的是p7zip-full，不支持rar</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E5%B7%A5%E5%85%B7.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -832,12 +890,10 @@
           <h1 id="mac-命令行专属命令"><a class="header-anchor" href="#mac-命令行专属命令"></a>mac 命令行专属命令</h1>
 <h3 id="mac-命令行专属命令-_2"><a class="header-anchor" href="#mac-命令行专属命令-_2"></a>mac 命令行专属命令</h3>
 <p>永久修改hostname (命令行行首提示中的主机名)</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> scutil --set HostName <span class="token operator">&lt;</span>新hostname<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/flyter/article/details/8880583">参考</a></p>
+
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/mac/mac_%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%93%E5%B1%9E%E5%91%BD%E4%BB%A4.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -968,12 +1024,9 @@ End: Fn + →<br>
 ⇥: 右制表符（Tab键）<br>
 ⇤: 左制表符（Shift+Tab）<br>
 ⎋: Escape (Esc)</p>
+<p><img data-src="/%E5%99%A8/mac/Mac%E6%8C%89%E9%94%AE%E7%AC%A6%E5%8F%B7.md/main/20170614103620686.png" alt></p>
+
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/mac/Mac%E6%8C%89%E9%94%AE%E7%AC%A6%E5%8F%B7.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1091,12 +1144,25 @@ End: Fn + →<br>
           <h2 id="将脚本设为开机自启"><a class="header-anchor" href="#将脚本设为开机自启"></a>将脚本设为开机自启</h2>
 <p>mac下，网上可查到脚本开机自启方法众多，经验证，有效的方法包括不限于以下两种</p>
 <h3 id="不推荐的方法"><a class="header-anchor" href="#不推荐的方法"></a>不推荐的方法</h3>
+<p>以下方法，会造成开机时弹出“终端.app”或&quot;iTerm2.app&quot;窗口，以运行脚本。我希望是完全隐藏的运行，不要弹出窗口。</p>
+<ul>
+<li>
+<p>直接将要开机运行的脚本（<a target="_blank" rel="noopener" href="http://xn--xxx-eo8e.sh">如xxx.sh</a>，<a target="_blank" rel="noopener" href="http://xxx.sh">xxx.sh</a>）设为可执行（无需设成777，可执行就好）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> +x 【脚本】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>将该脚本的自动打开软件设为“终端.app”或&quot;iTerm2.app&quot;</p>
+</li>
+<li>
+<p>然后将此脚本<a href="#add_to_auto_start">添加到开机自启项</a></p>
+</li>
+</ul>
+<h3 id="推荐的方法"><a class="header-anchor" href="#推荐的方法"></a>推荐的方法</h3>
+<p>以下方法，设置便捷，且开机完全隐藏运行（不弹出任何窗口）</p>
+<h4 id="创建一个“自动操作”的“应用程序”"><a class="header-anchor" href="#创建一个“自动操作”的“应用程序”"></a>创建一个“自动操作”的“应用程序”</h4>
+<p><img data-src="/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.59.13-0801515.png" alt></p>
+<p><img data-src="/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.59.33-0801522.png" alt></p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1236,6 +1302,9 @@ End: Fn + →<br>
 <p>搞定！</p>
 </blockquote>
 
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1351,12 +1420,47 @@ End: Fn + →<br>
           <h3 id="分区方案"><a class="header-anchor" href="#分区方案"></a>分区方案</h3>
 <p>完全参照https://www.jianshu.com/p/5f8b4d9a8922</p>
 <p>主力分区是<code>NTFS</code>格式，以确保和windows的数据交换，配套Tuxera NTFS for Mac来解决Mac系统无法写入NTFS文件系统的问题。</p>
+<p>mac的备份区用<code>OS X 拓展（日志式）</code>格式。</p>
+<h3 id="NTFS写入软件的选择"><a class="header-anchor" href="#NTFS写入软件的选择"></a>NTFS写入软件的选择</h3>
+<table>
+<thead>
+<tr>
+<th>软件</th>
+<th>速度</th>
+<th>进阶功能</th>
+<th>稳定性</th>
+<th>收费否</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Paragon NTFS</td>
+<td>中</td>
+<td>无</td>
+<td>次稳定</td>
+<td>￥150</td>
+</tr>
+<tr>
+<td>Tuxera NTFS</td>
+<td>快</td>
+<td>有</td>
+<td>最稳定</td>
+<td>￥100</td>
+</tr>
+<tr>
+<td>mount类：如mountly软件 或 开启mac自带的ntfs写入功能</td>
+<td>快</td>
+<td>无</td>
+<td>很不稳定</td>
+<td>免费</td>
+</tr>
+</tbody>
+</table>
+<p>使用过程中出现设备断电或 USB 接口拔出等意外情况，Tuxera 的故障安全技术会确保各类文件完整，并防止驱动器损坏；而mount类则很容易丢失数据、损坏；Paragon也可能丢如此。</p>
+<p><img data-src="/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/v2-58016781c731bb96345e5e1b3ae069b7_hd.jpg" alt="v2-58016781c731bb96345e5e1b3ae069b7_hd"></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/68927971">参考</a></p>
+<p>建议：</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1474,12 +1578,57 @@ End: Fn + →<br>
           <p>[TOC]</p>
 <h2 id="参考链接"><a class="header-anchor" href="#参考链接"></a>参考链接</h2>
 <p><a target="_blank" rel="noopener" href="https://conda.io/docs/">conda文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24664358">Linux下Anaconda的安装使用与卸载</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/d2e15200ee9b">anaconda的使用和环境管理</a></p>
+<h2 id="安装anaconda"><a class="header-anchor" href="#安装anaconda"></a>安装anaconda</h2>
+<p>参见<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24664358">Linux下Anaconda的安装使用与卸载</a></p>
+<ul>
+<li>
+<p>在PC上，去<a target="_blank" rel="noopener" href="https://www.continuum.io/downloads">Anaconda官网</a>，获得安装包的下载链接</p>
+<ul>
+<li>Download for Your Preferred Platform下，选Linux，根据需要选Python版本和操作系统位数</li>
+<li>右键点击下载按钮，选<code>复制链接</code>，如https://repo.continuum.io/archive/Anaconda2-4.4.0-Linux-x86_64.sh</li>
+</ul>
+</li>
+<li>
+<p>cd到服务器上自己d的用户目录</p>
+<ul>
+<li>
+<p>下载安装文件b</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> 上述链接<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>查看安装文件是否下载成功</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>看见有形如<code>	Anaconda3-4.0.0-Linux-x86_64.sh</code>的文件说明下载成功</p>
+</li>
+<li>
+<p>执行安装文件，如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> Anaconda2-4.4.0-Linux-x86_64.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>整个过程点几下回车，或者选yes就好了。</p>
+</li>
+<li>
+<p>但到最后一步，会提示是否把anaconda加入到系统环境变量中，选no（直接回车即可，默认就是no）</p>
+<p><img data-src="/%E5%99%A8/python/anaconda%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/conda%E5%AE%89%E8%A3%85.png" alt="conda安装"></p>
+</li>
+<li>
+<p>安装完成后，</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span>
+<span class="token comment"># 会有anaconda2或者anaconda3文件夹， 分别对应python2 或 python3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>此时若终端中输入conda，发现command not found。这是因为，尚未向用户环境变量加入ananconda</li>
+</ul>
+</li>
+</ul>
+<h2 id="配置"><a class="header-anchor" href="#配置"></a>配置</h2>
+<ul>
+<li>向用户环境变量加入ananconda</li>
+</ul>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/python/anaconda%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       

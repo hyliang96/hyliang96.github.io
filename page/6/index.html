@@ -314,12 +314,21 @@
           <h2 id="自定制终端登录界面"><a class="header-anchor" href="#自定制终端登录界面"></a>自定制终端登录界面</h2>
 <p>用sudo创建可执行文件<code>/etc/update-motd.d/&lt;执行序号&gt;-文件名</code>（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如</p>
 <p><img data-src="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.md/main/ScreenShot%202019-12-04%2017.59.39.png" alt="ScreenShot 2019-12-04 17.59.39"></p>
+<h2 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h2>
+<h3 id="安装依赖"><a class="header-anchor" href="#安装依赖"></a>安装依赖</h3>
+<ul>
+<li>
+<p><code>lolcat</code> 让终端输出彩虹色</p>
+</li>
+<li>
+<p><code>figlet</code> 让终端创建字符图案</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> lolcat figlet<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="配置开机输出-hostname"><a class="header-anchor" href="#配置开机输出-hostname"></a>配置开机输出-hostname</h3>
+<p>预期效果</p>
+<p><img data-src="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.md/main/ScreenShot%202019-12-04%2017.59.39%E7%9A%84%E5%89%AF%E6%9C%AC.png" alt="ScreenShot 2019-12-04 17.59.39的副本"></p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -437,12 +446,17 @@
           <h2 id="开机过程中"><a class="header-anchor" href="#开机过程中"></a>开机过程中</h2>
 <p><code>alt+ctrl+del</code>：在系统启动完成前，按此可重启系统，而无需去按电源键 <a target="_blank" rel="noopener" href="https://askubuntu.com/questions/995286/restart-ubuntu-via-keyboard">参考</a></p>
 <h3 id="BIOS-界面"><a class="header-anchor" href="#BIOS-界面"></a>BIOS 界面</h3>
+<p><code>esc</code>: 一开机/重启, 就持反复之, 直到首次出现供应商的页面(如超威/斯腾合力), 而后会进入 BIOS 界面:</p>
+<p>.<img data-src="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E5%BC%80%E6%9C%BA%E7%95%8C%E9%9D%A2.md/main/E469CC2F-B4E7-4B61-9E2E-5A845E69AD5E.jpeg" alt="Image result for bios界面"></p>
+<p>在 BIOS 界面中的操作:</p>
+<ul>
+<li>可以配置 IPMI 等内容</li>
+<li>配置完成, 按 <code>esc</code> 选 yes 退出 BIOS 界面</li>
+</ul>
+<h3 id="grub-界面"><a class="header-anchor" href="#grub-界面"></a>grub 界面</h3>
+<p>从 BIOS 界面退出会进入 Grub 界面:</p>
+<p><img data-src="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E5%BC%80%E6%9C%BA%E7%95%8C%E9%9D%A2.md/main/2191577195586.jpg" alt="2191577195586_.pic"></p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E5%BC%80%E6%9C%BA%E7%95%8C%E9%9D%A2.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -560,12 +574,18 @@
           <h2 id="ISO介绍"><a class="header-anchor" href="#ISO介绍"></a>ISO介绍</h2>
 <p><code>xxxx.iso</code>文件，称镜像（mirror）文件，相当于光盘，内存有文件。</p>
 <h2 id="安装ISO中的文件"><a class="header-anchor" href="#安装ISO中的文件"></a>安装ISO中的文件</h2>
+<h3 id="挂载镜像"><a class="header-anchor" href="#挂载镜像"></a>挂载镜像</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mkdir</span> /mnt/<span class="token operator">&lt;</span>挂载文件夹名<span class="token operator">></span>
+<span class="token function">sudo</span> <span class="token function">mount</span> -o loop <span class="token operator">&lt;</span>xxx<span class="token operator">></span>.iso /mnt/<span class="token operator">&lt;</span>挂载文件夹名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>注：只有root用户才能执行<code>mount</code>命令</p>
+<p>参数</p>
+<ul>
+<li><code>-t iso9660</code>    -t（文件系统类型）=  iso9660（CD-ROM光盘标准文件系统），此参数可选，非必需</li>
+<li><code>-o loop</code>      -o （选项） loop （用来把一个文件或着镜像当成分区挂上系统）</li>
+</ul>
+<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /mnt/<span class="token operator">&lt;</span>挂载文件夹名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/iso%E9%95%9C%E5%83%8F.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -683,12 +703,8 @@
           <p><a target="_blank" rel="noopener" href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa.html">来源</a></p>
 <p><a target="_blank" rel="noopener" href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa-1.html">参考</a></p>
 <p><img data-src="/%E9%81%93/%E4%BD%9B%E6%B3%95%E6%9C%AD%E8%AE%B0/%E7%99%BE%E6%B3%95%E6%98%8E%E9%97%A8%E8%AE%BA.md/main/100fmml.jpg" alt="100fmml"></p>
+
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E9%81%93/%E4%BD%9B%E6%B3%95%E6%9C%AD%E8%AE%B0/%E7%99%BE%E6%B3%95%E6%98%8E%E9%97%A8%E8%AE%BA.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -802,12 +818,24 @@
           <h2 id="背景"><a class="header-anchor" href="#背景"></a>背景</h2>
 <p>最近一年感到压力很大啊，又看到身边的人同样各有各的苦。众生皆苦呀，说的没错。顺势看了些佛教的东西，可是我还未能接受轮回的观点，但却自以为有了出离心，觉得 “生是一切苦的起源” “一切诸行无常，一切法无我，涅槃寂灭”好有道理诶。我意识到，要是没有轮回这个设定，那谁死都是涅槃了咯，那我不用活下去了。于是赶紧找找存在的意义让自己坚持活下去。</p>
 <h2 id="宇宙的历程"><a class="header-anchor" href="#宇宙的历程"></a>宇宙的历程</h2>
+<p>一次偶然，看了一个<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av47324049/">讲宇宙生命历程的视频</a>，让我闪现了一种答案来回答存在的意义。这个视频是目前天体物理学对宇宙演化的一种预测，好几个画面让我感到十分恐惧：</p>
+<ul>
+<li>
+<p>宇宙中所有恒星熄灭后，幸存的只能在散发余热的白矮星旁苟活。他们绕着白矮星修建了戴森环，以收集微弱的能量，直到白矮星最后一丝余热散近。<img data-src="/%E9%81%93/%E4%BB%8E%E5%AE%87%E5%AE%99%E7%B9%81%E8%A1%8D%E5%88%B0%E7%A7%91%E7%A0%94%E7%9A%84%E6%84%8F%E4%B9%89.md/main/ScreenShot%202020-02-29%2002.08.48.png" alt="ScreenShot 2020-02-29 02.08.48"></p>
+</li>
+<li>
+<p>只剩下黑洞的僵尸宇宙中，黑洞构成星系，它们相互合并释放巨大的能量，最终黑洞也难逃死亡的命运——霍金辐射下黑洞逐渐蒸发。<img data-src="/%E9%81%93/%E4%BB%8E%E5%AE%87%E5%AE%99%E7%B9%81%E8%A1%8D%E5%88%B0%E7%A7%91%E7%A0%94%E7%9A%84%E6%84%8F%E4%B9%89.md/main/ScreenShot%202020-02-29%2002.15.01.png" alt="ScreenShot 2020-02-29 02.15.01"></p>
+</li>
+<li>
+<p>最终宇宙只剩下光子与轻子（注：基于质子衰败的假设），结果及其漫长的时间后达到热寂。<img data-src="/%E9%81%93/%E4%BB%8E%E5%AE%87%E5%AE%99%E7%B9%81%E8%A1%8D%E5%88%B0%E7%A7%91%E7%A0%94%E7%9A%84%E6%84%8F%E4%B9%89.md/main/ScreenShot%202020-02-29%2002.18.01.png" alt="ScreenShot 2020-02-29 02.18.01"></p>
+</li>
+</ul>
+<p>此时，已经是$10^{10000}$年后，而有生命的时段只是其中的一瞬。者太可怕，一个看淡个人生死的人，却在看不淡宇宙的生死。我生起一种深深的恐惧和遗憾，我不希望她就这样死掉，我希望宇宙有来生，重现勃勃生机。可是现在的观测告诉我们，宇宙在加速膨胀，这支持了宇宙将持续膨胀而不是坍缩的理论，因而循环大爆炸指望不上了，宇宙哪来的来生呢。</p>
+<h2 id="宇宙的繁衍"><a class="header-anchor" href="#宇宙的繁衍"></a>宇宙的繁衍</h2>
+<p>正在我恐惧与遗憾之时，这个视频介绍了一种有趣的猜想：</p>
+<p><img data-src="/%E9%81%93/%E4%BB%8E%E5%AE%87%E5%AE%99%E7%B9%81%E8%A1%8D%E5%88%B0%E7%A7%91%E7%A0%94%E7%9A%84%E6%84%8F%E4%B9%89.md/main/ScreenShot%202020-02-29%2002.18.11.png" alt="ScreenShot 2020-02-29 02.18.11"></p>
+<p>因此，高等科技文明创造小宇宙是宇宙繁衍的途径。而物理定律则是宇宙的基因。在众多宇宙中，物理定律各不同，能孕育智慧生命的宇宙得以繁衍。不能孕育生命的宇宙没有后代。</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E9%81%93/%E4%BB%8E%E5%AE%87%E5%AE%99%E7%B9%81%E8%A1%8D%E5%88%B0%E7%A7%91%E7%A0%94%E7%9A%84%E6%84%8F%E4%B9%89.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -920,6 +948,9 @@
     <div class="post-body" itemprop="articleBody">
           <p><a target="_blank" rel="noopener" href="https://yifdu.github.io/2018/12/06/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AF%84%E4%BB%B7%E6%A0%87%E7%AD%BEMAP/">参见</a></p>
 
+          <!--noindex-->
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1035,12 +1066,14 @@
           <h1 id="小鹤音形码"><a class="header-anchor" href="#小鹤音形码"></a>小鹤音形码</h1>
 <h2 id="纯音码"><a class="header-anchor" href="#纯音码"></a>纯音码</h2>
 <p>一个汉字 = 声母 一个按键 + 韵母 一个按键</p>
+<p>对应关系如下</p>
+<p><img data-src="/%E5%99%A8/%E8%BE%93%E5%85%A5%E6%B3%95/%E5%B0%8F%E9%B9%A4%E9%9F%B3%E5%BD%A2%E7%A0%81.md/main/3987507-5d38597368645423.png" alt="3987507-5d38597368645423"></p>
+<h2 id="音形码"><a class="header-anchor" href="#音形码"></a>音形码</h2>
+<h3 id="汉字的音形码"><a class="header-anchor" href="#汉字的音形码"></a>汉字的音形码</h3>
+<p>声母键+韵母键+首小字部件或笔画 键 + 末小字部件或笔画 键</p>
+<h3 id="在线查询汉字的音形码"><a class="header-anchor" href="#在线查询汉字的音形码"></a>在线查询汉字的音形码</h3>
+<p><a target="_blank" rel="noopener" href="http://react.xhup.club/search">在线查询汉字的音形码</a></p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E8%BE%93%E5%85%A5%E6%B3%95/%E5%B0%8F%E9%B9%A4%E9%9F%B3%E5%BD%A2%E7%A0%81.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1160,12 +1193,33 @@
 <ul>
 <li>bug: 宽字符预览上色出错</li>
 </ul>
+<p>默认用vimgrep, 很慢</p>
+<ul>
+<li>
+<p>大小写</p>
+<p><code>:F(ar) \Cxxxx xxx xxx </code>: 大小写敏感</p>
+<p><code>:F(ar) \cxxxx xxx xxx </code>: 大小写不敏感</p>
+<p><code>:F(ar) xxxx xxx xxx </code>: 默认大小写不敏感</p>
+</li>
+<li>
+<p>正则:</p>
+<ul>
+<li>默认是正则表达式, 取消正则 <code>:F(ar) 	\Vxxx</code></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less">https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less</a></p>
+<pre class="line-numbers language-none"><code class="language-none">command! -nargs&#x3D;1 S let @&#x2F; &#x3D; escape(&#39;&lt;args&gt;&#39;, &#39;\&#39;)
+nmap &lt;Leader&gt;S :execute(&quot;:S &quot; . input(&#39;Regex-off: &#x2F;&#39;))&lt;CR&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>整词: <code>\&lt;xxxx\&gt;</code></p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://xahlee.info/comp/unicode_index.html">http://xahlee.info/comp/unicode_index.html</a></p>
+<p>设计: 🔎 Ϙ⊕ ⊗⛒⦿⨁⨂ ⨷㉧🄋ⒻⓄ◯⨀ +⃝ ⏍ ⤭  ⇄ ⟲ ⟳ ↺ ↻  ⇲ ➲ 🔁 🔂 🔃 🔄 ➡ ⬇  ⎋Ⓡ Ⓢ ⧬</p>
+<p>◌̸</p>
+<p>⃝</p>
+<p>⃞</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vim-%E6%90%9C%E7%B4%A2%E6%9B%BF%E6%8D%A2%E6%8F%92%E4%BB%B6.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1283,12 +1337,54 @@
           <h2 id="症状"><a class="header-anchor" href="#症状"></a>症状</h2>
 <p>运行 <code>tensorboard --logdir .</code></p>
 <p>报错</p>
+<pre class="line-numbers language-none"><code class="language-none">tensorboard 8 &lt;module&gt;
+sys.exit(run_main())
+
+main.py 75 run_main
+app.run(tensorboard.main, flags_parser&#x3D;tensorboard.configure)
+
+app.py 299 run
+_run_main(main, args)
+
+app.py 250 _run_main
+sys.exit(main(argv))
+
+program.py 290 main
+return runner(self.flags) or 0
+
+program.py 308 _run_serve_subcommand
+self._register_info(server)
+
+program.py 356 _register_info
+manager.write_info_file(info)
+
+manager.py 262 write_info_file
+with open(_get_info_file_path(), &quot;w&quot;) as outfile:
+
+PermissionError:
+13
+Permission denied<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
+<p>当前用户没有<code>/tmp/.tensorboard-info</code>的读写权限, 故而tensorborad无法写入临时目录</p>
+<h2 id="对策"><a class="header-anchor" href="#对策"></a>对策</h2>
+<ul>
+<li>
+<p>若有root权限</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token number">777</span> /tmp/.tensorboard-info
+<span class="token function">sudo</span> <span class="token function">chown</span> root:root /tmp/.tensorboard-info<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>然后运行<code>tensorboard --logdir .</code></p>
+</li>
+<li>
+<p>若无root权限</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 申明环境变量</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">TMPDIR</span><span class="token operator">=</span>/tmp/<span class="token environment constant">$USER</span><span class="token punctuation">;</span>
+<span class="token comment"># 创建目录</span>
+<span class="token function">mkdir</span> -p <span class="token variable">$TMPDIR</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后运行<code>tensorboard --logdir .</code></p>
+</li>
+</ul>
+
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/tensorboard-PermissionError-13.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1406,12 +1502,16 @@
           <h2 id="显示256色的预览"><a class="header-anchor" href="#显示256色的预览"></a>显示256色的预览</h2>
 <p>执行</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ <span class="token operator">|</span> <span class="token function">bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>会返回</p>
+<p><img data-src="/%E5%99%A8/shell/shell%E4%B8%8B%E7%9A%84%E9%A2%9C%E8%89%B2.md/main/image-20200120192157283.png" alt="image-20200120192157283"></p>
+<p>注意:</p>
+<ul>
+<li>同色号的字, 非粗体和粗体(bold)的前景颜色不同</li>
+<li>同色号的前景颜色和背景颜色不同</li>
+<li>第0-15号色在iterm2下实际显示何种颜色, 取决于iterm的中 Preference-Profile-color-ANSI color的设置</li>
+</ul>
+
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/shell/shell%E4%B8%8B%E7%9A%84%E9%A2%9C%E8%89%B2.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       

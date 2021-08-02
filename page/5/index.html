@@ -314,12 +314,85 @@
           <p>环境：ubuntu 16 实验室服务器</p>
 <p>时间：2018年8月6日</p>
 <p>[TOC]</p>
+<h2 id="介绍"><a class="header-anchor" href="#介绍"></a>介绍</h2>
+<p><code>zsh </code>：是一款强大的虚拟终端，用以他替代shell， 其配置较为复杂</p>
+<p><code>oh my zsh</code> ：zsh的一套强大配置</p>
+<p><a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fzsh-users%2Fantigen"><code>antigen</code></a> ：zsh的包（即插件）管理器，让我们以类似apt-get的方式来安装zsh的包。其官方会提供已经配置好的oh my zsh和一些常用zsh包。</p>
+<h2 id="zsh安装"><a class="header-anchor" href="#zsh安装"></a>zsh安装</h2>
+<ul>
+<li>
+<p>安装zsh</p>
+<ul>
+<li>实验室各台服务器上已安装zsh，如未安装，可叫管理员</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> -y <span class="token function">install</span> <span class="token function">zsh</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>mac上</p>
+<ul>
+<li>
+<p>mac系统自带的zsh</p>
+<p>在<code>/bin/zsh</code>，但版本老了，建议另外安装新版本</p>
+<p><code>zsh --version</code>，返回<code>zsh 5.3 (x86_64-apple-darwin18.0)</code></p>
+</li>
+<li>
+<p>另外安装新版本的zsh</p>
+<p>不覆盖系统自带的</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">zsh</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装到 <code>/usr/local/Cellar/zsh/版本号</code></p>
+<p>并会自动创建链接<code>/usr/local/bin/zsh -&gt; ../Cellar/zsh/5.7.1/bin/zsh*</code></p>
+<p>安装后，<code>zsh --version</code>，返回<code>/usr/local/bin/zsh</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>修改为默认shell，即用zsh于替代shell，每次登陆或开新的终端都开zsh而不是shell</p>
+<ul>
+<li>
+<p>只改个人的</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">chsh -s <span class="token variable"><span class="token variable">`</span><span class="token function">which</span> <span class="token function">zsh</span><span class="token variable">`</span></span>
+<span class="token comment"># 然后输入个人的密码</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>改整个系统的</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> chsh -s <span class="token variable"><span class="token variable">`</span><span class="token function">which</span> <span class="token function">zsh</span><span class="token variable">`</span></span>
+<span class="token comment"># 然后输入root密码</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<p>重登服务器则生效</p>
+</li>
+<li>
+<p>如上述方法不生效，则修改在<code>~/.profile</code> 第一行中加入</p>
+</li>
+<li>
+<pre><code class="language-bash">if [ -t 1 ]; then
+# [ -t FD ]  如果文件描述符 FD 打开且指向一个终端则为真。
+# 文件描述符1表示stdout(即屏幕输出)
+# [ -t 1 ] = true (此脚本输出到屏幕)，false(其他，如此脚本输出到文件或pipe)
+	exec zsh
+	# exec含义：开zsh替代当前sehll
+fi
+<pre class="line-numbers language-none"><code class="language-none">
+  例如在WSL（windows的linux子系统）中，使用cmder打开shell，需要做此次修改。
+
+* 如果切换帐号后无法使用 zsh， 则&#96;. ~&#x2F;.zshrc&#96;
+
+## 直接安装oh-my-zsh (root下推荐)
+
+[oh-my-zsh安装方法](https:&#x2F;&#x2F;ohmyz.sh&#x2F;#install)
+
+适用于mac和linux
+
+&#96;&#96;&#96;bash
+sh -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.github.com&#x2F;ohmyzsh&#x2F;ohmyzsh&#x2F;master&#x2F;tools&#x2F;install.sh)&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</code></pre>
+</li>
+</ul>
+<h3 id="报错"><a class="header-anchor" href="#报错"></a>报错</h3>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/shell/zsh%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -437,135 +510,23 @@
           <h2 id="执行命令或文件"><a class="header-anchor" href="#执行命令或文件"></a>执行命令或文件</h2>
 <p>以下对zsh与bash同时成立</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/solaraceboy/article/details/79131772">参考</a></p>
+<p>下述<code>文件</code>为shell语言的脚本，常见为<code>.sh</code>文件或<code>.bash_xxxx</code>类文件</p>
+<h3 id="在当前shell执行"><a class="header-anchor" href="#在当前shell执行"></a>在当前shell执行</h3>
+<ul>
+<li>使用当前shell的变量/函数/当前路径, , 不论是否export</li>
+<li>创、变、删的 变量/函数/当前路,  不论是否export,  都会保存在当前shell里面</li>
+</ul>
+<p><code>source 文件 </code>（等价于 <code>. 文件 </code>）</p>
+<ul>
+<li>文件不必有可执行权限</li>
+</ul>
+<p><code>命令</code> , <code>&#123; 命令块;&#125;</code> , 循环体/条件体</p>
+<ul>
+<li><code>&#123;</code>后要有空格, <code>&#125;</code>前要有<code>;</code>(但无需空格), 才能在bash运行, 不然只能zsh下运行</li>
+<li><code>&#123; 命令块;&#125;</code> , 循环体/条件体, 即相当于运行了匿名函数</li>
+<li><code>&#123; 命令块;&#125;</code> 与<code>命令块</code>产生相同的标准输出和标准错误</li>
+</ul>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/shell/bash%E5%8F%8Azsh%E8%AF%AD%E6%B3%95.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="三清小道">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/" class="post-title-link" itemprop="url">rsync教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-05-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25 04:03:03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-02 04:26:21 04:26:21" itemprop="dateModified" datetime="2021-08-02T04:26:21+08:00">2021-08-02 04:26:21</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/" itemprop="url" rel="index"><span itemprop="name">服务器连接</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/" data-xid="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>3.6k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>12 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="mac-升级-rsync"><a class="header-anchor" href="#mac-升级-rsync"></a>mac 升级 rsync</h2>
-<p>mac自带rsync在<code>/usr/bin/rsync</code>，版本 <code>rsync  version 2.6.9  protocol version 29</code>太老，不支持用一条命令将多个远程文件传到本地，需要升级才支持。</p>
-<p>升级方法：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -683,12 +644,175 @@
           <h1 id="sshfs教程"><a class="header-anchor" href="#sshfs教程"></a>sshfs教程</h1>
 <p>在linux或mac上，加载远程Linux服务器上的文件目录</p>
 <p>[TOC]</p>
+<h2 id="安装"><a class="header-anchor" href="#安装"></a>安装</h2>
+<p>需依次安装以下三软件</p>
+<h3 id="macfuse"><a class="header-anchor" href="#macfuse"></a>macfuse</h3>
+<p>功能：使mac可用读取linux、windows的文件系统，应用于：</p>
+<ul>
+<li>mac读写它们的U盘/移动硬盘</li>
+<li>mac加载服务器上文件目录</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://osxfuse.github.io">官网</a>     <a target="_blank" rel="noopener" href="https://github.com/osxfuse/osxfuse/releases">下载</a></p>
+<h3 id="sshfs"><a class="header-anchor" href="#sshfs"></a>sshfs</h3>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="三清小道">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/" class="post-title-link" itemprop="url">rsync教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25 04:03:03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-02 04:26:21 04:26:21" itemprop="dateModified" datetime="2021-08-02T04:26:21+08:00">2021-08-02 04:26:21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/" itemprop="url" rel="index"><span itemprop="name">服务器连接</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/" data-xid="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>12 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="mac-升级-rsync"><a class="header-anchor" href="#mac-升级-rsync"></a>mac 升级 rsync</h2>
+<p>mac自带rsync在<code>/usr/bin/rsync</code>，版本 <code>rsync  version 2.6.9  protocol version 29</code>太老，不支持用一条命令将多个远程文件传到本地，需要升级才支持。</p>
+<p>升级方法：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">rsync</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装在<code>/usr/local/bin/rsync</code>，版本<code>rsync  version 3.1.3  protocol version 31</code></p>
+<h2 id="用法"><a class="header-anchor" href="#用法"></a>用法</h2>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rsync</span> <span class="token punctuation">(</span>参数<span class="token punctuation">)</span>  <span class="token operator">&lt;</span>源<span class="token operator">></span> <span class="token operator">&lt;</span>收<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="源-收路径写法"><a class="header-anchor" href="#源-收路径写法"></a>源/收路径写法</h3>
+<table>
+<thead>
+<tr>
+<th>源\得\收</th>
+<th><code>已有文件夹(/)</code></th>
+<th><code>已有文件夹/新建名</code><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></th>
+<th><code>已有文件夹/新建名/</code></th>
+<th><code>已有文件夹(/(新建文件夹(/))</code> 下有同名文件(夹)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一个文件</td>
+<td>已有文件夹/同名文件</td>
+<td><code>已有文件夹/新建名</code> 文件重命名了</td>
+<td>已有文件夹/新建名/同名文件</td>
+<td>覆盖原同名文件</td>
+</tr>
+<tr>
+<td>一个文件夹</td>
+<td>已有文件夹/同名文件夹</td>
+<td>已有文件夹/新建名/同名文件夹</td>
+<td>同左</td>
+<td>覆盖原同名文件</td>
+</tr>
+<tr>
+<td>多个文件(夹)</td>
+<td>已有文件夹/多个同名文件(夹)</td>
+<td>已有文件夹/新建名/多个同名文件(夹)</td>
+<td>同左</td>
+<td>覆盖原同名文件</td>
+</tr>
+</tbody>
+</table>
+<p>源文件（夹）的特殊写法</p>
+          <!--noindex-->
           <!--/noindex-->
         
       
@@ -806,12 +930,26 @@
           <p>[TOC]</p>
 <h1 id="ssh别名、免密登录"><a class="header-anchor" href="#ssh别名、免密登录"></a>ssh别名、免密登录</h1>
 <h2 id="别名登陆"><a class="header-anchor" href="#别名登陆"></a>别名登陆</h2>
+<p><a target="_blank" rel="noopener" href="http://www.ttlsa.com/linux/ssh-config-aliases-server-access-tricks/">参考1</a>, <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5729d5e61c72">参考2</a></p>
+<p>本地电脑上，打开<code>~/.ssh/config</code>文件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> ~/.ssh/config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>编写格式如下</p>
+<pre class="line-numbers language-baah" data-language="baah"><code class="language-baah">Host 服务器别名1
+    HostName 服务器ip或网址1
+    Port 端口号1
+    User 用户名1
+    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
+
+Host 服务器别名2
+    HostName 服务器ip或网址2
+    Port 端口号2
+    User 用户名2
+    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
+
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>~/.ssh/id_rsa</code>即为本地私钥</p>
+<p>例如</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/ssh%E9%85%8D%E7%BD%AE.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -932,12 +1070,150 @@
 <p>Teamviewer会根据一套算法检测当前是否用于商业用途，可能根据在线时间，是否跨网段远程访问，当前操作系统是否为专业或企业版，以及其他因素进行检测，具体算法不得而知，不过有时明明只是个人非盈利目的使用，却弹出下面的对话框，在1到5分钟后就会自动断开，然后就连不上了，触发重新运行Teamviewer。</p>
 <p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/v2-744c2c4b42bfd0cb956a8fe1b19867eb_hd.jpg" alt="img"></p>
 </blockquote>
+<p>以下给出在mac和windows上的解决方法</p>
+<h2 id="MAC"><a class="header-anchor" href="#MAC"></a>MAC</h2>
+<p>运行python脚本修改Teamviewer ID, 并重启电脑. 详细步骤如下:</p>
+<ul>
+<li>
+<p>关闭Teamviewer</p>
+</li>
+<li>
+<p>创建一个python脚本 <code>reset_teamviewer-id.py</code>,  内容如下</p>
+</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#!/usr/bin/env python</span>
+
+<span class="token comment">#coding:utf-8</span>
+<span class="token keyword">import</span> sys
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> glob
+<span class="token keyword">import</span> platform
+<span class="token keyword">import</span> re
+<span class="token keyword">import</span> random
+<span class="token keyword">import</span> string
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token triple-quoted-string string">'''
+--------------------------------
+TeamViewer ID Changer for MAC OS
+--------------------------------
+'''</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> platform<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token string">'Darwin'</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'This script can be run only on MAC OS.'</span><span class="token punctuation">)</span>
+    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> os<span class="token punctuation">.</span>geteuid<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'This script must be run form root.'</span><span class="token punctuation">)</span>
+    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>has_key<span class="token punctuation">(</span><span class="token string">'SUDO_USER'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    USERNAME <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">'SUDO_USER'</span><span class="token punctuation">]</span>
+    <span class="token keyword">if</span> USERNAME <span class="token operator">==</span> <span class="token string">'root'</span><span class="token punctuation">:</span>
+       <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Can not find user name. Run this script via sudo from regular user'</span><span class="token punctuation">)</span>
+       sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Can not find user name. Run this script via sudo from regular user'</span><span class="token punctuation">)</span>
+    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+HOMEDIRLIB <span class="token operator">=</span> <span class="token string">'/Users/'</span> <span class="token operator">+</span> USERNAME  <span class="token operator">+</span> <span class="token string">'/Library/Preferences/'</span>
+GLOBALLIB  <span class="token operator">=</span>  <span class="token string">'/Library/Preferences/'</span>
+
+CONFIGS <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+<span class="token comment"># Find config files</span>
+
+<span class="token keyword">def</span> <span class="token function">listdir_fullpath</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>d<span class="token punctuation">,</span> f<span class="token punctuation">)</span> <span class="token keyword">for</span> f <span class="token keyword">in</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+<span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> listdir_fullpath<span class="token punctuation">(</span>HOMEDIRLIB<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token string">'teamviewer'</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">in</span> <span class="token builtin">file</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        CONFIGS<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> <span class="token keyword">not</span> CONFIGS<span class="token punctuation">:</span>
+    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token triple-quoted-string string">'''
+There is no TemViewer configs found.
+Maybe you have deleted it manualy or never run TeamViewer after installation.
+Nothing to delete.
+'''</span><span class="token punctuation">)</span>
+<span class="token comment"># Delete config files</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Configs found:\n"</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> CONFIGS<span class="token punctuation">:</span>
+        <span class="token keyword">print</span> <span class="token builtin">file</span>
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token triple-quoted-string string">'''
+This files will be DELETED permanently.
+All TeamViewer settings will be lost
+'''</span><span class="token punctuation">)</span>
+    <span class="token builtin">raw_input</span><span class="token punctuation">(</span><span class="token string">"Press Enter to continue or CTR+C to abort..."</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> CONFIGS<span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            os<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Cannot delete config files. Permission denied?"</span><span class="token punctuation">)</span>
+            sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Done."</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Find binaryes</span>
+
+TMBINARYES <span class="token operator">=</span> <span class="token punctuation">[</span>
+<span class="token string">'/Applications/TeamViewer.app/Contents/MacOS/TeamViewer'</span><span class="token punctuation">,</span>
+<span class="token string">'/Applications/TeamViewer.app/Contents/MacOS/TeamViewer_Service'</span><span class="token punctuation">,</span>
+<span class="token string">'/Applications/TeamViewer.app/Contents/MacOS/TeamViewer_Desktop'</span><span class="token punctuation">,</span>  <span class="token comment"># for Teamviewer 15.x.xxxx</span>
+<span class="token punctuation">]</span>
+
+<span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> TMBINARYES<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"File not found: "</span> <span class="token operator">+</span> <span class="token builtin">file</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">"Install TeamViewer correctly"</span><span class="token punctuation">)</span>
+        sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment"># Patch files</span>
+
+<span class="token keyword">def</span> <span class="token function">idpatch</span><span class="token punctuation">(</span>fpath<span class="token punctuation">,</span>platf<span class="token punctuation">,</span>serial<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token builtin">file</span> <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>fpath<span class="token punctuation">,</span> <span class="token string">'r+b'</span><span class="token punctuation">)</span>
+    binary <span class="token operator">=</span> <span class="token builtin">file</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    PlatformPattern <span class="token operator">=</span> <span class="token string">"IOPlatformExpert.&#123;6&#125;"</span>
+    SerialPattern <span class="token operator">=</span>  <span class="token string">"IOPlatformSerialNumber%s%s%sUUID"</span>
+
+    binary <span class="token operator">=</span> re<span class="token punctuation">.</span>sub<span class="token punctuation">(</span>PlatformPattern<span class="token punctuation">,</span> platf<span class="token punctuation">,</span> binary<span class="token punctuation">)</span>
+    binary <span class="token operator">=</span> re<span class="token punctuation">.</span>sub<span class="token punctuation">(</span>SerialPattern <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"[0-9a-zA-Z]&#123;8,8&#125;"</span><span class="token punctuation">,</span> <span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> SerialPattern<span class="token operator">%</span><span class="token punctuation">(</span><span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> serial<span class="token punctuation">,</span> <span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> binary<span class="token punctuation">)</span>
+
+    <span class="token builtin">file</span> <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>fpath<span class="token punctuation">,</span><span class="token string">'wb'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>write<span class="token punctuation">(</span>binary<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token boolean">True</span>
+
+<span class="token keyword">def</span> <span class="token function">random_generator</span><span class="token punctuation">(</span>size<span class="token operator">=</span><span class="token number">8</span><span class="token punctuation">,</span> chars<span class="token operator">=</span>string<span class="token punctuation">.</span>ascii_uppercase <span class="token operator">+</span> string<span class="token punctuation">.</span>digits<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>chars<span class="token punctuation">)</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+RANDOMSERIAL <span class="token operator">=</span> random_generator<span class="token punctuation">(</span><span class="token punctuation">)</span>
+RANDOMPLATFORM <span class="token operator">=</span> <span class="token string">"IOPlatformExpert"</span> <span class="token operator">+</span> random_generator<span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> TMBINARYES<span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            idpatch<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">,</span>RANDOMPLATFORM<span class="token punctuation">,</span>RANDOMSERIAL<span class="token punctuation">)</span>
+        <span class="token keyword">except</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span> <span class="token string">"Error: can not patch file "</span> <span class="token operator">+</span> <span class="token builtin">file</span>
+            <span class="token keyword">print</span> <span class="token string">"Wrong version?"</span>
+            sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">print</span> <span class="token string">"PlatformDevice: "</span> <span class="token operator">+</span> RANDOMPLATFORM
+<span class="token keyword">print</span> <span class="token string">"PlatformSerial: "</span> <span class="token operator">+</span> RANDOMSERIAL
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token triple-quoted-string string">'''
+ID changed sucessfully.
+!!! Restart computer before using TeamViewer !!!!
+'''</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>检查 <code>TeamViewer_Desktop</code> 的路径在上述脚本填写正确: 不同版本的Teamviewer, 此路径不同. 可在终端执行如下命令, 寻找此路径:</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /Applications/TeamViewer.app
+<span class="token function">find</span> <span class="token builtin class-name">.</span> -name TeamViewer_Desktop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1055,12 +1331,14 @@
           <h1 id="我的配置"><a class="header-anchor" href="#我的配置"></a>我的配置</h1>
 <h2 id="浏览器插件"><a class="header-anchor" href="#浏览器插件"></a>浏览器插件</h2>
 <p>当Zotero.app打开时，可以在浏览器中添加条目到zotero，使用方法<a target="_blank" rel="noopener" href="https://www.yangzhiping.com/tech/zotero1.html">详见</a></p>
+<p>Safari&lt;=12: 安装<code>Zotero Connector</code>: 点<code>工具</code>-<code> 安装浏览器插件</code>，弹出网页点<code>install</code></p>
+<p>Safari&gt;=13: <a target="_blank" rel="noopener" href="https://www.zotero.org/support/kb/safari_compatibility">beta版Zotero Connector</a></p>
+<h2 id="同步"><a class="header-anchor" href="#同步"></a>同步</h2>
+<p>本段参考 <a target="_blank" rel="noopener" href="https://github.com/specter119/RefTools/blob/master/zotero/sync.md">zotero跨平台使用教程：多种同步方案</a> 编写</p>
+<h3 id="概念解释"><a class="header-anchor" href="#概念解释"></a>概念解释</h3>
+<h4 id="条目的附件"><a class="header-anchor" href="#条目的附件"></a>条目的附件</h4>
+<p>Zotero 附件类型包括</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1178,12 +1456,12 @@
           <h2 id="XQuartz"><a class="header-anchor" href="#XQuartz"></a>XQuartz</h2>
 <h3 id><a class="header-anchor" href="#"></a></h3>
 <h3 id="多显示屏XQuartz闪退"><a class="header-anchor" href="#多显示屏XQuartz闪退"></a>多显示屏XQuartz闪退</h3>
+<p><a target="_blank" rel="noopener" href="https://apple.stackexchange.com/questions/235279/inkscape-or-other-xquartz-window-disappears-when-using-external-screen">对策</a> <a target="_blank" rel="noopener" href="https://www.laptopmag.com/articles/mirror-display-macos">对策参考</a></p>
+<h2 id="MacPorts安装X11"><a class="header-anchor" href="#MacPorts安装X11"></a>MacPorts安装X11</h2>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/fd422e004f62">安装教程</a> 我依照此教程安装后，X11.app打不开，故卸载了macports</p>
+<p><a target="_blank" rel="noopener" href="https://guide.macports.org/chunked/installing.macports.uninstalling.html">卸载macports</a></p>
+
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/mac/mac%E4%B8%8A%E4%BD%BF%E7%94%A8X11.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1303,12 +1581,28 @@
 <li>查看NAT映射关系列表</li>
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -L -n --line-number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>--line-number</code>: 显示规则的<code>&lt;规则的行号&gt;</code></p>
+<ul>
+<li>查看NAT命令列表</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>开NAT</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -A PREROUTING -d <span class="token operator">&lt;</span>公网ip<span class="token operator">></span>/32 -i <span class="token operator">&lt;</span>公网访问的网卡<span class="token operator">></span> -p tcp -m tcp --dport <span class="token operator">&lt;</span>公网端口<span class="token operator">></span> -j DNAT --to-destination <span class="token operator">&lt;</span>内网ip<span class="token operator">></span>:<span class="token operator">&lt;</span>内网端口<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p><code>-A PREROUTING</code>：新规则附在已有规则最后面；若换成 <code>-I PREROUTING &lt;规则的行号&gt;(默认1)</code> ，则新规则插入在此编号的规则前面</p>
+</li>
+<li>
+<p><code>/32</code> <code>-m tcp</code> 可省，此即缺省值</p>
+</li>
+<li>
+<p>删除一条NAT规则</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -D PREROUTING <span class="token operator">&lt;</span>规则的行号<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/NAT%E8%AE%BE%E7%BD%AE.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1429,12 +1723,20 @@
 <li>iptables：不仅仅能当防火墙，还能做端口转发、nat；但需要第三方软件 iptables-persistent 才能实现持久化规则</li>
 <li>ufw：全称 <s>ubuntu</s> uncomplicated firewall，是Debian下的简化版iptables，ufw的规则会被记录到iptables中；自动持久化规则。</li>
 </ul>
+<p>二者关系详见：<a target="_blank" rel="noopener" href="https://www.centos.bz/2017/12/ubuntu-%E7%9A%84ufw-%E5%92%8Ciptables-%E7%9A%84%E5%85%B3%E7%B3%BB/">参考</a></p>
+<h2 id="ufw"><a class="header-anchor" href="#ufw"></a>ufw</h2>
+<ul>
+<li>查看防火墙状态，会显示<code>&lt;规则的编号&gt;</code></li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> ufw  status numbered<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>打开防火墙：刚配的诸规则立即生效，重启系统仍然开着服务器，规则都还在，即<strong>各规则均已自动持续化</strong>。</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> ufw <span class="token builtin class-name">enable</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>关闭防火墙：重启系统仍然关闭</li>
+</ul>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E9%98%B2%E7%81%AB%E5%A2%99.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       

@@ -255,7 +255,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-03 04:50:07 04:50:07" itemprop="dateModified" datetime="2021-08-03T04:50:07+08:00">2021-08-03 04:50:07</time>
+        <time title="修改时间：2021-08-03 04:55:06 04:55:06" itemprop="dateModified" datetime="2021-08-03T04:55:06+08:00">2021-08-03 04:55:06</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -314,12 +314,14 @@
           <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/26625249">GitHub+Hexo 搭建个人网站详细教程</a></p>
 <p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1520557">hexo博客搭建教程</a></p>
 <h1 id="安装环境"><a class="header-anchor" href="#安装环境"></a>安装环境</h1>
+<h2 id="node"><a class="header-anchor" href="#node"></a>node</h2>
+<p>node.js, 简称node, 是一个开源与跨平台的JavaScript运行时环境. 博客框架hexo依赖node环境.</p>
+<h3 id="安装node"><a class="header-anchor" href="#安装node"></a>安装node</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> node<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这一命令同时安装了<code>node</code>, 及其node的默认包管理器<code>npm</code></p>
+<h2 id="npm"><a class="header-anchor" href="#npm"></a>npm</h2>
+<p>npm是node的默认包管理器</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/hexo%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA%E4%B8%8E%E5%8D%87%E7%BA%A7.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -437,12 +439,34 @@
           <p>参考: <a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000005775893">GitHub Pages 绑定二级域名</a></p>
 <p>已申请一级域名<code>hyliang.ml</code>, 欲给 <code>hyliang96.github.io</code> 绑定二级域名<code>blog.lianghy.ml</code>, 操作如下.</p>
 <p>注意: 读者操作时<strong>切勿照抄</strong>上述url, <code>hyliang.ml</code>换成你注册的一级域名, <code>blog  </code>可随便写, <code>hyliang96.github.io</code>换成你的github page的url.</p>
+<ol>
+<li>创建<code>CNAME</code>文件</li>
+</ol>
+<ul>
+<li>
+<p>非Hexo建的GIthub Pages: 直接在 GitHub 项目里创建 <code>CNAME</code> 文件 (无后缀名), 写入全文如下.</p>
+<pre class="line-numbers language-none"><code class="language-none">blog.lianghy.ml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>Hexo建的: 创建文件 <code>&lt;hexo项目目录&gt;/source/CNAME</code>, 写入全文如上.</p>
+<p>然后编译并部署博客 <code>hexo g &amp;&amp; hexo d</code>, 这样所部署到的github pages的repo中, 总是有这个<code>CNAME</code>文件.</p>
+</li>
+</ul>
+<p>设置作用: 访问 <code>hyliang96.github.io</code>  时, 浏览器的url栏显示为 <code>blog.lianghy.ml</code>.</p>
+<ol start="2">
+<li>在域名管理网站, 添加域名解析规则, 类型为 <code>CNAME</code> , 名为 <code>blog</code>,  目标 <code>hyliang96.github.io</code></li>
+</ol>
+<p><img data-src="/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/image-20200123041020200.png" alt="image-20200123041020200"></p>
+<p>此设置的功能为: 当访问<code>blog.lianghy.ml</code>, 会跳转到 <code>hyliang96.github.io</code> .</p>
+<ol start="3">
+<li>等待10分钟， 若出现以下效果, 证明绑定成功了
+<ul>
+<li>访问 <a target="_blank" rel="noopener" href="https://hyliang96.github.io">https://hyliang96.github.io</a> 时, 页面内容照常显示, 而 url 栏显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
+<li>访问 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a> 就能看到 <a target="_blank" rel="noopener" href="https://hyliang96.github.io">https://hyliang96.github.io</a> 一样的页面内容, 而 url 栏也显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
+</ul>
+</li>
+</ol>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -560,12 +584,20 @@
           <p>参考：<a target="_blank" rel="noopener" href="https://xiaoyeshiyu.github.io/linux/2017/12/11/IPMITool/">Ipmitool工具的使用方式</a> <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/50bec5e2f96e">ipmi带外管理</a></p>
 <h2 id="IPMI介绍"><a class="header-anchor" href="#IPMI介绍"></a>IPMI介绍</h2>
 <h3 id="需求"><a class="header-anchor" href="#需求"></a>需求</h3>
+<p>有的时候，ssh无法连接到服务器，如</p>
+<ul>
+<li>死机，需要重启</li>
+<li>服务器的临时路由表配错，造成ssh无法访问服务器，需要重启</li>
+</ul>
+<p>类似情况，为了能不亲自去机房就管理服务器，需要使用远程控制装置，也即带外管理，IPMI即是其中一种。</p>
+<h3 id="带外管理"><a class="header-anchor" href="#带外管理"></a>带外管理</h3>
+<ul>
+<li>经过服务器所在的工作网络 来连接服务器（如通过ssh），此通道名曰数据通道。由数据通道理服务器，称带内管理。当服务器或工作网络出现物理故障时，就无法带内管理。</li>
+<li>使用独立的管理通道连接服务器，不论开机与否，也不论工作网络是否正常，均可进行连接与控制。由管理通道管理服务器，称带外管理。</li>
+</ul>
+<h3 id="IPMI的原理"><a class="header-anchor" href="#IPMI的原理"></a>IPMI的原理</h3>
+<p>IPMI 独立于 CPU BIOS 和 操作系统，故不论开机否，皆可监视控制服务器。ipmi 是一种规范的标准，其中最重要的物理部件就是 BMC (Baseboard Management Controller)，一种嵌入式管理微控制器，它相当于整个平台管理的“大脑”，通过它 ipmi 可以监控各个传感器的数据并记录各种事件的日志。</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/IPMI%E5%B8%A6%E5%A4%96%E7%AE%A1%E7%90%86%E6%95%99%E7%A8%8B.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -683,12 +715,14 @@
           <h1 id="信息社会主义（E-socialism）"><a class="header-anchor" href="#信息社会主义（E-socialism）"></a>信息社会主义（E-socialism）</h1>
 <p>信息社会主义，是笔者提出的，在现有信息化技术条件下，一种全新的社会主义发展模式构想。它包括两方面，信息化计划指导的市场经济，和政务信息化改革。</p>
 <p>信息化计划指导的市场经济（E-plan-guided markert economy, EPGME），它的前身是苏联在七十年代提出但未实现的OGAS (全国自动化系统)<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>，是指在数字货币、物联网、区块链<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>和末端智能设备，去无人化、准确、实时地采集生产、物流、交易、预订、新需求等等经济数据，去学习全行业的生产模型，实现对市场经济中的企业的生产和研发，进行细粒度的指导。</p>
+<p>政务信息化改革，是指直接对接中央公开数据库的、代码化、服务业化的 信息化政府系统。人民查看此系统的公开数据、代码和服务记录，在政务论坛直接议政，并通过落实了的人民代表大会（全面的常态权力机关）和人民变革大会（特定提议的临时权力机关）对政府进行强有力的监督。</p>
+<h2 id="EPGME的供需调节机制"><a class="header-anchor" href="#EPGME的供需调节机制"></a>EPGME的供需调节机制</h2>
+<h3 id="计划指导"><a class="header-anchor" href="#计划指导"></a>计划指导</h3>
+<p>“信息化”指的是产业、企业、车间/部门 计划的计算是联动的 它将整个经济体中所有企业的生产、物流仓储、销售、供应链、人员管理等等的信息系统打通 变成一个信息系统，系统数据公开、代码公开，以接受人民监督。</p>
+<p>“计划指导的市场”指的是给出<strong>细粒度的</strong>指导，包括各种产品的产量、定价、研发的建议，尽量准确实现事前的以需定产，并对建议的数据给出对不确定性的估计。这些指导对于企业不强制，仅供参考，且企业依旧在市场上竞争并自负盈亏。</p>
+<p>由于这些指导，比起市场的反馈更早 更精确，企业采纳指导将获得更加稳健的利润。但是，企业可也以基于自身的调研和经营理念，自由地确定产量、价格和研发新产品。</p>
+<p>此外，整个系统将以区块链的方式实现，这些数据和指导将在会对全民公开，来实现充分信息下的企业竞争。区块链<sup class="footnote-ref"><a href="#fn2" id="fnref2:1">[2:1]</a></sup>具有不可伪造、全程留痕、可以追溯、公开透明、集体维护的属性，是目前最适合实现EPGME和政务信息化改革的互联网技术基础。</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E4%BF%A1%E6%81%AF%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -806,12 +840,14 @@
           <h1 id="Sublime教程"><a class="header-anchor" href="#Sublime教程"></a>Sublime教程</h1>
 <p>[TOC]</p>
 <p>参考：<a target="_blank" rel="noopener" href="http://lucida.me/blog/sublime-text-complete-guide/">Sublime Text 全程指南</a></p>
+<h2 id="安装"><a class="header-anchor" href="#安装"></a>安装</h2>
+<p><a target="_blank" rel="noopener" href="https://www.sublimetext.com/3">官网下载</a></p>
+<h2 id="配置"><a class="header-anchor" href="#配置"></a>配置</h2>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a5559083c666">原文参考</a></p>
+<h3 id="安装package-control"><a class="header-anchor" href="#安装package-control"></a>安装package control</h3>
+<p>这是sublime官方的包管理软件，可以安装、卸载包。</p>
+<h4 id="直接安装"><a class="header-anchor" href="#直接安装"></a>直接安装</h4>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/Sublime%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1002,12 +1038,36 @@ a<span class="token punctuation">.</span>grad<span aria-hidden="true" class="lin
 </li>
 </ul>
 <h2 id="安装过程中的bug"><a class="header-anchor" href="#安装过程中的bug"></a>安装过程中的bug</h2>
+<h3 id="torchvision-报错-ZN2at7getTypeERKNS-6TensorE"><a class="header-anchor" href="#torchvision-报错-ZN2at7getTypeERKNS-6TensorE"></a>torchvision 报错 <code>_ZN2at7getTypeERKNS_6TensorE</code></h3>
+<p>运行含有torchvision的代码，会报错</p>
+<pre class="line-numbers language-none"><code class="language-none">Traceback (most recent call last):
+  File &quot;main.py&quot;, line 9, in &lt;module&gt;
+    from get_data import get_data
+  File &quot;&#x2F;mfs&#x2F;haoyu&#x2F;project&#x2F;pytorch_learn&#x2F;my_template&#x2F;code&#x2F;get_data.py&quot;, line 2, in &lt;module&gt;
+    from torchvision import datasets, transforms
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
+    from torchvision import models
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;__init__.py&quot;, line 11, in &lt;module&gt;
+    from . import detection
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;detection&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
+    from .faster_rcnn import *
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;detection&#x2F;faster_rcnn.py&quot;, line 7, in &lt;module&gt;
+    from torchvision.ops import misc as misc_nn_ops
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;ops&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
+    from .boxes import nms, box_iou
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;ops&#x2F;boxes.py&quot;, line 2, in &lt;module&gt;
+    from torchvision import _C
+ImportError: &#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;_C.cpython-37m-x86_64-linux-gnu.so: undefined symbol: _ZN2at7getTypeERKNS_6TensorE<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这是因为torchvision未安装，或安装的版本不对</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list <span class="token operator">|</span> <span class="token function">grep</span> torch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">torch                  1.2.0
+torchfile              0.1.0
+torchnet               0.0.4
+torchvision            0.3.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>版本不对，torch1.2.0应当和torchvision0.4.0配套，故需要升级torchvision。可采用以下方法升级：</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85pytorch.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1132,12 +1192,22 @@ a<span class="token punctuation">.</span>grad<span aria-hidden="true" class="lin
 <p>或在左侧拓展商店栏，输入<code>插件名称</code> - <code>install</code></p>
 </li>
 </ul>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/img1.png" alt></p>
+<h2 id="语言"><a class="header-anchor" href="#语言"></a>语言</h2>
+<p><code>⇧⌘P</code> -<code>Configure Display Language</code> -</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_15.54.53.png" alt></p>
+<ul>
+<li>
+<p>选择已有语言</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_15.54.43.png" alt></p>
+</li>
+<li>
+<p><code>install other language</code> -左侧拓展商店栏输入 <code>Chinese (Simplified) Language Pack for Visual Studio Code</code> - <code>install</code></p>
+</li>
+</ul>
+<h2 id="配色与字体"><a class="header-anchor" href="#配色与字体"></a>配色与字体</h2>
+<h3 id="预备"><a class="header-anchor" href="#预备"></a>预备</h3>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1280,12 +1350,25 @@ Processing triggers for shared-mime-info (1.5-2ubuntu0.2) ...
 Processing triggers for hicolor-icon-theme (0.15-0ubuntu1.1) ...
 Errors were encountered while processing:
  sogoupinyin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span>  libopencc1 fcitx-libs libqtwebkit4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>libopencc2 libopencc1二者装一个就好</p>
+<p>然后重新</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> dpkg -i sogoupinyin_2.2.0.0108_amd64.deb <span class="token comment"># 安装sogou输入法</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>得到</p>
+<pre class="line-numbers language-none"><code class="language-none">(Reading database ... 264867 files and directories currently installed.)
+Preparing to unpack sogoupinyin_2.2.0.0108_amd64.deb ...
+Unpacking sogoupinyin (2.2.0.0108) over (2.2.0.0108) ...
+Setting up sogoupinyin (2.2.0.0108) ...
+Processing triggers for mime-support (3.59ubuntu1) ...
+Processing triggers for libglib2.0-0:amd64 (2.48.2-0ubuntu4.1) ...
+No such key &#39;Gtk&#x2F;IMModule&#39; in schema &#39;org.gnome.settings-daemon.plugins.xsettings&#39; as specified in override file &#39;&#x2F;usr&#x2F;share&#x2F;glib-2.0&#x2F;schemas&#x2F;50_sogoupinyin.gschema.override&#39;; ignoring override for this key.
+Processing triggers for desktop-file-utils (0.22-1ubuntu5.2) ...
+Processing triggers for gnome-menus (3.13.3-6ubuntu3.1) ...
+Processing triggers for shared-mime-info (1.5-2ubuntu0.2) ...
+
+Processing triggers for hicolor-icon-theme (0.15-0ubuntu1.1) ...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中<code>No such key 'Gtk/IMModule'</code>不影响</p>
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEVNC%E2%80%94%E2%80%94debug%E7%9A%84%E6%97%A5%E5%BF%97.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
@@ -1313,7 +1396,7 @@ Errors were encountered while processing:
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/TensorboardX%EF%BC%9A%E5%9C%A8pytorch%E4%B8%8A%E7%94%A8Tensorboard.md/main/">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/%E7%BB%88%E7%AB%AF/iterm2%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/heat.jpg">
@@ -1326,7 +1409,7 @@ Errors were encountered while processing:
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/TensorboardX%EF%BC%9A%E5%9C%A8pytorch%E4%B8%8A%E7%94%A8Tensorboard.md/main/" class="post-title-link" itemprop="url">TensorboardX：在pytorch上用Tensorboard</a>
+          <a href="/%E5%99%A8/%E7%BB%88%E7%AB%AF/iterm2%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/" class="post-title-link" itemprop="url">iterm2配置与使用</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1337,7 +1420,7 @@ Errors were encountered while processing:
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2017-10-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2017-10-25T04:03:03+08:00">2017-10-25 04:03:03</time>
+      <time title="创建时间：2019-05-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25 04:03:03</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -1356,7 +1439,7 @@ Errors were encountered while processing:
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">炼丹框架</span></a>
+          <a href="/categories/%E5%99%A8/%E7%BB%88%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">终端</span></a>
         </span>
     </span>
 
@@ -1369,8 +1452,133 @@ Errors were encountered while processing:
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/TensorboardX%EF%BC%9A%E5%9C%A8pytorch%E4%B8%8A%E7%94%A8Tensorboard.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/TensorboardX%EF%BC%9A%E5%9C%A8pytorch%E4%B8%8A%E7%94%A8Tensorboard.md/main/" data-xid="/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/TensorboardX%EF%BC%9A%E5%9C%A8pytorch%E4%B8%8A%E7%94%A8Tensorboard.md/main/" itemprop="commentCount"></span>
+    <a title="waline" href="/%E5%99%A8/%E7%BB%88%E7%AB%AF/iterm2%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/%E7%BB%88%E7%AB%AF/iterm2%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/" data-xid="/%E5%99%A8/%E7%BB%88%E7%AB%AF/iterm2%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>22 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>[TOC]</p>
+<h2 id="iterm2快捷键"><a class="header-anchor" href="#iterm2快捷键"></a>iterm2快捷键</h2>
+<p><strong>Mac按键符号</strong></p>
+<p><code>⇧</code>: shift     <code>⌃</code> : control     <code>⌥</code> : option/alt    <code>⌘ </code>: command   <code>↩</code>: return    <code>⌅</code>: enter</p>
+<h3 id="快捷键"><a class="header-anchor" href="#快捷键"></a>快捷键</h3>
+<h4 id="窗口（window）"><a class="header-anchor" href="#窗口（window）"></a>窗口（window）</h4>
+<p><code>⌘N</code> : 新建窗口</p>
+<p><code>⌘⇧w</code> : 关闭当前窗口</p>
+<p><code>⌘↩</code>/自定义<code>⌘⌃F</code> : 切换全屏, 自定义动作名为 <code>Toggle Full Screen</code></p>
+<h4 id="标签页（tab）"><a class="header-anchor" href="#标签页（tab）"></a>标签页（tab）</h4>
+          <!--noindex-->
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/%E7%BB%88%E7%AB%AF/tmux%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="三清小道">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%99%A8/%E7%BB%88%E7%AB%AF/tmux%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/" class="post-title-link" itemprop="url">tmux配置与使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25 04:03:03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-02 04:26:30 04:26:30" itemprop="dateModified" datetime="2021-08-02T04:26:30+08:00">2021-08-02 04:26:30</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E7%BB%88%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">终端</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/%E5%99%A8/%E7%BB%88%E7%AB%AF/tmux%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/%E7%BB%88%E7%AB%AF/tmux%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/" data-xid="/%E5%99%A8/%E7%BB%88%E7%AB%AF/tmux%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1400,138 +1608,133 @@ Errors were encountered while processing:
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>自2019年5月后，pytorch官方支持了Tensorboard，可千万pytorch官网查询Tensorboard的文档</p>
-<h1 id="TensorboardX"><a class="header-anchor" href="#TensorboardX"></a>TensorboardX</h1>
-<h2 id="简介"><a class="header-anchor" href="#简介"></a>简介</h2>
+          <h2 id="tmux-使用"><a class="header-anchor" href="#tmux-使用"></a>tmux 使用</h2>
+<ul>
+<li>
+<ul>
+<li>窗口进程管理<br>
+即使终端关闭（<code>cmd+Q/W</code>），tmux的窗口依旧运行<br>
+打开一个tmux窗口</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">tmux new -s 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>将该tmux窗口放入后台</p>
+<pre class="line-numbers language-none"><code class="language-none">ctrl+b d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>查看所有tmux窗口的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux ls<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>唤出（使后台的窗口显示）tmux窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux a -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>显示最后放入后台的窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>杀死tmux窗口的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux kill-session -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>杀死当前窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">ctrl+b &amp;
+选择y （yes）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>窗口分区管理</p>
+</li>
+<li>
+<p>页面<br>
+单个程序只给一屏用于输出，超出此范围，要翻页查看：<br>
+<code>ctrl+b [   fn+↑/↓  esc</code><br>
+进入拷贝模式：拷贝模式中，新输出的文字不会显示<br>
+<code>ctrl+b [</code>	：进入拷贝模式<br>
+<code>fn+上/下键</code>	：翻页<br>
+<code>esc</code>			：退出拷贝模式<br>
+进入黏贴模式<br>
+<code>ctrl+b ]</code></p>
+</li>
+</ul>
+<h2 id="tmux配置"><a class="header-anchor" href="#tmux配置"></a>tmux配置</h2>
+<p>我的<code>~/.tmux.conf</code>文件</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment">#-- base --#</span>
+<span class="token builtin class-name">set</span> -g default-terminal <span class="token string">"screen-256color"</span>
+<span class="token builtin class-name">set</span> -g display-time <span class="token number">3000</span>
+<span class="token builtin class-name">set</span> -g history-limit <span class="token number">10000</span>
+<span class="token builtin class-name">set</span> -g base-index <span class="token number">1</span>
+<span class="token builtin class-name">set</span> -g pane-base-index <span class="token number">1</span>
+<span class="token builtin class-name">set</span> -s escape-time <span class="token number">0</span>
+<span class="token comment"># set -g mouse on # 打开以下各个鼠标功能</span>
+
+<span class="token comment"># set -g mode-mouse on # 支持鼠标选取文本等</span>
+<span class="token comment"># set -g mouse-resize-pane on # 支持鼠标拖动调整面板的大小(通过拖动面板间的分割线)</span>
+<span class="token comment"># set -g mouse-select-pane on # 支持鼠标选中并切换面板</span>
+<span class="token comment"># set -g mouse-select-window on # 支持鼠标选中并切换窗口(通过点击状态栏窗口名称)</span>
+<span class="token comment"># 允许用鼠标（含触控板）翻页，但会把vim的鼠标翻页给劫持走</span>
+
+<span class="token comment"># 复制黏贴</span>
+<span class="token comment"># set-option -g default-command "reattach-to-user-namespace -l bash"</span>
+<span class="token comment"># setw -g mode-keys vi</span>
+<span class="token comment"># bind-key -t vi-copy v begin-selection</span>
+<span class="token comment"># bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"</span>
+
+<span class="token comment"># ctrl-a [ 进入 vi 模式</span>
+<span class="token comment"># q：退出vi模式</span>
+<span class="token comment"># 使用 hjkl，wb 等 vi 快捷键移动到目标位置</span>
+<span class="token comment"># v ：进入 Visual模式(即选词模式) ，开始选择内容</span>
+<span class="token comment"># 使用 vi 快捷键移动，直到要复制的内容被选中</span>
+<span class="token comment"># y：复制操作系统的粘贴板</span>
+<span class="token comment"># 粘贴：tmux内ctrl+]，在操作系统内Cmd-V</span>
+
+<span class="token comment"># ctrl+r : reload my change in this file (~/.tmux.conf)</span>
+<span class="token builtin class-name">bind</span> r source-file ~/.tmux.conf <span class="token punctuation">\</span><span class="token punctuation">;</span> display <span class="token string">"Reloaded!"</span>
+
+<span class="token comment"># 分割窗口</span>
+<span class="token builtin class-name">bind</span> <span class="token punctuation">\</span> split-window -h <span class="token comment"># prefix+\ : 竖分</span>
+unbind %
+<span class="token builtin class-name">bind</span> - split-window -v <span class="token comment"># prefix+-横分</span>
+unbind <span class="token string">'"'</span>
+
+<span class="token comment"># 窗口间移动</span>
+<span class="token builtin class-name">bind</span> h select-pane -L
+<span class="token builtin class-name">bind</span> j select-pane -D
+<span class="token builtin class-name">bind</span> k select-pane -U
+<span class="token builtin class-name">bind</span> l select-pane -R
+
+<span class="token comment"># 窗口改大小</span>
+<span class="token builtin class-name">bind</span> -r ^k resizep -U <span class="token number">5</span> <span class="token comment"># upward (prefix Ctrl+k)</span>
+<span class="token builtin class-name">bind</span> -r ^j resizep -D <span class="token number">5</span> <span class="token comment"># downward (prefix Ctrl+j)</span>
+<span class="token builtin class-name">bind</span> -r ^h resizep -L <span class="token number">5</span> <span class="token comment"># to the left (prefix Ctrl+h)</span>
+<span class="token builtin class-name">bind</span> -r ^l resizep -R <span class="token number">5</span> <span class="token comment"># to the right (prefix Ctrl+l)</span>
+
+<span class="token builtin class-name">bind</span> -r e lastp <span class="token comment"># 选择最后一个面板</span>
+<span class="token builtin class-name">bind</span> -r ^e last <span class="token comment"># 选择最后一个窗口</span>
+
+<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">[</span> swapp -U <span class="token comment"># 与前一个面板交换位置: ctrl+a+[(ctrl不松手)</span>
+<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">]</span> swapp -D <span class="token comment"># 与后一个面板交换位置：ctrl+a+](ctrl不松手)</span>
+
+<span class="token comment"># select the last pane (prefix e)</span>
+<span class="token builtin class-name">bind</span> e lastp
+<span class="token comment"># select the last window (prefix Ctrl+e)</span>
+<span class="token builtin class-name">bind</span> ^e last
+
+<span class="token comment"># kill pane (prefix q)</span>
+<span class="token builtin class-name">bind</span> q killp
+<span class="token comment"># kill window (prefix Ctrl+q)</span>
+<span class="token builtin class-name">bind</span> -r ^q killw
+<span class="token builtin class-name">bind</span> Q kill-session
+
+<span class="token comment"># 显示会话列表</span>
+unbind w
+<span class="token builtin class-name">bind</span> w display-panes
+unbind s
+unbind ^s
+unbind S
+<span class="token builtin class-name">bind</span> s choose-window
+<span class="token builtin class-name">bind</span> -r ^s choose-session
+<span class="token builtin class-name">bind</span> S choose-tree
+<span class="token comment"># list-windows -a</span>
+
+<span class="token comment"># 显示窗口列表</span>
+
+<span class="token comment"># 修改进入命令模式按键</span>
+<span class="token comment"># remap prefix to Control + a</span>
+<span class="token builtin class-name">set</span> -g prefix C-a
+unbind C-b
+<span class="token builtin class-name">bind</span> C-a send-prefix<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
           <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/TensorboardX%EF%BC%9A%E5%9C%A8pytorch%E4%B8%8A%E7%94%A8Tensorboard.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="三清小道">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/" class="post-title-link" itemprop="url">pytorch多卡训练</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-08-10 20:00:00 20:00:00" itemprop="dateCreated datePublished" datetime="2019-08-10T20:00:00+08:00">2019-08-10 20:00:00</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-02 04:26:30 04:26:30" itemprop="dateModified" datetime="2021-08-02T04:26:30+08:00">2021-08-02 04:26:30</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index"><span itemprop="name">炼丹框架</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/" data-xid="/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>210</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="pytorch：-一机多卡训练的尝试"><a class="header-anchor" href="#pytorch：-一机多卡训练的尝试"></a>pytorch： 一机多卡训练的尝试</h1>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/221d9298808e">参考</a></p>
-<p><a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
           <!--/noindex-->
         
       
