@@ -1,0 +1,20 @@
+User-agent: *
+
+# 就是告诉搜索引擎的爬虫要爬我这网站的那些内容。
+Allow: /
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/
+Allow: /about/
+
+# 因为现在（2019-09以后）Google Search默认是用智能手机引擎来抓取，
+# 所以如果js和css这样被disallow的话会有问题，建议还是把上面的disallow去掉。
+# 参见: https :// mikolaje .github . io/2019/ hexo_seo . html
+# Disallow: /js/
+# Disallow: /fonts/
+# Disallow: /css/
+# Disallow: /live2dw/
+# Disallow: /vendors/
+
+Sitemap: http://blog.lianghy.ml/sitemap.xml
+Sitemap: http://blog.lianghy.ml/baidu_sitemap.xml
