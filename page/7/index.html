@@ -313,6 +313,7 @@
     <div class="post-body" itemprop="articleBody">
           <h2 id="自动操作文件分类"><a class="header-anchor" href="#自动操作文件分类"></a>自动操作文件分类</h2>
 <p>使用 mac 自带的app <code>/Application/Automator.app</code> (自动操作), 可以创建自动工作流.</p>
+<p>用此app新建文件, 会创建到 <code>/Users/&lt;username&gt;/Library/Services/</code> 目录, 创建文件格式有好几种, 如下图所.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/%E5%99%A8/mac/%E8%87%AA%E5%8A%A8%E6%93%8D%E4%BD%9C.md/main/#more" rel="contents">
@@ -435,6 +436,18 @@
     <div class="post-body" itemprop="articleBody">
           <p>Safari对于一些用https访问的域名, 会存入一个列表, 此后访问 <code>http://此域名</code> , 会自动跳转到  <code>https://此域名</code> .</p>
 <p>若不想跳转, 可如下操作:</p>
+<ul>
+<li>
+<p>⌘+Q 退出Safari</p>
+</li>
+<li>
+<p>执行如下命令. 这个文件是个域名列表, safari见之则访https而非http. 删此文件, 则列表清空. <a target="_blank" rel="noopener" href="https://discussions.apple.com/thread/6989319">出处</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 一般能解决问题.</p>
+</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/%E5%99%A8/mac/%E7%A6%81%E6%AD%A2safar%E4%BB%8Ehttp%E8%B7%B3%E8%BD%AC%E5%88%B0https.md/main/#more" rel="contents">
@@ -557,6 +570,7 @@
     <div class="post-body" itemprop="articleBody">
           <h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
 <p>注销iCloud时, <strong>若误点”不保留”</strong> icloud所同步的文档, 则系统会将所同步的文档删除, 例如若之前<code>桌面</code>和<code>文稿</code>被iCloud同步, 注销iCloud后则桌面被完全清空.</p>
+<h2 id="解决方法"><a class="header-anchor" href="#解决方法"></a>解决方法</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/%E5%99%A8/mac/%E6%B3%A8%E9%94%80icloud%E5%90%8E%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1.md/main/#more" rel="contents">
@@ -679,6 +693,7 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="分辨率与HiDPI"><a class="header-anchor" href="#分辨率与HiDPI"></a>分辨率与HiDPI</h1>
 <h2 id="电脑显示器分辨率"><a class="header-anchor" href="#电脑显示器分辨率"></a>电脑显示器分辨率</h2>
+<p>16:9 显示器</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/%E5%99%A8/mac/mac%E5%A4%96%E6%8E%A5%E6%98%BE%E7%A4%BA%E5%B1%8F%E5%BC%80%E5%90%AFHiDPI.md/main/#more" rel="contents">
@@ -883,14 +898,7 @@
 </tbody>
 </table>
 <p><img data-src="/%E5%99%A8/mac/mac%E4%B8%8A%E8%AF%BB%E5%8F%96ntfs.md/main/v2-cacc571eedb04c2fb116e64bb02733ac_720w.jpg" alt="img"></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/mac/mac%E4%B8%8A%E8%AF%BB%E5%8F%96ntfs.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+
       
     </div>
 
@@ -1005,6 +1013,7 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="系统级locate"><a class="header-anchor" href="#系统级locate"></a>系统级locate</h1>
 <p>以下用于搜整个系统的文件</p>
+<h2 id="首次使用locate"><a class="header-anchor" href="#首次使用locate"></a>首次使用locate</h2>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/%E5%99%A8/mac/Mac%E4%B8%8A%E4%BD%BF%E7%94%A8locate.md/main/#more" rel="contents">
@@ -1127,6 +1136,7 @@
     <div class="post-body" itemprop="articleBody">
           <h2 id="第三方的软件-xxx-app-已损坏-无法打开"><a class="header-anchor" href="#第三方的软件-xxx-app-已损坏-无法打开"></a>第三方的软件  <code>xxx.app 已损坏, 无法打开</code></h2>
 <p><code>xxx.app</code> 安装后, 初次打开时显示 <code>xxx.app 已损坏, 无法打开</code>， 原因是 Mac在安装第三方的软件的时候会对第三方的身份做check. 若显示  <code>xxx.app 已损坏, 无法打开</code>,</p>
+<h3 id="开全局的允许安装任意来源的app"><a class="header-anchor" href="#开全局的允许安装任意来源的app"></a>开全局的允许安装任意来源的app</h3>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/%E5%99%A8/mac/mac_%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85.md/main/#more" rel="contents">
@@ -1249,6 +1259,7 @@
     <div class="post-body" itemprop="articleBody">
           <h2 id="目录下统计磁盘用量"><a class="header-anchor" href="#目录下统计磁盘用量"></a>目录下统计磁盘用量</h2>
 <h3 id="法一-使用duc-推荐"><a class="header-anchor" href="#法一-使用duc-推荐"></a>法一 使用<a target="_blank" rel="noopener" href="http://duc.zevv.nl">duc</a> (推荐)</h3>
+<p>仅能统计磁盘大小, 不能统计文件数目. 是按照子文件夹来统计, 而不是文件归属的用户来统计.</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/%E7%A3%81%E7%9B%98%E9%85%8D%E9%A2%9D%E8%AE%BE%E7%BD%AE.md/main/#more" rel="contents">
@@ -1376,6 +1387,7 @@
     cudnn&#x2F;
         各个版本的cuda对应的各个版本的cudnn的安装包
     README.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="cuDNN与cuda之间的关系"><a class="header-anchor" href="#cuDNN与cuda之间的关系"></a>cuDNN与cuda之间的关系</h1>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/cuda%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.md/main/#more" rel="contents">
