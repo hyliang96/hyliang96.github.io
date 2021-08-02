@@ -609,7 +609,7 @@ c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuati
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/heat.jpg">
@@ -622,7 +622,7 @@ c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuati
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/" class="post-title-link" itemprop="url">jupyter_notebook更换配色</a>
+          <a href="/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/" class="post-title-link" itemprop="url">bash设置</a>
         </h2>
 
         <div class="post-meta-container">
@@ -652,7 +652,7 @@ c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuati
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
         </span>
     </span>
 
@@ -665,8 +665,8 @@ c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuati
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/" data-xid="/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/" itemprop="commentCount"></span>
+    <a title="waline" href="/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/" data-xid="/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -678,14 +678,14 @@ c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuati
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.6k</span>
+      <span>5.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>9 分钟</span>
+      <span>17 分钟</span>
     </span>
 </div>
 
@@ -696,94 +696,785 @@ c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuati
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="jupyter-themes-修改-jupyter-notebook-的主题"><a class="header-anchor" href="#jupyter-themes-修改-jupyter-notebook-的主题"></a>jupyter-themes: 修改 jupyter notebook 的主题</h1>
-<h2 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h2>
+          <h2 id="配置环境变量"><a class="header-anchor" href="#配置环境变量"></a>配置环境变量</h2>
+<p>参见 <a target="_blank" rel="noopener" href="http://elf8848.iteye.com/blog/1582137">http://elf8848.iteye.com/blog/1582137</a></p>
+<p>适应Mac/Linux</p>
+<h3 id="一、改哪个文件"><a class="header-anchor" href="#一、改哪个文件"></a>一、改哪个文件</h3>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>ubuntu或debian</th>
+<th>mac</th>
+<th>启动条件</th>
+<th>有效于</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/etc/profile</td>
+<td>无</td>
+<td>有</td>
+<td>用户登录系统</td>
+<td>所有用户</td>
+</tr>
+<tr>
+<td>/etc[/bashrc|bash.bashrc]</td>
+<td>无</td>
+<td>有</td>
+<td>用户登录系统，开新 shell</td>
+<td>所有用户</td>
+</tr>
+<tr>
+<td>~/[.bash_profile|.bash_login|.profile]</td>
+<td>有</td>
+<td>有</td>
+<td>用户登录系统</td>
+<td>当前用户</td>
+</tr>
+<tr>
+<td>~/.bashrc</td>
+<td>有</td>
+<td>有</td>
+<td>用户登录系统，开新 shell</td>
+<td>当前用户</td>
+</tr>
+<tr>
+<td>~/.bash_logout</td>
+<td>有</td>
+<td>有</td>
+<td>用户退出系统时</td>
+<td>当前用户</td>
+</tr>
+</tbody>
+</table>
+<p>登录: 如 “su -“ 命令, ssh 连服务器</p>
+<p>非登录: 执行’bash xxx’命令，戳开终端</p>
+<p>启动上述文件，即下面的激活上述文件</p>
+<h4 id="执行顺序"><a class="header-anchor" href="#执行顺序"></a>执行顺序</h4>
+<p><a target="_blank" rel="noopener" href="https://wxnacy.com/2018/06/01/shell-profile/">参考</a>, <a target="_blank" rel="noopener" href="https://blog.csdn.net/robertaqi/article/details/5449763">流程图</a>, <a target="_blank" rel="noopener" href="http://blog.51cto.com/hxl2009/664187">各个文件</a></p>
+<h5 id="登录"><a class="header-anchor" href="#登录"></a>登录</h5>
+<p>流程图</p>
+<pre class="line-numbers language-none"><code class="language-none">                     &#x2F;etc&#x2F;profile.d&#x2F;下诸文件
+                          ↑ 手动
+*用户登录* --先自动--&gt; &#x2F;etc&#x2F;profile -手动-&gt; &#x2F;etc&#x2F;(bash.)bashrc
+    |                                    ↑ 手动
+    |        不登录开新shell* -----&gt;  ~&#x2F;.bashrc  -手动-&gt;  ~&#x2F;.bash_aliases
+    \                               ↑ 手动
+     \--- --后自动---------------&gt; ~&#x2F;[.bash_profile|.bash_login|.profile]从前到后找，只执行一个
+     					     CentOS 默认用 ~&#x2F;.bash_profile 文件
+     					     Ubuntu 默认用 ~&#x2F;.profile 文件
+     					     混用也不影响
+     					     sh 登录只加载 .profile, 与bash共用.profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上述跳转关系依赖于</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># /etc/profile，/etc/bashrc 中通常有</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -d /etc/profile.d <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+      <span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> /etc/profile.d/*.sh<span class="token punctuation">;</span> <span class="token keyword">do</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> -r <span class="token variable">$i</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+          <span class="token builtin class-name">.</span> <span class="token variable">$i</span>
+        <span class="token keyword">fi</span>
+      <span class="token keyword">done</span>
+      <span class="token builtin class-name">unset</span> i
+    <span class="token keyword">fi</span>
+<span class="token keyword">fi</span>
+
+<span class="token comment"># ~/.bash_profile 中通常有</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -f ~/.bashrc <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token builtin class-name">.</span> ~/.bashrc
+    <span class="token keyword">fi</span>
+<span class="token keyword">fi</span>
+
+<span class="token comment"># ~/.bashrc 中通常有</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -f /etc/bashrc  <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token builtin class-name">.</span> /etc/bashrc
+    <span class="token keyword">fi</span>
+<span class="token keyword">fi</span>
+
+<span class="token comment"># ~/.bashrc 中通常有</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -f ~/.bash_aliases  <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token builtin class-name">.</span> ~/.bash_aliases
+    <span class="token keyword">fi</span>
+<span class="token keyword">fi</span>
+
+<span class="token comment"># ~/.bashrc 中通常有</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -f /etc/bashrc <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token builtin class-name">.</span> /etc/bashrc
+    <span class="token keyword">fi</span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>分工建议</p>
 <ul>
 <li>
-<p>安装</p>
-<p>看jupyter是用conda还是pip装的</p>
-<pre class="line-numbers language-none"><code class="language-none">conda list | grep -e &#39;^jupyter &#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">jupyter                   1.0.0            py36h9896ce5_0    【defaults】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<ul>
-<li>
-<p>若<code>【】</code>中为<code>default</code>，则是jupyter notebook是conda安装的，强烈建议用conda安装jupyterthemes，不然若用pip安装jupyterthemes，会出现多种依赖不匹配</p>
-  <pre class="line-numbers language-none"><code class="language-none">conda install -c conda-forge jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>/etc/profile</code> ：所有用户系统信息，如置环境信息，只在用户登录时执行一次</p>
 </li>
 <li>
-<p>若<code>【】</code>中为<code>pypi</code>，jupyter notebook是pip安装的，则</p>
-  <pre class="line-numbers language-none"><code class="language-none">pip install jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>~/.bash_profile</code> ： 本用户系统信息，如环境变量</p>
+</li>
+<li>
+<p><code>~/.bashrc</code> ：shell 信息，如alias，配色</p>
 </li>
 </ul>
-</li>
-<li>
-<p>配置</p>
-<p>终端下输入以下命令</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">jt -t gruvboxd -T -N -cellw <span class="token number">90</span>% -f roboto -fs <span class="token number">11</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这表示我选择了 gruvboxd 这个主题，同时希望打开顶部的工具栏（Toolbar），显示笔记本的名字（Name），文本框占浏览器页宽的90%，用roboto等宽字体，字号11</p>
-<p>运行过程中可能会返回报错如下，这说明已经别的用户安装了jupyterthemes，并重建了<code>/tmp/yacctab.py</code>，故你无法重写这个文件，这并不运行你使用jupyter notebook的配色。你的配色设置，保存到 <code>$HOME/.jupyter/custom/</code>，不和他的配色设置冲突。</p>
-<blockquote>
-<p>WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’<br>
-WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’</p>
-</blockquote>
-</li>
-<li>
-<p>配置文件</p>
-<p>配置文件保存到了 <code>$HOME/.jupyter/custom/</code>，下是四个配置和依赖文件<code>current_theme. txt, custom.css, custom.js, fonts/</code>，之后每次执行<code>jupyter notebook</code>启动notebook时，会加载此配置，看见你要的主题。</p>
-</li>
-</ul>
-<h2 id="依赖不匹配怎么解决"><a class="header-anchor" href="#依赖不匹配怎么解决"></a>依赖不匹配怎么解决</h2>
-<p>若jupyter notebook是conda安装，却用安装pip安装jupyterthemes，会出现多种依赖不匹配，最终如下装一圈依赖，才能安装成功</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda upgrade notebook libsodium
-pip <span class="token function">install</span> jupyterthemes
-pip <span class="token function">install</span> --upgrade --user nbconvert
-pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>以下是各个依赖不匹配的详解：</p>
-<h3 id="Found-existing-installation-terminado-0-6"><a class="header-anchor" href="#Found-existing-installation-terminado-0-6"></a>Found existing installation: terminado 0.6</h3>
-<p>执行<code>pip install jupyterthemes</code>时报错</p>
-<blockquote>
-<p>notebook 5.7.6 has requirement jupyter-core&gt;=4.4.0, but you’ll have jupyter-core 4.3.0 which is incompatible.</p>
-<p>Installing collected packages: lesscpy, terminado, pyzmq, jupyter-client, prometheus-client, Send2Trash, notebook, jupyterthemes<br>
-<strong>Found existing installation</strong>: terminado 0.6<br>
-Cannot uninstall ‘terminado’. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.</p>
-</blockquote>
-<p>这是因为，上述操作中pip自动更新了notebook，但这个notebook是用conda而非pip装的，故依赖项terminado不对</p>
-<p>解决方法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda upgrade notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>而后可正常安装</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="ImportError-libsodium-so-23"><a class="header-anchor" href="#ImportError-libsodium-so-23"></a>ImportError: libsodium.so.23</h3>
-<p>执行<code>jupyter notebook</code>，报错</p>
-<blockquote>
-<p>ImportError: libsodium.so.23: cannot open shared object file: No such file or directory</p>
-</blockquote>
-<p>这是由于<code>jupyterthemes</code>依赖的<code>libsodium</code>没有更新</p>
-<p>解决办法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda update libsodium
+<h5 id="登出"><a class="header-anchor" href="#登出"></a>登出</h5>
+<p>~/.bash_logout</p>
+<h3 id="二、激活"><a class="header-anchor" href="#二、激活"></a>二、激活</h3>
+<p>修改完环境变量，要在终端输入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> 被改的文件<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="命令别名"><a class="header-anchor" href="#命令别名"></a>命令别名</h2>
+<p>参见 <a target="_blank" rel="noopener" href="http://www.cnblogs.com/fuly550871915/p/4961903.html">http://www.cnblogs.com/fuly550871915/p/4961903.html</a><br>
+其语法是</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">alias</span> 命令1<span class="token operator">=</span><span class="token string">'命令2'</span>
 <span class="token comment"># 或</span>
-conda <span class="token function">install</span> -c conda-forge libsodium<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"><a class="header-anchor" href="#ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"></a>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</h3>
-<p>运行notebook时，用浏览器成功打开notebook的目录网页，但无法打开/新建python3 的 notebook文件，命令行下报错</p>
+<span class="token builtin class-name">alias</span> 命令1<span class="token operator">=</span><span class="token string">"命令2"</span>
+<span class="token comment"># = 前后不能有空格</span>
+<span class="token comment"># 注释不能写在代码所在行尾</span>
+<span class="token comment"># '...'与"..."完全一样</span>
+<span class="token comment"># &lt;命令1>不能有空格</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>则在该用户登录电脑时，终端里输入<code>命令1</code>均会文本替换为<code>命令2</code></p>
+<h2 id="bashrc"><a class="header-anchor" href="#bashrc"></a>~/.bashrc</h2>
+<h3 id="Linux服务器的"><a class="header-anchor" href="#Linux服务器的"></a>Linux服务器的</h3>
+<p>以下可直接复制，用于配置Linux服务器用户、个人mac的 ~/.bashrc 文件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># enable color support of ls and also add handy aliases</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -x /usr/bin/dircolors <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">test</span> -r ~/.dircolors <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">eval</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">dircolors</span> -b ~/.dircolors<span class="token variable">)</span></span>"</span> <span class="token operator">||</span> <span class="token builtin class-name">eval</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">dircolors</span> -b<span class="token variable">)</span></span>"</span>
+    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls --color=auto'</span>
+    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">dir</span><span class="token operator">=</span><span class="token string">'dir --color=auto'</span>
+    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">vdir</span><span class="token operator">=</span><span class="token string">'vdir --color=auto'</span>
+    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">grep</span><span class="token operator">=</span><span class="token string">'grep --color=auto'</span>
+    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">fgrep</span><span class="token operator">=</span><span class="token string">'fgrep --color=auto'</span>
+    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">egrep</span><span class="token operator">=</span><span class="token string">'egrep --color=auto'</span>
+<span class="token keyword">fi</span>
+
+<span class="token comment"># ----- ls aliases -----</span>
+<span class="token comment"># 显(xxx)隐(.xxx) 文件(xxx)文件夹(xxx/) 用户名 大小(k/M/GB格式) 创建日期</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ll</span><span class="token operator">=</span><span class="token string">'ls -alFh'</span>
+<span class="token comment"># 显(xxx)隐(.xxx) 文件与文件夹不区分(xxx)</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">la</span><span class="token operator">=</span><span class="token string">'ls -A'</span>
+<span class="token comment"># 显 文件(xxx)文件夹(xxx/) hide .pyc</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">l</span><span class="token operator">=</span><span class="token string">'ls -CF -I*.pyc'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="mac的"><a class="header-anchor" href="#mac的"></a>mac的</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
+<span class="token comment"># ==================== 命令行配色 =====================</span>
+<span class="token comment"># -------------------- alias to ls ------------------</span>
+<span class="token comment"># 显(xxx)隐(.xxx) 文件(xxx)文件夹(xxx/) 用户名 大小(k/M/GB格式) 创建日期</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ll</span><span class="token operator">=</span><span class="token string">'ls -alFh'</span>
+<span class="token comment"># 显(xxx)隐(.xxx) 文件与文件夹不区分(xxx)</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">la</span><span class="token operator">=</span><span class="token string">'ls -A'</span>
+<span class="token comment"># 显 文件(xxx)文件夹(xxx/) hide .pyc</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">l</span><span class="token operator">=</span><span class="token string">'ls -CF -I*.pyc'</span>
+
+<span class="token comment"># -------------------- alias to grep ------------------</span>
+<span class="token comment"># 上色</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls --color=auto'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">dir</span><span class="token operator">=</span><span class="token string">'dir --color=auto'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vdir</span><span class="token operator">=</span><span class="token string">'vdir --color=auto'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">grep</span><span class="token operator">=</span><span class="token string">'grep --color=auto'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">fgrep</span><span class="token operator">=</span><span class="token string">'fgrep --color=auto'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">egrep</span><span class="token operator">=</span><span class="token string">'egrep --color=auto'</span>
+
+<span class="token comment"># ------------- 命令行使用Coreutils 配色方案 ----------</span>
+<span class="token comment"># Coreutils安装教程：http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/</span>
+<span class="token comment"># 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...</span>
+<span class="token comment"># 采用GNU Coreutils的gdircolor配色替代ls的配色</span>
+<span class="token comment"># 修改~/.dir_colors(自定义配色文件)，以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）</span>
+<span class="token keyword">if</span> brew list <span class="token operator">|</span> <span class="token function">grep</span> coreutils <span class="token operator">></span> /dev/null <span class="token punctuation">;</span> <span class="token keyword">then</span>
+  <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew --prefix coreutils<span class="token variable">)</span></span>/libexec/gnubin:<span class="token environment constant">$PATH</span>"</span>
+  <span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls -F --show-control-chars --color=auto'</span>
+  <span class="token builtin class-name">eval</span> <span class="token variable"><span class="token variable">`</span>gdircolors -b <span class="token environment constant">$HOME</span>/.dir_colors<span class="token variable">`</span></span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="Mac的命令行配色"><a class="header-anchor" href="#Mac的命令行配色"></a><a target="_blank" rel="noopener" href="http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/">Mac的命令行配色</a></h4>
+<h5 id="Coreutils-配色方案"><a class="header-anchor" href="#Coreutils-配色方案"></a>Coreutils 配色方案</h5>
+<p>效果：不同类型的文件有不同颜色，如，图片水红色，文件夹群青色…</p>
+<p>原理：采用GNU Coreutils的gdircolor配色替代ls的配色，修改~/.dir_colors(自定义配色文件)，以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）</p>
+<ul>
+<li>
+<p>安装Coreutils</p>
+<ul>
+<li>mac： 通过<a target="_blank" rel="noopener" href="http://linfan.info/blog/2012/02/25/homebrew-installation-and-usage/">Homebrew</a>安装Coreutils</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> xz coreutils<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>Linux：</p>
+<ul>
+<li>
+<p>若有sudo权限，依<a target="_blank" rel="noopener" href="https://www.howtoinstall.co/en/ubuntu/trusty/coreutils">安装教程</a>，即</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> update
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> coreutils<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>若无sudo权限，使用<a target="_blank" rel="noopener" href="https://anaconda.org/bioconda/coreutils">conda安装coreutils</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c bioconda coreutils<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>生成颜色定义文件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gdircolors --print-database <span class="token operator">></span> ~/.dir_colors
+<span class="token comment"># 如显示没有“gdircolors”命令，但有”dircolors“，则执行下列命令</span>
+<span class="token function">dircolors</span> --print-database <span class="token operator">></span> ~/.dir_colors<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>在<code>~/.bash_profile</code>配置文件中加入以下代码</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># ------------- 命令行使用Coreutils 配色方案 ----------</span>
+<span class="token comment"># Coreutils安装教程：http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/</span>
+<span class="token comment"># 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...</span>
+<span class="token comment"># 采用GNU Coreutils的gdircolor配色替代ls的配色</span>
+<span class="token comment"># 修改~/.dir_colors(自定义配色文件)，以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）</span>
+<span class="token keyword">if</span> brew list <span class="token operator">|</span> <span class="token function">grep</span> coreutils <span class="token operator">></span> /dev/null <span class="token punctuation">;</span> <span class="token keyword">then</span>
+  <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew --prefix coreutils<span class="token variable">)</span></span>/libexec/gnubin:<span class="token environment constant">$PATH</span>"</span>
+  <span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls -F --show-control-chars --color=auto'</span>
+  <span class="token builtin class-name">eval</span> <span class="token variable"><span class="token variable">`</span>gdircolors -b <span class="token environment constant">$HOME</span>/.dir_colors<span class="token variable">`</span></span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="bash-profile"><a class="header-anchor" href="#bash-profile"></a>~/.bash_profile</h2>
+<p>以下可直接复制，用于配置Linux服务器用户、个人mac的 ~/.bash_profile 文件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> ~/.bashrc
+<span class="token comment"># ---------------- alias to resource ----------------</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">gpu</span><span class="token operator">=</span><span class="token string">'nvidia-smi'</span> <span class="token comment"># 查GPU使用</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">mem</span><span class="token operator">=</span><span class="token string">'free'</span>  <span class="token comment"># 查内存使用</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">killpid</span><span class="token operator">=</span><span class="token string">'kill -9'</span>  <span class="token comment"># killpid [pid] 杀死指定编号的进程</span>
+
+<span class="token comment"># ----------------- use which gpu -------------------</span>
+<span class="token comment"># 用法</span>
+<span class="token comment"># `gpuid 0 python xxx.py` 现在暂时用GPU0运行 xxx.py</span>
+<span class="token comment"># `gpuid 0` 并不能使得接下来一直默认用GPU0运行各个程序</span>
+<span class="token function-name function">gpuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token builtin class-name">eval</span> <span class="token string">"CUDA_VISIBLE_DEVICES=<span class="token variable">$*</span>"</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment"># 若`nvidia-smi`显示的GPU编号和`CUDA_VISIBLE_DEVICES=[GPU编号]`不一致，则</span>
+<span class="token comment"># &#123;</span>
+<span class="token comment">#     arg1="$1"</span>
+<span class="token comment">#     shift</span>
+<span class="token comment">#     if [ "$arg1" == "1" ]</span>
+<span class="token comment">#     then</span>
+<span class="token comment">#         eval "CUDA_VISIBLE_DEVICES=0 $*"</span>
+<span class="token comment">#     elif [ "$arg1" == "0" ]</span>
+<span class="token comment">#     then</span>
+<span class="token comment">#         eval "CUDA_VISIBLE_DEVICES=1 $*"</span>
+<span class="token comment">#     else</span>
+<span class="token comment">#         echo "no gpuid = $arg1, command 'nvidia-smi' to see more"</span>
+<span class="token comment">#     fi</span>
+<span class="token comment"># &#125;</span>
+
+<span class="token comment"># ---------------- alias envr vari ------------------</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vbp</span><span class="token operator">=</span><span class="token string">'vim ~/.bash_profile'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">sbp</span><span class="token operator">=</span><span class="token string">'source ~/.bash_profile'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vbr</span><span class="token operator">=</span><span class="token string">'vim ~/.bashrc'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">sbr</span><span class="token operator">=</span><span class="token string">'source ~/.bashrc'</span>
+
+<span class="token comment"># ---------------- alias to python ------------------</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">py</span><span class="token operator">=</span><span class="token string">'python'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ip</span><span class="token operator">=</span><span class="token string">'ipython'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">nt</span><span class="token operator">=</span><span class="token string">'jupyter notebook'</span>
+
+<span class="token comment"># -----------------  alias to tmux ------------------</span>
+<span class="token comment"># create a new tmux session, tmux new</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tn</span><span class="token operator">=</span><span class="token string">'tmux new -s'</span>
+<span class="token comment"># list all session of tmux session</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tl</span><span class="token operator">=</span><span class="token string">'tmux ls'</span>
+<span class="token comment"># kill a tmux session</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tk</span><span class="token operator">=</span><span class="token string">'tmux kill-session -t'</span>
+<span class="token comment"># kill tmux server, means tmux kill all</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tka</span><span class="token operator">=</span><span class="token string">'tmux kill-server'</span>
+<span class="token comment"># attach to a tmux session, t means go to</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ta</span><span class="token operator">=</span><span class="token string">'tmux a -t'</span>
+<span class="token comment"># attach to the last tmux session, r means recover</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tr</span><span class="token operator">=</span><span class="token string">'tmux a'</span>
+
+<span class="token comment"># ------------------ 命令行基础操作 ---------------</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">md</span><span class="token operator">=</span><span class="token string">'mkdir'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">lk</span><span class="token operator">=</span><span class="token string">'ln -s'</span>
+<span class="token comment"># 创建软连接</span>
+<span class="token builtin class-name">alias</span> <span class="token punctuation">..</span><span class="token operator">=</span><span class="token string">'cd ../'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="三清小道">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/" class="post-title-link" itemprop="url">shell的参数解析</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25 04:03:03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-02 04:26:22 04:26:22" itemprop="dateModified" datetime="2021-08-02T04:26:22+08:00">2021-08-02 04:26:22</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/" data-xid="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="getopt"><a class="header-anchor" href="#getopt"></a>getopt</h1>
+<h2 id="使用规则"><a class="header-anchor" href="#使用规则"></a>使用规则</h2>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bash或zsh getopt_demo.sh 一堆参数 <span class="token comment"># 其前中后均可有 余参数</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>格式化参数：即<code>-</code>开头的参数，若无法依照希望的方式解析，就会报错</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>短参数</th>
+<th>长参数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>无选项</td>
+<td>-a</td>
+<td>–a-long</td>
+</tr>
+<tr>
+<td>必有选项</td>
+<td><code>-boption</code>  或 <code>-b option</code>或 <br><code>-b'op tions'</code>  或 <code>-b 'op tion'</code></td>
+<td><code>--b-long option</code>或<br><code>--b-long 'op tion'</code></td>
+</tr>
+<tr>
+<td>可有选项 若无选项</td>
+<td><code>-c</code></td>
+<td><code>--c-long</code></td>
+</tr>
+<tr>
+<td>可有选项 若有选项：<br><strong>只能用短参数 选项和参数间无空格</strong></td>
+<td><code>-coption</code>  <br><code>-c'op tion'</code></td>
+<td><code>--c-long option</code>不可</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>余参数：即非<code>-</code>开头的参数，可出现在格式化参数之前、之中、之后</li>
+</ul>
+<hr>
+<p>例如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bash/zsh getopt_demo.sh -a par1 <span class="token string">'another arg'</span> --c-long <span class="token string">'wow!*\?'</span> -cmore -b <span class="token string">" very long "</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>返回</p>
+<pre class="line-numbers language-none"><code class="language-none">Option a
+Option c, no argument
+Option c, argument more&#39;
+Option b, argument very long &#39;
+Remaining arguments:
+--&gt; par1&#39;
+--&gt;another arg&#39;
+--&gt; &#96;wow!\?&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="代码写法"><a class="header-anchor" href="#代码写法"></a>代码写法</h2>
+<p><code>getopt_demo.sh</code>内容如下</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># 使用规则</span>
+<span class="token comment"># bash/zsh getopt_demo.sh 一堆参数，其前中后均可有 余参数</span>
+<span class="token comment"># 格式化参数：以'-'开头，必需符合本代码的解析要求</span>
+    <span class="token comment">#             短参数                           长参数</span>
+    <span class="token comment"># 无选项       -a                              --a-long</span>
+    <span class="token comment"># 必有选项     -bss          -b ss             --b-long ss</span>
+    <span class="token comment">#             -b'sds sds'   -b 'sds sds'      --b-long 'sds sds'</span>
+    <span class="token comment"># 可有选项若无  -c                              --c-long</span>
+    <span class="token comment"># 可有选项若有  -css          -c'sds sds'  只可短参数，选项与参数间不得有空格</span>
+<span class="token comment"># 余参数：不以'-'开头</span>
+
+
+<span class="token comment"># 参数预处理</span>
+<span class="token assign-left variable">TEMP</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>getopt <span class="token punctuation">\</span>
+    -o      ab:c:: <span class="token punctuation">\</span>
+    --long  a-long,b-long:,c-long:: <span class="token punctuation">\</span>
+    -n      <span class="token string">'参数解析错误'</span> <span class="token punctuation">\</span>
+    -- s    <span class="token string">"<span class="token variable">$@</span>"</span><span class="token variable">)</span></span>
+<span class="token comment"># 写法</span>
+    <span class="token comment">#   -o     短参数 不需要分隔符</span>
+    <span class="token comment">#   --long 长参数 用','分隔</span>
+    <span class="token comment">#   ``无选项  `:`必有选项  `::` 可由选项</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$?</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token builtin class-name">echo</span> <span class="token string">"格式化的参数解析错误，正在退出"</span> <span class="token operator">></span><span class="token file-descriptor important">&amp;2</span> <span class="token punctuation">;</span> <span class="token builtin class-name">exit</span> <span class="token number">1</span> <span class="token punctuation">;</span> <span class="token keyword">fi</span>
+<span class="token builtin class-name">eval</span> <span class="token builtin class-name">set</span> -- <span class="token string">"<span class="token variable">$TEMP</span>"</span> <span class="token comment"># 将复制给 $1, $2, ...</span>
+
+
+<span class="token comment"># 处理参数</span>
+<span class="token keyword">while</span> <span class="token boolean">true</span> <span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token keyword">case</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token keyword">in</span>
+    <span class="token comment"># 无选项</span>
+    -a<span class="token operator">|</span>--a-long<span class="token punctuation">)</span>  <span class="token builtin class-name">echo</span> opt a <span class="token punctuation">;</span> <span class="token builtin class-name">shift</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token comment"># 必有选项</span>
+    -b<span class="token operator">|</span>--b-long<span class="token punctuation">)</span>  <span class="token builtin class-name">echo</span> opt b arg <span class="token string">"<span class="token variable">$2</span>"</span> <span class="token punctuation">;</span> <span class="token builtin class-name">shift</span> <span class="token number">2</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token comment"># 可省选项</span>
+    -c<span class="token operator">|</span>--c-long<span class="token punctuation">)</span> <span class="token keyword">case</span> <span class="token string">"<span class="token variable">$2</span>"</span> <span class="token keyword">in</span>
+        <span class="token comment"># 无选项</span>
+        <span class="token string">""</span><span class="token punctuation">)</span>  <span class="token builtin class-name">echo</span> opt c no arg <span class="token punctuation">;</span> <span class="token builtin class-name">shift</span> <span class="token number">2</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
+        <span class="token comment"># 有选项</span>
+        *<span class="token punctuation">)</span>   <span class="token builtin class-name">echo</span> opt c arg <span class="token string">"<span class="token variable">$2</span>"</span> <span class="token punctuation">;</span> <span class="token builtin class-name">shift</span> <span class="token number">2</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token keyword">esac</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token comment"># '--'后是 余参数</span>
+    --<span class="token punctuation">)</span> <span class="token builtin class-name">shift</span> <span class="token punctuation">;</span> <span class="token builtin class-name">break</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token comment"># 处理参数的代码错误</span>
+    *<span class="token punctuation">)</span> <span class="token builtin class-name">echo</span> <span class="token string">"参数处理错误"</span> <span class="token punctuation">;</span> <span class="token builtin class-name">exit</span> <span class="token number">1</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">esac</span> <span class="token punctuation">;</span> <span class="token keyword">done</span>
+
+
+<span class="token comment"># 余下参数</span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">$@</span>"</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+   <span class="token builtin class-name">echo</span> rest <span class="token string">"<span class="token variable">$i</span>"</span>
+<span class="token keyword">done</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="snippets"><a class="header-anchor" href="#snippets"></a>snippets</h2>
+<p>为了方便些getopt，我已经将上述模板写成sublime、vscode、vim的snippet</p>
+<h1 id="徒手解析"><a class="header-anchor" href="#徒手解析"></a>徒手解析</h1>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token keyword">while</span> <span class="token builtin class-name">test</span> <span class="token variable">$#</span> -gt <span class="token number">0</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+    <span class="token keyword">case</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token keyword">in</span>
+        -<span class="token operator">&lt;</span>短参数<span class="token operator"><span class="token file-descriptor important">1</span>></span><span class="token punctuation">)</span>  相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 短参数</span>
+        -<span class="token operator">&lt;</span>短参数<span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token punctuation">)</span>  相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 短参数</span>
+        --<span class="token operator">&lt;</span>长参数<span class="token operator"><span class="token file-descriptor important">1</span>></span><span class="token punctuation">)</span> 相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 长参数</span>
+        --<span class="token operator">&lt;</span>长参数<span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token punctuation">)</span> 相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 长参数</span>
+        -*<span class="token punctuation">)</span>         相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 剩余短参数</span>
+        --*<span class="token punctuation">)</span>        相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 剩余长参数</span>
+        *<span class="token punctuation">)</span>          相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 非参数</span>
+    <span class="token keyword">esac</span>
+    <span class="token builtin class-name">shift</span>
+<span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注：</p>
+<ul>
+<li><code>;;</code>前可以换行，详见下</li>
+<li><code>-某某) </code>后可以换行，详见下</li>
+<li>相应代码可以再接受参数，例如</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">-<span class="token operator">&lt;</span>短参数<span class="token operator"><span class="token file-descriptor important">1</span>></span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$&#123;2<span class="token operator">:</span>0<span class="token operator">:</span>1&#125;</span>"</span> <span class="token operator">!=</span> <span class="token string">'-'</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        相应代码来处理<span class="token variable">$2</span>
+        <span class="token builtin class-name">shift</span>
+    <span class="token keyword">fi</span>
+    <span class="token punctuation">;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>缺点：</p>
+<ul>
+<li>仅此一个：不支持解析相邻的短参数 <code>-lAd</code>，必需写成<code>-l -A -d</code></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="三清小道">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/" class="post-title-link" itemprop="url">zsh自动补全的复用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-02 01:24:20 01:24:20" itemprop="dateCreated datePublished" datetime="2021-08-02T01:24:20+08:00">2021-08-02 01:24:20</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-02 04:26:22 04:26:22" itemprop="dateModified" datetime="2021-08-02T04:26:22+08:00">2021-08-02 04:26:22</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/" data-xid="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>13 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="zsh的自动补全"><a class="header-anchor" href="#zsh的自动补全"></a>zsh的自动补全</h2>
+<p><code>zsh-completions</code>是zsh官方支持的自动补全包</p>
+<p>使用<code>antigen</code>管理zsh插件的话，<code>zsh-completions</code>的路径在<code>~/.antigen/bundles/zsh-users/zsh-completions/src</code>，其下有众多文件名如<code>_xxx</code>，分别定义了<code>xxx</code>命令的补全。</p>
+<h3 id="机理"><a class="header-anchor" href="#机理"></a>机理</h3>
+<p>zsh 有一数组 <code>$fpath</code>，内容如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">declare</span> -p fpath<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <blockquote>
-<p>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</p>
-<p>[E 20:28:58.544 NotebookApp]</p>
+<pre class="line-numbers language-none"><code class="language-none">typeset -a fpath&#x3D;( &#x2F;usr&#x2F;local&#x2F;share&#x2F;zsh&#x2F;site-functions &#x2F;Users&#x2F;mac&#x2F;.autojump&#x2F;functions &#x2F;usr&#x2F;share&#x2F;zsh&#x2F;site-functions &#x2F;usr&#x2F;share&#x2F;zsh&#x2F;5.3&#x2F;functions &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;lib &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;plugins&#x2F;autojump &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;plugins&#x2F;pip &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;plugins&#x2F;svn-fast-info &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;plugins&#x2F;colorize &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;plugins&#x2F;github &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;plugins&#x2F;python &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;zsh-users&#x2F;zsh-autosuggestions &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;zsh-users&#x2F;zsh-completions &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;Vifon&#x2F;deer &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;willghatch&#x2F;zsh-cdr &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;zsh-users&#x2F;zsh-syntax-highlighting &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;zsh-users&#x2F;zsh-completions&#x2F;src )<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
-<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>nbconvert</code>没有更新</p>
-<p>解决办法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade --user nbconvert<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后将<code>$USER/.local/bin</code>添加到PATH，即可实现上述运行</p>
-<h3 id="ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"><a class="header-anchor" href="#ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"></a>ERROR:tornado.general: Uncaught exception in zmqstream callback</h3>
-<p>运行notebook时，用浏览器成功打开notebook的目录网页，能成功打开/新建python3 的 notebook文件，但点运行，迟迟不运行，命令行下报错</p>
-<blockquote>
-<p>ERROR:tornado.general: Uncaught exception in zmqstream callback</p>
-</blockquote>
-<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>ipykernel</code>没有更新</p>
-<p>解决办法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="参考"><a class="header-anchor" href="#参考"></a>参考</h2>
-<p><a target="_blank" rel="noopener" href="https://github.com/dunovank/jupyter-themes">https://github.com/dunovank/jupyter-themes</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/46242116">【内容引起舒适】让你的Jupyter Notebook不再辣眼睛</a></p>
+<p>表示zsh启动时会从这些路径下加载<code>_xxx</code>文件，当zsh加载fpath所有文件后，会生成相应的<code>_xxx</code>函数，例如</p>
+<p><code>~/.antigen/bundles/zsh-users/zsh-completions/src/_tmuxp</code>文件定义了<code>_tmuxp</code>自动补全函数，(未定义<code>_tmux</code>函数)，而zsh加载后会自动生成<code>_tmux</code>函数</p>
+<h3 id="复用zsh的自动补全函数"><a class="header-anchor" href="#复用zsh的自动补全函数"></a>复用zsh的自动补全函数</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org">参见</a></p>
+<h4 id="基本原理"><a class="header-anchor" href="#基本原理"></a>基本原理</h4>
+<ul>
+<li>
+<p>直接复用：<code>bar</code> 函数 要 复用<code>foo</code>函数的自动补全</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 函数 bar的定义可写在其前</span>
+compdef _foo bar
+<span class="token comment"># 函数 bar的定义也可写在其后</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>复用带参的：<code>bar</code> 函数 要 复用 <code>foo &lt;一个或多个参数&gt;</code> 的自动补全</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建一个空函数foo_copy_comp，使其补全与foo同</span>
+<span class="token function-name function">foo_copy_comp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token builtin class-name">:</span> <span class="token punctuation">&#125;</span>
+compdef _foo foo_copy_comp
+<span class="token comment"># zsh的自动补全支持alias，故而bar的自动补全与'foo &lt;一个或多个参数>'命令同</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">bar</span><span class="token operator">=</span><span class="token string">'foo_copy_comp &lt;一个或多个参数>'</span>
+
+<span class="token comment"># 函数 bar的定义要写在其后</span>
+<span class="token function-name function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token comment"># ...</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>当bar函数定义后，alias bar与bar函数共存：</p>
+<ul>
+<li><code>which bar</code> 返回的是&quot; alias bar=‘foo_copy_comp &lt;一个或多个参数&gt;’ &quot;</li>
+<li><code>bar &lt;TAB键&gt;</code> 会显示<code>foo &lt;一个或多个参数&gt;</code>命令之后的自动补全</li>
+<li>运行<code>bar &lt;其他参数&gt;</code>命令，会执行<code>bar</code> 函数，而非alias bar</li>
+</ul>
+</li>
+</ul>
+<h4 id="配置示例"><a class="header-anchor" href="#配置示例"></a>配置示例</h4>
+<ul>
+<li>
+<p>关闭全局的<code>compinit</code>：在全局<code>zshrc</code>文件( mac: <code>/etc/zshrc</code>, linux:<code>/etc/zsh/zshrc</code> ) 中，搜<code>compinit</code>，若发现如下内容，则将<code>skip_global_compinit=1</code>解除注释；若没发现<code>compinit</code>，则不管。</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># If you don't want compinit called here, place the line</span>
+<span class="token comment"># skip_global_compinit=1    # 这行要解注释</span>
+<span class="token comment"># in your $ZDOTDIR/.zshenv or $ZDOTDIR/.zprofile</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> -z <span class="token string">"<span class="token variable">$skip_global_compinit</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+  autoload -U compinit
+  compinit
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样设置的原因是：在<code>~/.zshrc</code>中需要运行<code>autoload -U compinit &amp;&amp; compinit</code>(如下一段)，来使得<code>compdef</code>有定义。但是运行这个比较花时间，全局<code>zshrc</code>文件没必要也运行一遍。</p>
+<p>注： 每次启动zsh（不论登录、非登录，交互、非交互），先会运行全局<code>zshrc</code>文件，再运行<code>~/.zshrc</code>。</p>
+</li>
+<li>
+<p>配置自动补全：在<code>~/.zshrc</code>中写</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 初始化zsh的自动补全，从而conpdef函数有定义了</span>
+autoload -U compinit <span class="token operator">&amp;&amp;</span> compinit
+
+<span class="token comment"># ----------直接复用--------------</span>
+<span class="token comment"># auto_rsync 函数 复用 rsync的补全函数</span>
+compdef _rsync auto_rsync
+
+<span class="token comment"># ---------复用带参的--------------</span>
+<span class="token comment"># itm 函数 复用 'tmux -CC attach -t' 的补全函数</span>
+<span class="token function-name function">tmux_itm</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>   <span class="token builtin class-name">:</span><span class="token punctuation">;</span>    <span class="token punctuation">&#125;</span>
+compdef _tmux tmux_itm
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">itm</span><span class="token operator">=</span><span class="token string">'tmux_itm -CC attach -t'</span>
+
+<span class="token comment">## 注意, 两个alias 不能共用同一个 tmux_itm, 不然这两个alias对应的函数会冲突</span>
+<span class="token comment">## 例如下面这样是不行的</span>
+<span class="token comment"># alias itm1='tmux_itm -CC attach -t'</span>
+<span class="token comment"># alias itm2='tmux_itm -CC attach -t'</span>
+<span class="token comment">## 后面定义 itm1函数 和 itm2函数,</span>
+<span class="token comment"># 则 itm1函数 和  itm2函数 会冲突, 即两个函数名, 对应到同一个函数体</span>
+
+<span class="token comment"># 允许在有`alias foo=...`时，再定义函数`foo() &#123;  .... &#125;`</span>
+<span class="token builtin class-name">set</span> -o ALIAS_FUNC_DEF <span class="token operator">></span> /dev/null <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&amp;1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>定义补全函数：在<code>~/.zshrc</code> 配置自动补全的后面,  <code>source ~/.aliases</code> , 而  <code>source ~/.aliases</code> 中定义补全函数</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># ----------直接复用--------------</span>
+<span class="token comment"># 带断点续传的rsync</span>
+<span class="token function-name function">auto_rsync</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token builtin class-name">local</span> <span class="token assign-left variable">retry_time</span><span class="token operator">=</span><span class="token number">180</span>
+    <span class="token keyword">while</span> <span class="token punctuation">[</span> <span class="token number">1</span> <span class="token punctuation">]</span>
+    <span class="token keyword">do</span>
+        <span class="token function">rsync</span> -aHhvzP <span class="token variable">$*</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$?</span>"</span> <span class="token operator">=</span> <span class="token string">"0"</span> <span class="token punctuation">]</span>
+        <span class="token keyword">then</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">"rsync completed normally"</span>
+            <span class="token builtin class-name">break</span>
+        <span class="token keyword">else</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">"Rsync failure. Backing off and retrying in <span class="token variable">$retry_time</span> seconds..."</span>
+            <span class="token function">sleep</span> <span class="token variable">$retry_time</span>
+        <span class="token keyword">fi</span>
+    <span class="token keyword">done</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment"># ---------复用带参的--------------</span>
+<span class="token comment"># itm 函数覆盖 alias itm='tmux_itm -CC attach -t'</span>
+<span class="token function-name function">itm</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment"># 注意：若已经定义了alias itm，需要把前三个参数`-CC attach -t`过掉</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">alias</span> itm <span class="token operator"><span class="token file-descriptor important">2</span>></span> /dev/null<span class="token variable">)</span></span>"</span> <span class="token operator">!=</span> <span class="token string">''</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">..</span><span class="token number">3</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token builtin class-name">shift</span><span class="token punctuation">;</span> <span class="token keyword">done</span>
+    <span class="token keyword">fi</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> <span class="token operator">=</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        tmux -CC attach <span class="token operator">||</span> tmux -CC new -s default
+    <span class="token keyword">else</span>
+        <span class="token builtin class-name">local</span> <span class="token assign-left variable">session</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$1</span>"</span>
+        tmux -CC attach -t <span class="token string">"<span class="token variable">$&#123;session&#125;</span>"</span> <span class="token operator">||</span> tmux -CC new -s <span class="token string">"<span class="token variable">$&#123;session&#125;</span>"</span>
+    <span class="token keyword">fi</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注意：复用<code>foo &lt;n个参数&gt;</code>，要仿照上面的代码，把前n个参数过掉。</p>
 
       
     </div>
@@ -1655,6 +2346,207 @@ os.makedirs<span class="token punctuation">(</span><span class="token operator">
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="三清小道">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/" class="post-title-link" itemprop="url">jupyter_notebook更换配色</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25 04:03:03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-02 04:26:22 04:26:22" itemprop="dateModified" datetime="2021-08-02T04:26:22+08:00">2021-08-02 04:26:22</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/" data-xid="/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>9 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="jupyter-themes-修改-jupyter-notebook-的主题"><a class="header-anchor" href="#jupyter-themes-修改-jupyter-notebook-的主题"></a>jupyter-themes: 修改 jupyter notebook 的主题</h1>
+<h2 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h2>
+<ul>
+<li>
+<p>安装</p>
+<p>看jupyter是用conda还是pip装的</p>
+<pre class="line-numbers language-none"><code class="language-none">conda list | grep -e &#39;^jupyter &#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">jupyter                   1.0.0            py36h9896ce5_0    【defaults】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<ul>
+<li>
+<p>若<code>【】</code>中为<code>default</code>，则是jupyter notebook是conda安装的，强烈建议用conda安装jupyterthemes，不然若用pip安装jupyterthemes，会出现多种依赖不匹配</p>
+  <pre class="line-numbers language-none"><code class="language-none">conda install -c conda-forge jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>若<code>【】</code>中为<code>pypi</code>，jupyter notebook是pip安装的，则</p>
+  <pre class="line-numbers language-none"><code class="language-none">pip install jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>配置</p>
+<p>终端下输入以下命令</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">jt -t gruvboxd -T -N -cellw <span class="token number">90</span>% -f roboto -fs <span class="token number">11</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这表示我选择了 gruvboxd 这个主题，同时希望打开顶部的工具栏（Toolbar），显示笔记本的名字（Name），文本框占浏览器页宽的90%，用roboto等宽字体，字号11</p>
+<p>运行过程中可能会返回报错如下，这说明已经别的用户安装了jupyterthemes，并重建了<code>/tmp/yacctab.py</code>，故你无法重写这个文件，这并不运行你使用jupyter notebook的配色。你的配色设置，保存到 <code>$HOME/.jupyter/custom/</code>，不和他的配色设置冲突。</p>
+<blockquote>
+<p>WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’<br>
+WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’</p>
+</blockquote>
+</li>
+<li>
+<p>配置文件</p>
+<p>配置文件保存到了 <code>$HOME/.jupyter/custom/</code>，下是四个配置和依赖文件<code>current_theme. txt, custom.css, custom.js, fonts/</code>，之后每次执行<code>jupyter notebook</code>启动notebook时，会加载此配置，看见你要的主题。</p>
+</li>
+</ul>
+<h2 id="依赖不匹配怎么解决"><a class="header-anchor" href="#依赖不匹配怎么解决"></a>依赖不匹配怎么解决</h2>
+<p>若jupyter notebook是conda安装，却用安装pip安装jupyterthemes，会出现多种依赖不匹配，最终如下装一圈依赖，才能安装成功</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda upgrade notebook libsodium
+pip <span class="token function">install</span> jupyterthemes
+pip <span class="token function">install</span> --upgrade --user nbconvert
+pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以下是各个依赖不匹配的详解：</p>
+<h3 id="Found-existing-installation-terminado-0-6"><a class="header-anchor" href="#Found-existing-installation-terminado-0-6"></a>Found existing installation: terminado 0.6</h3>
+<p>执行<code>pip install jupyterthemes</code>时报错</p>
+<blockquote>
+<p>notebook 5.7.6 has requirement jupyter-core&gt;=4.4.0, but you’ll have jupyter-core 4.3.0 which is incompatible.</p>
+<p>Installing collected packages: lesscpy, terminado, pyzmq, jupyter-client, prometheus-client, Send2Trash, notebook, jupyterthemes<br>
+<strong>Found existing installation</strong>: terminado 0.6<br>
+Cannot uninstall ‘terminado’. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.</p>
+</blockquote>
+<p>这是因为，上述操作中pip自动更新了notebook，但这个notebook是用conda而非pip装的，故依赖项terminado不对</p>
+<p>解决方法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda upgrade notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>而后可正常安装</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="ImportError-libsodium-so-23"><a class="header-anchor" href="#ImportError-libsodium-so-23"></a>ImportError: libsodium.so.23</h3>
+<p>执行<code>jupyter notebook</code>，报错</p>
+<blockquote>
+<p>ImportError: libsodium.so.23: cannot open shared object file: No such file or directory</p>
+</blockquote>
+<p>这是由于<code>jupyterthemes</code>依赖的<code>libsodium</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda update libsodium
+<span class="token comment"># 或</span>
+conda <span class="token function">install</span> -c conda-forge libsodium<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"><a class="header-anchor" href="#ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"></a>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</h3>
+<p>运行notebook时，用浏览器成功打开notebook的目录网页，但无法打开/新建python3 的 notebook文件，命令行下报错</p>
+<blockquote>
+<p>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</p>
+<p>[E 20:28:58.544 NotebookApp]</p>
+</blockquote>
+<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>nbconvert</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade --user nbconvert<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后将<code>$USER/.local/bin</code>添加到PATH，即可实现上述运行</p>
+<h3 id="ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"><a class="header-anchor" href="#ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"></a>ERROR:tornado.general: Uncaught exception in zmqstream callback</h3>
+<p>运行notebook时，用浏览器成功打开notebook的目录网页，能成功打开/新建python3 的 notebook文件，但点运行，迟迟不运行，命令行下报错</p>
+<blockquote>
+<p>ERROR:tornado.general: Uncaught exception in zmqstream callback</p>
+</blockquote>
+<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>ipykernel</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="参考"><a class="header-anchor" href="#参考"></a>参考</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/dunovank/jupyter-themes">https://github.com/dunovank/jupyter-themes</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/46242116">【内容引起舒适】让你的Jupyter Notebook不再辣眼睛</a></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/python/%E7%94%A8tqdm%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1.md/main/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1859,898 +2751,6 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
 <blockquote>
 <pre class="line-numbers language-none"><code class="language-none">prefix 24<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="三清小道">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/" class="post-title-link" itemprop="url">bash设置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-05-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25 04:03:03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-02 04:26:22 04:26:22" itemprop="dateModified" datetime="2021-08-02T04:26:22+08:00">2021-08-02 04:26:22</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/" data-xid="/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>5.2k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>17 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="配置环境变量"><a class="header-anchor" href="#配置环境变量"></a>配置环境变量</h2>
-<p>参见 <a target="_blank" rel="noopener" href="http://elf8848.iteye.com/blog/1582137">http://elf8848.iteye.com/blog/1582137</a></p>
-<p>适应Mac/Linux</p>
-<h3 id="一、改哪个文件"><a class="header-anchor" href="#一、改哪个文件"></a>一、改哪个文件</h3>
-<table>
-<thead>
-<tr>
-<th>文件</th>
-<th>ubuntu或debian</th>
-<th>mac</th>
-<th>启动条件</th>
-<th>有效于</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>/etc/profile</td>
-<td>无</td>
-<td>有</td>
-<td>用户登录系统</td>
-<td>所有用户</td>
-</tr>
-<tr>
-<td>/etc[/bashrc|bash.bashrc]</td>
-<td>无</td>
-<td>有</td>
-<td>用户登录系统，开新 shell</td>
-<td>所有用户</td>
-</tr>
-<tr>
-<td>~/[.bash_profile|.bash_login|.profile]</td>
-<td>有</td>
-<td>有</td>
-<td>用户登录系统</td>
-<td>当前用户</td>
-</tr>
-<tr>
-<td>~/.bashrc</td>
-<td>有</td>
-<td>有</td>
-<td>用户登录系统，开新 shell</td>
-<td>当前用户</td>
-</tr>
-<tr>
-<td>~/.bash_logout</td>
-<td>有</td>
-<td>有</td>
-<td>用户退出系统时</td>
-<td>当前用户</td>
-</tr>
-</tbody>
-</table>
-<p>登录: 如 “su -“ 命令, ssh 连服务器</p>
-<p>非登录: 执行’bash xxx’命令，戳开终端</p>
-<p>启动上述文件，即下面的激活上述文件</p>
-<h4 id="执行顺序"><a class="header-anchor" href="#执行顺序"></a>执行顺序</h4>
-<p><a target="_blank" rel="noopener" href="https://wxnacy.com/2018/06/01/shell-profile/">参考</a>, <a target="_blank" rel="noopener" href="https://blog.csdn.net/robertaqi/article/details/5449763">流程图</a>, <a target="_blank" rel="noopener" href="http://blog.51cto.com/hxl2009/664187">各个文件</a></p>
-<h5 id="登录"><a class="header-anchor" href="#登录"></a>登录</h5>
-<p>流程图</p>
-<pre class="line-numbers language-none"><code class="language-none">                     &#x2F;etc&#x2F;profile.d&#x2F;下诸文件
-                          ↑ 手动
-*用户登录* --先自动--&gt; &#x2F;etc&#x2F;profile -手动-&gt; &#x2F;etc&#x2F;(bash.)bashrc
-    |                                    ↑ 手动
-    |        不登录开新shell* -----&gt;  ~&#x2F;.bashrc  -手动-&gt;  ~&#x2F;.bash_aliases
-    \                               ↑ 手动
-     \--- --后自动---------------&gt; ~&#x2F;[.bash_profile|.bash_login|.profile]从前到后找，只执行一个
-     					     CentOS 默认用 ~&#x2F;.bash_profile 文件
-     					     Ubuntu 默认用 ~&#x2F;.profile 文件
-     					     混用也不影响
-     					     sh 登录只加载 .profile, 与bash共用.profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上述跳转关系依赖于</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># /etc/profile，/etc/bashrc 中通常有</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> -d /etc/profile.d <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-      <span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> /etc/profile.d/*.sh<span class="token punctuation">;</span> <span class="token keyword">do</span>
-        <span class="token keyword">if</span> <span class="token punctuation">[</span> -r <span class="token variable">$i</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-          <span class="token builtin class-name">.</span> <span class="token variable">$i</span>
-        <span class="token keyword">fi</span>
-      <span class="token keyword">done</span>
-      <span class="token builtin class-name">unset</span> i
-    <span class="token keyword">fi</span>
-<span class="token keyword">fi</span>
-
-<span class="token comment"># ~/.bash_profile 中通常有</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> -f ~/.bashrc <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span>
-        <span class="token builtin class-name">.</span> ~/.bashrc
-    <span class="token keyword">fi</span>
-<span class="token keyword">fi</span>
-
-<span class="token comment"># ~/.bashrc 中通常有</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> -f /etc/bashrc  <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span>
-        <span class="token builtin class-name">.</span> /etc/bashrc
-    <span class="token keyword">fi</span>
-<span class="token keyword">fi</span>
-
-<span class="token comment"># ~/.bashrc 中通常有</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> -f ~/.bash_aliases  <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span>
-        <span class="token builtin class-name">.</span> ~/.bash_aliases
-    <span class="token keyword">fi</span>
-<span class="token keyword">fi</span>
-
-<span class="token comment"># ~/.bashrc 中通常有</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> -f /etc/bashrc <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-        <span class="token builtin class-name">.</span> /etc/bashrc
-    <span class="token keyword">fi</span>
-<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>分工建议</p>
-<ul>
-<li>
-<p><code>/etc/profile</code> ：所有用户系统信息，如置环境信息，只在用户登录时执行一次</p>
-</li>
-<li>
-<p><code>~/.bash_profile</code> ： 本用户系统信息，如环境变量</p>
-</li>
-<li>
-<p><code>~/.bashrc</code> ：shell 信息，如alias，配色</p>
-</li>
-</ul>
-<h5 id="登出"><a class="header-anchor" href="#登出"></a>登出</h5>
-<p>~/.bash_logout</p>
-<h3 id="二、激活"><a class="header-anchor" href="#二、激活"></a>二、激活</h3>
-<p>修改完环境变量，要在终端输入</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> 被改的文件<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="命令别名"><a class="header-anchor" href="#命令别名"></a>命令别名</h2>
-<p>参见 <a target="_blank" rel="noopener" href="http://www.cnblogs.com/fuly550871915/p/4961903.html">http://www.cnblogs.com/fuly550871915/p/4961903.html</a><br>
-其语法是</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">alias</span> 命令1<span class="token operator">=</span><span class="token string">'命令2'</span>
-<span class="token comment"># 或</span>
-<span class="token builtin class-name">alias</span> 命令1<span class="token operator">=</span><span class="token string">"命令2"</span>
-<span class="token comment"># = 前后不能有空格</span>
-<span class="token comment"># 注释不能写在代码所在行尾</span>
-<span class="token comment"># '...'与"..."完全一样</span>
-<span class="token comment"># &lt;命令1>不能有空格</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>则在该用户登录电脑时，终端里输入<code>命令1</code>均会文本替换为<code>命令2</code></p>
-<h2 id="bashrc"><a class="header-anchor" href="#bashrc"></a>~/.bashrc</h2>
-<h3 id="Linux服务器的"><a class="header-anchor" href="#Linux服务器的"></a>Linux服务器的</h3>
-<p>以下可直接复制，用于配置Linux服务器用户、个人mac的 ~/.bashrc 文件</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># enable color support of ls and also add handy aliases</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> -x /usr/bin/dircolors <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-    <span class="token builtin class-name">test</span> -r ~/.dircolors <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">eval</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">dircolors</span> -b ~/.dircolors<span class="token variable">)</span></span>"</span> <span class="token operator">||</span> <span class="token builtin class-name">eval</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">dircolors</span> -b<span class="token variable">)</span></span>"</span>
-    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls --color=auto'</span>
-    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">dir</span><span class="token operator">=</span><span class="token string">'dir --color=auto'</span>
-    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">vdir</span><span class="token operator">=</span><span class="token string">'vdir --color=auto'</span>
-    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">grep</span><span class="token operator">=</span><span class="token string">'grep --color=auto'</span>
-    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">fgrep</span><span class="token operator">=</span><span class="token string">'fgrep --color=auto'</span>
-    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">egrep</span><span class="token operator">=</span><span class="token string">'egrep --color=auto'</span>
-<span class="token keyword">fi</span>
-
-<span class="token comment"># ----- ls aliases -----</span>
-<span class="token comment"># 显(xxx)隐(.xxx) 文件(xxx)文件夹(xxx/) 用户名 大小(k/M/GB格式) 创建日期</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ll</span><span class="token operator">=</span><span class="token string">'ls -alFh'</span>
-<span class="token comment"># 显(xxx)隐(.xxx) 文件与文件夹不区分(xxx)</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">la</span><span class="token operator">=</span><span class="token string">'ls -A'</span>
-<span class="token comment"># 显 文件(xxx)文件夹(xxx/) hide .pyc</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">l</span><span class="token operator">=</span><span class="token string">'ls -CF -I*.pyc'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="mac的"><a class="header-anchor" href="#mac的"></a>mac的</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
-<span class="token comment"># ==================== 命令行配色 =====================</span>
-<span class="token comment"># -------------------- alias to ls ------------------</span>
-<span class="token comment"># 显(xxx)隐(.xxx) 文件(xxx)文件夹(xxx/) 用户名 大小(k/M/GB格式) 创建日期</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ll</span><span class="token operator">=</span><span class="token string">'ls -alFh'</span>
-<span class="token comment"># 显(xxx)隐(.xxx) 文件与文件夹不区分(xxx)</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">la</span><span class="token operator">=</span><span class="token string">'ls -A'</span>
-<span class="token comment"># 显 文件(xxx)文件夹(xxx/) hide .pyc</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">l</span><span class="token operator">=</span><span class="token string">'ls -CF -I*.pyc'</span>
-
-<span class="token comment"># -------------------- alias to grep ------------------</span>
-<span class="token comment"># 上色</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls --color=auto'</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">dir</span><span class="token operator">=</span><span class="token string">'dir --color=auto'</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vdir</span><span class="token operator">=</span><span class="token string">'vdir --color=auto'</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">grep</span><span class="token operator">=</span><span class="token string">'grep --color=auto'</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">fgrep</span><span class="token operator">=</span><span class="token string">'fgrep --color=auto'</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">egrep</span><span class="token operator">=</span><span class="token string">'egrep --color=auto'</span>
-
-<span class="token comment"># ------------- 命令行使用Coreutils 配色方案 ----------</span>
-<span class="token comment"># Coreutils安装教程：http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/</span>
-<span class="token comment"># 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...</span>
-<span class="token comment"># 采用GNU Coreutils的gdircolor配色替代ls的配色</span>
-<span class="token comment"># 修改~/.dir_colors(自定义配色文件)，以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）</span>
-<span class="token keyword">if</span> brew list <span class="token operator">|</span> <span class="token function">grep</span> coreutils <span class="token operator">></span> /dev/null <span class="token punctuation">;</span> <span class="token keyword">then</span>
-  <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew --prefix coreutils<span class="token variable">)</span></span>/libexec/gnubin:<span class="token environment constant">$PATH</span>"</span>
-  <span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls -F --show-control-chars --color=auto'</span>
-  <span class="token builtin class-name">eval</span> <span class="token variable"><span class="token variable">`</span>gdircolors -b <span class="token environment constant">$HOME</span>/.dir_colors<span class="token variable">`</span></span>
-<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="Mac的命令行配色"><a class="header-anchor" href="#Mac的命令行配色"></a><a target="_blank" rel="noopener" href="http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/">Mac的命令行配色</a></h4>
-<h5 id="Coreutils-配色方案"><a class="header-anchor" href="#Coreutils-配色方案"></a>Coreutils 配色方案</h5>
-<p>效果：不同类型的文件有不同颜色，如，图片水红色，文件夹群青色…</p>
-<p>原理：采用GNU Coreutils的gdircolor配色替代ls的配色，修改~/.dir_colors(自定义配色文件)，以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）</p>
-<ul>
-<li>
-<p>安装Coreutils</p>
-<ul>
-<li>mac： 通过<a target="_blank" rel="noopener" href="http://linfan.info/blog/2012/02/25/homebrew-installation-and-usage/">Homebrew</a>安装Coreutils</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> xz coreutils<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>
-<p>Linux：</p>
-<ul>
-<li>
-<p>若有sudo权限，依<a target="_blank" rel="noopener" href="https://www.howtoinstall.co/en/ubuntu/trusty/coreutils">安装教程</a>，即</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> update
-<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> coreutils<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>若无sudo权限，使用<a target="_blank" rel="noopener" href="https://anaconda.org/bioconda/coreutils">conda安装coreutils</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c bioconda coreutils<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>生成颜色定义文件</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gdircolors --print-database <span class="token operator">></span> ~/.dir_colors
-<span class="token comment"># 如显示没有“gdircolors”命令，但有”dircolors“，则执行下列命令</span>
-<span class="token function">dircolors</span> --print-database <span class="token operator">></span> ~/.dir_colors<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>在<code>~/.bash_profile</code>配置文件中加入以下代码</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># ------------- 命令行使用Coreutils 配色方案 ----------</span>
-<span class="token comment"># Coreutils安装教程：http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/</span>
-<span class="token comment"># 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...</span>
-<span class="token comment"># 采用GNU Coreutils的gdircolor配色替代ls的配色</span>
-<span class="token comment"># 修改~/.dir_colors(自定义配色文件)，以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）</span>
-<span class="token keyword">if</span> brew list <span class="token operator">|</span> <span class="token function">grep</span> coreutils <span class="token operator">></span> /dev/null <span class="token punctuation">;</span> <span class="token keyword">then</span>
-  <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew --prefix coreutils<span class="token variable">)</span></span>/libexec/gnubin:<span class="token environment constant">$PATH</span>"</span>
-  <span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls -F --show-control-chars --color=auto'</span>
-  <span class="token builtin class-name">eval</span> <span class="token variable"><span class="token variable">`</span>gdircolors -b <span class="token environment constant">$HOME</span>/.dir_colors<span class="token variable">`</span></span>
-<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ul>
-<h2 id="bash-profile"><a class="header-anchor" href="#bash-profile"></a>~/.bash_profile</h2>
-<p>以下可直接复制，用于配置Linux服务器用户、个人mac的 ~/.bash_profile 文件</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> ~/.bashrc
-<span class="token comment"># ---------------- alias to resource ----------------</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">gpu</span><span class="token operator">=</span><span class="token string">'nvidia-smi'</span> <span class="token comment"># 查GPU使用</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">mem</span><span class="token operator">=</span><span class="token string">'free'</span>  <span class="token comment"># 查内存使用</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">killpid</span><span class="token operator">=</span><span class="token string">'kill -9'</span>  <span class="token comment"># killpid [pid] 杀死指定编号的进程</span>
-
-<span class="token comment"># ----------------- use which gpu -------------------</span>
-<span class="token comment"># 用法</span>
-<span class="token comment"># `gpuid 0 python xxx.py` 现在暂时用GPU0运行 xxx.py</span>
-<span class="token comment"># `gpuid 0` 并不能使得接下来一直默认用GPU0运行各个程序</span>
-<span class="token function-name function">gpuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-<span class="token punctuation">&#123;</span>
-    <span class="token builtin class-name">eval</span> <span class="token string">"CUDA_VISIBLE_DEVICES=<span class="token variable">$*</span>"</span>
-<span class="token punctuation">&#125;</span>
-<span class="token comment"># 若`nvidia-smi`显示的GPU编号和`CUDA_VISIBLE_DEVICES=[GPU编号]`不一致，则</span>
-<span class="token comment"># &#123;</span>
-<span class="token comment">#     arg1="$1"</span>
-<span class="token comment">#     shift</span>
-<span class="token comment">#     if [ "$arg1" == "1" ]</span>
-<span class="token comment">#     then</span>
-<span class="token comment">#         eval "CUDA_VISIBLE_DEVICES=0 $*"</span>
-<span class="token comment">#     elif [ "$arg1" == "0" ]</span>
-<span class="token comment">#     then</span>
-<span class="token comment">#         eval "CUDA_VISIBLE_DEVICES=1 $*"</span>
-<span class="token comment">#     else</span>
-<span class="token comment">#         echo "no gpuid = $arg1, command 'nvidia-smi' to see more"</span>
-<span class="token comment">#     fi</span>
-<span class="token comment"># &#125;</span>
-
-<span class="token comment"># ---------------- alias envr vari ------------------</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vbp</span><span class="token operator">=</span><span class="token string">'vim ~/.bash_profile'</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">sbp</span><span class="token operator">=</span><span class="token string">'source ~/.bash_profile'</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vbr</span><span class="token operator">=</span><span class="token string">'vim ~/.bashrc'</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">sbr</span><span class="token operator">=</span><span class="token string">'source ~/.bashrc'</span>
-
-<span class="token comment"># ---------------- alias to python ------------------</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">py</span><span class="token operator">=</span><span class="token string">'python'</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ip</span><span class="token operator">=</span><span class="token string">'ipython'</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">nt</span><span class="token operator">=</span><span class="token string">'jupyter notebook'</span>
-
-<span class="token comment"># -----------------  alias to tmux ------------------</span>
-<span class="token comment"># create a new tmux session, tmux new</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tn</span><span class="token operator">=</span><span class="token string">'tmux new -s'</span>
-<span class="token comment"># list all session of tmux session</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tl</span><span class="token operator">=</span><span class="token string">'tmux ls'</span>
-<span class="token comment"># kill a tmux session</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tk</span><span class="token operator">=</span><span class="token string">'tmux kill-session -t'</span>
-<span class="token comment"># kill tmux server, means tmux kill all</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tka</span><span class="token operator">=</span><span class="token string">'tmux kill-server'</span>
-<span class="token comment"># attach to a tmux session, t means go to</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ta</span><span class="token operator">=</span><span class="token string">'tmux a -t'</span>
-<span class="token comment"># attach to the last tmux session, r means recover</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tr</span><span class="token operator">=</span><span class="token string">'tmux a'</span>
-
-<span class="token comment"># ------------------ 命令行基础操作 ---------------</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">md</span><span class="token operator">=</span><span class="token string">'mkdir'</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">lk</span><span class="token operator">=</span><span class="token string">'ln -s'</span>
-<span class="token comment"># 创建软连接</span>
-<span class="token builtin class-name">alias</span> <span class="token punctuation">..</span><span class="token operator">=</span><span class="token string">'cd ../'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="三清小道">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/" class="post-title-link" itemprop="url">shell的参数解析</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-05-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25 04:03:03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-02 04:26:22 04:26:22" itemprop="dateModified" datetime="2021-08-02T04:26:22+08:00">2021-08-02 04:26:22</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/" data-xid="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="getopt"><a class="header-anchor" href="#getopt"></a>getopt</h1>
-<h2 id="使用规则"><a class="header-anchor" href="#使用规则"></a>使用规则</h2>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bash或zsh getopt_demo.sh 一堆参数 <span class="token comment"># 其前中后均可有 余参数</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>格式化参数：即<code>-</code>开头的参数，若无法依照希望的方式解析，就会报错</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>短参数</th>
-<th>长参数</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>无选项</td>
-<td>-a</td>
-<td>–a-long</td>
-</tr>
-<tr>
-<td>必有选项</td>
-<td><code>-boption</code>  或 <code>-b option</code>或 <br><code>-b'op tions'</code>  或 <code>-b 'op tion'</code></td>
-<td><code>--b-long option</code>或<br><code>--b-long 'op tion'</code></td>
-</tr>
-<tr>
-<td>可有选项 若无选项</td>
-<td><code>-c</code></td>
-<td><code>--c-long</code></td>
-</tr>
-<tr>
-<td>可有选项 若有选项：<br><strong>只能用短参数 选项和参数间无空格</strong></td>
-<td><code>-coption</code>  <br><code>-c'op tion'</code></td>
-<td><code>--c-long option</code>不可</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>余参数：即非<code>-</code>开头的参数，可出现在格式化参数之前、之中、之后</li>
-</ul>
-<hr>
-<p>例如</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bash/zsh getopt_demo.sh -a par1 <span class="token string">'another arg'</span> --c-long <span class="token string">'wow!*\?'</span> -cmore -b <span class="token string">" very long "</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>返回</p>
-<pre class="line-numbers language-none"><code class="language-none">Option a
-Option c, no argument
-Option c, argument more&#39;
-Option b, argument very long &#39;
-Remaining arguments:
---&gt; par1&#39;
---&gt;another arg&#39;
---&gt; &#96;wow!\?&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="代码写法"><a class="header-anchor" href="#代码写法"></a>代码写法</h2>
-<p><code>getopt_demo.sh</code>内容如下</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-
-<span class="token comment"># 使用规则</span>
-<span class="token comment"># bash/zsh getopt_demo.sh 一堆参数，其前中后均可有 余参数</span>
-<span class="token comment"># 格式化参数：以'-'开头，必需符合本代码的解析要求</span>
-    <span class="token comment">#             短参数                           长参数</span>
-    <span class="token comment"># 无选项       -a                              --a-long</span>
-    <span class="token comment"># 必有选项     -bss          -b ss             --b-long ss</span>
-    <span class="token comment">#             -b'sds sds'   -b 'sds sds'      --b-long 'sds sds'</span>
-    <span class="token comment"># 可有选项若无  -c                              --c-long</span>
-    <span class="token comment"># 可有选项若有  -css          -c'sds sds'  只可短参数，选项与参数间不得有空格</span>
-<span class="token comment"># 余参数：不以'-'开头</span>
-
-
-<span class="token comment"># 参数预处理</span>
-<span class="token assign-left variable">TEMP</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>getopt <span class="token punctuation">\</span>
-    -o      ab:c:: <span class="token punctuation">\</span>
-    --long  a-long,b-long:,c-long:: <span class="token punctuation">\</span>
-    -n      <span class="token string">'参数解析错误'</span> <span class="token punctuation">\</span>
-    -- s    <span class="token string">"<span class="token variable">$@</span>"</span><span class="token variable">)</span></span>
-<span class="token comment"># 写法</span>
-    <span class="token comment">#   -o     短参数 不需要分隔符</span>
-    <span class="token comment">#   --long 长参数 用','分隔</span>
-    <span class="token comment">#   ``无选项  `:`必有选项  `::` 可由选项</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$?</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token builtin class-name">echo</span> <span class="token string">"格式化的参数解析错误，正在退出"</span> <span class="token operator">></span><span class="token file-descriptor important">&amp;2</span> <span class="token punctuation">;</span> <span class="token builtin class-name">exit</span> <span class="token number">1</span> <span class="token punctuation">;</span> <span class="token keyword">fi</span>
-<span class="token builtin class-name">eval</span> <span class="token builtin class-name">set</span> -- <span class="token string">"<span class="token variable">$TEMP</span>"</span> <span class="token comment"># 将复制给 $1, $2, ...</span>
-
-
-<span class="token comment"># 处理参数</span>
-<span class="token keyword">while</span> <span class="token boolean">true</span> <span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token keyword">case</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token keyword">in</span>
-    <span class="token comment"># 无选项</span>
-    -a<span class="token operator">|</span>--a-long<span class="token punctuation">)</span>  <span class="token builtin class-name">echo</span> opt a <span class="token punctuation">;</span> <span class="token builtin class-name">shift</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
-    <span class="token comment"># 必有选项</span>
-    -b<span class="token operator">|</span>--b-long<span class="token punctuation">)</span>  <span class="token builtin class-name">echo</span> opt b arg <span class="token string">"<span class="token variable">$2</span>"</span> <span class="token punctuation">;</span> <span class="token builtin class-name">shift</span> <span class="token number">2</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
-    <span class="token comment"># 可省选项</span>
-    -c<span class="token operator">|</span>--c-long<span class="token punctuation">)</span> <span class="token keyword">case</span> <span class="token string">"<span class="token variable">$2</span>"</span> <span class="token keyword">in</span>
-        <span class="token comment"># 无选项</span>
-        <span class="token string">""</span><span class="token punctuation">)</span>  <span class="token builtin class-name">echo</span> opt c no arg <span class="token punctuation">;</span> <span class="token builtin class-name">shift</span> <span class="token number">2</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
-        <span class="token comment"># 有选项</span>
-        *<span class="token punctuation">)</span>   <span class="token builtin class-name">echo</span> opt c arg <span class="token string">"<span class="token variable">$2</span>"</span> <span class="token punctuation">;</span> <span class="token builtin class-name">shift</span> <span class="token number">2</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token keyword">esac</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
-    <span class="token comment"># '--'后是 余参数</span>
-    --<span class="token punctuation">)</span> <span class="token builtin class-name">shift</span> <span class="token punctuation">;</span> <span class="token builtin class-name">break</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
-    <span class="token comment"># 处理参数的代码错误</span>
-    *<span class="token punctuation">)</span> <span class="token builtin class-name">echo</span> <span class="token string">"参数处理错误"</span> <span class="token punctuation">;</span> <span class="token builtin class-name">exit</span> <span class="token number">1</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
-<span class="token keyword">esac</span> <span class="token punctuation">;</span> <span class="token keyword">done</span>
-
-
-<span class="token comment"># 余下参数</span>
-<span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">$@</span>"</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-   <span class="token builtin class-name">echo</span> rest <span class="token string">"<span class="token variable">$i</span>"</span>
-<span class="token keyword">done</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="snippets"><a class="header-anchor" href="#snippets"></a>snippets</h2>
-<p>为了方便些getopt，我已经将上述模板写成sublime、vscode、vim的snippet</p>
-<h1 id="徒手解析"><a class="header-anchor" href="#徒手解析"></a>徒手解析</h1>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token keyword">while</span> <span class="token builtin class-name">test</span> <span class="token variable">$#</span> -gt <span class="token number">0</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-    <span class="token keyword">case</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token keyword">in</span>
-        -<span class="token operator">&lt;</span>短参数<span class="token operator"><span class="token file-descriptor important">1</span>></span><span class="token punctuation">)</span>  相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 短参数</span>
-        -<span class="token operator">&lt;</span>短参数<span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token punctuation">)</span>  相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 短参数</span>
-        --<span class="token operator">&lt;</span>长参数<span class="token operator"><span class="token file-descriptor important">1</span>></span><span class="token punctuation">)</span> 相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 长参数</span>
-        --<span class="token operator">&lt;</span>长参数<span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token punctuation">)</span> 相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 长参数</span>
-        -*<span class="token punctuation">)</span>         相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 剩余短参数</span>
-        --*<span class="token punctuation">)</span>        相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 剩余长参数</span>
-        *<span class="token punctuation">)</span>          相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 非参数</span>
-    <span class="token keyword">esac</span>
-    <span class="token builtin class-name">shift</span>
-<span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>注：</p>
-<ul>
-<li><code>;;</code>前可以换行，详见下</li>
-<li><code>-某某) </code>后可以换行，详见下</li>
-<li>相应代码可以再接受参数，例如</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">-<span class="token operator">&lt;</span>短参数<span class="token operator"><span class="token file-descriptor important">1</span>></span><span class="token punctuation">)</span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$&#123;2<span class="token operator">:</span>0<span class="token operator">:</span>1&#125;</span>"</span> <span class="token operator">!=</span> <span class="token string">'-'</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-        相应代码来处理<span class="token variable">$2</span>
-        <span class="token builtin class-name">shift</span>
-    <span class="token keyword">fi</span>
-    <span class="token punctuation">;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>缺点：</p>
-<ul>
-<li>仅此一个：不支持解析相邻的短参数 <code>-lAd</code>，必需写成<code>-l -A -d</code></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="三清小道">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/" class="post-title-link" itemprop="url">zsh自动补全的复用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-02 01:24:20 01:24:20" itemprop="dateCreated datePublished" datetime="2021-08-02T01:24:20+08:00">2021-08-02 01:24:20</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-02 04:26:22 04:26:22" itemprop="dateModified" datetime="2021-08-02T04:26:22+08:00">2021-08-02 04:26:22</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/" data-xid="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>13 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="zsh的自动补全"><a class="header-anchor" href="#zsh的自动补全"></a>zsh的自动补全</h2>
-<p><code>zsh-completions</code>是zsh官方支持的自动补全包</p>
-<p>使用<code>antigen</code>管理zsh插件的话，<code>zsh-completions</code>的路径在<code>~/.antigen/bundles/zsh-users/zsh-completions/src</code>，其下有众多文件名如<code>_xxx</code>，分别定义了<code>xxx</code>命令的补全。</p>
-<h3 id="机理"><a class="header-anchor" href="#机理"></a>机理</h3>
-<p>zsh 有一数组 <code>$fpath</code>，内容如</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">declare</span> -p fpath<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">typeset -a fpath&#x3D;( &#x2F;usr&#x2F;local&#x2F;share&#x2F;zsh&#x2F;site-functions &#x2F;Users&#x2F;mac&#x2F;.autojump&#x2F;functions &#x2F;usr&#x2F;share&#x2F;zsh&#x2F;site-functions &#x2F;usr&#x2F;share&#x2F;zsh&#x2F;5.3&#x2F;functions &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;lib &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;plugins&#x2F;autojump &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;plugins&#x2F;pip &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;plugins&#x2F;svn-fast-info &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;plugins&#x2F;colorize &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;plugins&#x2F;github &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;plugins&#x2F;python &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;zsh-users&#x2F;zsh-autosuggestions &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;zsh-users&#x2F;zsh-completions &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;Vifon&#x2F;deer &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;willghatch&#x2F;zsh-cdr &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;zsh-users&#x2F;zsh-syntax-highlighting &#x2F;Users&#x2F;mac&#x2F;.antigen&#x2F;bundles&#x2F;zsh-users&#x2F;zsh-completions&#x2F;src )<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<p>表示zsh启动时会从这些路径下加载<code>_xxx</code>文件，当zsh加载fpath所有文件后，会生成相应的<code>_xxx</code>函数，例如</p>
-<p><code>~/.antigen/bundles/zsh-users/zsh-completions/src/_tmuxp</code>文件定义了<code>_tmuxp</code>自动补全函数，(未定义<code>_tmux</code>函数)，而zsh加载后会自动生成<code>_tmux</code>函数</p>
-<h3 id="复用zsh的自动补全函数"><a class="header-anchor" href="#复用zsh的自动补全函数"></a>复用zsh的自动补全函数</h3>
-<p><a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org">参见</a></p>
-<h4 id="基本原理"><a class="header-anchor" href="#基本原理"></a>基本原理</h4>
-<ul>
-<li>
-<p>直接复用：<code>bar</code> 函数 要 复用<code>foo</code>函数的自动补全</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 函数 bar的定义可写在其前</span>
-compdef _foo bar
-<span class="token comment"># 函数 bar的定义也可写在其后</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>复用带参的：<code>bar</code> 函数 要 复用 <code>foo &lt;一个或多个参数&gt;</code> 的自动补全</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建一个空函数foo_copy_comp，使其补全与foo同</span>
-<span class="token function-name function">foo_copy_comp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token builtin class-name">:</span> <span class="token punctuation">&#125;</span>
-compdef _foo foo_copy_comp
-<span class="token comment"># zsh的自动补全支持alias，故而bar的自动补全与'foo &lt;一个或多个参数>'命令同</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">bar</span><span class="token operator">=</span><span class="token string">'foo_copy_comp &lt;一个或多个参数>'</span>
-
-<span class="token comment"># 函数 bar的定义要写在其后</span>
-<span class="token function-name function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
-  <span class="token comment"># ...</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>当bar函数定义后，alias bar与bar函数共存：</p>
-<ul>
-<li><code>which bar</code> 返回的是&quot; alias bar=‘foo_copy_comp &lt;一个或多个参数&gt;’ &quot;</li>
-<li><code>bar &lt;TAB键&gt;</code> 会显示<code>foo &lt;一个或多个参数&gt;</code>命令之后的自动补全</li>
-<li>运行<code>bar &lt;其他参数&gt;</code>命令，会执行<code>bar</code> 函数，而非alias bar</li>
-</ul>
-</li>
-</ul>
-<h4 id="配置示例"><a class="header-anchor" href="#配置示例"></a>配置示例</h4>
-<ul>
-<li>
-<p>关闭全局的<code>compinit</code>：在全局<code>zshrc</code>文件( mac: <code>/etc/zshrc</code>, linux:<code>/etc/zsh/zshrc</code> ) 中，搜<code>compinit</code>，若发现如下内容，则将<code>skip_global_compinit=1</code>解除注释；若没发现<code>compinit</code>，则不管。</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># If you don't want compinit called here, place the line</span>
-<span class="token comment"># skip_global_compinit=1    # 这行要解注释</span>
-<span class="token comment"># in your $ZDOTDIR/.zshenv or $ZDOTDIR/.zprofile</span>
-<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> -z <span class="token string">"<span class="token variable">$skip_global_compinit</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-  autoload -U compinit
-  compinit
-<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这样设置的原因是：在<code>~/.zshrc</code>中需要运行<code>autoload -U compinit &amp;&amp; compinit</code>(如下一段)，来使得<code>compdef</code>有定义。但是运行这个比较花时间，全局<code>zshrc</code>文件没必要也运行一遍。</p>
-<p>注： 每次启动zsh（不论登录、非登录，交互、非交互），先会运行全局<code>zshrc</code>文件，再运行<code>~/.zshrc</code>。</p>
-</li>
-<li>
-<p>配置自动补全：在<code>~/.zshrc</code>中写</p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 初始化zsh的自动补全，从而conpdef函数有定义了</span>
-autoload -U compinit <span class="token operator">&amp;&amp;</span> compinit
-
-<span class="token comment"># ----------直接复用--------------</span>
-<span class="token comment"># auto_rsync 函数 复用 rsync的补全函数</span>
-compdef _rsync auto_rsync
-
-<span class="token comment"># ---------复用带参的--------------</span>
-<span class="token comment"># itm 函数 复用 'tmux -CC attach -t' 的补全函数</span>
-<span class="token function-name function">tmux_itm</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>   <span class="token builtin class-name">:</span><span class="token punctuation">;</span>    <span class="token punctuation">&#125;</span>
-compdef _tmux tmux_itm
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">itm</span><span class="token operator">=</span><span class="token string">'tmux_itm -CC attach -t'</span>
-
-<span class="token comment">## 注意, 两个alias 不能共用同一个 tmux_itm, 不然这两个alias对应的函数会冲突</span>
-<span class="token comment">## 例如下面这样是不行的</span>
-<span class="token comment"># alias itm1='tmux_itm -CC attach -t'</span>
-<span class="token comment"># alias itm2='tmux_itm -CC attach -t'</span>
-<span class="token comment">## 后面定义 itm1函数 和 itm2函数,</span>
-<span class="token comment"># 则 itm1函数 和  itm2函数 会冲突, 即两个函数名, 对应到同一个函数体</span>
-
-<span class="token comment"># 允许在有`alias foo=...`时，再定义函数`foo() &#123;  .... &#125;`</span>
-<span class="token builtin class-name">set</span> -o ALIAS_FUNC_DEF <span class="token operator">></span> /dev/null <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&amp;1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>定义补全函数：在<code>~/.zshrc</code> 配置自动补全的后面,  <code>source ~/.aliases</code> , 而  <code>source ~/.aliases</code> 中定义补全函数</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># ----------直接复用--------------</span>
-<span class="token comment"># 带断点续传的rsync</span>
-<span class="token function-name function">auto_rsync</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token builtin class-name">local</span> <span class="token assign-left variable">retry_time</span><span class="token operator">=</span><span class="token number">180</span>
-    <span class="token keyword">while</span> <span class="token punctuation">[</span> <span class="token number">1</span> <span class="token punctuation">]</span>
-    <span class="token keyword">do</span>
-        <span class="token function">rsync</span> -aHhvzP <span class="token variable">$*</span>
-        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$?</span>"</span> <span class="token operator">=</span> <span class="token string">"0"</span> <span class="token punctuation">]</span>
-        <span class="token keyword">then</span>
-            <span class="token builtin class-name">echo</span> <span class="token string">"rsync completed normally"</span>
-            <span class="token builtin class-name">break</span>
-        <span class="token keyword">else</span>
-            <span class="token builtin class-name">echo</span> <span class="token string">"Rsync failure. Backing off and retrying in <span class="token variable">$retry_time</span> seconds..."</span>
-            <span class="token function">sleep</span> <span class="token variable">$retry_time</span>
-        <span class="token keyword">fi</span>
-    <span class="token keyword">done</span>
-<span class="token punctuation">&#125;</span>
-
-<span class="token comment"># ---------复用带参的--------------</span>
-<span class="token comment"># itm 函数覆盖 alias itm='tmux_itm -CC attach -t'</span>
-<span class="token function-name function">itm</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token comment"># 注意：若已经定义了alias itm，需要把前三个参数`-CC attach -t`过掉</span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">alias</span> itm <span class="token operator"><span class="token file-descriptor important">2</span>></span> /dev/null<span class="token variable">)</span></span>"</span> <span class="token operator">!=</span> <span class="token string">''</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-        <span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">..</span><span class="token number">3</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token builtin class-name">shift</span><span class="token punctuation">;</span> <span class="token keyword">done</span>
-    <span class="token keyword">fi</span>
-
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> <span class="token operator">=</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-        tmux -CC attach <span class="token operator">||</span> tmux -CC new -s default
-    <span class="token keyword">else</span>
-        <span class="token builtin class-name">local</span> <span class="token assign-left variable">session</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$1</span>"</span>
-        tmux -CC attach -t <span class="token string">"<span class="token variable">$&#123;session&#125;</span>"</span> <span class="token operator">||</span> tmux -CC new -s <span class="token string">"<span class="token variable">$&#123;session&#125;</span>"</span>
-    <span class="token keyword">fi</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>注意：复用<code>foo &lt;n个参数&gt;</code>，要仿照上面的代码，把前n个参数过掉。</p>
 
       
     </div>
