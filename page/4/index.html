@@ -324,9 +324,266 @@
 </blockquote>
 <h3 id="终端下ipython的配色"><a class="header-anchor" href="#终端下ipython的配色"></a>终端下ipython的配色</h3>
 <p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14129278/how-do-i-customize-text-color-in-ipython">参考</a></p>
-          <!--noindex-->
-          <!--/noindex-->
-        
+<h4 id="更换配色方案"><a class="header-anchor" href="#更换配色方案"></a>更换配色方案</h4>
+<p>默认的终端下ipython配色，<code>__class__</code>等显示为深蓝色，当你的终端背景是深色时容易，深蓝字难看清，建议修改配色方案。在<code>~/.ipython/profile_default/ipython_config.py</code>，找到如下两行，删除其行首”#“，并将等号后修改为</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>InteractiveShell<span class="token punctuation">.</span>colors <span class="token operator">=</span> <span class="token string">'Linux'</span>
+c<span class="token punctuation">.</span>TerminalInteractiveShell<span class="token punctuation">.</span>highlighting_style <span class="token operator">=</span> <span class="token string">'monokai'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p><code>c.InteractiveShell.colors</code>是指在ipython报错用的配色</p>
+</li>
+<li>
+<p><code>c.TerminalInteractiveShell.highlighting_style</code>是指python代码的配色。配色方案在定义在</p>
+<p><code>/Users/mac/anaconda/lib/python3.6/site-packages/pygments/styles/&lt;配色方案名称&gt;.py</code></p>
+<p>这里， &lt;配色方案名称monokai，是我找到<code>styles/</code>下较友好的配色了。</p>
+</li>
+</ul>
+<h4 id="手动修改高亮"><a class="header-anchor" href="#手动修改高亮"></a>手动修改高亮</h4>
+<p>若对所选配色方案还有不满意的地方，可以手动修改指定语法成分的高亮</p>
+<p>搜索<code>c.TerminalInteractiveShell.highlighting_style_overrides</code>，然后如下改写</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pygments<span class="token punctuation">.</span>token <span class="token keyword">import</span> Token<span class="token punctuation">,</span> Keyword<span class="token punctuation">,</span> Name<span class="token punctuation">,</span> Comment<span class="token punctuation">,</span> String<span class="token punctuation">,</span> Error<span class="token punctuation">,</span> \
+     Number<span class="token punctuation">,</span> Operator<span class="token punctuation">,</span> Generic<span class="token punctuation">,</span> Whitespace
+<span class="token comment">## Override highlighting format for specific tokens</span>
+c<span class="token punctuation">.</span>TerminalInteractiveShell<span class="token punctuation">.</span>highlighting_style_overrides <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">## Standard Pygments tokens (are all used by IPython ?)</span>
+
+    <span class="token comment"># Whitespace:                "#bbbbbb",</span>
+    <span class="token comment"># Comment:                   "italic #008800",</span>
+    <span class="token comment"># Comment.Preproc:           "noitalic",</span>
+    <span class="token comment"># Comment.Special:           "noitalic bold",</span>
+
+    Keyword<span class="token punctuation">:</span>                     <span class="token string">"bold #5fd4f9"</span><span class="token punctuation">,</span> <span class="token comment">#  8ce98c</span>
+    <span class="token comment"># Keyword.Pseudo:            "nobold",</span>
+    <span class="token comment"># Keyword.Type:              "bold #00BB00",</span>
+
+    <span class="token comment"># Operator:                  "#ff736f",   #</span>
+    <span class="token comment"># Operator.Word:             "bold #AA22FF",</span>
+
+    Name<span class="token punctuation">.</span>Builtin<span class="token punctuation">:</span>                <span class="token string">"#5fd4f9"</span><span class="token punctuation">,</span>
+    <span class="token comment"># Name.Function:             "#99f46a", #</span>
+    <span class="token comment"># Name.Class:                "#99f46a", #</span>
+    <span class="token comment"># Name.Namespace:            "bold #99f46a", #</span>
+    <span class="token comment"># Name.Exception:            "italic bold #89f9fc",</span>
+    Name<span class="token punctuation">.</span>Variable<span class="token punctuation">:</span>               <span class="token string">"italic"</span><span class="token punctuation">,</span> <span class="token comment">#</span>
+    <span class="token comment"># Name.Constant:             "#880000",</span>
+    <span class="token comment"># Name.Label:                "#A0A000",</span>
+    <span class="token comment"># Name.Entity:               "bold #999999",</span>
+    <span class="token comment"># Name.Attribute:            "#BB4444",</span>
+    <span class="token comment"># Name.Tag:                  "bold #008000",</span>
+    <span class="token comment"># Name.Decorator:            "#AA22FF",</span>
+
+
+    <span class="token comment"># String:                    "#f7f86c",</span>
+    <span class="token comment"># String.Doc:                "italic",</span>
+    <span class="token comment"># String.Interpol:           "bold #BB6688",</span>
+    <span class="token comment"># String.Escape:             "bold #BB6622",</span>
+    <span class="token comment"># String.Regex:              "#BB6688",</span>
+    <span class="token comment"># String.Symbol:             "#71f3f6", #</span>
+    <span class="token comment"># String.Other:              "#008000",</span>
+    <span class="token comment"># Number:                    "#cf97f2", #</span>
+
+    <span class="token comment"># Generic.Heading:           "bold #000080",</span>
+    <span class="token comment"># Generic.Subheading:        "bold #800080",</span>
+    <span class="token comment"># Generic.Deleted:           "#A00000",</span>
+    <span class="token comment"># Generic.Inserted:          "#5affb4", #</span>
+    <span class="token comment"># Generic.Error:             "#FF0000",</span>
+    <span class="token comment"># Generic.Emph:              "italic",</span>
+    <span class="token comment"># Generic.Strong:            "bold",</span>
+    <span class="token comment"># Generic.Prompt:            "bold #000080",</span>
+    <span class="token comment"># Generic.Output:            "#888",</span>
+    <span class="token comment"># Generic.Traceback:         "#04D",</span>
+
+    <span class="token comment"># Error:                     "border:#ff0000",</span>
+
+    <span class="token comment">## IPython</span>
+
+    <span class="token comment"># Token.Number: '#ffffff',</span>
+    <span class="token comment"># Token.Operator: 'noinherit',</span>
+    <span class="token comment"># Token.String: '#8b8',</span>
+    <span class="token comment"># Token.Name.Function: '#2080D0',</span>
+    <span class="token comment"># Token.Name.Class: 'bold #2080D0',</span>
+    <span class="token comment"># Token.Name.Namespace: 'bold #2080D0',</span>
+    <span class="token comment"># Token.Prompt: '#ffffff bold',</span>
+    <span class="token comment"># Token.PromptNum: '#888888 bold',</span>
+    Token<span class="token punctuation">.</span>OutPrompt<span class="token punctuation">:</span> <span class="token string">'#ff5753'</span><span class="token punctuation">,</span>
+    Token<span class="token punctuation">.</span>OutPromptNum<span class="token punctuation">:</span> <span class="token string">'#ff5753 bold'</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="jupyter-notebook-安装配置使用"><a class="header-anchor" href="#jupyter-notebook-安装配置使用"></a>jupyter notebook 安装配置使用</h1>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23110830">参考</a></p>
+<p>已经验证此配置方法可用的环境：实验室服务器juncluster、jungpu</p>
+<h2 id="配置方法"><a class="header-anchor" href="#配置方法"></a>配置方法</h2>
+<p>ssh登录服务器</p>
+<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
+<p>进入python虚拟环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>检查是否安装jupyter</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如返回未安装，则安装之</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>已安装则升级之</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="配置-_2"><a class="header-anchor" href="#配置-_2"></a>配置</h3>
+<h4 id="生成配置文件-_2"><a class="header-anchor" href="#生成配置文件-_2"></a>生成配置文件</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter notebook --generate-config
+<span class="token comment"># 返回 Writing default config to: ~/.jupyter/jupyter_notebook_config.py</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>会自动创建文件夹<code>~/.jupyter</code>与配置文件<code>~/.jupyter/jupyter_notebook_config.py</code></p>
+<p>命令行会返回此【配置文件路径】，请保存</p>
+<h4 id="生成网络证书"><a class="header-anchor" href="#生成网络证书"></a>生成网络证书</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~/.jupyter
+<span class="token comment"># openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem</span>
+openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days <span class="token number">3650</span> -out mycert.pem<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>回车系统会要求你填写：国家、省份、城市、单位、项目、邮箱，按真实填写之即可。<br>
+保存【证书路径】=<code>~/.jupyter/mycert.pem</code>，【密钥路径】=<code>~/.jupyter/key.pem</code></p>
+<h4 id="生成notebook登录密码"><a class="header-anchor" href="#生成notebook登录密码"></a>生成notebook登录密码</h4>
+<p>若想给notebook设置登录密码，则做此事。可以在任何电脑上做，生成的密文是一样的</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">ipython
+In <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token keyword">from</span> notebook<span class="token punctuation">.</span>auth <span class="token keyword">import</span> passwd
+In <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> passwd<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">#  创建一个密文的密码</span>
+Enter password<span class="token punctuation">:</span> <span class="token comment"># 在此处设置notebook的【登录密码】</span>
+Verify password<span class="token punctuation">:</span> <span class="token comment"># 重复密码</span>
+Out<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token string">'sha1:adsasdasd:34da7adasdas87d0as8d70asda8sdaasd076f018'</span> <span class="token comment"># 会生成一个形如它的【哈希密码】</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>将登录密码与哈希密码保存</p>
+<h4 id="更改配置文件"><a class="header-anchor" href="#更改配置文件"></a>更改配置文件</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /home/<span class="token environment constant">$USER</span>/.jupyter/jupyter_notebook_config.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>通用配置</p>
+<p>进入文件后</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 加在文件开头</span>
+<span class="token keyword">import</span> os
+<span class="token comment">#【证书新路径】</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>certfile <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>expanduser<span class="token punctuation">(</span><span class="token string">u'~/.jupyter/mycert.pem'</span><span class="token punctuation">)</span>
+<span class="token comment">#【密钥路径】</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>keyfile <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>expanduser<span class="token punctuation">(</span><span class="token string">u'~/.jupyter/key.pem'</span><span class="token punctuation">)</span>
+<span class="token comment"># NotebookApp的ip，'0.0.0.0'莫写成"*"。</span>
+<span class="token comment"># 写成"*"有时会报错”socket.gaierror: [Errno -5] No address associated with hostname“</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>ip <span class="token operator">=</span> <span class="token string">'0.0.0.0'</span>
+<span class="token comment"># 使得服务器上输入'jupyter notebook'命令后，不会立即进入它的浏览器</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>open_browser <span class="token operator">=</span> <span class="token boolean">False</span>
+<span class="token comment"># 在浏览器访问notebook，要在浏览器中输入密码，才能登陆</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>password <span class="token operator">=</span> <span class="token string">u'【哈希密码】'</span>
+<span class="token comment"># 将该【服务器端口】保存，使用固定端口号，可以随便设置，建议用不常见的，以免与其他任务的端口号冲突</span>
+<span class="token comment">#  注：若别的任务先占用了该端口，输入'jupyter notebook'命令，则会自动用该端口+1，再不行+2，以此类推</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>port <span class="token operator">=</span> <span class="token number">11328</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>ipython notebook的配置</p>
+<p>老的版本的ipython，使用的是ipython notebook；新版本的ipython，已将notebook给了jupyter，故使用的是jupyter notebook</p>
+<p>ipython notebook则还需要更</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c <span class="token operator">=</span> get_config<span class="token punctuation">(</span><span class="token punctuation">)</span>
+c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuation">.</span>pylab <span class="token operator">=</span> <span class="token string">'inline'</span>  <span class="token comment"># if you want plotting support always</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>jupyter notebook替代“c.IPKernelApp.pylab = ‘inline’”的配置如下，这是默认设置，不用更改</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># DISABLED: use %pylab or %matplotlib in the notebook to enable matplotlib.</span>
+<span class="token comment"># c.NotebookApp.pylab = 'disabled'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>取消jupyter notebook密码</p>
+<p>这样访问notebook就可以不需要密码</p>
+<p>把</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># c.NotebookApp.token = '&lt;generated>'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>改为</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>token <span class="token operator">=</span> <span class="token string">''</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
+<h3 id="启动notebook"><a class="header-anchor" href="#启动notebook"></a>启动notebook</h3>
+<ul>
+<li>
+<p>转接</p>
+<p>服务器若设了防火墙，浏览器无法直接访问服务器的notebook【服务器端口】，只能经ssh转接</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> 【服务器】 -L127.0.0.1:11327:127.0.0.1:11328<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>注：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token string">'-L127.0.0.1:【代理端口】:127.0.0.1:【服务器端口】'</span>
+<span class="token comment"># 用户端的localhost:【代理端口】 转接到 服务器端的localhost:【服务器端口】</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>登录服务器后，这个转接终端不要关，直到不用notebook</p>
+</li>
+<li>
+<p>进入虚拟环境</p>
+<p>若jupyter装在virtualenv里，才需要这一步</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>启动notebook</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<h3 id="访问notebook"><a class="header-anchor" href="#访问notebook"></a>访问notebook</h3>
+<p>在本地电脑，使用浏览器访问<code>https://localhost:【代理端口】 </code></p>
+<ul>
+<li>
+<p>必须是https，jupyter不支持http</p>
+</li>
+<li>
+<p>浏览器的选择</p>
+<p>支持：qq浏览器/chrome浏览器/firefox浏览器<br>
+不支持：safari(可以登陆notebook的文件管理界面；但.ipynb文件的编辑界面下，无法连接到服务器的python内核)</p>
+</li>
+<li>
+<p>浏览器警告&quot;访问不安全&quot;</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ZhYQ-Note/p/8493848.html">参考</a></p>
+<ul>
+<li>chrome:  高级&gt;&gt;继续前往（不安全），即可访问，但即使此证书到钥匙串，chrome每次访问<strong>依旧警告</strong></li>
+<li>safari：详细信息&gt;&gt;访问此网站&gt;&gt;接下来跟着提示步骤操作，会提示“以添加此证书到钥匙串”，之后用safari查看此网页，都<strong>不再警告</strong></li>
+<li>firefox：高级&gt;&gt;添加例外&gt;&gt;勾选永远添加此例外&gt;&gt;确认安全例外，之后firefox查看此网页，都<strong>不再警告</strong></li>
+</ul>
+<p><strong>相关技术</strong></p>
+<p>手动添加网页的证书</p>
+<ul>
+<li>导出证书：firefox访问此网页，显示访问不安全，点高级&gt;&gt;添加例外&gt;&gt;确认安全例外&gt;&gt;证书状态-查看&gt;&gt;详细详细&gt;&gt;导出，导出到随便什么地方</li>
+<li>打开 钥匙串访问.app，左栏分别选 登录+证书
+<ul>
+<li>若之前用safari信任了此证书，则可见你条件的证书</li>
+<li>若没，则将导出的证书拖到这里，然后双击此证书，再点”信任“，全调整为“总是信任”，然后之前导出的证书可以删了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>弹出jupyter页面，要求输入【登录密码】</p>
+<p>只有服务器上notebook程序重启，再次登录该网页，才需要再输入密码。<br>
+服务器上notebook程序未关，本地即便断网重连，过数天重连，同一个浏览器不用再次输入密码。</p>
+</li>
+</ul>
+<h3 id="脚本打开"><a class="header-anchor" href="#脚本打开"></a>脚本打开</h3>
+<p>上述启动、访问操作可以用shell或Python脚本打开实现</p>
+<h2 id="保持开启状态"><a class="header-anchor" href="#保持开启状态"></a>保持开启状态</h2>
+<h3 id="使用tmux"><a class="header-anchor" href="#使用tmux"></a>使用tmux</h3>
+<p>推荐此法，用tmux保持转接进程和jupyter notebook一直开启</p>
+<ul>
+<li>本机开个tmux session，用来ssh -L转接</li>
+<li>服务器上开个tmux session，用来开jupyter notebook</li>
+</ul>
+<h3 id="普通方法"><a class="header-anchor" href="#普通方法"></a>普通方法</h3>
+<ul>
+<li>
+<p>暂停jupyter notebook<br>
+服务器上按<code>ctrl+z</code>，会出现</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Stopped                 jupyter notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>表示jupyter notebook暂停，本地浏览器上无法访问Notebook网页</p>
+</li>
+<li>
+<p>放入后台运行</p>
+<p>服务器上输入</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bg</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>会出现</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+ jupyter notebook <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>表示jupyter notebook变成后台运行。</p>
+</li>
+<li>
+<p>查看进程</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">jobs</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若返回有</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Running                 jupyter notebook <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>则为jupyter notebook在后台运行</p>
+</li>
+<li>
+<p>退出登录</p>
+<p><code>ctrl+Q/W</code> 退出服务器的登录，则jupyter notebook立即停止</p>
+<p><code>exit</code>或<code>logout</code>退出服务器的登录，则jupyter notebook不会立即停止</p>
+</li>
+</ul>
+
       
     </div>
 
@@ -491,9 +748,43 @@ pip <span class="token function">install</span> --upgrade ipykernel<span aria-hi
 <strong>Found existing installation</strong>: terminado 0.6<br>
 Cannot uninstall ‘terminado’. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.</p>
 </blockquote>
-          <!--noindex-->
-          <!--/noindex-->
-        
+<p>这是因为，上述操作中pip自动更新了notebook，但这个notebook是用conda而非pip装的，故依赖项terminado不对</p>
+<p>解决方法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda upgrade notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>而后可正常安装</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="ImportError-libsodium-so-23"><a class="header-anchor" href="#ImportError-libsodium-so-23"></a>ImportError: libsodium.so.23</h3>
+<p>执行<code>jupyter notebook</code>，报错</p>
+<blockquote>
+<p>ImportError: libsodium.so.23: cannot open shared object file: No such file or directory</p>
+</blockquote>
+<p>这是由于<code>jupyterthemes</code>依赖的<code>libsodium</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda update libsodium
+<span class="token comment"># 或</span>
+conda <span class="token function">install</span> -c conda-forge libsodium<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"><a class="header-anchor" href="#ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"></a>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</h3>
+<p>运行notebook时，用浏览器成功打开notebook的目录网页，但无法打开/新建python3 的 notebook文件，命令行下报错</p>
+<blockquote>
+<p>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</p>
+<p>[E 20:28:58.544 NotebookApp]</p>
+</blockquote>
+<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>nbconvert</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade --user nbconvert<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后将<code>$USER/.local/bin</code>添加到PATH，即可实现上述运行</p>
+<h3 id="ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"><a class="header-anchor" href="#ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"></a>ERROR:tornado.general: Uncaught exception in zmqstream callback</h3>
+<p>运行notebook时，用浏览器成功打开notebook的目录网页，能成功打开/新建python3 的 notebook文件，但点运行，迟迟不运行，命令行下报错</p>
+<blockquote>
+<p>ERROR:tornado.general: Uncaught exception in zmqstream callback</p>
+</blockquote>
+<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>ipykernel</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="参考"><a class="header-anchor" href="#参考"></a>参考</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/dunovank/jupyter-themes">https://github.com/dunovank/jupyter-themes</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/46242116">【内容引起舒适】让你的Jupyter Notebook不再辣眼睛</a></p>
+
       
     </div>
 
@@ -656,135 +947,85 @@ Cannot uninstall ‘terminado’. It is a distutils installed project and thus w
 <p>指向<code>/Library/Frameworks/Python.framework/Versions/x.x/&#123;pydoc,python,pythonw,python-config,等&#125;x.x</code></p>
 </li>
 </ul>
-          <!--noindex-->
-          <!--/noindex-->
-        
-      
-    </div>
+<h4 id="卸载"><a class="header-anchor" href="#卸载"></a>卸载</h4>
+<ul>
+<li>删除框架</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">rm</span> -rf /Library/Frameworks/Python.framework/Versions/x.x<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>删除应用目录</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">rm</span> -rf <span class="token string">"/Applications/Python x.x"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>删除指向python的链接</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /usr/local/bin/
+<span class="token function">ls</span> -l /usr/local/bin <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">'/Library/Frameworks/Python.framework/Versions/2.7'</span> <span class="token comment"># 查看链接</span>
+brew prune  <span class="token comment"># 清除链接和目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>清除后可再次查看链接，会发现链接已清除</p>
+<h3 id="brew安装"><a class="header-anchor" href="#brew安装"></a>brew安装</h3>
+<p>推荐使用homebrew安装python：</p>
+<ul>
+<li>可以指定python版本</li>
+<li>安装卸载方便，避免对系统自带的python版本误操作</li>
+<li>安装某些软件时会连带安装python包，如果系统中已安装该版本包，但不是用brew安装的，就会引起冲突，导致安装失败</li>
+</ul>
+<h4 id="安装-_2"><a class="header-anchor" href="#安装-_2"></a>安装</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew isntall python<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="卸载-_2"><a class="header-anchor" href="#卸载-_2"></a>卸载</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew unisntall python<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="conda安装虚拟环境"><a class="header-anchor" href="#conda安装虚拟环境"></a>conda安装虚拟环境</h3>
+<p>详见本文件夹下 conda的教程</p>
+<h2 id="替换系统python"><a class="header-anchor" href="#替换系统python"></a>替换系统python</h2>
+<p>依上法用pkg安装的python后，欲望替换系统python（但<strong>不要删除</strong>系统python），需如下操作。还原到原来的系统python (x.x=2.7)，也如此。</p>
+<h3 id="开放系统文件夹修改权限"><a class="header-anchor" href="#开放系统文件夹修改权限"></a>开放系统文件夹修改权限</h3>
+<p>以“改变Python安装目录的用户组”,“修改Python当前安装目录的一些快捷方式” ,“重新建立新的命令符号链接”</p>
+<p>重启电脑,长按<code>⌘R</code>，直到苹果logo出现，打开utility中终端，执行如下命令:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">csrutil disable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后点重启电脑</p>
+<h3 id="配置"><a class="header-anchor" href="#配置"></a>配置</h3>
+<p>移动 安装的Python框架 到 系统python框架 所在目录</p>
+<pre class="line-numbers language-ba&#39;sh" data-language="ba&#39;sh"><code class="language-ba&#39;sh">sudo mv &#x2F;Library&#x2F;Frameworks&#x2F;Python.framework&#x2F;Versions&#x2F;x.x &#x2F;System&#x2F;Library&#x2F;Frameworks&#x2F;Python.framework&#x2F;Versions<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>改变Python安装目录的用户组</p>
+<pre class="line-numbers language-ba&#39;sh" data-language="ba&#39;sh"><code class="language-ba&#39;sh">cd &#x2F;System&#x2F;Library&#x2F;Frameworks&#x2F;Python.framework&#x2F;Versions&#x2F;
+sudo chown -R root:wheel x.x<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>修改Python当前安装目录的一些快捷方式</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /System/Library/Frameworks/Python.framework/Versions/
+<span class="token function">sudo</span> <span class="token function">rm</span> Current
+<span class="token function">sudo</span> <span class="token function">ln</span> -s x.x Current<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="链接替换"><a class="header-anchor" href="#链接替换"></a>链接替换</h4>
+<p>删除旧的命令符号链接</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /usr/bin
+<span class="token function">sudo</span> <span class="token function">rm</span> pydoc<span class="token operator">&lt;</span>v<span class="token operator">></span> python<span class="token operator">&lt;</span>v<span class="token operator">></span> pythonw<span class="token operator">&lt;</span>v<span class="token operator">></span> python<span class="token operator">&lt;</span>v<span class="token operator">></span>-config<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>&lt;v&gt; = “” 或 “x” 或 “x.x” , 如python&lt;v&gt; 可以是 “python” “python2” “python2.7”，分别用于替换默认的python、python2、python2.7</li>
+</ul>
+<p>重新建立新的命令符号链接</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /usr/bin
+<span class="token function">sudo</span> <span class="token function">ln</span> -s /System/Library/Frameworks/Python.framework/Versions/<span class="token operator">&lt;</span>V<span class="token operator">></span>/bin/<span class="token punctuation">&#123;</span>pydoc<span class="token operator">&lt;</span>v<span class="token operator">></span>,python<span class="token operator">&lt;</span>v<span class="token operator">></span>,pythonw<span class="token operator">&lt;</span>v<span class="token operator">></span>,python<span class="token operator">&lt;</span>v<span class="token operator">></span>-config<span class="token punctuation">&#125;</span> <span class="token builtin class-name">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>&lt;V&gt;=“x.x” 或 “Current”，“Current&quot;是链接指向某个&quot;x.x”</li>
+</ul>
+<p>上述&lt;v&gt;，&lt;V&gt;的选择：</p>
+<ul>
+<li>替换&quot;python&quot;，则&lt;v&gt;=“”，&lt;V&gt;=“Current”</li>
+<li>替换&quot;pythonx&quot;或&quot;pythonx.x&quot;，则&lt;v&gt;=&lt;V&gt;=“x.x”</li>
+</ul>
+<p>更新/root/.bash_profile文件中的路径，在~/.bash_profile插入下面的内容即可</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Setting PATH for Python x.x</span>
+<span class="token comment"># The orginal version is saved in .bash_profile.pysave</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>"/System/Library/Frameworks/Python.framework/Versions/x.x/bin:<span class="token variable">$&#123;<span class="token environment constant">PATH</span>&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="验证更改成功"><a class="header-anchor" href="#验证更改成功"></a>验证更改成功</h4>
+<p>现在重新启动一下终端，然后执行<code>python&lt;v&gt; --version</code>，得到Python x.x，即成功</p>
+<p>如果在python程序中，需要使用下面代码获取python版本</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> platform
+<span class="token keyword">print</span><span class="token punctuation">(</span>platform<span class="token punctuation">.</span>python_version<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token comment"># 返回 x.x 即成功</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="关闭系统文件夹修改权限"><a class="header-anchor" href="#关闭系统文件夹修改权限"></a>关闭系统文件夹修改权限</h3>
+<p>重启电脑，长按<code>⌘R</code>,直到苹果logo出现，打开utility中终端，执行如下命令:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">csrutil <span class="token builtin class-name">enable</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后点重启电脑</p>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="三清小道">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/" class="post-title-link" itemprop="url">virtualenv_教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-05-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25 04:03:03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-02 04:26:22 04:26:22" itemprop="dateModified" datetime="2021-08-02T04:26:22+08:00">2021-08-02 04:26:22</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/" data-xid="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="virtualenv-教程"><a class="header-anchor" href="#virtualenv-教程"></a>virtualenv 教程</h1>
-<p>参考资料：</p>
-<p><a target="_blank" rel="noopener" href="http://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html">安装与使用说明</a></p>
-<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/08c657bd34f1">Python–Virtualenv简明教程</a></p>
-<h2 id="安装"><a class="header-anchor" href="#安装"></a>安装</h2>
-<p>通过pip安装virtualenv：</p>
-<pre class="line-numbers language-none"><code class="language-none">$ pip install virtualenv
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>测试你的安装</p>
-<pre class="line-numbers language-none"><code class="language-none">$ virtualenv --version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="创建环境"><a class="header-anchor" href="#创建环境"></a>创建环境</h2>
-          <!--noindex-->
-          <!--/noindex-->
-        
       
     </div>
 
@@ -918,9 +1159,177 @@ Cannot uninstall ‘terminado’. It is a distutils installed project and thus w
 <li>上述方法，令包为<code>pip</code>，即可 卸/升级/降级 pip 自己</li>
 <li>看有哪些包</li>
 </ul>
-          <!--noindex-->
-          <!--/noindex-->
-        
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>看装了的包的信息</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip show 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="三清小道">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/" class="post-title-link" itemprop="url">virtualenv_教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25 04:03:03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-02 04:26:22 04:26:22" itemprop="dateModified" datetime="2021-08-02T04:26:22+08:00">2021-08-02 04:26:22</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/" data-xid="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="virtualenv-教程"><a class="header-anchor" href="#virtualenv-教程"></a>virtualenv 教程</h1>
+<p>参考资料：</p>
+<p><a target="_blank" rel="noopener" href="http://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html">安装与使用说明</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/08c657bd34f1">Python–Virtualenv简明教程</a></p>
+<h2 id="安装"><a class="header-anchor" href="#安装"></a>安装</h2>
+<p>通过pip安装virtualenv：</p>
+<pre class="line-numbers language-none"><code class="language-none">$ pip install virtualenv
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>测试你的安装</p>
+<pre class="line-numbers language-none"><code class="language-none">$ virtualenv --version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="创建环境"><a class="header-anchor" href="#创建环境"></a>创建环境</h2>
+<h3 id="查看你机子上不同版本python的地址"><a class="header-anchor" href="#查看你机子上不同版本python的地址"></a>查看你机子上不同版本python的地址</h3>
+<pre class="line-numbers language-none"><code class="language-none">which python
+which python2
+which python2.7
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>会返回一个地址，是你需要的python所在&lt;地址&gt;，复制它</p>
+<h3 id="创建虚拟环境"><a class="header-anchor" href="#创建虚拟环境"></a>创建虚拟环境</h3>
+<h4 id="创建方法"><a class="header-anchor" href="#创建方法"></a>创建方法</h4>
+<p>可在任意选定&lt;目录&gt;创建虚拟环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>目录<span class="token operator">></span>$ virtualenv --python<span class="token operator">=</span><span class="token operator">&lt;</span>地址<span class="token operator">></span> <span class="token operator">&lt;</span>虚拟环境的名字<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>创建后，&lt;目录&gt;下会生成&lt;虚拟环境的名字&gt;文件夹，其下有bin/，include/，lib/</p>
+<ul>
+<li>&lt;目录&gt;可为用户根目录（即<code>~/</code>)，用于创建整个用户的虚拟环境</li>
+<li>&lt;目录&gt;可为工程目录，用于创建本工程使用的虚拟环境</li>
+</ul>
+<h4 id="权限不足"><a class="header-anchor" href="#权限不足"></a>权限不足</h4>
+<pre class="line-numbers language-none"><code class="language-none">The program &#39;virtualenv&#39; is currently not installed. To run &#39;virtualenv&#39; please ask your administrator to install the package &#39;python-virtualenv&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>请服务器管理员安装python-virtualenv</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> pip <span class="token function">install</span> virtualenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
+<h3 id="安装python的包"><a class="header-anchor" href="#安装python的包"></a>安装python的包</h3>
+<p>装pip的软件，必须先到虚拟环境所在目录</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>目录<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>输入一下命令激活python的虚拟环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>目录<span class="token operator">></span>$ <span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>激活成功后，用户名前会加<code>(&lt;目录&gt;)</code></p>
+<p>此时，输入以下命令装软件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">&lt;</span>目录<span class="token operator">></span><span class="token punctuation">)</span>用户名@服务器名: 当前目录$ pip <span class="token function">install</span> <span class="token operator">&lt;</span>软件<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装完成后，从虚拟环境出来</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">&lt;</span>目录<span class="token operator">></span><span class="token punctuation">)</span>用户名@服务器名: deactivate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="使用python及python的包"><a class="header-anchor" href="#使用python及python的包"></a>使用python及python的包</h3>
+<ul>
+<li>
+<p>当&lt;目录&gt;为在用户根目录（即<code>~/</code>)时：</p>
+<p>只要该用户登录，无需<code>source bin/activate</code>激活，即可在任意目录下，使用虚拟环境（包括python版本及python包），但不能<code>pip install</code> 安装pyhton包</p>
+</li>
+<li>
+<p>当&lt;目录&gt;为某pyhton工程文件夹：</p>
+<p>只有在该工程目录，输入<code>source bin/activate</code>激活后，才能使用该虚拟环境的包括python版本及python包，即<code>pip install</code> 安装pyhton包，在任意目录下均可使用</p>
+</li>
+</ul>
+
       
     </div>
 
@@ -1047,9 +1456,180 @@ Cannot uninstall ‘terminado’. It is a distutils installed project and thus w
 <h3 id="包的存放位置"><a class="header-anchor" href="#包的存放位置"></a>包的存放位置</h3>
 <p>python的包存放在site-packages/文件夹内，包可以是文件夹（内含.py等文件）、单独的.py等文件。</p>
 <h4 id="import的方法"><a class="header-anchor" href="#import的方法"></a>import的方法</h4>
-          <!--noindex-->
-          <!--/noindex-->
-        
+<p>需要从当前python的site-packages开始，逐层写import。例如，要导入这个包：“当前python的site-packages/文件夹1/文件夹2/目标文件.py”，需写</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> 文件夹<span class="token number">1</span><span class="token punctuation">.</span>文件夹<span class="token number">2</span><span class="token punctuation">.</span>目标文件<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="如何确定当前python的-site-packages-位置"><a class="header-anchor" href="#如何确定当前python的-site-packages-位置"></a>如何确定当前python的&quot;site-packages/&quot;位置</h4>
+<p>即相当于确定<code>which python</code>那个python的site-packages/的位置</p>
+<p><strong>法一</strong> 在命令行中</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python -c <span class="token string">"from distutils.sysconfig import get_python_lib; print(get_python_lib())"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>法二</strong> 在python中</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> distutils<span class="token punctuation">.</span>sysconfig <span class="token keyword">import</span> get_python_lib<span class="token punctuation">;</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>get_python_lib<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>均会返回形如“/Users/mac/anaconda/lib/python3.6/site-packages”的地址。若在mac系统，按<code>command+shift+G</code>，输入该地址，回车即到达包所在目录。</p>
+<h2 id="输出"><a class="header-anchor" href="#输出"></a>输出</h2>
+<h3 id="整行输出"><a class="header-anchor" href="#整行输出"></a>整行输出</h3>
+<p>python的print输出的特性：</p>
+<ul>
+<li>
+<p>在出现换行符(可以是sleep 尾巴自带的，或字符串里的)前，不会输出</p>
+</li>
+<li>
+<p>要在未出现换行符时强行输出，有两种情况</p>
+<ul>
+<li>
+<p>用<code>sys.stdout.flush()</code>输出尽stdout所存，输出后换不行，光标在行尾</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+<span class="token keyword">import</span> sys
+<span class="token comment"># 先输出'a'并换行，过一秒才输出'bc'并换行</span>
+<span class="token keyword">print</span> <span class="token string">'a\nb'</span><span class="token punctuation">,</span> <span class="token comment"># 字符串里有'\n',print结尾不带'\n'</span>
+sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span> <span class="token string">'c'</span>     <span class="token comment"># pritn结尾有'\n'</span>
+
+<span class="token comment"># 先输出'a\nb'，过一秒在'b'后紧接着输出'c\n'</span>
+<span class="token keyword">print</span> <span class="token string">'a\nb'</span><span class="token punctuation">,</span> <span class="token comment"># 字符串里有'\n',print结尾不带'\n'</span>
+sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span> <span class="token string">'c'</span>     <span class="token comment"># pritn结尾有'\n'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>python脚本执行完毕，输出尽stdout所存</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 在ipython中</span>
+<span class="token keyword">print</span> <span class="token string">'abc\r'</span>   <span class="token comment"># 然后回车</span>
+<span class="token comment"># 输出</span>
+<span class="token comment"># abc</span>
+<span class="token comment">#       //下面换了一行</span>
+
+<span class="token keyword">print</span> <span class="token string">'abc\r'</span><span class="token punctuation">,</span>  <span class="token comment"># 然后回车</span>
+<span class="token comment"># 输出</span>
+<span class="token comment"># abc   //下面没有换一行了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="同一行反复输出"><a class="header-anchor" href="#同一行反复输出"></a>同一行反复输出</h3>
+<ul>
+<li>
+<p><code>'\r'</code>表示光标回到屏幕上光标所在行之首，但不清除本行已输出字符，之后新输出的字符会覆盖已有字符。</p>
+</li>
+<li>
+<p>不是两个’\n’之间称为一行，而是屏幕上一行输出叫一行</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span> <span class="token string">'---------------------------------------------------------------------------------------------------------------------\ra'</span>
+<span class="token comment"># 得到</span>
+<span class="token comment"># -------------------------------------------------------------------------------------</span>
+<span class="token comment"># a----------------------------------</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p><strong>同一行反复输出的方法</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys
+<span class="token comment"># 循环</span>
+    <span class="token keyword">print</span> <span class="token string">"就地覆盖的内容\r"</span><span class="token punctuation">,</span>
+ 	sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 循环</span>
+    <span class="token keyword">print</span> <span class="token string">"不断向后延长的内容"</span><span class="token punctuation">,</span>
+  	sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="进度条"><a class="header-anchor" href="#进度条"></a>进度条</h4>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys
+
+<span class="token keyword">def</span> <span class="token function">progess_bar</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span> precision<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>num_block<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token comment"># 输出到屏幕</span>
+<span class="token comment"># p 是[0,1]的float，表示百分之多少的进度</span>
+<span class="token comment"># precision小数点位数</span>
+<span class="token comment"># 进度条的'>'块数</span>
+    <span class="token comment"># 以防之前stdout修改，如"屏幕文件双向输出"功能</span>
+    original <span class="token operator">=</span> sys<span class="token punctuation">.</span>stdout
+    sys<span class="token punctuation">.</span>stdout <span class="token operator">=</span> sys<span class="token punctuation">.</span>__stdout__
+    <span class="token comment"># 右对齐输出百分数</span>
+    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">'%%%ds'</span><span class="token operator">%</span><span class="token punctuation">(</span>precision<span class="token operator">+</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token operator">%</span> \
+        <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'%%.%df'</span><span class="token operator">%</span>precision<span class="token punctuation">)</span><span class="token operator">%</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'%'</span><span class="token punctuation">,</span>
+    <span class="token keyword">print</span> <span class="token string">'   |'</span><span class="token punctuation">,</span>
+    n <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>p<span class="token operator">*</span>num_block<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span> <span class="token string">'>'</span><span class="token punctuation">,</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>num_block<span class="token operator">-</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span> <span class="token string">' '</span><span class="token punctuation">,</span>
+    <span class="token keyword">if</span> p<span class="token operator">!=</span><span class="token number">1</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span> <span class="token string">'|\r'</span><span class="token punctuation">,</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span>
+    <span class="token comment"># 还原sys.stdout</span>
+    sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    sys<span class="token punctuation">.</span>stdout <span class="token operator">=</span> original
+
+<span class="token comment"># 效果</span>
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+<span class="token keyword">for</span> p <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">101</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    p<span class="token operator">=</span>p<span class="token operator">/</span><span class="token number">100.0</span>
+    progess_bar<span class="token punctuation">(</span>p<span class="token punctuation">,</span> precision<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>num_block<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span>
+    sleep<span class="token punctuation">(</span><span class="token number">0.01</span><span class="token punctuation">)</span>
+<span class="token comment"># 0.01秒变化一下</span>
+<span class="token comment">#  94.000 %   | > > > > > > > > > > > > > > > > > >     |</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>一些对比实例</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+<span class="token comment"># 例1</span>
+<span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span> <span class="token string">'asdasdasdas'</span><span class="token punctuation">,</span>
+    <span class="token keyword">print</span> <span class="token string">"\r%d"</span><span class="token operator">%</span>x<span class="token punctuation">,</span>        <span class="token comment"># 回到行首</span>
+    <span class="token keyword">print</span> <span class="token string">"hahah\r"</span><span class="token punctuation">,</span>       <span class="token comment"># 光标回到行首</span>
+    sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出</span>
+<span class="token comment"># x ha  asdas</span>
+<span class="token comment"># x=0,1,2,...9 (每0.1秒一变化)</span>
+<span class="token comment"># asdas未被清除</span>
+
+<span class="token comment"># 例2</span>
+<span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span> <span class="token string">'asdasdasdas'</span><span class="token punctuation">,</span>
+    <span class="token keyword">print</span> <span class="token string">"%d"</span><span class="token operator">%</span>x<span class="token punctuation">,</span>        <span class="token comment"># 不回到行首</span>
+    <span class="token keyword">print</span> <span class="token string">"hahah\r"</span><span class="token punctuation">,</span>
+    sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出</span>
+<span class="token comment"># asdasdasdas x hahah</span>
+<span class="token comment"># x=0,1,2,...9 (每0.1秒一变化)</span>
+
+<span class="token comment"># 例3</span>
+<span class="token keyword">print</span> <span class="token string">'asdasdasdas'</span><span class="token punctuation">,</span>     <span class="token comment"># 未换行</span>
+<span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span> <span class="token string">"%d"</span><span class="token operator">%</span>x<span class="token punctuation">,</span>        <span class="token comment"># 不回到行首</span>
+    <span class="token keyword">print</span> <span class="token string">"hahah\r"</span><span class="token punctuation">,</span>
+    sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出</span>
+<span class="token comment"># x hahahsdas 0 hahah</span>
+<span class="token comment"># x=1,2,...9 (每0.1秒一变化)</span>
+
+<span class="token comment"># 例4</span>
+<span class="token keyword">print</span> <span class="token string">'asdasdasdas'</span><span class="token punctuation">,</span>     <span class="token comment"># 未换行</span>
+<span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span> <span class="token string">"%d"</span><span class="token operator">%</span>x<span class="token punctuation">,</span>        <span class="token comment"># 不回到行首</span>
+    <span class="token keyword">print</span> <span class="token string">"hahah\r"</span><span class="token punctuation">,</span>
+    sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+<span class="token comment"># 1秒后输出</span>
+<span class="token comment"># x hahahsdas 9 hahah</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="路径"><a class="header-anchor" href="#路径"></a>路径</h2>
+<p>获得当文件(而不是其所在文件夹)的绝对路径</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">dir_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>realpath<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>从路径取得文件名字</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">&lt;</span>string<span class="token operator">></span> <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>basename<span class="token punctuation">(</span><span class="token operator">&lt;</span>filepath_string<span class="token operator">></span><span class="token punctuation">)</span>
+<span class="token comment"># Linux下相当于 &lt;filepath_string>.split('/')[-1]</span>
+<span class="token comment"># 若&lt;filepath_string>为文件路径，返回文件名(带扩展名)</span>
+<span class="token comment"># 若&lt;filepath_string>为文件夹路径，返回“”</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>从路径取得文件夹名字</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>dir_string<span class="token operator">></span> <span class="token operator">=</span> os.path.dirname<span class="token punctuation">(</span><span class="token operator">&lt;</span>path_string<span class="token operator">></span><span class="token punctuation">)</span>
+<span class="token comment"># 若&lt;path_string>为文件夹路径，则返回 &lt;path_string></span>
+<span class="token comment"># 若&lt;path_string>为文件路径，  则返回其所在文件夹的路径</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>一路向下创建文件夹</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">os.makedirs<span class="token punctuation">(</span><span class="token operator">&lt;</span>path_string<span class="token operator">></span><span class="token punctuation">)</span> <span class="token comment"># 此文件夹已经存在则报错</span>
+os.makedirs<span class="token punctuation">(</span><span class="token operator">&lt;</span>path_string<span class="token operator">></span>, <span class="token assign-left variable">exist_ok</span><span class="token operator">=</span>True<span class="token punctuation">)</span> <span class="token comment"># 此文件夹已经存在不报错</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>连接路径名，在不同操作系统下都work</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>path_string<span class="token operator">></span> <span class="token operator">=</span> os.path.join<span class="token punctuation">(</span><span class="token operator">&lt;</span>path_string<span class="token operator"><span class="token file-descriptor important">1</span>></span>,<span class="token operator">&lt;</span>path_string<span class="token operator"><span class="token file-descriptor important">2</span>></span>,<span class="token punctuation">..</span>.<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
       
     </div>
 
@@ -1219,9 +1799,67 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
 <ul>
 <li><code>initial</code>：进度条初始值，默认为0</li>
 </ul>
-          <!--noindex-->
-          <!--/noindex-->
-        
+<h4 id="退出时清除此进度条"><a class="header-anchor" href="#退出时清除此进度条"></a>退出时清除此进度条</h4>
+<ul>
+<li><code>pbar.close()</code>时<strong>保留</strong>此进度条</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pbar <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span>重复次数, <span class="token assign-left variable">leave</span><span class="token operator">=</span>True<span class="token punctuation">)</span>
+pbar <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span>重复次数<span class="token punctuation">)</span> <span class="token comment"># default leave=True</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li><code>pbar.close()</code>时<strong>清除</strong>此进度条</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pbar <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span>重复次数<span class="token punctuation">,</span> leave<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="多个进度条并行"><a class="header-anchor" href="#多个进度条并行"></a>多个进度条并行</h4>
+<p>使用<code>position</code>参数，从0开始计算，position越大打印出来所在行最下</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pbar0 <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span>重复次数, <span class="token assign-left variable">leave</span><span class="token operator">=</span>False, <span class="token assign-left variable">position</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+pbar1 <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span>重复次数, <span class="token assign-left variable">leave</span><span class="token operator">=</span>False, <span class="token assign-left variable">position</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+pbar3 <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span>重复次数, <span class="token assign-left variable">leave</span><span class="token operator">=</span>False, <span class="token assign-left variable">position</span><span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment">## 同时更新pbar0，pbar1，pbar3</span>
+
+pbar0.close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+pbar1.close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+pbar2.close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>示例</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> tqdm <span class="token keyword">import</span> tqdm
+
+fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'apple'</span><span class="token punctuation">,</span> <span class="token string">'banana'</span><span class="token punctuation">,</span> <span class="token string">'orange'</span><span class="token punctuation">]</span>
+pbars <span class="token operator">=</span> <span class="token punctuation">&#123;</span>fruit<span class="token punctuation">:</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> leave<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> position<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+         <span class="token keyword">for</span> fruit <span class="token keyword">in</span> fruits<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    fruit <span class="token operator">=</span> fruits<span class="token punctuation">[</span>i<span class="token operator">%</span><span class="token number">3</span><span class="token punctuation">]</span>
+    pbars<span class="token punctuation">[</span>fruit<span class="token punctuation">]</span><span class="token punctuation">.</span>set_description_str<span class="token punctuation">(</span>fruit<span class="token punctuation">)</span>
+    pbar<span class="token punctuation">.</span>set_postfix_str<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+    pbars<span class="token punctuation">[</span>fruit<span class="token punctuation">]</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> pbar <span class="token keyword">in</span> pbars<span class="token punctuation">:</span>
+    pbar<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">apple:  27%|████████████▋                 | 27&#x2F;100 [00:07&lt;00:22,  3.32it&#x2F;s, 78]
+banana:  26%|███████████▉                 | 26&#x2F;100 [00:07&lt;00:22,  3.32it&#x2F;s, 76]
+orange:  26%|███████████▉                 | 26&#x2F;100 [00:07&lt;00:22,  3.32it&#x2F;s, 77]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="显示实时更新的字符串"><a class="header-anchor" href="#显示实时更新的字符串"></a>显示实时更新的字符串</h3>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> tqdm <span class="token keyword">import</span> tqdm
+pbar <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>bar_format<span class="token operator">=</span><span class="token string">'&#123;desc&#125;'</span><span class="token punctuation">)</span> <span class="token comment"># 即不要进度条，只有description_str的意思</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>重复次数<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    pbar<span class="token punctuation">.</span>set_description_str<span class="token punctuation">(</span>字符串<span class="token punctuation">)</span>
+    pbar<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>
+pbar<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>例如</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> tqdm <span class="token keyword">import</span> tqdm
+pbar <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>bar_format<span class="token operator">=</span><span class="token string">'&#123;desc&#125;'</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+    pbar<span class="token punctuation">.</span>set_description_str<span class="token punctuation">(</span><span class="token string">'prefix %d'</span><span class="token operator">%</span>i<span class="token punctuation">)</span>
+    pbar<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>
+pbar<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">prefix 24<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+
       
     </div>
 
@@ -1391,9 +2029,248 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
 <p>启动上述文件，即下面的激活上述文件</p>
 <h4 id="执行顺序"><a class="header-anchor" href="#执行顺序"></a>执行顺序</h4>
 <p><a target="_blank" rel="noopener" href="https://wxnacy.com/2018/06/01/shell-profile/">参考</a>, <a target="_blank" rel="noopener" href="https://blog.csdn.net/robertaqi/article/details/5449763">流程图</a>, <a target="_blank" rel="noopener" href="http://blog.51cto.com/hxl2009/664187">各个文件</a></p>
-          <!--noindex-->
-          <!--/noindex-->
-        
+<h5 id="登录"><a class="header-anchor" href="#登录"></a>登录</h5>
+<p>流程图</p>
+<pre class="line-numbers language-none"><code class="language-none">                     &#x2F;etc&#x2F;profile.d&#x2F;下诸文件
+                          ↑ 手动
+*用户登录* --先自动--&gt; &#x2F;etc&#x2F;profile -手动-&gt; &#x2F;etc&#x2F;(bash.)bashrc
+    |                                    ↑ 手动
+    |        不登录开新shell* -----&gt;  ~&#x2F;.bashrc  -手动-&gt;  ~&#x2F;.bash_aliases
+    \                               ↑ 手动
+     \--- --后自动---------------&gt; ~&#x2F;[.bash_profile|.bash_login|.profile]从前到后找，只执行一个
+     					     CentOS 默认用 ~&#x2F;.bash_profile 文件
+     					     Ubuntu 默认用 ~&#x2F;.profile 文件
+     					     混用也不影响
+     					     sh 登录只加载 .profile, 与bash共用.profile<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上述跳转关系依赖于</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># /etc/profile，/etc/bashrc 中通常有</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -d /etc/profile.d <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+      <span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> /etc/profile.d/*.sh<span class="token punctuation">;</span> <span class="token keyword">do</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> -r <span class="token variable">$i</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+          <span class="token builtin class-name">.</span> <span class="token variable">$i</span>
+        <span class="token keyword">fi</span>
+      <span class="token keyword">done</span>
+      <span class="token builtin class-name">unset</span> i
+    <span class="token keyword">fi</span>
+<span class="token keyword">fi</span>
+
+<span class="token comment"># ~/.bash_profile 中通常有</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -f ~/.bashrc <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token builtin class-name">.</span> ~/.bashrc
+    <span class="token keyword">fi</span>
+<span class="token keyword">fi</span>
+
+<span class="token comment"># ~/.bashrc 中通常有</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -f /etc/bashrc  <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token builtin class-name">.</span> /etc/bashrc
+    <span class="token keyword">fi</span>
+<span class="token keyword">fi</span>
+
+<span class="token comment"># ~/.bashrc 中通常有</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -f ~/.bash_aliases  <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token builtin class-name">.</span> ~/.bash_aliases
+    <span class="token keyword">fi</span>
+<span class="token keyword">fi</span>
+
+<span class="token comment"># ~/.bashrc 中通常有</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$BASH_VERSION</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> -f /etc/bashrc <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token builtin class-name">.</span> /etc/bashrc
+    <span class="token keyword">fi</span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>分工建议</p>
+<ul>
+<li>
+<p><code>/etc/profile</code> ：所有用户系统信息，如置环境信息，只在用户登录时执行一次</p>
+</li>
+<li>
+<p><code>~/.bash_profile</code> ： 本用户系统信息，如环境变量</p>
+</li>
+<li>
+<p><code>~/.bashrc</code> ：shell 信息，如alias，配色</p>
+</li>
+</ul>
+<h5 id="登出"><a class="header-anchor" href="#登出"></a>登出</h5>
+<p>~/.bash_logout</p>
+<h3 id="二、激活"><a class="header-anchor" href="#二、激活"></a>二、激活</h3>
+<p>修改完环境变量，要在终端输入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> 被改的文件<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="命令别名"><a class="header-anchor" href="#命令别名"></a>命令别名</h2>
+<p>参见 <a target="_blank" rel="noopener" href="http://www.cnblogs.com/fuly550871915/p/4961903.html">http://www.cnblogs.com/fuly550871915/p/4961903.html</a><br>
+其语法是</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">alias</span> 命令1<span class="token operator">=</span><span class="token string">'命令2'</span>
+<span class="token comment"># 或</span>
+<span class="token builtin class-name">alias</span> 命令1<span class="token operator">=</span><span class="token string">"命令2"</span>
+<span class="token comment"># = 前后不能有空格</span>
+<span class="token comment"># 注释不能写在代码所在行尾</span>
+<span class="token comment"># '...'与"..."完全一样</span>
+<span class="token comment"># &lt;命令1>不能有空格</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>则在该用户登录电脑时，终端里输入<code>命令1</code>均会文本替换为<code>命令2</code></p>
+<h2 id="bashrc"><a class="header-anchor" href="#bashrc"></a>~/.bashrc</h2>
+<h3 id="Linux服务器的"><a class="header-anchor" href="#Linux服务器的"></a>Linux服务器的</h3>
+<p>以下可直接复制，用于配置Linux服务器用户、个人mac的 ~/.bashrc 文件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># enable color support of ls and also add handy aliases</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -x /usr/bin/dircolors <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">test</span> -r ~/.dircolors <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">eval</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">dircolors</span> -b ~/.dircolors<span class="token variable">)</span></span>"</span> <span class="token operator">||</span> <span class="token builtin class-name">eval</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">dircolors</span> -b<span class="token variable">)</span></span>"</span>
+    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls --color=auto'</span>
+    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">dir</span><span class="token operator">=</span><span class="token string">'dir --color=auto'</span>
+    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">vdir</span><span class="token operator">=</span><span class="token string">'vdir --color=auto'</span>
+    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">grep</span><span class="token operator">=</span><span class="token string">'grep --color=auto'</span>
+    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">fgrep</span><span class="token operator">=</span><span class="token string">'fgrep --color=auto'</span>
+    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">egrep</span><span class="token operator">=</span><span class="token string">'egrep --color=auto'</span>
+<span class="token keyword">fi</span>
+
+<span class="token comment"># ----- ls aliases -----</span>
+<span class="token comment"># 显(xxx)隐(.xxx) 文件(xxx)文件夹(xxx/) 用户名 大小(k/M/GB格式) 创建日期</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ll</span><span class="token operator">=</span><span class="token string">'ls -alFh'</span>
+<span class="token comment"># 显(xxx)隐(.xxx) 文件与文件夹不区分(xxx)</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">la</span><span class="token operator">=</span><span class="token string">'ls -A'</span>
+<span class="token comment"># 显 文件(xxx)文件夹(xxx/) hide .pyc</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">l</span><span class="token operator">=</span><span class="token string">'ls -CF -I*.pyc'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="mac的"><a class="header-anchor" href="#mac的"></a>mac的</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">
+<span class="token comment"># ==================== 命令行配色 =====================</span>
+<span class="token comment"># -------------------- alias to ls ------------------</span>
+<span class="token comment"># 显(xxx)隐(.xxx) 文件(xxx)文件夹(xxx/) 用户名 大小(k/M/GB格式) 创建日期</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ll</span><span class="token operator">=</span><span class="token string">'ls -alFh'</span>
+<span class="token comment"># 显(xxx)隐(.xxx) 文件与文件夹不区分(xxx)</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">la</span><span class="token operator">=</span><span class="token string">'ls -A'</span>
+<span class="token comment"># 显 文件(xxx)文件夹(xxx/) hide .pyc</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">l</span><span class="token operator">=</span><span class="token string">'ls -CF -I*.pyc'</span>
+
+<span class="token comment"># -------------------- alias to grep ------------------</span>
+<span class="token comment"># 上色</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls --color=auto'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">dir</span><span class="token operator">=</span><span class="token string">'dir --color=auto'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vdir</span><span class="token operator">=</span><span class="token string">'vdir --color=auto'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">grep</span><span class="token operator">=</span><span class="token string">'grep --color=auto'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">fgrep</span><span class="token operator">=</span><span class="token string">'fgrep --color=auto'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">egrep</span><span class="token operator">=</span><span class="token string">'egrep --color=auto'</span>
+
+<span class="token comment"># ------------- 命令行使用Coreutils 配色方案 ----------</span>
+<span class="token comment"># Coreutils安装教程：http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/</span>
+<span class="token comment"># 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...</span>
+<span class="token comment"># 采用GNU Coreutils的gdircolor配色替代ls的配色</span>
+<span class="token comment"># 修改~/.dir_colors(自定义配色文件)，以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）</span>
+<span class="token keyword">if</span> brew list <span class="token operator">|</span> <span class="token function">grep</span> coreutils <span class="token operator">></span> /dev/null <span class="token punctuation">;</span> <span class="token keyword">then</span>
+  <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew --prefix coreutils<span class="token variable">)</span></span>/libexec/gnubin:<span class="token environment constant">$PATH</span>"</span>
+  <span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls -F --show-control-chars --color=auto'</span>
+  <span class="token builtin class-name">eval</span> <span class="token variable"><span class="token variable">`</span>gdircolors -b <span class="token environment constant">$HOME</span>/.dir_colors<span class="token variable">`</span></span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="Mac的命令行配色"><a class="header-anchor" href="#Mac的命令行配色"></a><a target="_blank" rel="noopener" href="http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/">Mac的命令行配色</a></h4>
+<h5 id="Coreutils-配色方案"><a class="header-anchor" href="#Coreutils-配色方案"></a>Coreutils 配色方案</h5>
+<p>效果：不同类型的文件有不同颜色，如，图片水红色，文件夹群青色…</p>
+<p>原理：采用GNU Coreutils的gdircolor配色替代ls的配色，修改~/.dir_colors(自定义配色文件)，以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）</p>
+<ul>
+<li>
+<p>安装Coreutils</p>
+<ul>
+<li>mac： 通过<a target="_blank" rel="noopener" href="http://linfan.info/blog/2012/02/25/homebrew-installation-and-usage/">Homebrew</a>安装Coreutils</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> xz coreutils<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>Linux：</p>
+<ul>
+<li>
+<p>若有sudo权限，依<a target="_blank" rel="noopener" href="https://www.howtoinstall.co/en/ubuntu/trusty/coreutils">安装教程</a>，即</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> update
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> coreutils<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>若无sudo权限，使用<a target="_blank" rel="noopener" href="https://anaconda.org/bioconda/coreutils">conda安装coreutils</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c bioconda coreutils<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>生成颜色定义文件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gdircolors --print-database <span class="token operator">></span> ~/.dir_colors
+<span class="token comment"># 如显示没有“gdircolors”命令，但有”dircolors“，则执行下列命令</span>
+<span class="token function">dircolors</span> --print-database <span class="token operator">></span> ~/.dir_colors<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>在<code>~/.bash_profile</code>配置文件中加入以下代码</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># ------------- 命令行使用Coreutils 配色方案 ----------</span>
+<span class="token comment"># Coreutils安装教程：http://linfan.info/blog/2012/02/27/colorful-terminal-in-mac/</span>
+<span class="token comment"># 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...</span>
+<span class="token comment"># 采用GNU Coreutils的gdircolor配色替代ls的配色</span>
+<span class="token comment"># 修改~/.dir_colors(自定义配色文件)，以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）</span>
+<span class="token keyword">if</span> brew list <span class="token operator">|</span> <span class="token function">grep</span> coreutils <span class="token operator">></span> /dev/null <span class="token punctuation">;</span> <span class="token keyword">then</span>
+  <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew --prefix coreutils<span class="token variable">)</span></span>/libexec/gnubin:<span class="token environment constant">$PATH</span>"</span>
+  <span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls -F --show-control-chars --color=auto'</span>
+  <span class="token builtin class-name">eval</span> <span class="token variable"><span class="token variable">`</span>gdircolors -b <span class="token environment constant">$HOME</span>/.dir_colors<span class="token variable">`</span></span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="bash-profile"><a class="header-anchor" href="#bash-profile"></a>~/.bash_profile</h2>
+<p>以下可直接复制，用于配置Linux服务器用户、个人mac的 ~/.bash_profile 文件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> ~/.bashrc
+<span class="token comment"># ---------------- alias to resource ----------------</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">gpu</span><span class="token operator">=</span><span class="token string">'nvidia-smi'</span> <span class="token comment"># 查GPU使用</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">mem</span><span class="token operator">=</span><span class="token string">'free'</span>  <span class="token comment"># 查内存使用</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">killpid</span><span class="token operator">=</span><span class="token string">'kill -9'</span>  <span class="token comment"># killpid [pid] 杀死指定编号的进程</span>
+
+<span class="token comment"># ----------------- use which gpu -------------------</span>
+<span class="token comment"># 用法</span>
+<span class="token comment"># `gpuid 0 python xxx.py` 现在暂时用GPU0运行 xxx.py</span>
+<span class="token comment"># `gpuid 0` 并不能使得接下来一直默认用GPU0运行各个程序</span>
+<span class="token function-name function">gpuid</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token builtin class-name">eval</span> <span class="token string">"CUDA_VISIBLE_DEVICES=<span class="token variable">$*</span>"</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment"># 若`nvidia-smi`显示的GPU编号和`CUDA_VISIBLE_DEVICES=[GPU编号]`不一致，则</span>
+<span class="token comment"># &#123;</span>
+<span class="token comment">#     arg1="$1"</span>
+<span class="token comment">#     shift</span>
+<span class="token comment">#     if [ "$arg1" == "1" ]</span>
+<span class="token comment">#     then</span>
+<span class="token comment">#         eval "CUDA_VISIBLE_DEVICES=0 $*"</span>
+<span class="token comment">#     elif [ "$arg1" == "0" ]</span>
+<span class="token comment">#     then</span>
+<span class="token comment">#         eval "CUDA_VISIBLE_DEVICES=1 $*"</span>
+<span class="token comment">#     else</span>
+<span class="token comment">#         echo "no gpuid = $arg1, command 'nvidia-smi' to see more"</span>
+<span class="token comment">#     fi</span>
+<span class="token comment"># &#125;</span>
+
+<span class="token comment"># ---------------- alias envr vari ------------------</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vbp</span><span class="token operator">=</span><span class="token string">'vim ~/.bash_profile'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">sbp</span><span class="token operator">=</span><span class="token string">'source ~/.bash_profile'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">vbr</span><span class="token operator">=</span><span class="token string">'vim ~/.bashrc'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">sbr</span><span class="token operator">=</span><span class="token string">'source ~/.bashrc'</span>
+
+<span class="token comment"># ---------------- alias to python ------------------</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">py</span><span class="token operator">=</span><span class="token string">'python'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ip</span><span class="token operator">=</span><span class="token string">'ipython'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">nt</span><span class="token operator">=</span><span class="token string">'jupyter notebook'</span>
+
+<span class="token comment"># -----------------  alias to tmux ------------------</span>
+<span class="token comment"># create a new tmux session, tmux new</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tn</span><span class="token operator">=</span><span class="token string">'tmux new -s'</span>
+<span class="token comment"># list all session of tmux session</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tl</span><span class="token operator">=</span><span class="token string">'tmux ls'</span>
+<span class="token comment"># kill a tmux session</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tk</span><span class="token operator">=</span><span class="token string">'tmux kill-session -t'</span>
+<span class="token comment"># kill tmux server, means tmux kill all</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tka</span><span class="token operator">=</span><span class="token string">'tmux kill-server'</span>
+<span class="token comment"># attach to a tmux session, t means go to</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ta</span><span class="token operator">=</span><span class="token string">'tmux a -t'</span>
+<span class="token comment"># attach to the last tmux session, r means recover</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">tr</span><span class="token operator">=</span><span class="token string">'tmux a'</span>
+
+<span class="token comment"># ------------------ 命令行基础操作 ---------------</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">md</span><span class="token operator">=</span><span class="token string">'mkdir'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">lk</span><span class="token operator">=</span><span class="token string">'ln -s'</span>
+<span class="token comment"># 创建软连接</span>
+<span class="token builtin class-name">alias</span> <span class="token punctuation">..</span><span class="token operator">=</span><span class="token string">'cd ../'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
       
     </div>
 
@@ -1550,9 +2427,100 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
 <p>例如</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bash/zsh getopt_demo.sh -a par1 <span class="token string">'another arg'</span> --c-long <span class="token string">'wow!*\?'</span> -cmore -b <span class="token string">" very long "</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>返回</p>
-          <!--noindex-->
-          <!--/noindex-->
-        
+<pre class="line-numbers language-none"><code class="language-none">Option a
+Option c, no argument
+Option c, argument more&#39;
+Option b, argument very long &#39;
+Remaining arguments:
+--&gt; par1&#39;
+--&gt;another arg&#39;
+--&gt; &#96;wow!\?&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="代码写法"><a class="header-anchor" href="#代码写法"></a>代码写法</h2>
+<p><code>getopt_demo.sh</code>内容如下</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># 使用规则</span>
+<span class="token comment"># bash/zsh getopt_demo.sh 一堆参数，其前中后均可有 余参数</span>
+<span class="token comment"># 格式化参数：以'-'开头，必需符合本代码的解析要求</span>
+    <span class="token comment">#             短参数                           长参数</span>
+    <span class="token comment"># 无选项       -a                              --a-long</span>
+    <span class="token comment"># 必有选项     -bss          -b ss             --b-long ss</span>
+    <span class="token comment">#             -b'sds sds'   -b 'sds sds'      --b-long 'sds sds'</span>
+    <span class="token comment"># 可有选项若无  -c                              --c-long</span>
+    <span class="token comment"># 可有选项若有  -css          -c'sds sds'  只可短参数，选项与参数间不得有空格</span>
+<span class="token comment"># 余参数：不以'-'开头</span>
+
+
+<span class="token comment"># 参数预处理</span>
+<span class="token assign-left variable">TEMP</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>getopt <span class="token punctuation">\</span>
+    -o      ab:c:: <span class="token punctuation">\</span>
+    --long  a-long,b-long:,c-long:: <span class="token punctuation">\</span>
+    -n      <span class="token string">'参数解析错误'</span> <span class="token punctuation">\</span>
+    -- s    <span class="token string">"<span class="token variable">$@</span>"</span><span class="token variable">)</span></span>
+<span class="token comment"># 写法</span>
+    <span class="token comment">#   -o     短参数 不需要分隔符</span>
+    <span class="token comment">#   --long 长参数 用','分隔</span>
+    <span class="token comment">#   ``无选项  `:`必有选项  `::` 可由选项</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$?</span> <span class="token operator">!=</span> <span class="token number">0</span> <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token builtin class-name">echo</span> <span class="token string">"格式化的参数解析错误，正在退出"</span> <span class="token operator">></span><span class="token file-descriptor important">&amp;2</span> <span class="token punctuation">;</span> <span class="token builtin class-name">exit</span> <span class="token number">1</span> <span class="token punctuation">;</span> <span class="token keyword">fi</span>
+<span class="token builtin class-name">eval</span> <span class="token builtin class-name">set</span> -- <span class="token string">"<span class="token variable">$TEMP</span>"</span> <span class="token comment"># 将复制给 $1, $2, ...</span>
+
+
+<span class="token comment"># 处理参数</span>
+<span class="token keyword">while</span> <span class="token boolean">true</span> <span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token keyword">case</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token keyword">in</span>
+    <span class="token comment"># 无选项</span>
+    -a<span class="token operator">|</span>--a-long<span class="token punctuation">)</span>  <span class="token builtin class-name">echo</span> opt a <span class="token punctuation">;</span> <span class="token builtin class-name">shift</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token comment"># 必有选项</span>
+    -b<span class="token operator">|</span>--b-long<span class="token punctuation">)</span>  <span class="token builtin class-name">echo</span> opt b arg <span class="token string">"<span class="token variable">$2</span>"</span> <span class="token punctuation">;</span> <span class="token builtin class-name">shift</span> <span class="token number">2</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token comment"># 可省选项</span>
+    -c<span class="token operator">|</span>--c-long<span class="token punctuation">)</span> <span class="token keyword">case</span> <span class="token string">"<span class="token variable">$2</span>"</span> <span class="token keyword">in</span>
+        <span class="token comment"># 无选项</span>
+        <span class="token string">""</span><span class="token punctuation">)</span>  <span class="token builtin class-name">echo</span> opt c no arg <span class="token punctuation">;</span> <span class="token builtin class-name">shift</span> <span class="token number">2</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
+        <span class="token comment"># 有选项</span>
+        *<span class="token punctuation">)</span>   <span class="token builtin class-name">echo</span> opt c arg <span class="token string">"<span class="token variable">$2</span>"</span> <span class="token punctuation">;</span> <span class="token builtin class-name">shift</span> <span class="token number">2</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token keyword">esac</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token comment"># '--'后是 余参数</span>
+    --<span class="token punctuation">)</span> <span class="token builtin class-name">shift</span> <span class="token punctuation">;</span> <span class="token builtin class-name">break</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
+    <span class="token comment"># 处理参数的代码错误</span>
+    *<span class="token punctuation">)</span> <span class="token builtin class-name">echo</span> <span class="token string">"参数处理错误"</span> <span class="token punctuation">;</span> <span class="token builtin class-name">exit</span> <span class="token number">1</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>
+<span class="token keyword">esac</span> <span class="token punctuation">;</span> <span class="token keyword">done</span>
+
+
+<span class="token comment"># 余下参数</span>
+<span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">$@</span>"</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+   <span class="token builtin class-name">echo</span> rest <span class="token string">"<span class="token variable">$i</span>"</span>
+<span class="token keyword">done</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="snippets"><a class="header-anchor" href="#snippets"></a>snippets</h2>
+<p>为了方便些getopt，我已经将上述模板写成sublime、vscode、vim的snippet</p>
+<h1 id="徒手解析"><a class="header-anchor" href="#徒手解析"></a>徒手解析</h1>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token keyword">while</span> <span class="token builtin class-name">test</span> <span class="token variable">$#</span> -gt <span class="token number">0</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+    <span class="token keyword">case</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token keyword">in</span>
+        -<span class="token operator">&lt;</span>短参数<span class="token operator"><span class="token file-descriptor important">1</span>></span><span class="token punctuation">)</span>  相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 短参数</span>
+        -<span class="token operator">&lt;</span>短参数<span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token punctuation">)</span>  相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 短参数</span>
+        --<span class="token operator">&lt;</span>长参数<span class="token operator"><span class="token file-descriptor important">1</span>></span><span class="token punctuation">)</span> 相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 长参数</span>
+        --<span class="token operator">&lt;</span>长参数<span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token punctuation">)</span> 相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 长参数</span>
+        -*<span class="token punctuation">)</span>         相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 剩余短参数</span>
+        --*<span class="token punctuation">)</span>        相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 剩余长参数</span>
+        *<span class="token punctuation">)</span>          相应代码 <span class="token punctuation">;</span><span class="token punctuation">;</span> <span class="token comment"># 非参数</span>
+    <span class="token keyword">esac</span>
+    <span class="token builtin class-name">shift</span>
+<span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注：</p>
+<ul>
+<li><code>;;</code>前可以换行，详见下</li>
+<li><code>-某某) </code>后可以换行，详见下</li>
+<li>相应代码可以再接受参数，例如</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">-<span class="token operator">&lt;</span>短参数<span class="token operator"><span class="token file-descriptor important">1</span>></span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$&#123;2<span class="token operator">:</span>0<span class="token operator">:</span>1&#125;</span>"</span> <span class="token operator">!=</span> <span class="token string">'-'</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        相应代码来处理<span class="token variable">$2</span>
+        <span class="token builtin class-name">shift</span>
+    <span class="token keyword">fi</span>
+    <span class="token punctuation">;</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>缺点：</p>
+<ul>
+<li>仅此一个：不支持解析相邻的短参数 <code>-lAd</code>，必需写成<code>-l -A -d</code></li>
+</ul>
+
       
     </div>
 
@@ -1677,9 +2645,113 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
 <p>表示zsh启动时会从这些路径下加载<code>_xxx</code>文件，当zsh加载fpath所有文件后，会生成相应的<code>_xxx</code>函数，例如</p>
 <p><code>~/.antigen/bundles/zsh-users/zsh-completions/src/_tmuxp</code>文件定义了<code>_tmuxp</code>自动补全函数，(未定义<code>_tmux</code>函数)，而zsh加载后会自动生成<code>_tmux</code>函数</p>
 <h3 id="复用zsh的自动补全函数"><a class="header-anchor" href="#复用zsh的自动补全函数"></a>复用zsh的自动补全函数</h3>
-          <!--noindex-->
-          <!--/noindex-->
-        
+<p><a target="_blank" rel="noopener" href="https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org">参见</a></p>
+<h4 id="基本原理"><a class="header-anchor" href="#基本原理"></a>基本原理</h4>
+<ul>
+<li>
+<p>直接复用：<code>bar</code> 函数 要 复用<code>foo</code>函数的自动补全</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 函数 bar的定义可写在其前</span>
+compdef _foo bar
+<span class="token comment"># 函数 bar的定义也可写在其后</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>复用带参的：<code>bar</code> 函数 要 复用 <code>foo &lt;一个或多个参数&gt;</code> 的自动补全</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建一个空函数foo_copy_comp，使其补全与foo同</span>
+<span class="token function-name function">foo_copy_comp</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token builtin class-name">:</span> <span class="token punctuation">&#125;</span>
+compdef _foo foo_copy_comp
+<span class="token comment"># zsh的自动补全支持alias，故而bar的自动补全与'foo &lt;一个或多个参数>'命令同</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">bar</span><span class="token operator">=</span><span class="token string">'foo_copy_comp &lt;一个或多个参数>'</span>
+
+<span class="token comment"># 函数 bar的定义要写在其后</span>
+<span class="token function-name function">bar</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+  <span class="token comment"># ...</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>当bar函数定义后，alias bar与bar函数共存：</p>
+<ul>
+<li><code>which bar</code> 返回的是&quot; alias bar=‘foo_copy_comp &lt;一个或多个参数&gt;’ &quot;</li>
+<li><code>bar &lt;TAB键&gt;</code> 会显示<code>foo &lt;一个或多个参数&gt;</code>命令之后的自动补全</li>
+<li>运行<code>bar &lt;其他参数&gt;</code>命令，会执行<code>bar</code> 函数，而非alias bar</li>
+</ul>
+</li>
+</ul>
+<h4 id="配置示例"><a class="header-anchor" href="#配置示例"></a>配置示例</h4>
+<ul>
+<li>
+<p>关闭全局的<code>compinit</code>：在全局<code>zshrc</code>文件( mac: <code>/etc/zshrc</code>, linux:<code>/etc/zsh/zshrc</code> ) 中，搜<code>compinit</code>，若发现如下内容，则将<code>skip_global_compinit=1</code>解除注释；若没发现<code>compinit</code>，则不管。</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># If you don't want compinit called here, place the line</span>
+<span class="token comment"># skip_global_compinit=1    # 这行要解注释</span>
+<span class="token comment"># in your $ZDOTDIR/.zshenv or $ZDOTDIR/.zprofile</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> -z <span class="token string">"<span class="token variable">$skip_global_compinit</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+  autoload -U compinit
+  compinit
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样设置的原因是：在<code>~/.zshrc</code>中需要运行<code>autoload -U compinit &amp;&amp; compinit</code>(如下一段)，来使得<code>compdef</code>有定义。但是运行这个比较花时间，全局<code>zshrc</code>文件没必要也运行一遍。</p>
+<p>注： 每次启动zsh（不论登录、非登录，交互、非交互），先会运行全局<code>zshrc</code>文件，再运行<code>~/.zshrc</code>。</p>
+</li>
+<li>
+<p>配置自动补全：在<code>~/.zshrc</code>中写</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 初始化zsh的自动补全，从而conpdef函数有定义了</span>
+autoload -U compinit <span class="token operator">&amp;&amp;</span> compinit
+
+<span class="token comment"># ----------直接复用--------------</span>
+<span class="token comment"># auto_rsync 函数 复用 rsync的补全函数</span>
+compdef _rsync auto_rsync
+
+<span class="token comment"># ---------复用带参的--------------</span>
+<span class="token comment"># itm 函数 复用 'tmux -CC attach -t' 的补全函数</span>
+<span class="token function-name function">tmux_itm</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>   <span class="token builtin class-name">:</span><span class="token punctuation">;</span>    <span class="token punctuation">&#125;</span>
+compdef _tmux tmux_itm
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">itm</span><span class="token operator">=</span><span class="token string">'tmux_itm -CC attach -t'</span>
+
+<span class="token comment">## 注意, 两个alias 不能共用同一个 tmux_itm, 不然这两个alias对应的函数会冲突</span>
+<span class="token comment">## 例如下面这样是不行的</span>
+<span class="token comment"># alias itm1='tmux_itm -CC attach -t'</span>
+<span class="token comment"># alias itm2='tmux_itm -CC attach -t'</span>
+<span class="token comment">## 后面定义 itm1函数 和 itm2函数,</span>
+<span class="token comment"># 则 itm1函数 和  itm2函数 会冲突, 即两个函数名, 对应到同一个函数体</span>
+
+<span class="token comment"># 允许在有`alias foo=...`时，再定义函数`foo() &#123;  .... &#125;`</span>
+<span class="token builtin class-name">set</span> -o ALIAS_FUNC_DEF <span class="token operator">></span> /dev/null <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&amp;1</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>定义补全函数：在<code>~/.zshrc</code> 配置自动补全的后面,  <code>source ~/.aliases</code> , 而  <code>source ~/.aliases</code> 中定义补全函数</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># ----------直接复用--------------</span>
+<span class="token comment"># 带断点续传的rsync</span>
+<span class="token function-name function">auto_rsync</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token builtin class-name">local</span> <span class="token assign-left variable">retry_time</span><span class="token operator">=</span><span class="token number">180</span>
+    <span class="token keyword">while</span> <span class="token punctuation">[</span> <span class="token number">1</span> <span class="token punctuation">]</span>
+    <span class="token keyword">do</span>
+        <span class="token function">rsync</span> -aHhvzP <span class="token variable">$*</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$?</span>"</span> <span class="token operator">=</span> <span class="token string">"0"</span> <span class="token punctuation">]</span>
+        <span class="token keyword">then</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">"rsync completed normally"</span>
+            <span class="token builtin class-name">break</span>
+        <span class="token keyword">else</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">"Rsync failure. Backing off and retrying in <span class="token variable">$retry_time</span> seconds..."</span>
+            <span class="token function">sleep</span> <span class="token variable">$retry_time</span>
+        <span class="token keyword">fi</span>
+    <span class="token keyword">done</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment"># ---------复用带参的--------------</span>
+<span class="token comment"># itm 函数覆盖 alias itm='tmux_itm -CC attach -t'</span>
+<span class="token function-name function">itm</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token comment"># 注意：若已经定义了alias itm，需要把前三个参数`-CC attach -t`过掉</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">alias</span> itm <span class="token operator"><span class="token file-descriptor important">2</span>></span> /dev/null<span class="token variable">)</span></span>"</span> <span class="token operator">!=</span> <span class="token string">''</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token punctuation">&#123;</span><span class="token number">1</span><span class="token punctuation">..</span><span class="token number">3</span><span class="token punctuation">&#125;</span><span class="token punctuation">;</span> <span class="token keyword">do</span> <span class="token builtin class-name">shift</span><span class="token punctuation">;</span> <span class="token keyword">done</span>
+    <span class="token keyword">fi</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> <span class="token operator">=</span> <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        tmux -CC attach <span class="token operator">||</span> tmux -CC new -s default
+    <span class="token keyword">else</span>
+        <span class="token builtin class-name">local</span> <span class="token assign-left variable">session</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$1</span>"</span>
+        tmux -CC attach -t <span class="token string">"<span class="token variable">$&#123;session&#125;</span>"</span> <span class="token operator">||</span> tmux -CC new -s <span class="token string">"<span class="token variable">$&#123;session&#125;</span>"</span>
+    <span class="token keyword">fi</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注意：复用<code>foo &lt;n个参数&gt;</code>，要仿照上面的代码，把前n个参数过掉。</p>
+
       
     </div>
 
