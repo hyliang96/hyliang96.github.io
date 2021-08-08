@@ -3051,7 +3051,7 @@ mjx-container[display="true"] + br {
 /* 修改背景样式 */
 /* 背景图片 */
 body {
-  background: url("/images/communism.jpg");
+  background: url("/images/mountain.png");
 /* background:url(https://source.unsplash.com/random/1600x900); */
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -3065,20 +3065,15 @@ body {
     background-image: url("/images/communism-mobile.jpg");
   }
 }
-/* 正文背板的透明度 */
-/* .main-inner { */
+/* 正文的透明度 */
+.main-inner {
 /* margin-top: 60px; */
 /* padding: 60px 60px 60px 60px; */
 /* background: #fff; */
-/* opacity: 0.8; */
-/* min-height: 500px; */
-/* } */
-/* 博客内容透明化 */
-/* 文章内容的透明度设置 */
-.content-wrap {
   opacity: 1;
+/* min-height: 500px; */
 }
-/* //侧边框的透明度设置 */
+/* //侧边框(博主简介,目录)的透明度设置 */
 .sidebar {
   opacity: 1;
 }
