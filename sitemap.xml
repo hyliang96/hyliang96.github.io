@@ -65,20 +65,6 @@
   </url>
   
   <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/%E7%BB%88%E7%AB%AF/iterm2%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</loc>
-    
-    <lastmod>2021-08-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/%E7%BB%88%E7%AB%AF/tmux%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</loc>
-    
-    <lastmod>2021-08-01</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.lianghy.ml/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/TensorboardX%EF%BC%9A%E5%9C%A8pytorch%E4%B8%8A%E7%94%A8Tensorboard.md/main/</loc>
     
     <lastmod>2021-08-01</lastmod>
@@ -87,6 +73,20 @@
   
   <url>
     <loc>https://blog.lianghy.ml/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/</loc>
+    
+    <lastmod>2021-08-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/%E7%BB%88%E7%AB%AF/iterm2%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</loc>
+    
+    <lastmod>2021-08-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/%E7%BB%88%E7%AB%AF/tmux%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</loc>
     
     <lastmod>2021-08-01</lastmod>
     
@@ -128,6 +128,13 @@
   </url>
   
   <url>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/docker%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md/main/</loc>
+    
+    <lastmod>2021-08-01</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.lianghy.ml/%E5%99%A8/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7.md/main/</loc>
     
     <lastmod>2021-08-01</lastmod>
@@ -136,13 +143,6 @@
   
   <url>
     <loc>https://blog.lianghy.ml/%E5%99%A8/git/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md/main/</loc>
-    
-    <lastmod>2021-08-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/docker%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md/main/</loc>
     
     <lastmod>2021-08-01</lastmod>
     
@@ -226,27 +226,6 @@
   </url>
   
   <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/</loc>
-    
-    <lastmod>2021-08-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/</loc>
-    
-    <lastmod>2021-08-01</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/</loc>
-    
-    <lastmod>2021-08-01</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://blog.lianghy.ml/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/</loc>
     
     <lastmod>2021-08-01</lastmod>
@@ -254,14 +233,14 @@
   </url>
   
   <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/python/pip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.md/main/</loc>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/python/mac%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%B8%A6Python.md/main/</loc>
     
     <lastmod>2021-08-01</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/python/mac%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%B8%A6Python.md/main/</loc>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/python/pip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.md/main/</loc>
     
     <lastmod>2021-08-01</lastmod>
     
@@ -283,6 +262,27 @@
   
   <url>
     <loc>https://blog.lianghy.ml/%E5%99%A8/python/%E7%94%A8tqdm%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1.md/main/</loc>
+    
+    <lastmod>2021-08-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/</loc>
+    
+    <lastmod>2021-08-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/</loc>
+    
+    <lastmod>2021-08-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/</loc>
     
     <lastmod>2021-08-01</lastmod>
     
@@ -573,7 +573,7 @@
   </url>
   
   <url>
-    <loc>https://blog.lianghy.ml/categories/%E5%99%A8/shell/</loc>
+    <loc>https://blog.lianghy.ml/categories/%E5%99%A8/mac/</loc>
     <lastmod>2021-08-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -587,7 +587,7 @@
   </url>
   
   <url>
-    <loc>https://blog.lianghy.ml/categories/%E5%99%A8/mac/</loc>
+    <loc>https://blog.lianghy.ml/categories/%E5%99%A8/shell/</loc>
     <lastmod>2021-08-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -615,14 +615,14 @@
   </url>
   
   <url>
-    <loc>https://blog.lianghy.ml/categories/%E5%99%A8/%E7%BB%88%E7%AB%AF/</loc>
+    <loc>https://blog.lianghy.ml/categories/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/</loc>
     <lastmod>2021-08-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.lianghy.ml/categories/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/</loc>
+    <loc>https://blog.lianghy.ml/categories/%E5%99%A8/%E7%BB%88%E7%AB%AF/</loc>
     <lastmod>2021-08-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
