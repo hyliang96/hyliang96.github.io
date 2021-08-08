@@ -45,6 +45,197 @@
       </categories>
   </entry>
   <entry>
+    <title>github多帐号</title>
+    <url>/%E5%99%A8/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7.md/main/</url>
+    <content><![CDATA[<h1 id="多github帐号的SSH-key切换"><a class="header-anchor" href="#多github帐号的SSH-key切换"></a>多github帐号的SSH key切换</h1>
+<p>来源：<a href="https://www.cnblogs.com/BeginMan/p/3548139.html">多github帐号的SSH key切换</a></p>
+<p>我有两个github帐号，一个是个人所用，一个是为公司项目所用。如果是单用户(single-user)，很方便，默认拿id_rsa与你的github服务器的公钥对比；如果是多用户（multi-user）如user1,user2,那么就不能用在user2的身上了，这个时候就要配置一下了：</p>
+<p><strong>1、新建user2的SSH Key</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#新建SSH key：</span>
+$ <span class="token builtin class-name">cd</span> ~/.ssh     <span class="token comment"># 切换到C:\Users\Administrator\.ssh</span>
+ssh-keygen -t rsa -C <span class="token string">"mywork@email.com"</span>  <span class="token comment"># 新建工作的SSH key</span>
+<span class="token comment"># 设置名称为id_rsa_work</span>
+Enter <span class="token function">file</span> <span class="token keyword">in</span> <span class="token function">which</span> to save the key <span class="token punctuation">(</span>/c/Users/Administrator/.ssh/id_rsa<span class="token punctuation">)</span>: id_rsa_work<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>2、新密钥添加到SSH agent中</strong></p>
+<p>因为默认只读取id_rsa，为了让SSH识别新的私钥，需将其添加到SSH agent中：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-add ~/.ssh/id_rsa_work <span class="token comment"># linux</span>
+ssh-add -K ~/.ssh/id_rsa_work <span class="token comment"># mac</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>mac系统需加<code>-K</code>参数，以使此私钥永久加入到系统的钥匙串(key chain)中，则每次重启系统后无需再次<code>ssh-add ~/.ssh/id_rsa_work</code> ，<a href="http://www.icodeyou.com/2016/01/17/ssh-add-mac/">详见</a></li>
+</ul>
+<p><strong>debug</strong></p>
+<ul>
+<li>如果出现</li>
+</ul>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">Could not open a connection to your authentication agent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p>的错误，就试着用以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-agent <span class="token function">bash</span>
+ssh-add ~/.ssh/id_rsa_work <span class="token comment"># linux</span>
+ssh-add -K ~/.ssh/id_rsa_work <span class="token comment"># mac</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>在后续的使用时，若<code>git push</code>报错说 它用的不是<code>.ssh/config</code>所指定的密钥<code> ~/.ssh/id_rsa_work</code>，可能是<code> ~/.ssh/id_rsa_work</code>没有<code>ssh-add</code>，请执行</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-add ~/.ssh/id_rsa_work <span class="token comment"># linux</span>
+ssh-add -K ~/.ssh/id_rsa_work <span class="token comment"># mac</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>3、修改config文件</strong><br>
+在~/.ssh目录下找到config文件，如果没有就创建：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> config        <span class="token comment"># 创建config</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后修改如下：<br>
+我的config配置如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 该文件用于配置私钥对应的服务器</span>
+<span class="token comment"># Default github user(first@mail.com)</span>
+Host github.com
+ HostName github.com
+ User <span class="token function">git</span>
+ IdentityFile C:/Users/Administrator/.ssh/id_rsa
+
+ <span class="token comment"># second user(second@mail.com)</span>
+ <span class="token comment"># 建一个github别名，新建的帐号使用这个别名做克隆和更新</span>
+Host github2
+ HostName github.com
+ User <span class="token function">git</span>
+ IdentityFile C:/Users/Administrator/.ssh/id_rsa_work<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果存在的话，其实就是往这个config中添加一个Host：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#建一个github别名，新建的帐号使用这个别名做克隆和更新</span>
+Host github2
+HostName github.com
+User <span class="token function">git</span>
+IdentityFile ~/.ssh/id_rsa2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其规则就是：从上至下读取config的内容，在每个Host下寻找对应的私钥。这里将GitHub SSH仓库地址中的git@github.com替换成新建的Host别名如：github2，那么原地址是：git@github.com:funpeng/Mywork.git，替换后应该是：github2:funpeng/Mywork.git.</p>
+<p><strong>4、打开新生成的~/.ssh/id_rsa2.pub文件，将里面的内容添加到GitHub后台。</strong></p>
+<p>可不要忘了添加到你的另一个github帐号下的SSH Key中。</p>
+<p><strong>5、测试：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">Administrator@FANGPENG &#x2F;e&#x2F;work
+$ ssh -T git@github.com
+Hi BeginMan! You&#39;ve successfully authenticated, but GitHub does not provide shel
+l access.
+
+Administrator@FANGPENG &#x2F;e&#x2F;work
+$ ssh -T github2
+Hi funpeng! You&#39;ve successfully authenticated, but GitHub does not provide shell
+ access.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>6、应用</strong></p>
+<p>测试成功，那么我尝试在我的work目录下克隆我@126.com账号下的远程仓库。如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">Administrator@FANGPENG &#x2F;e&#x2F;work
+$ git clone github2:funpeng&#x2F;Mywork.git
+Cloning into &#39;Mywork&#39;...
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (3&#x2F;3), done.
+Checking connectivity... done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>克隆成功，大功告成了！</p>
+<h2 id="git免密pull-push"><a class="header-anchor" href="#git免密pull-push"></a>git免密pull/push</h2>
+<p><code>git push/pull</code>要想免输入github的用户名和密码，本地仓库关联的远程仓库 之url不能是https的，需必需是<code>git@github.com</code>的，这样才能走ssh协议，调用~/.ssh/config下的密钥进行免密登录</p>
+<h3 id="git免密pull-push设置方法"><a class="header-anchor" href="#git免密pull-push设置方法"></a>git免密pull/push设置方法</h3>
+<ul>
+<li>git clone创建</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone git@github.com:【github的用户名】/【github的repo名】.git
+<span class="token comment"># 或</span>
+<span class="token function">git</span> clone【ssh_config中给github设置的alias】:【github的用户名】/【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>本地repo设置远程仓库</li>
+</ul>
+<pre class="line-numbers language-bsah" data-language="bsah"><code class="language-bsah">git remote add git@github.com:【github的用户名】&#x2F;【github的repo名】.git
+# 或
+git remote add【ssh_config中给github设置的alias】:【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="无法免密pull-push设置方法怎么办"><a class="header-anchor" href="#无法免密pull-push设置方法怎么办"></a>无法免密pull/push设置方法怎么办</h3>
+<p>需将本地repo文件夹下 <code>.git/config</code>中的远程仓库的url，从https的改为<code>git@github.com</code>的</p>
+<ul>
+<li>见https的url：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">[remote &quot;origin&quot;]
+    url &#x3D; https:&#x2F;&#x2F;github.com&#x2F;【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>它是从github上这里复制的</p>
+<p><img data-src="/%E5%99%A8/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7.md/main/2.png" alt></p>
+<ul>
+<li>修改为<code>git@github.com</code>的：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">[remote &quot;origin&quot;]
+    url &#x3D; git@github.com:【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>它从github上这样复制</p>
+<p><img data-src="/%E5%99%A8/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7.md/main/1.png" alt></p>
+<h3 id="多github账号的免密git-pull-push"><a class="header-anchor" href="#多github账号的免密git-pull-push"></a>多github账号的免密git pull/push</h3>
+<p>上述url还可以写成</p>
+<pre class="line-numbers language-none"><code class="language-none">[remote &quot;origin&quot;]
+    url &#x3D; 【ssh_config中给github设置的alias】:【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>【ssh_config中给github设置的alias】例如<code>github2</code>，这样就能实现多github账号的免密push/pull</p>
+<h2 id="多个本地git帐号配置"><a class="header-anchor" href="#多个本地git帐号配置"></a>多个本地git帐号配置</h2>
+<p>参考：</p>
+<ul>
+<li>
+<p><a href="https://gist.github.com/yeungeek/596984fd9e53d6c36c0d">https://gist.github.com/yeungeek/596984fd9e53d6c36c0d</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/3860112/multiple-github-accounts-on-the-same-computer">https://stackoverflow.com/questions/3860112/multiple-github-accounts-on-the-same-computer</a></p>
+</li>
+</ul>
+<blockquote>
+<p>在使用git，gitlab的时候，会在.ssh目录下生成对应rsa文件，那如果是有多个配置，该怎么处理？</p>
+</blockquote>
+<p>如何生成ssh密钥，可以参考 <a href="https://help.github.com/articles/generating-ssh-keys">generating-ssh-keys</a></p>
+<ol>
+<li>多帐号配置 需要在.ssh目录下，增加config配置，config可以配置多个git的帐号</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">#Host myhost（这里是自定义的host简称，以后连接远程服务器就可以用命令ssh myhost）[注意下面有缩进]
+    #User 登录用户名(如：git)
+    #HostName 主机名可用ip也可以是域名(如:github.com或者bitbucket.org)
+    #Port 服务器open-ssh端口（默认：22,默认时一般不写此行
+    #IdentityFile 证书文件路径（如~&#x2F;.ssh&#x2F;id_rsa_*)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>具体的实例配置</p>
+<pre class="line-numbers language-none"><code class="language-none"> #github yeungeek@gmail.com
+host github
+    hostname github.com
+    User yeungeek
+    IdentityFile &#x2F;home&#x2F;yeungeek&#x2F;.ssh&#x2F;github_id_rsa
+
+  #gitlab yeungeek@gmail.com
+host gitlab
+    hostname gitlab.widget-inc.com
+    User yeungeek
+    Port 65422
+    IdentityFile &#x2F;home&#x2F;yeungeek&#x2F;.ssh&#x2F;id_rsa
+host oschina
+    hostname git.oschina.net
+    User yeungeek
+    IdentityFile &#x2F;home&#x2F;yeungeek&#x2F;.ssh&#x2F;oschina_id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>注意点</strong>：</p>
+<ul>
+<li>在配置文件中的，IdentityFile文件位置是rsa密钥，不是pub文件</li>
+<li>提交代码的时候，需要修改<code>git config</code> <a href="http://xn--user-k84fui7hq9bp7lz8gjtzn75eqhya199a.xn--emailuser-uw9o.name">可以之设置一个全局的user.email和user.name</a>，然后需要不同的配置的仓库，单独设置</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;设置global
+git config --global user.name &quot;yeungeek&quot;
+git config --global user.email &quot;yeungeek@gmail.com&quot;
+
+&#x2F;&#x2F;设置仓库的user.email和user.name
+git config  user.email &quot;yeungeek@gmail.com&quot;
+git config  user.name &quot;yeungeek&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样配置就ok了</p>
+<ol start="2">
+<li>ssh-add说明 上面的配置完成完成，使用命令<code>ssh-add -l</code>可以看到所有的密钥列表</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">yeungeek@yeungeek:~&#x2F;.ssh$ ssh-add -l
+2048 db:6a:da:46:6e:03:da:94:f0:2c:43:1d:91:8a:bd:67 yeungeek@gmail.com (RSA)
+2048 07:59:9f:93:d2:e3:80:e1:df:77:ed:c9:5d:2e:3d:04 yeungeek@gmail.com (RSA)
+2048 4f:ba:6c:00:12:41:0e:a8:50:be:f5:6e:2e:7a:10:91 yeungeek@gmail.com (RSA)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>ssh-add的作用主要将密钥添加到 ssh-agent 的高速缓存中，这样在<em>当前会话</em>中就不需要再次输入密码了 具体的可以参考 <a href="http://t.cn/zWlX7vR">SSH Keys</a></p>
+<h2 id="git用户名"><a class="header-anchor" href="#git用户名"></a>git用户名</h2>
+<h3 id="查看用户名"><a class="header-anchor" href="#查看用户名"></a>查看用户名</h3>
+<pre class="line-numbers language-none"><code class="language-none">git config user.name
+git config user.email<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="设置用户名"><a class="header-anchor" href="#设置用户名"></a>设置用户名</h3>
+<pre class="line-numbers language-none"><code class="language-none">git config user.name &quot;你的用户名&quot;
+git config user.email &quot;你的邮箱&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>git</category>
+      </categories>
+  </entry>
+  <entry>
     <title>git学习笔记</title>
     <url>/%E5%99%A8/git/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md/main/</url>
     <content><![CDATA[<h1 id="GIT学习笔记"><a class="header-anchor" href="#GIT学习笔记"></a>GIT学习笔记</h1>
@@ -418,197 +609,6 @@ B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <h2 id="cherry-pick"><a class="header-anchor" href="#cherry-pick"></a>cherry-pick</h2>
 <p>教程: <a href="https://blog.csdn.net/FightFightFight/article/details/81039050">git cherry-pick的使用</a>  <a href="https://blog.csdn.net/qq_32452623/article/details/79449534">cherry-pick 挑好看的小樱桃</a></p>
 <p>不存在<code>git cherry-pick —squash</code>, 得用 <code>git cherry-pick -n</code>, <a href="https://stackoverflow.com/questions/35123108/cherry-pick-and-squash-a-range-of-commits-into-a-subdirectory-or-subtree">详见</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>git</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>github多帐号</title>
-    <url>/%E5%99%A8/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7.md/main/</url>
-    <content><![CDATA[<h1 id="多github帐号的SSH-key切换"><a class="header-anchor" href="#多github帐号的SSH-key切换"></a>多github帐号的SSH key切换</h1>
-<p>来源：<a href="https://www.cnblogs.com/BeginMan/p/3548139.html">多github帐号的SSH key切换</a></p>
-<p>我有两个github帐号，一个是个人所用，一个是为公司项目所用。如果是单用户(single-user)，很方便，默认拿id_rsa与你的github服务器的公钥对比；如果是多用户（multi-user）如user1,user2,那么就不能用在user2的身上了，这个时候就要配置一下了：</p>
-<p><strong>1、新建user2的SSH Key</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#新建SSH key：</span>
-$ <span class="token builtin class-name">cd</span> ~/.ssh     <span class="token comment"># 切换到C:\Users\Administrator\.ssh</span>
-ssh-keygen -t rsa -C <span class="token string">"mywork@email.com"</span>  <span class="token comment"># 新建工作的SSH key</span>
-<span class="token comment"># 设置名称为id_rsa_work</span>
-Enter <span class="token function">file</span> <span class="token keyword">in</span> <span class="token function">which</span> to save the key <span class="token punctuation">(</span>/c/Users/Administrator/.ssh/id_rsa<span class="token punctuation">)</span>: id_rsa_work<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>2、新密钥添加到SSH agent中</strong></p>
-<p>因为默认只读取id_rsa，为了让SSH识别新的私钥，需将其添加到SSH agent中：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-add ~/.ssh/id_rsa_work <span class="token comment"># linux</span>
-ssh-add -K ~/.ssh/id_rsa_work <span class="token comment"># mac</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ul>
-<li>mac系统需加<code>-K</code>参数，以使此私钥永久加入到系统的钥匙串(key chain)中，则每次重启系统后无需再次<code>ssh-add ~/.ssh/id_rsa_work</code> ，<a href="http://www.icodeyou.com/2016/01/17/ssh-add-mac/">详见</a></li>
-</ul>
-<p><strong>debug</strong></p>
-<ul>
-<li>如果出现</li>
-</ul>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">Could not open a connection to your authentication agent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<p>的错误，就试着用以下命令：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-agent <span class="token function">bash</span>
-ssh-add ~/.ssh/id_rsa_work <span class="token comment"># linux</span>
-ssh-add -K ~/.ssh/id_rsa_work <span class="token comment"># mac</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>在后续的使用时，若<code>git push</code>报错说 它用的不是<code>.ssh/config</code>所指定的密钥<code> ~/.ssh/id_rsa_work</code>，可能是<code> ~/.ssh/id_rsa_work</code>没有<code>ssh-add</code>，请执行</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-add ~/.ssh/id_rsa_work <span class="token comment"># linux</span>
-ssh-add -K ~/.ssh/id_rsa_work <span class="token comment"># mac</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><strong>3、修改config文件</strong><br>
-在~/.ssh目录下找到config文件，如果没有就创建：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> config        <span class="token comment"># 创建config</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后修改如下：<br>
-我的config配置如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 该文件用于配置私钥对应的服务器</span>
-<span class="token comment"># Default github user(first@mail.com)</span>
-Host github.com
- HostName github.com
- User <span class="token function">git</span>
- IdentityFile C:/Users/Administrator/.ssh/id_rsa
-
- <span class="token comment"># second user(second@mail.com)</span>
- <span class="token comment"># 建一个github别名，新建的帐号使用这个别名做克隆和更新</span>
-Host github2
- HostName github.com
- User <span class="token function">git</span>
- IdentityFile C:/Users/Administrator/.ssh/id_rsa_work<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果存在的话，其实就是往这个config中添加一个Host：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment">#建一个github别名，新建的帐号使用这个别名做克隆和更新</span>
-Host github2
-HostName github.com
-User <span class="token function">git</span>
-IdentityFile ~/.ssh/id_rsa2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>其规则就是：从上至下读取config的内容，在每个Host下寻找对应的私钥。这里将GitHub SSH仓库地址中的git@github.com替换成新建的Host别名如：github2，那么原地址是：git@github.com:funpeng/Mywork.git，替换后应该是：github2:funpeng/Mywork.git.</p>
-<p><strong>4、打开新生成的~/.ssh/id_rsa2.pub文件，将里面的内容添加到GitHub后台。</strong></p>
-<p>可不要忘了添加到你的另一个github帐号下的SSH Key中。</p>
-<p><strong>5、测试：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">Administrator@FANGPENG &#x2F;e&#x2F;work
-$ ssh -T git@github.com
-Hi BeginMan! You&#39;ve successfully authenticated, but GitHub does not provide shel
-l access.
-
-Administrator@FANGPENG &#x2F;e&#x2F;work
-$ ssh -T github2
-Hi funpeng! You&#39;ve successfully authenticated, but GitHub does not provide shell
- access.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>6、应用</strong></p>
-<p>测试成功，那么我尝试在我的work目录下克隆我@126.com账号下的远程仓库。如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">Administrator@FANGPENG &#x2F;e&#x2F;work
-$ git clone github2:funpeng&#x2F;Mywork.git
-Cloning into &#39;Mywork&#39;...
-remote: Counting objects: 3, done.
-remote: Total 3 (delta 0), reused 0 (delta 0)
-Receiving objects: 100% (3&#x2F;3), done.
-Checking connectivity... done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>克隆成功，大功告成了！</p>
-<h2 id="git免密pull-push"><a class="header-anchor" href="#git免密pull-push"></a>git免密pull/push</h2>
-<p><code>git push/pull</code>要想免输入github的用户名和密码，本地仓库关联的远程仓库 之url不能是https的，需必需是<code>git@github.com</code>的，这样才能走ssh协议，调用~/.ssh/config下的密钥进行免密登录</p>
-<h3 id="git免密pull-push设置方法"><a class="header-anchor" href="#git免密pull-push设置方法"></a>git免密pull/push设置方法</h3>
-<ul>
-<li>git clone创建</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone git@github.com:【github的用户名】/【github的repo名】.git
-<span class="token comment"># 或</span>
-<span class="token function">git</span> clone【ssh_config中给github设置的alias】:【github的用户名】/【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>本地repo设置远程仓库</li>
-</ul>
-<pre class="line-numbers language-bsah" data-language="bsah"><code class="language-bsah">git remote add git@github.com:【github的用户名】&#x2F;【github的repo名】.git
-# 或
-git remote add【ssh_config中给github设置的alias】:【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="无法免密pull-push设置方法怎么办"><a class="header-anchor" href="#无法免密pull-push设置方法怎么办"></a>无法免密pull/push设置方法怎么办</h3>
-<p>需将本地repo文件夹下 <code>.git/config</code>中的远程仓库的url，从https的改为<code>git@github.com</code>的</p>
-<ul>
-<li>见https的url：</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">[remote &quot;origin&quot;]
-    url &#x3D; https:&#x2F;&#x2F;github.com&#x2F;【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>它是从github上这里复制的</p>
-<p><img data-src="/%E5%99%A8/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7.md/main/2.png" alt></p>
-<ul>
-<li>修改为<code>git@github.com</code>的：</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">[remote &quot;origin&quot;]
-    url &#x3D; git@github.com:【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>它从github上这样复制</p>
-<p><img data-src="/%E5%99%A8/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7.md/main/1.png" alt></p>
-<h3 id="多github账号的免密git-pull-push"><a class="header-anchor" href="#多github账号的免密git-pull-push"></a>多github账号的免密git pull/push</h3>
-<p>上述url还可以写成</p>
-<pre class="line-numbers language-none"><code class="language-none">[remote &quot;origin&quot;]
-    url &#x3D; 【ssh_config中给github设置的alias】:【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>【ssh_config中给github设置的alias】例如<code>github2</code>，这样就能实现多github账号的免密push/pull</p>
-<h2 id="多个本地git帐号配置"><a class="header-anchor" href="#多个本地git帐号配置"></a>多个本地git帐号配置</h2>
-<p>参考：</p>
-<ul>
-<li>
-<p><a href="https://gist.github.com/yeungeek/596984fd9e53d6c36c0d">https://gist.github.com/yeungeek/596984fd9e53d6c36c0d</a></p>
-</li>
-<li>
-<p><a href="https://stackoverflow.com/questions/3860112/multiple-github-accounts-on-the-same-computer">https://stackoverflow.com/questions/3860112/multiple-github-accounts-on-the-same-computer</a></p>
-</li>
-</ul>
-<blockquote>
-<p>在使用git，gitlab的时候，会在.ssh目录下生成对应rsa文件，那如果是有多个配置，该怎么处理？</p>
-</blockquote>
-<p>如何生成ssh密钥，可以参考 <a href="https://help.github.com/articles/generating-ssh-keys">generating-ssh-keys</a></p>
-<ol>
-<li>多帐号配置 需要在.ssh目录下，增加config配置，config可以配置多个git的帐号</li>
-</ol>
-<pre class="line-numbers language-none"><code class="language-none">#Host myhost（这里是自定义的host简称，以后连接远程服务器就可以用命令ssh myhost）[注意下面有缩进]
-    #User 登录用户名(如：git)
-    #HostName 主机名可用ip也可以是域名(如:github.com或者bitbucket.org)
-    #Port 服务器open-ssh端口（默认：22,默认时一般不写此行
-    #IdentityFile 证书文件路径（如~&#x2F;.ssh&#x2F;id_rsa_*)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>具体的实例配置</p>
-<pre class="line-numbers language-none"><code class="language-none"> #github yeungeek@gmail.com
-host github
-    hostname github.com
-    User yeungeek
-    IdentityFile &#x2F;home&#x2F;yeungeek&#x2F;.ssh&#x2F;github_id_rsa
-
-  #gitlab yeungeek@gmail.com
-host gitlab
-    hostname gitlab.widget-inc.com
-    User yeungeek
-    Port 65422
-    IdentityFile &#x2F;home&#x2F;yeungeek&#x2F;.ssh&#x2F;id_rsa
-host oschina
-    hostname git.oschina.net
-    User yeungeek
-    IdentityFile &#x2F;home&#x2F;yeungeek&#x2F;.ssh&#x2F;oschina_id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>注意点</strong>：</p>
-<ul>
-<li>在配置文件中的，IdentityFile文件位置是rsa密钥，不是pub文件</li>
-<li>提交代码的时候，需要修改<code>git config</code> <a href="http://xn--user-k84fui7hq9bp7lz8gjtzn75eqhya199a.xn--emailuser-uw9o.name">可以之设置一个全局的user.email和user.name</a>，然后需要不同的配置的仓库，单独设置</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;设置global
-git config --global user.name &quot;yeungeek&quot;
-git config --global user.email &quot;yeungeek@gmail.com&quot;
-
-&#x2F;&#x2F;设置仓库的user.email和user.name
-git config  user.email &quot;yeungeek@gmail.com&quot;
-git config  user.name &quot;yeungeek&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这样配置就ok了</p>
-<ol start="2">
-<li>ssh-add说明 上面的配置完成完成，使用命令<code>ssh-add -l</code>可以看到所有的密钥列表</li>
-</ol>
-<pre class="line-numbers language-none"><code class="language-none">yeungeek@yeungeek:~&#x2F;.ssh$ ssh-add -l
-2048 db:6a:da:46:6e:03:da:94:f0:2c:43:1d:91:8a:bd:67 yeungeek@gmail.com (RSA)
-2048 07:59:9f:93:d2:e3:80:e1:df:77:ed:c9:5d:2e:3d:04 yeungeek@gmail.com (RSA)
-2048 4f:ba:6c:00:12:41:0e:a8:50:be:f5:6e:2e:7a:10:91 yeungeek@gmail.com (RSA)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>ssh-add的作用主要将密钥添加到 ssh-agent 的高速缓存中，这样在<em>当前会话</em>中就不需要再次输入密码了 具体的可以参考 <a href="http://t.cn/zWlX7vR">SSH Keys</a></p>
-<h2 id="git用户名"><a class="header-anchor" href="#git用户名"></a>git用户名</h2>
-<h3 id="查看用户名"><a class="header-anchor" href="#查看用户名"></a>查看用户名</h3>
-<pre class="line-numbers language-none"><code class="language-none">git config user.name
-git config user.email<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="设置用户名"><a class="header-anchor" href="#设置用户名"></a>设置用户名</h3>
-<pre class="line-numbers language-none"><code class="language-none">git config user.name &quot;你的用户名&quot;
-git config user.email &quot;你的邮箱&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
@@ -1484,6 +1484,121 @@ EXE<span class="token operator">=</span>[可执行文件名]
       </categories>
   </entry>
   <entry>
+    <title>matlab在linux上安装教程</title>
+    <url>/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/matlab%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.md/main/</url>
+    <content><![CDATA[<h1 id="安装教程"><a class="header-anchor" href="#安装教程"></a>安装教程</h1>
+<p>适用于：linux上装matlab</p>
+<h2 id="目录结构"><a class="header-anchor" href="#目录结构"></a>目录结构</h2>
+<blockquote>
+<p>matlab2018b<br>
+├── 安装教程<br>
+│   ├── <a href="http://README.md">README.md</a><br>
+├── docs<br>
+│   ├── FAQ.txt<br>
+│   ├── MATLAB安装手册.docx<br>
+│   └── 技术支持.docx<br>
+├── installer_input.txt<br>
+├── network.lic<br>
+├── R2018b_glnxa64_dvd1.iso<br>
+├── R2018b_glnxa64_dvd2.iso<br>
+└── sn.txt</p>
+</blockquote>
+<p>用于安装清华校园版，只能在清华内网使用，服务器可用之</p>
+<h2 id="下载来源"><a class="header-anchor" href="#下载来源"></a>下载来源</h2>
+<p>-X参数可使用Xserver</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -X <span class="token operator">&lt;</span>服务器名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>用firefox打开清华的计算软件资源网站</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">firefox https://its.tsinghua.edu.cn/column/jsrj/1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>弹出图形界面窗口</p>
+<p>点击下载以下三个文件</p>
+<ul>
+<li>
+<p><a href="https://its.tsinghua.edu.cn/info/jsrj/1904">Matlab R2018b for Linux 64位（DVD1）</a></p>
+</li>
+<li>
+<p><a href="https://its.tsinghua.edu.cn/info/jsrj/1903">Matlab R2018b for Linux 64位（DVD2）</a></p>
+</li>
+<li>
+<p><a href="https://its.tsinghua.edu.cn/info/jsrj/1703">Matlab安装手册及相关文件</a></p>
+</li>
+</ul>
+<p>或者在台式机上下载好，传到服务器上亦可</p>
+<p><strong>本文件夹<code>matlab2018b/</code>下的文件即是下载所得</strong></p>
+<h2 id="安装步骤"><a class="header-anchor" href="#安装步骤"></a><a href="https://sbargoti.wordpress.com/2016/06/06/install-matlab-on-remote-server-without-x11/">安装步骤</a></h2>
+<h3 id="挂载dvd1"><a class="header-anchor" href="#挂载dvd1"></a>挂载dvd1</h3>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">mkdir</span> /mnt/matlab
+<span class="token function">sudo</span> <span class="token function">mount</span> -t iso9660 -o loop <span class="token operator">&lt;</span>path-to-R2018b_glnxa64_dvd1.iso<span class="token operator">></span> /mnt/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="修改installer-input-txt"><a class="header-anchor" href="#修改installer-input-txt"></a>修改<code>installer_input.txt</code></h3>
+<p><code>matlab2018b/installer_input.txt</code> 是已经为清华校园版修改好了，用于安装清华校园版，只能在清华内网使用，服务器可用之</p>
+<p>若不想用清华校园版的，可自行修改，依照下法：</p>
+<ul>
+<li>
+<p>挂载目录<code>/mnt/matlab</code>是只读的，但需要修改<code>/mnt/matlab/installer_input.txt</code> 文件，故打开<code>/mnt/matlab/installer_input.txt</code>，全文复制，关闭之。</p>
+</li>
+<li>
+<p>再<code>vim matlab2018b/installer_input.txt</code>，将上述复制粘贴到此文件中，然后将下述行修改成下列</p>
+</li>
+<li>
+<pre><code>fileInstallationKey=密钥形如xxxxx-xxxxx-共19节
+agreeToLicense=yes
+mode=silent
+licensePath=[license-directory]/network.lic
+<pre class="line-numbers language-none"><code class="language-none">
+  其中  &#96;密钥&#96; 和 &#96;network.lic &#96;，自行到网上找破解资源可得到
+
+### 安装
+
+&#96;&#96;&#96;bash
+cd matlab2018b
+sudo &#x2F;mnt&#x2F;matlab&#x2F;install -inputFile installer_input.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</code></pre>
+</li>
+</ul>
+<p>注：不得<code>cd</code>到<code>/mnt/matlab</code>后，执行上述命令，不然无法正常安装</p>
+<h3 id="挂载dvd2"><a class="header-anchor" href="#挂载dvd2"></a>挂载dvd2</h3>
+<p>当终端不断出现下面输出时</p>
+<blockquote>
+<p>(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
+(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
+(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
+…</p>
+</blockquote>
+<p>新开一个窗口执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mount</span> -t iso9660 -o loop <span class="token operator">&lt;</span>path-to-R2018b_glnxa64_dvd2.iso<span class="token operator">></span> /mnt/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>则会继续安装，并输出</p>
+<blockquote>
+<p>(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
+(Apr 09, 2019 21:37:06) Installing Product: Aerospace Blockset 4.0<br>
+(Apr 09, 2019 21:37:09) Installing Product: Aerospace Toolbox 3.0<br>
+(Apr 09, 2019 21:37:11) Installing Product: Antenna Toolbox 3.2<br>
+(Apr 09, 2019 21:37:22) Installing Product: Audio System Toolbox 1.5<br>
+(Apr 09, 2019 21:37:27) Installing Product: Automated Driving System Toolbox 1.3<br>
+(Apr 09, 2019 21:37:33) Installing Product: Bioinformatics Toolbox 4.11<br>
+…</p>
+</blockquote>
+<p>直到输出</p>
+<blockquote>
+<p>Finished</p>
+</blockquote>
+<p>则安装完成</p>
+<h3 id="修改链接"><a class="header-anchor" href="#修改链接"></a>修改链接</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /usr/bin/matlab
+<span class="token function">ln</span> -s /usr/local/MATLAB/R2018b/bin/matlab /usr/bin/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="取消挂载"><a class="header-anchor" href="#取消挂载"></a>取消挂载</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">umount</span> -l /mnt/matlab <span class="token comment"># 解挂 R2018b_glnxa64_dvd2.iso，/mnt/matlab 下恢复 R2018b_glnxa64_dvd1.iso 挂载的内容</span>
+<span class="token function">umount</span> -l /mnt/matlab <span class="token comment"># 解挂 R2018b_glnxa64_dvd1.iso，/mnt/matlab 下应该是空的</span>
+<span class="token function">rm</span> -f /mnt/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="测试能否使用"><a class="header-anchor" href="#测试能否使用"></a>测试能否使用</h3>
+<p><code>ssh 服务器名</code>后，执行<code>matlab</code>，能正常启动MATLAB的命令行界面，并执行<code>disp 'hello world'</code>，输出’hello world’</p>
+<p><code>ssh -X 服务器名</code>后，执行<code>matlab</code>，能正常启动MATLAB的图形界面，并执行<code>disp 'hello world'</code>，输出’hello world’</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>linux杂项</category>
+      </categories>
+  </entry>
+  <entry>
     <title>linux防火墙</title>
     <url>/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E9%98%B2%E7%81%AB%E5%A2%99.md/main/</url>
     <content><![CDATA[<h2 id="概述"><a class="header-anchor" href="#概述"></a>概述</h2>
@@ -1635,121 +1750,6 @@ SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3<span aria-hidden="true" class="line-numb
 <p>否则返回</p>
 <pre class="line-numbers language-none"><code class="language-none">Trying &lt;ip&gt;...
 telnet: Unable to connect to remote host: Connection refused<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>linux杂项</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>matlab在linux上安装教程</title>
-    <url>/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/matlab%E5%9C%A8linux%E4%B8%8A%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B.md/main/</url>
-    <content><![CDATA[<h1 id="安装教程"><a class="header-anchor" href="#安装教程"></a>安装教程</h1>
-<p>适用于：linux上装matlab</p>
-<h2 id="目录结构"><a class="header-anchor" href="#目录结构"></a>目录结构</h2>
-<blockquote>
-<p>matlab2018b<br>
-├── 安装教程<br>
-│   ├── <a href="http://README.md">README.md</a><br>
-├── docs<br>
-│   ├── FAQ.txt<br>
-│   ├── MATLAB安装手册.docx<br>
-│   └── 技术支持.docx<br>
-├── installer_input.txt<br>
-├── network.lic<br>
-├── R2018b_glnxa64_dvd1.iso<br>
-├── R2018b_glnxa64_dvd2.iso<br>
-└── sn.txt</p>
-</blockquote>
-<p>用于安装清华校园版，只能在清华内网使用，服务器可用之</p>
-<h2 id="下载来源"><a class="header-anchor" href="#下载来源"></a>下载来源</h2>
-<p>-X参数可使用Xserver</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -X <span class="token operator">&lt;</span>服务器名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>用firefox打开清华的计算软件资源网站</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">firefox https://its.tsinghua.edu.cn/column/jsrj/1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>弹出图形界面窗口</p>
-<p>点击下载以下三个文件</p>
-<ul>
-<li>
-<p><a href="https://its.tsinghua.edu.cn/info/jsrj/1904">Matlab R2018b for Linux 64位（DVD1）</a></p>
-</li>
-<li>
-<p><a href="https://its.tsinghua.edu.cn/info/jsrj/1903">Matlab R2018b for Linux 64位（DVD2）</a></p>
-</li>
-<li>
-<p><a href="https://its.tsinghua.edu.cn/info/jsrj/1703">Matlab安装手册及相关文件</a></p>
-</li>
-</ul>
-<p>或者在台式机上下载好，传到服务器上亦可</p>
-<p><strong>本文件夹<code>matlab2018b/</code>下的文件即是下载所得</strong></p>
-<h2 id="安装步骤"><a class="header-anchor" href="#安装步骤"></a><a href="https://sbargoti.wordpress.com/2016/06/06/install-matlab-on-remote-server-without-x11/">安装步骤</a></h2>
-<h3 id="挂载dvd1"><a class="header-anchor" href="#挂载dvd1"></a>挂载dvd1</h3>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">mkdir</span> /mnt/matlab
-<span class="token function">sudo</span> <span class="token function">mount</span> -t iso9660 -o loop <span class="token operator">&lt;</span>path-to-R2018b_glnxa64_dvd1.iso<span class="token operator">></span> /mnt/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改installer-input-txt"><a class="header-anchor" href="#修改installer-input-txt"></a>修改<code>installer_input.txt</code></h3>
-<p><code>matlab2018b/installer_input.txt</code> 是已经为清华校园版修改好了，用于安装清华校园版，只能在清华内网使用，服务器可用之</p>
-<p>若不想用清华校园版的，可自行修改，依照下法：</p>
-<ul>
-<li>
-<p>挂载目录<code>/mnt/matlab</code>是只读的，但需要修改<code>/mnt/matlab/installer_input.txt</code> 文件，故打开<code>/mnt/matlab/installer_input.txt</code>，全文复制，关闭之。</p>
-</li>
-<li>
-<p>再<code>vim matlab2018b/installer_input.txt</code>，将上述复制粘贴到此文件中，然后将下述行修改成下列</p>
-</li>
-<li>
-<pre><code>fileInstallationKey=密钥形如xxxxx-xxxxx-共19节
-agreeToLicense=yes
-mode=silent
-licensePath=[license-directory]/network.lic
-<pre class="line-numbers language-none"><code class="language-none">
-  其中  &#96;密钥&#96; 和 &#96;network.lic &#96;，自行到网上找破解资源可得到
-
-### 安装
-
-&#96;&#96;&#96;bash
-cd matlab2018b
-sudo &#x2F;mnt&#x2F;matlab&#x2F;install -inputFile installer_input.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-</code></pre>
-</li>
-</ul>
-<p>注：不得<code>cd</code>到<code>/mnt/matlab</code>后，执行上述命令，不然无法正常安装</p>
-<h3 id="挂载dvd2"><a class="header-anchor" href="#挂载dvd2"></a>挂载dvd2</h3>
-<p>当终端不断出现下面输出时</p>
-<blockquote>
-<p>(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
-(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
-(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
-…</p>
-</blockquote>
-<p>新开一个窗口执行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mount</span> -t iso9660 -o loop <span class="token operator">&lt;</span>path-to-R2018b_glnxa64_dvd2.iso<span class="token operator">></span> /mnt/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>则会继续安装，并输出</p>
-<blockquote>
-<p>(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
-(Apr 09, 2019 21:37:06) Installing Product: Aerospace Blockset 4.0<br>
-(Apr 09, 2019 21:37:09) Installing Product: Aerospace Toolbox 3.0<br>
-(Apr 09, 2019 21:37:11) Installing Product: Antenna Toolbox 3.2<br>
-(Apr 09, 2019 21:37:22) Installing Product: Audio System Toolbox 1.5<br>
-(Apr 09, 2019 21:37:27) Installing Product: Automated Driving System Toolbox 1.3<br>
-(Apr 09, 2019 21:37:33) Installing Product: Bioinformatics Toolbox 4.11<br>
-…</p>
-</blockquote>
-<p>直到输出</p>
-<blockquote>
-<p>Finished</p>
-</blockquote>
-<p>则安装完成</p>
-<h3 id="修改链接"><a class="header-anchor" href="#修改链接"></a>修改链接</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /usr/bin/matlab
-<span class="token function">ln</span> -s /usr/local/MATLAB/R2018b/bin/matlab /usr/bin/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="取消挂载"><a class="header-anchor" href="#取消挂载"></a>取消挂载</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">umount</span> -l /mnt/matlab <span class="token comment"># 解挂 R2018b_glnxa64_dvd2.iso，/mnt/matlab 下恢复 R2018b_glnxa64_dvd1.iso 挂载的内容</span>
-<span class="token function">umount</span> -l /mnt/matlab <span class="token comment"># 解挂 R2018b_glnxa64_dvd1.iso，/mnt/matlab 下应该是空的</span>
-<span class="token function">rm</span> -f /mnt/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="测试能否使用"><a class="header-anchor" href="#测试能否使用"></a>测试能否使用</h3>
-<p><code>ssh 服务器名</code>后，执行<code>matlab</code>，能正常启动MATLAB的命令行界面，并执行<code>disp 'hello world'</code>，输出’hello world’</p>
-<p><code>ssh -X 服务器名</code>后，执行<code>matlab</code>，能正常启动MATLAB的图形界面，并执行<code>disp 'hello world'</code>，输出’hello world’</p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -2781,39 +2781,6 @@ EOF<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
       </categories>
   </entry>
   <entry>
-    <title>mac永久添加私钥到keyChain</title>
-    <url>/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/</url>
-    <content><![CDATA[<p>以下<a href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本，以备不时之需</p>
-<blockquote>
-<h1 id="Mac-重启后自动-ssh-add-私钥"><a class="header-anchor" href="#Mac-重启后自动-ssh-add-私钥"></a><a href="https://mednoter.com/ssh-add-automatically.html">Mac 重启后自动 ssh-add 私钥</a></h1>
-<p>管理服务器有一些安全常识:</p>
-<ul>
-<li>禁止 root 远程登录</li>
-<li>禁止密码登录</li>
-<li>使用 priviate / public key 作为默认的登录方式。</li>
-<li>修改 sshd 端口</li>
-</ul>
-<p>From Linode: <a href="https://www.linode.com/docs/security/securing-your-server">Securing your server</a></p>
-<p>安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，需要一次次手工 ssh-add 私钥，特别心烦。</p>
-<p>几年前有这种方法 <code>ssh-add -K privateKey</code> 可以一劳永逸的把私钥存到 keychain 中，重启后也不需要手动 ssh-add，非常方便。</p>
-<p><strong>这种方式不管用了。</strong></p>
-<p><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-ssh-add.jpeg" alt="img"></p>
-<h2 id="新的解决方法"><a class="header-anchor" href="#新的解决方法"></a>新的解决方法</h2>
-<p><strong>创建 Automator 任务加载私钥，然后放到开机启动中。</strong></p>
-<ol>
-<li>创建一个 Automator task.<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step1.jpeg" alt="img"></li>
-<li>在 task 中写一串 shell script<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step2.jpeg" alt="img"></li>
-<li>把 task 添加到 login items 中，每次系统重启后会执行这个 Automator task，自动 ssh-add 所有的私钥。<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step3.jpeg" alt="img"><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step4.jpeg" alt="img"></li>
-</ol>
-<p>搞定！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
     <title>mac开机启动项设置</title>
     <url>/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/</url>
     <content><![CDATA[<h2 id="将脚本设为开机自启"><a class="header-anchor" href="#将脚本设为开机自启"></a>将脚本设为开机自启</h2>
@@ -2850,6 +2817,39 @@ EOF<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
 <p><img data-src="/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.47.50.png" alt></p>
 <p><img data-src="/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.44.35.png" alt></p>
 <p>点击<code>隐藏</code>表示开机时<a href="https://www.pcmag.com/feature/368778/how-to-stop-mac-apps-from-launching-at-startup/4">App的窗口不在屏幕上弹出</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>mac永久添加私钥到keyChain</title>
+    <url>/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/</url>
+    <content><![CDATA[<p>以下<a href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本，以备不时之需</p>
+<blockquote>
+<h1 id="Mac-重启后自动-ssh-add-私钥"><a class="header-anchor" href="#Mac-重启后自动-ssh-add-私钥"></a><a href="https://mednoter.com/ssh-add-automatically.html">Mac 重启后自动 ssh-add 私钥</a></h1>
+<p>管理服务器有一些安全常识:</p>
+<ul>
+<li>禁止 root 远程登录</li>
+<li>禁止密码登录</li>
+<li>使用 priviate / public key 作为默认的登录方式。</li>
+<li>修改 sshd 端口</li>
+</ul>
+<p>From Linode: <a href="https://www.linode.com/docs/security/securing-your-server">Securing your server</a></p>
+<p>安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，需要一次次手工 ssh-add 私钥，特别心烦。</p>
+<p>几年前有这种方法 <code>ssh-add -K privateKey</code> 可以一劳永逸的把私钥存到 keychain 中，重启后也不需要手动 ssh-add，非常方便。</p>
+<p><strong>这种方式不管用了。</strong></p>
+<p><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-ssh-add.jpeg" alt="img"></p>
+<h2 id="新的解决方法"><a class="header-anchor" href="#新的解决方法"></a>新的解决方法</h2>
+<p><strong>创建 Automator 任务加载私钥，然后放到开机启动中。</strong></p>
+<ol>
+<li>创建一个 Automator task.<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step1.jpeg" alt="img"></li>
+<li>在 task 中写一串 shell script<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step2.jpeg" alt="img"></li>
+<li>把 task 添加到 login items 中，每次系统重启后会执行这个 Automator task，自动 ssh-add 所有的私钥。<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step3.jpeg" alt="img"><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step4.jpeg" alt="img"></li>
+</ol>
+<p>搞定！</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>器</category>
@@ -2925,6 +2925,45 @@ EOF<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
       </categories>
   </entry>
   <entry>
+    <title>禁止safar从http跳转到https</title>
+    <url>/%E5%99%A8/mac/%E7%A6%81%E6%AD%A2safar%E4%BB%8Ehttp%E8%B7%B3%E8%BD%AC%E5%88%B0https.md/main/</url>
+    <content><![CDATA[<p>Safari对于一些用https访问的域名, 会存入一个列表, 此后访问 <code>http://此域名</code> , 会自动跳转到  <code>https://此域名</code> .</p>
+<p>若不想跳转, 可如下操作:</p>
+<ul>
+<li>
+<p>⌘+Q 退出Safari</p>
+</li>
+<li>
+<p>执行如下命令. 这个文件是个域名列表, safari见之则访https而非http. 删此文件, 则列表清空. <a href="https://discussions.apple.com/thread/6989319">出处</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 一般能解决问题.</p>
+</li>
+</ul>
+<p>若还是跳转https, 则继续下述操作</p>
+<ul>
+<li>
+<p>⌘+Q 退出Safari</p>
+</li>
+<li>
+<p>运行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>重启操作系统</p>
+</li>
+<li>
+<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 几乎都能解决.</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
     <title>注销icloud后桌面文件消失</title>
     <url>/%E5%99%A8/mac/%E6%B3%A8%E9%94%80icloud%E5%90%8E%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1.md/main/</url>
     <content><![CDATA[<h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
@@ -2961,45 +3000,6 @@ EOF<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
 <h3 id="使用time-machine"><a class="header-anchor" href="#使用time-machine"></a>使用time machine</h3>
 <p>若近期使用了time machine备份了系统, 可将 <code>桌面</code> <code>文稿</code> 等文件夹 整体还原到最近一次备份.</p>
 <p>若发现使用<a href="#%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0icloud%E5%BD%92%E6%A1%A3" title="推荐">使用本地icloud归档</a>去恢复的文件有缺失, 也可从time machine中最近一次备份里, 还原所缺的文件和文件夹.</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>禁止safar从http跳转到https</title>
-    <url>/%E5%99%A8/mac/%E7%A6%81%E6%AD%A2safar%E4%BB%8Ehttp%E8%B7%B3%E8%BD%AC%E5%88%B0https.md/main/</url>
-    <content><![CDATA[<p>Safari对于一些用https访问的域名, 会存入一个列表, 此后访问 <code>http://此域名</code> , 会自动跳转到  <code>https://此域名</code> .</p>
-<p>若不想跳转, 可如下操作:</p>
-<ul>
-<li>
-<p>⌘+Q 退出Safari</p>
-</li>
-<li>
-<p>执行如下命令. 这个文件是个域名列表, safari见之则访https而非http. 删此文件, 则列表清空. <a href="https://discussions.apple.com/thread/6989319">出处</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 一般能解决问题.</p>
-</li>
-</ul>
-<p>若还是跳转https, 则继续下述操作</p>
-<ul>
-<li>
-<p>⌘+Q 退出Safari</p>
-</li>
-<li>
-<p>运行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>重启操作系统</p>
-</li>
-<li>
-<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 几乎都能解决.</p>
-</li>
-</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3094,45 +3094,6 @@ EOF<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
       <categories>
         <category>器</category>
         <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>github_pages绑定二级域名</title>
-    <url>/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/</url>
-    <content><![CDATA[<p>参考: <a href="https://segmentfault.com/a/1190000005775893">GitHub Pages 绑定二级域名</a></p>
-<p>已申请一级域名<code>hyliang.ml</code>, 欲给 <code>hyliang96.github.io</code> 绑定二级域名<code>blog.lianghy.ml</code>, 操作如下.</p>
-<p>注意: 读者操作时<strong>切勿照抄</strong>上述url, <code>hyliang.ml</code>换成你注册的一级域名, <code>blog  </code>可随便写, <code>hyliang96.github.io</code>换成你的github page的url.</p>
-<ol>
-<li>创建<code>CNAME</code>文件</li>
-</ol>
-<ul>
-<li>
-<p>非Hexo建的GIthub Pages: 直接在 GitHub 项目里创建 <code>CNAME</code> 文件 (无后缀名), 写入全文如下.</p>
-<pre class="line-numbers language-none"><code class="language-none">blog.lianghy.ml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>Hexo建的: 创建文件 <code>&lt;hexo项目目录&gt;/source/CNAME</code>, 写入全文如上.</p>
-<p>然后编译并部署博客 <code>hexo g &amp;&amp; hexo d</code>, 这样所部署到的github pages的repo中, 总是有这个<code>CNAME</code>文件.</p>
-</li>
-</ul>
-<p>设置作用: 访问 <code>hyliang96.github.io</code>  时, 浏览器的url栏显示为 <code>blog.lianghy.ml</code>.</p>
-<ol start="2">
-<li>在域名管理网站, 添加域名解析规则, 类型为 <code>CNAME</code> , 名为 <code>blog</code>,  目标 <code>hyliang96.github.io</code></li>
-</ol>
-<p><img data-src="/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/image-20200123041020200.png" alt="image-20200123041020200"></p>
-<p>此设置的功能为: 当访问<code>blog.lianghy.ml</code>, 会跳转到 <code>hyliang96.github.io</code> .</p>
-<ol start="3">
-<li>等待10分钟， 若出现以下效果, 证明绑定成功了
-<ul>
-<li>访问 <a href="https://hyliang96.github.io">https://hyliang96.github.io</a> 时, 页面内容照常显示, 而 url 栏显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
-<li>访问 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a> 就能看到 <a href="https://hyliang96.github.io">https://hyliang96.github.io</a> 一样的页面内容, 而 url 栏也显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>博客搭建</category>
       </categories>
   </entry>
   <entry>
@@ -3817,6 +3778,41 @@ conda <span class="token function">install</span> -c conda-forge libsodium<span 
       </categories>
   </entry>
   <entry>
+    <title>pip使用方法</title>
+    <url>/%E5%99%A8/python/pip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.md/main/</url>
+    <content><![CDATA[<h2 id="pip使用方法"><a class="header-anchor" href="#pip使用方法"></a>pip使用方法</h2>
+<ul>
+<li>装包</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>卸包</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip uninstall 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>升级到最新版本</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>升级/降级到制定版本</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span class="token operator">==</span>版本号<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>上述方法，令包为<code>pip</code>，即可 卸/升级/降级 pip 自己</li>
+<li>看有哪些包</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>看装了的包的信息</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip show 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
     <title>mac安装与卸载系统自带Python</title>
     <url>/%E5%99%A8/python/mac%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%B8%A6Python.md/main/</url>
     <content><![CDATA[<p>[TOC]</p>
@@ -3947,41 +3943,6 @@ sudo chown -R root:wheel x.x<span aria-hidden="true" class="line-numbers-rows"><
 <p>重启电脑，长按<code>⌘R</code>,直到苹果logo出现，打开utility中终端，执行如下命令:</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">csrutil <span class="token builtin class-name">enable</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>然后点重启电脑</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>python</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>pip使用方法</title>
-    <url>/%E5%99%A8/python/pip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.md/main/</url>
-    <content><![CDATA[<h2 id="pip使用方法"><a class="header-anchor" href="#pip使用方法"></a>pip使用方法</h2>
-<ul>
-<li>装包</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>卸包</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip uninstall 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>升级到最新版本</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>升级/降级到制定版本</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span class="token operator">==</span>版本号<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>上述方法，令包为<code>pip</code>，即可 卸/升级/降级 pip 自己</li>
-<li>看有哪些包</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>看装了的包的信息</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip show 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
@@ -4369,224 +4330,6 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
       <categories>
         <category>器</category>
         <category>python</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Zotero安装与配置</title>
-    <url>/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/</url>
-    <content><![CDATA[<h1 id="我的配置"><a class="header-anchor" href="#我的配置"></a>我的配置</h1>
-<h2 id="浏览器插件"><a class="header-anchor" href="#浏览器插件"></a>浏览器插件</h2>
-<p>当Zotero.app打开时，可以在浏览器中添加条目到zotero，使用方法<a href="https://www.yangzhiping.com/tech/zotero1.html">详见</a></p>
-<p>Safari&lt;=12: 安装<code>Zotero Connector</code>: 点<code>工具</code>-<code> 安装浏览器插件</code>，弹出网页点<code>install</code></p>
-<p>Safari&gt;=13: <a href="https://www.zotero.org/support/kb/safari_compatibility">beta版Zotero Connector</a></p>
-<h2 id="同步"><a class="header-anchor" href="#同步"></a>同步</h2>
-<p>本段参考 <a href="https://github.com/specter119/RefTools/blob/master/zotero/sync.md">zotero跨平台使用教程：多种同步方案</a> 编写</p>
-<h3 id="概念解释"><a class="header-anchor" href="#概念解释"></a>概念解释</h3>
-<h4 id="条目的附件"><a class="header-anchor" href="#条目的附件"></a>条目的附件</h4>
-<p>Zotero 附件类型包括</p>
-<p><code>文件附件</code></p>
-<ul>
-<li>图标为系统默认图标或者 adobe 红</li>
-<li>是 Zotero 默认的附件格式。当从finder拖拽文件至条目上，则复制文件副本创建<code>文件附件</code>。也可<code>选择条目-右键-附件-添加文件副本</code>创建</li>
-<li>存放在<code>&lt;数据存储位置&gt;/storage/&lt;8位数字和字母编码&gt;/</code></li>
-</ul>
-<p><code>链接附件</code></p>
-<ul>
-<li>图标为白色 加小铁链</li>
-<li>可<code>选择条目-右键-附件-添加文件链接</code>，或由 ZotFile 生成</li>
-<li>实际保存在<code>&lt;链接附件的根目录&gt;</code>下</li>
-</ul>
-<p><code>url附件</code></p>
-<ul>
-<li>图标为蓝色 加小铁链</li>
-<li>可<code>选择条目-右键-附件-添加url链接</code>创建</li>
-<li>实际为文件的网址，联网时才能打开</li>
-<li>保存在<code>&lt;数据存储位置&gt;/zotero.sqlite</code></li>
-</ul>
-<p>因此，本地只保存有<code>文件</code>与<code>文件链接</code>类型的附件。</p>
-<h4 id="存储目录"><a class="header-anchor" href="#存储目录"></a>存储目录</h4>
-<p><code>&lt;数据存储位置&gt;/</code> ：默认是<code>~/Zotero</code></p>
-<p><code>&lt;数据存储位置&gt;/zotero.sqlite</code> 文件</p>
-<ul>
-<li>包含分类层级，条目的元数据、标签、分类等， <code>文件附件</code>的8位编码、<code>链接附件</code>的路径、<code>url附件</code>的url、笔记 等</li>
-<li>只能用zotero官方服务来同步，<a href="https://blog.yesmryang.net/zotero-dropbox-sync/">采用第三方云盘同步会造成冲突</a></li>
-</ul>
-<p><code>&lt;数据存储位置&gt;/storage/</code></p>
-<ul>
-<li>
-<p>其下均为名为 8位数字和字母的编码 的子文件夹，子文件夹内是一个<code>文件附件</code>的所有组成文件</p>
-<p>组成文件：如pdf型<code>文件附件</code>，则是一个pdf文件；网页快照型<code>文件附件</code>，则是构成网页的所有文件</p>
-</li>
-<li>
-<p>此文件夹可采用第三方云盘同步</p>
-</li>
-</ul>
-<p><code>&lt;链接附件的根目录&gt;/</code></p>
-<ul>
-<li>包含<code>链接附件</code>·，可以自由组织其目录结构</li>
-<li>此文件夹可采用第三方云盘同步</li>
-</ul>
-<h4 id="同步方式"><a class="header-anchor" href="#同步方式"></a>同步方式</h4>
-<p>从附件类型上来看，Zotero 实现同步的方式不外乎两类：</p>
-<ul>
-<li>同步<code>文件附件</code>，包括：
-<ul>
-<li>Zotero 官网同步服务：同步<code>zotero.sqlite</code>和<code>&lt;数据存储位置&gt;/storage/</code> ，免费限300MB</li>
-<li>Webdav 同步</li>
-<li>软链接配合同步盘</li>
-</ul>
-</li>
-<li>同步<code>链接附件</code>，包括：
-<ul>
-<li>ZotFile 配合同步盘</li>
-</ul>
-</li>
-</ul>
-<p>两类方法使用上的优劣：</p>
-<ul>
-<li>同步<code>文件附件</code>：
-<ul>
-<li>劣势：路径自定义程度低，<code>&lt;数据存储位置&gt;/storage</code>或<code>软链接</code>内8位数字和字母组成的子目录，不可读</li>
-<li>优势：删除条目，附件随之删除</li>
-</ul>
-</li>
-<li>同步<code>链接附件</code> (特指由 ZotFile 生成)
-<ul>
-<li>优势：路径自定义程度高、可读，便于在ipad上进入目录，用任意第三方标注软件阅读、批注文件</li>
-<li>劣势：删除条目，附件不会随之删除，<code>链接附件的根目录</code>概念略费解。</li>
-</ul>
-</li>
-</ul>
-<h3 id="我的同步设置"><a class="header-anchor" href="#我的同步设置"></a>我的同步设置</h3>
-<h4 id="同步策略"><a class="header-anchor" href="#同步策略"></a>同步策略</h4>
-<table>
-<thead>
-<tr>
-<th>附件类型</th>
-<th>同步方法</th>
-<th>依赖</th>
-<th>支持平台</th>
-<th>工作方式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>单文件的附件(如pdf)</td>
-<td>同步<code>链接附件</code></td>
-<td>ZotFile 插件 + Dropbox</td>
-<td>mac、win、Linux、iPad、iOS、android</td>
-<td>在iPad上用任意软件阅读批注pdf</td>
-</tr>
-<tr>
-<td>多文件的附件(如网页快照)</td>
-<td>同步<code>文件附件</code></td>
-<td>Dropbox</td>
-<td>mac、win、Linux</td>
-<td>在电脑上阅读</td>
-</tr>
-</tbody>
-</table>
-<p>同步到ipad的其他解决方案：<a href="https://taozhaojun.github.io/2017/08/02/ipad/">papership+Webdav</a></p>
-<h4 id="设置方法"><a class="header-anchor" href="#设置方法"></a>设置方法</h4>
-<ul>
-<li>
-<p>设置软连接</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> /Users/mac/Dropbox/Zotero_sync/
-<span class="token comment"># 创建 &lt;链接附件目录> 为 Zotero_sync/linked_files</span>
-<span class="token function">mkdir</span> /Users/mac/Dropbox/Zotero_sync/linked_files
-<span class="token comment"># &lt;数据存储位置>/storage  移动并链接到   Zotero_sync/storage</span>
-<span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>数据存储位置<span class="token operator">></span>
-<span class="token function">mv</span> storage /Users/mac/Dropbox/Zotero_sync/storage
-<span class="token function">ln</span> -s /Users/mac/Dropbox/Zotero_sync/storage storage<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>设置zotero存储目录</p>
-<p>勾选<code>首选项</code>-<code>高级-</code>文件和文件夹`，填入以下两路径</p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.13.33.png" alt="ScreenShot 2019-12-10 12.13.33"></p>
-</li>
-<li>
-<p>设置zotero官方同步</p>
-<p>购买服务后，勾选<code>首选项</code>-<code>同步</code>-<code>设置</code>，设置成如下</p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.15.36.png" alt="ScreenShot 2019-12-10 12.15.36"></p>
-</li>
-<li>
-<p>安装zotfile</p>
-<p>在<a href="https://github.com/jlegewie/zotfile/releases/l">zotfile的github</a>下载最新的<code>zotfile-x.x.x--fx.xpi</code>, 下载后在 Zotero 中打开<code>工具</code>→<code>插件</code>，按右上角齿轮选择<code>Install Add-on Form Fil</code>，选中刚刚下载的 <code>zotfile-x.x.x-fx.xpi</code></p>
-</li>
-<li>
-<p>设置zotfile存储目录</p>
-<p><code>工具</code>-<code>Zotfile Preference</code>-<code>General Settings</code></p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.27.43.png" alt="ScreenShot 2019-12-10 12.27.43"></p>
-<p>其中自定义附件所在子文件夹：写<code>/%c/&#123;</code> <code>%t&#125;&#123;-%y&#125;&#123;-%a&#125;</code>，意为：</p>
-<p>条目<code>&lt;subfolder1&gt;/&lt;subfolder2&gt;/.../&lt;subfoldern&gt;/&lt;item&gt;</code> 的<code>链接附件</code>存放在<code>自定义目录</code>=</p>
-<p><code>&lt;链接附件根目录&gt;/&lt;subfolder1&gt;/&lt;subfolder2&gt;/.../&lt;subfoldern&gt;/&lt;item的标题&gt;-&lt;年份&gt;-&lt;作者&gt;/</code> (若年份、作者没有 则略去)</p>
-</li>
-<li>
-<p>设置用zotfile同步的文件格式</p>
-<p><code>工具</code>-<code>Zotfile Preference</code>-<code>Advanced Settings</code>，填写下栏文件格式</p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.54.22.png" alt="ScreenShot 2019-12-10 12.54.22"></p>
-</li>
-<li>
-<p>zotfile关闭重命名</p>
-<p>效果：此设置后，用zotfile重命名附件时，<code>附件文件</code>的文件名不会改，仅移动它到上述<code>自定义目录</code>中</p>
-<p>好处：当条目有多个<code>附件文件</code>时（如 正文.pdf, 翻译.pdf)，不会被zotfile自动重命名成 <code>&lt;item的标题&gt;-&lt;年份&gt;-&lt;作者&gt;n.pdf</code> (n=‘',2,3,4…)</p>
-<p>勾选<code>首选项</code>→<code>高级</code>→<code>常规</code>，点<code>设置编辑器</code></p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.36.54.png" alt="ScreenShot 2019-12-10 12.36.54"></p>
-<p>查找<code>extensions.zotfile.disable_renaming</code>，值改成<code>true</code></p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.38.28.png" alt="ScreenShot 2019-12-10 12.38.28"></p>
-</li>
-</ul>
-<h4 id="移动附件"><a class="header-anchor" href="#移动附件"></a>移动附件</h4>
-<ul>
-<li>
-<p>测试：完成上述配置后，先选中任意一个有pdf附件的条目，点<code>右键-Manage Attachments-Rename Attachments</code>，看看在<code>自定义目录</code>有无该附件、文件名是否未被改动，在zotero里点击该附件看看能否用pdf浏览器打开。若测试成功，则进行下一步。</p>
-</li>
-<li>
-<p>移动所有附件到<code>自定义目录</code>：<code>我的文库</code>-<code>⌘A</code> 全选条目，点<code>右键-Manage Attachments-Rename Attachments</code>。</p>
-</li>
-</ul>
-<h2 id="ipad阅读工作流程"><a class="header-anchor" href="#ipad阅读工作流程"></a>ipad阅读工作流程</h2>
-<h3 id="手动选择待读文件"><a class="header-anchor" href="#手动选择待读文件"></a>手动选择待读文件</h3>
-<ul>
-<li>新建分类“待读”</li>
-<li>选中待读条目，拖拽到“待读”，以使“待读”中也添加此条目</li>
-<li>选刚才的条目，<code>右键</code>-<code>Manage Attachments</code>-<code>Rename Attachments</code>，弹出对话框问选择哪个分类作为<code>自定义路径</code>，选“待读”</li>
-<li>在iPad上打开<code>Dropbox/Zotero_sync/linked_files/待读/&lt;item&gt;/附件名</code>，开始批注；亦可同时用mac来批注</li>
-<li>当此文件读完，进入“待读”，选择此条目，<code>右键</code>-<code>Manage Attachments</code>-<code>Rename Attachments</code>，弹出对话框问选择哪个分类作为<code>自定义路径</code>，皆不选“待读”；然后选择此条目，<code>右键</code>-<code>从分类中移除条目</code></li>
-</ul>
-<p>优点：可以避免下述tablet的两个缺点</p>
-<h3 id="其他方案：Zotfile-Tablet"><a class="header-anchor" href="#其他方案：Zotfile-Tablet"></a>其他方案：Zotfile - Tablet</h3>
-<p>配置：<code>工具</code>-<code>Zotfile Preference</code>-<code>Tablet Settings</code>, 填写如下</p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2014.07.24.png" alt="ScreenShot 2019-12-10 14.07.24"></p>
-<p>使用：</p>
-<ul>
-<li>
-<p>选中待读的条目或附件，<code>右键</code>-<code>Manage Attachments</code>-<code>Send To Tablet</code></p>
-<p>作用：在<code>Dropbox/Zotero_sync/tablet/</code> 下会添加此条目或附件，zotero的左栏中<code>Tablet Files</code>也会添加它</p>
-</li>
-<li>
-<p>在iPad上从Dropbox点开此文件，阅读批注之。当批注后，左栏中<code>Tablet Files (modified)</code>也会添加它。</p>
-</li>
-<li>
-<p>在左栏中<code>Tablet Files (modified)</code>选中批注完的文件，<code>右键</code>-<code>Manage Attachments</code>-<code>Get To Tablet</code></p>
-<p>作用：从<code>Dropbox/Zotero_sync/tablet/</code>移动附件到文库中相应条目，覆盖原附件， <code>Tablet Files</code>、<code>Tablet Files (modified)</code>中删除它</p>
-</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>如果同时修改了tablet中的附件（用iPad）和 文库中对应的附件（用电脑），则<code>get from tablet</code>时会冲突，无法自动merge修改</li>
-<li>get from tablet 后 <code>&lt;tablet&gt;</code>目录下会留下空的子文件夹</li>
-</ul>
-<h2 id="全文搜索"><a class="header-anchor" href="#全文搜索"></a>全文搜索</h2>
-<p>Zotero可以搜索pdf中的英文，但不支持pdf中的中文</p>
-<p>搜索栏输入<code>“搜索内容”</code>，表示严格匹配；<code>搜索内容</code> 表示非严格匹配</p>
-<h1 id="参考资料"><a class="header-anchor" href="#参考资料"></a>参考资料</h1>
-<p><a href="https://github.com/specter119/RefTools">各种文献管理软件使用教程</a></p>
-<p><a href="https://github.com/specter119/RefTools/tree/master/zotero">zotero使用教程</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>文献管理</category>
       </categories>
   </entry>
   <entry>
@@ -5187,6 +4930,263 @@ compdef _tmux tmux_itm
       <categories>
         <category>器</category>
         <category>shell</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>github_pages绑定二级域名</title>
+    <url>/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/</url>
+    <content><![CDATA[<p>参考: <a href="https://segmentfault.com/a/1190000005775893">GitHub Pages 绑定二级域名</a></p>
+<p>已申请一级域名<code>hyliang.ml</code>, 欲给 <code>hyliang96.github.io</code> 绑定二级域名<code>blog.lianghy.ml</code>, 操作如下.</p>
+<p>注意: 读者操作时<strong>切勿照抄</strong>上述url, <code>hyliang.ml</code>换成你注册的一级域名, <code>blog  </code>可随便写, <code>hyliang96.github.io</code>换成你的github page的url.</p>
+<ol>
+<li>创建<code>CNAME</code>文件</li>
+</ol>
+<ul>
+<li>
+<p>非Hexo建的GIthub Pages: 直接在 GitHub 项目里创建 <code>CNAME</code> 文件 (无后缀名), 写入全文如下.</p>
+<pre class="line-numbers language-none"><code class="language-none">blog.lianghy.ml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>Hexo建的: 创建文件 <code>&lt;hexo项目目录&gt;/source/CNAME</code>, 写入全文如上.</p>
+<p>然后编译并部署博客 <code>hexo g &amp;&amp; hexo d</code>, 这样所部署到的github pages的repo中, 总是有这个<code>CNAME</code>文件.</p>
+</li>
+</ul>
+<p>设置作用: 访问 <code>hyliang96.github.io</code>  时, 浏览器的url栏显示为 <code>blog.lianghy.ml</code>.</p>
+<ol start="2">
+<li>在域名管理网站, 添加域名解析规则, 类型为 <code>CNAME</code> , 名为 <code>blog</code>,  目标 <code>hyliang96.github.io</code></li>
+</ol>
+<p><img data-src="/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/image-20200123041020200.png" alt="image-20200123041020200"></p>
+<p>此设置的功能为: 当访问<code>blog.lianghy.ml</code>, 会跳转到 <code>hyliang96.github.io</code> .</p>
+<ol start="3">
+<li>等待10分钟， 若出现以下效果, 证明绑定成功了
+<ul>
+<li>访问 <a href="https://hyliang96.github.io">https://hyliang96.github.io</a> 时, 页面内容照常显示, 而 url 栏显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
+<li>访问 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a> 就能看到 <a href="https://hyliang96.github.io">https://hyliang96.github.io</a> 一样的页面内容, 而 url 栏也显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>博客搭建</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Zotero安装与配置</title>
+    <url>/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/</url>
+    <content><![CDATA[<h1 id="我的配置"><a class="header-anchor" href="#我的配置"></a>我的配置</h1>
+<h2 id="浏览器插件"><a class="header-anchor" href="#浏览器插件"></a>浏览器插件</h2>
+<p>当Zotero.app打开时，可以在浏览器中添加条目到zotero，使用方法<a href="https://www.yangzhiping.com/tech/zotero1.html">详见</a></p>
+<p>Safari&lt;=12: 安装<code>Zotero Connector</code>: 点<code>工具</code>-<code> 安装浏览器插件</code>，弹出网页点<code>install</code></p>
+<p>Safari&gt;=13: <a href="https://www.zotero.org/support/kb/safari_compatibility">beta版Zotero Connector</a></p>
+<h2 id="同步"><a class="header-anchor" href="#同步"></a>同步</h2>
+<p>本段参考 <a href="https://github.com/specter119/RefTools/blob/master/zotero/sync.md">zotero跨平台使用教程：多种同步方案</a> 编写</p>
+<h3 id="概念解释"><a class="header-anchor" href="#概念解释"></a>概念解释</h3>
+<h4 id="条目的附件"><a class="header-anchor" href="#条目的附件"></a>条目的附件</h4>
+<p>Zotero 附件类型包括</p>
+<p><code>文件附件</code></p>
+<ul>
+<li>图标为系统默认图标或者 adobe 红</li>
+<li>是 Zotero 默认的附件格式。当从finder拖拽文件至条目上，则复制文件副本创建<code>文件附件</code>。也可<code>选择条目-右键-附件-添加文件副本</code>创建</li>
+<li>存放在<code>&lt;数据存储位置&gt;/storage/&lt;8位数字和字母编码&gt;/</code></li>
+</ul>
+<p><code>链接附件</code></p>
+<ul>
+<li>图标为白色 加小铁链</li>
+<li>可<code>选择条目-右键-附件-添加文件链接</code>，或由 ZotFile 生成</li>
+<li>实际保存在<code>&lt;链接附件的根目录&gt;</code>下</li>
+</ul>
+<p><code>url附件</code></p>
+<ul>
+<li>图标为蓝色 加小铁链</li>
+<li>可<code>选择条目-右键-附件-添加url链接</code>创建</li>
+<li>实际为文件的网址，联网时才能打开</li>
+<li>保存在<code>&lt;数据存储位置&gt;/zotero.sqlite</code></li>
+</ul>
+<p>因此，本地只保存有<code>文件</code>与<code>文件链接</code>类型的附件。</p>
+<h4 id="存储目录"><a class="header-anchor" href="#存储目录"></a>存储目录</h4>
+<p><code>&lt;数据存储位置&gt;/</code> ：默认是<code>~/Zotero</code></p>
+<p><code>&lt;数据存储位置&gt;/zotero.sqlite</code> 文件</p>
+<ul>
+<li>包含分类层级，条目的元数据、标签、分类等， <code>文件附件</code>的8位编码、<code>链接附件</code>的路径、<code>url附件</code>的url、笔记 等</li>
+<li>只能用zotero官方服务来同步，<a href="https://blog.yesmryang.net/zotero-dropbox-sync/">采用第三方云盘同步会造成冲突</a></li>
+</ul>
+<p><code>&lt;数据存储位置&gt;/storage/</code></p>
+<ul>
+<li>
+<p>其下均为名为 8位数字和字母的编码 的子文件夹，子文件夹内是一个<code>文件附件</code>的所有组成文件</p>
+<p>组成文件：如pdf型<code>文件附件</code>，则是一个pdf文件；网页快照型<code>文件附件</code>，则是构成网页的所有文件</p>
+</li>
+<li>
+<p>此文件夹可采用第三方云盘同步</p>
+</li>
+</ul>
+<p><code>&lt;链接附件的根目录&gt;/</code></p>
+<ul>
+<li>包含<code>链接附件</code>·，可以自由组织其目录结构</li>
+<li>此文件夹可采用第三方云盘同步</li>
+</ul>
+<h4 id="同步方式"><a class="header-anchor" href="#同步方式"></a>同步方式</h4>
+<p>从附件类型上来看，Zotero 实现同步的方式不外乎两类：</p>
+<ul>
+<li>同步<code>文件附件</code>，包括：
+<ul>
+<li>Zotero 官网同步服务：同步<code>zotero.sqlite</code>和<code>&lt;数据存储位置&gt;/storage/</code> ，免费限300MB</li>
+<li>Webdav 同步</li>
+<li>软链接配合同步盘</li>
+</ul>
+</li>
+<li>同步<code>链接附件</code>，包括：
+<ul>
+<li>ZotFile 配合同步盘</li>
+</ul>
+</li>
+</ul>
+<p>两类方法使用上的优劣：</p>
+<ul>
+<li>同步<code>文件附件</code>：
+<ul>
+<li>劣势：路径自定义程度低，<code>&lt;数据存储位置&gt;/storage</code>或<code>软链接</code>内8位数字和字母组成的子目录，不可读</li>
+<li>优势：删除条目，附件随之删除</li>
+</ul>
+</li>
+<li>同步<code>链接附件</code> (特指由 ZotFile 生成)
+<ul>
+<li>优势：路径自定义程度高、可读，便于在ipad上进入目录，用任意第三方标注软件阅读、批注文件</li>
+<li>劣势：删除条目，附件不会随之删除，<code>链接附件的根目录</code>概念略费解。</li>
+</ul>
+</li>
+</ul>
+<h3 id="我的同步设置"><a class="header-anchor" href="#我的同步设置"></a>我的同步设置</h3>
+<h4 id="同步策略"><a class="header-anchor" href="#同步策略"></a>同步策略</h4>
+<table>
+<thead>
+<tr>
+<th>附件类型</th>
+<th>同步方法</th>
+<th>依赖</th>
+<th>支持平台</th>
+<th>工作方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单文件的附件(如pdf)</td>
+<td>同步<code>链接附件</code></td>
+<td>ZotFile 插件 + Dropbox</td>
+<td>mac、win、Linux、iPad、iOS、android</td>
+<td>在iPad上用任意软件阅读批注pdf</td>
+</tr>
+<tr>
+<td>多文件的附件(如网页快照)</td>
+<td>同步<code>文件附件</code></td>
+<td>Dropbox</td>
+<td>mac、win、Linux</td>
+<td>在电脑上阅读</td>
+</tr>
+</tbody>
+</table>
+<p>同步到ipad的其他解决方案：<a href="https://taozhaojun.github.io/2017/08/02/ipad/">papership+Webdav</a></p>
+<h4 id="设置方法"><a class="header-anchor" href="#设置方法"></a>设置方法</h4>
+<ul>
+<li>
+<p>设置软连接</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> /Users/mac/Dropbox/Zotero_sync/
+<span class="token comment"># 创建 &lt;链接附件目录> 为 Zotero_sync/linked_files</span>
+<span class="token function">mkdir</span> /Users/mac/Dropbox/Zotero_sync/linked_files
+<span class="token comment"># &lt;数据存储位置>/storage  移动并链接到   Zotero_sync/storage</span>
+<span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>数据存储位置<span class="token operator">></span>
+<span class="token function">mv</span> storage /Users/mac/Dropbox/Zotero_sync/storage
+<span class="token function">ln</span> -s /Users/mac/Dropbox/Zotero_sync/storage storage<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>设置zotero存储目录</p>
+<p>勾选<code>首选项</code>-<code>高级-</code>文件和文件夹`，填入以下两路径</p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.13.33.png" alt="ScreenShot 2019-12-10 12.13.33"></p>
+</li>
+<li>
+<p>设置zotero官方同步</p>
+<p>购买服务后，勾选<code>首选项</code>-<code>同步</code>-<code>设置</code>，设置成如下</p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.15.36.png" alt="ScreenShot 2019-12-10 12.15.36"></p>
+</li>
+<li>
+<p>安装zotfile</p>
+<p>在<a href="https://github.com/jlegewie/zotfile/releases/l">zotfile的github</a>下载最新的<code>zotfile-x.x.x--fx.xpi</code>, 下载后在 Zotero 中打开<code>工具</code>→<code>插件</code>，按右上角齿轮选择<code>Install Add-on Form Fil</code>，选中刚刚下载的 <code>zotfile-x.x.x-fx.xpi</code></p>
+</li>
+<li>
+<p>设置zotfile存储目录</p>
+<p><code>工具</code>-<code>Zotfile Preference</code>-<code>General Settings</code></p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.27.43.png" alt="ScreenShot 2019-12-10 12.27.43"></p>
+<p>其中自定义附件所在子文件夹：写<code>/%c/&#123;</code> <code>%t&#125;&#123;-%y&#125;&#123;-%a&#125;</code>，意为：</p>
+<p>条目<code>&lt;subfolder1&gt;/&lt;subfolder2&gt;/.../&lt;subfoldern&gt;/&lt;item&gt;</code> 的<code>链接附件</code>存放在<code>自定义目录</code>=</p>
+<p><code>&lt;链接附件根目录&gt;/&lt;subfolder1&gt;/&lt;subfolder2&gt;/.../&lt;subfoldern&gt;/&lt;item的标题&gt;-&lt;年份&gt;-&lt;作者&gt;/</code> (若年份、作者没有 则略去)</p>
+</li>
+<li>
+<p>设置用zotfile同步的文件格式</p>
+<p><code>工具</code>-<code>Zotfile Preference</code>-<code>Advanced Settings</code>，填写下栏文件格式</p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.54.22.png" alt="ScreenShot 2019-12-10 12.54.22"></p>
+</li>
+<li>
+<p>zotfile关闭重命名</p>
+<p>效果：此设置后，用zotfile重命名附件时，<code>附件文件</code>的文件名不会改，仅移动它到上述<code>自定义目录</code>中</p>
+<p>好处：当条目有多个<code>附件文件</code>时（如 正文.pdf, 翻译.pdf)，不会被zotfile自动重命名成 <code>&lt;item的标题&gt;-&lt;年份&gt;-&lt;作者&gt;n.pdf</code> (n=‘',2,3,4…)</p>
+<p>勾选<code>首选项</code>→<code>高级</code>→<code>常规</code>，点<code>设置编辑器</code></p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.36.54.png" alt="ScreenShot 2019-12-10 12.36.54"></p>
+<p>查找<code>extensions.zotfile.disable_renaming</code>，值改成<code>true</code></p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.38.28.png" alt="ScreenShot 2019-12-10 12.38.28"></p>
+</li>
+</ul>
+<h4 id="移动附件"><a class="header-anchor" href="#移动附件"></a>移动附件</h4>
+<ul>
+<li>
+<p>测试：完成上述配置后，先选中任意一个有pdf附件的条目，点<code>右键-Manage Attachments-Rename Attachments</code>，看看在<code>自定义目录</code>有无该附件、文件名是否未被改动，在zotero里点击该附件看看能否用pdf浏览器打开。若测试成功，则进行下一步。</p>
+</li>
+<li>
+<p>移动所有附件到<code>自定义目录</code>：<code>我的文库</code>-<code>⌘A</code> 全选条目，点<code>右键-Manage Attachments-Rename Attachments</code>。</p>
+</li>
+</ul>
+<h2 id="ipad阅读工作流程"><a class="header-anchor" href="#ipad阅读工作流程"></a>ipad阅读工作流程</h2>
+<h3 id="手动选择待读文件"><a class="header-anchor" href="#手动选择待读文件"></a>手动选择待读文件</h3>
+<ul>
+<li>新建分类“待读”</li>
+<li>选中待读条目，拖拽到“待读”，以使“待读”中也添加此条目</li>
+<li>选刚才的条目，<code>右键</code>-<code>Manage Attachments</code>-<code>Rename Attachments</code>，弹出对话框问选择哪个分类作为<code>自定义路径</code>，选“待读”</li>
+<li>在iPad上打开<code>Dropbox/Zotero_sync/linked_files/待读/&lt;item&gt;/附件名</code>，开始批注；亦可同时用mac来批注</li>
+<li>当此文件读完，进入“待读”，选择此条目，<code>右键</code>-<code>Manage Attachments</code>-<code>Rename Attachments</code>，弹出对话框问选择哪个分类作为<code>自定义路径</code>，皆不选“待读”；然后选择此条目，<code>右键</code>-<code>从分类中移除条目</code></li>
+</ul>
+<p>优点：可以避免下述tablet的两个缺点</p>
+<h3 id="其他方案：Zotfile-Tablet"><a class="header-anchor" href="#其他方案：Zotfile-Tablet"></a>其他方案：Zotfile - Tablet</h3>
+<p>配置：<code>工具</code>-<code>Zotfile Preference</code>-<code>Tablet Settings</code>, 填写如下</p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2014.07.24.png" alt="ScreenShot 2019-12-10 14.07.24"></p>
+<p>使用：</p>
+<ul>
+<li>
+<p>选中待读的条目或附件，<code>右键</code>-<code>Manage Attachments</code>-<code>Send To Tablet</code></p>
+<p>作用：在<code>Dropbox/Zotero_sync/tablet/</code> 下会添加此条目或附件，zotero的左栏中<code>Tablet Files</code>也会添加它</p>
+</li>
+<li>
+<p>在iPad上从Dropbox点开此文件，阅读批注之。当批注后，左栏中<code>Tablet Files (modified)</code>也会添加它。</p>
+</li>
+<li>
+<p>在左栏中<code>Tablet Files (modified)</code>选中批注完的文件，<code>右键</code>-<code>Manage Attachments</code>-<code>Get To Tablet</code></p>
+<p>作用：从<code>Dropbox/Zotero_sync/tablet/</code>移动附件到文库中相应条目，覆盖原附件， <code>Tablet Files</code>、<code>Tablet Files (modified)</code>中删除它</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>如果同时修改了tablet中的附件（用iPad）和 文库中对应的附件（用电脑），则<code>get from tablet</code>时会冲突，无法自动merge修改</li>
+<li>get from tablet 后 <code>&lt;tablet&gt;</code>目录下会留下空的子文件夹</li>
+</ul>
+<h2 id="全文搜索"><a class="header-anchor" href="#全文搜索"></a>全文搜索</h2>
+<p>Zotero可以搜索pdf中的英文，但不支持pdf中的中文</p>
+<p>搜索栏输入<code>“搜索内容”</code>，表示严格匹配；<code>搜索内容</code> 表示非严格匹配</p>
+<h1 id="参考资料"><a class="header-anchor" href="#参考资料"></a>参考资料</h1>
+<p><a href="https://github.com/specter119/RefTools">各种文献管理软件使用教程</a></p>
+<p><a href="https://github.com/specter119/RefTools/tree/master/zotero">zotero使用教程</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>文献管理</category>
       </categories>
   </entry>
   <entry>
@@ -7290,383 +7290,6 @@ unbind C-b
       </categories>
   </entry>
   <entry>
-    <title>vim-搜索替换插件</title>
-    <url>/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vim-%E6%90%9C%E7%B4%A2%E6%9B%BF%E6%8D%A2%E6%8F%92%E4%BB%B6.md/main/</url>
-    <content><![CDATA[<h2 id="待定"><a class="header-anchor" href="#待定"></a>待定</h2>
-<p><a href="https://github.com/dyng/ctrlsf.vim:">https://github.com/dyng/ctrlsf.vim:</a> 多文件替换需要使用多光标, 麻烦了</p>
-<ul>
-<li>bug: 宽字符预览上色出错</li>
-</ul>
-<p>默认用vimgrep, 很慢</p>
-<ul>
-<li>
-<p>大小写</p>
-<p><code>:F(ar) \Cxxxx xxx xxx </code>: 大小写敏感</p>
-<p><code>:F(ar) \cxxxx xxx xxx </code>: 大小写不敏感</p>
-<p><code>:F(ar) xxxx xxx xxx </code>: 默认大小写不敏感</p>
-</li>
-<li>
-<p>正则:</p>
-<ul>
-<li>默认是正则表达式, 取消正则 <code>:F(ar) 	\Vxxx</code></li>
-</ul>
-<p><a href="https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less">https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less</a></p>
-<pre class="line-numbers language-none"><code class="language-none">command! -nargs&#x3D;1 S let @&#x2F; &#x3D; escape(&#39;&lt;args&gt;&#39;, &#39;\&#39;)
-nmap &lt;Leader&gt;S :execute(&quot;:S &quot; . input(&#39;Regex-off: &#x2F;&#39;))&lt;CR&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>整词: <code>\&lt;xxxx\&gt;</code></p>
-</li>
-</ul>
-<p><a href="http://xahlee.info/comp/unicode_index.html">http://xahlee.info/comp/unicode_index.html</a></p>
-<p>设计: 🔎 Ϙ⊕ ⊗⛒⦿⨁⨂ ⨷㉧🄋ⒻⓄ◯⨀ +⃝ ⏍ ⤭  ⇄ ⟲ ⟳ ↺ ↻  ⇲ ➲ 🔁 🔂 🔃 🔄 ➡ ⬇  ⎋Ⓡ Ⓢ ⧬</p>
-<p>◌̸</p>
-<p>⃝</p>
-<p>⃞</p>
-<p>⃣</p>
-<p>⃠</p>
-<p>⃢</p>
-<p><code>|.*|Aa|“”|+⃝ |</code><br>
-<code>|.*|Aa|“”|Ⓞ|</code></p>
-<p><code>[.*] [Aa] [“”] Ⓞ</code></p>
-<p><code>|.*| |Aa| |“”| Ⓞ</code></p>
-<p><code>|.*|Aa|“”|⬇|</code></p>
-<p><a href="https://shapeshed.com/vim-statuslines/">https://shapeshed.com/vim-statuslines/</a>, <a href="https://jdhao.github.io/2019/11/03/vim_custom_statusline/">https://jdhao.github.io/2019/11/03/vim_custom_statusline/</a></p>
-<p>rg的整词匹配: <a href="https://github.com/BurntSushi/ripgrep/issues/389">https://github.com/BurntSushi/ripgrep/issues/389</a></p>
-<p><a href="https://github.com/brooth/far.vim">https://github.com/brooth/far.vim</a></p>
-<p><a href="https://github.com/hwrod/interactive-replace">https://github.com/hwrod/interactive-replace</a></p>
-<p><a href="https://github.com/mreinhardt/greplace.vim">https://github.com/mreinhardt/greplace.vim</a></p>
-<h2 id="各种搜索后端"><a class="header-anchor" href="#各种搜索后端"></a>各种搜索后端</h2>
-<pre class="line-numbers language-none"><code class="language-none">ag --nogroup --column --nocolor --silent --max-count&#x3D;1000  --vimgrep gmg --file-search-regex&#x3D;branch.sh [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-none"><code class="language-none">rg --no-heading --column --no-messages --max-count&#x3D;1000 --glob&#x3D;branch.sh &#39;gmg[a-z]*&#39; --vimgrep  [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a href="https://github.com/beyondgrep/ack3/">https://github.com/beyondgrep/ack3/</a></p>
-<pre class="line-numbers language-none"><code class="language-none">ack --nogroup --column --nocolor --max-count&#x3D;1000  --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh  gmg
-[-o]
-# --smart-case --ignore-case --farft --no-recurse
-
-
-ack --nogroup --output&#x3D;&#39;$&amp;:$_&#39; --max-count&#x3D;1000 --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh gmg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="首先排除"><a class="header-anchor" href="#首先排除"></a>首先排除</h2>
-<p><a href="https://github.com/svermeulen/vim-subversive:">https://github.com/svermeulen/vim-subversive:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
-<p><a href="https://github.com/andy-kwei/vim-easy-replace:">https://github.com/andy-kwei/vim-easy-replace:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
-<p><a href="https://github.com/movitto/vim-vsearch:">https://github.com/movitto/vim-vsearch:</a> 类far.vim而不如</p>
-<p><a href="https://github.com/yegappan/greplace:">https://github.com/yegappan/greplace:</a> 文档一句话; -&gt; mreinhardt/greplace.vim</p>
-<p><a href="https://github.com/rzwierz/vim-guidgen:">https://github.com/rzwierz/vim-guidgen:</a> 只能linux的vim用</p>
-<p><a href="https://github.com/pallavagarwal07/AutoRun:">https://github.com/pallavagarwal07/AutoRun:</a> 文档一句话, 只是提供预览搜索/替换结果</p>
-<p><a href="https://github.com/pieterhuibers/findreplace:">https://github.com/pieterhuibers/findreplace:</a> 空项目</p>
-<p><a href="https://github.com/bloc40/vim-replace:">https://github.com/bloc40/vim-replace:</a> 一句话文档; 支持多文件</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>编辑器IDE</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vscode安装配置</title>
-    <url>/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/</url>
-    <content><![CDATA[<h1 id="vscode安装配置"><a class="header-anchor" href="#vscode安装配置"></a>vscode安装配置</h1>
-<h2 id="拓展安装方法"><a class="header-anchor" href="#拓展安装方法"></a>拓展安装方法</h2>
-<ul>
-<li>
-<p><code>⇧⌘P</code> -<code>Extentions: Install Extentions</code> - 输入<code>插件名称</code> - <code>install</code></p>
-</li>
-<li>
-<p>或在左侧拓展商店栏，输入<code>插件名称</code> - <code>install</code></p>
-</li>
-</ul>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/img1.png" alt></p>
-<h2 id="语言"><a class="header-anchor" href="#语言"></a>语言</h2>
-<p><code>⇧⌘P</code> -<code>Configure Display Language</code> -</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_15.54.53.png" alt></p>
-<ul>
-<li>
-<p>选择已有语言</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_15.54.43.png" alt></p>
-</li>
-<li>
-<p><code>install other language</code> -左侧拓展商店栏输入 <code>Chinese (Simplified) Language Pack for Visual Studio Code</code> - <code>install</code></p>
-</li>
-</ul>
-<h2 id="配色与字体"><a class="header-anchor" href="#配色与字体"></a>配色与字体</h2>
-<h3 id="预备"><a class="header-anchor" href="#预备"></a>预备</h3>
-<p>安装插件<code>Gruvbox Themes</code></p>
-<p><a href="https://github.com/powerline/fonts">Powerline字体安装</a></p>
-<ul>
-<li>
-<p>mac:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># clone</span>
-<span class="token function">git</span> clone https://github.com/powerline/fonts.git --depth<span class="token operator">=</span><span class="token number">1</span>
-<span class="token comment"># install</span>
-<span class="token builtin class-name">cd</span> fonts
-./install.sh
-<span class="token comment"># clean-up a bit</span>
-<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
-<span class="token function">rm</span> -rf fonts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>linux:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> fonts-powerline<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-<p><a href="https://glitchbone.github.io/vscode-base16-term/#/">终端配色参考</a></p>
-<h3 id="配置"><a class="header-anchor" href="#配置"></a>配置</h3>
-<p><code>⌘,</code> ，在<code>用户</code>设置中</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.04.11-8598764.png" alt></p>
-<p>以打开<code>settings.json</code>，添加以下设置</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-  ...
-    <span class="token comment">// 终端字体</span>
-    <span class="token property">"editor.fontFamily"</span><span class="token operator">:</span> <span class="token string">"Meslo LG S DZ for Powerline"</span><span class="token punctuation">,</span>
-    <span class="token comment">// 终端配色</span>
-    <span class="token property">"workbench.colorCustomizations"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token property">"terminal.background"</span><span class="token operator">:</span><span class="token string">"#28282a"</span> <span class="token punctuation">,</span>         <span class="token property">"terminal.foreground"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminalCursor.background"</span><span class="token operator">:</span><span class="token string">"#3b3b3b"</span><span class="token punctuation">,</span>   <span class="token property">"terminalCursor.foreground"</span><span class="token operator">:</span><span class="token string">"#A5A2A2"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiBlack"</span><span class="token operator">:</span><span class="token string">"#28282a"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightBlack"</span><span class="token operator">:</span><span class="token string">"#a2a2a2"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiWhite"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightWhite"</span><span class="token operator">:</span><span class="token string">"#feffff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiRed"</span><span class="token operator">:</span><span class="token string">"#c91b00"</span><span class="token punctuation">,</span>             <span class="token property">"terminal.ansiBrightRed"</span><span class="token operator">:</span><span class="token string">"#ff6d67"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiYellow"</span><span class="token operator">:</span><span class="token string">"#cecc4d"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightYellow"</span><span class="token operator">:</span><span class="token string">"#fefb67"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiGreen"</span><span class="token operator">:</span><span class="token string">"#89b560"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightGreen"</span><span class="token operator">:</span><span class="token string">"#74dd74"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiCyan"</span><span class="token operator">:</span><span class="token string">"#61aaab"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightCyan"</span><span class="token operator">:</span><span class="token string">"#5ffdff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiBlue"</span><span class="token operator">:</span><span class="token string">"#5168d5"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightBlue"</span><span class="token operator">:</span><span class="token string">"#6871ff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiMagenta"</span><span class="token operator">:</span><span class="token string">"#c930c7"</span><span class="token punctuation">,</span>         <span class="token property">"terminal.ansiBrightMagenta"</span><span class="token operator">:</span><span class="token string">"#ff76ff"</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-        <span class="token comment">//  配色</span>
-    <span class="token property">"workbench.colorTheme"</span><span class="token operator">:</span> <span class="token string">"Gruvbox Dark (Medium)"</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上文的<code>// ...</code>注释可以黏贴到<code>settings.json</code>中，vscode支持注释</p>
-<h2 id="终端"><a class="header-anchor" href="#终端"></a>终端</h2>
-<h3 id="内部终端-integrated-terminal"><a class="header-anchor" href="#内部终端-integrated-terminal"></a>内部终端(integrated terminal)</h3>
-<pre class="line-numbers language-⌃`" data-language="⌃`"><div class="caption"><span>```以开启内部终端</span></div><code class="language-⌃`">
-### 外部终端(external terminal)
-
-* 配置
-
-&#96;⌘,&#96; ，在&#96;用户&#96;设置中，以打开&#96;settings.json&#96;，添加以下设置
-
-
-&#96;&#96;&#96;json
-&#123;
-  ...
-  &quot;terminal.external.osxExec&quot;: &quot;iTerm.app&quot;,
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>使用：<code>⇧⌘C</code>以，会弹出一个外部<code>iTerm2</code>窗口</li>
-</ul>
-<h2 id="命令行工具"><a class="header-anchor" href="#命令行工具"></a>命令行工具</h2>
-<p><a href="https://code.visualstudio.com/docs/editor/integrated-terminal">https://code.visualstudio.com/docs/editor/integrated-terminal</a></p>
-<p><code>⇧⌘P</code> - <code>Shell Command: install 'code' command in PATH</code></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/img2.png" alt></p>
-<p>使用方法：</p>
-<ul>
-<li>在命令中输入如下命令，则会用vscode-insiders打开之</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">code-insiders 文件名/文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>在命令中输入如下命令，则会用vscode打开之</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">code 文件名&#x2F;文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>上述命令适用于：本地内置终端、本地外部终端、远程开发时内置终端、<s>远程开发时的本地外部终端</s></p>
-<h2 id="远程开发"><a class="header-anchor" href="#远程开发"></a>远程开发</h2>
-<h3 id="安装插件"><a class="header-anchor" href="#安装插件"></a>安装插件</h3>
-<p>安装插件 <code>Remote Developement</code> ，目前(2019-5-23)只支持 <a href="https://code.visualstudio.com/insiders/">VSCode-Insiders</a>，不支持<a href="https://code.visualstudio.com/Download">正式版VSCode</a></p>
-<h3 id="配置本地的ssh-config"><a class="header-anchor" href="#配置本地的ssh-config"></a>配置本地的ssh config</h3>
-<p>请在本地<code>~/.ssh/config</code>或<code>/etc/ssh/ssh_config</code>中写好远程服务器的连接配置</p>
-<p>vscode的<code>Remote Developement</code> 只支持密钥登录，也支持密码登录</p>
-<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
-<p>点左下角<code>&gt;&lt;</code>按钮</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.27.00.png" alt></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.27.05.png" alt></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.27.13.png" alt></p>
-<h3 id="编辑远程文件-夹"><a class="header-anchor" href="#编辑远程文件-夹"></a>编辑远程文件(夹)</h3>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.32.52.png" alt></p>
-<p>关于远程开发的vscode命令行工具</p>
-<ul>
-<li>
-<p>vscode连接服务器后，会在服务器自动安装vscode远程开发的服务端程序，并运行之</p>
-<ul>
-<li>安装路径为<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code></li>
-<li>每当这台本机和这台服务器重新连接，就按照这个hash码，加载安装路径下，之前缓存的编辑器、内置终端、等模块的状态</li>
-<li>故<strong>重新连接服务器，编辑器、内置终端、等模块的状态均保留</strong></li>
-</ul>
-</li>
-<li>
-<p>vscode连接服务器后，在内置终端可使用   <code>code(-insiders)</code>  命令打开远程文件(夹)。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> code<span class="token punctuation">(</span>-insiders<span class="token punctuation">)</span>
-<span class="token comment"># 返回</span>
-<span class="token comment"># ~/.vscode-remote/bin/服务器的hash码/bin/code(-insiders)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>但远程开发， <strong>在 本地外部终端 输入  <code>code(-insiders)</code>，无法 打开远程文件</strong></p>
-</li>
-</ul>
-<h3 id="常见报错与处理"><a class="header-anchor" href="#常见报错与处理"></a>常见报错与处理</h3>
-<h4 id="重新连接失败"><a class="header-anchor" href="#重新连接失败"></a>重新连接失败</h4>
-<p>若之前连接过一台服务器，再次连它则报错，可杀死之前服务器端运行的 vscode 进程：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> vscode <span class="token operator">|</span> <span class="token function">grep</span> <span class="token environment constant">$USER</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">myusername     2382  0.0  0.0   4504   780 ?        S    01:33   0:00 sh &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;server.sh --port&#x3D;0
-myusername     2390  0.0  0.0 1307344 62116 ?       Sl   01:33   0:11 &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;node &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;out&#x2F;remoteExtensionHostAgent.js --port&#x3D;0
-myusername     6066  0.0  0.0  15976   972 pts&#x2F;20   S+   16:41   0:00 grep --color vscode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<p>杀死所有<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code>路径下的进程</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 教程编号 <span class="token comment"># 如上一框的 2382 2390</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后vscode重新连接服务器即可连接成功</p>
-<h4 id="wget失败"><a class="header-anchor" href="#wget失败"></a>wget失败</h4>
-<p>服务器上请不要给用alias覆盖<code>wget</code>命令，如</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wget</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这样的alias会造成连接后，会报错曰，服务器上无法用wget下载vscode远程开发的服务器端</p>
-<p>此alias改为</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wgetc</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后vscode重新连接服务器即可连接成功</p>
-<h2 id="snippet"><a class="header-anchor" href="#snippet"></a>snippet</h2>
-<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">教程</a></p>
-<p>写入</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">&#123;</span>
-    <span class="token string">"《snippet_name》"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token string">"prefix"</span><span class="token builtin class-name">:</span> <span class="token string">"《snippet_toggle》"</span>,
-        <span class="token string">"body"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
-            <span class="token string">"《insert_code》"</span>,
-        <span class="token punctuation">]</span>,
-        <span class="token string">"description"</span><span class="token builtin class-name">:</span> <span class="token string">"《prompt》"</span>
-    <span class="token punctuation">&#125;</span>,
-    <span class="token punctuation">..</span>.
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>
-<p>json不支持跨行文本，即不支持形如</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>"asdasd
-asdasd
-asdas
-" <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>请写成</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token string">"asda ad s ad as d"</span><span class="token punctuation">,</span>
-    <span class="token string">"asd  asd  sad as "</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>json中的文本只能用双引号，不能用单引号</p>
-</li>
-<li>
-<p><code>body</code>中的特殊字符</p>
-<ul>
-<li>转义字符</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>原文本</th>
-<th>代码文本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&quot;</code></td>
-<td><code>\&quot;</code></td>
-</tr>
-<tr>
-<td><code>$</code></td>
-<td><code>\\$</code></td>
-</tr>
-<tr>
-<td><code>\</code></td>
-<td><code>\\</code></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>插入后，按<code>⇥</code>、<code>⇧⇥</code>去往下、前一个可编辑区域；可编辑区域的写法</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">&quot;body&quot;: [
-    &quot;asda $&#123;1:【可编辑区域的提示】&#125; s ad $&#123;2:另一个可编辑区域&#125; as d&quot;,
-    &quot;asd $&#123;1:同步可编辑区域&#125; as &quot;,
-    &quot;asd $&#123;3&#125;&quot;，
-],<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ul>
-<h2 id="设置同步插件"><a class="header-anchor" href="#设置同步插件"></a>设置同步插件</h2>
-<p>为方便使得多个设备可以共用一份配置，可按照vscode插件 “settings sync”，它用gist同步你的vscode的各种设置，包括本地的全局设置、快捷键、snippet、所安装插件及版本。</p>
-<h3 id="自动配置方法"><a class="header-anchor" href="#自动配置方法"></a>自动配置方法</h3>
-<ul>
-<li>清除已有配置 : 初次配置无需此步, 若要更新配置则需要此步. 按 <code>⇧⌘P</code> - <code>Sync: 重置扩展设置</code></li>
-</ul>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184531147.png" alt="image-20200316184531147"></p>
-<p>​	所谓重置, 即清空&quot;settings sync&quot;现有的配置. 重置后,  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  会看见以下页面全空</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509201718848.png" alt="image-20200509201718848"></p>
-<ul>
-<li>
-<p>按 <code>⇧⌥U</code> , 则会弹出如下页面, 点 <code>login with github</code></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509201635555.png" alt="image-20200509201635555"></p>
-</li>
-</ul>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202018164.png" alt="image-20200509202018164"></p>
-<p>然后点 <code>信任github.com这个域名</code> .</p>
-<p>然后会浏览器弹出如下网页,</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-05-20%2021.11.23.png" alt="ScreenShot 2020-05-20 21.11.23"></p>
-<p>然后会看跳转如下页面, 此时可关闭此网页,</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202211987.png" alt="image-20200509202211987"></p>
-<p>而vscode里弹出此标签页, 这意味着当前浏览器默认的github账号中, 创建了一个新的token, 可用于创建gist来同步vscode配置</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202252574.png" alt="image-20200509202252574"></p>
-<p>此时  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  的插件配置变成,</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202418088.png" alt="image-20200509202418088"></p>
-<p>这说明当前浏览器默认的github账号中, 创建了一个新的token,  可用于创建gist来同步vscode配置, 但是这个token在 github 的配置中看不见:</p>
-<ul>
-<li><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>, 显示如下</li>
-</ul>
-<pre><code>![image-20200509203832966](main/image-20200509203832966.png)
-</code></pre>
-<p>此时再按 <code>⇧⌥U</code>, 则会在此github账号, 自动创建一个新gist, 然后询问是否上传当前的vscode各种配置, 点<code>是</code></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202900380.png" alt="image-20200509202900380"></p>
-<p>打开 <code>https://gist.github.com/你的用户名 </code>来检查一下, 确实创建了新gist,</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509203035964.png" alt="image-20200509203035964"></p>
-<p>其内已上传各个vscode配置文件</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509203239628.png" alt="image-20200509203239628"></p>
-<p>这说明配置成功</p>
-<h3 id="手动配置方法-废弃"><a class="header-anchor" href="#手动配置方法-废弃"></a>手动配置方法 (废弃)</h3>
-<p>本法勿用, 目前(2020-5-9)若用本法, 会在vscode重启后, github 将下文所创建的 token 自动删除, vscode会在同步配置时显示”token无效或过期”.</p>
-<ul>
-<li>
-<p>开一个<a href="https://gist.github.com/">gist</a></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2019.00.22.png" alt="ScreenShot 2020-03-16 19.00.22"></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2019.07.01.png" alt="ScreenShot 2020-03-16 19.07.01"></p>
-<p>从url里复制gist id</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2019.07.43.png" alt="ScreenShot 2020-03-16 19.07.43"></p>
-</li>
-<li>
-<p>开一个带有gist功能的github token：</p>
-<p><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>-<code>generate new token</code></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184923683.png" alt="image-20200316184923683"></p>
-<p>勾选gist和user</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200518012345366.png" alt="image-20200518012345366"></p>
-<p>然后会显示 <code>github token</code>， 速速记录下，只会显示这一次，之后再也显示不了。</p>
-</li>
-<li>
-<p>安装 <code>Settings Sync</code> 插件</p>
-</li>
-<li>
-<p>设置 <code>Settings Sync</code> ： <code>⌘⇧P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184531147.png" alt="image-20200316184531147"></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184543735.png" alt="image-20200316184543735"></p>
-</li>
-<li>
-<p>然后会弹出设置页面，设置方法如下</p>
-</li>
-</ul>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2018.37.32.png" alt="ScreenShot 2020-03-16 18.37.32"></p>
-<p>然后按 <code>⌥⇧U</code>， 如果状态栏显示“同步成功”，且gist上显示如下，则成功</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316192700873.png" alt="image-20200316192700873"></p>
-<h3 id="使用方法"><a class="header-anchor" href="#使用方法"></a>使用方法</h3>
-<p>手动同步：</p>
-<ul>
-<li><code>⌥⇧U</code>：手动上传到gist</li>
-<li><code>⌥⇧D</code>：手动从gist下载</li>
-</ul>
-<p>自动同步：打开vscode时，保存配置文件时，会自动下载再上传</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>编辑器IDE</category>
-      </categories>
-  </entry>
-  <entry>
     <title>小鹤音形码</title>
     <url>/%E5%99%A8/%E8%BE%93%E5%85%A5%E6%B3%95/%E5%B0%8F%E9%B9%A4%E9%9F%B3%E5%BD%A2%E7%A0%81.md/main/</url>
     <content><![CDATA[<h1 id="小鹤音形码"><a class="header-anchor" href="#小鹤音形码"></a>小鹤音形码</h1>
@@ -8741,6 +8364,395 @@ asdas
       </categories>
   </entry>
   <entry>
+    <title>vim-搜索替换插件</title>
+    <url>/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vim-%E6%90%9C%E7%B4%A2%E6%9B%BF%E6%8D%A2%E6%8F%92%E4%BB%B6.md/main/</url>
+    <content><![CDATA[<h2 id="待定"><a class="header-anchor" href="#待定"></a>待定</h2>
+<p><a href="https://github.com/dyng/ctrlsf.vim:">https://github.com/dyng/ctrlsf.vim:</a> 多文件替换需要使用多光标, 麻烦了</p>
+<ul>
+<li>bug: 宽字符预览上色出错</li>
+</ul>
+<p>默认用vimgrep, 很慢</p>
+<ul>
+<li>
+<p>大小写</p>
+<p><code>:F(ar) \Cxxxx xxx xxx </code>: 大小写敏感</p>
+<p><code>:F(ar) \cxxxx xxx xxx </code>: 大小写不敏感</p>
+<p><code>:F(ar) xxxx xxx xxx </code>: 默认大小写不敏感</p>
+</li>
+<li>
+<p>正则:</p>
+<ul>
+<li>默认是正则表达式, 取消正则 <code>:F(ar) 	\Vxxx</code></li>
+</ul>
+<p><a href="https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less">https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less</a></p>
+<pre class="line-numbers language-none"><code class="language-none">command! -nargs&#x3D;1 S let @&#x2F; &#x3D; escape(&#39;&lt;args&gt;&#39;, &#39;\&#39;)
+nmap &lt;Leader&gt;S :execute(&quot;:S &quot; . input(&#39;Regex-off: &#x2F;&#39;))&lt;CR&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>整词: <code>\&lt;xxxx\&gt;</code></p>
+</li>
+</ul>
+<p><a href="http://xahlee.info/comp/unicode_index.html">http://xahlee.info/comp/unicode_index.html</a></p>
+<p>设计: 🔎 Ϙ⊕ ⊗⛒⦿⨁⨂ ⨷㉧🄋ⒻⓄ◯⨀ +⃝ ⏍ ⤭  ⇄ ⟲ ⟳ ↺ ↻  ⇲ ➲ 🔁 🔂 🔃 🔄 ➡ ⬇  ⎋Ⓡ Ⓢ ⧬</p>
+<p>◌̸</p>
+<p>⃝</p>
+<p>⃞</p>
+<p>⃣</p>
+<p>⃠</p>
+<p>⃢</p>
+<p><code>|.*|Aa|“”|+⃝ |</code><br>
+<code>|.*|Aa|“”|Ⓞ|</code></p>
+<p><code>[.*] [Aa] [“”] Ⓞ</code></p>
+<p><code>|.*| |Aa| |“”| Ⓞ</code></p>
+<p><code>|.*|Aa|“”|⬇|</code></p>
+<p><a href="https://shapeshed.com/vim-statuslines/">https://shapeshed.com/vim-statuslines/</a>, <a href="https://jdhao.github.io/2019/11/03/vim_custom_statusline/">https://jdhao.github.io/2019/11/03/vim_custom_statusline/</a></p>
+<p>rg的整词匹配: <a href="https://github.com/BurntSushi/ripgrep/issues/389">https://github.com/BurntSushi/ripgrep/issues/389</a></p>
+<p><a href="https://github.com/brooth/far.vim">https://github.com/brooth/far.vim</a></p>
+<p><a href="https://github.com/hwrod/interactive-replace">https://github.com/hwrod/interactive-replace</a></p>
+<p><a href="https://github.com/mreinhardt/greplace.vim">https://github.com/mreinhardt/greplace.vim</a></p>
+<h2 id="各种搜索后端"><a class="header-anchor" href="#各种搜索后端"></a>各种搜索后端</h2>
+<pre class="line-numbers language-none"><code class="language-none">ag --nogroup --column --nocolor --silent --max-count&#x3D;1000  --vimgrep gmg --file-search-regex&#x3D;branch.sh [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">rg --no-heading --column --no-messages --max-count&#x3D;1000 --glob&#x3D;branch.sh &#39;gmg[a-z]*&#39; --vimgrep  [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a href="https://github.com/beyondgrep/ack3/">https://github.com/beyondgrep/ack3/</a></p>
+<pre class="line-numbers language-none"><code class="language-none">ack --nogroup --column --nocolor --max-count&#x3D;1000  --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh  gmg
+[-o]
+# --smart-case --ignore-case --farft --no-recurse
+
+
+ack --nogroup --output&#x3D;&#39;$&amp;:$_&#39; --max-count&#x3D;1000 --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh gmg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="首先排除"><a class="header-anchor" href="#首先排除"></a>首先排除</h2>
+<p><a href="https://github.com/svermeulen/vim-subversive:">https://github.com/svermeulen/vim-subversive:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
+<p><a href="https://github.com/andy-kwei/vim-easy-replace:">https://github.com/andy-kwei/vim-easy-replace:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
+<p><a href="https://github.com/movitto/vim-vsearch:">https://github.com/movitto/vim-vsearch:</a> 类far.vim而不如</p>
+<p><a href="https://github.com/yegappan/greplace:">https://github.com/yegappan/greplace:</a> 文档一句话; -&gt; mreinhardt/greplace.vim</p>
+<p><a href="https://github.com/rzwierz/vim-guidgen:">https://github.com/rzwierz/vim-guidgen:</a> 只能linux的vim用</p>
+<p><a href="https://github.com/pallavagarwal07/AutoRun:">https://github.com/pallavagarwal07/AutoRun:</a> 文档一句话, 只是提供预览搜索/替换结果</p>
+<p><a href="https://github.com/pieterhuibers/findreplace:">https://github.com/pieterhuibers/findreplace:</a> 空项目</p>
+<p><a href="https://github.com/bloc40/vim-replace:">https://github.com/bloc40/vim-replace:</a> 一句话文档; 支持多文件</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>编辑器IDE</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vscode安装配置</title>
+    <url>/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/</url>
+    <content><![CDATA[<h1 id="vscode安装配置"><a class="header-anchor" href="#vscode安装配置"></a>vscode安装配置</h1>
+<h2 id="拓展安装方法"><a class="header-anchor" href="#拓展安装方法"></a>拓展安装方法</h2>
+<ul>
+<li>
+<p><code>⇧⌘P</code> -<code>Extentions: Install Extentions</code> - 输入<code>插件名称</code> - <code>install</code></p>
+</li>
+<li>
+<p>或在左侧拓展商店栏，输入<code>插件名称</code> - <code>install</code></p>
+</li>
+</ul>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/img1.png" alt></p>
+<h2 id="语言"><a class="header-anchor" href="#语言"></a>语言</h2>
+<p><code>⇧⌘P</code> -<code>Configure Display Language</code> -</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_15.54.53.png" alt></p>
+<ul>
+<li>
+<p>选择已有语言</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_15.54.43.png" alt></p>
+</li>
+<li>
+<p><code>install other language</code> -左侧拓展商店栏输入 <code>Chinese (Simplified) Language Pack for Visual Studio Code</code> - <code>install</code></p>
+</li>
+</ul>
+<h2 id="配色与字体"><a class="header-anchor" href="#配色与字体"></a>配色与字体</h2>
+<h3 id="预备"><a class="header-anchor" href="#预备"></a>预备</h3>
+<p>安装插件<code>Gruvbox Themes</code></p>
+<p><a href="https://github.com/powerline/fonts">Powerline字体安装</a></p>
+<ul>
+<li>
+<p>mac:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># clone</span>
+<span class="token function">git</span> clone https://github.com/powerline/fonts.git --depth<span class="token operator">=</span><span class="token number">1</span>
+<span class="token comment"># install</span>
+<span class="token builtin class-name">cd</span> fonts
+./install.sh
+<span class="token comment"># clean-up a bit</span>
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
+<span class="token function">rm</span> -rf fonts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>linux:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> fonts-powerline<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<p><a href="https://glitchbone.github.io/vscode-base16-term/#/">终端配色参考</a></p>
+<h3 id="配置"><a class="header-anchor" href="#配置"></a>配置</h3>
+<p><code>⌘,</code> ，在<code>用户</code>设置中</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.04.11-8598764.png" alt></p>
+<p>以打开<code>settings.json</code>，添加以下设置</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  ...
+    <span class="token comment">// 终端字体</span>
+    <span class="token property">"editor.fontFamily"</span><span class="token operator">:</span> <span class="token string">"Meslo LG S DZ for Powerline"</span><span class="token punctuation">,</span>
+    <span class="token comment">// 终端配色</span>
+    <span class="token property">"workbench.colorCustomizations"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token property">"terminal.background"</span><span class="token operator">:</span><span class="token string">"#28282a"</span> <span class="token punctuation">,</span>         <span class="token property">"terminal.foreground"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminalCursor.background"</span><span class="token operator">:</span><span class="token string">"#3b3b3b"</span><span class="token punctuation">,</span>   <span class="token property">"terminalCursor.foreground"</span><span class="token operator">:</span><span class="token string">"#A5A2A2"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiBlack"</span><span class="token operator">:</span><span class="token string">"#28282a"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightBlack"</span><span class="token operator">:</span><span class="token string">"#a2a2a2"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiWhite"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightWhite"</span><span class="token operator">:</span><span class="token string">"#feffff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiRed"</span><span class="token operator">:</span><span class="token string">"#c91b00"</span><span class="token punctuation">,</span>             <span class="token property">"terminal.ansiBrightRed"</span><span class="token operator">:</span><span class="token string">"#ff6d67"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiYellow"</span><span class="token operator">:</span><span class="token string">"#cecc4d"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightYellow"</span><span class="token operator">:</span><span class="token string">"#fefb67"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiGreen"</span><span class="token operator">:</span><span class="token string">"#89b560"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightGreen"</span><span class="token operator">:</span><span class="token string">"#74dd74"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiCyan"</span><span class="token operator">:</span><span class="token string">"#61aaab"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightCyan"</span><span class="token operator">:</span><span class="token string">"#5ffdff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiBlue"</span><span class="token operator">:</span><span class="token string">"#5168d5"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightBlue"</span><span class="token operator">:</span><span class="token string">"#6871ff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiMagenta"</span><span class="token operator">:</span><span class="token string">"#c930c7"</span><span class="token punctuation">,</span>         <span class="token property">"terminal.ansiBrightMagenta"</span><span class="token operator">:</span><span class="token string">"#ff76ff"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token comment">//  配色</span>
+    <span class="token property">"workbench.colorTheme"</span><span class="token operator">:</span> <span class="token string">"Gruvbox Dark (Medium)"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上文的<code>// ...</code>注释可以黏贴到<code>settings.json</code>中，vscode支持注释</p>
+<h2 id="终端"><a class="header-anchor" href="#终端"></a>终端</h2>
+<h3 id="内部终端-integrated-terminal"><a class="header-anchor" href="#内部终端-integrated-terminal"></a>内部终端(integrated terminal)</h3>
+<pre class="line-numbers language-⌃`" data-language="⌃`"><div class="caption"><span>```以开启内部终端</span></div><code class="language-⌃`">
+### 外部终端(external terminal)
+
+* 配置
+
+&#96;⌘,&#96; ，在&#96;用户&#96;设置中，以打开&#96;settings.json&#96;，添加以下设置
+
+
+&#96;&#96;&#96;json
+&#123;
+  ...
+  &quot;terminal.external.osxExec&quot;: &quot;iTerm.app&quot;,
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>使用：<code>⇧⌘C</code>以，会弹出一个外部<code>iTerm2</code>窗口</li>
+</ul>
+<h2 id="命令行工具"><a class="header-anchor" href="#命令行工具"></a>命令行工具</h2>
+<p><a href="https://code.visualstudio.com/docs/editor/integrated-terminal">https://code.visualstudio.com/docs/editor/integrated-terminal</a></p>
+<p><code>⇧⌘P</code> - <code>Shell Command: install 'code' command in PATH</code></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/img2.png" alt></p>
+<p>使用方法：</p>
+<ul>
+<li>在命令中输入如下命令，则会用vscode-insiders打开之</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">code-insiders 文件名/文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>在命令中输入如下命令，则会用vscode打开之</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">code 文件名&#x2F;文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上述命令适用于：本地内置终端、本地外部终端、远程开发时内置终端、<s>远程开发时的本地外部终端</s></p>
+<h2 id="远程开发"><a class="header-anchor" href="#远程开发"></a>远程开发</h2>
+<h3 id="安装插件"><a class="header-anchor" href="#安装插件"></a>安装插件</h3>
+<p>安装插件 <code>Remote Developement</code> ，目前(2019-5-23)只支持 <a href="https://code.visualstudio.com/insiders/">VSCode-Insiders</a>，不支持<a href="https://code.visualstudio.com/Download">正式版VSCode</a></p>
+<h3 id="配置本地的ssh-config"><a class="header-anchor" href="#配置本地的ssh-config"></a>配置本地的ssh config</h3>
+<p>请在本地<code>~/.ssh/config</code>或<code>/etc/ssh/ssh_config</code>中写好远程服务器的连接配置</p>
+<p>vscode的<code>Remote Developement</code> 只支持密钥登录，也支持密码登录</p>
+<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
+<p>点左下角<code>&gt;&lt;</code>按钮</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.27.00.png" alt></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.27.05.png" alt></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.27.13.png" alt></p>
+<h3 id="编辑远程文件-夹"><a class="header-anchor" href="#编辑远程文件-夹"></a>编辑远程文件(夹)</h3>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.32.52.png" alt></p>
+<p>关于远程开发的vscode命令行工具</p>
+<ul>
+<li>
+<p>vscode连接服务器后，会在服务器自动安装vscode远程开发的服务端程序，并运行之</p>
+<ul>
+<li>安装路径为<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code></li>
+<li>每当这台本机和这台服务器重新连接，就按照这个hash码，加载安装路径下，之前缓存的编辑器、内置终端、等模块的状态</li>
+<li>故<strong>重新连接服务器，编辑器、内置终端、等模块的状态均保留</strong></li>
+</ul>
+</li>
+<li>
+<p>vscode连接服务器后，在内置终端可使用   <code>code(-insiders)</code>  命令打开远程文件(夹)。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> code<span class="token punctuation">(</span>-insiders<span class="token punctuation">)</span>
+<span class="token comment"># 返回</span>
+<span class="token comment"># ~/.vscode-remote/bin/服务器的hash码/bin/code(-insiders)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>但远程开发， <strong>在 本地外部终端 输入  <code>code(-insiders)</code>，无法 打开远程文件</strong></p>
+</li>
+</ul>
+<h3 id="常见报错与处理"><a class="header-anchor" href="#常见报错与处理"></a>常见报错与处理</h3>
+<h4 id="重新连接失败"><a class="header-anchor" href="#重新连接失败"></a>重新连接失败</h4>
+<p>若之前连接过一台服务器，再次连它则报错，可杀死之前服务器端运行的 vscode 进程：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> vscode <span class="token operator">|</span> <span class="token function">grep</span> <span class="token environment constant">$USER</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">myusername     2382  0.0  0.0   4504   780 ?        S    01:33   0:00 sh &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;server.sh --port&#x3D;0
+myusername     2390  0.0  0.0 1307344 62116 ?       Sl   01:33   0:11 &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;node &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;out&#x2F;remoteExtensionHostAgent.js --port&#x3D;0
+myusername     6066  0.0  0.0  15976   972 pts&#x2F;20   S+   16:41   0:00 grep --color vscode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>杀死所有<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code>路径下的进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 教程编号 <span class="token comment"># 如上一框的 2382 2390</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后vscode重新连接服务器即可连接成功</p>
+<h4 id="wget失败"><a class="header-anchor" href="#wget失败"></a>wget失败</h4>
+<p>服务器上请不要给用alias覆盖<code>wget</code>命令，如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wget</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这样的alias会造成连接后，会报错曰，服务器上无法用wget下载vscode远程开发的服务器端</p>
+<p>此alias改为</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wgetc</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后vscode重新连接服务器即可连接成功</p>
+<h2 id="snippet"><a class="header-anchor" href="#snippet"></a>snippet</h2>
+<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">教程</a></p>
+<p>写入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">&#123;</span>
+    <span class="token string">"《snippet_name》"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"prefix"</span><span class="token builtin class-name">:</span> <span class="token string">"《snippet_toggle》"</span>,
+        <span class="token string">"body"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"《insert_code》"</span>,
+        <span class="token punctuation">]</span>,
+        <span class="token string">"description"</span><span class="token builtin class-name">:</span> <span class="token string">"《prompt》"</span>
+    <span class="token punctuation">&#125;</span>,
+    <span class="token punctuation">..</span>.
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p>json不支持跨行文本，即不支持形如</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>"asdasd
+asdasd
+asdas
+" <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>请写成</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"asda ad s ad as d"</span><span class="token punctuation">,</span>
+    <span class="token string">"asd  asd  sad as "</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>json中的文本只能用双引号，不能用单引号</p>
+</li>
+<li>
+<p><code>body</code>中的特殊字符</p>
+<ul>
+<li>转义字符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>原文本</th>
+<th>代码文本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;</code></td>
+<td><code>\&quot;</code></td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td><code>\\$</code></td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td><code>\\</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>插入后，按<code>⇥</code>、<code>⇧⇥</code>去往下、前一个可编辑区域；可编辑区域的写法</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&quot;body&quot;: [
+    &quot;asda $&#123;1:【可编辑区域的提示】&#125; s ad $&#123;2:另一个可编辑区域&#125; as d&quot;,
+    &quot;asd $&#123;1:同步可编辑区域&#125; as &quot;,
+    &quot;asd $&#123;3&#125;&quot;，
+],<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="设置同步插件"><a class="header-anchor" href="#设置同步插件"></a>设置同步插件</h2>
+<p>为方便使得多个设备可以共用一份配置，可按照vscode插件 “settings sync”，它用gist同步你的vscode的各种设置，包括本地的全局设置、快捷键、snippet、所安装插件及版本。</p>
+<h3 id="自动配置方法"><a class="header-anchor" href="#自动配置方法"></a>自动配置方法</h3>
+<ul>
+<li>清除已有配置 : 初次配置无需此步, 若要更新配置则需要此步. 按 <code>⇧⌘P</code> - <code>Sync: 重置扩展设置</code></li>
+</ul>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184531147.png" alt="image-20200316184531147"></p>
+<p>​	所谓重置, 即清空&quot;settings sync&quot;现有的配置. 重置后,  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  会看见以下页面全空</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509201718848.png" alt="image-20200509201718848"></p>
+<ul>
+<li>
+<p>按 <code>⇧⌥U</code> , 则会弹出如下页面, 点 <code>login with github</code></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509201635555.png" alt="image-20200509201635555"></p>
+</li>
+</ul>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202018164.png" alt="image-20200509202018164"></p>
+<p>然后点 <code>信任github.com这个域名</code> .</p>
+<p>然后会浏览器弹出如下网页,</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-05-20%2021.11.23.png" alt="ScreenShot 2020-05-20 21.11.23"></p>
+<p>然后会看跳转如下页面, 此时可关闭此网页,</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202211987.png" alt="image-20200509202211987"></p>
+<p>而vscode里弹出此标签页, 这意味着当前浏览器默认的github账号中, 创建了一个新的token, 可用于创建gist来同步vscode配置</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202252574.png" alt="image-20200509202252574"></p>
+<p>此时  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  的插件配置变成,</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202418088.png" alt="image-20200509202418088"></p>
+<p>这说明当前浏览器默认的github账号中, 创建了一个新的token,  可用于创建gist来同步vscode配置, 但是这个token在 github 的配置中看不见:</p>
+<ul>
+<li><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>, 显示如下</li>
+</ul>
+<pre><code>![image-20200509203832966](main/image-20200509203832966.png)
+</code></pre>
+<p>此时再按 <code>⇧⌥U</code>, 则会在此github账号, 自动创建一个新gist, 然后询问是否上传当前的vscode各种配置, 点<code>是</code></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202900380.png" alt="image-20200509202900380"></p>
+<p>打开 <code>https://gist.github.com/你的用户名 </code>来检查一下, 确实创建了新gist,</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509203035964.png" alt="image-20200509203035964"></p>
+<p>其内已上传各个vscode配置文件</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509203239628.png" alt="image-20200509203239628"></p>
+<p>这说明配置成功</p>
+<h3 id="手动配置方法-废弃"><a class="header-anchor" href="#手动配置方法-废弃"></a>手动配置方法 (废弃)</h3>
+<p>本法勿用, 目前(2020-5-9)若用本法, 会在vscode重启后, github 将下文所创建的 token 自动删除, vscode会在同步配置时显示”token无效或过期”.</p>
+<ul>
+<li>
+<p>开一个<a href="https://gist.github.com/">gist</a></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2019.00.22.png" alt="ScreenShot 2020-03-16 19.00.22"></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2019.07.01.png" alt="ScreenShot 2020-03-16 19.07.01"></p>
+<p>从url里复制gist id</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2019.07.43.png" alt="ScreenShot 2020-03-16 19.07.43"></p>
+</li>
+<li>
+<p>开一个带有gist功能的github token：</p>
+<p><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>-<code>generate new token</code></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184923683.png" alt="image-20200316184923683"></p>
+<p>勾选gist和user</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200518012345366.png" alt="image-20200518012345366"></p>
+<p>然后会显示 <code>github token</code>， 速速记录下，只会显示这一次，之后再也显示不了。</p>
+</li>
+<li>
+<p>安装 <code>Settings Sync</code> 插件</p>
+</li>
+<li>
+<p>设置 <code>Settings Sync</code> ： <code>⌘⇧P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184531147.png" alt="image-20200316184531147"></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184543735.png" alt="image-20200316184543735"></p>
+</li>
+<li>
+<p>然后会弹出设置页面，设置方法如下</p>
+</li>
+</ul>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2018.37.32.png" alt="ScreenShot 2020-03-16 18.37.32"></p>
+<p>然后按 <code>⌥⇧U</code>， 如果状态栏显示“同步成功”，且gist上显示如下，则成功</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316192700873.png" alt="image-20200316192700873"></p>
+<h3 id="使用方法"><a class="header-anchor" href="#使用方法"></a>使用方法</h3>
+<p>手动同步：</p>
+<ul>
+<li><code>⌥⇧U</code>：手动上传到gist</li>
+<li><code>⌥⇧D</code>：手动从gist下载</li>
+</ul>
+<p>自动同步：打开vscode时，保存配置文件时，会自动下载再上传</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>编辑器IDE</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>百法明门论</title>
+    <url>/%E9%81%93/%E4%BD%9B%E6%B3%95%E6%9C%AD%E8%AE%B0/%E7%99%BE%E6%B3%95%E6%98%8E%E9%97%A8%E8%AE%BA.md/main/</url>
+    <content><![CDATA[<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa.html">来源</a></p>
+<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa-1.html">参考</a></p>
+<p><img data-src="/%E9%81%93/%E4%BD%9B%E6%B3%95%E6%9C%AD%E8%AE%B0/%E7%99%BE%E6%B3%95%E6%98%8E%E9%97%A8%E8%AE%BA.md/main/100fmml.jpg" alt="100fmml"></p>
+]]></content>
+      <categories>
+        <category>道</category>
+        <category>佛法札记</category>
+      </categories>
+  </entry>
+  <entry>
     <title>信息社会主义</title>
     <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E4%BF%A1%E6%81%AF%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89.md/main/</url>
     <content><![CDATA[<p>在信息技术日益深入生产和生活并还在迅猛发展的今天，正酝酿着新生产关系和权力结构的诞生条件，社会主义道路的发展有了新的契机。通过总结社会主义发展中在计划经济与市场经济上、在民主与法治建设上的探索，挖掘苏联的OGAS (全国自动化系统)<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> 的思想内核，展望物联网 人工智能 和区块链<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>的应用趋势，笔者构想了一个当前信息化条件下建设社会主义的道路，即<strong>信息社会主义</strong>，它包括两方面，信息化计划指导的市场经济，和政务信息化改革。</p>
@@ -8824,18 +8836,6 @@ asdas
       <categories>
         <category>道</category>
         <category>Marxism笔记</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>百法明门论</title>
-    <url>/%E9%81%93/%E4%BD%9B%E6%B3%95%E6%9C%AD%E8%AE%B0/%E7%99%BE%E6%B3%95%E6%98%8E%E9%97%A8%E8%AE%BA.md/main/</url>
-    <content><![CDATA[<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa.html">来源</a></p>
-<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa-1.html">参考</a></p>
-<p><img data-src="/%E9%81%93/%E4%BD%9B%E6%B3%95%E6%9C%AD%E8%AE%B0/%E7%99%BE%E6%B3%95%E6%98%8E%E9%97%A8%E8%AE%BA.md/main/100fmml.jpg" alt="100fmml"></p>
-]]></content>
-      <categories>
-        <category>道</category>
-        <category>佛法札记</category>
       </categories>
   </entry>
   <entry>

@@ -3070,19 +3070,19 @@ body {
 /* 博客内容透明化 */
 /* 文章内容的透明度设置 */
 .content-wrap {
-  opacity: 0.95;
+  opacity: 1;
 }
 /* //侧边框的透明度设置 */
 .sidebar {
-  opacity: 0.95;
+  opacity: 1;
 }
 /* //菜单栏的透明度设置 */
 .header-inner {
-  background: rgba(255,255,255,0.95);
+  background: #fff;
 }
 /* //搜索框（local-search）的透明度设置 */
 .popup {
-  opacity: 0.95;
+  opacity: 1;
 }
 /* Hexo Next 修改超链接的样式 */
 /* https://vonsdite.cn/posts/13afd8d4.html */
