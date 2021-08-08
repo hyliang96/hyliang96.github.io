@@ -3060,14 +3060,14 @@ body {
   background-size: 100% 100%;
 }
 /* 移动端壁纸 */
-@media screen and (max-width: 767px) {
-  body {
-    background: url("/images/communism-mobile.jpg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: 100% 100%;
-  }
-}
+/* @media screen and (max-width: 767px) { */
+/* body { */
+/* background:url(/images/communism-mobile.jpg); */
+/* background-repeat: no-repeat; */
+/* background-attachment: fixed; */
+/* background-size: 100% 100%; */
+/* } */
+/* } */
 /* 正文的透明度 */
 .main-inner {
 /* margin-top: 60px; */
