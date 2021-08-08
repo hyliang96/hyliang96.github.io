@@ -3059,6 +3059,12 @@ body {
 /* height: 50%; */
   background-size: 100% 100%;
 }
+/* 移动端壁纸 */
+@media screen and (max-width: 767px) {
+  body {
+    background-image: url("/images/communism-mobile.jpg");
+  }
+}
 /* 正文背板的透明度 */
 /* .main-inner { */
 /* margin-top: 60px; */
