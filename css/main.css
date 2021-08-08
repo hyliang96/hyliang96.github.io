@@ -3062,7 +3062,11 @@ body {
 /* 移动端壁纸 */
 @media screen and (max-width: 767px) {
   body {
-    background-image: url("/images/communism-mobile.jpg");
+    background: url("/images/communism-mobile.jpg");
+    background-repeat: no-repeat;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
   }
 }
 /* 正文的透明度 */
