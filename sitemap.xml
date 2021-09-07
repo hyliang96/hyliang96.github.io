@@ -107,14 +107,14 @@
   </url>
   
   <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/%E7%BB%88%E7%AB%AF/iterm2%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</loc>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/%E7%BB%88%E7%AB%AF/tmux%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</loc>
     
     <lastmod>2021-08-01</lastmod>
     
   </url>
   
   <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/%E7%BB%88%E7%AB%AF/tmux%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</loc>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/%E7%BB%88%E7%AB%AF/iterm2%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</loc>
     
     <lastmod>2021-08-01</lastmod>
     
@@ -538,6 +538,13 @@
 
   
   <url>
+    <loc>https://blog.lianghy.ml/categories/%E9%81%93/</loc>
+    <lastmod>2021-09-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.lianghy.ml/categories/%E6%9C%AF/</loc>
     <lastmod>2021-09-07</lastmod>
     <changefreq>daily</changefreq>
@@ -546,13 +553,6 @@
   
   <url>
     <loc>https://blog.lianghy.ml/categories/%E5%99%A8/</loc>
-    <lastmod>2021-09-07</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://blog.lianghy.ml/categories/%E9%81%93/</loc>
     <lastmod>2021-09-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -643,14 +643,14 @@
   </url>
   
   <url>
-    <loc>https://blog.lianghy.ml/categories/%E5%99%A8/%E8%BE%93%E5%85%A5%E6%B3%95/</loc>
+    <loc>https://blog.lianghy.ml/categories/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2021-09-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://blog.lianghy.ml/categories/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/</loc>
+    <loc>https://blog.lianghy.ml/categories/%E5%99%A8/%E8%BE%93%E5%85%A5%E6%B3%95/</loc>
     <lastmod>2021-09-07</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
