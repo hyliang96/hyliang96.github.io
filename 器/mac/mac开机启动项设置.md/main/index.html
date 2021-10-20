@@ -22,12 +22,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.lianghy.ml","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="将脚本设为开机自启 mac下，网上可查到脚本开机自启方法众多，经验证，有效的方法包括不限于以下两种 不推荐的方法">
+<meta name="description" content="将脚本设为开机自启 非sudo的自启脚本 mac下，网上可查到脚本开机自启方法众多，经验证，有效的方法包括不限于以下两种">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mac开机启动项设置">
 <meta property="og:url" content="https://blog.lianghy.ml/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/index.html">
 <meta property="og:site_name" content="丹炉志">
-<meta property="og:description" content="将脚本设为开机自启 mac下，网上可查到脚本开机自启方法众多，经验证，有效的方法包括不限于以下两种 不推荐的方法">
+<meta property="og:description" content="将脚本设为开机自启 非sudo的自启脚本 mac下，网上可查到脚本开机自启方法众多，经验证，有效的方法包括不限于以下两种">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.lianghy.ml/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.59.13-0801515.png">
 <meta property="og:image" content="https://blog.lianghy.ml/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.59.33-0801522.png">
@@ -40,8 +40,9 @@
 <meta property="og:image" content="https://blog.lianghy.ml/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.47.37.png">
 <meta property="og:image" content="https://blog.lianghy.ml/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.47.50.png">
 <meta property="og:image" content="https://blog.lianghy.ml/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.44.35.png">
+<meta property="og:image" content="https://blog.lianghy.ml/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/image-20211020192441451.png">
 <meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
-<meta property="article:modified_time" content="2021-08-01T20:26:26.000Z">
+<meta property="article:modified_time" content="2021-10-20T11:37:15.720Z">
 <meta property="article:author" content="inftyset">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.lianghy.ml/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.59.13-0801515.png">
@@ -168,7 +169,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%86%E8%84%9A%E6%9C%AC%E8%AE%BE%E4%B8%BA%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF"><span class="nav-text">将脚本设为开机自启</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E6%8E%A8%E8%8D%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">不推荐的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">推荐的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E2%80%9C%E8%87%AA%E5%8A%A8%E6%93%8D%E4%BD%9C%E2%80%9D%E7%9A%84%E2%80%9C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E2%80%9D"><span class="nav-text">创建一个“自动操作”的“应用程序”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E9%A1%B9"><span class="nav-text">将应用程序添加到开机自启项</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86%E8%84%9A%E6%9C%AC%E8%AE%BE%E4%B8%BA%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF"><span class="nav-text">将脚本设为开机自启</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9Esudo%E7%9A%84%E8%87%AA%E5%90%AF%E8%84%9A%E6%9C%AC"><span class="nav-text">非sudo的自启脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E6%8E%A8%E8%8D%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">不推荐的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">推荐的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E2%80%9C%E8%87%AA%E5%8A%A8%E6%93%8D%E4%BD%9C%E2%80%9D%E7%9A%84%E2%80%9C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E2%80%9D"><span class="nav-text">创建一个“自动操作”的“应用程序”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E9%A1%B9"><span class="nav-text">将应用程序添加到开机自启项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E8%A6%81sudo%E7%9A%84%E8%87%AA%E5%90%AF%E8%84%9A%E6%9C%AC"><span class="nav-text">需要sudo的自启脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E6%8E%A8%E8%8D%90%E7%9A%84%E6%96%B9%E6%B3%95-_2"><span class="nav-text">不推荐的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#launchctl"><span class="nav-text">launchctl</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="nav-text">配置步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#launchctl-%E5%91%BD%E4%BB%A4%E7%94%A8%E6%B3%95"><span class="nav-text">launchctl 命令用法</span></a></li></ol></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -273,7 +274,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-02 04:26:26 04:26:26" itemprop="dateModified" datetime="2021-08-02T04:26:26+08:00">2021-08-02 04:26:26</time>
+        <time title="修改时间：2021-10-20 19:37:15 19:37:15" itemprop="dateModified" datetime="2021-10-20T19:37:15+08:00">2021-10-20 19:37:15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -311,14 +312,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>340</span>
+      <span>1.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>6 分钟</span>
     </span>
 </div>
 
@@ -329,10 +330,11 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="将脚本设为开机自启"><a class="header-anchor" href="#将脚本设为开机自启"></a>将脚本设为开机自启</h2>
+        <h1 id="将脚本设为开机自启"><a class="header-anchor" href="#将脚本设为开机自启"></a>将脚本设为开机自启</h1>
+<h2 id="非sudo的自启脚本"><a class="header-anchor" href="#非sudo的自启脚本"></a>非sudo的自启脚本</h2>
 <p>mac下，网上可查到脚本开机自启方法众多，经验证，有效的方法包括不限于以下两种</p>
 <h3 id="不推荐的方法"><a class="header-anchor" href="#不推荐的方法"></a>不推荐的方法</h3>
-<p>以下方法，会造成开机时弹出“终端.app”或&quot;iTerm2.app&quot;窗口，以运行脚本。我希望是完全隐藏的运行，不要弹出窗口。</p>
+<p>以下方法，不管是否勾选<code>隐藏</code>，都会造成开机时弹出“终端.app”或&quot;iTerm2.app&quot;窗口，以运行脚本。我希望是完全隐藏的运行，不要弹出窗口。</p>
 <ul>
 <li>
 <p>直接将要开机运行的脚本（<a target="_blank" rel="noopener" href="http://xn--xxx-eo8e.sh">如xxx.sh</a>，<a target="_blank" rel="noopener" href="http://xxx.sh">xxx.sh</a>）设为可执行（无需设成777，可执行就好）</p>
@@ -363,6 +365,123 @@
 <p><img data-src="/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.47.50.png" alt></p>
 <p><img data-src="/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.44.35.png" alt></p>
 <p>点击<code>隐藏</code>表示开机时<a target="_blank" rel="noopener" href="https://www.pcmag.com/feature/368778/how-to-stop-mac-apps-from-launching-at-startup/4">App的窗口不在屏幕上弹出</a></p>
+<h2 id="需要sudo的自启脚本"><a class="header-anchor" href="#需要sudo的自启脚本"></a>需要sudo的自启脚本</h2>
+<h3 id="不推荐的方法-_2"><a class="header-anchor" href="#不推荐的方法-_2"></a>不推荐的方法</h3>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/github_35041937/article/details/52709098">com.apple.loginwindow LoginHook</a>: launchctl是苹果官方推荐的开机自启方法, 功能比此法更强大</p>
+<h3 id="launchctl"><a class="header-anchor" href="#launchctl"></a>launchctl</h3>
+<p><a target="_blank" rel="noopener" href="https://0clickjacking0.github.io/2020/05/20/macos%E8%AE%BE%E7%BD%AE%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E4%BB%BB%E5%8A%A1/">教程</a> <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bd9e12e3966c">案例参考</a></p>
+<p>launchctl是苹果官方推荐的开机自启方法. 支持开机自启/用户登录自启，支持守护进程（周期性运行、持续运行），支持用sudo或普通用户运行</p>
+<h4 id="配置步骤"><a class="header-anchor" href="#配置步骤"></a>配置步骤</h4>
+<ul>
+<li>
+<p>编写自己的脚本, 添加可执行权限</p>
+<ul>
+<li>注意, 要用 <code>sh</code> 来测试运行, 而不是用<code>bash</code>或<code>sh</code></li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> a+x 【myscript】.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>编写Launchd配置文件, <code>【服务名称】.plist</code>文件(【服务名称】可以包含&quot;.&quot;), 文件内写入如下内容</p>
+<ul>
+<li>文件名与下文的<code>Label</code>字段必须相同</li>
+</ul>
+<pre class="line-numbers language-xml" data-language="xml"><code class="language-xml"><span class="token prolog">&lt;?xml version="1.0" encoding="UTF-8"?></span>
+<span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">plist</span> <span class="token name">PUBLIC</span> <span class="token string">"-//Apple Computer//DTD PLIST 1.0//EN"</span> <span class="token string">"http://www.apple.com/DTDs/PropertyList-1.0.dtd"</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>plist</span> <span class="token attr-name">version</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1.0<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dict</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">></span></span>Label<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span><span class="token punctuation">></span></span>【服务名称】<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>string</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">></span></span>ProgramArguments<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>array</span><span class="token punctuation">></span></span>
+            <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>string</span><span class="token punctuation">></span></span>【myscript.sh的路径】<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>string</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>array</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>key</span><span class="token punctuation">></span></span>RunAtLoad<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>key</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>true</span><span class="token punctuation">/></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dict</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>plist</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>检查<code>.plist</code>文件语法是否正确</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">plutil 【.plist文件】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>结合上述两篇文章, 确定<code>.plist</code>文件放在系统启动还是用户启动时运行脚本, 我选择的是用户目录(<code>~/Library/LaunchAgents/</code>)</p>
+<p>plist脚本存放在以下目录：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>目录</th>
+<th>运行条件</th>
+<th>用于</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>User Agents</td>
+<td>~/Library/LaunchAgents</td>
+<td>当前用户登录后运行</td>
+<td>由用户自己定义的任务项</td>
+</tr>
+<tr>
+<td>Global Agents</td>
+<td>/Library/LaunchAgents</td>
+<td>任何用户登录后都会运行</td>
+<td>由管理员为用户定义的任务项</td>
+</tr>
+<tr>
+<td>Global Daemons</td>
+<td>/Library/LaunchDaemons</td>
+<td>内核初始化加载完后就运行, 无需用户登录</td>
+<td>由管理员定义的守护进程任务项</td>
+</tr>
+<tr>
+<td>System Agents</td>
+<td>/System/Library/LaunchAgents</td>
+<td>任何用户登录后都会运行</td>
+<td>由Mac OS X为用户定义的任务项</td>
+</tr>
+<tr>
+<td>System Daemons</td>
+<td>/System/Library/LaunchDaemons</td>
+<td>内核初始化加载完后就运行, 无需用户登录</td>
+<td>由Mac OS X定义的守护进程任务项</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>load这个配置:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">launchctl load -w 【.plist文件】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>以下服务如果需要用sudo才能启动的，需要在命令前加入sudo</p>
+</li>
+<li>
+<p>登入登出测试, 或用如下命令测试</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">launchctl start 【服务名称】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<h4 id="launchctl-命令用法"><a class="header-anchor" href="#launchctl-命令用法"></a>launchctl 命令用法</h4>
+<p>加<code>sudo</code>则为root用户的launchctl, 不加<code>sudo</code>则为当前用户的launchctl.</p>
+<ul>
+<li>
+<p>加载启动任务, 加<code>-w</code>则此后每次登录/开机仍然加载, 否则不加载</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>sudo<span class="token punctuation">]</span> launchctl load <span class="token punctuation">[</span>-w<span class="token punctuation">]</span>【.plist文件路径】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>卸载启动任务, 加<code>-w</code>则此后每次登录/开机则不再加载, 否则仍加载</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>sudo<span class="token punctuation">]</span> launchctl load <span class="token punctuation">[</span>-w<span class="token punctuation">]</span>【.plist文件路径】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>查看服务运行状态:</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span>sudo<span class="token punctuation">]</span> launchctl list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>第一个数字是进程的PID，如果它正在运行，如果它不运行，它显示一个’ - ‘</li>
+<li>第二个数字是进程的退出代码（如果它已经完成），如果是负数，则是杀死信号的数量</li>
+<li>第三列是进程名称</li>
+</ul>
+<p><img data-src="/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/image-20211020192441451.png" alt="image-20211020192441451"></p>
+</li>
+</ul>
 
     </div>
 
@@ -416,13 +535,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">326k</span>
+    <span title="站点总字数">328k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18:07</span>
+    <span title="站点阅读时长">18:12</span>
   </span>
 </div>
 
