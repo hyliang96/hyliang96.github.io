@@ -42,7 +42,7 @@
 <meta property="og:image" content="https://blog.lianghy.ml/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.44.35.png">
 <meta property="og:image" content="https://blog.lianghy.ml/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/image-20211020192441451.png">
 <meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
-<meta property="article:modified_time" content="2021-10-20T11:37:15.720Z">
+<meta property="article:modified_time" content="2021-10-21T13:01:30.250Z">
 <meta property="article:author" content="inftyset">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.lianghy.ml/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/2019-02-22_09.59.13-0801515.png">
@@ -169,7 +169,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86%E8%84%9A%E6%9C%AC%E8%AE%BE%E4%B8%BA%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF"><span class="nav-text">将脚本设为开机自启</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9Esudo%E7%9A%84%E8%87%AA%E5%90%AF%E8%84%9A%E6%9C%AC"><span class="nav-text">非sudo的自启脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E6%8E%A8%E8%8D%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">不推荐的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">推荐的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E2%80%9C%E8%87%AA%E5%8A%A8%E6%93%8D%E4%BD%9C%E2%80%9D%E7%9A%84%E2%80%9C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E2%80%9D"><span class="nav-text">创建一个“自动操作”的“应用程序”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E9%A1%B9"><span class="nav-text">将应用程序添加到开机自启项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E8%A6%81sudo%E7%9A%84%E8%87%AA%E5%90%AF%E8%84%9A%E6%9C%AC"><span class="nav-text">需要sudo的自启脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E6%8E%A8%E8%8D%90%E7%9A%84%E6%96%B9%E6%B3%95-_2"><span class="nav-text">不推荐的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#launchctl"><span class="nav-text">launchctl</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="nav-text">配置步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#launchctl-%E5%91%BD%E4%BB%A4%E7%94%A8%E6%B3%95"><span class="nav-text">launchctl 命令用法</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%86%E8%84%9A%E6%9C%AC%E8%AE%BE%E4%B8%BA%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF"><span class="nav-text">将脚本设为开机自启</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9Esudo%E7%9A%84%E8%87%AA%E5%90%AF%E8%84%9A%E6%9C%AC"><span class="nav-text">非sudo的自启脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E6%8E%A8%E8%8D%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">不推荐的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8E%A8%E8%8D%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">推荐的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E2%80%9C%E8%87%AA%E5%8A%A8%E6%93%8D%E4%BD%9C%E2%80%9D%E7%9A%84%E2%80%9C%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E2%80%9D"><span class="nav-text">创建一个“自动操作”的“应用程序”</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E6%B7%BB%E5%8A%A0%E5%88%B0%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E9%A1%B9"><span class="nav-text">将应用程序添加到开机自启项</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9C%80%E8%A6%81sudo%E7%9A%84%E8%87%AA%E5%90%AF%E8%84%9A%E6%9C%AC"><span class="nav-text">需要sudo的自启脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8D%E6%8E%A8%E8%8D%90%E7%9A%84%E6%96%B9%E6%B3%95-_2"><span class="nav-text">不推荐的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#launchctl"><span class="nav-text">launchctl</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%AD%A5%E9%AA%A4"><span class="nav-text">配置步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#launchctl-%E5%91%BD%E4%BB%A4%E7%94%A8%E6%B3%95"><span class="nav-text">launchctl 命令用法</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%82%E5%B8%B8%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AF%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="nav-text">异常开机自启的软件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SideNotes-app"><span class="nav-text">SideNotes.app</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#qv2ray-app"><span class="nav-text">qv2ray.app</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -274,7 +274,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-10-20 19:37:15 19:37:15" itemprop="dateModified" datetime="2021-10-20T19:37:15+08:00">2021-10-20 19:37:15</time>
+        <time title="修改时间：2021-10-21 21:01:30 21:01:30" itemprop="dateModified" datetime="2021-10-21T21:01:30+08:00">2021-10-21 21:01:30</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -312,14 +312,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.9k</span>
+      <span>2.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>6 分钟</span>
+      <span>9 分钟</span>
     </span>
 </div>
 
@@ -482,6 +482,21 @@
 <p><img data-src="/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/image-20211020192441451.png" alt="image-20211020192441451"></p>
 </li>
 </ul>
+<h1 id="异常开机自启的软件"><a class="header-anchor" href="#异常开机自启的软件"></a>异常开机自启的软件</h1>
+<h2 id="SideNotes-app"><a class="header-anchor" href="#SideNotes-app"></a>SideNotes.app</h2>
+<p>在软件内部的设置里, 勾选开机自启后, 在<code>系统偏好设置-用户与群组-登录项</code>里却没有此app. 登录系统用户后, 会闪现一个标题为”windows”, 内容为空的窗口, 一秒左右消失.</p>
+<p>解决办法: 则软件内部的设置里, 勾除开机自启; 而后在<code>系统偏好设置-用户与群组-登录项</code>里, 勾选此app, 并选中<code>隐藏</code>. 登录系统用户后, 不会有此闪现的窗口.</p>
+<h2 id="qv2ray-app"><a class="header-anchor" href="#qv2ray-app"></a>qv2ray.app</h2>
+<p>在软件内部设置里, 勾选开机自启后, 在<code>系统偏好设置-用户与群组-登录项</code>里有此app. 登录系统用户后, 会显示qv2ray的主窗口(即代理节点列表的窗口), 并不会自动退出.</p>
+<p>解决办法: 则软件内部的设置里, 勾除开机自启, 而后在<code>系统偏好设置-用户与群组-登录项</code>里此软件会自动消失. 用<code>Automator.app</code>创建一个<code>隐藏打开qv2ray.app</code>, 内部使用applescript, 内容为</p>
+<pre class="line-numbers language-none"><code class="language-none">on run &#123;input, parameters&#125;
+    tell application &quot;qv2ray&quot; to activate
+    tell application &quot;System Events&quot;
+        keystroke &quot;W&quot; using &#123;command down&#125;
+    end tell
+end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>并在<code>系统偏好设置-安全性与隐私-隐私-辅助功能</code>里, 添加<code>隐藏打开qv2ray.app</code>, 以便使得它能给<code>&quot;System Events”</code>发送快捷键.</p>
+<p>而后, 在<code>系统偏好设置-用户与群组-登录项</code>里, 添加<code>隐藏打开qv2ray.app</code>. 则登录系统用户后, qv2ray主窗口只会闪现一秒就消失, 而后qv2ray保持后台运行.</p>
 
     </div>
 
@@ -500,8 +515,8 @@
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/%E5%99%A8/mac/mac_%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%93%E5%B1%9E%E5%91%BD%E4%BB%A4.md/main/" rel="next" title="mac_命令行专属命令">
-                  mac_命令行专属命令 <i class="fa fa-chevron-right"></i>
+                <a href="/%E5%99%A8/mac/Mac%E6%8C%89%E9%94%AE%E7%AC%A6%E5%8F%B7.md/main/" rel="next" title="Mac按键符号">
+                  Mac按键符号 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -541,7 +556,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18:12</span>
+    <span title="站点阅读时长">18:15</span>
   </span>
 </div>
 
