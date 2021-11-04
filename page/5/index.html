@@ -224,7 +224,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/python/ipython%E4%B8%8Ejupyter_notebook%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8.md/main/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/heat.jpg">
@@ -237,7 +237,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/" class="post-title-link" itemprop="url">shell的参数解析</a>
+          <a href="/%E5%99%A8/python/ipython%E4%B8%8Ejupyter_notebook%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8.md/main/" class="post-title-link" itemprop="url">ipython与jupyter_notebook安装配置使用</a>
         </h2>
 
         <div class="post-meta-container">
@@ -255,7 +255,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-02 04:26:22 04:26:22" itemprop="dateModified" datetime="2021-08-02T04:26:22+08:00">2021-08-02 04:26:22</time>
+        <time title="修改时间：2021-08-02 04:26:23 04:26:23" itemprop="dateModified" datetime="2021-08-02T04:26:23+08:00">2021-08-02 04:26:23</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -267,7 +267,7 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
+          <a href="/categories/%E5%99%A8/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
         </span>
     </span>
 
@@ -280,8 +280,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/" data-xid="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/" itemprop="commentCount"></span>
+    <a title="waline" href="/%E5%99%A8/python/ipython%E4%B8%8Ejupyter_notebook%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/python/ipython%E4%B8%8Ejupyter_notebook%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8.md/main/" data-xid="/%E5%99%A8/python/ipython%E4%B8%8Ejupyter_notebook%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8.md/main/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -293,14 +293,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
+      <span>6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
+      <span>20 分钟</span>
     </span>
 </div>
 
@@ -311,135 +311,12 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="getopt"><a class="header-anchor" href="#getopt"></a>getopt</h1>
-<h2 id="使用规则"><a class="header-anchor" href="#使用规则"></a>使用规则</h2>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bash或zsh getopt_demo.sh 一堆参数 <span class="token comment"># 其前中后均可有 余参数</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+          <p>[TOC]</p>
+<h1 id="ipython安装配置使用"><a class="header-anchor" href="#ipython安装配置使用"></a>ipython安装配置使用</h1>
+<h2 id="配置"><a class="header-anchor" href="#配置"></a>配置</h2>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="inftyset">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/" class="post-title-link" itemprop="url">zsh自动补全的复用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-08-02 01:24:20 01:24:20" itemprop="dateCreated datePublished" datetime="2021-08-02T01:24:20+08:00">2021-08-02 01:24:20</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-02 04:26:22 04:26:22" itemprop="dateModified" datetime="2021-08-02T04:26:22+08:00">2021-08-02 04:26:22</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/" data-xid="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-      </div>
-      <div class="post-meta">
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>4k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>13 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="zsh的自动补全"><a class="header-anchor" href="#zsh的自动补全"></a>zsh的自动补全</h2>
-<p><code>zsh-completions</code>是zsh官方支持的自动补全包</p>
-<p>使用<code>antigen</code>管理zsh插件的话，<code>zsh-completions</code>的路径在<code>~/.antigen/bundles/zsh-users/zsh-completions/src</code>，其下有众多文件名如<code>_xxx</code>，分别定义了<code>xxx</code>命令的补全。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/#more" rel="contents">
+              <a class="btn" href="/%E5%99%A8/python/ipython%E4%B8%8Ejupyter_notebook%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8.md/main/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -875,6 +752,129 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="inftyset">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/" class="post-title-link" itemprop="url">virtualenv_教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25 04:03:03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-08-02 04:26:22 04:26:22" itemprop="dateModified" datetime="2021-08-02T04:26:22+08:00">2021-08-02 04:26:22</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/" data-xid="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>4 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="virtualenv-教程"><a class="header-anchor" href="#virtualenv-教程"></a>virtualenv 教程</h1>
+<p>参考资料：</p>
+<p><a target="_blank" rel="noopener" href="http://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html">安装与使用说明</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/python/%E6%88%91%E7%9A%84python%E4%BD%BF%E7%94%A8tips.md/main/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -998,7 +998,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/heat.jpg">
@@ -1011,7 +1011,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/" class="post-title-link" itemprop="url">virtualenv_教程</a>
+          <a href="/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/" class="post-title-link" itemprop="url">bash设置</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1041,7 +1041,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
         </span>
     </span>
 
@@ -1054,8 +1054,8 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/" data-xid="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/" itemprop="commentCount"></span>
+    <a title="waline" href="/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/" data-xid="/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1067,14 +1067,14 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.1k</span>
+      <span>5.2k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>17 分钟</span>
     </span>
 </div>
 
@@ -1085,12 +1085,12 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="virtualenv-教程"><a class="header-anchor" href="#virtualenv-教程"></a>virtualenv 教程</h1>
-<p>参考资料：</p>
-<p><a target="_blank" rel="noopener" href="http://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html">安装与使用说明</a></p>
+          <h2 id="配置环境变量"><a class="header-anchor" href="#配置环境变量"></a>配置环境变量</h2>
+<p>参见 <a target="_blank" rel="noopener" href="http://elf8848.iteye.com/blog/1582137">http://elf8848.iteye.com/blog/1582137</a></p>
+<p>适应Mac/Linux</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/#more" rel="contents">
+              <a class="btn" href="/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1244,7 +1244,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/heat.jpg">
@@ -1257,7 +1257,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/" class="post-title-link" itemprop="url">rsync教程</a>
+          <a href="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/" class="post-title-link" itemprop="url">shell的参数解析</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1275,7 +1275,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-02 04:26:21 04:26:21" itemprop="dateModified" datetime="2021-08-02T04:26:21+08:00">2021-08-02 04:26:21</time>
+        <time title="修改时间：2021-08-02 04:26:22 04:26:22" itemprop="dateModified" datetime="2021-08-02T04:26:22+08:00">2021-08-02 04:26:22</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1287,7 +1287,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/" itemprop="url" rel="index"><span itemprop="name">服务器连接</span></a>
+          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
         </span>
     </span>
 
@@ -1300,8 +1300,8 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/" data-xid="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/" itemprop="commentCount"></span>
+    <a title="waline" href="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/" data-xid="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1313,14 +1313,14 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.6k</span>
+      <span>1.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>12 分钟</span>
+      <span>5 分钟</span>
     </span>
 </div>
 
@@ -1331,12 +1331,12 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="mac-升级-rsync"><a class="header-anchor" href="#mac-升级-rsync"></a>mac 升级 rsync</h2>
-<p>mac自带rsync在<code>/usr/bin/rsync</code>，版本 <code>rsync  version 2.6.9  protocol version 29</code>太老，不支持用一条命令将多个远程文件传到本地，需要升级才支持。</p>
-<p>升级方法：</p>
+          <h1 id="getopt"><a class="header-anchor" href="#getopt"></a>getopt</h1>
+<h2 id="使用规则"><a class="header-anchor" href="#使用规则"></a>使用规则</h2>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">bash或zsh getopt_demo.sh 一堆参数 <span class="token comment"># 其前中后均可有 余参数</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/rsync%E6%95%99%E7%A8%8B.md/main/#more" rel="contents">
+              <a class="btn" href="/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1367,7 +1367,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/heat.jpg">
@@ -1380,7 +1380,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/" class="post-title-link" itemprop="url">sshfs</a>
+          <a href="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/" class="post-title-link" itemprop="url">zsh自动补全的复用</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1391,14 +1391,14 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2019-05-25 04:03:03 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25 04:03:03</time>
+      <time title="创建时间：2021-08-02 01:24:20 01:24:20" itemprop="dateCreated datePublished" datetime="2021-08-02T01:24:20+08:00">2021-08-02 01:24:20</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2021-08-02 04:26:21 04:26:21" itemprop="dateModified" datetime="2021-08-02T04:26:21+08:00">2021-08-02 04:26:21</time>
+        <time title="修改时间：2021-08-02 04:26:22 04:26:22" itemprop="dateModified" datetime="2021-08-02T04:26:22+08:00">2021-08-02 04:26:22</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1410,7 +1410,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/" itemprop="url" rel="index"><span itemprop="name">服务器连接</span></a>
+          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
         </span>
     </span>
 
@@ -1423,8 +1423,8 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/" data-xid="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/" itemprop="commentCount"></span>
+    <a title="waline" href="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/" data-xid="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -1436,14 +1436,14 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.6k</span>
+      <span>4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>19 分钟</span>
+      <span>13 分钟</span>
     </span>
 </div>
 
@@ -1454,12 +1454,12 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="sshfs教程"><a class="header-anchor" href="#sshfs教程"></a>sshfs教程</h1>
-<p>在linux或mac上，加载远程Linux服务器上的文件目录</p>
-<p>[TOC]</p>
+          <h2 id="zsh的自动补全"><a class="header-anchor" href="#zsh的自动补全"></a>zsh的自动补全</h2>
+<p><code>zsh-completions</code>是zsh官方支持的自动补全包</p>
+<p>使用<code>antigen</code>管理zsh插件的话，<code>zsh-completions</code>的路径在<code>~/.antigen/bundles/zsh-users/zsh-completions/src</code>，其下有众多文件名如<code>_xxx</code>，分别定义了<code>xxx</code>命令的补全。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/#more" rel="contents">
+              <a class="btn" href="/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1506,7 +1506,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">360k</span>
+    <span title="站点总字数">359k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">

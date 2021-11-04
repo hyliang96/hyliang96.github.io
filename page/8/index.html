@@ -224,7 +224,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/mac/Mac%E4%B8%8A%E4%BD%BF%E7%94%A8locate.md/main/">
+    <link itemprop="mainEntityOfPage" href="https://blog.lianghy.ml/%E5%99%A8/mac/mac%E4%B8%8A%E8%AF%BB%E5%8F%96ntfs.md/main/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/heat.jpg">
@@ -237,7 +237,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/%E5%99%A8/mac/Mac%E4%B8%8A%E4%BD%BF%E7%94%A8locate.md/main/" class="post-title-link" itemprop="url">Mac上使用locate</a>
+          <a href="/%E5%99%A8/mac/mac%E4%B8%8A%E8%AF%BB%E5%8F%96ntfs.md/main/" class="post-title-link" itemprop="url">mac上读取ntfs</a>
         </h2>
 
         <div class="post-meta-container">
@@ -280,8 +280,8 @@
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/%E5%99%A8/mac/Mac%E4%B8%8A%E4%BD%BF%E7%94%A8locate.md/main/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/mac/Mac%E4%B8%8A%E4%BD%BF%E7%94%A8locate.md/main/" data-xid="/%E5%99%A8/mac/Mac%E4%B8%8A%E4%BD%BF%E7%94%A8locate.md/main/" itemprop="commentCount"></span>
+    <a title="waline" href="/%E5%99%A8/mac/mac%E4%B8%8A%E8%AF%BB%E5%8F%96ntfs.md/main/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/%E5%99%A8/mac/mac%E4%B8%8A%E8%AF%BB%E5%8F%96ntfs.md/main/" data-xid="/%E5%99%A8/mac/mac%E4%B8%8A%E8%AF%BB%E5%8F%96ntfs.md/main/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -293,14 +293,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.1k</span>
+      <span>368</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>10 分钟</span>
+      <span>1 分钟</span>
     </span>
 </div>
 
@@ -311,17 +311,91 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="系统级locate"><a class="header-anchor" href="#系统级locate"></a>系统级locate</h1>
-<p>以下用于搜整个系统的文件</p>
-<h2 id="首次使用locate"><a class="header-anchor" href="#首次使用locate"></a>首次使用locate</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E5%99%A8/mac/Mac%E4%B8%8A%E4%BD%BF%E7%94%A8locate.md/main/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <table>
+<thead>
+<tr>
+<th>方法</th>
+<th>原理</th>
+<th>优缺点</th>
+<th>速度</th>
+<th>收费否</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://ntfstool.com">ntfstool</a></td>
+<td><a target="_blank" rel="noopener" href="https://github.com/ntfstool/ntfstool/blob/master/README-CN.md">参见</a>,第一次release在2020-3-10</td>
+<td>免费里最靠谱的</td>
+<td></td>
+<td>开源免费</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://liam.page/2020/04/08/enable-NTFS-writing-access-by-NTFS-3G/">ntfs-3g</a></td>
+<td></td>
+<td>可能遇到 chkdsk</td>
+<td></td>
+<td>免费</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://github.com/ntfstool/ntfstool">tuxera</a></td>
+<td>基于ntfs3g封装</td>
+<td>可能遇到 chkdsk</td>
+<td></td>
+<td>付费</td>
+</tr>
+<tr>
+<td>Paragon</td>
+<td></td>
+<td></td>
+<td>先慢后快, 最终比Tuxera快, 类似于本机HFS+速度</td>
+<td>付费</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/106c40f9500d">osx原生ntfs写功能</a></td>
+<td>此功能不稳定, 被macOS默认关闭了</td>
+<td>只能打开预定名字的的磁盘; 直接把磁盘可能损坏索引, 但 不丢文件，可在win下修复</td>
+<td></td>
+<td>免费</td>
+</tr>
+<tr>
+<td><a target="_blank" rel="noopener" href="https://mounty.app">mounty</a></td>
+<td>基于 osx 内置的 ntfs 写功能</td>
+<td>可能丢索引, 不丢文件，可在win下修复</td>
+<td></td>
+<td>免费</td>
+</tr>
+<tr>
+<td>买希捷硬盘送软件（官网下载）</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>虚拟机</td>
+<td></td>
+<td>开销大</td>
+<td>移动硬盘数据安全</td>
+<td></td>
+</tr>
+<tr>
+<td>fat32</td>
+<td>通用文件系统</td>
+<td>单文件&lt;=4GB</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>exfat</td>
+<td>通用文件系统, 微软自家</td>
+<td>单文件&lt;=1EB; 没有文件日志功能, 在修改文件索引时若拔下移动硬盘, 会有部分文件/子目录消失了</td>
+<td></td>
+<td>免费</td>
+</tr>
+</tbody>
+</table>
+<p><img data-src="/%E5%99%A8/mac/mac%E4%B8%8A%E8%AF%BB%E5%8F%96ntfs.md/main/v2-cacc571eedb04c2fb116e64bb02733ac_720w.jpg" alt="img"></p>
+
       
     </div>
 
@@ -614,7 +688,7 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">360k</span>
+    <span title="站点总字数">359k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
