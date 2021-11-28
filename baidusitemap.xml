@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://blog.lianghy.ml/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E9%AD%94%E6%80%94%E4%BA%BA%E6%97%A5%E8%AE%B0/%E5%AD%A6%E7%94%9F%E6%B0%94%E7%9A%84%E5%B0%8F%E8%B5%84%E5%B9%BB%E6%83%B3.md/main/</loc>
+    <lastmod>2021-11-28</lastmod>
+  </url>
+  <url>
+    <loc>https://blog.lianghy.ml/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E9%AD%94%E6%80%94%E4%BA%BA%E6%97%A5%E8%AE%B0/%E5%B7%A6%E5%A3%AC%E6%81%8B%E7%88%B1%E5%B9%BC%E7%A8%9A%E7%97%85.md/main/</loc>
+    <lastmod>2021-11-28</lastmod>
+  </url>
+  <url>
     <loc>https://blog.lianghy.ml/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEVNC%E2%80%94%E2%80%94debug%E7%9A%84%E6%97%A5%E5%BF%97.md/main/</loc>
     <lastmod>2021-11-04</lastmod>
   </url>
@@ -185,11 +193,11 @@
     <lastmod>2021-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/</loc>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/python/%E7%94%A8tqdm%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1.md/main/</loc>
     <lastmod>2021-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/python/%E7%94%A8tqdm%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1.md/main/</loc>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/</loc>
     <lastmod>2021-08-01</lastmod>
   </url>
   <url>
@@ -205,11 +213,11 @@
     <lastmod>2021-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/ssh%E9%85%8D%E7%BD%AE.md/main/</loc>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/</loc>
     <lastmod>2021-08-01</lastmod>
   </url>
   <url>
-    <loc>https://blog.lianghy.ml/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/</loc>
+    <loc>https://blog.lianghy.ml/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/ssh%E9%85%8D%E7%BD%AE.md/main/</loc>
     <lastmod>2021-08-01</lastmod>
   </url>
   <url>
