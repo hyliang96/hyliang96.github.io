@@ -867,41 +867,6 @@ git config user.email &quot;你的邮箱&quot;<span aria-hidden="true" class="li
       </categories>
   </entry>
   <entry>
-    <title>NAT设置</title>
-    <url>/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/NAT%E8%AE%BE%E7%BD%AE.md/main/</url>
-    <content><![CDATA[<h1 id="使用Iptables设置NAT"><a class="header-anchor" href="#使用Iptables设置NAT"></a>使用Iptables设置NAT</h1>
-<ul>
-<li>查看NAT映射关系列表</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -L -n --line-number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><code>--line-number</code>: 显示规则的<code>&lt;规则的行号&gt;</code></p>
-<ul>
-<li>查看NAT命令列表</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>开NAT</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -A PREROUTING -d <span class="token operator">&lt;</span>公网ip<span class="token operator">></span>/32 -i <span class="token operator">&lt;</span>公网访问的网卡<span class="token operator">></span> -p tcp -m tcp --dport <span class="token operator">&lt;</span>公网端口<span class="token operator">></span> -j DNAT --to-destination <span class="token operator">&lt;</span>内网ip<span class="token operator">></span>:<span class="token operator">&lt;</span>内网端口<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>
-<p><code>-A PREROUTING</code>：新规则附在已有规则最后面；若换成 <code>-I PREROUTING &lt;规则的行号&gt;(默认1)</code> ，则新规则插入在此编号的规则前面</p>
-</li>
-<li>
-<p><code>/32</code> <code>-m tcp</code> 可省，此即缺省值</p>
-</li>
-<li>
-<p>删除一条NAT规则</p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -D PREROUTING <span class="token operator">&lt;</span>规则的行号<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>linux杂项</category>
-      </categories>
-  </entry>
-  <entry>
     <title>git学习笔记</title>
     <url>/%E5%99%A8/git/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md/main/</url>
     <content><![CDATA[<h1 id="GIT学习笔记"><a class="header-anchor" href="#GIT学习笔记"></a>GIT学习笔记</h1>
@@ -1279,6 +1244,41 @@ B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
       <categories>
         <category>器</category>
         <category>git</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>NAT设置</title>
+    <url>/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/NAT%E8%AE%BE%E7%BD%AE.md/main/</url>
+    <content><![CDATA[<h1 id="使用Iptables设置NAT"><a class="header-anchor" href="#使用Iptables设置NAT"></a>使用Iptables设置NAT</h1>
+<ul>
+<li>查看NAT映射关系列表</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -L -n --line-number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>--line-number</code>: 显示规则的<code>&lt;规则的行号&gt;</code></p>
+<ul>
+<li>查看NAT命令列表</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>开NAT</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -A PREROUTING -d <span class="token operator">&lt;</span>公网ip<span class="token operator">></span>/32 -i <span class="token operator">&lt;</span>公网访问的网卡<span class="token operator">></span> -p tcp -m tcp --dport <span class="token operator">&lt;</span>公网端口<span class="token operator">></span> -j DNAT --to-destination <span class="token operator">&lt;</span>内网ip<span class="token operator">></span>:<span class="token operator">&lt;</span>内网端口<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p><code>-A PREROUTING</code>：新规则附在已有规则最后面；若换成 <code>-I PREROUTING &lt;规则的行号&gt;(默认1)</code> ，则新规则插入在此编号的规则前面</p>
+</li>
+<li>
+<p><code>/32</code> <code>-m tcp</code> 可省，此即缺省值</p>
+</li>
+<li>
+<p>删除一条NAT规则</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -D PREROUTING <span class="token operator">&lt;</span>规则的行号<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>linux杂项</category>
       </categories>
   </entry>
   <entry>
@@ -2039,32 +2039,6 @@ quota: Cannot open quotafile &#x2F;&#x2F;quota.user: No such file or directory<s
       </categories>
   </entry>
   <entry>
-    <title>Mac按键符号</title>
-    <url>/%E5%99%A8/mac/Mac%E6%8C%89%E9%94%AE%E7%AC%A6%E5%8F%B7.md/main/</url>
-    <content><![CDATA[<h2 id="Mac符号"><a class="header-anchor" href="#Mac符号"></a>Mac符号</h2>
-<p><a href="https://blog.csdn.net/libing_zeng/article/details/73201264">参考</a></p>
-<p>⌘: Command<br>
-⇧: Shift<br>
-⌥: Option<br>
-⌃: Control<br>
-↩︎: Return/Enter<br>
-⌫: Delete<br>
-⌦: 向前删除键（Fn+Delete）<br>
-⇞: Page Up（Fn+↑）<br>
-⇟: Page Down（Fn+↓）<br>
-Home: Fn + ←<br>
-End: Fn + →<br>
-⇥: 右制表符（Tab键）<br>
-⇤: 左制表符（Shift+Tab）<br>
-⎋: Escape (Esc)</p>
-<p><img data-src="/%E5%99%A8/mac/Mac%E6%8C%89%E9%94%AE%E7%AC%A6%E5%8F%B7.md/main/20170614103620686.png" alt></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Mac上使用locate</title>
     <url>/%E5%99%A8/mac/Mac%E4%B8%8A%E4%BD%BF%E7%94%A8locate.md/main/</url>
     <content><![CDATA[<h1 id="系统级locate"><a class="header-anchor" href="#系统级locate"></a>系统级locate</h1>
@@ -2205,6 +2179,20 @@ Try &#39;rm --help&#39; for more information.<span aria-hidden="true" class="lin
       </categories>
   </entry>
   <entry>
+    <title>mac_命令行专属命令</title>
+    <url>/%E5%99%A8/mac/mac_%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%93%E5%B1%9E%E5%91%BD%E4%BB%A4.md/main/</url>
+    <content><![CDATA[<h1 id="mac-命令行专属命令"><a class="header-anchor" href="#mac-命令行专属命令"></a>mac 命令行专属命令</h1>
+<h3 id="mac-命令行专属命令-_2"><a class="header-anchor" href="#mac-命令行专属命令-_2"></a>mac 命令行专属命令</h3>
+<p>永久修改hostname (命令行行首提示中的主机名)</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> scutil --set HostName <span class="token operator">&lt;</span>新hostname<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a href="https://blog.csdn.net/flyter/article/details/8880583">参考</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
     <title>brew使用教程</title>
     <url>/%E5%99%A8/mac/brew%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md/main/</url>
     <content><![CDATA[<h1 id="安装"><a class="header-anchor" href="#安装"></a>安装</h1>
@@ -2283,13 +2271,25 @@ Homebrew&#x2F;homebrew-core (git revision 43c72b06c0c; last commit 2021-09-28)<s
       </categories>
   </entry>
   <entry>
-    <title>mac_命令行专属命令</title>
-    <url>/%E5%99%A8/mac/mac_%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%93%E5%B1%9E%E5%91%BD%E4%BB%A4.md/main/</url>
-    <content><![CDATA[<h1 id="mac-命令行专属命令"><a class="header-anchor" href="#mac-命令行专属命令"></a>mac 命令行专属命令</h1>
-<h3 id="mac-命令行专属命令-_2"><a class="header-anchor" href="#mac-命令行专属命令-_2"></a>mac 命令行专属命令</h3>
-<p>永久修改hostname (命令行行首提示中的主机名)</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> scutil --set HostName <span class="token operator">&lt;</span>新hostname<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a href="https://blog.csdn.net/flyter/article/details/8880583">参考</a></p>
+    <title>Mac按键符号</title>
+    <url>/%E5%99%A8/mac/Mac%E6%8C%89%E9%94%AE%E7%AC%A6%E5%8F%B7.md/main/</url>
+    <content><![CDATA[<h2 id="Mac符号"><a class="header-anchor" href="#Mac符号"></a>Mac符号</h2>
+<p><a href="https://blog.csdn.net/libing_zeng/article/details/73201264">参考</a></p>
+<p>⌘: Command<br>
+⇧: Shift<br>
+⌥: Option<br>
+⌃: Control<br>
+↩︎: Return/Enter<br>
+⌫: Delete<br>
+⌦: 向前删除键（Fn+Delete）<br>
+⇞: Page Up（Fn+↑）<br>
+⇟: Page Down（Fn+↓）<br>
+Home: Fn + ←<br>
+End: Fn + →<br>
+⇥: 右制表符（Tab键）<br>
+⇤: 左制表符（Shift+Tab）<br>
+⎋: Escape (Esc)</p>
+<p><img data-src="/%E5%99%A8/mac/Mac%E6%8C%89%E9%94%AE%E7%AC%A6%E5%8F%B7.md/main/20170614103620686.png" alt></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -2366,6 +2366,22 @@ Homebrew&#x2F;homebrew-core (git revision 43c72b06c0c; last commit 2021-09-28)<s
 <p>然后再次执行如下指令即可</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">codesign --force --deep --sign - /Applications/<span class="token operator">&lt;</span>软件名<span class="token operator">></span>.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>如果以上步骤执行完成后还是无法运行，尝试关闭一下SIP，再重复上述操作</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>mac上使用X11</title>
+    <url>/%E5%99%A8/mac/mac%E4%B8%8A%E4%BD%BF%E7%94%A8X11.md/main/</url>
+    <content><![CDATA[<h2 id="XQuartz"><a class="header-anchor" href="#XQuartz"></a>XQuartz</h2>
+<h3 id><a class="header-anchor" href="#"></a></h3>
+<h3 id="多显示屏XQuartz闪退"><a class="header-anchor" href="#多显示屏XQuartz闪退"></a>多显示屏XQuartz闪退</h3>
+<p><a href="https://apple.stackexchange.com/questions/235279/inkscape-or-other-xquartz-window-disappears-when-using-external-screen">对策</a> <a href="https://www.laptopmag.com/articles/mirror-display-macos">对策参考</a></p>
+<h2 id="MacPorts安装X11"><a class="header-anchor" href="#MacPorts安装X11"></a>MacPorts安装X11</h2>
+<p><a href="https://www.jianshu.com/p/fd422e004f62">安装教程</a> 我依照此教程安装后，X11.app打不开，故卸载了macports</p>
+<p><a href="https://guide.macports.org/chunked/installing.macports.uninstalling.html">卸载macports</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -2459,22 +2475,6 @@ Homebrew&#x2F;homebrew-core (git revision 43c72b06c0c; last commit 2021-09-28)<s
 </tbody>
 </table>
 <p><img data-src="/%E5%99%A8/mac/mac%E4%B8%8A%E8%AF%BB%E5%8F%96ntfs.md/main/v2-cacc571eedb04c2fb116e64bb02733ac_720w.jpg" alt="img"></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>mac上使用X11</title>
-    <url>/%E5%99%A8/mac/mac%E4%B8%8A%E4%BD%BF%E7%94%A8X11.md/main/</url>
-    <content><![CDATA[<h2 id="XQuartz"><a class="header-anchor" href="#XQuartz"></a>XQuartz</h2>
-<h3 id><a class="header-anchor" href="#"></a></h3>
-<h3 id="多显示屏XQuartz闪退"><a class="header-anchor" href="#多显示屏XQuartz闪退"></a>多显示屏XQuartz闪退</h3>
-<p><a href="https://apple.stackexchange.com/questions/235279/inkscape-or-other-xquartz-window-disappears-when-using-external-screen">对策</a> <a href="https://www.laptopmag.com/articles/mirror-display-macos">对策参考</a></p>
-<h2 id="MacPorts安装X11"><a class="header-anchor" href="#MacPorts安装X11"></a>MacPorts安装X11</h2>
-<p><a href="https://www.jianshu.com/p/fd422e004f62">安装教程</a> 我依照此教程安装后，X11.app打不开，故卸载了macports</p>
-<p><a href="https://guide.macports.org/chunked/installing.macports.uninstalling.html">卸载macports</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3035,6 +3035,39 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
       </categories>
   </entry>
   <entry>
+    <title>mac永久添加私钥到keyChain</title>
+    <url>/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/</url>
+    <content><![CDATA[<p>以下<a href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本，以备不时之需</p>
+<blockquote>
+<h1 id="Mac-重启后自动-ssh-add-私钥"><a class="header-anchor" href="#Mac-重启后自动-ssh-add-私钥"></a><a href="https://mednoter.com/ssh-add-automatically.html">Mac 重启后自动 ssh-add 私钥</a></h1>
+<p>管理服务器有一些安全常识:</p>
+<ul>
+<li>禁止 root 远程登录</li>
+<li>禁止密码登录</li>
+<li>使用 priviate / public key 作为默认的登录方式。</li>
+<li>修改 sshd 端口</li>
+</ul>
+<p>From Linode: <a href="https://www.linode.com/docs/security/securing-your-server">Securing your server</a></p>
+<p>安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，需要一次次手工 ssh-add 私钥，特别心烦。</p>
+<p>几年前有这种方法 <code>ssh-add -K privateKey</code> 可以一劳永逸的把私钥存到 keychain 中，重启后也不需要手动 ssh-add，非常方便。</p>
+<p><strong>这种方式不管用了。</strong></p>
+<p><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-ssh-add.jpeg" alt="img"></p>
+<h2 id="新的解决方法"><a class="header-anchor" href="#新的解决方法"></a>新的解决方法</h2>
+<p><strong>创建 Automator 任务加载私钥，然后放到开机启动中。</strong></p>
+<ol>
+<li>创建一个 Automator task.<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step1.jpeg" alt="img"></li>
+<li>在 task 中写一串 shell script<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step2.jpeg" alt="img"></li>
+<li>把 task 添加到 login items 中，每次系统重启后会执行这个 Automator task，自动 ssh-add 所有的私钥。<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step3.jpeg" alt="img"><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step4.jpeg" alt="img"></li>
+</ol>
+<p>搞定！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
     <title>mac的移动硬盘分区方案</title>
     <url>/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/</url>
     <content><![CDATA[<h3 id="分区方案"><a class="header-anchor" href="#分区方案"></a>分区方案</h3>
@@ -3096,39 +3129,6 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <p><img data-src="/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/hfs+.png" alt="hfs+"></p>
 </li>
 </ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>mac永久添加私钥到keyChain</title>
-    <url>/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/</url>
-    <content><![CDATA[<p>以下<a href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本，以备不时之需</p>
-<blockquote>
-<h1 id="Mac-重启后自动-ssh-add-私钥"><a class="header-anchor" href="#Mac-重启后自动-ssh-add-私钥"></a><a href="https://mednoter.com/ssh-add-automatically.html">Mac 重启后自动 ssh-add 私钥</a></h1>
-<p>管理服务器有一些安全常识:</p>
-<ul>
-<li>禁止 root 远程登录</li>
-<li>禁止密码登录</li>
-<li>使用 priviate / public key 作为默认的登录方式。</li>
-<li>修改 sshd 端口</li>
-</ul>
-<p>From Linode: <a href="https://www.linode.com/docs/security/securing-your-server">Securing your server</a></p>
-<p>安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，需要一次次手工 ssh-add 私钥，特别心烦。</p>
-<p>几年前有这种方法 <code>ssh-add -K privateKey</code> 可以一劳永逸的把私钥存到 keychain 中，重启后也不需要手动 ssh-add，非常方便。</p>
-<p><strong>这种方式不管用了。</strong></p>
-<p><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-ssh-add.jpeg" alt="img"></p>
-<h2 id="新的解决方法"><a class="header-anchor" href="#新的解决方法"></a>新的解决方法</h2>
-<p><strong>创建 Automator 任务加载私钥，然后放到开机启动中。</strong></p>
-<ol>
-<li>创建一个 Automator task.<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step1.jpeg" alt="img"></li>
-<li>在 task 中写一串 shell script<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step2.jpeg" alt="img"></li>
-<li>把 task 添加到 login items 中，每次系统重启后会执行这个 Automator task，自动 ssh-add 所有的私钥。<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step3.jpeg" alt="img"><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step4.jpeg" alt="img"></li>
-</ol>
-<p>搞定！</p>
-</blockquote>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3305,6 +3305,287 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
       <categories>
         <category>器</category>
         <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>ipython与jupyter_notebook安装配置使用</title>
+    <url>/%E5%99%A8/python/ipython%E4%B8%8Ejupyter_notebook%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8.md/main/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h1 id="ipython安装配置使用"><a class="header-anchor" href="#ipython安装配置使用"></a>ipython安装配置使用</h1>
+<h2 id="配置"><a class="header-anchor" href="#配置"></a>配置</h2>
+<h3 id="生成配置文件"><a class="header-anchor" href="#生成配置文件"></a>生成配置文件</h3>
+<p>若ipython的配置文件<code>~/.ipython/profile_default/&#123;ipython_config.py,ipython_kernel_config.py&#125;</code>不存在，则执行如下命令以创建之</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">ipython profile create<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>会返回</p>
+<blockquote>
+<p>[ProfileCreate] Generating default config file: ‘~/.ipython/profile_default/ipython_config.py’<br>
+[ProfileCreate] Generating default config file: ‘~/.ipython/profile_default/ipython_kernel_config.py’</p>
+</blockquote>
+<h3 id="终端下ipython的配色"><a class="header-anchor" href="#终端下ipython的配色"></a>终端下ipython的配色</h3>
+<p><a href="https://stackoverflow.com/questions/14129278/how-do-i-customize-text-color-in-ipython">参考</a></p>
+<h4 id="更换配色方案"><a class="header-anchor" href="#更换配色方案"></a>更换配色方案</h4>
+<p>默认的终端下ipython配色，<code>__class__</code>等显示为深蓝色，当你的终端背景是深色时容易，深蓝字难看清，建议修改配色方案。在<code>~/.ipython/profile_default/ipython_config.py</code>，找到如下两行，删除其行首”#“，并将等号后修改为</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>InteractiveShell<span class="token punctuation">.</span>colors <span class="token operator">=</span> <span class="token string">'Linux'</span>
+c<span class="token punctuation">.</span>TerminalInteractiveShell<span class="token punctuation">.</span>highlighting_style <span class="token operator">=</span> <span class="token string">'monokai'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p><code>c.InteractiveShell.colors</code>是指在ipython报错用的配色</p>
+</li>
+<li>
+<p><code>c.TerminalInteractiveShell.highlighting_style</code>是指python代码的配色。配色方案在定义在</p>
+<p><code>/Users/mac/anaconda/lib/python3.6/site-packages/pygments/styles/&lt;配色方案名称&gt;.py</code></p>
+<p>这里， &lt;配色方案名称monokai，是我找到<code>styles/</code>下较友好的配色了。</p>
+</li>
+</ul>
+<h4 id="手动修改高亮"><a class="header-anchor" href="#手动修改高亮"></a>手动修改高亮</h4>
+<p>若对所选配色方案还有不满意的地方，可以手动修改指定语法成分的高亮</p>
+<p>搜索<code>c.TerminalInteractiveShell.highlighting_style_overrides</code>，然后如下改写</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pygments<span class="token punctuation">.</span>token <span class="token keyword">import</span> Token<span class="token punctuation">,</span> Keyword<span class="token punctuation">,</span> Name<span class="token punctuation">,</span> Comment<span class="token punctuation">,</span> String<span class="token punctuation">,</span> Error<span class="token punctuation">,</span> \
+     Number<span class="token punctuation">,</span> Operator<span class="token punctuation">,</span> Generic<span class="token punctuation">,</span> Whitespace
+<span class="token comment">## Override highlighting format for specific tokens</span>
+c<span class="token punctuation">.</span>TerminalInteractiveShell<span class="token punctuation">.</span>highlighting_style_overrides <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">## Standard Pygments tokens (are all used by IPython ?)</span>
+
+    <span class="token comment"># Whitespace:                "#bbbbbb",</span>
+    <span class="token comment"># Comment:                   "italic #008800",</span>
+    <span class="token comment"># Comment.Preproc:           "noitalic",</span>
+    <span class="token comment"># Comment.Special:           "noitalic bold",</span>
+
+    Keyword<span class="token punctuation">:</span>                     <span class="token string">"bold #5fd4f9"</span><span class="token punctuation">,</span> <span class="token comment">#  8ce98c</span>
+    <span class="token comment"># Keyword.Pseudo:            "nobold",</span>
+    <span class="token comment"># Keyword.Type:              "bold #00BB00",</span>
+
+    <span class="token comment"># Operator:                  "#ff736f",   #</span>
+    <span class="token comment"># Operator.Word:             "bold #AA22FF",</span>
+
+    Name<span class="token punctuation">.</span>Builtin<span class="token punctuation">:</span>                <span class="token string">"#5fd4f9"</span><span class="token punctuation">,</span>
+    <span class="token comment"># Name.Function:             "#99f46a", #</span>
+    <span class="token comment"># Name.Class:                "#99f46a", #</span>
+    <span class="token comment"># Name.Namespace:            "bold #99f46a", #</span>
+    <span class="token comment"># Name.Exception:            "italic bold #89f9fc",</span>
+    Name<span class="token punctuation">.</span>Variable<span class="token punctuation">:</span>               <span class="token string">"italic"</span><span class="token punctuation">,</span> <span class="token comment">#</span>
+    <span class="token comment"># Name.Constant:             "#880000",</span>
+    <span class="token comment"># Name.Label:                "#A0A000",</span>
+    <span class="token comment"># Name.Entity:               "bold #999999",</span>
+    <span class="token comment"># Name.Attribute:            "#BB4444",</span>
+    <span class="token comment"># Name.Tag:                  "bold #008000",</span>
+    <span class="token comment"># Name.Decorator:            "#AA22FF",</span>
+
+
+    <span class="token comment"># String:                    "#f7f86c",</span>
+    <span class="token comment"># String.Doc:                "italic",</span>
+    <span class="token comment"># String.Interpol:           "bold #BB6688",</span>
+    <span class="token comment"># String.Escape:             "bold #BB6622",</span>
+    <span class="token comment"># String.Regex:              "#BB6688",</span>
+    <span class="token comment"># String.Symbol:             "#71f3f6", #</span>
+    <span class="token comment"># String.Other:              "#008000",</span>
+    <span class="token comment"># Number:                    "#cf97f2", #</span>
+
+    <span class="token comment"># Generic.Heading:           "bold #000080",</span>
+    <span class="token comment"># Generic.Subheading:        "bold #800080",</span>
+    <span class="token comment"># Generic.Deleted:           "#A00000",</span>
+    <span class="token comment"># Generic.Inserted:          "#5affb4", #</span>
+    <span class="token comment"># Generic.Error:             "#FF0000",</span>
+    <span class="token comment"># Generic.Emph:              "italic",</span>
+    <span class="token comment"># Generic.Strong:            "bold",</span>
+    <span class="token comment"># Generic.Prompt:            "bold #000080",</span>
+    <span class="token comment"># Generic.Output:            "#888",</span>
+    <span class="token comment"># Generic.Traceback:         "#04D",</span>
+
+    <span class="token comment"># Error:                     "border:#ff0000",</span>
+
+    <span class="token comment">## IPython</span>
+
+    <span class="token comment"># Token.Number: '#ffffff',</span>
+    <span class="token comment"># Token.Operator: 'noinherit',</span>
+    <span class="token comment"># Token.String: '#8b8',</span>
+    <span class="token comment"># Token.Name.Function: '#2080D0',</span>
+    <span class="token comment"># Token.Name.Class: 'bold #2080D0',</span>
+    <span class="token comment"># Token.Name.Namespace: 'bold #2080D0',</span>
+    <span class="token comment"># Token.Prompt: '#ffffff bold',</span>
+    <span class="token comment"># Token.PromptNum: '#888888 bold',</span>
+    Token<span class="token punctuation">.</span>OutPrompt<span class="token punctuation">:</span> <span class="token string">'#ff5753'</span><span class="token punctuation">,</span>
+    Token<span class="token punctuation">.</span>OutPromptNum<span class="token punctuation">:</span> <span class="token string">'#ff5753 bold'</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="jupyter-notebook-安装配置使用"><a class="header-anchor" href="#jupyter-notebook-安装配置使用"></a>jupyter notebook 安装配置使用</h1>
+<p><a href="https://zhuanlan.zhihu.com/p/23110830">参考</a></p>
+<p>已经验证此配置方法可用的环境：实验室服务器juncluster、jungpu</p>
+<h2 id="配置方法"><a class="header-anchor" href="#配置方法"></a>配置方法</h2>
+<p>ssh登录服务器</p>
+<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
+<p>进入python虚拟环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>检查是否安装jupyter</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如返回未安装，则安装之</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>已安装则升级之</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="配置-_2"><a class="header-anchor" href="#配置-_2"></a>配置</h3>
+<h4 id="生成配置文件-_2"><a class="header-anchor" href="#生成配置文件-_2"></a>生成配置文件</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter notebook --generate-config
+<span class="token comment"># 返回 Writing default config to: ~/.jupyter/jupyter_notebook_config.py</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>会自动创建文件夹<code>~/.jupyter</code>与配置文件<code>~/.jupyter/jupyter_notebook_config.py</code></p>
+<p>命令行会返回此【配置文件路径】，请保存</p>
+<h4 id="生成网络证书"><a class="header-anchor" href="#生成网络证书"></a>生成网络证书</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~/.jupyter
+<span class="token comment"># openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem</span>
+openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days <span class="token number">3650</span> -out mycert.pem<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>回车系统会要求你填写：国家、省份、城市、单位、项目、邮箱，按真实填写之即可。<br>
+保存【证书路径】=<code>~/.jupyter/mycert.pem</code>，【密钥路径】=<code>~/.jupyter/key.pem</code></p>
+<h4 id="生成notebook登录密码"><a class="header-anchor" href="#生成notebook登录密码"></a>生成notebook登录密码</h4>
+<p>若想给notebook设置登录密码，则做此事。可以在任何电脑上做，生成的密文是一样的</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">ipython
+In <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token keyword">from</span> notebook<span class="token punctuation">.</span>auth <span class="token keyword">import</span> passwd
+In <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> passwd<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">#  创建一个密文的密码</span>
+Enter password<span class="token punctuation">:</span> <span class="token comment"># 在此处设置notebook的【登录密码】</span>
+Verify password<span class="token punctuation">:</span> <span class="token comment"># 重复密码</span>
+Out<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token string">'sha1:adsasdasd:34da7adasdas87d0as8d70asda8sdaasd076f018'</span> <span class="token comment"># 会生成一个形如它的【哈希密码】</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>将登录密码与哈希密码保存</p>
+<h4 id="更改配置文件"><a class="header-anchor" href="#更改配置文件"></a>更改配置文件</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /home/<span class="token environment constant">$USER</span>/.jupyter/jupyter_notebook_config.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>通用配置</p>
+<p>进入文件后</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 加在文件开头</span>
+<span class="token keyword">import</span> os
+<span class="token comment">#【证书新路径】</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>certfile <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>expanduser<span class="token punctuation">(</span><span class="token string">u'~/.jupyter/mycert.pem'</span><span class="token punctuation">)</span>
+<span class="token comment">#【密钥路径】</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>keyfile <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>expanduser<span class="token punctuation">(</span><span class="token string">u'~/.jupyter/key.pem'</span><span class="token punctuation">)</span>
+<span class="token comment"># NotebookApp的ip，'0.0.0.0'莫写成"*"。</span>
+<span class="token comment"># 写成"*"有时会报错”socket.gaierror: [Errno -5] No address associated with hostname“</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>ip <span class="token operator">=</span> <span class="token string">'0.0.0.0'</span>
+<span class="token comment"># 使得服务器上输入'jupyter notebook'命令后，不会立即进入它的浏览器</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>open_browser <span class="token operator">=</span> <span class="token boolean">False</span>
+<span class="token comment"># 在浏览器访问notebook，要在浏览器中输入密码，才能登陆</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>password <span class="token operator">=</span> <span class="token string">u'【哈希密码】'</span>
+<span class="token comment"># 将该【服务器端口】保存，使用固定端口号，可以随便设置，建议用不常见的，以免与其他任务的端口号冲突</span>
+<span class="token comment">#  注：若别的任务先占用了该端口，输入'jupyter notebook'命令，则会自动用该端口+1，再不行+2，以此类推</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>port <span class="token operator">=</span> <span class="token number">11328</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>ipython notebook的配置</p>
+<p>老的版本的ipython，使用的是ipython notebook；新版本的ipython，已将notebook给了jupyter，故使用的是jupyter notebook</p>
+<p>ipython notebook则还需要更</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c <span class="token operator">=</span> get_config<span class="token punctuation">(</span><span class="token punctuation">)</span>
+c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuation">.</span>pylab <span class="token operator">=</span> <span class="token string">'inline'</span>  <span class="token comment"># if you want plotting support always</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>jupyter notebook替代“c.IPKernelApp.pylab = ‘inline’”的配置如下，这是默认设置，不用更改</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># DISABLED: use %pylab or %matplotlib in the notebook to enable matplotlib.</span>
+<span class="token comment"># c.NotebookApp.pylab = 'disabled'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>取消jupyter notebook密码</p>
+<p>这样访问notebook就可以不需要密码</p>
+<p>把</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># c.NotebookApp.token = '&lt;generated>'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>改为</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>token <span class="token operator">=</span> <span class="token string">''</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
+<h3 id="启动notebook"><a class="header-anchor" href="#启动notebook"></a>启动notebook</h3>
+<ul>
+<li>
+<p>转接</p>
+<p>服务器若设了防火墙，浏览器无法直接访问服务器的notebook【服务器端口】，只能经ssh转接</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> 【服务器】 -L127.0.0.1:11327:127.0.0.1:11328<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>注：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token string">'-L127.0.0.1:【代理端口】:127.0.0.1:【服务器端口】'</span>
+<span class="token comment"># 用户端的localhost:【代理端口】 转接到 服务器端的localhost:【服务器端口】</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>登录服务器后，这个转接终端不要关，直到不用notebook</p>
+</li>
+<li>
+<p>进入虚拟环境</p>
+<p>若jupyter装在virtualenv里，才需要这一步</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>启动notebook</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<h3 id="访问notebook"><a class="header-anchor" href="#访问notebook"></a>访问notebook</h3>
+<p>在本地电脑，使用浏览器访问<code>https://localhost:【代理端口】 </code></p>
+<ul>
+<li>
+<p>必须是https，jupyter不支持http</p>
+</li>
+<li>
+<p>浏览器的选择</p>
+<p>支持：qq浏览器/chrome浏览器/firefox浏览器<br>
+不支持：safari(可以登陆notebook的文件管理界面；但.ipynb文件的编辑界面下，无法连接到服务器的python内核)</p>
+</li>
+<li>
+<p>浏览器警告&quot;访问不安全&quot;</p>
+<p><a href="https://www.cnblogs.com/ZhYQ-Note/p/8493848.html">参考</a></p>
+<ul>
+<li>chrome:  高级&gt;&gt;继续前往（不安全），即可访问，但即使此证书到钥匙串，chrome每次访问<strong>依旧警告</strong></li>
+<li>safari：详细信息&gt;&gt;访问此网站&gt;&gt;接下来跟着提示步骤操作，会提示“以添加此证书到钥匙串”，之后用safari查看此网页，都<strong>不再警告</strong></li>
+<li>firefox：高级&gt;&gt;添加例外&gt;&gt;勾选永远添加此例外&gt;&gt;确认安全例外，之后firefox查看此网页，都<strong>不再警告</strong></li>
+</ul>
+<p><strong>相关技术</strong></p>
+<p>手动添加网页的证书</p>
+<ul>
+<li>导出证书：firefox访问此网页，显示访问不安全，点高级&gt;&gt;添加例外&gt;&gt;确认安全例外&gt;&gt;证书状态-查看&gt;&gt;详细详细&gt;&gt;导出，导出到随便什么地方</li>
+<li>打开 钥匙串访问.app，左栏分别选 登录+证书
+<ul>
+<li>若之前用safari信任了此证书，则可见你条件的证书</li>
+<li>若没，则将导出的证书拖到这里，然后双击此证书，再点”信任“，全调整为“总是信任”，然后之前导出的证书可以删了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>弹出jupyter页面，要求输入【登录密码】</p>
+<p>只有服务器上notebook程序重启，再次登录该网页，才需要再输入密码。<br>
+服务器上notebook程序未关，本地即便断网重连，过数天重连，同一个浏览器不用再次输入密码。</p>
+</li>
+</ul>
+<h3 id="脚本打开"><a class="header-anchor" href="#脚本打开"></a>脚本打开</h3>
+<p>上述启动、访问操作可以用shell或Python脚本打开实现</p>
+<h2 id="保持开启状态"><a class="header-anchor" href="#保持开启状态"></a>保持开启状态</h2>
+<h3 id="使用tmux"><a class="header-anchor" href="#使用tmux"></a>使用tmux</h3>
+<p>推荐此法，用tmux保持转接进程和jupyter notebook一直开启</p>
+<ul>
+<li>本机开个tmux session，用来ssh -L转接</li>
+<li>服务器上开个tmux session，用来开jupyter notebook</li>
+</ul>
+<h3 id="普通方法"><a class="header-anchor" href="#普通方法"></a>普通方法</h3>
+<ul>
+<li>
+<p>暂停jupyter notebook<br>
+服务器上按<code>ctrl+z</code>，会出现</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Stopped                 jupyter notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>表示jupyter notebook暂停，本地浏览器上无法访问Notebook网页</p>
+</li>
+<li>
+<p>放入后台运行</p>
+<p>服务器上输入</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bg</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>会出现</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+ jupyter notebook <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>表示jupyter notebook变成后台运行。</p>
+</li>
+<li>
+<p>查看进程</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">jobs</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若返回有</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Running                 jupyter notebook <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>则为jupyter notebook在后台运行</p>
+</li>
+<li>
+<p>退出登录</p>
+<p><code>ctrl+Q/W</code> 退出服务器的登录，则jupyter notebook立即停止</p>
+<p><code>exit</code>或<code>logout</code>退出服务器的登录，则jupyter notebook不会立即停止</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>python</category>
       </categories>
   </entry>
   <entry>
@@ -3604,287 +3885,6 @@ ModuleNotFoundError: No module named &#39;conda&#39;<span aria-hidden="true" cla
 <p>若依旧不能解决上述bug，则删掉之前的<code>&lt;anaconda根目录&gt;</code>，然后重装anaconda</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> Anaconda3-2018.12-Linux-x86_64.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>anaconda的base环境及其他自定义环境均不会保留</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>python</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>ipython与jupyter_notebook安装配置使用</title>
-    <url>/%E5%99%A8/python/ipython%E4%B8%8Ejupyter_notebook%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8.md/main/</url>
-    <content><![CDATA[<p>[TOC]</p>
-<h1 id="ipython安装配置使用"><a class="header-anchor" href="#ipython安装配置使用"></a>ipython安装配置使用</h1>
-<h2 id="配置"><a class="header-anchor" href="#配置"></a>配置</h2>
-<h3 id="生成配置文件"><a class="header-anchor" href="#生成配置文件"></a>生成配置文件</h3>
-<p>若ipython的配置文件<code>~/.ipython/profile_default/&#123;ipython_config.py,ipython_kernel_config.py&#125;</code>不存在，则执行如下命令以创建之</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">ipython profile create<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>会返回</p>
-<blockquote>
-<p>[ProfileCreate] Generating default config file: ‘~/.ipython/profile_default/ipython_config.py’<br>
-[ProfileCreate] Generating default config file: ‘~/.ipython/profile_default/ipython_kernel_config.py’</p>
-</blockquote>
-<h3 id="终端下ipython的配色"><a class="header-anchor" href="#终端下ipython的配色"></a>终端下ipython的配色</h3>
-<p><a href="https://stackoverflow.com/questions/14129278/how-do-i-customize-text-color-in-ipython">参考</a></p>
-<h4 id="更换配色方案"><a class="header-anchor" href="#更换配色方案"></a>更换配色方案</h4>
-<p>默认的终端下ipython配色，<code>__class__</code>等显示为深蓝色，当你的终端背景是深色时容易，深蓝字难看清，建议修改配色方案。在<code>~/.ipython/profile_default/ipython_config.py</code>，找到如下两行，删除其行首”#“，并将等号后修改为</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>InteractiveShell<span class="token punctuation">.</span>colors <span class="token operator">=</span> <span class="token string">'Linux'</span>
-c<span class="token punctuation">.</span>TerminalInteractiveShell<span class="token punctuation">.</span>highlighting_style <span class="token operator">=</span> <span class="token string">'monokai'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ul>
-<li>
-<p><code>c.InteractiveShell.colors</code>是指在ipython报错用的配色</p>
-</li>
-<li>
-<p><code>c.TerminalInteractiveShell.highlighting_style</code>是指python代码的配色。配色方案在定义在</p>
-<p><code>/Users/mac/anaconda/lib/python3.6/site-packages/pygments/styles/&lt;配色方案名称&gt;.py</code></p>
-<p>这里， &lt;配色方案名称monokai，是我找到<code>styles/</code>下较友好的配色了。</p>
-</li>
-</ul>
-<h4 id="手动修改高亮"><a class="header-anchor" href="#手动修改高亮"></a>手动修改高亮</h4>
-<p>若对所选配色方案还有不满意的地方，可以手动修改指定语法成分的高亮</p>
-<p>搜索<code>c.TerminalInteractiveShell.highlighting_style_overrides</code>，然后如下改写</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pygments<span class="token punctuation">.</span>token <span class="token keyword">import</span> Token<span class="token punctuation">,</span> Keyword<span class="token punctuation">,</span> Name<span class="token punctuation">,</span> Comment<span class="token punctuation">,</span> String<span class="token punctuation">,</span> Error<span class="token punctuation">,</span> \
-     Number<span class="token punctuation">,</span> Operator<span class="token punctuation">,</span> Generic<span class="token punctuation">,</span> Whitespace
-<span class="token comment">## Override highlighting format for specific tokens</span>
-c<span class="token punctuation">.</span>TerminalInteractiveShell<span class="token punctuation">.</span>highlighting_style_overrides <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-
-    <span class="token comment">## Standard Pygments tokens (are all used by IPython ?)</span>
-
-    <span class="token comment"># Whitespace:                "#bbbbbb",</span>
-    <span class="token comment"># Comment:                   "italic #008800",</span>
-    <span class="token comment"># Comment.Preproc:           "noitalic",</span>
-    <span class="token comment"># Comment.Special:           "noitalic bold",</span>
-
-    Keyword<span class="token punctuation">:</span>                     <span class="token string">"bold #5fd4f9"</span><span class="token punctuation">,</span> <span class="token comment">#  8ce98c</span>
-    <span class="token comment"># Keyword.Pseudo:            "nobold",</span>
-    <span class="token comment"># Keyword.Type:              "bold #00BB00",</span>
-
-    <span class="token comment"># Operator:                  "#ff736f",   #</span>
-    <span class="token comment"># Operator.Word:             "bold #AA22FF",</span>
-
-    Name<span class="token punctuation">.</span>Builtin<span class="token punctuation">:</span>                <span class="token string">"#5fd4f9"</span><span class="token punctuation">,</span>
-    <span class="token comment"># Name.Function:             "#99f46a", #</span>
-    <span class="token comment"># Name.Class:                "#99f46a", #</span>
-    <span class="token comment"># Name.Namespace:            "bold #99f46a", #</span>
-    <span class="token comment"># Name.Exception:            "italic bold #89f9fc",</span>
-    Name<span class="token punctuation">.</span>Variable<span class="token punctuation">:</span>               <span class="token string">"italic"</span><span class="token punctuation">,</span> <span class="token comment">#</span>
-    <span class="token comment"># Name.Constant:             "#880000",</span>
-    <span class="token comment"># Name.Label:                "#A0A000",</span>
-    <span class="token comment"># Name.Entity:               "bold #999999",</span>
-    <span class="token comment"># Name.Attribute:            "#BB4444",</span>
-    <span class="token comment"># Name.Tag:                  "bold #008000",</span>
-    <span class="token comment"># Name.Decorator:            "#AA22FF",</span>
-
-
-    <span class="token comment"># String:                    "#f7f86c",</span>
-    <span class="token comment"># String.Doc:                "italic",</span>
-    <span class="token comment"># String.Interpol:           "bold #BB6688",</span>
-    <span class="token comment"># String.Escape:             "bold #BB6622",</span>
-    <span class="token comment"># String.Regex:              "#BB6688",</span>
-    <span class="token comment"># String.Symbol:             "#71f3f6", #</span>
-    <span class="token comment"># String.Other:              "#008000",</span>
-    <span class="token comment"># Number:                    "#cf97f2", #</span>
-
-    <span class="token comment"># Generic.Heading:           "bold #000080",</span>
-    <span class="token comment"># Generic.Subheading:        "bold #800080",</span>
-    <span class="token comment"># Generic.Deleted:           "#A00000",</span>
-    <span class="token comment"># Generic.Inserted:          "#5affb4", #</span>
-    <span class="token comment"># Generic.Error:             "#FF0000",</span>
-    <span class="token comment"># Generic.Emph:              "italic",</span>
-    <span class="token comment"># Generic.Strong:            "bold",</span>
-    <span class="token comment"># Generic.Prompt:            "bold #000080",</span>
-    <span class="token comment"># Generic.Output:            "#888",</span>
-    <span class="token comment"># Generic.Traceback:         "#04D",</span>
-
-    <span class="token comment"># Error:                     "border:#ff0000",</span>
-
-    <span class="token comment">## IPython</span>
-
-    <span class="token comment"># Token.Number: '#ffffff',</span>
-    <span class="token comment"># Token.Operator: 'noinherit',</span>
-    <span class="token comment"># Token.String: '#8b8',</span>
-    <span class="token comment"># Token.Name.Function: '#2080D0',</span>
-    <span class="token comment"># Token.Name.Class: 'bold #2080D0',</span>
-    <span class="token comment"># Token.Name.Namespace: 'bold #2080D0',</span>
-    <span class="token comment"># Token.Prompt: '#ffffff bold',</span>
-    <span class="token comment"># Token.PromptNum: '#888888 bold',</span>
-    Token<span class="token punctuation">.</span>OutPrompt<span class="token punctuation">:</span> <span class="token string">'#ff5753'</span><span class="token punctuation">,</span>
-    Token<span class="token punctuation">.</span>OutPromptNum<span class="token punctuation">:</span> <span class="token string">'#ff5753 bold'</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="jupyter-notebook-安装配置使用"><a class="header-anchor" href="#jupyter-notebook-安装配置使用"></a>jupyter notebook 安装配置使用</h1>
-<p><a href="https://zhuanlan.zhihu.com/p/23110830">参考</a></p>
-<p>已经验证此配置方法可用的环境：实验室服务器juncluster、jungpu</p>
-<h2 id="配置方法"><a class="header-anchor" href="#配置方法"></a>配置方法</h2>
-<p>ssh登录服务器</p>
-<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
-<p>进入python虚拟环境</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>检查是否安装jupyter</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>如返回未安装，则安装之</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>已安装则升级之</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="配置-_2"><a class="header-anchor" href="#配置-_2"></a>配置</h3>
-<h4 id="生成配置文件-_2"><a class="header-anchor" href="#生成配置文件-_2"></a>生成配置文件</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter notebook --generate-config
-<span class="token comment"># 返回 Writing default config to: ~/.jupyter/jupyter_notebook_config.py</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>会自动创建文件夹<code>~/.jupyter</code>与配置文件<code>~/.jupyter/jupyter_notebook_config.py</code></p>
-<p>命令行会返回此【配置文件路径】，请保存</p>
-<h4 id="生成网络证书"><a class="header-anchor" href="#生成网络证书"></a>生成网络证书</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~/.jupyter
-<span class="token comment"># openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem</span>
-openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days <span class="token number">3650</span> -out mycert.pem<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>回车系统会要求你填写：国家、省份、城市、单位、项目、邮箱，按真实填写之即可。<br>
-保存【证书路径】=<code>~/.jupyter/mycert.pem</code>，【密钥路径】=<code>~/.jupyter/key.pem</code></p>
-<h4 id="生成notebook登录密码"><a class="header-anchor" href="#生成notebook登录密码"></a>生成notebook登录密码</h4>
-<p>若想给notebook设置登录密码，则做此事。可以在任何电脑上做，生成的密文是一样的</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">ipython
-In <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token keyword">from</span> notebook<span class="token punctuation">.</span>auth <span class="token keyword">import</span> passwd
-In <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> passwd<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">#  创建一个密文的密码</span>
-Enter password<span class="token punctuation">:</span> <span class="token comment"># 在此处设置notebook的【登录密码】</span>
-Verify password<span class="token punctuation">:</span> <span class="token comment"># 重复密码</span>
-Out<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token string">'sha1:adsasdasd:34da7adasdas87d0as8d70asda8sdaasd076f018'</span> <span class="token comment"># 会生成一个形如它的【哈希密码】</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>将登录密码与哈希密码保存</p>
-<h4 id="更改配置文件"><a class="header-anchor" href="#更改配置文件"></a>更改配置文件</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /home/<span class="token environment constant">$USER</span>/.jupyter/jupyter_notebook_config.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>
-<p>通用配置</p>
-<p>进入文件后</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 加在文件开头</span>
-<span class="token keyword">import</span> os
-<span class="token comment">#【证书新路径】</span>
-c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>certfile <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>expanduser<span class="token punctuation">(</span><span class="token string">u'~/.jupyter/mycert.pem'</span><span class="token punctuation">)</span>
-<span class="token comment">#【密钥路径】</span>
-c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>keyfile <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>expanduser<span class="token punctuation">(</span><span class="token string">u'~/.jupyter/key.pem'</span><span class="token punctuation">)</span>
-<span class="token comment"># NotebookApp的ip，'0.0.0.0'莫写成"*"。</span>
-<span class="token comment"># 写成"*"有时会报错”socket.gaierror: [Errno -5] No address associated with hostname“</span>
-c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>ip <span class="token operator">=</span> <span class="token string">'0.0.0.0'</span>
-<span class="token comment"># 使得服务器上输入'jupyter notebook'命令后，不会立即进入它的浏览器</span>
-c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>open_browser <span class="token operator">=</span> <span class="token boolean">False</span>
-<span class="token comment"># 在浏览器访问notebook，要在浏览器中输入密码，才能登陆</span>
-c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>password <span class="token operator">=</span> <span class="token string">u'【哈希密码】'</span>
-<span class="token comment"># 将该【服务器端口】保存，使用固定端口号，可以随便设置，建议用不常见的，以免与其他任务的端口号冲突</span>
-<span class="token comment">#  注：若别的任务先占用了该端口，输入'jupyter notebook'命令，则会自动用该端口+1，再不行+2，以此类推</span>
-c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>port <span class="token operator">=</span> <span class="token number">11328</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>ipython notebook的配置</p>
-<p>老的版本的ipython，使用的是ipython notebook；新版本的ipython，已将notebook给了jupyter，故使用的是jupyter notebook</p>
-<p>ipython notebook则还需要更</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">c <span class="token operator">=</span> get_config<span class="token punctuation">(</span><span class="token punctuation">)</span>
-c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuation">.</span>pylab <span class="token operator">=</span> <span class="token string">'inline'</span>  <span class="token comment"># if you want plotting support always</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>jupyter notebook替代“c.IPKernelApp.pylab = ‘inline’”的配置如下，这是默认设置，不用更改</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># DISABLED: use %pylab or %matplotlib in the notebook to enable matplotlib.</span>
-<span class="token comment"># c.NotebookApp.pylab = 'disabled'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>取消jupyter notebook密码</p>
-<p>这样访问notebook就可以不需要密码</p>
-<p>把</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># c.NotebookApp.token = '&lt;generated>'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>改为</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>token <span class="token operator">=</span> <span class="token string">''</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
-<h3 id="启动notebook"><a class="header-anchor" href="#启动notebook"></a>启动notebook</h3>
-<ul>
-<li>
-<p>转接</p>
-<p>服务器若设了防火墙，浏览器无法直接访问服务器的notebook【服务器端口】，只能经ssh转接</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> 【服务器】 -L127.0.0.1:11327:127.0.0.1:11328<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>注：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token string">'-L127.0.0.1:【代理端口】:127.0.0.1:【服务器端口】'</span>
-<span class="token comment"># 用户端的localhost:【代理端口】 转接到 服务器端的localhost:【服务器端口】</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>登录服务器后，这个转接终端不要关，直到不用notebook</p>
-</li>
-<li>
-<p>进入虚拟环境</p>
-<p>若jupyter装在virtualenv里，才需要这一步</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>启动notebook</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-<h3 id="访问notebook"><a class="header-anchor" href="#访问notebook"></a>访问notebook</h3>
-<p>在本地电脑，使用浏览器访问<code>https://localhost:【代理端口】 </code></p>
-<ul>
-<li>
-<p>必须是https，jupyter不支持http</p>
-</li>
-<li>
-<p>浏览器的选择</p>
-<p>支持：qq浏览器/chrome浏览器/firefox浏览器<br>
-不支持：safari(可以登陆notebook的文件管理界面；但.ipynb文件的编辑界面下，无法连接到服务器的python内核)</p>
-</li>
-<li>
-<p>浏览器警告&quot;访问不安全&quot;</p>
-<p><a href="https://www.cnblogs.com/ZhYQ-Note/p/8493848.html">参考</a></p>
-<ul>
-<li>chrome:  高级&gt;&gt;继续前往（不安全），即可访问，但即使此证书到钥匙串，chrome每次访问<strong>依旧警告</strong></li>
-<li>safari：详细信息&gt;&gt;访问此网站&gt;&gt;接下来跟着提示步骤操作，会提示“以添加此证书到钥匙串”，之后用safari查看此网页，都<strong>不再警告</strong></li>
-<li>firefox：高级&gt;&gt;添加例外&gt;&gt;勾选永远添加此例外&gt;&gt;确认安全例外，之后firefox查看此网页，都<strong>不再警告</strong></li>
-</ul>
-<p><strong>相关技术</strong></p>
-<p>手动添加网页的证书</p>
-<ul>
-<li>导出证书：firefox访问此网页，显示访问不安全，点高级&gt;&gt;添加例外&gt;&gt;确认安全例外&gt;&gt;证书状态-查看&gt;&gt;详细详细&gt;&gt;导出，导出到随便什么地方</li>
-<li>打开 钥匙串访问.app，左栏分别选 登录+证书
-<ul>
-<li>若之前用safari信任了此证书，则可见你条件的证书</li>
-<li>若没，则将导出的证书拖到这里，然后双击此证书，再点”信任“，全调整为“总是信任”，然后之前导出的证书可以删了</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>弹出jupyter页面，要求输入【登录密码】</p>
-<p>只有服务器上notebook程序重启，再次登录该网页，才需要再输入密码。<br>
-服务器上notebook程序未关，本地即便断网重连，过数天重连，同一个浏览器不用再次输入密码。</p>
-</li>
-</ul>
-<h3 id="脚本打开"><a class="header-anchor" href="#脚本打开"></a>脚本打开</h3>
-<p>上述启动、访问操作可以用shell或Python脚本打开实现</p>
-<h2 id="保持开启状态"><a class="header-anchor" href="#保持开启状态"></a>保持开启状态</h2>
-<h3 id="使用tmux"><a class="header-anchor" href="#使用tmux"></a>使用tmux</h3>
-<p>推荐此法，用tmux保持转接进程和jupyter notebook一直开启</p>
-<ul>
-<li>本机开个tmux session，用来ssh -L转接</li>
-<li>服务器上开个tmux session，用来开jupyter notebook</li>
-</ul>
-<h3 id="普通方法"><a class="header-anchor" href="#普通方法"></a>普通方法</h3>
-<ul>
-<li>
-<p>暂停jupyter notebook<br>
-服务器上按<code>ctrl+z</code>，会出现</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Stopped                 jupyter notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>表示jupyter notebook暂停，本地浏览器上无法访问Notebook网页</p>
-</li>
-<li>
-<p>放入后台运行</p>
-<p>服务器上输入</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bg</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>会出现</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+ jupyter notebook <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>表示jupyter notebook变成后台运行。</p>
-</li>
-<li>
-<p>查看进程</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">jobs</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>若返回有</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Running                 jupyter notebook <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>则为jupyter notebook在后台运行</p>
-</li>
-<li>
-<p>退出登录</p>
-<p><code>ctrl+Q/W</code> 退出服务器的登录，则jupyter notebook立即停止</p>
-<p><code>exit</code>或<code>logout</code>退出服务器的登录，则jupyter notebook不会立即停止</p>
-</li>
-</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -4851,26 +4851,6 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
       </categories>
   </entry>
   <entry>
-    <title>shell下的颜色</title>
-    <url>/%E5%99%A8/shell/shell%E4%B8%8B%E7%9A%84%E9%A2%9C%E8%89%B2.md/main/</url>
-    <content><![CDATA[<h2 id="显示256色的预览"><a class="header-anchor" href="#显示256色的预览"></a>显示256色的预览</h2>
-<p>执行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ <span class="token operator">|</span> <span class="token function">bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>会返回</p>
-<p><img data-src="/%E5%99%A8/shell/shell%E4%B8%8B%E7%9A%84%E9%A2%9C%E8%89%B2.md/main/image-20200120192157283.png" alt="image-20200120192157283"></p>
-<p>注意:</p>
-<ul>
-<li>同色号的字, 非粗体和粗体(bold)的前景颜色不同</li>
-<li>同色号的前景颜色和背景颜色不同</li>
-<li>第0-15号色在iterm2下实际显示何种颜色, 取决于iterm的中 Preference-Profile-color-ANSI color的设置</li>
-</ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>shell</category>
-      </categories>
-  </entry>
-  <entry>
     <title>shell的参数解析</title>
     <url>/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/</url>
     <content><![CDATA[<h1 id="getopt"><a class="header-anchor" href="#getopt"></a>getopt</h1>
@@ -5137,6 +5117,26 @@ compdef _tmux tmux_itm
     <span class="token keyword">fi</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意：复用<code>foo &lt;n个参数&gt;</code>，要仿照上面的代码，把前n个参数过掉。</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>shell</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>shell下的颜色</title>
+    <url>/%E5%99%A8/shell/shell%E4%B8%8B%E7%9A%84%E9%A2%9C%E8%89%B2.md/main/</url>
+    <content><![CDATA[<h2 id="显示256色的预览"><a class="header-anchor" href="#显示256色的预览"></a>显示256色的预览</h2>
+<p>执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ <span class="token operator">|</span> <span class="token function">bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>会返回</p>
+<p><img data-src="/%E5%99%A8/shell/shell%E4%B8%8B%E7%9A%84%E9%A2%9C%E8%89%B2.md/main/image-20200120192157283.png" alt="image-20200120192157283"></p>
+<p>注意:</p>
+<ul>
+<li>同色号的字, 非粗体和粗体(bold)的前景颜色不同</li>
+<li>同色号的前景颜色和背景颜色不同</li>
+<li>第0-15号色在iterm2下实际显示何种颜色, 取决于iterm的中 Preference-Profile-color-ANSI color的设置</li>
+</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -5809,267 +5809,6 @@ pgrep -lf sshfs <span class="token comment"># 再列出，若空则杀尽</span>
       </categories>
   </entry>
   <entry>
-    <title>teamviewer-检测为商业用途</title>
-    <url>/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/</url>
-    <content><![CDATA[<h2 id="简介"><a class="header-anchor" href="#简介"></a>简介</h2>
-<p>参考：<a href="https://zhuanlan.zhihu.com/p/46180174">teamviewer检测为商业用途-mac</a></p>
-<blockquote>
-<p>Teamviewer会根据一套算法检测当前是否用于商业用途，可能根据在线时间，是否跨网段远程访问，当前操作系统是否为专业或企业版，以及其他因素进行检测，具体算法不得而知，不过有时明明只是个人非盈利目的使用，却弹出下面的对话框，在1到5分钟后就会自动断开，然后就连不上了，触发重新运行Teamviewer。</p>
-<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/v2-744c2c4b42bfd0cb956a8fe1b19867eb_hd.jpg" alt="img"></p>
-</blockquote>
-<p>以下给出在mac和windows上的解决方法</p>
-<h2 id="MAC"><a class="header-anchor" href="#MAC"></a>MAC</h2>
-<p>运行python脚本修改Teamviewer ID, 并重启电脑. 详细步骤如下:</p>
-<ul>
-<li>
-<p>关闭Teamviewer</p>
-</li>
-<li>
-<p>创建一个python脚本 <code>reset_teamviewer-id.py</code>,  内容如下</p>
-</li>
-</ul>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#!/usr/bin/env python</span>
-
-<span class="token comment"># -*- coding: utf-8 -*-</span>
-<span class="token keyword">import</span> sys
-<span class="token keyword">import</span> os
-<span class="token keyword">import</span> glob
-<span class="token keyword">import</span> platform
-<span class="token keyword">import</span> re
-<span class="token keyword">import</span> random
-<span class="token keyword">import</span> string
-
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token triple-quoted-string string">'''
---------------------------------
-TeamViewer ID Changer for MAC OS
---------------------------------
-'''</span><span class="token punctuation">)</span>
-
-<span class="token keyword">if</span> platform<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token string">'Darwin'</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'This script can be run only on MAC OS.'</span><span class="token punctuation">)</span>
-    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">if</span> os<span class="token punctuation">.</span>geteuid<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'This script must be run form root.'</span><span class="token punctuation">)</span>
-    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">if</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>has_key<span class="token punctuation">(</span><span class="token string">'SUDO_USER'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    USERNAME <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">'SUDO_USER'</span><span class="token punctuation">]</span>
-    <span class="token keyword">if</span> USERNAME <span class="token operator">==</span> <span class="token string">'root'</span><span class="token punctuation">:</span>
-       <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Can not find user name. Run this script via sudo from regular user'</span><span class="token punctuation">)</span>
-       sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-<span class="token keyword">else</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Can not find user name. Run this script via sudo from regular user'</span><span class="token punctuation">)</span>
-    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-HOMEDIRLIB <span class="token operator">=</span> <span class="token string">'/Users/'</span> <span class="token operator">+</span> USERNAME  <span class="token operator">+</span> <span class="token string">'/Library/Preferences/'</span>
-GLOBALLIB  <span class="token operator">=</span>  <span class="token string">'/Library/Preferences/'</span>
-
-CONFIGS <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
-
-<span class="token comment"># Find config files</span>
-
-<span class="token keyword">def</span> <span class="token function">listdir_fullpath</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> <span class="token punctuation">[</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>d<span class="token punctuation">,</span> f<span class="token punctuation">)</span> <span class="token keyword">for</span> f <span class="token keyword">in</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">]</span>
-
-<span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> listdir_fullpath<span class="token punctuation">(</span>HOMEDIRLIB<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">if</span> <span class="token string">'teamviewer'</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">in</span> <span class="token builtin">file</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        CONFIGS<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span>
-
-<span class="token keyword">if</span> <span class="token keyword">not</span> CONFIGS<span class="token punctuation">:</span>
-    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token triple-quoted-string string">'''
-There is no TemViewer configs found.
-Maybe you have deleted it manualy or never run TeamViewer after installation.
-Nothing to delete.
-'''</span><span class="token punctuation">)</span>
-<span class="token comment"># Delete config files</span>
-<span class="token keyword">else</span><span class="token punctuation">:</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Configs found:\n"</span><span class="token punctuation">)</span>
-    <span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> CONFIGS<span class="token punctuation">:</span>
-        <span class="token keyword">print</span> <span class="token builtin">file</span>
-
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token triple-quoted-string string">'''
-This files will be DELETED permanently.
-All TeamViewer settings will be lost
-'''</span><span class="token punctuation">)</span>
-    <span class="token builtin">raw_input</span><span class="token punctuation">(</span><span class="token string">"Press Enter to continue or CTR+C to abort..."</span><span class="token punctuation">)</span>
-
-    <span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> CONFIGS<span class="token punctuation">:</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            os<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span>
-        <span class="token keyword">except</span><span class="token punctuation">:</span>
-            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Cannot delete config files. Permission denied?"</span><span class="token punctuation">)</span>
-            sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Done."</span><span class="token punctuation">)</span>
-
-<span class="token comment"># Find binaryes</span>
-
-TMBINARYES <span class="token operator">=</span> <span class="token punctuation">[</span>
-<span class="token string">'/Applications/TeamViewer.app/Contents/MacOS/TeamViewer'</span><span class="token punctuation">,</span>
-<span class="token string">'/Applications/TeamViewer.app/Contents/MacOS/TeamViewer_Service'</span><span class="token punctuation">,</span>
-<span class="token string">'/Applications/TeamViewer.app/Contents/MacOS/TeamViewer_Desktop'</span><span class="token punctuation">,</span>  <span class="token comment"># for Teamviewer 15.x.xxxx</span>
-<span class="token punctuation">]</span>
-
-<span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> TMBINARYES<span class="token punctuation">:</span>
-    <span class="token keyword">if</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-        <span class="token keyword">pass</span>
-    <span class="token keyword">else</span><span class="token punctuation">:</span>
-        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"File not found: "</span> <span class="token operator">+</span> <span class="token builtin">file</span><span class="token punctuation">)</span>
-        <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">"Install TeamViewer correctly"</span><span class="token punctuation">)</span>
-        sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token comment"># Patch files</span>
-
-<span class="token keyword">def</span> <span class="token function">idpatch</span><span class="token punctuation">(</span>fpath<span class="token punctuation">,</span>platf<span class="token punctuation">,</span>serial<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token builtin">file</span> <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>fpath<span class="token punctuation">,</span> <span class="token string">'r+b'</span><span class="token punctuation">)</span>
-    binary <span class="token operator">=</span> <span class="token builtin">file</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
-    PlatformPattern <span class="token operator">=</span> <span class="token string">"IOPlatformExpert.&#123;6&#125;"</span>
-    SerialPattern <span class="token operator">=</span>  <span class="token string">"IOPlatformSerialNumber%s%s%sUUID"</span>
-
-    binary <span class="token operator">=</span> re<span class="token punctuation">.</span>sub<span class="token punctuation">(</span>PlatformPattern<span class="token punctuation">,</span> platf<span class="token punctuation">,</span> binary<span class="token punctuation">)</span>
-    binary <span class="token operator">=</span> re<span class="token punctuation">.</span>sub<span class="token punctuation">(</span>SerialPattern <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"[0-9a-zA-Z]&#123;8,8&#125;"</span><span class="token punctuation">,</span> <span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> SerialPattern<span class="token operator">%</span><span class="token punctuation">(</span><span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> serial<span class="token punctuation">,</span> <span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> binary<span class="token punctuation">)</span>
-
-    <span class="token builtin">file</span> <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>fpath<span class="token punctuation">,</span><span class="token string">'wb'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>write<span class="token punctuation">(</span>binary<span class="token punctuation">)</span>
-    <span class="token keyword">return</span> <span class="token boolean">True</span>
-
-<span class="token keyword">def</span> <span class="token function">random_generator</span><span class="token punctuation">(</span>size<span class="token operator">=</span><span class="token number">8</span><span class="token punctuation">,</span> chars<span class="token operator">=</span>string<span class="token punctuation">.</span>ascii_uppercase <span class="token operator">+</span> string<span class="token punctuation">.</span>digits<span class="token punctuation">)</span><span class="token punctuation">:</span>
-    <span class="token keyword">return</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>chars<span class="token punctuation">)</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-RANDOMSERIAL <span class="token operator">=</span> random_generator<span class="token punctuation">(</span><span class="token punctuation">)</span>
-RANDOMPLATFORM <span class="token operator">=</span> <span class="token string">"IOPlatformExpert"</span> <span class="token operator">+</span> random_generator<span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>
-
-
-<span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> TMBINARYES<span class="token punctuation">:</span>
-        <span class="token keyword">try</span><span class="token punctuation">:</span>
-            idpatch<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">,</span>RANDOMPLATFORM<span class="token punctuation">,</span>RANDOMSERIAL<span class="token punctuation">)</span>
-        <span class="token keyword">except</span><span class="token punctuation">:</span>
-            <span class="token keyword">print</span> <span class="token string">"Error: can not patch file "</span> <span class="token operator">+</span> <span class="token builtin">file</span>
-            <span class="token keyword">print</span> <span class="token string">"Wrong version?"</span>
-            sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
-
-<span class="token keyword">print</span> <span class="token string">"PlatformDevice: "</span> <span class="token operator">+</span> RANDOMPLATFORM
-<span class="token keyword">print</span> <span class="token string">"PlatformSerial: "</span> <span class="token operator">+</span> RANDOMSERIAL
-
-<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token triple-quoted-string string">'''
-ID changed sucessfully.
-!!! Restart computer before using TeamViewer !!!!
-'''</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>检查 <code>TeamViewer_Desktop</code> 的路径在上述脚本填写正确: 不同版本的Teamviewer, 此路径不同. 可在终端执行如下命令, 寻找此路径:</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /Applications/TeamViewer.app
-<span class="token function">find</span> <span class="token builtin class-name">.</span> -name TeamViewer_Desktop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ul>
-<li>Teamviewer 15 版本, 会返回</li>
-</ul>
-<pre><code><pre class="line-numbers language-none"><code class="language-none">.&#x2F;MacOS&#x2F;TeamViewer_Desktop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-则在上述脚本中, 将 `TMBINARYES` 数组的最后一项改成
-
-<pre class="line-numbers language-none"><code class="language-none">&quot;&#x2F;Applications&#x2F;TeamViewer.app&#x2F;Contents&#x2F;MacOS&#x2F;TeamViewer_Desktop&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</code></pre>
-<ul>
-<li>Teamviewer 13 版本, 会返回</li>
-</ul>
-<pre><code> <pre class="line-numbers language-none"><code class="language-none">.&#x2F;Helpers&#x2F;TeamViewer_Desktop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-
-则在上述脚本中, 将 `TMBINARYES` 数组的最后一项改成
-
-<pre class="line-numbers language-none"><code class="language-none">&quot;&#x2F;Applications&#x2F;TeamViewer.app&#x2F;Contents&#x2F;Helpers&#x2F;TeamViewer_Desktop&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</code></pre>
-<ul>
-<li>
-<p>其余版本的T eamviewer 我虽未尝试, 不知其具体返回, 但您可依上法自行确定 <code>TeamViewer_Desktop</code> 的路径, 并修改 <code>TMBINARYES</code> 数组的最后一项.</p>
-</li>
-<li>
-<p>用<code>python2</code>运行上述脚本</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> /usr/bin/python reset_teamviewer-id.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>若返回下图(<a href="https://www.jianshu.com/p/c1a77c351283">出处</a>)</p>
-<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/1174.png" alt="img"></p>
-<p>则  <strong>切勿立即开Teamviewer</strong> ,  需要先重启电脑</p>
-</li>
-<li>
-<p>电脑重启后, 关掉任何网络代理, 再次开启teamviewer, 会显示一个新的Teamviewer ID. 此时需要重新登录teamviewer账号, 输入原来teamviewer邮箱和密码, 此邮箱会受到确认信, 需确认才能完成登录.</p>
-</li>
-<li>
-<p>而后可以正常连接远程电脑的teamviewer, 不再会显示商业用途.</p>
-</li>
-</ul>
-<h2 id="windows"><a class="header-anchor" href="#windows"></a>windows</h2>
-<p>卸载teamviewer, 修改MAC地址, 重装teamviwer, 以便让teamviewer看见未见过的mac地址, 以为这是新的设备, 故而给其分配一个新teamviwer ID. 如果过段时间再被误认为商业用途，需要重复这一过程.</p>
-<p>以下操作较为麻烦, 可以找找网上的脚本来修改ID.</p>
-<p><a href="https://blog.csdn.net/m0_38072683/article/details/83046992">参考</a></p>
-<ul>
-<li>
-<p>关闭Teamviewer</p>
-</li>
-<li>
-<p>卸载Teamviewer</p>
-</li>
-<li>
-<p>从注册表删Teamviewer:</p>
-<ul>
-<li><code>win+R</code>, 输入 <code>regedit</code> 打开注册表</li>
-<li>找到H<code>KEY_LOCAL_MACHINE</code>下的<code>SOFTWARE</code>下的<code>Wow6432Node</code>下的<code>Teamviewer</code></li>
-<li>把<code>Teamviewer</code>这项删除</li>
-</ul>
-</li>
-<li>
-<p>删除下面2个目录</p>
-<pre class="line-numbers language-none"><code class="language-none">C:\Program Files (x86)\TeamViewer
-C:\Users\Administrator\AppData\Roaming\TeamViewer<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>改MAC地址:</p>
-<ul>
-<li><code>win</code>键, 搜索栏输入”控制面板”,  打开 <code>控制面板</code>, 找到 <code>网络和共享中心</code></li>
-</ul>
-<pre><code>![草图](main/%E8%8D%89%E5%9B%BE.png)
-</code></pre>
-<ul>
-<li>
-<p>点 <code>更改适配器设置</code></p>
-<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/%E8%8D%89%E5%9B%BE1%20(2)_LI.jpg" alt="草图"></p>
-</li>
-<li>
-<p>点 <code>以太网</code> (或者别的你要改MAC地址的网)</p>
-<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/%E8%8D%89%E5%9B%BE-8387651.png" alt="草图"></p>
-</li>
-<li>
-<p>查看当前 MAC 地址: 点 <code>详细信息</code>, 找到 <code>物理地址</code>, 记下之, 以便与更改后的比较, 确认是否更改成功</p>
-<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/%E8%8D%89%E5%9B%BE-8388252.png" alt="草图"></p>
-</li>
-<li>
-<p>点<code>属性</code></p>
-<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/70.png" alt="在这里插入图片描述"></p>
-</li>
-<li>
-<p>点 <code>配置</code></p>
-<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/70-20200107170711501.png" alt="在这里插入图片描述"></p>
-</li>
-<li>
-<p>点 <code>高级</code> , 找到<code>网络地址</code>, 勾选<code>值</code>, 任意输入长为12的十六进制数串, 然后点 <code>确定</code>. 注意: 中间不要加横线 <code>-</code> . 如输入 <code>1A093EB29D28</code> 正确, 而输入 <code>1A-09-3E-B2-9D-28</code> 则不正确.</p>
-<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/70-20200107170705415.png" alt="在这里插入图片描述"></p>
-</li>
-</ul>
-</li>
-<li>
-<p>查看是否修改成功: 查看当前 MAC 地址: 点 <code>详细信息</code>, 找到 <code>物理地址</code>, 看看与之前记下的修改前的MAC地址是否不同, 若不同, 则修改成功.</p>
-</li>
-</ul>
-<pre><code> ![草图](main/%E8%8D%89%E5%9B%BE-8388252.png)
-</code></pre>
-<ul>
-<li>重新安装Teamviewer,  关掉任何网络代理, 开启teamviewer, 会显示一个新的Teamviewer ID. 此时需要重新登录teamviewer账号, 输入原来teamviewer邮箱和密码, 此邮箱会受到确认信, 需确认才能完成登录.</li>
-</ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>服务器连接</category>
-      </categories>
-  </entry>
-  <entry>
     <title>ssh配置</title>
     <url>/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/ssh%E9%85%8D%E7%BD%AE.md/main/</url>
     <content><![CDATA[<p>[TOC]</p>
@@ -6636,19 +6375,6 @@ fcitx-libs libqtwebkit4<span aria-hidden="true" class="line-numbers-rows"><span>
       </categories>
   </entry>
   <entry>
-    <title>pytorch多卡训练</title>
-    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/</url>
-    <content><![CDATA[<h1 id="pytorch：-一机多卡训练的尝试"><a class="header-anchor" href="#pytorch：-一机多卡训练的尝试"></a>pytorch： 一机多卡训练的尝试</h1>
-<p><a href="https://www.jianshu.com/p/221d9298808e">参考</a></p>
-<p><a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel</a></p>
-<p><a href="https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>炼丹框架</category>
-      </categories>
-  </entry>
-  <entry>
     <title>TensorboardX：在pytorch上用Tensorboard</title>
     <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/TensorboardX%EF%BC%9A%E5%9C%A8pytorch%E4%B8%8A%E7%94%A8Tensorboard.md/main/</url>
     <content><![CDATA[<p>自2019年5月后，pytorch官方支持了Tensorboard，可千万pytorch官网查询Tensorboard的文档</p>
@@ -6732,6 +6458,280 @@ writer<span class="token punctuation">.</span>close<span class="token punctuatio
       </categories>
   </entry>
   <entry>
+    <title>pytorch多卡训练</title>
+    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/</url>
+    <content><![CDATA[<h1 id="pytorch：-一机多卡训练的尝试"><a class="header-anchor" href="#pytorch：-一机多卡训练的尝试"></a>pytorch： 一机多卡训练的尝试</h1>
+<p><a href="https://www.jianshu.com/p/221d9298808e">参考</a></p>
+<p><a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel</a></p>
+<p><a href="https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>炼丹框架</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>teamviewer-检测为商业用途</title>
+    <url>/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/</url>
+    <content><![CDATA[<h2 id="简介"><a class="header-anchor" href="#简介"></a>简介</h2>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/46180174">teamviewer检测为商业用途-mac</a></p>
+<blockquote>
+<p>Teamviewer会根据一套算法检测当前是否用于商业用途，可能根据在线时间，是否跨网段远程访问，当前操作系统是否为专业或企业版，以及其他因素进行检测，具体算法不得而知，不过有时明明只是个人非盈利目的使用，却弹出下面的对话框，在1到5分钟后就会自动断开，然后就连不上了，触发重新运行Teamviewer。</p>
+<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/v2-744c2c4b42bfd0cb956a8fe1b19867eb_hd.jpg" alt="img"></p>
+</blockquote>
+<p>以下给出在mac和windows上的解决方法</p>
+<h2 id="MAC"><a class="header-anchor" href="#MAC"></a>MAC</h2>
+<p>运行python脚本修改Teamviewer ID, 并重启电脑. 详细步骤如下:</p>
+<ul>
+<li>
+<p>关闭Teamviewer</p>
+</li>
+<li>
+<p>创建一个python脚本 <code>reset_teamviewer-id.py</code>,  内容如下</p>
+</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment">#!/usr/bin/env python</span>
+
+<span class="token comment"># -*- coding: utf-8 -*-</span>
+<span class="token keyword">import</span> sys
+<span class="token keyword">import</span> os
+<span class="token keyword">import</span> glob
+<span class="token keyword">import</span> platform
+<span class="token keyword">import</span> re
+<span class="token keyword">import</span> random
+<span class="token keyword">import</span> string
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token triple-quoted-string string">'''
+--------------------------------
+TeamViewer ID Changer for MAC OS
+--------------------------------
+'''</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> platform<span class="token punctuation">.</span>system<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token string">'Darwin'</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'This script can be run only on MAC OS.'</span><span class="token punctuation">)</span>
+    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> os<span class="token punctuation">.</span>geteuid<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'This script must be run form root.'</span><span class="token punctuation">)</span>
+    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">if</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">.</span>has_key<span class="token punctuation">(</span><span class="token string">'SUDO_USER'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    USERNAME <span class="token operator">=</span> os<span class="token punctuation">.</span>environ<span class="token punctuation">[</span><span class="token string">'SUDO_USER'</span><span class="token punctuation">]</span>
+    <span class="token keyword">if</span> USERNAME <span class="token operator">==</span> <span class="token string">'root'</span><span class="token punctuation">:</span>
+       <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Can not find user name. Run this script via sudo from regular user'</span><span class="token punctuation">)</span>
+       sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Can not find user name. Run this script via sudo from regular user'</span><span class="token punctuation">)</span>
+    sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+HOMEDIRLIB <span class="token operator">=</span> <span class="token string">'/Users/'</span> <span class="token operator">+</span> USERNAME  <span class="token operator">+</span> <span class="token string">'/Library/Preferences/'</span>
+GLOBALLIB  <span class="token operator">=</span>  <span class="token string">'/Library/Preferences/'</span>
+
+CONFIGS <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+<span class="token comment"># Find config files</span>
+
+<span class="token keyword">def</span> <span class="token function">listdir_fullpath</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token punctuation">[</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>d<span class="token punctuation">,</span> f<span class="token punctuation">)</span> <span class="token keyword">for</span> f <span class="token keyword">in</span> os<span class="token punctuation">.</span>listdir<span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+<span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> listdir_fullpath<span class="token punctuation">(</span>HOMEDIRLIB<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">if</span> <span class="token string">'teamviewer'</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword">in</span> <span class="token builtin">file</span><span class="token punctuation">.</span>lower<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        CONFIGS<span class="token punctuation">.</span>append<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span>
+
+<span class="token keyword">if</span> <span class="token keyword">not</span> CONFIGS<span class="token punctuation">:</span>
+    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token triple-quoted-string string">'''
+There is no TemViewer configs found.
+Maybe you have deleted it manualy or never run TeamViewer after installation.
+Nothing to delete.
+'''</span><span class="token punctuation">)</span>
+<span class="token comment"># Delete config files</span>
+<span class="token keyword">else</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Configs found:\n"</span><span class="token punctuation">)</span>
+    <span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> CONFIGS<span class="token punctuation">:</span>
+        <span class="token keyword">print</span> <span class="token builtin">file</span>
+
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token triple-quoted-string string">'''
+This files will be DELETED permanently.
+All TeamViewer settings will be lost
+'''</span><span class="token punctuation">)</span>
+    <span class="token builtin">raw_input</span><span class="token punctuation">(</span><span class="token string">"Press Enter to continue or CTR+C to abort..."</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> CONFIGS<span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            os<span class="token punctuation">.</span>remove<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span>
+        <span class="token keyword">except</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Cannot delete config files. Permission denied?"</span><span class="token punctuation">)</span>
+            sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"Done."</span><span class="token punctuation">)</span>
+
+<span class="token comment"># Find binaryes</span>
+
+TMBINARYES <span class="token operator">=</span> <span class="token punctuation">[</span>
+<span class="token string">'/Applications/TeamViewer.app/Contents/MacOS/TeamViewer'</span><span class="token punctuation">,</span>
+<span class="token string">'/Applications/TeamViewer.app/Contents/MacOS/TeamViewer_Service'</span><span class="token punctuation">,</span>
+<span class="token string">'/Applications/TeamViewer.app/Contents/MacOS/TeamViewer_Desktop'</span><span class="token punctuation">,</span>  <span class="token comment"># for Teamviewer 15.x.xxxx</span>
+<span class="token punctuation">]</span>
+
+<span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> TMBINARYES<span class="token punctuation">:</span>
+    <span class="token keyword">if</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>exists<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">pass</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">"File not found: "</span> <span class="token operator">+</span> <span class="token builtin">file</span><span class="token punctuation">)</span>
+        <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">"Install TeamViewer correctly"</span><span class="token punctuation">)</span>
+        sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment"># Patch files</span>
+
+<span class="token keyword">def</span> <span class="token function">idpatch</span><span class="token punctuation">(</span>fpath<span class="token punctuation">,</span>platf<span class="token punctuation">,</span>serial<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token builtin">file</span> <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>fpath<span class="token punctuation">,</span> <span class="token string">'r+b'</span><span class="token punctuation">)</span>
+    binary <span class="token operator">=</span> <span class="token builtin">file</span><span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    PlatformPattern <span class="token operator">=</span> <span class="token string">"IOPlatformExpert.&#123;6&#125;"</span>
+    SerialPattern <span class="token operator">=</span>  <span class="token string">"IOPlatformSerialNumber%s%s%sUUID"</span>
+
+    binary <span class="token operator">=</span> re<span class="token punctuation">.</span>sub<span class="token punctuation">(</span>PlatformPattern<span class="token punctuation">,</span> platf<span class="token punctuation">,</span> binary<span class="token punctuation">)</span>
+    binary <span class="token operator">=</span> re<span class="token punctuation">.</span>sub<span class="token punctuation">(</span>SerialPattern <span class="token operator">%</span> <span class="token punctuation">(</span><span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">"[0-9a-zA-Z]&#123;8,8&#125;"</span><span class="token punctuation">,</span> <span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> SerialPattern<span class="token operator">%</span><span class="token punctuation">(</span><span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">,</span> serial<span class="token punctuation">,</span> <span class="token builtin">chr</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> binary<span class="token punctuation">)</span>
+
+    <span class="token builtin">file</span> <span class="token operator">=</span> <span class="token builtin">open</span><span class="token punctuation">(</span>fpath<span class="token punctuation">,</span><span class="token string">'wb'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>write<span class="token punctuation">(</span>binary<span class="token punctuation">)</span>
+    <span class="token keyword">return</span> <span class="token boolean">True</span>
+
+<span class="token keyword">def</span> <span class="token function">random_generator</span><span class="token punctuation">(</span>size<span class="token operator">=</span><span class="token number">8</span><span class="token punctuation">,</span> chars<span class="token operator">=</span>string<span class="token punctuation">.</span>ascii_uppercase <span class="token operator">+</span> string<span class="token punctuation">.</span>digits<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">return</span> <span class="token string">''</span><span class="token punctuation">.</span>join<span class="token punctuation">(</span>random<span class="token punctuation">.</span>choice<span class="token punctuation">(</span>chars<span class="token punctuation">)</span> <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>size<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+RANDOMSERIAL <span class="token operator">=</span> random_generator<span class="token punctuation">(</span><span class="token punctuation">)</span>
+RANDOMPLATFORM <span class="token operator">=</span> <span class="token string">"IOPlatformExpert"</span> <span class="token operator">+</span> random_generator<span class="token punctuation">(</span><span class="token number">6</span><span class="token punctuation">)</span>
+
+
+<span class="token keyword">for</span> <span class="token builtin">file</span> <span class="token keyword">in</span> TMBINARYES<span class="token punctuation">:</span>
+        <span class="token keyword">try</span><span class="token punctuation">:</span>
+            idpatch<span class="token punctuation">(</span><span class="token builtin">file</span><span class="token punctuation">,</span>RANDOMPLATFORM<span class="token punctuation">,</span>RANDOMSERIAL<span class="token punctuation">)</span>
+        <span class="token keyword">except</span><span class="token punctuation">:</span>
+            <span class="token keyword">print</span> <span class="token string">"Error: can not patch file "</span> <span class="token operator">+</span> <span class="token builtin">file</span>
+            <span class="token keyword">print</span> <span class="token string">"Wrong version?"</span>
+            sys<span class="token punctuation">.</span>exit<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">print</span> <span class="token string">"PlatformDevice: "</span> <span class="token operator">+</span> RANDOMPLATFORM
+<span class="token keyword">print</span> <span class="token string">"PlatformSerial: "</span> <span class="token operator">+</span> RANDOMSERIAL
+
+<span class="token keyword">print</span><span class="token punctuation">(</span><span class="token triple-quoted-string string">'''
+ID changed sucessfully.
+!!! Restart computer before using TeamViewer !!!!
+'''</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>检查 <code>TeamViewer_Desktop</code> 的路径在上述脚本填写正确: 不同版本的Teamviewer, 此路径不同. 可在终端执行如下命令, 寻找此路径:</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /Applications/TeamViewer.app
+<span class="token function">find</span> <span class="token builtin class-name">.</span> -name TeamViewer_Desktop<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>Teamviewer 15 版本, 会返回</li>
+</ul>
+<pre><code><pre class="line-numbers language-none"><code class="language-none">.&#x2F;MacOS&#x2F;TeamViewer_Desktop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+则在上述脚本中, 将 `TMBINARYES` 数组的最后一项改成
+
+<pre class="line-numbers language-none"><code class="language-none">&quot;&#x2F;Applications&#x2F;TeamViewer.app&#x2F;Contents&#x2F;MacOS&#x2F;TeamViewer_Desktop&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</code></pre>
+<ul>
+<li>Teamviewer 13 版本, 会返回</li>
+</ul>
+<pre><code> <pre class="line-numbers language-none"><code class="language-none">.&#x2F;Helpers&#x2F;TeamViewer_Desktop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+则在上述脚本中, 将 `TMBINARYES` 数组的最后一项改成
+
+<pre class="line-numbers language-none"><code class="language-none">&quot;&#x2F;Applications&#x2F;TeamViewer.app&#x2F;Contents&#x2F;Helpers&#x2F;TeamViewer_Desktop&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</code></pre>
+<ul>
+<li>
+<p>其余版本的T eamviewer 我虽未尝试, 不知其具体返回, 但您可依上法自行确定 <code>TeamViewer_Desktop</code> 的路径, 并修改 <code>TMBINARYES</code> 数组的最后一项.</p>
+</li>
+<li>
+<p>用<code>python2</code>运行上述脚本</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> /usr/bin/python reset_teamviewer-id.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若返回下图(<a href="https://www.jianshu.com/p/c1a77c351283">出处</a>)</p>
+<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/1174.png" alt="img"></p>
+<p>则  <strong>切勿立即开Teamviewer</strong> ,  需要先重启电脑</p>
+</li>
+<li>
+<p>电脑重启后, 关掉任何网络代理, 再次开启teamviewer, 会显示一个新的Teamviewer ID. 此时需要重新登录teamviewer账号, 输入原来teamviewer邮箱和密码, 此邮箱会受到确认信, 需确认才能完成登录.</p>
+</li>
+<li>
+<p>而后可以正常连接远程电脑的teamviewer, 不再会显示商业用途.</p>
+</li>
+</ul>
+<h2 id="windows"><a class="header-anchor" href="#windows"></a>windows</h2>
+<p>卸载teamviewer, 修改MAC地址, 重装teamviwer, 以便让teamviewer看见未见过的mac地址, 以为这是新的设备, 故而给其分配一个新teamviwer ID. 如果过段时间再被误认为商业用途，需要重复这一过程.</p>
+<p>以下操作较为麻烦, 可以找找网上的脚本来修改ID.</p>
+<p><a href="https://blog.csdn.net/m0_38072683/article/details/83046992">参考</a></p>
+<ul>
+<li>
+<p>关闭Teamviewer</p>
+</li>
+<li>
+<p>卸载Teamviewer</p>
+</li>
+<li>
+<p>从注册表删Teamviewer:</p>
+<ul>
+<li><code>win+R</code>, 输入 <code>regedit</code> 打开注册表</li>
+<li>找到H<code>KEY_LOCAL_MACHINE</code>下的<code>SOFTWARE</code>下的<code>Wow6432Node</code>下的<code>Teamviewer</code></li>
+<li>把<code>Teamviewer</code>这项删除</li>
+</ul>
+</li>
+<li>
+<p>删除下面2个目录</p>
+<pre class="line-numbers language-none"><code class="language-none">C:\Program Files (x86)\TeamViewer
+C:\Users\Administrator\AppData\Roaming\TeamViewer<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>改MAC地址:</p>
+<ul>
+<li><code>win</code>键, 搜索栏输入”控制面板”,  打开 <code>控制面板</code>, 找到 <code>网络和共享中心</code></li>
+</ul>
+<pre><code>![草图](main/%E8%8D%89%E5%9B%BE.png)
+</code></pre>
+<ul>
+<li>
+<p>点 <code>更改适配器设置</code></p>
+<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/%E8%8D%89%E5%9B%BE1%20(2)_LI.jpg" alt="草图"></p>
+</li>
+<li>
+<p>点 <code>以太网</code> (或者别的你要改MAC地址的网)</p>
+<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/%E8%8D%89%E5%9B%BE-8387651.png" alt="草图"></p>
+</li>
+<li>
+<p>查看当前 MAC 地址: 点 <code>详细信息</code>, 找到 <code>物理地址</code>, 记下之, 以便与更改后的比较, 确认是否更改成功</p>
+<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/%E8%8D%89%E5%9B%BE-8388252.png" alt="草图"></p>
+</li>
+<li>
+<p>点<code>属性</code></p>
+<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/70.png" alt="在这里插入图片描述"></p>
+</li>
+<li>
+<p>点 <code>配置</code></p>
+<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/70-20200107170711501.png" alt="在这里插入图片描述"></p>
+</li>
+<li>
+<p>点 <code>高级</code> , 找到<code>网络地址</code>, 勾选<code>值</code>, 任意输入长为12的十六进制数串, 然后点 <code>确定</code>. 注意: 中间不要加横线 <code>-</code> . 如输入 <code>1A093EB29D28</code> 正确, 而输入 <code>1A-09-3E-B2-9D-28</code> 则不正确.</p>
+<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/teamviewer-%E6%A3%80%E6%B5%8B%E4%B8%BA%E5%95%86%E4%B8%9A%E7%94%A8%E9%80%94.md/main/70-20200107170705415.png" alt="在这里插入图片描述"></p>
+</li>
+</ul>
+</li>
+<li>
+<p>查看是否修改成功: 查看当前 MAC 地址: 点 <code>详细信息</code>, 找到 <code>物理地址</code>, 看看与之前记下的修改前的MAC地址是否不同, 若不同, 则修改成功.</p>
+</li>
+</ul>
+<pre><code> ![草图](main/%E8%8D%89%E5%9B%BE-8388252.png)
+</code></pre>
+<ul>
+<li>重新安装Teamviewer,  关掉任何网络代理, 开启teamviewer, 会显示一个新的Teamviewer ID. 此时需要重新登录teamviewer账号, 输入原来teamviewer邮箱和密码, 此邮箱会受到确认信, 需确认才能完成登录.</li>
+</ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>服务器连接</category>
+      </categories>
+  </entry>
+  <entry>
     <title>tensorboard-PermissionError-13</title>
     <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/tensorboard-PermissionError-13.md/main/</url>
     <content><![CDATA[<h2 id="症状"><a class="header-anchor" href="#症状"></a>症状</h2>
@@ -6787,266 +6787,6 @@ Permission denied<span aria-hidden="true" class="line-numbers-rows"><span></span
       <categories>
         <category>器</category>
         <category>炼丹框架</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>服务器上安装pytorch</title>
-    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85pytorch.md/main/</url>
-    <content><![CDATA[<h2 id="服务器上安装pytorch"><a class="header-anchor" href="#服务器上安装pytorch"></a>服务器上安装pytorch</h2>
-<ul>
-<li>
-<p>进入虚拟python环境（以下均在虚拟环境）</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>查看记录cuda版本</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nvcc -V<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>当执行<code>nvcc --version</code>，显示</p>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">The program &#39;nvcc&#39; is currently not installed. To run &#39;nvcc&#39; please ask your administrator to install the package &#39;nvidia-cuda-toolkit&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<p>时，则</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> /usr/local/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>若见有如下文件</p>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">cuda-8.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<p>则cuda是8.0版本的</p>
-</li>
-<li>
-<p>查看记录python版本</p>
-   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python -V<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>升级pip到最新</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U pip<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>查看pip版本</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip -V<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>登录pytorch官网 <a href="http://pytorch.org">http://pytorch.org</a></p>
-<p>选择linux下用pip，python、cuda选对应版本</p>
-<p>将网页上的命令复制到虚拟环境里的命令行（逐行输入）</p>
-</li>
-<li>
-<p>python安装包</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>测试安装成功否</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>在python中</p>
-<ul>
-<li>cuda测试</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">import torch
-torch.cuda.is_available()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>若返回True，则cuda可用</p>
-<ul>
-<li>求导</li>
-</ul>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> torch <span class="token keyword">import</span> Tensor <span class="token keyword">as</span> T
-<span class="token keyword">from</span> torch<span class="token punctuation">.</span>autograd <span class="token keyword">import</span> Variable <span class="token keyword">as</span> V
-a<span class="token operator">=</span>V<span class="token punctuation">(</span>T<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>require_grad<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-b<span class="token operator">=</span>a<span class="token operator">*</span>a
-c<span class="token operator">=</span>b<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span>
-c<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
-a<span class="token punctuation">.</span>grad<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>返回若为</p>
-<blockquote>
-<pre><code>Variable containing:
- 0.5000  1.0000
- 1.5000  2.0000
-[torch.FloatTensor of size 2x2]
-</code></pre>
-</blockquote>
-<p>则正确</p>
-</li>
-</ul>
-<h2 id="安装过程中的bug"><a class="header-anchor" href="#安装过程中的bug"></a>安装过程中的bug</h2>
-<h3 id="torchvision-报错-ZN2at7getTypeERKNS-6TensorE"><a class="header-anchor" href="#torchvision-报错-ZN2at7getTypeERKNS-6TensorE"></a>torchvision 报错 <code>_ZN2at7getTypeERKNS_6TensorE</code></h3>
-<p>运行含有torchvision的代码，会报错</p>
-<pre class="line-numbers language-none"><code class="language-none">Traceback (most recent call last):
-  File &quot;main.py&quot;, line 9, in &lt;module&gt;
-    from get_data import get_data
-  File &quot;&#x2F;mfs&#x2F;haoyu&#x2F;project&#x2F;pytorch_learn&#x2F;my_template&#x2F;code&#x2F;get_data.py&quot;, line 2, in &lt;module&gt;
-    from torchvision import datasets, transforms
-  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
-    from torchvision import models
-  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;__init__.py&quot;, line 11, in &lt;module&gt;
-    from . import detection
-  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;detection&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
-    from .faster_rcnn import *
-  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;detection&#x2F;faster_rcnn.py&quot;, line 7, in &lt;module&gt;
-    from torchvision.ops import misc as misc_nn_ops
-  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;ops&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
-    from .boxes import nms, box_iou
-  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;ops&#x2F;boxes.py&quot;, line 2, in &lt;module&gt;
-    from torchvision import _C
-ImportError: &#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;_C.cpython-37m-x86_64-linux-gnu.so: undefined symbol: _ZN2at7getTypeERKNS_6TensorE<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这是因为torchvision未安装，或安装的版本不对</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list <span class="token operator">|</span> <span class="token function">grep</span> torch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">torch                  1.2.0
-torchfile              0.1.0
-torchnet               0.0.4
-torchvision            0.3.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<p>版本不对，torch1.2.0应当和torchvision0.4.0配套，故需要升级torchvision。可采用以下方法升级：</p>
-<p>首先尝试自动升级</p>
-<pre class="line-numbers language-none"><code class="language-none">pip install -U torchvision<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>若未能升级到对应的torchvision版本，则需要手动指定版本，如</p>
-<pre class="line-numbers language-none"><code class="language-none">pip install torchvision&#x3D;&#x3D;0.4.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>若依旧未能升级到对应的torchvision版本，说明pip的安装包源没有及时更新，需要手动指定官网安装包：前往pytorch官网，寻找<a href="https://pytorch.org/get-started/previous-versions/#via-pip">历史torch版本（已build）-pip安装</a>，选择相应的cuda版本，如前往<a href="https://download.pytorch.org/whl/cu100/torch_stable.html">cuda10的pytorch下载网页</a>，寻找对应版本的torchvision，复制这个<a href="https://download.pytorch.org/whl/cu100/torchvision-0.4.0-cp37-cp37m-manylinux1_x86_64.whl">安装包下载链接</a></p>
-<ul>
-<li>
-<p>版本号的含义</p>
-<p><code>torchvision-0.4.0（torchvsion的版本）-cp37（python3.7）-cp37m-manylinux1_x86_64（linux64位）.whl</code></p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> <span class="token punctuation">[</span>安装包下载链接<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>炼丹框架</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>tmux配置与使用</title>
-    <url>/%E5%99%A8/%E7%BB%88%E7%AB%AF/tmux%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</url>
-    <content><![CDATA[<h2 id="tmux-使用"><a class="header-anchor" href="#tmux-使用"></a>tmux 使用</h2>
-<ul>
-<li>
-<ul>
-<li>窗口进程管理<br>
-即使终端关闭（<code>cmd+Q/W</code>），tmux的窗口依旧运行<br>
-打开一个tmux窗口</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">tmux new -s 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>将该tmux窗口放入后台</p>
-<pre class="line-numbers language-none"><code class="language-none">ctrl+b d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>查看所有tmux窗口的方法</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux ls<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>唤出（使后台的窗口显示）tmux窗口</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux a -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>显示最后放入后台的窗口</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>杀死tmux窗口的方法</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux kill-session -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>杀死当前窗口</p>
-<pre class="line-numbers language-none"><code class="language-none">ctrl+b &amp;
-选择y （yes）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>窗口分区管理</p>
-</li>
-<li>
-<p>页面<br>
-单个程序只给一屏用于输出，超出此范围，要翻页查看：<br>
-<code>ctrl+b [   fn+↑/↓  esc</code><br>
-进入拷贝模式：拷贝模式中，新输出的文字不会显示<br>
-<code>ctrl+b [</code>	：进入拷贝模式<br>
-<code>fn+上/下键</code>	：翻页<br>
-<code>esc</code>			：退出拷贝模式<br>
-进入黏贴模式<br>
-<code>ctrl+b ]</code></p>
-</li>
-</ul>
-<h2 id="tmux配置"><a class="header-anchor" href="#tmux配置"></a>tmux配置</h2>
-<p>我的<code>~/.tmux.conf</code>文件</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># --- base --- #</span>
-<span class="token builtin class-name">set</span> -g default-terminal <span class="token string">"screen-256color"</span>
-<span class="token builtin class-name">set</span> -g display-time <span class="token number">3000</span>
-<span class="token builtin class-name">set</span> -g history-limit <span class="token number">10000</span>
-<span class="token builtin class-name">set</span> -g base-index <span class="token number">1</span>
-<span class="token builtin class-name">set</span> -g pane-base-index <span class="token number">1</span>
-<span class="token builtin class-name">set</span> -s escape-time <span class="token number">0</span>
-<span class="token comment"># set -g mouse on # 打开以下各个鼠标功能</span>
-
-<span class="token comment"># set -g mode-mouse on # 支持鼠标选取文本等</span>
-<span class="token comment"># set -g mouse-resize-pane on # 支持鼠标拖动调整面板的大小(通过拖动面板间的分割线)</span>
-<span class="token comment"># set -g mouse-select-pane on # 支持鼠标选中并切换面板</span>
-<span class="token comment"># set -g mouse-select-window on # 支持鼠标选中并切换窗口(通过点击状态栏窗口名称)</span>
-<span class="token comment"># 允许用鼠标（含触控板）翻页，但会把vim的鼠标翻页给劫持走</span>
-
-<span class="token comment"># 复制黏贴</span>
-<span class="token comment"># set-option -g default-command "reattach-to-user-namespace -l bash"</span>
-<span class="token comment"># setw -g mode-keys vi</span>
-<span class="token comment"># bind-key -t vi-copy v begin-selection</span>
-<span class="token comment"># bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"</span>
-
-<span class="token comment"># ctrl-a [ 进入 vi 模式</span>
-<span class="token comment"># q：退出vi模式</span>
-<span class="token comment"># 使用 hjkl，wb 等 vi 快捷键移动到目标位置</span>
-<span class="token comment"># v ：进入 Visual模式(即选词模式) ，开始选择内容</span>
-<span class="token comment"># 使用 vi 快捷键移动，直到要复制的内容被选中</span>
-<span class="token comment"># y：复制操作系统的粘贴板</span>
-<span class="token comment"># 粘贴：tmux内ctrl+]，在操作系统内Cmd-V</span>
-
-<span class="token comment"># ctrl+r : reload my change in this file (~/.tmux.conf)</span>
-<span class="token builtin class-name">bind</span> r source-file ~/.tmux.conf <span class="token punctuation">\</span><span class="token punctuation">;</span> display <span class="token string">"Reloaded!"</span>
-
-<span class="token comment"># 分割窗口</span>
-<span class="token builtin class-name">bind</span> <span class="token punctuation">\</span> split-window -h <span class="token comment"># prefix+\ : 竖分</span>
-unbind %
-<span class="token builtin class-name">bind</span> - split-window -v <span class="token comment"># prefix+-横分</span>
-unbind <span class="token string">'"'</span>
-
-<span class="token comment"># 窗口间移动</span>
-<span class="token builtin class-name">bind</span> h select-pane -L
-<span class="token builtin class-name">bind</span> j select-pane -D
-<span class="token builtin class-name">bind</span> k select-pane -U
-<span class="token builtin class-name">bind</span> l select-pane -R
-
-<span class="token comment"># 窗口改大小</span>
-<span class="token builtin class-name">bind</span> -r ^k resizep -U <span class="token number">5</span> <span class="token comment"># upward (prefix Ctrl+k)</span>
-<span class="token builtin class-name">bind</span> -r ^j resizep -D <span class="token number">5</span> <span class="token comment"># downward (prefix Ctrl+j)</span>
-<span class="token builtin class-name">bind</span> -r ^h resizep -L <span class="token number">5</span> <span class="token comment"># to the left (prefix Ctrl+h)</span>
-<span class="token builtin class-name">bind</span> -r ^l resizep -R <span class="token number">5</span> <span class="token comment"># to the right (prefix Ctrl+l)</span>
-
-<span class="token builtin class-name">bind</span> -r e lastp <span class="token comment"># 选择最后一个面板</span>
-<span class="token builtin class-name">bind</span> -r ^e last <span class="token comment"># 选择最后一个窗口</span>
-
-<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">[</span> swapp -U <span class="token comment"># 与前一个面板交换位置: ctrl+a+[(ctrl不松手)</span>
-<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">]</span> swapp -D <span class="token comment"># 与后一个面板交换位置：ctrl+a+](ctrl不松手)</span>
-
-<span class="token comment"># select the last pane (prefix e)</span>
-<span class="token builtin class-name">bind</span> e lastp
-<span class="token comment"># select the last window (prefix Ctrl+e)</span>
-<span class="token builtin class-name">bind</span> ^e last
-
-<span class="token comment"># kill pane (prefix q)</span>
-<span class="token builtin class-name">bind</span> q killp
-<span class="token comment"># kill window (prefix Ctrl+q)</span>
-<span class="token builtin class-name">bind</span> -r ^q killw
-<span class="token builtin class-name">bind</span> Q kill-session
-
-<span class="token comment"># 显示会话列表</span>
-unbind w
-<span class="token builtin class-name">bind</span> w display-panes
-unbind s
-unbind ^s
-unbind S
-<span class="token builtin class-name">bind</span> s choose-window
-<span class="token builtin class-name">bind</span> -r ^s choose-session
-<span class="token builtin class-name">bind</span> S choose-tree
-<span class="token comment"># list-windows -a</span>
-
-<span class="token comment"># 显示窗口列表</span>
-
-<span class="token comment"># 修改进入命令模式按键</span>
-<span class="token comment"># remap prefix to Control + a</span>
-<span class="token builtin class-name">set</span> -g prefix C-a
-unbind C-b
-<span class="token builtin class-name">bind</span> C-a send-prefix<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>终端</category>
       </categories>
   </entry>
   <entry>
@@ -7426,6 +7166,266 @@ Detached<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
 </code></pre>
 <h2 id="如何让iterm2-在任何界面呼入呼出？"><a class="header-anchor" href="#如何让iterm2-在任何界面呼入呼出？"></a>如何让iterm2 在任何界面呼入呼出？</h2>
 <p><a href="https://www.zhihu.com/question/51622732">教程</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>终端</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>服务器上安装pytorch</title>
+    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85pytorch.md/main/</url>
+    <content><![CDATA[<h2 id="服务器上安装pytorch"><a class="header-anchor" href="#服务器上安装pytorch"></a>服务器上安装pytorch</h2>
+<ul>
+<li>
+<p>进入虚拟python环境（以下均在虚拟环境）</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>查看记录cuda版本</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nvcc -V<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>当执行<code>nvcc --version</code>，显示</p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">The program &#39;nvcc&#39; is currently not installed. To run &#39;nvcc&#39; please ask your administrator to install the package &#39;nvidia-cuda-toolkit&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p>时，则</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> /usr/local/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若见有如下文件</p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">cuda-8.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p>则cuda是8.0版本的</p>
+</li>
+<li>
+<p>查看记录python版本</p>
+   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python -V<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>升级pip到最新</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U pip<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>查看pip版本</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip -V<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>登录pytorch官网 <a href="http://pytorch.org">http://pytorch.org</a></p>
+<p>选择linux下用pip，python、cuda选对应版本</p>
+<p>将网页上的命令复制到虚拟环境里的命令行（逐行输入）</p>
+</li>
+<li>
+<p>python安装包</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>测试安装成功否</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>在python中</p>
+<ul>
+<li>cuda测试</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">import torch
+torch.cuda.is_available()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>若返回True，则cuda可用</p>
+<ul>
+<li>求导</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> torch <span class="token keyword">import</span> Tensor <span class="token keyword">as</span> T
+<span class="token keyword">from</span> torch<span class="token punctuation">.</span>autograd <span class="token keyword">import</span> Variable <span class="token keyword">as</span> V
+a<span class="token operator">=</span>V<span class="token punctuation">(</span>T<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>require_grad<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+b<span class="token operator">=</span>a<span class="token operator">*</span>a
+c<span class="token operator">=</span>b<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span>
+c<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+a<span class="token punctuation">.</span>grad<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>返回若为</p>
+<blockquote>
+<pre><code>Variable containing:
+ 0.5000  1.0000
+ 1.5000  2.0000
+[torch.FloatTensor of size 2x2]
+</code></pre>
+</blockquote>
+<p>则正确</p>
+</li>
+</ul>
+<h2 id="安装过程中的bug"><a class="header-anchor" href="#安装过程中的bug"></a>安装过程中的bug</h2>
+<h3 id="torchvision-报错-ZN2at7getTypeERKNS-6TensorE"><a class="header-anchor" href="#torchvision-报错-ZN2at7getTypeERKNS-6TensorE"></a>torchvision 报错 <code>_ZN2at7getTypeERKNS_6TensorE</code></h3>
+<p>运行含有torchvision的代码，会报错</p>
+<pre class="line-numbers language-none"><code class="language-none">Traceback (most recent call last):
+  File &quot;main.py&quot;, line 9, in &lt;module&gt;
+    from get_data import get_data
+  File &quot;&#x2F;mfs&#x2F;haoyu&#x2F;project&#x2F;pytorch_learn&#x2F;my_template&#x2F;code&#x2F;get_data.py&quot;, line 2, in &lt;module&gt;
+    from torchvision import datasets, transforms
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
+    from torchvision import models
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;__init__.py&quot;, line 11, in &lt;module&gt;
+    from . import detection
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;detection&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
+    from .faster_rcnn import *
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;detection&#x2F;faster_rcnn.py&quot;, line 7, in &lt;module&gt;
+    from torchvision.ops import misc as misc_nn_ops
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;ops&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
+    from .boxes import nms, box_iou
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;ops&#x2F;boxes.py&quot;, line 2, in &lt;module&gt;
+    from torchvision import _C
+ImportError: &#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;_C.cpython-37m-x86_64-linux-gnu.so: undefined symbol: _ZN2at7getTypeERKNS_6TensorE<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这是因为torchvision未安装，或安装的版本不对</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list <span class="token operator">|</span> <span class="token function">grep</span> torch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">torch                  1.2.0
+torchfile              0.1.0
+torchnet               0.0.4
+torchvision            0.3.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>版本不对，torch1.2.0应当和torchvision0.4.0配套，故需要升级torchvision。可采用以下方法升级：</p>
+<p>首先尝试自动升级</p>
+<pre class="line-numbers language-none"><code class="language-none">pip install -U torchvision<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若未能升级到对应的torchvision版本，则需要手动指定版本，如</p>
+<pre class="line-numbers language-none"><code class="language-none">pip install torchvision&#x3D;&#x3D;0.4.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若依旧未能升级到对应的torchvision版本，说明pip的安装包源没有及时更新，需要手动指定官网安装包：前往pytorch官网，寻找<a href="https://pytorch.org/get-started/previous-versions/#via-pip">历史torch版本（已build）-pip安装</a>，选择相应的cuda版本，如前往<a href="https://download.pytorch.org/whl/cu100/torch_stable.html">cuda10的pytorch下载网页</a>，寻找对应版本的torchvision，复制这个<a href="https://download.pytorch.org/whl/cu100/torchvision-0.4.0-cp37-cp37m-manylinux1_x86_64.whl">安装包下载链接</a></p>
+<ul>
+<li>
+<p>版本号的含义</p>
+<p><code>torchvision-0.4.0（torchvsion的版本）-cp37（python3.7）-cp37m-manylinux1_x86_64（linux64位）.whl</code></p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> <span class="token punctuation">[</span>安装包下载链接<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>炼丹框架</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>tmux配置与使用</title>
+    <url>/%E5%99%A8/%E7%BB%88%E7%AB%AF/tmux%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</url>
+    <content><![CDATA[<h2 id="tmux-使用"><a class="header-anchor" href="#tmux-使用"></a>tmux 使用</h2>
+<ul>
+<li>
+<ul>
+<li>窗口进程管理<br>
+即使终端关闭（<code>cmd+Q/W</code>），tmux的窗口依旧运行<br>
+打开一个tmux窗口</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">tmux new -s 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>将该tmux窗口放入后台</p>
+<pre class="line-numbers language-none"><code class="language-none">ctrl+b d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>查看所有tmux窗口的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux ls<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>唤出（使后台的窗口显示）tmux窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux a -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>显示最后放入后台的窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>杀死tmux窗口的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux kill-session -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>杀死当前窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">ctrl+b &amp;
+选择y （yes）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>窗口分区管理</p>
+</li>
+<li>
+<p>页面<br>
+单个程序只给一屏用于输出，超出此范围，要翻页查看：<br>
+<code>ctrl+b [   fn+↑/↓  esc</code><br>
+进入拷贝模式：拷贝模式中，新输出的文字不会显示<br>
+<code>ctrl+b [</code>	：进入拷贝模式<br>
+<code>fn+上/下键</code>	：翻页<br>
+<code>esc</code>			：退出拷贝模式<br>
+进入黏贴模式<br>
+<code>ctrl+b ]</code></p>
+</li>
+</ul>
+<h2 id="tmux配置"><a class="header-anchor" href="#tmux配置"></a>tmux配置</h2>
+<p>我的<code>~/.tmux.conf</code>文件</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># --- base --- #</span>
+<span class="token builtin class-name">set</span> -g default-terminal <span class="token string">"screen-256color"</span>
+<span class="token builtin class-name">set</span> -g display-time <span class="token number">3000</span>
+<span class="token builtin class-name">set</span> -g history-limit <span class="token number">10000</span>
+<span class="token builtin class-name">set</span> -g base-index <span class="token number">1</span>
+<span class="token builtin class-name">set</span> -g pane-base-index <span class="token number">1</span>
+<span class="token builtin class-name">set</span> -s escape-time <span class="token number">0</span>
+<span class="token comment"># set -g mouse on # 打开以下各个鼠标功能</span>
+
+<span class="token comment"># set -g mode-mouse on # 支持鼠标选取文本等</span>
+<span class="token comment"># set -g mouse-resize-pane on # 支持鼠标拖动调整面板的大小(通过拖动面板间的分割线)</span>
+<span class="token comment"># set -g mouse-select-pane on # 支持鼠标选中并切换面板</span>
+<span class="token comment"># set -g mouse-select-window on # 支持鼠标选中并切换窗口(通过点击状态栏窗口名称)</span>
+<span class="token comment"># 允许用鼠标（含触控板）翻页，但会把vim的鼠标翻页给劫持走</span>
+
+<span class="token comment"># 复制黏贴</span>
+<span class="token comment"># set-option -g default-command "reattach-to-user-namespace -l bash"</span>
+<span class="token comment"># setw -g mode-keys vi</span>
+<span class="token comment"># bind-key -t vi-copy v begin-selection</span>
+<span class="token comment"># bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"</span>
+
+<span class="token comment"># ctrl-a [ 进入 vi 模式</span>
+<span class="token comment"># q：退出vi模式</span>
+<span class="token comment"># 使用 hjkl，wb 等 vi 快捷键移动到目标位置</span>
+<span class="token comment"># v ：进入 Visual模式(即选词模式) ，开始选择内容</span>
+<span class="token comment"># 使用 vi 快捷键移动，直到要复制的内容被选中</span>
+<span class="token comment"># y：复制操作系统的粘贴板</span>
+<span class="token comment"># 粘贴：tmux内ctrl+]，在操作系统内Cmd-V</span>
+
+<span class="token comment"># ctrl+r : reload my change in this file (~/.tmux.conf)</span>
+<span class="token builtin class-name">bind</span> r source-file ~/.tmux.conf <span class="token punctuation">\</span><span class="token punctuation">;</span> display <span class="token string">"Reloaded!"</span>
+
+<span class="token comment"># 分割窗口</span>
+<span class="token builtin class-name">bind</span> <span class="token punctuation">\</span> split-window -h <span class="token comment"># prefix+\ : 竖分</span>
+unbind %
+<span class="token builtin class-name">bind</span> - split-window -v <span class="token comment"># prefix+-横分</span>
+unbind <span class="token string">'"'</span>
+
+<span class="token comment"># 窗口间移动</span>
+<span class="token builtin class-name">bind</span> h select-pane -L
+<span class="token builtin class-name">bind</span> j select-pane -D
+<span class="token builtin class-name">bind</span> k select-pane -U
+<span class="token builtin class-name">bind</span> l select-pane -R
+
+<span class="token comment"># 窗口改大小</span>
+<span class="token builtin class-name">bind</span> -r ^k resizep -U <span class="token number">5</span> <span class="token comment"># upward (prefix Ctrl+k)</span>
+<span class="token builtin class-name">bind</span> -r ^j resizep -D <span class="token number">5</span> <span class="token comment"># downward (prefix Ctrl+j)</span>
+<span class="token builtin class-name">bind</span> -r ^h resizep -L <span class="token number">5</span> <span class="token comment"># to the left (prefix Ctrl+h)</span>
+<span class="token builtin class-name">bind</span> -r ^l resizep -R <span class="token number">5</span> <span class="token comment"># to the right (prefix Ctrl+l)</span>
+
+<span class="token builtin class-name">bind</span> -r e lastp <span class="token comment"># 选择最后一个面板</span>
+<span class="token builtin class-name">bind</span> -r ^e last <span class="token comment"># 选择最后一个窗口</span>
+
+<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">[</span> swapp -U <span class="token comment"># 与前一个面板交换位置: ctrl+a+[(ctrl不松手)</span>
+<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">]</span> swapp -D <span class="token comment"># 与后一个面板交换位置：ctrl+a+](ctrl不松手)</span>
+
+<span class="token comment"># select the last pane (prefix e)</span>
+<span class="token builtin class-name">bind</span> e lastp
+<span class="token comment"># select the last window (prefix Ctrl+e)</span>
+<span class="token builtin class-name">bind</span> ^e last
+
+<span class="token comment"># kill pane (prefix q)</span>
+<span class="token builtin class-name">bind</span> q killp
+<span class="token comment"># kill window (prefix Ctrl+q)</span>
+<span class="token builtin class-name">bind</span> -r ^q killw
+<span class="token builtin class-name">bind</span> Q kill-session
+
+<span class="token comment"># 显示会话列表</span>
+unbind w
+<span class="token builtin class-name">bind</span> w display-panes
+unbind s
+unbind ^s
+unbind S
+<span class="token builtin class-name">bind</span> s choose-window
+<span class="token builtin class-name">bind</span> -r ^s choose-session
+<span class="token builtin class-name">bind</span> S choose-tree
+<span class="token comment"># list-windows -a</span>
+
+<span class="token comment"># 显示窗口列表</span>
+
+<span class="token comment"># 修改进入命令模式按键</span>
+<span class="token comment"># remap prefix to Control + a</span>
+<span class="token builtin class-name">set</span> -g prefix C-a
+unbind C-b
+<span class="token builtin class-name">bind</span> C-a send-prefix<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
@@ -8951,35 +8951,6 @@ asdas
       </categories>
   </entry>
   <entry>
-    <title>“春天”后怪相的逻辑链</title>
-    <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E2%80%9C%E6%98%A5%E5%A4%A9%E2%80%9D%E5%90%8E%E6%80%AA%E7%9B%B8%E7%9A%84%E9%80%BB%E8%BE%91%E9%93%BE.md/main/</url>
-    <content><![CDATA[<p>最近政府频繁拿捏资本，释放啥信号？是类似欧美搞分配调整给私有制续命三十年拖延危机，还是新三大改造前稳定局面争取时间和意识形态动员？未来往哪走，这取决于普罗大众（proletariat）是否普遍呼吁 对于｛｛生产，生活｝的管理权 和 ｛生活资料，生产资料，权力｝的分配权 ｝的公有化，而这又取决于普罗大众如何看待追逐利润的经济改革。</p>
-<p>以下是“春天”后怪相的逻辑链:</p>
-<p>X→追逐利润的生产→双轨制→面向地下市场利润的生产→国企计划内效益差→市场经济＋国企私有化→公权力勾结资本→向资本收不到税→中央财政缺口→分税制→地方财政缺口→土地财政→高房价→追逐高薪→教育内卷+找一个人干三份活发两份工资→996→民怨→965+远程工作+降薪</p>
-<p>市场经济→利润导向生产→利润导向用工→加大剥削：加大劳动强度+延长劳动时间+压低工资+不交五险一金→劳务派遣+临时工+学生工+网络平台工</p>
-<p>X→分地→集体农业基础设施失修 基层组织断粮→三提五统→吃不饱饭→进城务工 利润导向用工→收入低 没有户口 没五险一金→地位地下→教育内卷 不当工人</p>
-<p>分地+地方财政缺口→ 基层组织断粮→农村医疗、教育、养老倒退</p>
-<p>教育内卷→学区房+课业压力大→素质教育 课上少讲→补习班 私立学校→禁止补习班 轮换老师→高等华人在海外学校 +国人阶级固化</p>
-<p>地方财政缺口→医疗拨款少→医生工资少→民办医院+以药养医→看病贵+中药利益集团</p>
-<p>利润导向用工→劳动强度大→歧视女性→收入和岗位机会少、生育歧视→住房难 教育卷 要男性分担→彩礼+房子→男性躺平→女性不生→生育率下降+性别矛盾男女打拳</p>
-<p>利润导向生产→宁用廉价人力 不用自动化→产业升级迟缓→产学转化没人买单→学术灌水维生</p>
-<p>利润导向生产→偷工减料+地沟油+污染+工伤</p>
-<p>X→计生从自愿两胎改成强制一胎→人口结构畸形→老龄化＋劳动力减少→养老金吃紧</p>
-<p>利润导向生产→追逐超额利润→加大剥削+大厂+大机器→失业+增大固定资本比例 减少劳动力成本比例→利润率（从劳动力剥削到剩余价值 ÷ 总资本）下降→制造业不赚钱 淘宝店不赚钱→资本转向平台和供应链→资本转向金融泡沫，即经济脱实向虚</p>
-<p>失业→劳动力供大于求→压低工资（工资涨的比通胀慢）</p>
-<p>压低工资+医疗贵+教育贵＋住房贵→钱不够用→内需低 内循环难→生产走低质量 薄利多销路线→高端产品滞销→产业升级迟缓</p>
-<p>以上所有怪相无法解释→各人群内心忧苦→宗教+逆行民族主义+民族主义+公知+兔学+工业党 生产力论+阴阳师+犬儒主义+人性论+ 毁灭人类思想+实用投机 盛行→思想混乱 无法团结 既可以转移注意力掩盖问题根源 也容易被乘虚而入</p>
-<p>总结：X→追逐利润的生产和分配→以上所有怪相→经济危机临近+生活压力变大→资本主义要崩溃了→要走新道路→要搞信息社会主义（公有平台经济+数字平台全过程全民直接民主+政府职能部门服务业化）</p>
-<p>详见：<a href="https://blog.lianghy.ml/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E4%BF%A1%E6%81%AF%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89.md/main/">信息社会主义</a></p>
-<p>正所谓，人民是历史的唯一创造者，人民决定了英雄能唱什么戏。如果从庙堂到小吏足够聪敏和强健，维持框架稳定的唯一选项，是将人民的意志实现。不然，人民的意志倘若不能和平地实现，也必须 迟早会 在风雨中实现。因此，题目问，这是什么信号，取决于普罗大众的头脑，是否反思了X，是否要走新路。</p>
-<p>当上述成功后，一定要严防死守新的X事件，即防范持有追逐利润思路者牟得公权力 特别是全面主持工作的权力，而信息社会主义则是防X反X的利剑与锁链，因为在那里，经济生活中不再有“利润”这个概念，取而代之的是评价是否满足需求的“绩效”。当利润从经济生活中消失，就会开始从人们脑子里消失，复活X的土壤也就消失了。</p>
-]]></content>
-      <categories>
-        <category>道</category>
-        <category>Marxism笔记</category>
-      </categories>
-  </entry>
-  <entry>
     <title>信息社会主义</title>
     <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E4%BF%A1%E6%81%AF%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89.md/main/</url>
     <content><![CDATA[<p>在信息技术日益深入生产和生活并还在迅猛发展的今天，正酝酿着新生产关系和权力结构的诞生条件，社会主义道路的发展有了新的契机。通过总结社会主义发展中在计划经济与市场经济上、在民主与法治建设上的探索，挖掘苏联的OGAS (全国自动化系统)<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> 的思想内核，展望物联网 人工智能 和区块链<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>的应用趋势，笔者构想了一个当前信息化条件下建设社会主义的道路，即<strong>信息社会主义</strong>，它包括两方面，信息化计划指导的市场经济，和政务信息化改革。这是一条改革实现<strong>公有制度计划经济</strong>和<strong>人民民主专政</strong>的道路。</p>
@@ -9129,6 +9100,7 @@ asdas
 <p><a href="https://cloud.tsinghua.edu.cn/f/d06267a881a24a4a8d2a/">重新入门马哲</a></p>
 <p><a href="http://m.wyzxwk.com/content.php?classid=31&amp;id=57239">还清白于教员</a></p>
 <p><a href="https://cloud.tsinghua.edu.cn/f/2005de4633da41d88137/">毛选1-7卷-无解压密码.zip</a></p>
+<p><a href="https://cloud.tsinghua.edu.cn/f/93d876a65d604e18a38d/">政治经济学概论v1.3.docx</a></p>
 <h1 id="系统学习"><a class="header-anchor" href="#系统学习"></a>系统学习</h1>
 <p>而后，有了感性的认识，就可以继续系统学习，上这几个网站去学</p>
 <p><a href="https://www.marxists.org/chinese/">马克思主义文库</a></p>
@@ -9151,7 +9123,6 @@ asdas
 <p><a href="https://www.marxists.org/chinese/marx/01.htm">马克思 恩格斯：共产党宣言（1848年）</a></p>
 <p><a href="https://www.marxists.org/chinese/lenin/15.htm">列宁：帝国主义是资本主义的最高阶段（1916年1-6月）</a></p>
 <p><a href="https://www.marxists.org/chinese/lenin/1901-1902/index.htm">列宁：怎么办？（1901年秋―1902年2月）</a></p>
-<p><a href="https://cloud.tsinghua.edu.cn/f/93d876a65d604e18a38d/">政治经济学概论v1.3.docx</a></p>
 <p><a href="https://b23.tv/iTBhVdK">为了讲清楚辩证法，我重写了半部哲学史！-哔哩哔哩</a></p>
 <p><a href="https://b23.tv/hbPdP7K">全错了？从唯物主义到共阐主义的一切，以人类之名！-哔哩哔哩</a></p>
 <p><a href="https://www.marxists.org/chinese/engels/marxist.org-chinese-engels-1884-3.htm">家庭私有制和国家的起源 恩格斯</a></p>
@@ -9171,6 +9142,35 @@ asdas
       <categories>
         <category>道</category>
         <category>佛法札记</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>“春天”后怪相的逻辑链</title>
+    <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E2%80%9C%E6%98%A5%E5%A4%A9%E2%80%9D%E5%90%8E%E6%80%AA%E7%9B%B8%E7%9A%84%E9%80%BB%E8%BE%91%E9%93%BE.md/main/</url>
+    <content><![CDATA[<p>最近政府频繁拿捏资本，释放啥信号？是类似欧美搞分配调整给私有制续命三十年拖延危机，还是新三大改造前稳定局面争取时间和意识形态动员？未来往哪走，这取决于普罗大众（proletariat）是否普遍呼吁 对于｛｛生产，生活｝的管理权 和 ｛生活资料，生产资料，权力｝的分配权 ｝的公有化，而这又取决于普罗大众如何看待追逐利润的经济改革。</p>
+<p>以下是“春天”后怪相的逻辑链:</p>
+<p>X→追逐利润的生产→双轨制→面向地下市场利润的生产→国企计划内效益差→市场经济＋国企私有化→公权力勾结资本→向资本收不到税→中央财政缺口→分税制→地方财政缺口→土地财政→高房价→追逐高薪→教育内卷+找一个人干三份活发两份工资→996→民怨→965+远程工作+降薪</p>
+<p>市场经济→利润导向生产→利润导向用工→加大剥削：加大劳动强度+延长劳动时间+压低工资+不交五险一金→劳务派遣+临时工+学生工+网络平台工</p>
+<p>X→分地→集体农业基础设施失修 基层组织断粮→三提五统→吃不饱饭→进城务工 利润导向用工→收入低 没有户口 没五险一金→地位地下→教育内卷 不当工人</p>
+<p>分地+地方财政缺口→ 基层组织断粮→农村医疗、教育、养老倒退</p>
+<p>教育内卷→学区房+课业压力大→素质教育 课上少讲→补习班 私立学校→禁止补习班 轮换老师→高等华人在海外学校 +国人阶级固化</p>
+<p>地方财政缺口→医疗拨款少→医生工资少→民办医院+以药养医→看病贵+中药利益集团</p>
+<p>利润导向用工→劳动强度大→歧视女性→收入和岗位机会少、生育歧视→住房难 教育卷 要男性分担→彩礼+房子→男性躺平→女性不生→生育率下降+性别矛盾男女打拳</p>
+<p>利润导向生产→宁用廉价人力 不用自动化→产业升级迟缓→产学转化没人买单→学术灌水维生</p>
+<p>利润导向生产→偷工减料+地沟油+污染+工伤</p>
+<p>X→计生从自愿两胎改成强制一胎→人口结构畸形→老龄化＋劳动力减少→养老金吃紧</p>
+<p>利润导向生产→追逐超额利润→加大剥削+大厂+大机器→失业+增大固定资本比例 减少劳动力成本比例→利润率（从劳动力剥削到剩余价值 ÷ 总资本）下降→制造业不赚钱 淘宝店不赚钱→资本转向平台和供应链→资本转向金融泡沫，即经济脱实向虚</p>
+<p>失业→劳动力供大于求→压低工资（工资涨的比通胀慢）</p>
+<p>压低工资+医疗贵+教育贵＋住房贵→钱不够用→内需低 内循环难→生产走低质量 薄利多销路线→高端产品滞销→产业升级迟缓</p>
+<p>以上所有怪相无法解释→各人群内心忧苦→宗教+逆行民族主义+民族主义+公知+兔学+工业党 生产力论+阴阳师+犬儒主义+人性论+ 毁灭人类思想+实用投机 盛行→思想混乱 无法团结 既可以转移注意力掩盖问题根源 也容易被乘虚而入</p>
+<p>总结：X→追逐利润的生产和分配→以上所有怪相→经济危机临近+生活压力变大→资本主义要崩溃了→要走新道路→要搞信息社会主义（公有平台经济+数字平台全过程全民直接民主+政府职能部门服务业化）</p>
+<p>详见：<a href="https://blog.lianghy.ml/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E4%BF%A1%E6%81%AF%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89.md/main/">信息社会主义</a></p>
+<p>正所谓，人民是历史的唯一创造者，人民决定了英雄能唱什么戏。如果从庙堂到小吏足够聪敏和强健，维持框架稳定的唯一选项，是将人民的意志实现。不然，人民的意志倘若不能和平地实现，也必须 迟早会 在风雨中实现。因此，题目问，这是什么信号，取决于普罗大众的头脑，是否反思了X，是否要走新路。</p>
+<p>当上述成功后，一定要严防死守新的X事件，即防范持有追逐利润思路者牟得公权力 特别是全面主持工作的权力，而信息社会主义则是防X反X的利剑与锁链，因为在那里，经济生活中不再有“利润”这个概念，取而代之的是评价是否满足需求的“绩效”。当利润从经济生活中消失，就会开始从人们脑子里消失，复活X的土壤也就消失了。</p>
+]]></content>
+      <categories>
+        <category>道</category>
+        <category>Marxism笔记</category>
       </categories>
   </entry>
   <entry>
