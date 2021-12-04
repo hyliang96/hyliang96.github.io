@@ -1757,99 +1757,6 @@ sudo &#x2F;mnt&#x2F;matlab&#x2F;install -inputFile installer_input.txt<span aria
       </categories>
   </entry>
   <entry>
-    <title>压缩解压工具</title>
-    <url>/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E5%B7%A5%E5%85%B7.md/main/</url>
-    <content><![CDATA[<h1 id="压缩解压工具"><a class="header-anchor" href="#压缩解压工具"></a>压缩解压工具</h1>
-<h3 id="Linux下压缩解压算法与工具比较"><a class="header-anchor" href="#Linux下压缩解压算法与工具比较"></a><a href="(https://www.jianshu.com/p/38b32107bc3e)">Linux下压缩解压算法与工具比较</a></h3>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>Linux自带否</th>
-<th>优点</th>
-<th>压缩命令</th>
-<th>解压命令</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>zip</td>
-<td>是</td>
-<td><strong>所有操作系统都自带</strong>，可压缩文件夹</td>
-<td><code>zip -r xxx.zip 一或多个文件会文件夹</code></td>
-<td><code>unzip xxx.zip -d 解压到的路径</code>  （会自动创建解压到的路径；压缩包内根目录下诸物皆解压到解压到的路径）</td>
-</tr>
-<tr>
-<td>7z</td>
-<td>否</td>
-<td>压缩解压都<strong>最快</strong>，可压缩文件夹</td>
-<td><code>7z a  xxx.7z  一或多个文件会文件夹 </code>(注意： <code>a</code>前无<code>-</code>)</td>
-<td><code>7z e xxx.7z  -o解压到的路径</code> (注意：<code>x</code>前无<code>-</code>;<code>-o</code>后没空格；会自动创建解压到的路径，压缩包内根目录下诸物皆解压到解压到的路径)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="7z"><a class="header-anchor" href="#7z"></a>7z</h2>
-<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
-<h4 id="apt-get安装"><a class="header-anchor" href="#apt-get安装"></a>apt-get安装</h4>
-<p>推荐<code>p7zip-full</code> 和<code>p7zip-rar</code>都装</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip <span class="token comment"># 包含7zr（最小的7zip归档工具），只支持7z格式。</span>
-<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip-full <span class="token comment"># 包含完整7z，支持7z、LZMA2、XZ、ZIP、CAB、GZIP、BZIP2、ARJ、TAR、CPIO、RPM、ISO和DEB格式，不支持rar</span>
-<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip-rar <span class="token comment"># 只支持RAR格式</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h4 id="conda安装"><a class="header-anchor" href="#conda安装"></a>conda安装</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c bioconda p7zip <span class="token comment"># 安装的是p7zip-full，不支持rar</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="用法"><a class="header-anchor" href="#用法"></a>用法</h3>
-<h3 id="命令"><a class="header-anchor" href="#命令"></a>命令</h3>
-<p><a href="https://wiki.archlinux.org/index.php/P7zip_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">参考</a></p>
-<p>安装了三种二进制文件， <code>/usr/bin/&#123;7z,7za,7zr&#125;</code></p>
-<ul>
-<li><code>7z  </code>  : <code>/usr/bin/7z</code>调用插件<code>/usr/lib/p7zip/7z</code>，支持众多格式；因此若只将<code>/usr/bin/7z</code>拷贝到别的电脑，并不能运行<code>7z</code>。</li>
-<li><code>7za </code> : 独立程序，不用插件；支持一些格式，比<code>7z</code>少</li>
-<li><code>7zr</code>  : 独立程序，不用插件；只支持&quot;.7z&quot;格式</li>
-</ul>
-<p>一般用<code>7z</code>就好，支持格式最多</p>
-<p>拷到别的电脑——需把<code>/usr/lib/p7zip/</code>和 <code>/usr/bin/&#123;7z,7za,7zr&#125;</code>拷走</p>
-<h4 id="解压"><a class="header-anchor" href="#解压"></a>解压</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">7z x -t<span class="token operator">&lt;</span>格式<span class="token operator">></span> <span class="token operator">&lt;</span>压缩文件<span class="token operator">></span>.<span class="token operator">&lt;</span>扩展名<span class="token operator">></span> -o<span class="token operator">&lt;</span>解压目录<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li><code>x</code>： 解压</li>
-<li><code>-t&lt;格式&gt;</code>：
-<ul>
-<li>如 &lt;格式&gt; = “7z”,“zip”,&quot;.tar.bz2&quot;等</li>
-<li>缺省：&lt;格式&gt;=“7z”</li>
-</ul>
-</li>
-<li><code>&lt;压缩文件&gt;.&lt;扩展名&gt;</code> : <strong>仅一个</strong></li>
-<li><code>&lt;扩展名&gt;</code> 不可缺省，7z不会帮你脑补扩展名</li>
-<li><code>-o&lt;解压目录&gt;</code>
-<ul>
-<li>压缩包内根目录下文件(夹)都解压到&lt;解压目录&gt;</li>
-<li><strong>强烈建议</strong>写成<code>-o&lt;目录&gt;/&lt;新建文件夹&gt;</code>, 7z<strong>会帮你创建</strong>&lt;解压目录&gt;/&lt;新建文件夹&gt;。可避免，压缩包内根级目录下多个文件(夹)<strong>堆满&lt;目录&gt;</strong></li>
-<li>缺省： &lt;格式&gt;=“./”</li>
-</ul>
-</li>
-<li><code>-o</code>,  <code> -t</code> 后没有空格</li>
-</ul>
-<h4 id="压缩"><a class="header-anchor" href="#压缩"></a>压缩</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">7z a -t<span class="token operator">&lt;</span>格式<span class="token operator">></span> <span class="token operator">&lt;</span>压缩文件<span class="token operator">></span>.<span class="token operator">&lt;</span>扩展名<span class="token operator">></span> <span class="token operator">&lt;</span>待压缩文件<span class="token punctuation">(</span>夹<span class="token punctuation">)</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li><code>a</code>： 压缩</li>
-<li><code>-t&lt;格式&gt;</code>：
-<ul>
-<li>如 &lt;格式&gt; = “7z”,&quot;zip&quot;等</li>
-<li>缺省：&lt;格式&gt;=“7z”</li>
-</ul>
-</li>
-<li><code>&lt;扩展名&gt;</code> 不可缺省，7z不会帮你脑补扩展名</li>
-<li><code>&lt;待压缩文件(夹)&gt;</code>: 可多个， 空格分隔</li>
-</ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>linux杂项</category>
-      </categories>
-  </entry>
-  <entry>
     <title>磁盘配额设置</title>
     <url>/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/%E7%A3%81%E7%9B%98%E9%85%8D%E9%A2%9D%E8%AE%BE%E7%BD%AE.md/main/</url>
     <content><![CDATA[<h2 id="目录下统计磁盘用量"><a class="header-anchor" href="#目录下统计磁盘用量"></a>目录下统计磁盘用量</h2>
@@ -2039,6 +1946,125 @@ quota: Cannot open quotafile &#x2F;&#x2F;quota.user: No such file or directory<s
       </categories>
   </entry>
   <entry>
+    <title>Mac按键符号</title>
+    <url>/%E5%99%A8/mac/Mac%E6%8C%89%E9%94%AE%E7%AC%A6%E5%8F%B7.md/main/</url>
+    <content><![CDATA[<h2 id="Mac符号"><a class="header-anchor" href="#Mac符号"></a>Mac符号</h2>
+<p><a href="https://blog.csdn.net/libing_zeng/article/details/73201264">参考</a></p>
+<p>⌘: Command<br>
+⇧: Shift<br>
+⌥: Option<br>
+⌃: Control<br>
+↩︎: Return/Enter<br>
+⌫: Delete<br>
+⌦: 向前删除键（Fn+Delete）<br>
+⇞: Page Up（Fn+↑）<br>
+⇟: Page Down（Fn+↓）<br>
+Home: Fn + ←<br>
+End: Fn + →<br>
+⇥: 右制表符（Tab键）<br>
+⇤: 左制表符（Shift+Tab）<br>
+⎋: Escape (Esc)</p>
+<p><img data-src="/%E5%99%A8/mac/Mac%E6%8C%89%E9%94%AE%E7%AC%A6%E5%8F%B7.md/main/20170614103620686.png" alt></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>压缩解压工具</title>
+    <url>/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E5%B7%A5%E5%85%B7.md/main/</url>
+    <content><![CDATA[<h1 id="压缩解压工具"><a class="header-anchor" href="#压缩解压工具"></a>压缩解压工具</h1>
+<h3 id="Linux下压缩解压算法与工具比较"><a class="header-anchor" href="#Linux下压缩解压算法与工具比较"></a><a href="(https://www.jianshu.com/p/38b32107bc3e)">Linux下压缩解压算法与工具比较</a></h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>Linux自带否</th>
+<th>优点</th>
+<th>压缩命令</th>
+<th>解压命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zip</td>
+<td>是</td>
+<td><strong>所有操作系统都自带</strong>，可压缩文件夹</td>
+<td><code>zip -r xxx.zip 一或多个文件会文件夹</code></td>
+<td><code>unzip xxx.zip -d 解压到的路径</code>  （会自动创建解压到的路径；压缩包内根目录下诸物皆解压到解压到的路径）</td>
+</tr>
+<tr>
+<td>7z</td>
+<td>否</td>
+<td>压缩解压都<strong>最快</strong>，可压缩文件夹</td>
+<td><code>7z a  xxx.7z  一或多个文件会文件夹 </code>(注意： <code>a</code>前无<code>-</code>)</td>
+<td><code>7z e xxx.7z  -o解压到的路径</code> (注意：<code>x</code>前无<code>-</code>;<code>-o</code>后没空格；会自动创建解压到的路径，压缩包内根目录下诸物皆解压到解压到的路径)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7z"><a class="header-anchor" href="#7z"></a>7z</h2>
+<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
+<h4 id="apt-get安装"><a class="header-anchor" href="#apt-get安装"></a>apt-get安装</h4>
+<p>推荐<code>p7zip-full</code> 和<code>p7zip-rar</code>都装</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip <span class="token comment"># 包含7zr（最小的7zip归档工具），只支持7z格式。</span>
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip-full <span class="token comment"># 包含完整7z，支持7z、LZMA2、XZ、ZIP、CAB、GZIP、BZIP2、ARJ、TAR、CPIO、RPM、ISO和DEB格式，不支持rar</span>
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip-rar <span class="token comment"># 只支持RAR格式</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="conda安装"><a class="header-anchor" href="#conda安装"></a>conda安装</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c bioconda p7zip <span class="token comment"># 安装的是p7zip-full，不支持rar</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="用法"><a class="header-anchor" href="#用法"></a>用法</h3>
+<h3 id="命令"><a class="header-anchor" href="#命令"></a>命令</h3>
+<p><a href="https://wiki.archlinux.org/index.php/P7zip_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">参考</a></p>
+<p>安装了三种二进制文件， <code>/usr/bin/&#123;7z,7za,7zr&#125;</code></p>
+<ul>
+<li><code>7z  </code>  : <code>/usr/bin/7z</code>调用插件<code>/usr/lib/p7zip/7z</code>，支持众多格式；因此若只将<code>/usr/bin/7z</code>拷贝到别的电脑，并不能运行<code>7z</code>。</li>
+<li><code>7za </code> : 独立程序，不用插件；支持一些格式，比<code>7z</code>少</li>
+<li><code>7zr</code>  : 独立程序，不用插件；只支持&quot;.7z&quot;格式</li>
+</ul>
+<p>一般用<code>7z</code>就好，支持格式最多</p>
+<p>拷到别的电脑——需把<code>/usr/lib/p7zip/</code>和 <code>/usr/bin/&#123;7z,7za,7zr&#125;</code>拷走</p>
+<h4 id="解压"><a class="header-anchor" href="#解压"></a>解压</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">7z x -t<span class="token operator">&lt;</span>格式<span class="token operator">></span> <span class="token operator">&lt;</span>压缩文件<span class="token operator">></span>.<span class="token operator">&lt;</span>扩展名<span class="token operator">></span> -o<span class="token operator">&lt;</span>解压目录<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li><code>x</code>： 解压</li>
+<li><code>-t&lt;格式&gt;</code>：
+<ul>
+<li>如 &lt;格式&gt; = “7z”,“zip”,&quot;.tar.bz2&quot;等</li>
+<li>缺省：&lt;格式&gt;=“7z”</li>
+</ul>
+</li>
+<li><code>&lt;压缩文件&gt;.&lt;扩展名&gt;</code> : <strong>仅一个</strong></li>
+<li><code>&lt;扩展名&gt;</code> 不可缺省，7z不会帮你脑补扩展名</li>
+<li><code>-o&lt;解压目录&gt;</code>
+<ul>
+<li>压缩包内根目录下文件(夹)都解压到&lt;解压目录&gt;</li>
+<li><strong>强烈建议</strong>写成<code>-o&lt;目录&gt;/&lt;新建文件夹&gt;</code>, 7z<strong>会帮你创建</strong>&lt;解压目录&gt;/&lt;新建文件夹&gt;。可避免，压缩包内根级目录下多个文件(夹)<strong>堆满&lt;目录&gt;</strong></li>
+<li>缺省： &lt;格式&gt;=“./”</li>
+</ul>
+</li>
+<li><code>-o</code>,  <code> -t</code> 后没有空格</li>
+</ul>
+<h4 id="压缩"><a class="header-anchor" href="#压缩"></a>压缩</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">7z a -t<span class="token operator">&lt;</span>格式<span class="token operator">></span> <span class="token operator">&lt;</span>压缩文件<span class="token operator">></span>.<span class="token operator">&lt;</span>扩展名<span class="token operator">></span> <span class="token operator">&lt;</span>待压缩文件<span class="token punctuation">(</span>夹<span class="token punctuation">)</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li><code>a</code>： 压缩</li>
+<li><code>-t&lt;格式&gt;</code>：
+<ul>
+<li>如 &lt;格式&gt; = “7z”,&quot;zip&quot;等</li>
+<li>缺省：&lt;格式&gt;=“7z”</li>
+</ul>
+</li>
+<li><code>&lt;扩展名&gt;</code> 不可缺省，7z不会帮你脑补扩展名</li>
+<li><code>&lt;待压缩文件(夹)&gt;</code>: 可多个， 空格分隔</li>
+</ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>linux杂项</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Mac上使用locate</title>
     <url>/%E5%99%A8/mac/Mac%E4%B8%8A%E4%BD%BF%E7%94%A8locate.md/main/</url>
     <content><![CDATA[<h1 id="系统级locate"><a class="header-anchor" href="#系统级locate"></a>系统级locate</h1>
@@ -2179,25 +2205,13 @@ Try &#39;rm --help&#39; for more information.<span aria-hidden="true" class="lin
       </categories>
   </entry>
   <entry>
-    <title>Mac按键符号</title>
-    <url>/%E5%99%A8/mac/Mac%E6%8C%89%E9%94%AE%E7%AC%A6%E5%8F%B7.md/main/</url>
-    <content><![CDATA[<h2 id="Mac符号"><a class="header-anchor" href="#Mac符号"></a>Mac符号</h2>
-<p><a href="https://blog.csdn.net/libing_zeng/article/details/73201264">参考</a></p>
-<p>⌘: Command<br>
-⇧: Shift<br>
-⌥: Option<br>
-⌃: Control<br>
-↩︎: Return/Enter<br>
-⌫: Delete<br>
-⌦: 向前删除键（Fn+Delete）<br>
-⇞: Page Up（Fn+↑）<br>
-⇟: Page Down（Fn+↓）<br>
-Home: Fn + ←<br>
-End: Fn + →<br>
-⇥: 右制表符（Tab键）<br>
-⇤: 左制表符（Shift+Tab）<br>
-⎋: Escape (Esc)</p>
-<p><img data-src="/%E5%99%A8/mac/Mac%E6%8C%89%E9%94%AE%E7%AC%A6%E5%8F%B7.md/main/20170614103620686.png" alt></p>
+    <title>mac_命令行专属命令</title>
+    <url>/%E5%99%A8/mac/mac_%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%93%E5%B1%9E%E5%91%BD%E4%BB%A4.md/main/</url>
+    <content><![CDATA[<h1 id="mac-命令行专属命令"><a class="header-anchor" href="#mac-命令行专属命令"></a>mac 命令行专属命令</h1>
+<h3 id="mac-命令行专属命令-_2"><a class="header-anchor" href="#mac-命令行专属命令-_2"></a>mac 命令行专属命令</h3>
+<p>永久修改hostname (命令行行首提示中的主机名)</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> scutil --set HostName <span class="token operator">&lt;</span>新hostname<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a href="https://blog.csdn.net/flyter/article/details/8880583">参考</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -2276,20 +2290,6 @@ Homebrew&#x2F;homebrew-core (git revision 43c72b06c0c; last commit 2021-09-28)<s
 <h2 id="国内镜像安装"><a class="header-anchor" href="#国内镜像安装"></a>国内镜像安装</h2>
 <p><a href="http://mirrors.ustc.edu.cn/help/brew.git.html">中科大源</a></p>
 <p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/">清华源</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>mac_命令行专属命令</title>
-    <url>/%E5%99%A8/mac/mac_%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%93%E5%B1%9E%E5%91%BD%E4%BB%A4.md/main/</url>
-    <content><![CDATA[<h1 id="mac-命令行专属命令"><a class="header-anchor" href="#mac-命令行专属命令"></a>mac 命令行专属命令</h1>
-<h3 id="mac-命令行专属命令-_2"><a class="header-anchor" href="#mac-命令行专属命令-_2"></a>mac 命令行专属命令</h3>
-<p>永久修改hostname (命令行行首提示中的主机名)</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> scutil --set HostName <span class="token operator">&lt;</span>新hostname<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a href="https://blog.csdn.net/flyter/article/details/8880583">参考</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3068,6 +3068,74 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
       </categories>
   </entry>
   <entry>
+    <title>mac的移动硬盘分区方案</title>
+    <url>/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/</url>
+    <content><![CDATA[<h3 id="分区方案"><a class="header-anchor" href="#分区方案"></a>分区方案</h3>
+<p>完全参照https://www.jianshu.com/p/5f8b4d9a8922</p>
+<p>主力分区是<code>NTFS</code>格式，以确保和windows的数据交换，配套Tuxera NTFS for Mac来解决Mac系统无法写入NTFS文件系统的问题。</p>
+<p>mac的备份区用<code>OS X 拓展（日志式）</code>格式。</p>
+<h3 id="NTFS写入软件的选择"><a class="header-anchor" href="#NTFS写入软件的选择"></a>NTFS写入软件的选择</h3>
+<table>
+<thead>
+<tr>
+<th>软件</th>
+<th>速度</th>
+<th>进阶功能</th>
+<th>稳定性</th>
+<th>收费否</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Paragon NTFS</td>
+<td>中</td>
+<td>无</td>
+<td>次稳定</td>
+<td>￥150</td>
+</tr>
+<tr>
+<td>Tuxera NTFS</td>
+<td>快</td>
+<td>有</td>
+<td>最稳定</td>
+<td>￥100</td>
+</tr>
+<tr>
+<td>mount类：如mountly软件 或 开启mac自带的ntfs写入功能</td>
+<td>快</td>
+<td>无</td>
+<td>很不稳定</td>
+<td>免费</td>
+</tr>
+</tbody>
+</table>
+<p>使用过程中出现设备断电或 USB 接口拔出等意外情况，Tuxera 的故障安全技术会确保各类文件完整，并防止驱动器损坏；而mount类则很容易丢失数据、损坏；Paragon也可能丢如此。</p>
+<p><img data-src="/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/v2-58016781c731bb96345e5e1b3ae069b7_hd.jpg" alt="v2-58016781c731bb96345e5e1b3ae069b7_hd"></p>
+<p><a href="https://zhuanlan.zhihu.com/p/68927971">参考</a></p>
+<p>建议：</p>
+<ul>
+<li>办公、写代码、日常备份资料，对速度要求不高，则稳定最要紧最高，推荐选择Tuxera</li>
+<li>影视制作，对速度要求高，推荐选Paragon</li>
+</ul>
+<h3 id="读写速度对比速度"><a class="header-anchor" href="#读写速度对比速度"></a>读写速度对比速度</h3>
+<p>使用Disk Speed Test软件测试移动硬盘不同格式分区的读写速度，<code>OS X 拓展（日志式）</code>和<code>NTFS</code>(Tuxera NTFS for Mac)读写速度相差不大</p>
+<ul>
+<li>
+<p>使用Tuxera NTFS for Mac，写入NTFS格式的分区，结果如下</p>
+<p><img data-src="/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/ntfs.png" alt="ntfs"></p>
+</li>
+<li>
+<p>读写入&quot;OS X 拓展（日志式）&quot;格式的分区，结果如下</p>
+<p><img data-src="/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/hfs+.png" alt="hfs+"></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
     <title>注销icloud后桌面文件消失</title>
     <url>/%E5%99%A8/mac/%E6%B3%A8%E9%94%80icloud%E5%90%8E%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1.md/main/</url>
     <content><![CDATA[<h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
@@ -3104,6 +3172,45 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <h3 id="使用time-machine"><a class="header-anchor" href="#使用time-machine"></a>使用time machine</h3>
 <p>若近期使用了time machine备份了系统, 可将 <code>桌面</code> <code>文稿</code> 等文件夹 整体还原到最近一次备份.</p>
 <p>若发现使用<a href="#%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0icloud%E5%BD%92%E6%A1%A3" title="推荐">使用本地icloud归档</a>去恢复的文件有缺失, 也可从time machine中最近一次备份里, 还原所缺的文件和文件夹.</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>禁止safar从http跳转到https</title>
+    <url>/%E5%99%A8/mac/%E7%A6%81%E6%AD%A2safar%E4%BB%8Ehttp%E8%B7%B3%E8%BD%AC%E5%88%B0https.md/main/</url>
+    <content><![CDATA[<p>Safari对于一些用https访问的域名, 会存入一个列表, 此后访问 <code>http://此域名</code> , 会自动跳转到  <code>https://此域名</code> .</p>
+<p>若不想跳转, 可如下操作:</p>
+<ul>
+<li>
+<p>⌘+Q 退出Safari</p>
+</li>
+<li>
+<p>执行如下命令. 这个文件是个域名列表, safari见之则访https而非http. 删此文件, 则列表清空. <a href="https://discussions.apple.com/thread/6989319">出处</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 一般能解决问题.</p>
+</li>
+</ul>
+<p>若还是跳转https, 则继续下述操作</p>
+<ul>
+<li>
+<p>⌘+Q 退出Safari</p>
+</li>
+<li>
+<p>运行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>重启操作系统</p>
+</li>
+<li>
+<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 几乎都能解决.</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3194,113 +3301,6 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <h4 id="step-2-另写一个快速操作"><a class="header-anchor" href="#step-2-另写一个快速操作"></a>step 2: 另写一个快速操作</h4>
 <p>另写一个 xxx.workflow (快速操作), 其内容如下, 仅调用xxx.app. 这样, 则可以在将  xxx.workflow (快速操作) 绑定快捷键, 并添加到右键菜单, 具体做法详见<a href="#%E5%BF%AB%E9%80%9F%E6%93%8D%E4%BD%9C">上文</a>.</p>
 <p><img data-src="/%E5%99%A8/mac/%E8%87%AA%E5%8A%A8%E6%93%8D%E4%BD%9C.md/main/iShot2020-11-18%2022.03.52.png" alt="iShot2020-11-18 22.03.52"></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>mac的移动硬盘分区方案</title>
-    <url>/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/</url>
-    <content><![CDATA[<h3 id="分区方案"><a class="header-anchor" href="#分区方案"></a>分区方案</h3>
-<p>完全参照https://www.jianshu.com/p/5f8b4d9a8922</p>
-<p>主力分区是<code>NTFS</code>格式，以确保和windows的数据交换，配套Tuxera NTFS for Mac来解决Mac系统无法写入NTFS文件系统的问题。</p>
-<p>mac的备份区用<code>OS X 拓展（日志式）</code>格式。</p>
-<h3 id="NTFS写入软件的选择"><a class="header-anchor" href="#NTFS写入软件的选择"></a>NTFS写入软件的选择</h3>
-<table>
-<thead>
-<tr>
-<th>软件</th>
-<th>速度</th>
-<th>进阶功能</th>
-<th>稳定性</th>
-<th>收费否</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Paragon NTFS</td>
-<td>中</td>
-<td>无</td>
-<td>次稳定</td>
-<td>￥150</td>
-</tr>
-<tr>
-<td>Tuxera NTFS</td>
-<td>快</td>
-<td>有</td>
-<td>最稳定</td>
-<td>￥100</td>
-</tr>
-<tr>
-<td>mount类：如mountly软件 或 开启mac自带的ntfs写入功能</td>
-<td>快</td>
-<td>无</td>
-<td>很不稳定</td>
-<td>免费</td>
-</tr>
-</tbody>
-</table>
-<p>使用过程中出现设备断电或 USB 接口拔出等意外情况，Tuxera 的故障安全技术会确保各类文件完整，并防止驱动器损坏；而mount类则很容易丢失数据、损坏；Paragon也可能丢如此。</p>
-<p><img data-src="/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/v2-58016781c731bb96345e5e1b3ae069b7_hd.jpg" alt="v2-58016781c731bb96345e5e1b3ae069b7_hd"></p>
-<p><a href="https://zhuanlan.zhihu.com/p/68927971">参考</a></p>
-<p>建议：</p>
-<ul>
-<li>办公、写代码、日常备份资料，对速度要求不高，则稳定最要紧最高，推荐选择Tuxera</li>
-<li>影视制作，对速度要求高，推荐选Paragon</li>
-</ul>
-<h3 id="读写速度对比速度"><a class="header-anchor" href="#读写速度对比速度"></a>读写速度对比速度</h3>
-<p>使用Disk Speed Test软件测试移动硬盘不同格式分区的读写速度，<code>OS X 拓展（日志式）</code>和<code>NTFS</code>(Tuxera NTFS for Mac)读写速度相差不大</p>
-<ul>
-<li>
-<p>使用Tuxera NTFS for Mac，写入NTFS格式的分区，结果如下</p>
-<p><img data-src="/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/ntfs.png" alt="ntfs"></p>
-</li>
-<li>
-<p>读写入&quot;OS X 拓展（日志式）&quot;格式的分区，结果如下</p>
-<p><img data-src="/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/hfs+.png" alt="hfs+"></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>禁止safar从http跳转到https</title>
-    <url>/%E5%99%A8/mac/%E7%A6%81%E6%AD%A2safar%E4%BB%8Ehttp%E8%B7%B3%E8%BD%AC%E5%88%B0https.md/main/</url>
-    <content><![CDATA[<p>Safari对于一些用https访问的域名, 会存入一个列表, 此后访问 <code>http://此域名</code> , 会自动跳转到  <code>https://此域名</code> .</p>
-<p>若不想跳转, 可如下操作:</p>
-<ul>
-<li>
-<p>⌘+Q 退出Safari</p>
-</li>
-<li>
-<p>执行如下命令. 这个文件是个域名列表, safari见之则访https而非http. 删此文件, 则列表清空. <a href="https://discussions.apple.com/thread/6989319">出处</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 一般能解决问题.</p>
-</li>
-</ul>
-<p>若还是跳转https, 则继续下述操作</p>
-<ul>
-<li>
-<p>⌘+Q 退出Safari</p>
-</li>
-<li>
-<p>运行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>重启操作系统</p>
-</li>
-<li>
-<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 几乎都能解决.</p>
-</li>
-</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3892,138 +3892,6 @@ c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuati
       </categories>
   </entry>
   <entry>
-    <title>pip使用方法</title>
-    <url>/%E5%99%A8/python/pip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.md/main/</url>
-    <content><![CDATA[<h2 id="pip使用方法"><a class="header-anchor" href="#pip使用方法"></a>pip使用方法</h2>
-<ul>
-<li>装包</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>卸包</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip uninstall 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>升级到最新版本</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>升级/降级到制定版本</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span class="token operator">==</span>版本号<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>上述方法，令包为<code>pip</code>，即可 卸/升级/降级 pip 自己</li>
-<li>看有哪些包</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>看装了的包的信息</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip show 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>python</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>jupyter_notebook更换配色</title>
-    <url>/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/</url>
-    <content><![CDATA[<h1 id="jupyter-themes-修改-jupyter-notebook-的主题"><a class="header-anchor" href="#jupyter-themes-修改-jupyter-notebook-的主题"></a>jupyter-themes: 修改 jupyter notebook 的主题</h1>
-<h2 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h2>
-<ul>
-<li>
-<p>安装</p>
-<p>看jupyter是用conda还是pip装的</p>
-<pre class="line-numbers language-none"><code class="language-none">conda list | grep -e &#39;^jupyter &#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">jupyter                   1.0.0            py36h9896ce5_0    【defaults】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<ul>
-<li>
-<p>若<code>【】</code>中为<code>default</code>，则是jupyter notebook是conda安装的，强烈建议用conda安装jupyterthemes，不然若用pip安装jupyterthemes，会出现多种依赖不匹配</p>
-  <pre class="line-numbers language-none"><code class="language-none">conda install -c conda-forge jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>若<code>【】</code>中为<code>pypi</code>，jupyter notebook是pip安装的，则</p>
-  <pre class="line-numbers language-none"><code class="language-none">pip install jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>配置</p>
-<p>终端下输入以下命令</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">jt -t gruvboxd -T -N -cellw <span class="token number">90</span>% -f roboto -fs <span class="token number">11</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这表示我选择了 gruvboxd 这个主题，同时希望打开顶部的工具栏（Toolbar），显示笔记本的名字（Name），文本框占浏览器页宽的90%，用roboto等宽字体，字号11</p>
-<p>运行过程中可能会返回报错如下，这说明已经别的用户安装了jupyterthemes，并重建了<code>/tmp/yacctab.py</code>，故你无法重写这个文件，这并不运行你使用jupyter notebook的配色。你的配色设置，保存到 <code>$HOME/.jupyter/custom/</code>，不和他的配色设置冲突。</p>
-<blockquote>
-<p>WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’<br>
-WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’</p>
-</blockquote>
-</li>
-<li>
-<p>配置文件</p>
-<p>配置文件保存到了 <code>$HOME/.jupyter/custom/</code>，下是四个配置和依赖文件<code>current_theme. txt, custom.css, custom.js, fonts/</code>，之后每次执行<code>jupyter notebook</code>启动notebook时，会加载此配置，看见你要的主题。</p>
-</li>
-</ul>
-<h2 id="依赖不匹配怎么解决"><a class="header-anchor" href="#依赖不匹配怎么解决"></a>依赖不匹配怎么解决</h2>
-<p>若jupyter notebook是conda安装，却用安装pip安装jupyterthemes，会出现多种依赖不匹配，最终如下装一圈依赖，才能安装成功</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda upgrade notebook libsodium
-pip <span class="token function">install</span> jupyterthemes
-pip <span class="token function">install</span> --upgrade --user nbconvert
-pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>以下是各个依赖不匹配的详解：</p>
-<h3 id="Found-existing-installation-terminado-0-6"><a class="header-anchor" href="#Found-existing-installation-terminado-0-6"></a>Found existing installation: terminado 0.6</h3>
-<p>执行<code>pip install jupyterthemes</code>时报错</p>
-<blockquote>
-<p>notebook 5.7.6 has requirement jupyter-core&gt;=4.4.0, but you’ll have jupyter-core 4.3.0 which is incompatible.</p>
-<p>Installing collected packages: lesscpy, terminado, pyzmq, jupyter-client, prometheus-client, Send2Trash, notebook, jupyterthemes<br>
-<strong>Found existing installation</strong>: terminado 0.6<br>
-Cannot uninstall ‘terminado’. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.</p>
-</blockquote>
-<p>这是因为，上述操作中pip自动更新了notebook，但这个notebook是用conda而非pip装的，故依赖项terminado不对</p>
-<p>解决方法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda upgrade notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>而后可正常安装</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="ImportError-libsodium-so-23"><a class="header-anchor" href="#ImportError-libsodium-so-23"></a>ImportError: libsodium.so.23</h3>
-<p>执行<code>jupyter notebook</code>，报错</p>
-<blockquote>
-<p>ImportError: libsodium.so.23: cannot open shared object file: No such file or directory</p>
-</blockquote>
-<p>这是由于<code>jupyterthemes</code>依赖的<code>libsodium</code>没有更新</p>
-<p>解决办法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda update libsodium
-<span class="token comment"># 或</span>
-conda <span class="token function">install</span> -c conda-forge libsodium<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"><a class="header-anchor" href="#ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"></a>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</h3>
-<p>运行notebook时，用浏览器成功打开notebook的目录网页，但无法打开/新建python3 的 notebook文件，命令行下报错</p>
-<blockquote>
-<p>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</p>
-<p>[E 20:28:58.544 NotebookApp]</p>
-</blockquote>
-<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>nbconvert</code>没有更新</p>
-<p>解决办法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade --user nbconvert<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后将<code>$USER/.local/bin</code>添加到PATH，即可实现上述运行</p>
-<h3 id="ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"><a class="header-anchor" href="#ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"></a>ERROR:tornado.general: Uncaught exception in zmqstream callback</h3>
-<p>运行notebook时，用浏览器成功打开notebook的目录网页，能成功打开/新建python3 的 notebook文件，但点运行，迟迟不运行，命令行下报错</p>
-<blockquote>
-<p>ERROR:tornado.general: Uncaught exception in zmqstream callback</p>
-</blockquote>
-<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>ipykernel</code>没有更新</p>
-<p>解决办法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="参考"><a class="header-anchor" href="#参考"></a>参考</h2>
-<p><a href="https://github.com/dunovank/jupyter-themes">https://github.com/dunovank/jupyter-themes</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/46242116">【内容引起舒适】让你的Jupyter Notebook不再辣眼睛</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>python</category>
-      </categories>
-  </entry>
-  <entry>
     <title>mac安装与卸载系统自带Python</title>
     <url>/%E5%99%A8/python/mac%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD%E7%B3%BB%E7%BB%9F%E8%87%AA%E5%B8%A6Python.md/main/</url>
     <content><![CDATA[<p>[TOC]</p>
@@ -4154,6 +4022,138 @@ sudo chown -R root:wheel x.x<span aria-hidden="true" class="line-numbers-rows"><
 <p>重启电脑，长按<code>⌘R</code>,直到苹果logo出现，打开utility中终端，执行如下命令:</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">csrutil <span class="token builtin class-name">enable</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>然后点重启电脑</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>jupyter_notebook更换配色</title>
+    <url>/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/</url>
+    <content><![CDATA[<h1 id="jupyter-themes-修改-jupyter-notebook-的主题"><a class="header-anchor" href="#jupyter-themes-修改-jupyter-notebook-的主题"></a>jupyter-themes: 修改 jupyter notebook 的主题</h1>
+<h2 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h2>
+<ul>
+<li>
+<p>安装</p>
+<p>看jupyter是用conda还是pip装的</p>
+<pre class="line-numbers language-none"><code class="language-none">conda list | grep -e &#39;^jupyter &#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">jupyter                   1.0.0            py36h9896ce5_0    【defaults】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<ul>
+<li>
+<p>若<code>【】</code>中为<code>default</code>，则是jupyter notebook是conda安装的，强烈建议用conda安装jupyterthemes，不然若用pip安装jupyterthemes，会出现多种依赖不匹配</p>
+  <pre class="line-numbers language-none"><code class="language-none">conda install -c conda-forge jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>若<code>【】</code>中为<code>pypi</code>，jupyter notebook是pip安装的，则</p>
+  <pre class="line-numbers language-none"><code class="language-none">pip install jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>配置</p>
+<p>终端下输入以下命令</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">jt -t gruvboxd -T -N -cellw <span class="token number">90</span>% -f roboto -fs <span class="token number">11</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这表示我选择了 gruvboxd 这个主题，同时希望打开顶部的工具栏（Toolbar），显示笔记本的名字（Name），文本框占浏览器页宽的90%，用roboto等宽字体，字号11</p>
+<p>运行过程中可能会返回报错如下，这说明已经别的用户安装了jupyterthemes，并重建了<code>/tmp/yacctab.py</code>，故你无法重写这个文件，这并不运行你使用jupyter notebook的配色。你的配色设置，保存到 <code>$HOME/.jupyter/custom/</code>，不和他的配色设置冲突。</p>
+<blockquote>
+<p>WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’<br>
+WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’</p>
+</blockquote>
+</li>
+<li>
+<p>配置文件</p>
+<p>配置文件保存到了 <code>$HOME/.jupyter/custom/</code>，下是四个配置和依赖文件<code>current_theme. txt, custom.css, custom.js, fonts/</code>，之后每次执行<code>jupyter notebook</code>启动notebook时，会加载此配置，看见你要的主题。</p>
+</li>
+</ul>
+<h2 id="依赖不匹配怎么解决"><a class="header-anchor" href="#依赖不匹配怎么解决"></a>依赖不匹配怎么解决</h2>
+<p>若jupyter notebook是conda安装，却用安装pip安装jupyterthemes，会出现多种依赖不匹配，最终如下装一圈依赖，才能安装成功</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda upgrade notebook libsodium
+pip <span class="token function">install</span> jupyterthemes
+pip <span class="token function">install</span> --upgrade --user nbconvert
+pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以下是各个依赖不匹配的详解：</p>
+<h3 id="Found-existing-installation-terminado-0-6"><a class="header-anchor" href="#Found-existing-installation-terminado-0-6"></a>Found existing installation: terminado 0.6</h3>
+<p>执行<code>pip install jupyterthemes</code>时报错</p>
+<blockquote>
+<p>notebook 5.7.6 has requirement jupyter-core&gt;=4.4.0, but you’ll have jupyter-core 4.3.0 which is incompatible.</p>
+<p>Installing collected packages: lesscpy, terminado, pyzmq, jupyter-client, prometheus-client, Send2Trash, notebook, jupyterthemes<br>
+<strong>Found existing installation</strong>: terminado 0.6<br>
+Cannot uninstall ‘terminado’. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.</p>
+</blockquote>
+<p>这是因为，上述操作中pip自动更新了notebook，但这个notebook是用conda而非pip装的，故依赖项terminado不对</p>
+<p>解决方法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda upgrade notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>而后可正常安装</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="ImportError-libsodium-so-23"><a class="header-anchor" href="#ImportError-libsodium-so-23"></a>ImportError: libsodium.so.23</h3>
+<p>执行<code>jupyter notebook</code>，报错</p>
+<blockquote>
+<p>ImportError: libsodium.so.23: cannot open shared object file: No such file or directory</p>
+</blockquote>
+<p>这是由于<code>jupyterthemes</code>依赖的<code>libsodium</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda update libsodium
+<span class="token comment"># 或</span>
+conda <span class="token function">install</span> -c conda-forge libsodium<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"><a class="header-anchor" href="#ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"></a>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</h3>
+<p>运行notebook时，用浏览器成功打开notebook的目录网页，但无法打开/新建python3 的 notebook文件，命令行下报错</p>
+<blockquote>
+<p>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</p>
+<p>[E 20:28:58.544 NotebookApp]</p>
+</blockquote>
+<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>nbconvert</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade --user nbconvert<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后将<code>$USER/.local/bin</code>添加到PATH，即可实现上述运行</p>
+<h3 id="ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"><a class="header-anchor" href="#ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"></a>ERROR:tornado.general: Uncaught exception in zmqstream callback</h3>
+<p>运行notebook时，用浏览器成功打开notebook的目录网页，能成功打开/新建python3 的 notebook文件，但点运行，迟迟不运行，命令行下报错</p>
+<blockquote>
+<p>ERROR:tornado.general: Uncaught exception in zmqstream callback</p>
+</blockquote>
+<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>ipykernel</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="参考"><a class="header-anchor" href="#参考"></a>参考</h2>
+<p><a href="https://github.com/dunovank/jupyter-themes">https://github.com/dunovank/jupyter-themes</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/46242116">【内容引起舒适】让你的Jupyter Notebook不再辣眼睛</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>pip使用方法</title>
+    <url>/%E5%99%A8/python/pip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.md/main/</url>
+    <content><![CDATA[<h2 id="pip使用方法"><a class="header-anchor" href="#pip使用方法"></a>pip使用方法</h2>
+<ul>
+<li>装包</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>卸包</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip uninstall 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>升级到最新版本</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>升级/降级到制定版本</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span class="token operator">==</span>版本号<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>上述方法，令包为<code>pip</code>，即可 卸/升级/降级 pip 自己</li>
+<li>看有哪些包</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>看装了的包的信息</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip show 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
@@ -4544,6 +4544,263 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
       </categories>
   </entry>
   <entry>
+    <title>github_pages绑定二级域名</title>
+    <url>/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/</url>
+    <content><![CDATA[<p>参考: <a href="https://segmentfault.com/a/1190000005775893">GitHub Pages 绑定二级域名</a></p>
+<p>已申请一级域名<code>hyliang.ml</code>, 欲给 <code>hyliang96.github.io</code> 绑定二级域名<code>blog.lianghy.ml</code>, 操作如下.</p>
+<p>注意: 读者操作时<strong>切勿照抄</strong>上述url, <code>hyliang.ml</code>换成你注册的一级域名, <code>blog  </code>可随便写, <code>hyliang96.github.io</code>换成你的github page的url.</p>
+<ol>
+<li>创建<code>CNAME</code>文件</li>
+</ol>
+<ul>
+<li>
+<p>非Hexo建的GIthub Pages: 直接在 GitHub 项目里创建 <code>CNAME</code> 文件 (无后缀名), 写入全文如下.</p>
+<pre class="line-numbers language-none"><code class="language-none">blog.lianghy.ml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>Hexo建的: 创建文件 <code>&lt;hexo项目目录&gt;/source/CNAME</code>, 写入全文如上.</p>
+<p>然后编译并部署博客 <code>hexo g &amp;&amp; hexo d</code>, 这样所部署到的github pages的repo中, 总是有这个<code>CNAME</code>文件.</p>
+</li>
+</ul>
+<p>设置作用: 访问 <code>hyliang96.github.io</code>  时, 浏览器的url栏显示为 <code>blog.lianghy.ml</code>.</p>
+<ol start="2">
+<li>在域名管理网站, 添加域名解析规则, 类型为 <code>CNAME</code> , 名为 <code>blog</code>,  目标 <code>hyliang96.github.io</code></li>
+</ol>
+<p><img data-src="/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/image-20200123041020200.png" alt="image-20200123041020200"></p>
+<p>此设置的功能为: 当访问<code>blog.lianghy.ml</code>, 会跳转到 <code>hyliang96.github.io</code> .</p>
+<ol start="3">
+<li>等待10分钟， 若出现以下效果, 证明绑定成功了
+<ul>
+<li>访问 <a href="https://hyliang96.github.io">https://hyliang96.github.io</a> 时, 页面内容照常显示, 而 url 栏显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
+<li>访问 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a> 就能看到 <a href="https://hyliang96.github.io">https://hyliang96.github.io</a> 一样的页面内容, 而 url 栏也显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>博客搭建</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Zotero安装与配置</title>
+    <url>/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/</url>
+    <content><![CDATA[<h1 id="我的配置"><a class="header-anchor" href="#我的配置"></a>我的配置</h1>
+<h2 id="浏览器插件"><a class="header-anchor" href="#浏览器插件"></a>浏览器插件</h2>
+<p>当Zotero.app打开时，可以在浏览器中添加条目到zotero，使用方法<a href="https://www.yangzhiping.com/tech/zotero1.html">详见</a></p>
+<p>Safari&lt;=12: 安装<code>Zotero Connector</code>: 点<code>工具</code>-<code> 安装浏览器插件</code>，弹出网页点<code>install</code></p>
+<p>Safari&gt;=13: <a href="https://www.zotero.org/support/kb/safari_compatibility">beta版Zotero Connector</a></p>
+<h2 id="同步"><a class="header-anchor" href="#同步"></a>同步</h2>
+<p>本段参考 <a href="https://github.com/specter119/RefTools/blob/master/zotero/sync.md">zotero跨平台使用教程：多种同步方案</a> 编写</p>
+<h3 id="概念解释"><a class="header-anchor" href="#概念解释"></a>概念解释</h3>
+<h4 id="条目的附件"><a class="header-anchor" href="#条目的附件"></a>条目的附件</h4>
+<p>Zotero 附件类型包括</p>
+<p><code>文件附件</code></p>
+<ul>
+<li>图标为系统默认图标或者 adobe 红</li>
+<li>是 Zotero 默认的附件格式。当从finder拖拽文件至条目上，则复制文件副本创建<code>文件附件</code>。也可<code>选择条目-右键-附件-添加文件副本</code>创建</li>
+<li>存放在<code>&lt;数据存储位置&gt;/storage/&lt;8位数字和字母编码&gt;/</code></li>
+</ul>
+<p><code>链接附件</code></p>
+<ul>
+<li>图标为白色 加小铁链</li>
+<li>可<code>选择条目-右键-附件-添加文件链接</code>，或由 ZotFile 生成</li>
+<li>实际保存在<code>&lt;链接附件的根目录&gt;</code>下</li>
+</ul>
+<p><code>url附件</code></p>
+<ul>
+<li>图标为蓝色 加小铁链</li>
+<li>可<code>选择条目-右键-附件-添加url链接</code>创建</li>
+<li>实际为文件的网址，联网时才能打开</li>
+<li>保存在<code>&lt;数据存储位置&gt;/zotero.sqlite</code></li>
+</ul>
+<p>因此，本地只保存有<code>文件</code>与<code>文件链接</code>类型的附件。</p>
+<h4 id="存储目录"><a class="header-anchor" href="#存储目录"></a>存储目录</h4>
+<p><code>&lt;数据存储位置&gt;/</code> ：默认是<code>~/Zotero</code></p>
+<p><code>&lt;数据存储位置&gt;/zotero.sqlite</code> 文件</p>
+<ul>
+<li>包含分类层级，条目的元数据、标签、分类等， <code>文件附件</code>的8位编码、<code>链接附件</code>的路径、<code>url附件</code>的url、笔记 等</li>
+<li>只能用zotero官方服务来同步，<a href="https://blog.yesmryang.net/zotero-dropbox-sync/">采用第三方云盘同步会造成冲突</a></li>
+</ul>
+<p><code>&lt;数据存储位置&gt;/storage/</code></p>
+<ul>
+<li>
+<p>其下均为名为 8位数字和字母的编码 的子文件夹，子文件夹内是一个<code>文件附件</code>的所有组成文件</p>
+<p>组成文件：如pdf型<code>文件附件</code>，则是一个pdf文件；网页快照型<code>文件附件</code>，则是构成网页的所有文件</p>
+</li>
+<li>
+<p>此文件夹可采用第三方云盘同步</p>
+</li>
+</ul>
+<p><code>&lt;链接附件的根目录&gt;/</code></p>
+<ul>
+<li>包含<code>链接附件</code>·，可以自由组织其目录结构</li>
+<li>此文件夹可采用第三方云盘同步</li>
+</ul>
+<h4 id="同步方式"><a class="header-anchor" href="#同步方式"></a>同步方式</h4>
+<p>从附件类型上来看，Zotero 实现同步的方式不外乎两类：</p>
+<ul>
+<li>同步<code>文件附件</code>，包括：
+<ul>
+<li>Zotero 官网同步服务：同步<code>zotero.sqlite</code>和<code>&lt;数据存储位置&gt;/storage/</code> ，免费限300MB</li>
+<li>Webdav 同步</li>
+<li>软链接配合同步盘</li>
+</ul>
+</li>
+<li>同步<code>链接附件</code>，包括：
+<ul>
+<li>ZotFile 配合同步盘</li>
+</ul>
+</li>
+</ul>
+<p>两类方法使用上的优劣：</p>
+<ul>
+<li>同步<code>文件附件</code>：
+<ul>
+<li>劣势：路径自定义程度低，<code>&lt;数据存储位置&gt;/storage</code>或<code>软链接</code>内8位数字和字母组成的子目录，不可读</li>
+<li>优势：删除条目，附件随之删除</li>
+</ul>
+</li>
+<li>同步<code>链接附件</code> (特指由 ZotFile 生成)
+<ul>
+<li>优势：路径自定义程度高、可读，便于在ipad上进入目录，用任意第三方标注软件阅读、批注文件</li>
+<li>劣势：删除条目，附件不会随之删除，<code>链接附件的根目录</code>概念略费解。</li>
+</ul>
+</li>
+</ul>
+<h3 id="我的同步设置"><a class="header-anchor" href="#我的同步设置"></a>我的同步设置</h3>
+<h4 id="同步策略"><a class="header-anchor" href="#同步策略"></a>同步策略</h4>
+<table>
+<thead>
+<tr>
+<th>附件类型</th>
+<th>同步方法</th>
+<th>依赖</th>
+<th>支持平台</th>
+<th>工作方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单文件的附件(如pdf)</td>
+<td>同步<code>链接附件</code></td>
+<td>ZotFile 插件 + Dropbox</td>
+<td>mac、win、Linux、iPad、iOS、android</td>
+<td>在iPad上用任意软件阅读批注pdf</td>
+</tr>
+<tr>
+<td>多文件的附件(如网页快照)</td>
+<td>同步<code>文件附件</code></td>
+<td>Dropbox</td>
+<td>mac、win、Linux</td>
+<td>在电脑上阅读</td>
+</tr>
+</tbody>
+</table>
+<p>同步到ipad的其他解决方案：<a href="https://taozhaojun.github.io/2017/08/02/ipad/">papership+Webdav</a></p>
+<h4 id="设置方法"><a class="header-anchor" href="#设置方法"></a>设置方法</h4>
+<ul>
+<li>
+<p>设置软连接</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> /Users/mac/Dropbox/Zotero_sync/
+<span class="token comment"># 创建 &lt;链接附件目录> 为 Zotero_sync/linked_files</span>
+<span class="token function">mkdir</span> /Users/mac/Dropbox/Zotero_sync/linked_files
+<span class="token comment"># &lt;数据存储位置>/storage  移动并链接到   Zotero_sync/storage</span>
+<span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>数据存储位置<span class="token operator">></span>
+<span class="token function">mv</span> storage /Users/mac/Dropbox/Zotero_sync/storage
+<span class="token function">ln</span> -s /Users/mac/Dropbox/Zotero_sync/storage storage<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>设置zotero存储目录</p>
+<p>勾选<code>首选项</code>-<code>高级-</code>文件和文件夹`，填入以下两路径</p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.13.33.png" alt="ScreenShot 2019-12-10 12.13.33"></p>
+</li>
+<li>
+<p>设置zotero官方同步</p>
+<p>购买服务后，勾选<code>首选项</code>-<code>同步</code>-<code>设置</code>，设置成如下</p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.15.36.png" alt="ScreenShot 2019-12-10 12.15.36"></p>
+</li>
+<li>
+<p>安装zotfile</p>
+<p>在<a href="https://github.com/jlegewie/zotfile/releases/l">zotfile的github</a>下载最新的<code>zotfile-x.x.x--fx.xpi</code>, 下载后在 Zotero 中打开<code>工具</code>→<code>插件</code>，按右上角齿轮选择<code>Install Add-on Form Fil</code>，选中刚刚下载的 <code>zotfile-x.x.x-fx.xpi</code></p>
+</li>
+<li>
+<p>设置zotfile存储目录</p>
+<p><code>工具</code>-<code>Zotfile Preference</code>-<code>General Settings</code></p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.27.43.png" alt="ScreenShot 2019-12-10 12.27.43"></p>
+<p>其中自定义附件所在子文件夹：写<code>/%c/&#123;</code> <code>%t&#125;&#123;-%y&#125;&#123;-%a&#125;</code>，意为：</p>
+<p>条目<code>&lt;subfolder1&gt;/&lt;subfolder2&gt;/.../&lt;subfoldern&gt;/&lt;item&gt;</code> 的<code>链接附件</code>存放在<code>自定义目录</code>=</p>
+<p><code>&lt;链接附件根目录&gt;/&lt;subfolder1&gt;/&lt;subfolder2&gt;/.../&lt;subfoldern&gt;/&lt;item的标题&gt;-&lt;年份&gt;-&lt;作者&gt;/</code> (若年份、作者没有 则略去)</p>
+</li>
+<li>
+<p>设置用zotfile同步的文件格式</p>
+<p><code>工具</code>-<code>Zotfile Preference</code>-<code>Advanced Settings</code>，填写下栏文件格式</p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.54.22.png" alt="ScreenShot 2019-12-10 12.54.22"></p>
+</li>
+<li>
+<p>zotfile关闭重命名</p>
+<p>效果：此设置后，用zotfile重命名附件时，<code>附件文件</code>的文件名不会改，仅移动它到上述<code>自定义目录</code>中</p>
+<p>好处：当条目有多个<code>附件文件</code>时（如 正文.pdf, 翻译.pdf)，不会被zotfile自动重命名成 <code>&lt;item的标题&gt;-&lt;年份&gt;-&lt;作者&gt;n.pdf</code> (n=‘',2,3,4…)</p>
+<p>勾选<code>首选项</code>→<code>高级</code>→<code>常规</code>，点<code>设置编辑器</code></p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.36.54.png" alt="ScreenShot 2019-12-10 12.36.54"></p>
+<p>查找<code>extensions.zotfile.disable_renaming</code>，值改成<code>true</code></p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.38.28.png" alt="ScreenShot 2019-12-10 12.38.28"></p>
+</li>
+</ul>
+<h4 id="移动附件"><a class="header-anchor" href="#移动附件"></a>移动附件</h4>
+<ul>
+<li>
+<p>测试：完成上述配置后，先选中任意一个有pdf附件的条目，点<code>右键-Manage Attachments-Rename Attachments</code>，看看在<code>自定义目录</code>有无该附件、文件名是否未被改动，在zotero里点击该附件看看能否用pdf浏览器打开。若测试成功，则进行下一步。</p>
+</li>
+<li>
+<p>移动所有附件到<code>自定义目录</code>：<code>我的文库</code>-<code>⌘A</code> 全选条目，点<code>右键-Manage Attachments-Rename Attachments</code>。</p>
+</li>
+</ul>
+<h2 id="ipad阅读工作流程"><a class="header-anchor" href="#ipad阅读工作流程"></a>ipad阅读工作流程</h2>
+<h3 id="手动选择待读文件"><a class="header-anchor" href="#手动选择待读文件"></a>手动选择待读文件</h3>
+<ul>
+<li>新建分类“待读”</li>
+<li>选中待读条目，拖拽到“待读”，以使“待读”中也添加此条目</li>
+<li>选刚才的条目，<code>右键</code>-<code>Manage Attachments</code>-<code>Rename Attachments</code>，弹出对话框问选择哪个分类作为<code>自定义路径</code>，选“待读”</li>
+<li>在iPad上打开<code>Dropbox/Zotero_sync/linked_files/待读/&lt;item&gt;/附件名</code>，开始批注；亦可同时用mac来批注</li>
+<li>当此文件读完，进入“待读”，选择此条目，<code>右键</code>-<code>Manage Attachments</code>-<code>Rename Attachments</code>，弹出对话框问选择哪个分类作为<code>自定义路径</code>，皆不选“待读”；然后选择此条目，<code>右键</code>-<code>从分类中移除条目</code></li>
+</ul>
+<p>优点：可以避免下述tablet的两个缺点</p>
+<h3 id="其他方案：Zotfile-Tablet"><a class="header-anchor" href="#其他方案：Zotfile-Tablet"></a>其他方案：Zotfile - Tablet</h3>
+<p>配置：<code>工具</code>-<code>Zotfile Preference</code>-<code>Tablet Settings</code>, 填写如下</p>
+<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2014.07.24.png" alt="ScreenShot 2019-12-10 14.07.24"></p>
+<p>使用：</p>
+<ul>
+<li>
+<p>选中待读的条目或附件，<code>右键</code>-<code>Manage Attachments</code>-<code>Send To Tablet</code></p>
+<p>作用：在<code>Dropbox/Zotero_sync/tablet/</code> 下会添加此条目或附件，zotero的左栏中<code>Tablet Files</code>也会添加它</p>
+</li>
+<li>
+<p>在iPad上从Dropbox点开此文件，阅读批注之。当批注后，左栏中<code>Tablet Files (modified)</code>也会添加它。</p>
+</li>
+<li>
+<p>在左栏中<code>Tablet Files (modified)</code>选中批注完的文件，<code>右键</code>-<code>Manage Attachments</code>-<code>Get To Tablet</code></p>
+<p>作用：从<code>Dropbox/Zotero_sync/tablet/</code>移动附件到文库中相应条目，覆盖原附件， <code>Tablet Files</code>、<code>Tablet Files (modified)</code>中删除它</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>如果同时修改了tablet中的附件（用iPad）和 文库中对应的附件（用电脑），则<code>get from tablet</code>时会冲突，无法自动merge修改</li>
+<li>get from tablet 后 <code>&lt;tablet&gt;</code>目录下会留下空的子文件夹</li>
+</ul>
+<h2 id="全文搜索"><a class="header-anchor" href="#全文搜索"></a>全文搜索</h2>
+<p>Zotero可以搜索pdf中的英文，但不支持pdf中的中文</p>
+<p>搜索栏输入<code>“搜索内容”</code>，表示严格匹配；<code>搜索内容</code> 表示非严格匹配</p>
+<h1 id="参考资料"><a class="header-anchor" href="#参考资料"></a>参考资料</h1>
+<p><a href="https://github.com/specter119/RefTools">各种文献管理软件使用教程</a></p>
+<p><a href="https://github.com/specter119/RefTools/tree/master/zotero">zotero使用教程</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>文献管理</category>
+      </categories>
+  </entry>
+  <entry>
     <title>bash设置</title>
     <url>/%E5%99%A8/shell/bash%E8%AE%BE%E7%BD%AE.md/main/</url>
     <content><![CDATA[<h2 id="配置环境变量"><a class="header-anchor" href="#配置环境变量"></a>配置环境变量</h2>
@@ -4851,6 +5108,26 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
       </categories>
   </entry>
   <entry>
+    <title>shell下的颜色</title>
+    <url>/%E5%99%A8/shell/shell%E4%B8%8B%E7%9A%84%E9%A2%9C%E8%89%B2.md/main/</url>
+    <content><![CDATA[<h2 id="显示256色的预览"><a class="header-anchor" href="#显示256色的预览"></a>显示256色的预览</h2>
+<p>执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ <span class="token operator">|</span> <span class="token function">bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>会返回</p>
+<p><img data-src="/%E5%99%A8/shell/shell%E4%B8%8B%E7%9A%84%E9%A2%9C%E8%89%B2.md/main/image-20200120192157283.png" alt="image-20200120192157283"></p>
+<p>注意:</p>
+<ul>
+<li>同色号的字, 非粗体和粗体(bold)的前景颜色不同</li>
+<li>同色号的前景颜色和背景颜色不同</li>
+<li>第0-15号色在iterm2下实际显示何种颜色, 取决于iterm的中 Preference-Profile-color-ANSI color的设置</li>
+</ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>shell</category>
+      </categories>
+  </entry>
+  <entry>
     <title>shell的参数解析</title>
     <url>/%E5%99%A8/shell/shell%E7%9A%84%E5%8F%82%E6%95%B0%E8%A7%A3%E6%9E%90.md/main/</url>
     <content><![CDATA[<h1 id="getopt"><a class="header-anchor" href="#getopt"></a>getopt</h1>
@@ -4997,26 +5274,6 @@ Remaining arguments:
       </categories>
   </entry>
   <entry>
-    <title>shell下的颜色</title>
-    <url>/%E5%99%A8/shell/shell%E4%B8%8B%E7%9A%84%E9%A2%9C%E8%89%B2.md/main/</url>
-    <content><![CDATA[<h2 id="显示256色的预览"><a class="header-anchor" href="#显示256色的预览"></a>显示256色的预览</h2>
-<p>执行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ <span class="token operator">|</span> <span class="token function">bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>会返回</p>
-<p><img data-src="/%E5%99%A8/shell/shell%E4%B8%8B%E7%9A%84%E9%A2%9C%E8%89%B2.md/main/image-20200120192157283.png" alt="image-20200120192157283"></p>
-<p>注意:</p>
-<ul>
-<li>同色号的字, 非粗体和粗体(bold)的前景颜色不同</li>
-<li>同色号的前景颜色和背景颜色不同</li>
-<li>第0-15号色在iterm2下实际显示何种颜色, 取决于iterm的中 Preference-Profile-color-ANSI color的设置</li>
-</ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>shell</category>
-      </categories>
-  </entry>
-  <entry>
     <title>zsh自动补全的复用</title>
     <url>/%E5%99%A8/shell/zsh%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E7%9A%84%E5%A4%8D%E7%94%A8.md/main/</url>
     <content><![CDATA[<h2 id="zsh的自动补全"><a class="header-anchor" href="#zsh的自动补全"></a>zsh的自动补全</h2>
@@ -5141,263 +5398,6 @@ compdef _tmux tmux_itm
       <categories>
         <category>器</category>
         <category>shell</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>github_pages绑定二级域名</title>
-    <url>/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/</url>
-    <content><![CDATA[<p>参考: <a href="https://segmentfault.com/a/1190000005775893">GitHub Pages 绑定二级域名</a></p>
-<p>已申请一级域名<code>hyliang.ml</code>, 欲给 <code>hyliang96.github.io</code> 绑定二级域名<code>blog.lianghy.ml</code>, 操作如下.</p>
-<p>注意: 读者操作时<strong>切勿照抄</strong>上述url, <code>hyliang.ml</code>换成你注册的一级域名, <code>blog  </code>可随便写, <code>hyliang96.github.io</code>换成你的github page的url.</p>
-<ol>
-<li>创建<code>CNAME</code>文件</li>
-</ol>
-<ul>
-<li>
-<p>非Hexo建的GIthub Pages: 直接在 GitHub 项目里创建 <code>CNAME</code> 文件 (无后缀名), 写入全文如下.</p>
-<pre class="line-numbers language-none"><code class="language-none">blog.lianghy.ml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>Hexo建的: 创建文件 <code>&lt;hexo项目目录&gt;/source/CNAME</code>, 写入全文如上.</p>
-<p>然后编译并部署博客 <code>hexo g &amp;&amp; hexo d</code>, 这样所部署到的github pages的repo中, 总是有这个<code>CNAME</code>文件.</p>
-</li>
-</ul>
-<p>设置作用: 访问 <code>hyliang96.github.io</code>  时, 浏览器的url栏显示为 <code>blog.lianghy.ml</code>.</p>
-<ol start="2">
-<li>在域名管理网站, 添加域名解析规则, 类型为 <code>CNAME</code> , 名为 <code>blog</code>,  目标 <code>hyliang96.github.io</code></li>
-</ol>
-<p><img data-src="/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/image-20200123041020200.png" alt="image-20200123041020200"></p>
-<p>此设置的功能为: 当访问<code>blog.lianghy.ml</code>, 会跳转到 <code>hyliang96.github.io</code> .</p>
-<ol start="3">
-<li>等待10分钟， 若出现以下效果, 证明绑定成功了
-<ul>
-<li>访问 <a href="https://hyliang96.github.io">https://hyliang96.github.io</a> 时, 页面内容照常显示, 而 url 栏显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
-<li>访问 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a> 就能看到 <a href="https://hyliang96.github.io">https://hyliang96.github.io</a> 一样的页面内容, 而 url 栏也显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>博客搭建</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Zotero安装与配置</title>
-    <url>/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/</url>
-    <content><![CDATA[<h1 id="我的配置"><a class="header-anchor" href="#我的配置"></a>我的配置</h1>
-<h2 id="浏览器插件"><a class="header-anchor" href="#浏览器插件"></a>浏览器插件</h2>
-<p>当Zotero.app打开时，可以在浏览器中添加条目到zotero，使用方法<a href="https://www.yangzhiping.com/tech/zotero1.html">详见</a></p>
-<p>Safari&lt;=12: 安装<code>Zotero Connector</code>: 点<code>工具</code>-<code> 安装浏览器插件</code>，弹出网页点<code>install</code></p>
-<p>Safari&gt;=13: <a href="https://www.zotero.org/support/kb/safari_compatibility">beta版Zotero Connector</a></p>
-<h2 id="同步"><a class="header-anchor" href="#同步"></a>同步</h2>
-<p>本段参考 <a href="https://github.com/specter119/RefTools/blob/master/zotero/sync.md">zotero跨平台使用教程：多种同步方案</a> 编写</p>
-<h3 id="概念解释"><a class="header-anchor" href="#概念解释"></a>概念解释</h3>
-<h4 id="条目的附件"><a class="header-anchor" href="#条目的附件"></a>条目的附件</h4>
-<p>Zotero 附件类型包括</p>
-<p><code>文件附件</code></p>
-<ul>
-<li>图标为系统默认图标或者 adobe 红</li>
-<li>是 Zotero 默认的附件格式。当从finder拖拽文件至条目上，则复制文件副本创建<code>文件附件</code>。也可<code>选择条目-右键-附件-添加文件副本</code>创建</li>
-<li>存放在<code>&lt;数据存储位置&gt;/storage/&lt;8位数字和字母编码&gt;/</code></li>
-</ul>
-<p><code>链接附件</code></p>
-<ul>
-<li>图标为白色 加小铁链</li>
-<li>可<code>选择条目-右键-附件-添加文件链接</code>，或由 ZotFile 生成</li>
-<li>实际保存在<code>&lt;链接附件的根目录&gt;</code>下</li>
-</ul>
-<p><code>url附件</code></p>
-<ul>
-<li>图标为蓝色 加小铁链</li>
-<li>可<code>选择条目-右键-附件-添加url链接</code>创建</li>
-<li>实际为文件的网址，联网时才能打开</li>
-<li>保存在<code>&lt;数据存储位置&gt;/zotero.sqlite</code></li>
-</ul>
-<p>因此，本地只保存有<code>文件</code>与<code>文件链接</code>类型的附件。</p>
-<h4 id="存储目录"><a class="header-anchor" href="#存储目录"></a>存储目录</h4>
-<p><code>&lt;数据存储位置&gt;/</code> ：默认是<code>~/Zotero</code></p>
-<p><code>&lt;数据存储位置&gt;/zotero.sqlite</code> 文件</p>
-<ul>
-<li>包含分类层级，条目的元数据、标签、分类等， <code>文件附件</code>的8位编码、<code>链接附件</code>的路径、<code>url附件</code>的url、笔记 等</li>
-<li>只能用zotero官方服务来同步，<a href="https://blog.yesmryang.net/zotero-dropbox-sync/">采用第三方云盘同步会造成冲突</a></li>
-</ul>
-<p><code>&lt;数据存储位置&gt;/storage/</code></p>
-<ul>
-<li>
-<p>其下均为名为 8位数字和字母的编码 的子文件夹，子文件夹内是一个<code>文件附件</code>的所有组成文件</p>
-<p>组成文件：如pdf型<code>文件附件</code>，则是一个pdf文件；网页快照型<code>文件附件</code>，则是构成网页的所有文件</p>
-</li>
-<li>
-<p>此文件夹可采用第三方云盘同步</p>
-</li>
-</ul>
-<p><code>&lt;链接附件的根目录&gt;/</code></p>
-<ul>
-<li>包含<code>链接附件</code>·，可以自由组织其目录结构</li>
-<li>此文件夹可采用第三方云盘同步</li>
-</ul>
-<h4 id="同步方式"><a class="header-anchor" href="#同步方式"></a>同步方式</h4>
-<p>从附件类型上来看，Zotero 实现同步的方式不外乎两类：</p>
-<ul>
-<li>同步<code>文件附件</code>，包括：
-<ul>
-<li>Zotero 官网同步服务：同步<code>zotero.sqlite</code>和<code>&lt;数据存储位置&gt;/storage/</code> ，免费限300MB</li>
-<li>Webdav 同步</li>
-<li>软链接配合同步盘</li>
-</ul>
-</li>
-<li>同步<code>链接附件</code>，包括：
-<ul>
-<li>ZotFile 配合同步盘</li>
-</ul>
-</li>
-</ul>
-<p>两类方法使用上的优劣：</p>
-<ul>
-<li>同步<code>文件附件</code>：
-<ul>
-<li>劣势：路径自定义程度低，<code>&lt;数据存储位置&gt;/storage</code>或<code>软链接</code>内8位数字和字母组成的子目录，不可读</li>
-<li>优势：删除条目，附件随之删除</li>
-</ul>
-</li>
-<li>同步<code>链接附件</code> (特指由 ZotFile 生成)
-<ul>
-<li>优势：路径自定义程度高、可读，便于在ipad上进入目录，用任意第三方标注软件阅读、批注文件</li>
-<li>劣势：删除条目，附件不会随之删除，<code>链接附件的根目录</code>概念略费解。</li>
-</ul>
-</li>
-</ul>
-<h3 id="我的同步设置"><a class="header-anchor" href="#我的同步设置"></a>我的同步设置</h3>
-<h4 id="同步策略"><a class="header-anchor" href="#同步策略"></a>同步策略</h4>
-<table>
-<thead>
-<tr>
-<th>附件类型</th>
-<th>同步方法</th>
-<th>依赖</th>
-<th>支持平台</th>
-<th>工作方式</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>单文件的附件(如pdf)</td>
-<td>同步<code>链接附件</code></td>
-<td>ZotFile 插件 + Dropbox</td>
-<td>mac、win、Linux、iPad、iOS、android</td>
-<td>在iPad上用任意软件阅读批注pdf</td>
-</tr>
-<tr>
-<td>多文件的附件(如网页快照)</td>
-<td>同步<code>文件附件</code></td>
-<td>Dropbox</td>
-<td>mac、win、Linux</td>
-<td>在电脑上阅读</td>
-</tr>
-</tbody>
-</table>
-<p>同步到ipad的其他解决方案：<a href="https://taozhaojun.github.io/2017/08/02/ipad/">papership+Webdav</a></p>
-<h4 id="设置方法"><a class="header-anchor" href="#设置方法"></a>设置方法</h4>
-<ul>
-<li>
-<p>设置软连接</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> /Users/mac/Dropbox/Zotero_sync/
-<span class="token comment"># 创建 &lt;链接附件目录> 为 Zotero_sync/linked_files</span>
-<span class="token function">mkdir</span> /Users/mac/Dropbox/Zotero_sync/linked_files
-<span class="token comment"># &lt;数据存储位置>/storage  移动并链接到   Zotero_sync/storage</span>
-<span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>数据存储位置<span class="token operator">></span>
-<span class="token function">mv</span> storage /Users/mac/Dropbox/Zotero_sync/storage
-<span class="token function">ln</span> -s /Users/mac/Dropbox/Zotero_sync/storage storage<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>设置zotero存储目录</p>
-<p>勾选<code>首选项</code>-<code>高级-</code>文件和文件夹`，填入以下两路径</p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.13.33.png" alt="ScreenShot 2019-12-10 12.13.33"></p>
-</li>
-<li>
-<p>设置zotero官方同步</p>
-<p>购买服务后，勾选<code>首选项</code>-<code>同步</code>-<code>设置</code>，设置成如下</p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.15.36.png" alt="ScreenShot 2019-12-10 12.15.36"></p>
-</li>
-<li>
-<p>安装zotfile</p>
-<p>在<a href="https://github.com/jlegewie/zotfile/releases/l">zotfile的github</a>下载最新的<code>zotfile-x.x.x--fx.xpi</code>, 下载后在 Zotero 中打开<code>工具</code>→<code>插件</code>，按右上角齿轮选择<code>Install Add-on Form Fil</code>，选中刚刚下载的 <code>zotfile-x.x.x-fx.xpi</code></p>
-</li>
-<li>
-<p>设置zotfile存储目录</p>
-<p><code>工具</code>-<code>Zotfile Preference</code>-<code>General Settings</code></p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.27.43.png" alt="ScreenShot 2019-12-10 12.27.43"></p>
-<p>其中自定义附件所在子文件夹：写<code>/%c/&#123;</code> <code>%t&#125;&#123;-%y&#125;&#123;-%a&#125;</code>，意为：</p>
-<p>条目<code>&lt;subfolder1&gt;/&lt;subfolder2&gt;/.../&lt;subfoldern&gt;/&lt;item&gt;</code> 的<code>链接附件</code>存放在<code>自定义目录</code>=</p>
-<p><code>&lt;链接附件根目录&gt;/&lt;subfolder1&gt;/&lt;subfolder2&gt;/.../&lt;subfoldern&gt;/&lt;item的标题&gt;-&lt;年份&gt;-&lt;作者&gt;/</code> (若年份、作者没有 则略去)</p>
-</li>
-<li>
-<p>设置用zotfile同步的文件格式</p>
-<p><code>工具</code>-<code>Zotfile Preference</code>-<code>Advanced Settings</code>，填写下栏文件格式</p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.54.22.png" alt="ScreenShot 2019-12-10 12.54.22"></p>
-</li>
-<li>
-<p>zotfile关闭重命名</p>
-<p>效果：此设置后，用zotfile重命名附件时，<code>附件文件</code>的文件名不会改，仅移动它到上述<code>自定义目录</code>中</p>
-<p>好处：当条目有多个<code>附件文件</code>时（如 正文.pdf, 翻译.pdf)，不会被zotfile自动重命名成 <code>&lt;item的标题&gt;-&lt;年份&gt;-&lt;作者&gt;n.pdf</code> (n=‘',2,3,4…)</p>
-<p>勾选<code>首选项</code>→<code>高级</code>→<code>常规</code>，点<code>设置编辑器</code></p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.36.54.png" alt="ScreenShot 2019-12-10 12.36.54"></p>
-<p>查找<code>extensions.zotfile.disable_renaming</code>，值改成<code>true</code></p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2012.38.28.png" alt="ScreenShot 2019-12-10 12.38.28"></p>
-</li>
-</ul>
-<h4 id="移动附件"><a class="header-anchor" href="#移动附件"></a>移动附件</h4>
-<ul>
-<li>
-<p>测试：完成上述配置后，先选中任意一个有pdf附件的条目，点<code>右键-Manage Attachments-Rename Attachments</code>，看看在<code>自定义目录</code>有无该附件、文件名是否未被改动，在zotero里点击该附件看看能否用pdf浏览器打开。若测试成功，则进行下一步。</p>
-</li>
-<li>
-<p>移动所有附件到<code>自定义目录</code>：<code>我的文库</code>-<code>⌘A</code> 全选条目，点<code>右键-Manage Attachments-Rename Attachments</code>。</p>
-</li>
-</ul>
-<h2 id="ipad阅读工作流程"><a class="header-anchor" href="#ipad阅读工作流程"></a>ipad阅读工作流程</h2>
-<h3 id="手动选择待读文件"><a class="header-anchor" href="#手动选择待读文件"></a>手动选择待读文件</h3>
-<ul>
-<li>新建分类“待读”</li>
-<li>选中待读条目，拖拽到“待读”，以使“待读”中也添加此条目</li>
-<li>选刚才的条目，<code>右键</code>-<code>Manage Attachments</code>-<code>Rename Attachments</code>，弹出对话框问选择哪个分类作为<code>自定义路径</code>，选“待读”</li>
-<li>在iPad上打开<code>Dropbox/Zotero_sync/linked_files/待读/&lt;item&gt;/附件名</code>，开始批注；亦可同时用mac来批注</li>
-<li>当此文件读完，进入“待读”，选择此条目，<code>右键</code>-<code>Manage Attachments</code>-<code>Rename Attachments</code>，弹出对话框问选择哪个分类作为<code>自定义路径</code>，皆不选“待读”；然后选择此条目，<code>右键</code>-<code>从分类中移除条目</code></li>
-</ul>
-<p>优点：可以避免下述tablet的两个缺点</p>
-<h3 id="其他方案：Zotfile-Tablet"><a class="header-anchor" href="#其他方案：Zotfile-Tablet"></a>其他方案：Zotfile - Tablet</h3>
-<p>配置：<code>工具</code>-<code>Zotfile Preference</code>-<code>Tablet Settings</code>, 填写如下</p>
-<p><img data-src="/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/Zotero%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202019-12-10%2014.07.24.png" alt="ScreenShot 2019-12-10 14.07.24"></p>
-<p>使用：</p>
-<ul>
-<li>
-<p>选中待读的条目或附件，<code>右键</code>-<code>Manage Attachments</code>-<code>Send To Tablet</code></p>
-<p>作用：在<code>Dropbox/Zotero_sync/tablet/</code> 下会添加此条目或附件，zotero的左栏中<code>Tablet Files</code>也会添加它</p>
-</li>
-<li>
-<p>在iPad上从Dropbox点开此文件，阅读批注之。当批注后，左栏中<code>Tablet Files (modified)</code>也会添加它。</p>
-</li>
-<li>
-<p>在左栏中<code>Tablet Files (modified)</code>选中批注完的文件，<code>右键</code>-<code>Manage Attachments</code>-<code>Get To Tablet</code></p>
-<p>作用：从<code>Dropbox/Zotero_sync/tablet/</code>移动附件到文库中相应条目，覆盖原附件， <code>Tablet Files</code>、<code>Tablet Files (modified)</code>中删除它</p>
-</li>
-</ul>
-<p>缺点：</p>
-<ul>
-<li>如果同时修改了tablet中的附件（用iPad）和 文库中对应的附件（用电脑），则<code>get from tablet</code>时会冲突，无法自动merge修改</li>
-<li>get from tablet 后 <code>&lt;tablet&gt;</code>目录下会留下空的子文件夹</li>
-</ul>
-<h2 id="全文搜索"><a class="header-anchor" href="#全文搜索"></a>全文搜索</h2>
-<p>Zotero可以搜索pdf中的英文，但不支持pdf中的中文</p>
-<p>搜索栏输入<code>“搜索内容”</code>，表示严格匹配；<code>搜索内容</code> 表示非严格匹配</p>
-<h1 id="参考资料"><a class="header-anchor" href="#参考资料"></a>参考资料</h1>
-<p><a href="https://github.com/specter119/RefTools">各种文献管理软件使用教程</a></p>
-<p><a href="https://github.com/specter119/RefTools/tree/master/zotero">zotero使用教程</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>文献管理</category>
       </categories>
   </entry>
   <entry>
@@ -8951,6 +8951,36 @@ asdas
       </categories>
   </entry>
   <entry>
+    <title>8.31南京航空大学跳楼事件</title>
+    <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/</url>
+    <content><![CDATA[<p>大家不要搞混2020.8.18和2020.8.31两个跳楼事件，下面的图片为831，818为西区21栋跳楼事件。</p>
+<p><img data-src="/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/wrjr40.png" alt="img"></p>
+<p><img data-src="/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/wrxI1K.png" alt="img"></p>
+<p><strong>政治性抑郁，是每一个厌恶资本主义的人，必需要迈过的一关</strong>。</p>
+<p>那怎么办呢？躲起来、过小日子、岁月静好、不看资讯、不读书、不思考、庸庸碌碌、吃药、咨询或许能缓解一时的症状，但不能根治，随着资本主义固有矛盾的加剧，艰难的生活连同抑郁症状又会回来淹没你。</p>
+<p><strong>政治性抑郁，是资本主义带来的抑郁，必须靠灭亡资本主义的行动去治疗——理论、实践</strong>：</p>
+<p><a href="https://blog.lianghy.ml/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97.md/main/">马克思主义学习资料指南</a></p>
+<p>同志们，我们用行动要写出自己的历史，而革命需要人去完成。这意味着，我们要咬紧牙关 活下去 斗争下去，不能向国内外资产阶级投降。**不能引刀成一快，必须蜡炬成灰泪始干。**就算是困在渣滓洞，或者瞎了残了，也要像保尔柯察金那样战斗下去，直到实现我们的目的——共产主义。</p>
+<p>扩展阅读</p>
+<p><a href="https://zhuanlan.zhihu.com/p/415374353">【读者来稿】大学意识形态批判及出路探讨</a></p>
+<p>上文摘录：</p>
+<blockquote>
+<p>但笔者想说的是，两个世界的秩序崩溃是我们必经的心路历程，只要一切不平等产生的根源——私有制还在，场域的创伤性内核就作为震源而存在，而作为震中的个体层面的创伤永远不可能消失。沉浸于个体创伤而绝望崩溃不是我们的归宿；因畏惧而强逼自己恢复前反思的生活，加入秩序的循环更是懦弱的体现；双脚站在意识形态世界划定的圈子里，模模糊糊地遥望校外世界的创伤，最终无法找到主体的符号学位置而选择自我毁灭，这种姿态虽有勇气，但存在更严重的问题。因为世界上不存在免费的顿悟，脱离实践，脱离调研，脱离生产环境下进行反思，一定是不真切的，违背了教员同志的基本路线。</p>
+<p>在这种环境下，反思秩序并渴望改变现状的青年们解决自身精神苦痛的出路何在呢？</p>
+<p>笔者认为，与其决裂，不如悬置；与其沉浸在意识形态世界中的痛苦之中，不若加入更深一层级的现实创伤中去：意识到自己所处环境不过是一张意识形态温床，撕开它，走出去，融入进更大更具撕裂性的创伤中，以此来回溯性取消掉自己的小创伤。也就是走出虚伪的意识形态世界，来到意识形态无法将自己缝合的，最赤裸裸的连遮羞布也不要的创伤之地。我们应该知道那是什么地方。作为小资产阶级，我们对生活在那里的人，了解太少了。</p>
+<p>只要创伤性的内核还在，个人层面的精神痛苦就永远无法解决。唯有搁置个人层面的小创伤，勇敢融入进更深一层级的大创伤中去，我们才有可能冲出自己的精神锁链。只有冲出自己的精神锁链，我们才能找到自己的人生使命。只有找到了自己的人生使命，我们才有能力解决世界的创伤性的内核。真正的哲学不是认识世界，而是要去改造世界。</p>
+<p>阳和平的母亲，伟大的国际主义战士寒春，如是说：“回顾我所走过的路，从小学到研究所的生活，不能说不幸福，但相比站在人民之中，与大家一起改造社会，用双手建立一个没有人压迫人，人剥削人，美好而富有的新国家，原来的幸福观是多么的狭隘啊。有的人改造世界的目的只是为了自己，但这种建筑在大多数人痛苦之上的幸福，不是真正的幸福，它终究会被历史所消灭。”</p>
+<p>趁着年轻，趁着还有时间，走出去，不要被意识形态世界中创造的创伤所吞噬，不要在意识形态世界里做浪费生命的循环，去走进真正面临着无法想象的创伤性的人群，去体验，去融入，去结合，去照亮。不要把我们和他们对立起来，因为我们就是他们，他们，就是我们。</p>
+</blockquote>
+<p><img data-src="/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/v2-40ff8783d510a0d92edecf896179b603_1440w.jpg" alt="v2-40ff8783d510a0d92edecf896179b603_1440w"></p>
+<p><img data-src="/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/v2-5d7e0e87f6b89e69ac680625dfed9efb_1440w.jpg" alt="v2-5d7e0e87f6b89e69ac680625dfed9efb_1440w"></p>
+]]></content>
+      <categories>
+        <category>道</category>
+        <category>Marxism笔记</category>
+      </categories>
+  </entry>
+  <entry>
     <title>“春天”后怪相的逻辑链</title>
     <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E2%80%9C%E6%98%A5%E5%A4%A9%E2%80%9D%E5%90%8E%E6%80%AA%E7%9B%B8%E7%9A%84%E9%80%BB%E8%BE%91%E9%93%BE.md/main/</url>
     <content><![CDATA[<p>最近政府频繁拿捏资本，释放啥信号？是类似欧美搞分配调整给私有制续命三十年拖延危机，还是新三大改造前稳定局面争取时间和意识形态动员？未来往哪走，这取决于普罗大众（proletariat）是否普遍呼吁 对于｛｛生产，生活｝的管理权 和 ｛生活资料，生产资料，权力｝的分配权 ｝的公有化，而这又取决于普罗大众如何看待追逐利润的经济改革。</p>
@@ -9132,10 +9162,10 @@ asdas
 <p><a href="https://cloud.tsinghua.edu.cn/f/93d876a65d604e18a38d/">政治经济学概论v1.3.docx</a></p>
 <h1 id="系统学习"><a class="header-anchor" href="#系统学习"></a>系统学习</h1>
 <p>而后，有了感性的认识，就可以继续系统学习，上这几个网站去学</p>
+<p><a href="https://cloud.tsinghua.edu.cn/d/11df4670679f47faab07/">马克思主义书籍大礼包 </a> (查看和解压密码：mTXo0w122rRwJBjObLVN4ZF1u1rdcWEX)</p>
 <p><a href="https://www.marxists.org/chinese/">马克思主义文库</a></p>
 <p><a href="https://b23.tv/5lmn7U">赤色幽灵指南</a></p>
 <p><a href="https://www.processon.com/view/link/6081a821e401fd45d70436af#map">主义主义-哲学与意识形态大全</a></p>
-<p><a href="https://cloud.tsinghua.edu.cn/d/11df4670679f47faab07/">马克思主义书籍大礼包 </a> (查看和解压密码：mTXo0w122rRwJBjObLVN4ZF1u1rdcWEX)</p>
 <p>系统学习的步骤是这样的：</p>
 <ol>
 <li>先看马恩列斯托布的小短篇，自己学习、就业、两性、家庭、养老、对社会的迷惑等等创伤和压力，在这里都有解答。</li>
@@ -12893,10 +12923,16 @@ sshd    17188 myusername   26u  IPv4 4063384      0t0  TCP localhost:8377-&gt;lo
 <p>丙：“嗯嗯。我误会你了，不好意思。我之前不清楚这种研究范式，因为在社科和经济学中，都是要声明一个理论的适用于什么，不适用于什么。希望你以后尊重一下我们学科的讨论。”</p>
 <p>甲：“好好…”（甲心想：唉，白费口舌，还是固守庸俗经济学的经验主义研究范式，还是没懂唯物辩证法的真理观，非要假设绝对真理存在且可得才肯去建立大一统理论而不是搞经验的集邮嘛。emm，不要心急，这次讲的太干了，下次遇到机会再试试，别放弃。）</p>
 <h2 id="从事实与观点-再论主义真理观-唯物主义"><a class="header-anchor" href="#从事实与观点-再论主义真理观-唯物主义"></a>从事实与观点-再论主义真理观-唯物主义</h2>
+<h2 id="真理和拳头"><a class="header-anchor" href="#真理和拳头"></a>真理和拳头</h2>
 <h2 id="论意识形态"><a class="header-anchor" href="#论意识形态"></a>论意识形态</h2>
 <h2 id="室内改造-人去支配物而不是物去支配人"><a class="header-anchor" href="#室内改造-人去支配物而不是物去支配人"></a>室内改造-人去支配物而不是物去支配人</h2>
 <p>直接切入共同生活</p>
 <h2 id="论集体生活"><a class="header-anchor" href="#论集体生活"></a>论集体生活</h2>
+<h2 id="房租-链家-左晖"><a class="header-anchor" href="#房租-链家-左晖"></a>房租-链家-左晖</h2>
+<p><a href="https://www.zhihu.com/question/460485141">https://www.zhihu.com/question/460485141</a></p>
+<p>房租不多多一千。呸，多一千就回老家了</p>
+<p>你租房愿意花多少：房改房前，房租是总开支的1%不到，我现在不奢望，占总收入的5%就知足了。</p>
+<p><a href="http://mzd.szhgh.com/maoshidai/2021-09-18/279646.html">http://mzd.szhgh.com/maoshidai/2021-09-18/279646.html</a></p>
 <h2 id="论民主"><a class="header-anchor" href="#论民主"></a>论民主</h2>
 <p>阶级成分-官僚</p>
 <h2 id="学马主义还是学马主义史"><a class="header-anchor" href="#学马主义还是学马主义史"></a>学马主义还是学马主义史</h2>
@@ -12923,6 +12959,7 @@ sshd    17188 myusername   26u  IPv4 4063384      0t0  TCP localhost:8377-&gt;lo
 <ul>
 <li>知识越多越反动</li>
 <li>不考虑阶级情感</li>
+<li>女性解放，不是给女性选择做传统男性的选项，而是消灭私有制和父权制</li>
 </ul>
 ]]></content>
       <categories>
