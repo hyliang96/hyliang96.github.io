@@ -1396,6 +1396,94 @@ B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
       </categories>
   </entry>
   <entry>
+    <title>linux终端登录界面</title>
+    <url>/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.md/main/</url>
+    <content><![CDATA[<h2 id="自定制终端登录界面"><a class="header-anchor" href="#自定制终端登录界面"></a>自定制终端登录界面</h2>
+<p>用sudo创建可执行文件<code>/etc/update-motd.d/&lt;执行序号&gt;-文件名</code>（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如</p>
+<p><img data-src="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.md/main/ScreenShot%202019-12-04%2017.59.39.png" alt="ScreenShot 2019-12-04 17.59.39"></p>
+<h2 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h2>
+<h3 id="安装依赖"><a class="header-anchor" href="#安装依赖"></a>安装依赖</h3>
+<ul>
+<li>
+<p><code>lolcat</code> 让终端输出彩虹色</p>
+</li>
+<li>
+<p><code>figlet</code> 让终端创建字符图案</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> lolcat figlet<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="配置开机输出-hostname"><a class="header-anchor" href="#配置开机输出-hostname"></a>配置开机输出-hostname</h3>
+<p>预期效果</p>
+<p><img data-src="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.md/main/ScreenShot%202019-12-04%2017.59.39%E7%9A%84%E5%89%AF%E6%9C%AC.png" alt="ScreenShot 2019-12-04 17.59.39的副本"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">tmp</span><span class="token operator">=</span><span class="token string">'/etc/update-motd.d/10-hostname-color'</span>
+<span class="token function">sudo</span> <span class="token function">touch</span> <span class="token variable">$tmp</span>
+<span class="token function">sudo</span> <span class="token function">chmod</span> a+x <span class="token variable">$tmp</span>
+<span class="token function">sudo</span> <span class="token function">vim</span> <span class="token variable">$tmp</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>vim中写入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+
+/usr/bin/figlet <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">hostname</span><span class="token variable">)</span></span>"</span> <span class="token operator">|</span> /usr/games/lolcat -f<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="配置开机输出-磁盘使用"><a class="header-anchor" href="#配置开机输出-磁盘使用"></a>配置开机输出-磁盘使用</h3>
+<p>预期效果</p>
+<p><img data-src="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.md/main/ScreenShot%202019-12-04%2017.59.39%E7%9A%84%E5%89%AF%E6%9C%AC-2.png" alt="ScreenShot 2019-12-04 17.59.39的副本 2"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">tmp</span><span class="token operator">=</span><span class="token string">'/etc/update-motd.d/35-diskspace'</span>
+<span class="token function">sudo</span> <span class="token function">touch</span> <span class="token variable">$tmp</span>
+<span class="token function">sudo</span> <span class="token function">chmod</span> a+x <span class="token variable">$tmp</span>
+<span class="token function">sudo</span> <span class="token function">vim</span> <span class="token variable">$tmp</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>vim中写入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+
+<span class="token comment"># config</span>
+<span class="token assign-left variable">max_usage</span><span class="token operator">=</span><span class="token number">90</span>
+<span class="token assign-left variable">bar_width</span><span class="token operator">=</span><span class="token number">50</span>
+<span class="token comment"># colors</span>
+<span class="token assign-left variable">white</span><span class="token operator">=</span><span class="token string">"<span class="token entity" title="\e">\e</span>[39m"</span>
+<span class="token assign-left variable">green</span><span class="token operator">=</span><span class="token string">"<span class="token entity" title="\e">\e</span>[1;32m"</span>
+<span class="token assign-left variable">red</span><span class="token operator">=</span><span class="token string">"<span class="token entity" title="\e">\e</span>[1;31m"</span>
+<span class="token assign-left variable">dim</span><span class="token operator">=</span><span class="token string">"<span class="token entity" title="\e">\e</span>[2m"</span>
+<span class="token assign-left variable">undim</span><span class="token operator">=</span><span class="token string">"<span class="token entity" title="\e">\e</span>[0m"</span>
+
+<span class="token comment"># disk usage: ignore zfs, squashfs &amp; tmpfs</span>
+<span class="token builtin class-name">mapfile</span> -t dfs <span class="token operator">&lt;</span> <span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token function">df</span> -H -x zfs -x squashfs -x tmpfs -x devtmpfs --output<span class="token operator">=</span>target,pcent,size <span class="token operator">|</span> <span class="token function">tail</span> -n+2<span class="token punctuation">)</span>
+<span class="token builtin class-name">printf</span> <span class="token string">"<span class="token entity" title="\n">\n</span>disk usage:<span class="token entity" title="\n">\n</span>"</span>
+
+<span class="token keyword">for</span> <span class="token for-or-select variable">line</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">$&#123;dfs<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>"</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+    <span class="token comment"># get disk usage</span>
+    <span class="token assign-left variable">usage</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$line</span>"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&#123;print $2&#125;'</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/%//'</span><span class="token variable">)</span></span>
+    <span class="token assign-left variable">used_width</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span><span class="token punctuation">(</span>$usage<span class="token operator">*</span>$bar_width<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">100</span><span class="token variable">))</span></span>
+    <span class="token comment"># color is green if usage &lt; max_usage, else red</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$&#123;usage&#125;</span>"</span> -ge <span class="token string">"<span class="token variable">$&#123;max_usage&#125;</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token assign-left variable">color</span><span class="token operator">=</span><span class="token variable">$red</span>
+    <span class="token keyword">else</span>
+        <span class="token assign-left variable">color</span><span class="token operator">=</span><span class="token variable">$green</span>
+    <span class="token keyword">fi</span>
+    <span class="token comment"># print green/red bar until used_width</span>
+    <span class="token assign-left variable">bar</span><span class="token operator">=</span><span class="token string">"[<span class="token variable">$&#123;color&#125;</span>"</span>
+    <span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span>i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>$used_width<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+        <span class="token assign-left variable">bar</span><span class="token operator">+=</span><span class="token string">"="</span>
+    <span class="token keyword">done</span>
+    <span class="token comment"># print dimmmed bar until end</span>
+    <span class="token assign-left variable">bar</span><span class="token operator">+=</span><span class="token string">"<span class="token variable">$&#123;white&#125;</span><span class="token variable">$&#123;dim&#125;</span>"</span>
+    <span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span>i<span class="token operator">=</span>$used_width<span class="token punctuation">;</span> i<span class="token operator">&lt;</span>$bar_width<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+        <span class="token assign-left variable">bar</span><span class="token operator">+=</span><span class="token string">"="</span>
+    <span class="token keyword">done</span>
+    <span class="token assign-left variable">bar</span><span class="token operator">+=</span><span class="token string">"<span class="token variable">$&#123;undim&#125;</span>]"</span>
+    <span class="token comment"># print usage line &amp; bar</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$&#123;line&#125;</span>"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&#123; printf("%-31s%+3s used out of %+4s\n", $1, $2, $3); &#125;'</span> <span class="token operator">|</span> <span class="token function">sed</span> -e <span class="token string">'s/^/  /'</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">"<span class="token variable">$&#123;bar&#125;</span>"</span> <span class="token operator">|</span> <span class="token function">sed</span> -e <span class="token string">'s/^/  /'</span>
+<span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="试运行-最终效果"><a class="header-anchor" href="#试运行-最终效果"></a>试运行-最终效果</h3>
+<p>运行登录输出的出现</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> run-parts /etc/update-motd.d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><img data-src="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.md/main/ScreenShot%202019-12-04%2017.59.39.png" alt="ScreenShot 2019-12-04 17.59.39"></p>
+<p>如得到上述输出，则配置成功。之后每次<code>ssh &lt;服务器&gt;</code>的截面均是上图输出。注：非ssh登录，则不会有此输出，例如当ssh登录后运行<code>bash</code>，则无此输出。</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>linux杂项</category>
+      </categories>
+  </entry>
+  <entry>
     <title>linux防火墙</title>
     <url>/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E9%98%B2%E7%81%AB%E5%A2%99.md/main/</url>
     <content><![CDATA[<h2 id="概述"><a class="header-anchor" href="#概述"></a>概述</h2>
@@ -1547,94 +1635,6 @@ SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3<span aria-hidden="true" class="line-numb
 <p>否则返回</p>
 <pre class="line-numbers language-none"><code class="language-none">Trying &lt;ip&gt;...
 telnet: Unable to connect to remote host: Connection refused<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>linux杂项</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>linux终端登录界面</title>
-    <url>/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.md/main/</url>
-    <content><![CDATA[<h2 id="自定制终端登录界面"><a class="header-anchor" href="#自定制终端登录界面"></a>自定制终端登录界面</h2>
-<p>用sudo创建可执行文件<code>/etc/update-motd.d/&lt;执行序号&gt;-文件名</code>（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如</p>
-<p><img data-src="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.md/main/ScreenShot%202019-12-04%2017.59.39.png" alt="ScreenShot 2019-12-04 17.59.39"></p>
-<h2 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h2>
-<h3 id="安装依赖"><a class="header-anchor" href="#安装依赖"></a>安装依赖</h3>
-<ul>
-<li>
-<p><code>lolcat</code> 让终端输出彩虹色</p>
-</li>
-<li>
-<p><code>figlet</code> 让终端创建字符图案</p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> lolcat figlet<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="配置开机输出-hostname"><a class="header-anchor" href="#配置开机输出-hostname"></a>配置开机输出-hostname</h3>
-<p>预期效果</p>
-<p><img data-src="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.md/main/ScreenShot%202019-12-04%2017.59.39%E7%9A%84%E5%89%AF%E6%9C%AC.png" alt="ScreenShot 2019-12-04 17.59.39的副本"></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">tmp</span><span class="token operator">=</span><span class="token string">'/etc/update-motd.d/10-hostname-color'</span>
-<span class="token function">sudo</span> <span class="token function">touch</span> <span class="token variable">$tmp</span>
-<span class="token function">sudo</span> <span class="token function">chmod</span> a+x <span class="token variable">$tmp</span>
-<span class="token function">sudo</span> <span class="token function">vim</span> <span class="token variable">$tmp</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>vim中写入</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-
-/usr/bin/figlet <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">hostname</span><span class="token variable">)</span></span>"</span> <span class="token operator">|</span> /usr/games/lolcat -f<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="配置开机输出-磁盘使用"><a class="header-anchor" href="#配置开机输出-磁盘使用"></a>配置开机输出-磁盘使用</h3>
-<p>预期效果</p>
-<p><img data-src="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.md/main/ScreenShot%202019-12-04%2017.59.39%E7%9A%84%E5%89%AF%E6%9C%AC-2.png" alt="ScreenShot 2019-12-04 17.59.39的副本 2"></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">tmp</span><span class="token operator">=</span><span class="token string">'/etc/update-motd.d/35-diskspace'</span>
-<span class="token function">sudo</span> <span class="token function">touch</span> <span class="token variable">$tmp</span>
-<span class="token function">sudo</span> <span class="token function">chmod</span> a+x <span class="token variable">$tmp</span>
-<span class="token function">sudo</span> <span class="token function">vim</span> <span class="token variable">$tmp</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>vim中写入</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-
-<span class="token comment"># config</span>
-<span class="token assign-left variable">max_usage</span><span class="token operator">=</span><span class="token number">90</span>
-<span class="token assign-left variable">bar_width</span><span class="token operator">=</span><span class="token number">50</span>
-<span class="token comment"># colors</span>
-<span class="token assign-left variable">white</span><span class="token operator">=</span><span class="token string">"<span class="token entity" title="\e">\e</span>[39m"</span>
-<span class="token assign-left variable">green</span><span class="token operator">=</span><span class="token string">"<span class="token entity" title="\e">\e</span>[1;32m"</span>
-<span class="token assign-left variable">red</span><span class="token operator">=</span><span class="token string">"<span class="token entity" title="\e">\e</span>[1;31m"</span>
-<span class="token assign-left variable">dim</span><span class="token operator">=</span><span class="token string">"<span class="token entity" title="\e">\e</span>[2m"</span>
-<span class="token assign-left variable">undim</span><span class="token operator">=</span><span class="token string">"<span class="token entity" title="\e">\e</span>[0m"</span>
-
-<span class="token comment"># disk usage: ignore zfs, squashfs &amp; tmpfs</span>
-<span class="token builtin class-name">mapfile</span> -t dfs <span class="token operator">&lt;</span> <span class="token operator">&lt;</span><span class="token punctuation">(</span><span class="token function">df</span> -H -x zfs -x squashfs -x tmpfs -x devtmpfs --output<span class="token operator">=</span>target,pcent,size <span class="token operator">|</span> <span class="token function">tail</span> -n+2<span class="token punctuation">)</span>
-<span class="token builtin class-name">printf</span> <span class="token string">"<span class="token entity" title="\n">\n</span>disk usage:<span class="token entity" title="\n">\n</span>"</span>
-
-<span class="token keyword">for</span> <span class="token for-or-select variable">line</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">$&#123;dfs<span class="token punctuation">[</span>@<span class="token punctuation">]</span>&#125;</span>"</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-    <span class="token comment"># get disk usage</span>
-    <span class="token assign-left variable">usage</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$line</span>"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&#123;print $2&#125;'</span> <span class="token operator">|</span> <span class="token function">sed</span> <span class="token string">'s/%//'</span><span class="token variable">)</span></span>
-    <span class="token assign-left variable">used_width</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$((</span><span class="token punctuation">(</span>$usage<span class="token operator">*</span>$bar_width<span class="token punctuation">)</span><span class="token operator">/</span><span class="token number">100</span><span class="token variable">))</span></span>
-    <span class="token comment"># color is green if usage &lt; max_usage, else red</span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$&#123;usage&#125;</span>"</span> -ge <span class="token string">"<span class="token variable">$&#123;max_usage&#125;</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
-        <span class="token assign-left variable">color</span><span class="token operator">=</span><span class="token variable">$red</span>
-    <span class="token keyword">else</span>
-        <span class="token assign-left variable">color</span><span class="token operator">=</span><span class="token variable">$green</span>
-    <span class="token keyword">fi</span>
-    <span class="token comment"># print green/red bar until used_width</span>
-    <span class="token assign-left variable">bar</span><span class="token operator">=</span><span class="token string">"[<span class="token variable">$&#123;color&#125;</span>"</span>
-    <span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span>i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i<span class="token operator">&lt;</span>$used_width<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-        <span class="token assign-left variable">bar</span><span class="token operator">+=</span><span class="token string">"="</span>
-    <span class="token keyword">done</span>
-    <span class="token comment"># print dimmmed bar until end</span>
-    <span class="token assign-left variable">bar</span><span class="token operator">+=</span><span class="token string">"<span class="token variable">$&#123;white&#125;</span><span class="token variable">$&#123;dim&#125;</span>"</span>
-    <span class="token keyword">for</span> <span class="token variable"><span class="token punctuation">((</span>i<span class="token operator">=</span>$used_width<span class="token punctuation">;</span> i<span class="token operator">&lt;</span>$bar_width<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">))</span></span><span class="token punctuation">;</span> <span class="token keyword">do</span>
-        <span class="token assign-left variable">bar</span><span class="token operator">+=</span><span class="token string">"="</span>
-    <span class="token keyword">done</span>
-    <span class="token assign-left variable">bar</span><span class="token operator">+=</span><span class="token string">"<span class="token variable">$&#123;undim&#125;</span>]"</span>
-    <span class="token comment"># print usage line &amp; bar</span>
-    <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$&#123;line&#125;</span>"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&#123; printf("%-31s%+3s used out of %+4s\n", $1, $2, $3); &#125;'</span> <span class="token operator">|</span> <span class="token function">sed</span> -e <span class="token string">'s/^/  /'</span>
-    <span class="token builtin class-name">echo</span> -e <span class="token string">"<span class="token variable">$&#123;bar&#125;</span>"</span> <span class="token operator">|</span> <span class="token function">sed</span> -e <span class="token string">'s/^/  /'</span>
-<span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="试运行-最终效果"><a class="header-anchor" href="#试运行-最终效果"></a>试运行-最终效果</h3>
-<p>运行登录输出的出现</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> run-parts /etc/update-motd.d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><img data-src="/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/linux%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2.md/main/ScreenShot%202019-12-04%2017.59.39.png" alt="ScreenShot 2019-12-04 17.59.39"></p>
-<p>如得到上述输出，则配置成功。之后每次<code>ssh &lt;服务器&gt;</code>的截面均是上图输出。注：非ssh登录，则不会有此输出，例如当ssh登录后运行<code>bash</code>，则无此输出。</p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -2205,20 +2205,6 @@ End: Fn + →<br>
       </categories>
   </entry>
   <entry>
-    <title>mac_命令行专属命令</title>
-    <url>/%E5%99%A8/mac/mac_%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%93%E5%B1%9E%E5%91%BD%E4%BB%A4.md/main/</url>
-    <content><![CDATA[<h1 id="mac-命令行专属命令"><a class="header-anchor" href="#mac-命令行专属命令"></a>mac 命令行专属命令</h1>
-<h3 id="mac-命令行专属命令-_2"><a class="header-anchor" href="#mac-命令行专属命令-_2"></a>mac 命令行专属命令</h3>
-<p>永久修改hostname (命令行行首提示中的主机名)</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> scutil --set HostName <span class="token operator">&lt;</span>新hostname<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a href="https://blog.csdn.net/flyter/article/details/8880583">参考</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
     <title>brew使用教程</title>
     <url>/%E5%99%A8/mac/brew%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md/main/</url>
     <content><![CDATA[<h1 id="安装"><a class="header-anchor" href="#安装"></a>安装</h1>
@@ -2290,6 +2276,20 @@ Homebrew&#x2F;homebrew-core (git revision 43c72b06c0c; last commit 2021-09-28)<s
 <h2 id="国内镜像安装"><a class="header-anchor" href="#国内镜像安装"></a>国内镜像安装</h2>
 <p><a href="http://mirrors.ustc.edu.cn/help/brew.git.html">中科大源</a></p>
 <p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/">清华源</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>mac_命令行专属命令</title>
+    <url>/%E5%99%A8/mac/mac_%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%93%E5%B1%9E%E5%91%BD%E4%BB%A4.md/main/</url>
+    <content><![CDATA[<h1 id="mac-命令行专属命令"><a class="header-anchor" href="#mac-命令行专属命令"></a>mac 命令行专属命令</h1>
+<h3 id="mac-命令行专属命令-_2"><a class="header-anchor" href="#mac-命令行专属命令-_2"></a>mac 命令行专属命令</h3>
+<p>永久修改hostname (命令行行首提示中的主机名)</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> scutil --set HostName <span class="token operator">&lt;</span>新hostname<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a href="https://blog.csdn.net/flyter/article/details/8880583">参考</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3035,39 +3035,6 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
       </categories>
   </entry>
   <entry>
-    <title>mac永久添加私钥到keyChain</title>
-    <url>/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/</url>
-    <content><![CDATA[<p>以下<a href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本，以备不时之需</p>
-<blockquote>
-<h1 id="Mac-重启后自动-ssh-add-私钥"><a class="header-anchor" href="#Mac-重启后自动-ssh-add-私钥"></a><a href="https://mednoter.com/ssh-add-automatically.html">Mac 重启后自动 ssh-add 私钥</a></h1>
-<p>管理服务器有一些安全常识:</p>
-<ul>
-<li>禁止 root 远程登录</li>
-<li>禁止密码登录</li>
-<li>使用 priviate / public key 作为默认的登录方式。</li>
-<li>修改 sshd 端口</li>
-</ul>
-<p>From Linode: <a href="https://www.linode.com/docs/security/securing-your-server">Securing your server</a></p>
-<p>安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，需要一次次手工 ssh-add 私钥，特别心烦。</p>
-<p>几年前有这种方法 <code>ssh-add -K privateKey</code> 可以一劳永逸的把私钥存到 keychain 中，重启后也不需要手动 ssh-add，非常方便。</p>
-<p><strong>这种方式不管用了。</strong></p>
-<p><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-ssh-add.jpeg" alt="img"></p>
-<h2 id="新的解决方法"><a class="header-anchor" href="#新的解决方法"></a>新的解决方法</h2>
-<p><strong>创建 Automator 任务加载私钥，然后放到开机启动中。</strong></p>
-<ol>
-<li>创建一个 Automator task.<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step1.jpeg" alt="img"></li>
-<li>在 task 中写一串 shell script<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step2.jpeg" alt="img"></li>
-<li>把 task 添加到 login items 中，每次系统重启后会执行这个 Automator task，自动 ssh-add 所有的私钥。<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step3.jpeg" alt="img"><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step4.jpeg" alt="img"></li>
-</ol>
-<p>搞定！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
     <title>mac的移动硬盘分区方案</title>
     <url>/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/</url>
     <content><![CDATA[<h3 id="分区方案"><a class="header-anchor" href="#分区方案"></a>分区方案</h3>
@@ -3129,6 +3096,39 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <p><img data-src="/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/hfs+.png" alt="hfs+"></p>
 </li>
 </ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>mac永久添加私钥到keyChain</title>
+    <url>/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/</url>
+    <content><![CDATA[<p>以下<a href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本，以备不时之需</p>
+<blockquote>
+<h1 id="Mac-重启后自动-ssh-add-私钥"><a class="header-anchor" href="#Mac-重启后自动-ssh-add-私钥"></a><a href="https://mednoter.com/ssh-add-automatically.html">Mac 重启后自动 ssh-add 私钥</a></h1>
+<p>管理服务器有一些安全常识:</p>
+<ul>
+<li>禁止 root 远程登录</li>
+<li>禁止密码登录</li>
+<li>使用 priviate / public key 作为默认的登录方式。</li>
+<li>修改 sshd 端口</li>
+</ul>
+<p>From Linode: <a href="https://www.linode.com/docs/security/securing-your-server">Securing your server</a></p>
+<p>安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，需要一次次手工 ssh-add 私钥，特别心烦。</p>
+<p>几年前有这种方法 <code>ssh-add -K privateKey</code> 可以一劳永逸的把私钥存到 keychain 中，重启后也不需要手动 ssh-add，非常方便。</p>
+<p><strong>这种方式不管用了。</strong></p>
+<p><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-ssh-add.jpeg" alt="img"></p>
+<h2 id="新的解决方法"><a class="header-anchor" href="#新的解决方法"></a>新的解决方法</h2>
+<p><strong>创建 Automator 任务加载私钥，然后放到开机启动中。</strong></p>
+<ol>
+<li>创建一个 Automator task.<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step1.jpeg" alt="img"></li>
+<li>在 task 中写一串 shell script<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step2.jpeg" alt="img"></li>
+<li>把 task 添加到 login items 中，每次系统重启后会执行这个 Automator task，自动 ssh-add 所有的私钥。<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step3.jpeg" alt="img"><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step4.jpeg" alt="img"></li>
+</ol>
+<p>搞定！</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>器</category>
@@ -4126,6 +4126,41 @@ sudo chown -R root:wheel x.x<span aria-hidden="true" class="line-numbers-rows"><
       </categories>
   </entry>
   <entry>
+    <title>pip使用方法</title>
+    <url>/%E5%99%A8/python/pip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.md/main/</url>
+    <content><![CDATA[<h2 id="pip使用方法"><a class="header-anchor" href="#pip使用方法"></a>pip使用方法</h2>
+<ul>
+<li>装包</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>卸包</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip uninstall 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>升级到最新版本</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>升级/降级到制定版本</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span class="token operator">==</span>版本号<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>上述方法，令包为<code>pip</code>，即可 卸/升级/降级 pip 自己</li>
+<li>看有哪些包</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>看装了的包的信息</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip show 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
     <title>virtualenv_教程</title>
     <url>/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/</url>
     <content><![CDATA[<h1 id="virtualenv-教程"><a class="header-anchor" href="#virtualenv-教程"></a>virtualenv 教程</h1>
@@ -4180,41 +4215,6 @@ which python2.7
 <p>只有在该工程目录，输入<code>source bin/activate</code>激活后，才能使用该虚拟环境的包括python版本及python包，即<code>pip install</code> 安装pyhton包，在任意目录下均可使用</p>
 </li>
 </ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>python</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>pip使用方法</title>
-    <url>/%E5%99%A8/python/pip%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.md/main/</url>
-    <content><![CDATA[<h2 id="pip使用方法"><a class="header-anchor" href="#pip使用方法"></a>pip使用方法</h2>
-<ul>
-<li>装包</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>卸包</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip uninstall 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>升级到最新版本</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>升级/降级到制定版本</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span class="token operator">==</span>版本号<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>上述方法，令包为<code>pip</code>，即可 卸/升级/降级 pip 自己</li>
-<li>看有哪些包</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>看装了的包的信息</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip show 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
@@ -5573,235 +5573,229 @@ rsync error: protocol incompatibility (code 2) at compat.c(185) [sender&#x3D;3.1
       </categories>
   </entry>
   <entry>
-    <title>sshfs</title>
-    <url>/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/</url>
-    <content><![CDATA[<h1 id="sshfs教程"><a class="header-anchor" href="#sshfs教程"></a>sshfs教程</h1>
-<p>在linux或mac上，加载远程Linux服务器上的文件目录</p>
-<p>[TOC]</p>
-<h2 id="安装"><a class="header-anchor" href="#安装"></a>安装</h2>
-<p>需依次安装以下三软件</p>
-<h3 id="macfuse"><a class="header-anchor" href="#macfuse"></a>macfuse</h3>
-<p>功能：使mac可用读取linux、windows的文件系统，应用于：</p>
+    <title>ssh配置</title>
+    <url>/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/ssh%E9%85%8D%E7%BD%AE.md/main/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h1 id="ssh别名、免密登录"><a class="header-anchor" href="#ssh别名、免密登录"></a>ssh别名、免密登录</h1>
+<h2 id="别名登陆"><a class="header-anchor" href="#别名登陆"></a>别名登陆</h2>
+<p><a href="http://www.ttlsa.com/linux/ssh-config-aliases-server-access-tricks/">参考1</a>, <a href="https://www.jianshu.com/p/5729d5e61c72">参考2</a></p>
+<p>本地电脑上，打开<code>~/.ssh/config</code>文件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> ~/.ssh/config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>编写格式如下</p>
+<pre class="line-numbers language-baah" data-language="baah"><code class="language-baah">Host 服务器别名1
+    HostName 服务器ip或网址1
+    Port 端口号1
+    User 用户名1
+    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
+
+Host 服务器别名2
+    HostName 服务器ip或网址2
+    Port 端口号2
+    User 用户名2
+    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
+
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>~/.ssh/id_rsa</code>即为本地私钥</p>
+<p>例如</p>
+<pre class="line-numbers language-none"><code class="language-none">Host myserver
+    HostName some.place.com
+    Port 4123
+    User pitter
+    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="免密登录"><a class="header-anchor" href="#免密登录"></a>免密登录</h2>
+<p><a href="https://blog.csdn.net/m0_38003171/article/details/80625821">参考</a></p>
+<p>本地电脑上</p>
+<h3 id="生成密钥"><a class="header-anchor" href="#生成密钥"></a>生成密钥</h3>
 <ul>
-<li>mac读写它们的U盘/移动硬盘</li>
-<li>mac加载服务器上文件目录</li>
+<li>交互模式</li>
 </ul>
-<p><a href="https://osxfuse.github.io">官网</a>     <a href="https://github.com/osxfuse/osxfuse/releases">下载</a></p>
-<h3 id="sshfs"><a class="header-anchor" href="#sshfs"></a>sshfs</h3>
-<p>功能：从Mac加载Linux服务器上的文件目录</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后不断回车确认，<code>~/.ssh</code>下会生成两个文件：<code>id_rsa</code>（私钥）和<code>id_rsa.pub</code>（公钥）</p>
+<p>若显示已有密钥，问你要不要覆盖，则选不要</p>
 <ul>
-<li>依赖于macfuse</li>
-<li>只有命令行</li>
+<li>非交互模式</li>
 </ul>
-<p><a href="https://github.com/osxfuse/osxfuse/wiki/SSHFS">官网</a>    <a href="https://github.com/osxfuse/sshfs/releases">下载</a></p>
-<h3 id="macfusion"><a class="header-anchor" href="#macfusion"></a>macfusion</h3>
-<p>功能：sshfs的图形界面</p>
-<p><a href="http://macfusionapp.org">官网</a>已不再维护该软件，其版本不支持OSX Serria及以上系统</p>
-<p><a href="https://github.com/macfusion-ng/macfusion2/releases">可用的fork版本</a>: 我已验证，其<code>Sierra Pre-release 3</code>版本，OSX Serria和OSX Hgih Serria可用</p>
-<h2 id="更新"><a class="header-anchor" href="#更新"></a>更新</h2>
-<h3 id="升级Mojave后使用sshfs要求升级FUSE"><a class="header-anchor" href="#升级Mojave后使用sshfs要求升级FUSE"></a>升级Mojave后使用sshfs要求升级FUSE</h3>
-<p>编辑文章</p>
-<p>升级Mojave后，使用sshfs挂载远程目录失败，弹出对话框显示报错</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen -t rsa -P <span class="token string">""</span> -f ~/.ssh/id_rsa -q <span class="token comment"># -b 2048 -C "注释"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在<code>~/.ssh/id_rsa</code>不存在时，运行这个不会产生输出。</p>
+<p>在<code>~/.ssh/id_rsa</code>存在时，运行这不会产生输出</p>
 <blockquote>
-<p>Unsupported macOS Version FuseThe installed version of FUSE is too old for the operating system. Please upgrade your FUSE installation to one that is compatible with the currently running version of macOS.</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;home&#x2F;用户名&#x2F;.ssh&#x2F;id_rsa already exists.
+Overwrite (y&#x2F;n)?<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </blockquote>
-<h4 id="尝试在系统偏好设置中升级FUSE"><a class="header-anchor" href="#尝试在系统偏好设置中升级FUSE"></a>尝试在系统偏好设置中升级FUSE</h4>
-<p>打开<code>系统偏好设置</code>，点<code>FUSE</code></p>
-<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/1.png" alt="1"></p>
-<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/2.png" alt="2"></p>
-<p>提示无可用更新，更新失败。</p>
-<h4 id="前往osxfuse-github-io下载"><a class="header-anchor" href="#前往osxfuse-github-io下载"></a>前往osxfuse.github.io下载</h4>
-<p>前往<a href="https://osxfuse.github.io/">https://osxfuse.github.io</a>，下载<code>Stable Releases</code>中的<code>FUSE for macOS 3.8.2</code>，安装之</p>
-<p>而后sshfs可用使用了。</p>
-<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
-<h3 id="ui用法"><a class="header-anchor" href="#ui用法"></a><a href="https://meiriyitie.com/2015/05/29/using-sshfs-on-linux-and-macos-x/">ui用法</a></h3>
-<h3 id="sshfs命令行用法"><a class="header-anchor" href="#sshfs命令行用法"></a><a href="https://www.jianshu.com/p/31205b26deff">sshfs命令行用法</a></h3>
-<p>优点：使用此方法挂载后，从一处把笔记本带到另一处，连到另一个网后，挂载依然不断</p>
-<h4 id="挂载"><a class="header-anchor" href="#挂载"></a>挂载</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sshfs <span class="token operator">&lt;</span>user<span class="token operator">></span>@<span class="token operator">&lt;</span>host<span class="token operator">></span>:<span class="token operator">&lt;</span>path<span class="token operator">></span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span> -o <span class="token assign-left variable">volname</span><span class="token operator">=</span><span class="token operator">&lt;</span>volume_name<span class="token operator">></span> -C -o reconnect -o transform_symlinks -o follow_symlinks <span class="token comment">#  -o local</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>参数说明：</p>
+<ul>
+<li>
+<p><code>-P &quot;&quot; </code>密码为空</p>
+</li>
+<li>
+<p><code>-f id_rsa </code>是指保存文件为<code>~/.ssh/id_rsa</code> 和<code>~/.ssh/id_rsa.pub</code></p>
+</li>
+<li>
+<p><code>-q</code> 静默模式，即不产生如下输出，除非报错</p>
 <blockquote>
-<p>-C：压缩，即-o compression=yes<br>
--o reconnect：自动重连<br>
--o transform_symlinks：表示转换绝对链接符号为相对链接符号<br>
--o follow_symlinks：沿用服务器上的链接符号</p>
-<p>-o local：视为本地磁盘，会在Finder/侧栏/设备 和 桌面 下出现图标名为volume_name</p>
-</blockquote>
-<ul>
-<li><code>&lt;user&gt;@&lt;host&gt;</code> 可以用~/.ssh/config中的服务器别名</li>
-<li>需先创建空文件夹<code>&lt;mount_path&gt;</code>
-<ul>
-<li>若无此文件夹，则不会自动创建，mount失败</li>
-<li>若非空，mount期间，文件夹中原有的东西看不见了，但umount后又能看见</li>
-</ul>
-</li>
-<li><code>&lt;mount_path&gt;</code>与<code>&lt;volume_name&gt;</code>可以同名</li>
-</ul>
-<h4 id="卸挂（二者等效）"><a class="header-anchor" href="#卸挂（二者等效）"></a>卸挂（二者等效）</h4>
-<h5 id="法一-用图像界面推出"><a class="header-anchor" href="#法一-用图像界面推出"></a>法一 用图像界面推出</h5>
-<p>在Finder中，戳到<code>&lt;mount_path&gt;/..</code>或<code>MacBook Air</code>下，右键<code>&lt;mount_path&gt;</code>，点“推出”</p>
-<p>若设了<code>-o local</code>，还可</p>
-<ul>
-<li>
-<p>或在Finder/侧栏/设备/&lt;volume_name&gt; 的右侧有个向上箭头，是推出按钮，按之即推出（推荐）</p>
-</li>
-<li>
-<p>或从桌面/&lt;volume_name&gt;，右键<code>&lt;mount_path&gt;</code>，点“推出”</p>
-</li>
-</ul>
-<h5 id="法二-命令推出"><a class="header-anchor" href="#法二-命令推出"></a>法二 命令推出</h5>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">umount</span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>
-<span class="token comment"># 等效于</span>
-fusermount -u <span class="token operator">&lt;</span>mount_path<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>在mac是<code>&lt;fusermount&gt;</code>命令找不到，但<code>umount</code>可以用</li>
-<li>在服务器上，<code>umount</code>需要sudo，但<code>fusermount -u</code>可以用</li>
-<li>注意不是<code>unmount</code></li>
-</ul>
-<h4 id="免密"><a class="header-anchor" href="#免密"></a>免密</h4>
-<p>这样子每次挂载的时候，都需要输入密码，可以设置成免密码登录：<br>
-<a href="https://www.jianshu.com/p/31cbbbc5f9fa/">将公钥追加到远程服务器：</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> .ssh/id_rsa.pub <span class="token operator">|</span> <span class="token function">ssh</span> username@server <span class="token string">"cat - >>.ssh/authorized_keys"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>登录：</p>
-<pre class="line-numbers language-none"><code class="language-none">sshfs username@server:path local_path
-umount mount_path<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="sshfs的bug处理"><a class="header-anchor" href="#sshfs的bug处理"></a>sshfs的bug处理</h2>
-<p><a href="https://www.jianshu.com/p/8723ba79f35a">参考</a></p>
-<h3 id="服务器断连-–-“保存路径不存在”-无法ls-Input-output-error-无法-rm-Operation-not-permitted"><a class="header-anchor" href="#服务器断连-–-“保存路径不存在”-无法ls-Input-output-error-无法-rm-Operation-not-permitted"></a>服务器断连 – “保存路径不存在” / 无法ls (Input/output error) /无法 rm (Operation not permitted)</h3>
-<p><strong>症状</strong> 当 mac 休眠、重启、换了个网络环境，可能与服务器断连（也可能保持连接）</p>
-<ul>
-<li>在软件（如sublime）里，之前打开的所mount目录下的文件，此时保存文件，会显示“保存路径不存在”</li>
-<li><code>ls</code> mac上用于mount的文件夹（如<code>/Users/$USER/Desktop/mount/mounted_server</code>）会报错</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> /Users/<span class="token environment constant">$USER</span>/Desktop/mount
-<span class="token comment"># 或</span>
-<span class="token function">ls</span> /Users/<span class="token environment constant">$USER</span>/Desktop/mount/mounted_server
-<span class="token comment"># 返回 ls: cannot access '/Users/$USER/Desktop/mount/mounted_server': Input/output error</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li><code>rm</code> mac上用于mount的文件夹，会报错</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token environment constant">$USER</span>/Desktop/mount/mounted_server -rf
-<span class="token comment"># 返回 rm: cannot remove '/Users/$USER/Desktop/mount/mounted_server': Operation not permitted</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>以上症状出现任意一个，说明已经与远处服务器断开连接，但本地未umount</p>
-<p><strong>对策</strong> 依次做如下操作</p>
-<ul>
-<li>检查mac的网络连接</li>
-<li>关掉所有在用mount目录下文件的软件</li>
-<li><code>umount  &lt;mount_path&gt;</code></li>
-<li>再重新<code>sshfs &lt;user&gt;@&lt;host&gt;:&lt;path&gt; &lt;mount_path&gt;</code></li>
-</ul>
-<h3 id="有文件在用-–-无法umount-Resource-busy"><a class="header-anchor" href="#有文件在用-–-无法umount-Resource-busy"></a>有文件在用 – 无法umount (Resource busy)</h3>
-<p>若显示</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">umount</span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>
-或
-fusemount -u <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>
-<span class="token comment"># 返回 umount(&lt;mount_path>): Resource busy -- try 'diskutil unmount'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>则说明此时mac上仍有软件在打开了所mount的文件夹下的文件</p>
-<ul>
-<li>
-<p>法一：关闭软件再安全卸载</p>
-<ul>
-<li>
-<p>实时监测哪些进程占用了<code>&lt;mount_path&gt;</code></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">watch</span> -n <span class="token number">0.1</span> <span class="token function">lsof</span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>   <span class="token comment"># 按 ctrl+c 结束</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>需在那个软件中，在使用mount的文件夹下的文件的窗口内，<code>⌘+W</code>关闭窗口，再</p>
-  <pre class="line-numbers language-none"><code class="language-none">umount &lt;mount_path&gt;
-或
-fusemount -u &lt;mount_path&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>可成功</p>
-</li>
-<li>
-<p>若还不行，<code>⌘+Q</code>退出整个软件，再<code>umont  &lt;mount_path&gt;</code>或<code>fusemount -u &lt;mount_path&gt;</code></p>
-</li>
-</ul>
-</li>
-<li>
-<p>法二：强制卸载</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">umount</span> -l <span class="token operator">&lt;</span>mount_path<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<p>umount -h:</p>
-<p>-l, --lazy              detach the filesystem now, clean up things later</p>
+<pre class="line-numbers language-test" data-language="test"><code class="language-test">Generating public&#x2F;private rsa key pair.
+Your identification has been saved in &#x2F;home&#x2F;用户名&#x2F;.ssh&#x2F;id_rsa.
+Your public key has been saved in &#x2F;home&#x2F;用户名&#x2F;.ssh&#x2F;id_rsa.pub.
+The key fingerprint is:
+SHA256:DasvExxxxxxK&#x2F;&#x2F;JIqsxxxxxxxxxn4AdbabU 用户名@服务器
+The key&#39;s randomart image is:
++---[RSA 2048]----+
+| .. xxxxx    xx  |
+|... xxxxx xx     |
+|&#x3D; xxxxx    xx    |
+|ooxx .xxxxxxxxx  |
+|.  xxxxx    xx . |
+|. xxxxx    x  E  |
+|..o xxxxx    +   |
+|  xxxxx    xx    |
+|+ sssddx   .     |
++----[SHA256]-----+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </blockquote>
 </li>
-</ul>
-<h3 id="此路径没挂载-–-无法umount-not-currently-mounted"><a class="header-anchor" href="#此路径没挂载-–-无法umount-not-currently-mounted"></a>此路径没挂载 – 无法umount (not currently mounted)</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">umount</span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span> <span class="token comment"># 返回 umount: local_dir: not currently mounted</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>说明没有sshfs进程从&lt;mount_path&gt; 挂载。要想在&lt;mount_path&gt; 挂载，直接<code>sshfs &lt;user&gt;@&lt;host&gt;:&lt;path&gt; &lt;mount_path&gt; </code>即可</p>
-<h3 id="此路径已挂载-–-无法mount-is-itself-on-a-OSXFUSE-volume"><a class="header-anchor" href="#此路径已挂载-–-无法mount-is-itself-on-a-OSXFUSE-volume"></a>此路径已挂载 – 无法mount(is itself on a OSXFUSE volume)</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sshfs <span class="token operator">&lt;</span>user<span class="token operator">></span>@<span class="token operator">&lt;</span>host<span class="token operator">></span>:<span class="token operator">&lt;</span>path<span class="token operator">></span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>
-<span class="token comment"># 返回 mount_osxfuse: mount point &lt;mount_path> is itself on a OSXFUSE volume</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>说明此时已有mount进程使用了&lt;mount_path&gt; ，&lt;mount_path&gt; 成为了挂载磁盘</p>
-<p>可列出所有在sshfs进程</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pgrep -lf sshfs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="ls-rm-挂空了的路径-–-（Device-not-configured）"><a class="header-anchor" href="#ls-rm-挂空了的路径-–-（Device-not-configured）"></a>ls/rm 挂空了的路径 – （Device not configured）</h3>
-<p>若先前执行了</p>
-<pre class="line-numbers language-none"><code class="language-none">sshfs &lt;mount_path&gt; :.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后ctrl-c或进程自动结束，则此时&lt;mount_path&gt;依旧sshfs被占用，称&lt;mount_path&gt;“挂空”</p>
-<p>此时<code>ls(或rm) &lt;mount_path&gt;(及其下的路径)</code>，会返回</p>
-<pre class="line-numbers language-none"><code class="language-none">ls(或rm): cannot open directory &#39;&#x2F;Users&#x2F;$USER&#x2F;Desktop&#x2F;mount&#x2F;&#39;: Device not configured<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>需要<code>umount &lt;mount_path&gt;</code>，解除sshfs对&lt;mount_path&gt;的占用</p>
-<p>而后<code>ls(或rm) &lt;mount_path&gt;</code>正常返回</p>
-<h3 id="需手动杀进程"><a class="header-anchor" href="#需手动杀进程"></a>需手动杀进程</h3>
-<p>以上操作均解决不了，则需手动杀sshfs进程</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pgrep -lf sshfs
-<span class="token comment"># 会显示你sshfs时的命令，如</span>
-<span class="token comment"># 38371 sshfs -o transform_symlinks -o follow_symlinks &lt;hostname>:/ /Users/$USER/Desktop/mount/mounted_server -o volname=&lt;hostname> -o reconnect -o local</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>然后杀掉相应的挂载进程</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 <span class="token operator">&lt;</span>相应的pid <span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>之后重新挂载响应的目录即可</p>
-<h2 id="Macfusion的bug处理"><a class="header-anchor" href="#Macfusion的bug处理"></a>Macfusion的bug处理</h2>
-<h3 id="Macfusion显示Failed-to-Mount"><a class="header-anchor" href="#Macfusion显示Failed-to-Mount"></a>Macfusion显示<code>Failed to Mount</code></h3>
-<ul>
-<li>检测本机已经联网</li>
-<li>检查本机mount路径，知否有与所mount盘同名的文件夹（可能是mount该盘，从mac打开其中文件，断开连接后，又保存该文件，从而创建同名文件夹），请将此文件夹改名，再次mount即可成功</li>
-<li>如仍不行，或见所mount的磁盘图标变成蓝+灰色，而非绿色，则关闭sshfs程序mount此服务器的进程</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> <span class="token operator">&lt;</span>该服务器在Macfision工具栏中的名字<span class="token operator">></span>（如cpu4） 或 <span class="token operator">&lt;</span>usr@server_address<span class="token operator">></span>（如someone@some.place.com）<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>返回</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mac   <span class="token number">24715</span>   <span class="token number">0.6</span>  <span class="token number">0.0</span>  <span class="token number">4267752</span>    <span class="token number">876</span> s004  S+    <span class="token number">9</span>:08下午   <span class="token number">0</span>:00.01 <span class="token function">grep</span> --color cpu4
-mac   <span class="token number">24093</span>   <span class="token number">0.0</span>  <span class="token number">0.0</span>   <span class="token number">729280</span>   <span class="token number">1516</span>   ??  S     <span class="token number">8</span>:54下午   <span class="token number">0</span>:00.08 /Applications/Macfusion.app/Contents/PlugIns/sshfs.mfplugin/Contents/Resources/sshfs-static someone@some.place.com: /Users/<span class="token environment constant">$USER</span>/Desktop/mount/cpu4 -p4514 -oNumberOfPasswordPrompts<span class="token operator">=</span><span class="token number">1</span> -ocompression<span class="token operator">=</span>yes -ofollow_symlinks -odefer_permissions -oauto_cache -f -ovolname<span class="token operator">=</span>cpu4 -ovolicon<span class="token operator">=</span>/Applications/Macfusion.app/Contents/PlugIns/sshfs.mfplugin/Contents/Resources/sshfs_icon.icns<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>输入</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 <span class="token number">24093</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>在Macfusion中重新mount该服务器</p>
-<h3 id="Macfusion列表全白"><a class="header-anchor" href="#Macfusion列表全白"></a>Macfusion列表全白</h3>
-<p>需要重启Macfusion——<code>command+Q</code> 只能关闭Macfusiion的前台，无法关闭其后台。重启后台需如下操作：</p>
-<ul>
-<li>法一 （等效于法二）</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">killall</span> macfusionAgent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>法二</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">ps aux | grep macfusion<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>返回</p>
-<pre class="line-numbers language-none"><code class="language-none">USER PID     %CPU %MEM     VSZ    RSS   TT  STAT  STARTED      TIME COMMAND
-mac  24105   0.0  0.0  4277992    916 s004  S+    8:54下午   0:00.01 grep --color macfusion
-mac  24090   0.0  0.4  4345112  14996   ??  S     8:54下午   0:00.21 &#x2F;Applications&#x2F;Macfusion.app&#x2F;Contents&#x2F;Resources&#x2F;macfusionAgent.app&#x2F;Contents&#x2F;MacOS&#x2F;macfusionAgent<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>输入</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 <span class="token number">24105</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>重新点开Macfusion的图标</p>
-<h3 id="若再次进入目录仍报错、或卸挂失败，需杀掉sshfs之进程："><a class="header-anchor" href="#若再次进入目录仍报错、或卸挂失败，需杀掉sshfs之进程："></a>若再次进入目录仍报错、或卸挂失败，需杀掉sshfs之进程：</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pgrep -lf sshfs <span class="token comment"># 列出</span>
-<span class="token function">pkill</span> -9 sshfs  <span class="token comment"># 杀死</span>
-pgrep -lf sshfs <span class="token comment"># 再列出，若空则杀尽</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>再重新挂载。</p>
-<h3 id="如仍不行"><a class="header-anchor" href="#如仍不行"></a>如仍不行</h3>
-<p>重启mac</p>
-<h3 id="为解决的bug"><a class="header-anchor" href="#为解决的bug"></a>为解决的bug</h3>
-<ul>
 <li>
-<p>显示</p>
-<p>点<code>Mount</code>后，弹出对话框显示</p>
-<pre class="line-numbers language-none"><code class="language-none">Could not mount filesystem: Mount process has terminated unexpectedly.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>Macfusion主界面显示</p>
-<p><code>gpu7 (Failed to Mount)</code>                             <code>Edit</code>  <code>Mount</code></p>
-<p>自检：</p>
-<p>本机原来gpu7处，没有名为gpu7/的（可见或隐藏）文件夹或磁盘图标</p>
-<p><code>ps aux | grep gpu7</code> <code>ps aux | grep &lt;server_url&gt;</code> 都显示空</p>
-<p><code>killall macfusionAgent </code>后，从图标重启macfusionAgent.app，然后再mount gpu7，依然上述报错</p>
+<p><code>-b 位数</code>  默认是 2048，可以指定 1024 等</p>
+</li>
+<li>
+<p><code>-C 注释</code>  默认为<code>&quot;$USER@$(hostname)&quot;</code>提供一个新注释，</p>
 </li>
 </ul>
+<h3 id="发送公钥到目标机器"><a class="header-anchor" href="#发送公钥到目标机器"></a>发送公钥到目标机器</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id <span class="token punctuation">(</span>-i <span class="token punctuation">(</span>公钥或对应私钥路径<span class="token punctuation">))</span>  <span class="token punctuation">(</span>-p 端口号<span class="token punctuation">)</span> 用户名@服务器<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>或使用别名发送</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id <span class="token punctuation">(</span>-i <span class="token punctuation">(</span>公钥或对应私钥路径<span class="token punctuation">))</span> 服务器别名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后输入服务器密码，即可将本地公钥<code>公钥路径</code> （缺省为<code>~/.ssh/id_rsa.pub</code>）全文复制，粘贴进服务器的<code>~/.ssh/authorized_keys</code>文件中。凡可免密访此服之私钥，其对应公钥皆保存在<code>~/.ssh/authorized_keys</code>中。</p>
+<h3 id="免密登录-_2"><a class="header-anchor" href="#免密登录-_2"></a>免密登录</h3>
+<p>本地电脑</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token punctuation">(</span>-p 端口号<span class="token punctuation">)</span> 用户名@服务器<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>或</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> 别名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>皆可不用输入密码，直接登录</p>
+<h3 id="bug"><a class="header-anchor" href="#bug"></a>bug</h3>
+<h4 id="Bad-owner-or-permissions"><a class="header-anchor" href="#Bad-owner-or-permissions"></a>Bad owner or permissions</h4>
+<p>在执行ssh登录的时候，出现以下错误：</p>
+<pre class="line-numbers language-none"><code class="language-none">Bad owner or permissions on &#x2F;home&#x2F;haowt&#x2F;.ssh&#x2F;config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>此时只需在<code>~/.ssh/</code>下执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token number">600</span> config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>给<code>config</code>文件以“600”权限，则可ssh登录</p>
+<h2 id="能读取-ssh-config的软件"><a class="header-anchor" href="#能读取-ssh-config的软件"></a>能读取<code>~/.ssh/config</code>的软件</h2>
+<ul>
+<li>
+<p>能读取<code>~/.ssh/config</code>的软件</p>
+<p><code>ssh</code>，<code>sshfs</code>，<code>scp</code>，<code>sftp</code>，<code>rsync</code>，在iTerm2上对着远程的文件右键下载文件</p>
+</li>
+<li>
+<p>不能读取<code>~/.ssh/config</code>的软件</p>
+<p>待补充</p>
+</li>
+</ul>
+<h2 id="端口转发"><a class="header-anchor" href="#端口转发"></a>端口转发</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>LocalForward</th>
+<th>RemoteForward</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>功能</td>
+<td>把本地请求转发到远程</td>
+<td>为把远程请求转发到本地</td>
+</tr>
+<tr>
+<td>服务进程(多为守护进程)</td>
+<td>在远程</td>
+<td>在本地</td>
+</tr>
+<tr>
+<td>访问进程(如浏览器)</td>
+<td>在本地</td>
+<td>在远程</td>
+</tr>
+<tr>
+<td>例如</td>
+<td>本地访问远程的jupiter notebook</td>
+<td>远程用nc发送消息到本地的监听进程</td>
+</tr>
+<tr>
+<td><code>ssh config</code>的写法<code>xxxForward 请求端口 ip:接受端口</code></td>
+<td><code>LocalForward 本地端口 localhost:远程端口</code></td>
+<td><code>RemoteForward 服务器端口 localhost:本机端口</code></td>
+</tr>
+<tr>
+<td><code>ssh</code>命令的参数</td>
+<td><code>-L 本地端口:localhost:远程端口</code></td>
+<td><code>-R 服务器端口:localhost:本机端口</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="跳板连接"><a class="header-anchor" href="#跳板连接"></a>跳板连接</h2>
+<p><a href="https://zhuanlan.zhihu.com/p/74193910">参考</a></p>
+<p>以<code>[跳板]</code>机器为跳板，连接<code>[目标]</code>机器，需在<code>~/.ssh/config</code>配置</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Host <span class="token punctuation">[</span>目标<span class="token punctuation">]</span>
+    HostName <span class="token punctuation">[</span>从跳板机访问目标机器用的ip<span class="token punctuation">]</span>
+    User <span class="token punctuation">[</span>目标机用户名<span class="token punctuation">]</span>
+    <span class="token comment"># 登陆目标机永用的私钥所在位置</span>
+    IdentityFile ~/.ssh/id_rsa
+    <span class="token comment"># 允许跳板机用本机私钥登录目标机器</span>
+    ForwardAgent <span class="token function">yes</span>
+
+    <span class="token comment"># 法一: OpenSSH 版本>= 7.3; 或 autossh</span>
+    ProxyJump <span class="token punctuation">[</span>跳板<span class="token punctuation">]</span>
+
+    <span class="token comment"># 法二: OpenSSH 版本&lt; 7.3, 不支持以使用ProxyJump, 可使用ProxyCommand; 但autossh不支持用ProxyCommand</span>
+    <span class="token comment"># ProxyCommand ssh -q -W %h:%p [跳板]</span>
+
+
+
+Host <span class="token punctuation">[</span>跳板<span class="token punctuation">]</span>
+  HostName <span class="token punctuation">[</span>从本地访问跳板机用的ip<span class="token punctuation">]</span>
+    User <span class="token punctuation">[</span>跳板机用户名<span class="token punctuation">]</span>
+    <span class="token comment"># 登陆跳板机的私钥所在位置</span>
+    IdentityFile ~/.ssh/id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样设置后，以下软件的用法和直接连接目标机器一样</p>
+<p><code>ssh</code>（包括端口转发功能），<code>sshfs</code>，<code>scp</code>，<code>sftp</code>，<code>rsync</code>，在iTerm2上对着远程的文件右键下载文件</p>
+<h1 id="ssh-重启"><a class="header-anchor" href="#ssh-重启"></a>ssh 重启</h1>
+<h2 id="linux"><a class="header-anchor" href="#linux"></a>linux</h2>
+<h3 id="重启ssh启服务端"><a class="header-anchor" href="#重启ssh启服务端"></a>重启ssh启服务端</h3>
+<p>每当修改完ssh服务端的设置文件 <code>/etc/ssh/sshd_config</code> 需要重启ssh服务端服务（即<code>sshd</code>）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">service</span> sshd restart<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>或</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart sshd.service<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>注：<code>systemctl</code> 兼容了 <code>service</code>， <a href="https://www.cnblogs.com/shijingjing07/p/9301590.html">详见</a></p>
+<h2 id="mac"><a class="header-anchor" href="#mac"></a>mac</h2>
+<h3 id="启动ssh服务端"><a class="header-anchor" href="#启动ssh服务端"></a><a href="https://www.feng.com/iPhone/news/2016-08-18/Mac-novice-skills-how-to-through-the-terminal-openingclosing-SSH_654852.shtml">启动ssh服务端</a></h3>
+<p>的较新 Mac 设备都会默认预装 SSH，不过 SSH 守护进程是默认禁用的。今天我们就来一起学习如何通过终端指令来开启和关闭 SSH。</p>
+<ul>
+<li>是否开启ssh服务端</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemsetup -getremotelogin
+<span class="token comment"># 如果已经开启的话，指令会显示 “Remote Login: On” ，反之就会显示“Remote Login: Off”。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>开启</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemsetup -setremotelogin on<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>关闭</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemsetup -setremotelogin off<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="开机自启ssh服务端"><a class="header-anchor" href="#开机自启ssh服务端"></a><a href="https://www.cnblogs.com/liyuanhong/articles/6540106.html">开机自启ssh服务端</a></h3>
+<p>mac本身安装了ssh服务，默认情况下不会开机自启</p>
+<ul>
+<li>开机自启sshd服务：</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> launchctl load -w /System/Library/LaunchDaemons/ssh.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>开机不自启sshd服务：</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> launchctl unload -w /System/Library/LaunchDaemons/ssh.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>查看是否开机自启：</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> launchctl list <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">ssh</span>
+<span class="token comment"># 如果看到下面的输出表示成功启动了</span>
+<span class="token comment"># - 0 com.openssh.sshd</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
@@ -6070,229 +6064,235 @@ C:\Users\Administrator\AppData\Roaming\TeamViewer<span aria-hidden="true" class=
       </categories>
   </entry>
   <entry>
-    <title>ssh配置</title>
-    <url>/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/ssh%E9%85%8D%E7%BD%AE.md/main/</url>
-    <content><![CDATA[<p>[TOC]</p>
-<h1 id="ssh别名、免密登录"><a class="header-anchor" href="#ssh别名、免密登录"></a>ssh别名、免密登录</h1>
-<h2 id="别名登陆"><a class="header-anchor" href="#别名登陆"></a>别名登陆</h2>
-<p><a href="http://www.ttlsa.com/linux/ssh-config-aliases-server-access-tricks/">参考1</a>, <a href="https://www.jianshu.com/p/5729d5e61c72">参考2</a></p>
-<p>本地电脑上，打开<code>~/.ssh/config</code>文件</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> ~/.ssh/config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>编写格式如下</p>
-<pre class="line-numbers language-baah" data-language="baah"><code class="language-baah">Host 服务器别名1
-    HostName 服务器ip或网址1
-    Port 端口号1
-    User 用户名1
-    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
-
-Host 服务器别名2
-    HostName 服务器ip或网址2
-    Port 端口号2
-    User 用户名2
-    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
-
-...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><code>~/.ssh/id_rsa</code>即为本地私钥</p>
-<p>例如</p>
-<pre class="line-numbers language-none"><code class="language-none">Host myserver
-    HostName some.place.com
-    Port 4123
-    User pitter
-    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="免密登录"><a class="header-anchor" href="#免密登录"></a>免密登录</h2>
-<p><a href="https://blog.csdn.net/m0_38003171/article/details/80625821">参考</a></p>
-<p>本地电脑上</p>
-<h3 id="生成密钥"><a class="header-anchor" href="#生成密钥"></a>生成密钥</h3>
+    <title>sshfs</title>
+    <url>/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/</url>
+    <content><![CDATA[<h1 id="sshfs教程"><a class="header-anchor" href="#sshfs教程"></a>sshfs教程</h1>
+<p>在linux或mac上，加载远程Linux服务器上的文件目录</p>
+<p>[TOC]</p>
+<h2 id="安装"><a class="header-anchor" href="#安装"></a>安装</h2>
+<p>需依次安装以下三软件</p>
+<h3 id="macfuse"><a class="header-anchor" href="#macfuse"></a>macfuse</h3>
+<p>功能：使mac可用读取linux、windows的文件系统，应用于：</p>
 <ul>
-<li>交互模式</li>
+<li>mac读写它们的U盘/移动硬盘</li>
+<li>mac加载服务器上文件目录</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后不断回车确认，<code>~/.ssh</code>下会生成两个文件：<code>id_rsa</code>（私钥）和<code>id_rsa.pub</code>（公钥）</p>
-<p>若显示已有密钥，问你要不要覆盖，则选不要</p>
+<p><a href="https://osxfuse.github.io">官网</a>     <a href="https://github.com/osxfuse/osxfuse/releases">下载</a></p>
+<h3 id="sshfs"><a class="header-anchor" href="#sshfs"></a>sshfs</h3>
+<p>功能：从Mac加载Linux服务器上的文件目录</p>
 <ul>
-<li>非交互模式</li>
+<li>依赖于macfuse</li>
+<li>只有命令行</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen -t rsa -P <span class="token string">""</span> -f ~/.ssh/id_rsa -q <span class="token comment"># -b 2048 -C "注释"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>在<code>~/.ssh/id_rsa</code>不存在时，运行这个不会产生输出。</p>
-<p>在<code>~/.ssh/id_rsa</code>存在时，运行这不会产生输出</p>
+<p><a href="https://github.com/osxfuse/osxfuse/wiki/SSHFS">官网</a>    <a href="https://github.com/osxfuse/sshfs/releases">下载</a></p>
+<h3 id="macfusion"><a class="header-anchor" href="#macfusion"></a>macfusion</h3>
+<p>功能：sshfs的图形界面</p>
+<p><a href="http://macfusionapp.org">官网</a>已不再维护该软件，其版本不支持OSX Serria及以上系统</p>
+<p><a href="https://github.com/macfusion-ng/macfusion2/releases">可用的fork版本</a>: 我已验证，其<code>Sierra Pre-release 3</code>版本，OSX Serria和OSX Hgih Serria可用</p>
+<h2 id="更新"><a class="header-anchor" href="#更新"></a>更新</h2>
+<h3 id="升级Mojave后使用sshfs要求升级FUSE"><a class="header-anchor" href="#升级Mojave后使用sshfs要求升级FUSE"></a>升级Mojave后使用sshfs要求升级FUSE</h3>
+<p>编辑文章</p>
+<p>升级Mojave后，使用sshfs挂载远程目录失败，弹出对话框显示报错</p>
 <blockquote>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;home&#x2F;用户名&#x2F;.ssh&#x2F;id_rsa already exists.
-Overwrite (y&#x2F;n)?<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>Unsupported macOS Version FuseThe installed version of FUSE is too old for the operating system. Please upgrade your FUSE installation to one that is compatible with the currently running version of macOS.</p>
 </blockquote>
-<p>参数说明：</p>
-<ul>
-<li>
-<p><code>-P &quot;&quot; </code>密码为空</p>
-</li>
-<li>
-<p><code>-f id_rsa </code>是指保存文件为<code>~/.ssh/id_rsa</code> 和<code>~/.ssh/id_rsa.pub</code></p>
-</li>
-<li>
-<p><code>-q</code> 静默模式，即不产生如下输出，除非报错</p>
+<h4 id="尝试在系统偏好设置中升级FUSE"><a class="header-anchor" href="#尝试在系统偏好设置中升级FUSE"></a>尝试在系统偏好设置中升级FUSE</h4>
+<p>打开<code>系统偏好设置</code>，点<code>FUSE</code></p>
+<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/1.png" alt="1"></p>
+<p><img data-src="/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/sshfs.md/main/2.png" alt="2"></p>
+<p>提示无可用更新，更新失败。</p>
+<h4 id="前往osxfuse-github-io下载"><a class="header-anchor" href="#前往osxfuse-github-io下载"></a>前往osxfuse.github.io下载</h4>
+<p>前往<a href="https://osxfuse.github.io/">https://osxfuse.github.io</a>，下载<code>Stable Releases</code>中的<code>FUSE for macOS 3.8.2</code>，安装之</p>
+<p>而后sshfs可用使用了。</p>
+<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
+<h3 id="ui用法"><a class="header-anchor" href="#ui用法"></a><a href="https://meiriyitie.com/2015/05/29/using-sshfs-on-linux-and-macos-x/">ui用法</a></h3>
+<h3 id="sshfs命令行用法"><a class="header-anchor" href="#sshfs命令行用法"></a><a href="https://www.jianshu.com/p/31205b26deff">sshfs命令行用法</a></h3>
+<p>优点：使用此方法挂载后，从一处把笔记本带到另一处，连到另一个网后，挂载依然不断</p>
+<h4 id="挂载"><a class="header-anchor" href="#挂载"></a>挂载</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sshfs <span class="token operator">&lt;</span>user<span class="token operator">></span>@<span class="token operator">&lt;</span>host<span class="token operator">></span>:<span class="token operator">&lt;</span>path<span class="token operator">></span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span> -o <span class="token assign-left variable">volname</span><span class="token operator">=</span><span class="token operator">&lt;</span>volume_name<span class="token operator">></span> -C -o reconnect -o transform_symlinks -o follow_symlinks <span class="token comment">#  -o local</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <blockquote>
-<pre class="line-numbers language-test" data-language="test"><code class="language-test">Generating public&#x2F;private rsa key pair.
-Your identification has been saved in &#x2F;home&#x2F;用户名&#x2F;.ssh&#x2F;id_rsa.
-Your public key has been saved in &#x2F;home&#x2F;用户名&#x2F;.ssh&#x2F;id_rsa.pub.
-The key fingerprint is:
-SHA256:DasvExxxxxxK&#x2F;&#x2F;JIqsxxxxxxxxxn4AdbabU 用户名@服务器
-The key&#39;s randomart image is:
-+---[RSA 2048]----+
-| .. xxxxx    xx  |
-|... xxxxx xx     |
-|&#x3D; xxxxx    xx    |
-|ooxx .xxxxxxxxx  |
-|.  xxxxx    xx . |
-|. xxxxx    x  E  |
-|..o xxxxx    +   |
-|  xxxxx    xx    |
-|+ sssddx   .     |
-+----[SHA256]-----+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>-C：压缩，即-o compression=yes<br>
+-o reconnect：自动重连<br>
+-o transform_symlinks：表示转换绝对链接符号为相对链接符号<br>
+-o follow_symlinks：沿用服务器上的链接符号</p>
+<p>-o local：视为本地磁盘，会在Finder/侧栏/设备 和 桌面 下出现图标名为volume_name</p>
+</blockquote>
+<ul>
+<li><code>&lt;user&gt;@&lt;host&gt;</code> 可以用~/.ssh/config中的服务器别名</li>
+<li>需先创建空文件夹<code>&lt;mount_path&gt;</code>
+<ul>
+<li>若无此文件夹，则不会自动创建，mount失败</li>
+<li>若非空，mount期间，文件夹中原有的东西看不见了，但umount后又能看见</li>
+</ul>
+</li>
+<li><code>&lt;mount_path&gt;</code>与<code>&lt;volume_name&gt;</code>可以同名</li>
+</ul>
+<h4 id="卸挂（二者等效）"><a class="header-anchor" href="#卸挂（二者等效）"></a>卸挂（二者等效）</h4>
+<h5 id="法一-用图像界面推出"><a class="header-anchor" href="#法一-用图像界面推出"></a>法一 用图像界面推出</h5>
+<p>在Finder中，戳到<code>&lt;mount_path&gt;/..</code>或<code>MacBook Air</code>下，右键<code>&lt;mount_path&gt;</code>，点“推出”</p>
+<p>若设了<code>-o local</code>，还可</p>
+<ul>
+<li>
+<p>或在Finder/侧栏/设备/&lt;volume_name&gt; 的右侧有个向上箭头，是推出按钮，按之即推出（推荐）</p>
+</li>
+<li>
+<p>或从桌面/&lt;volume_name&gt;，右键<code>&lt;mount_path&gt;</code>，点“推出”</p>
+</li>
+</ul>
+<h5 id="法二-命令推出"><a class="header-anchor" href="#法二-命令推出"></a>法二 命令推出</h5>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">umount</span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>
+<span class="token comment"># 等效于</span>
+fusermount -u <span class="token operator">&lt;</span>mount_path<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>在mac是<code>&lt;fusermount&gt;</code>命令找不到，但<code>umount</code>可以用</li>
+<li>在服务器上，<code>umount</code>需要sudo，但<code>fusermount -u</code>可以用</li>
+<li>注意不是<code>unmount</code></li>
+</ul>
+<h4 id="免密"><a class="header-anchor" href="#免密"></a>免密</h4>
+<p>这样子每次挂载的时候，都需要输入密码，可以设置成免密码登录：<br>
+<a href="https://www.jianshu.com/p/31cbbbc5f9fa/">将公钥追加到远程服务器：</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> .ssh/id_rsa.pub <span class="token operator">|</span> <span class="token function">ssh</span> username@server <span class="token string">"cat - >>.ssh/authorized_keys"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>登录：</p>
+<pre class="line-numbers language-none"><code class="language-none">sshfs username@server:path local_path
+umount mount_path<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="sshfs的bug处理"><a class="header-anchor" href="#sshfs的bug处理"></a>sshfs的bug处理</h2>
+<p><a href="https://www.jianshu.com/p/8723ba79f35a">参考</a></p>
+<h3 id="服务器断连-–-“保存路径不存在”-无法ls-Input-output-error-无法-rm-Operation-not-permitted"><a class="header-anchor" href="#服务器断连-–-“保存路径不存在”-无法ls-Input-output-error-无法-rm-Operation-not-permitted"></a>服务器断连 – “保存路径不存在” / 无法ls (Input/output error) /无法 rm (Operation not permitted)</h3>
+<p><strong>症状</strong> 当 mac 休眠、重启、换了个网络环境，可能与服务器断连（也可能保持连接）</p>
+<ul>
+<li>在软件（如sublime）里，之前打开的所mount目录下的文件，此时保存文件，会显示“保存路径不存在”</li>
+<li><code>ls</code> mac上用于mount的文件夹（如<code>/Users/$USER/Desktop/mount/mounted_server</code>）会报错</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> /Users/<span class="token environment constant">$USER</span>/Desktop/mount
+<span class="token comment"># 或</span>
+<span class="token function">ls</span> /Users/<span class="token environment constant">$USER</span>/Desktop/mount/mounted_server
+<span class="token comment"># 返回 ls: cannot access '/Users/$USER/Desktop/mount/mounted_server': Input/output error</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li><code>rm</code> mac上用于mount的文件夹，会报错</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token environment constant">$USER</span>/Desktop/mount/mounted_server -rf
+<span class="token comment"># 返回 rm: cannot remove '/Users/$USER/Desktop/mount/mounted_server': Operation not permitted</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>以上症状出现任意一个，说明已经与远处服务器断开连接，但本地未umount</p>
+<p><strong>对策</strong> 依次做如下操作</p>
+<ul>
+<li>检查mac的网络连接</li>
+<li>关掉所有在用mount目录下文件的软件</li>
+<li><code>umount  &lt;mount_path&gt;</code></li>
+<li>再重新<code>sshfs &lt;user&gt;@&lt;host&gt;:&lt;path&gt; &lt;mount_path&gt;</code></li>
+</ul>
+<h3 id="有文件在用-–-无法umount-Resource-busy"><a class="header-anchor" href="#有文件在用-–-无法umount-Resource-busy"></a>有文件在用 – 无法umount (Resource busy)</h3>
+<p>若显示</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">umount</span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>
+或
+fusemount -u <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>
+<span class="token comment"># 返回 umount(&lt;mount_path>): Resource busy -- try 'diskutil unmount'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>则说明此时mac上仍有软件在打开了所mount的文件夹下的文件</p>
+<ul>
+<li>
+<p>法一：关闭软件再安全卸载</p>
+<ul>
+<li>
+<p>实时监测哪些进程占用了<code>&lt;mount_path&gt;</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">watch</span> -n <span class="token number">0.1</span> <span class="token function">lsof</span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>   <span class="token comment"># 按 ctrl+c 结束</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>需在那个软件中，在使用mount的文件夹下的文件的窗口内，<code>⌘+W</code>关闭窗口，再</p>
+  <pre class="line-numbers language-none"><code class="language-none">umount &lt;mount_path&gt;
+或
+fusemount -u &lt;mount_path&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>可成功</p>
+</li>
+<li>
+<p>若还不行，<code>⌘+Q</code>退出整个软件，再<code>umont  &lt;mount_path&gt;</code>或<code>fusemount -u &lt;mount_path&gt;</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>法二：强制卸载</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">umount</span> -l <span class="token operator">&lt;</span>mount_path<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>umount -h:</p>
+<p>-l, --lazy              detach the filesystem now, clean up things later</p>
 </blockquote>
 </li>
-<li>
-<p><code>-b 位数</code>  默认是 2048，可以指定 1024 等</p>
-</li>
-<li>
-<p><code>-C 注释</code>  默认为<code>&quot;$USER@$(hostname)&quot;</code>提供一个新注释，</p>
-</li>
 </ul>
-<h3 id="发送公钥到目标机器"><a class="header-anchor" href="#发送公钥到目标机器"></a>发送公钥到目标机器</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id <span class="token punctuation">(</span>-i <span class="token punctuation">(</span>公钥或对应私钥路径<span class="token punctuation">))</span>  <span class="token punctuation">(</span>-p 端口号<span class="token punctuation">)</span> 用户名@服务器<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>或使用别名发送</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id <span class="token punctuation">(</span>-i <span class="token punctuation">(</span>公钥或对应私钥路径<span class="token punctuation">))</span> 服务器别名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后输入服务器密码，即可将本地公钥<code>公钥路径</code> （缺省为<code>~/.ssh/id_rsa.pub</code>）全文复制，粘贴进服务器的<code>~/.ssh/authorized_keys</code>文件中。凡可免密访此服之私钥，其对应公钥皆保存在<code>~/.ssh/authorized_keys</code>中。</p>
-<h3 id="免密登录-_2"><a class="header-anchor" href="#免密登录-_2"></a>免密登录</h3>
-<p>本地电脑</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token punctuation">(</span>-p 端口号<span class="token punctuation">)</span> 用户名@服务器<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>或</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> 别名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>皆可不用输入密码，直接登录</p>
-<h3 id="bug"><a class="header-anchor" href="#bug"></a>bug</h3>
-<h4 id="Bad-owner-or-permissions"><a class="header-anchor" href="#Bad-owner-or-permissions"></a>Bad owner or permissions</h4>
-<p>在执行ssh登录的时候，出现以下错误：</p>
-<pre class="line-numbers language-none"><code class="language-none">Bad owner or permissions on &#x2F;home&#x2F;haowt&#x2F;.ssh&#x2F;config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>此时只需在<code>~/.ssh/</code>下执行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token number">600</span> config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>给<code>config</code>文件以“600”权限，则可ssh登录</p>
-<h2 id="能读取-ssh-config的软件"><a class="header-anchor" href="#能读取-ssh-config的软件"></a>能读取<code>~/.ssh/config</code>的软件</h2>
+<h3 id="此路径没挂载-–-无法umount-not-currently-mounted"><a class="header-anchor" href="#此路径没挂载-–-无法umount-not-currently-mounted"></a>此路径没挂载 – 无法umount (not currently mounted)</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">umount</span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span> <span class="token comment"># 返回 umount: local_dir: not currently mounted</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>说明没有sshfs进程从&lt;mount_path&gt; 挂载。要想在&lt;mount_path&gt; 挂载，直接<code>sshfs &lt;user&gt;@&lt;host&gt;:&lt;path&gt; &lt;mount_path&gt; </code>即可</p>
+<h3 id="此路径已挂载-–-无法mount-is-itself-on-a-OSXFUSE-volume"><a class="header-anchor" href="#此路径已挂载-–-无法mount-is-itself-on-a-OSXFUSE-volume"></a>此路径已挂载 – 无法mount(is itself on a OSXFUSE volume)</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sshfs <span class="token operator">&lt;</span>user<span class="token operator">></span>@<span class="token operator">&lt;</span>host<span class="token operator">></span>:<span class="token operator">&lt;</span>path<span class="token operator">></span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>
+<span class="token comment"># 返回 mount_osxfuse: mount point &lt;mount_path> is itself on a OSXFUSE volume</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>说明此时已有mount进程使用了&lt;mount_path&gt; ，&lt;mount_path&gt; 成为了挂载磁盘</p>
+<p>可列出所有在sshfs进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pgrep -lf sshfs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="ls-rm-挂空了的路径-–-（Device-not-configured）"><a class="header-anchor" href="#ls-rm-挂空了的路径-–-（Device-not-configured）"></a>ls/rm 挂空了的路径 – （Device not configured）</h3>
+<p>若先前执行了</p>
+<pre class="line-numbers language-none"><code class="language-none">sshfs &lt;mount_path&gt; :.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后ctrl-c或进程自动结束，则此时&lt;mount_path&gt;依旧sshfs被占用，称&lt;mount_path&gt;“挂空”</p>
+<p>此时<code>ls(或rm) &lt;mount_path&gt;(及其下的路径)</code>，会返回</p>
+<pre class="line-numbers language-none"><code class="language-none">ls(或rm): cannot open directory &#39;&#x2F;Users&#x2F;$USER&#x2F;Desktop&#x2F;mount&#x2F;&#39;: Device not configured<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>需要<code>umount &lt;mount_path&gt;</code>，解除sshfs对&lt;mount_path&gt;的占用</p>
+<p>而后<code>ls(或rm) &lt;mount_path&gt;</code>正常返回</p>
+<h3 id="需手动杀进程"><a class="header-anchor" href="#需手动杀进程"></a>需手动杀进程</h3>
+<p>以上操作均解决不了，则需手动杀sshfs进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pgrep -lf sshfs
+<span class="token comment"># 会显示你sshfs时的命令，如</span>
+<span class="token comment"># 38371 sshfs -o transform_symlinks -o follow_symlinks &lt;hostname>:/ /Users/$USER/Desktop/mount/mounted_server -o volname=&lt;hostname> -o reconnect -o local</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>然后杀掉相应的挂载进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 <span class="token operator">&lt;</span>相应的pid <span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>之后重新挂载响应的目录即可</p>
+<h2 id="Macfusion的bug处理"><a class="header-anchor" href="#Macfusion的bug处理"></a>Macfusion的bug处理</h2>
+<h3 id="Macfusion显示Failed-to-Mount"><a class="header-anchor" href="#Macfusion显示Failed-to-Mount"></a>Macfusion显示<code>Failed to Mount</code></h3>
+<ul>
+<li>检测本机已经联网</li>
+<li>检查本机mount路径，知否有与所mount盘同名的文件夹（可能是mount该盘，从mac打开其中文件，断开连接后，又保存该文件，从而创建同名文件夹），请将此文件夹改名，再次mount即可成功</li>
+<li>如仍不行，或见所mount的磁盘图标变成蓝+灰色，而非绿色，则关闭sshfs程序mount此服务器的进程</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> <span class="token operator">&lt;</span>该服务器在Macfision工具栏中的名字<span class="token operator">></span>（如cpu4） 或 <span class="token operator">&lt;</span>usr@server_address<span class="token operator">></span>（如someone@some.place.com）<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>返回</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mac   <span class="token number">24715</span>   <span class="token number">0.6</span>  <span class="token number">0.0</span>  <span class="token number">4267752</span>    <span class="token number">876</span> s004  S+    <span class="token number">9</span>:08下午   <span class="token number">0</span>:00.01 <span class="token function">grep</span> --color cpu4
+mac   <span class="token number">24093</span>   <span class="token number">0.0</span>  <span class="token number">0.0</span>   <span class="token number">729280</span>   <span class="token number">1516</span>   ??  S     <span class="token number">8</span>:54下午   <span class="token number">0</span>:00.08 /Applications/Macfusion.app/Contents/PlugIns/sshfs.mfplugin/Contents/Resources/sshfs-static someone@some.place.com: /Users/<span class="token environment constant">$USER</span>/Desktop/mount/cpu4 -p4514 -oNumberOfPasswordPrompts<span class="token operator">=</span><span class="token number">1</span> -ocompression<span class="token operator">=</span>yes -ofollow_symlinks -odefer_permissions -oauto_cache -f -ovolname<span class="token operator">=</span>cpu4 -ovolicon<span class="token operator">=</span>/Applications/Macfusion.app/Contents/PlugIns/sshfs.mfplugin/Contents/Resources/sshfs_icon.icns<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>输入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 <span class="token number">24093</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在Macfusion中重新mount该服务器</p>
+<h3 id="Macfusion列表全白"><a class="header-anchor" href="#Macfusion列表全白"></a>Macfusion列表全白</h3>
+<p>需要重启Macfusion——<code>command+Q</code> 只能关闭Macfusiion的前台，无法关闭其后台。重启后台需如下操作：</p>
+<ul>
+<li>法一 （等效于法二）</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">killall</span> macfusionAgent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>法二</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">ps aux | grep macfusion<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>返回</p>
+<pre class="line-numbers language-none"><code class="language-none">USER PID     %CPU %MEM     VSZ    RSS   TT  STAT  STARTED      TIME COMMAND
+mac  24105   0.0  0.0  4277992    916 s004  S+    8:54下午   0:00.01 grep --color macfusion
+mac  24090   0.0  0.4  4345112  14996   ??  S     8:54下午   0:00.21 &#x2F;Applications&#x2F;Macfusion.app&#x2F;Contents&#x2F;Resources&#x2F;macfusionAgent.app&#x2F;Contents&#x2F;MacOS&#x2F;macfusionAgent<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>输入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 <span class="token number">24105</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>重新点开Macfusion的图标</p>
+<h3 id="若再次进入目录仍报错、或卸挂失败，需杀掉sshfs之进程："><a class="header-anchor" href="#若再次进入目录仍报错、或卸挂失败，需杀掉sshfs之进程："></a>若再次进入目录仍报错、或卸挂失败，需杀掉sshfs之进程：</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pgrep -lf sshfs <span class="token comment"># 列出</span>
+<span class="token function">pkill</span> -9 sshfs  <span class="token comment"># 杀死</span>
+pgrep -lf sshfs <span class="token comment"># 再列出，若空则杀尽</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>再重新挂载。</p>
+<h3 id="如仍不行"><a class="header-anchor" href="#如仍不行"></a>如仍不行</h3>
+<p>重启mac</p>
+<h3 id="为解决的bug"><a class="header-anchor" href="#为解决的bug"></a>为解决的bug</h3>
 <ul>
 <li>
-<p>能读取<code>~/.ssh/config</code>的软件</p>
-<p><code>ssh</code>，<code>sshfs</code>，<code>scp</code>，<code>sftp</code>，<code>rsync</code>，在iTerm2上对着远程的文件右键下载文件</p>
+<p>显示</p>
+<p>点<code>Mount</code>后，弹出对话框显示</p>
+<pre class="line-numbers language-none"><code class="language-none">Could not mount filesystem: Mount process has terminated unexpectedly.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Macfusion主界面显示</p>
+<p><code>gpu7 (Failed to Mount)</code>                             <code>Edit</code>  <code>Mount</code></p>
+<p>自检：</p>
+<p>本机原来gpu7处，没有名为gpu7/的（可见或隐藏）文件夹或磁盘图标</p>
+<p><code>ps aux | grep gpu7</code> <code>ps aux | grep &lt;server_url&gt;</code> 都显示空</p>
+<p><code>killall macfusionAgent </code>后，从图标重启macfusionAgent.app，然后再mount gpu7，依然上述报错</p>
 </li>
-<li>
-<p>不能读取<code>~/.ssh/config</code>的软件</p>
-<p>待补充</p>
-</li>
 </ul>
-<h2 id="端口转发"><a class="header-anchor" href="#端口转发"></a>端口转发</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>LocalForward</th>
-<th>RemoteForward</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>功能</td>
-<td>把本地请求转发到远程</td>
-<td>为把远程请求转发到本地</td>
-</tr>
-<tr>
-<td>服务进程(多为守护进程)</td>
-<td>在远程</td>
-<td>在本地</td>
-</tr>
-<tr>
-<td>访问进程(如浏览器)</td>
-<td>在本地</td>
-<td>在远程</td>
-</tr>
-<tr>
-<td>例如</td>
-<td>本地访问远程的jupiter notebook</td>
-<td>远程用nc发送消息到本地的监听进程</td>
-</tr>
-<tr>
-<td><code>ssh config</code>的写法<code>xxxForward 请求端口 ip:接受端口</code></td>
-<td><code>LocalForward 本地端口 localhost:远程端口</code></td>
-<td><code>RemoteForward 服务器端口 localhost:本机端口</code></td>
-</tr>
-<tr>
-<td><code>ssh</code>命令的参数</td>
-<td><code>-L 本地端口:localhost:远程端口</code></td>
-<td><code>-R 服务器端口:localhost:本机端口</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="跳板连接"><a class="header-anchor" href="#跳板连接"></a>跳板连接</h2>
-<p><a href="https://zhuanlan.zhihu.com/p/74193910">参考</a></p>
-<p>以<code>[跳板]</code>机器为跳板，连接<code>[目标]</code>机器，需在<code>~/.ssh/config</code>配置</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Host <span class="token punctuation">[</span>目标<span class="token punctuation">]</span>
-    HostName <span class="token punctuation">[</span>从跳板机访问目标机器用的ip<span class="token punctuation">]</span>
-    User <span class="token punctuation">[</span>目标机用户名<span class="token punctuation">]</span>
-    <span class="token comment"># 登陆目标机永用的私钥所在位置</span>
-    IdentityFile ~/.ssh/id_rsa
-    <span class="token comment"># 允许跳板机用本机私钥登录目标机器</span>
-    ForwardAgent <span class="token function">yes</span>
-
-    <span class="token comment"># 法一: OpenSSH 版本>= 7.3; 或 autossh</span>
-    ProxyJump <span class="token punctuation">[</span>跳板<span class="token punctuation">]</span>
-
-    <span class="token comment"># 法二: OpenSSH 版本&lt; 7.3, 不支持以使用ProxyJump, 可使用ProxyCommand; 但autossh不支持用ProxyCommand</span>
-    <span class="token comment"># ProxyCommand ssh -q -W %h:%p [跳板]</span>
-
-
-
-Host <span class="token punctuation">[</span>跳板<span class="token punctuation">]</span>
-  HostName <span class="token punctuation">[</span>从本地访问跳板机用的ip<span class="token punctuation">]</span>
-    User <span class="token punctuation">[</span>跳板机用户名<span class="token punctuation">]</span>
-    <span class="token comment"># 登陆跳板机的私钥所在位置</span>
-    IdentityFile ~/.ssh/id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这样设置后，以下软件的用法和直接连接目标机器一样</p>
-<p><code>ssh</code>（包括端口转发功能），<code>sshfs</code>，<code>scp</code>，<code>sftp</code>，<code>rsync</code>，在iTerm2上对着远程的文件右键下载文件</p>
-<h1 id="ssh-重启"><a class="header-anchor" href="#ssh-重启"></a>ssh 重启</h1>
-<h2 id="linux"><a class="header-anchor" href="#linux"></a>linux</h2>
-<h3 id="重启ssh启服务端"><a class="header-anchor" href="#重启ssh启服务端"></a>重启ssh启服务端</h3>
-<p>每当修改完ssh服务端的设置文件 <code>/etc/ssh/sshd_config</code> 需要重启ssh服务端服务（即<code>sshd</code>）</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">service</span> sshd restart<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>或</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart sshd.service<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>注：<code>systemctl</code> 兼容了 <code>service</code>， <a href="https://www.cnblogs.com/shijingjing07/p/9301590.html">详见</a></p>
-<h2 id="mac"><a class="header-anchor" href="#mac"></a>mac</h2>
-<h3 id="启动ssh服务端"><a class="header-anchor" href="#启动ssh服务端"></a><a href="https://www.feng.com/iPhone/news/2016-08-18/Mac-novice-skills-how-to-through-the-terminal-openingclosing-SSH_654852.shtml">启动ssh服务端</a></h3>
-<p>的较新 Mac 设备都会默认预装 SSH，不过 SSH 守护进程是默认禁用的。今天我们就来一起学习如何通过终端指令来开启和关闭 SSH。</p>
-<ul>
-<li>是否开启ssh服务端</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemsetup -getremotelogin
-<span class="token comment"># 如果已经开启的话，指令会显示 “Remote Login: On” ，反之就会显示“Remote Login: Off”。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ul>
-<li>开启</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemsetup -setremotelogin on<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>关闭</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemsetup -setremotelogin off<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="开机自启ssh服务端"><a class="header-anchor" href="#开机自启ssh服务端"></a><a href="https://www.cnblogs.com/liyuanhong/articles/6540106.html">开机自启ssh服务端</a></h3>
-<p>mac本身安装了ssh服务，默认情况下不会开机自启</p>
-<ul>
-<li>开机自启sshd服务：</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> launchctl load -w /System/Library/LaunchDaemons/ssh.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>开机不自启sshd服务：</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> launchctl unload -w /System/Library/LaunchDaemons/ssh.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>查看是否开机自启：</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> launchctl list <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">ssh</span>
-<span class="token comment"># 如果看到下面的输出表示成功启动了</span>
-<span class="token comment"># - 0 com.openssh.sshd</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
@@ -6636,19 +6636,6 @@ fcitx-libs libqtwebkit4<span aria-hidden="true" class="line-numbers-rows"><span>
       </categories>
   </entry>
   <entry>
-    <title>pytorch多卡训练</title>
-    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/</url>
-    <content><![CDATA[<h1 id="pytorch：-一机多卡训练的尝试"><a class="header-anchor" href="#pytorch：-一机多卡训练的尝试"></a>pytorch： 一机多卡训练的尝试</h1>
-<p><a href="https://www.jianshu.com/p/221d9298808e">参考</a></p>
-<p><a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel</a></p>
-<p><a href="https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>炼丹框架</category>
-      </categories>
-  </entry>
-  <entry>
     <title>TensorboardX：在pytorch上用Tensorboard</title>
     <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/TensorboardX%EF%BC%9A%E5%9C%A8pytorch%E4%B8%8A%E7%94%A8Tensorboard.md/main/</url>
     <content><![CDATA[<p>自2019年5月后，pytorch官方支持了Tensorboard，可千万pytorch官网查询Tensorboard的文档</p>
@@ -6732,57 +6719,12 @@ writer<span class="token punctuation">.</span>close<span class="token punctuatio
       </categories>
   </entry>
   <entry>
-    <title>tensorboard-PermissionError-13</title>
-    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/tensorboard-PermissionError-13.md/main/</url>
-    <content><![CDATA[<h2 id="症状"><a class="header-anchor" href="#症状"></a>症状</h2>
-<p>运行 <code>tensorboard --logdir .</code></p>
-<p>报错</p>
-<pre class="line-numbers language-none"><code class="language-none">tensorboard 8 &lt;module&gt;
-sys.exit(run_main())
-
-main.py 75 run_main
-app.run(tensorboard.main, flags_parser&#x3D;tensorboard.configure)
-
-app.py 299 run
-_run_main(main, args)
-
-app.py 250 _run_main
-sys.exit(main(argv))
-
-program.py 290 main
-return runner(self.flags) or 0
-
-program.py 308 _run_serve_subcommand
-self._register_info(server)
-
-program.py 356 _register_info
-manager.write_info_file(info)
-
-manager.py 262 write_info_file
-with open(_get_info_file_path(), &quot;w&quot;) as outfile:
-
-PermissionError:
-13
-Permission denied<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
-<p>当前用户没有<code>/tmp/.tensorboard-info</code>的读写权限, 故而tensorborad无法写入临时目录</p>
-<h2 id="对策"><a class="header-anchor" href="#对策"></a>对策</h2>
-<ul>
-<li>
-<p>若有root权限</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token number">777</span> /tmp/.tensorboard-info
-<span class="token function">sudo</span> <span class="token function">chown</span> root:root /tmp/.tensorboard-info<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>然后运行<code>tensorboard --logdir .</code></p>
-</li>
-<li>
-<p>若无root权限</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 申明环境变量</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">TMPDIR</span><span class="token operator">=</span>/tmp/<span class="token environment constant">$USER</span><span class="token punctuation">;</span>
-<span class="token comment"># 创建目录</span>
-<span class="token function">mkdir</span> -p <span class="token variable">$TMPDIR</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>然后运行<code>tensorboard --logdir .</code></p>
-</li>
-</ul>
+    <title>pytorch多卡训练</title>
+    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/</url>
+    <content><![CDATA[<h1 id="pytorch：-一机多卡训练的尝试"><a class="header-anchor" href="#pytorch：-一机多卡训练的尝试"></a>pytorch： 一机多卡训练的尝试</h1>
+<p><a href="https://www.jianshu.com/p/221d9298808e">参考</a></p>
+<p><a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel</a></p>
+<p><a href="https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -6916,137 +6858,61 @@ torchvision            0.3.0<span aria-hidden="true" class="line-numbers-rows"><
       </categories>
   </entry>
   <entry>
-    <title>tmux配置与使用</title>
-    <url>/%E5%99%A8/%E7%BB%88%E7%AB%AF/tmux%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</url>
-    <content><![CDATA[<h2 id="tmux-使用"><a class="header-anchor" href="#tmux-使用"></a>tmux 使用</h2>
+    <title>tensorboard-PermissionError-13</title>
+    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/tensorboard-PermissionError-13.md/main/</url>
+    <content><![CDATA[<h2 id="症状"><a class="header-anchor" href="#症状"></a>症状</h2>
+<p>运行 <code>tensorboard --logdir .</code></p>
+<p>报错</p>
+<pre class="line-numbers language-none"><code class="language-none">tensorboard 8 &lt;module&gt;
+sys.exit(run_main())
+
+main.py 75 run_main
+app.run(tensorboard.main, flags_parser&#x3D;tensorboard.configure)
+
+app.py 299 run
+_run_main(main, args)
+
+app.py 250 _run_main
+sys.exit(main(argv))
+
+program.py 290 main
+return runner(self.flags) or 0
+
+program.py 308 _run_serve_subcommand
+self._register_info(server)
+
+program.py 356 _register_info
+manager.write_info_file(info)
+
+manager.py 262 write_info_file
+with open(_get_info_file_path(), &quot;w&quot;) as outfile:
+
+PermissionError:
+13
+Permission denied<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
+<p>当前用户没有<code>/tmp/.tensorboard-info</code>的读写权限, 故而tensorborad无法写入临时目录</p>
+<h2 id="对策"><a class="header-anchor" href="#对策"></a>对策</h2>
 <ul>
 <li>
-<ul>
-<li>窗口进程管理<br>
-即使终端关闭（<code>cmd+Q/W</code>），tmux的窗口依旧运行<br>
-打开一个tmux窗口</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">tmux new -s 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>将该tmux窗口放入后台</p>
-<pre class="line-numbers language-none"><code class="language-none">ctrl+b d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>查看所有tmux窗口的方法</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux ls<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>唤出（使后台的窗口显示）tmux窗口</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux a -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>显示最后放入后台的窗口</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>杀死tmux窗口的方法</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux kill-session -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>杀死当前窗口</p>
-<pre class="line-numbers language-none"><code class="language-none">ctrl+b &amp;
-选择y （yes）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>若有root权限</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token number">777</span> /tmp/.tensorboard-info
+<span class="token function">sudo</span> <span class="token function">chown</span> root:root /tmp/.tensorboard-info<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>然后运行<code>tensorboard --logdir .</code></p>
 </li>
 <li>
-<p>窗口分区管理</p>
-</li>
-<li>
-<p>页面<br>
-单个程序只给一屏用于输出，超出此范围，要翻页查看：<br>
-<code>ctrl+b [   fn+↑/↓  esc</code><br>
-进入拷贝模式：拷贝模式中，新输出的文字不会显示<br>
-<code>ctrl+b [</code>	：进入拷贝模式<br>
-<code>fn+上/下键</code>	：翻页<br>
-<code>esc</code>			：退出拷贝模式<br>
-进入黏贴模式<br>
-<code>ctrl+b ]</code></p>
+<p>若无root权限</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 申明环境变量</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">TMPDIR</span><span class="token operator">=</span>/tmp/<span class="token environment constant">$USER</span><span class="token punctuation">;</span>
+<span class="token comment"># 创建目录</span>
+<span class="token function">mkdir</span> -p <span class="token variable">$TMPDIR</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后运行<code>tensorboard --logdir .</code></p>
 </li>
 </ul>
-<h2 id="tmux配置"><a class="header-anchor" href="#tmux配置"></a>tmux配置</h2>
-<p>我的<code>~/.tmux.conf</code>文件</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># --- base --- #</span>
-<span class="token builtin class-name">set</span> -g default-terminal <span class="token string">"screen-256color"</span>
-<span class="token builtin class-name">set</span> -g display-time <span class="token number">3000</span>
-<span class="token builtin class-name">set</span> -g history-limit <span class="token number">10000</span>
-<span class="token builtin class-name">set</span> -g base-index <span class="token number">1</span>
-<span class="token builtin class-name">set</span> -g pane-base-index <span class="token number">1</span>
-<span class="token builtin class-name">set</span> -s escape-time <span class="token number">0</span>
-<span class="token comment"># set -g mouse on # 打开以下各个鼠标功能</span>
-
-<span class="token comment"># set -g mode-mouse on # 支持鼠标选取文本等</span>
-<span class="token comment"># set -g mouse-resize-pane on # 支持鼠标拖动调整面板的大小(通过拖动面板间的分割线)</span>
-<span class="token comment"># set -g mouse-select-pane on # 支持鼠标选中并切换面板</span>
-<span class="token comment"># set -g mouse-select-window on # 支持鼠标选中并切换窗口(通过点击状态栏窗口名称)</span>
-<span class="token comment"># 允许用鼠标（含触控板）翻页，但会把vim的鼠标翻页给劫持走</span>
-
-<span class="token comment"># 复制黏贴</span>
-<span class="token comment"># set-option -g default-command "reattach-to-user-namespace -l bash"</span>
-<span class="token comment"># setw -g mode-keys vi</span>
-<span class="token comment"># bind-key -t vi-copy v begin-selection</span>
-<span class="token comment"># bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"</span>
-
-<span class="token comment"># ctrl-a [ 进入 vi 模式</span>
-<span class="token comment"># q：退出vi模式</span>
-<span class="token comment"># 使用 hjkl，wb 等 vi 快捷键移动到目标位置</span>
-<span class="token comment"># v ：进入 Visual模式(即选词模式) ，开始选择内容</span>
-<span class="token comment"># 使用 vi 快捷键移动，直到要复制的内容被选中</span>
-<span class="token comment"># y：复制操作系统的粘贴板</span>
-<span class="token comment"># 粘贴：tmux内ctrl+]，在操作系统内Cmd-V</span>
-
-<span class="token comment"># ctrl+r : reload my change in this file (~/.tmux.conf)</span>
-<span class="token builtin class-name">bind</span> r source-file ~/.tmux.conf <span class="token punctuation">\</span><span class="token punctuation">;</span> display <span class="token string">"Reloaded!"</span>
-
-<span class="token comment"># 分割窗口</span>
-<span class="token builtin class-name">bind</span> <span class="token punctuation">\</span> split-window -h <span class="token comment"># prefix+\ : 竖分</span>
-unbind %
-<span class="token builtin class-name">bind</span> - split-window -v <span class="token comment"># prefix+-横分</span>
-unbind <span class="token string">'"'</span>
-
-<span class="token comment"># 窗口间移动</span>
-<span class="token builtin class-name">bind</span> h select-pane -L
-<span class="token builtin class-name">bind</span> j select-pane -D
-<span class="token builtin class-name">bind</span> k select-pane -U
-<span class="token builtin class-name">bind</span> l select-pane -R
-
-<span class="token comment"># 窗口改大小</span>
-<span class="token builtin class-name">bind</span> -r ^k resizep -U <span class="token number">5</span> <span class="token comment"># upward (prefix Ctrl+k)</span>
-<span class="token builtin class-name">bind</span> -r ^j resizep -D <span class="token number">5</span> <span class="token comment"># downward (prefix Ctrl+j)</span>
-<span class="token builtin class-name">bind</span> -r ^h resizep -L <span class="token number">5</span> <span class="token comment"># to the left (prefix Ctrl+h)</span>
-<span class="token builtin class-name">bind</span> -r ^l resizep -R <span class="token number">5</span> <span class="token comment"># to the right (prefix Ctrl+l)</span>
-
-<span class="token builtin class-name">bind</span> -r e lastp <span class="token comment"># 选择最后一个面板</span>
-<span class="token builtin class-name">bind</span> -r ^e last <span class="token comment"># 选择最后一个窗口</span>
-
-<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">[</span> swapp -U <span class="token comment"># 与前一个面板交换位置: ctrl+a+[(ctrl不松手)</span>
-<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">]</span> swapp -D <span class="token comment"># 与后一个面板交换位置：ctrl+a+](ctrl不松手)</span>
-
-<span class="token comment"># select the last pane (prefix e)</span>
-<span class="token builtin class-name">bind</span> e lastp
-<span class="token comment"># select the last window (prefix Ctrl+e)</span>
-<span class="token builtin class-name">bind</span> ^e last
-
-<span class="token comment"># kill pane (prefix q)</span>
-<span class="token builtin class-name">bind</span> q killp
-<span class="token comment"># kill window (prefix Ctrl+q)</span>
-<span class="token builtin class-name">bind</span> -r ^q killw
-<span class="token builtin class-name">bind</span> Q kill-session
-
-<span class="token comment"># 显示会话列表</span>
-unbind w
-<span class="token builtin class-name">bind</span> w display-panes
-unbind s
-unbind ^s
-unbind S
-<span class="token builtin class-name">bind</span> s choose-window
-<span class="token builtin class-name">bind</span> -r ^s choose-session
-<span class="token builtin class-name">bind</span> S choose-tree
-<span class="token comment"># list-windows -a</span>
-
-<span class="token comment"># 显示窗口列表</span>
-
-<span class="token comment"># 修改进入命令模式按键</span>
-<span class="token comment"># remap prefix to Control + a</span>
-<span class="token builtin class-name">set</span> -g prefix C-a
-unbind C-b
-<span class="token builtin class-name">bind</span> C-a send-prefix<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
-        <category>终端</category>
+        <category>炼丹框架</category>
       </categories>
   </entry>
   <entry>
@@ -7426,6 +7292,140 @@ Detached<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
 </code></pre>
 <h2 id="如何让iterm2-在任何界面呼入呼出？"><a class="header-anchor" href="#如何让iterm2-在任何界面呼入呼出？"></a>如何让iterm2 在任何界面呼入呼出？</h2>
 <p><a href="https://www.zhihu.com/question/51622732">教程</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>终端</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>tmux配置与使用</title>
+    <url>/%E5%99%A8/%E7%BB%88%E7%AB%AF/tmux%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</url>
+    <content><![CDATA[<h2 id="tmux-使用"><a class="header-anchor" href="#tmux-使用"></a>tmux 使用</h2>
+<ul>
+<li>
+<ul>
+<li>窗口进程管理<br>
+即使终端关闭（<code>cmd+Q/W</code>），tmux的窗口依旧运行<br>
+打开一个tmux窗口</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">tmux new -s 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>将该tmux窗口放入后台</p>
+<pre class="line-numbers language-none"><code class="language-none">ctrl+b d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>查看所有tmux窗口的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux ls<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>唤出（使后台的窗口显示）tmux窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux a -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>显示最后放入后台的窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>杀死tmux窗口的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux kill-session -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>杀死当前窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">ctrl+b &amp;
+选择y （yes）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>窗口分区管理</p>
+</li>
+<li>
+<p>页面<br>
+单个程序只给一屏用于输出，超出此范围，要翻页查看：<br>
+<code>ctrl+b [   fn+↑/↓  esc</code><br>
+进入拷贝模式：拷贝模式中，新输出的文字不会显示<br>
+<code>ctrl+b [</code>	：进入拷贝模式<br>
+<code>fn+上/下键</code>	：翻页<br>
+<code>esc</code>			：退出拷贝模式<br>
+进入黏贴模式<br>
+<code>ctrl+b ]</code></p>
+</li>
+</ul>
+<h2 id="tmux配置"><a class="header-anchor" href="#tmux配置"></a>tmux配置</h2>
+<p>我的<code>~/.tmux.conf</code>文件</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># --- base --- #</span>
+<span class="token builtin class-name">set</span> -g default-terminal <span class="token string">"screen-256color"</span>
+<span class="token builtin class-name">set</span> -g display-time <span class="token number">3000</span>
+<span class="token builtin class-name">set</span> -g history-limit <span class="token number">10000</span>
+<span class="token builtin class-name">set</span> -g base-index <span class="token number">1</span>
+<span class="token builtin class-name">set</span> -g pane-base-index <span class="token number">1</span>
+<span class="token builtin class-name">set</span> -s escape-time <span class="token number">0</span>
+<span class="token comment"># set -g mouse on # 打开以下各个鼠标功能</span>
+
+<span class="token comment"># set -g mode-mouse on # 支持鼠标选取文本等</span>
+<span class="token comment"># set -g mouse-resize-pane on # 支持鼠标拖动调整面板的大小(通过拖动面板间的分割线)</span>
+<span class="token comment"># set -g mouse-select-pane on # 支持鼠标选中并切换面板</span>
+<span class="token comment"># set -g mouse-select-window on # 支持鼠标选中并切换窗口(通过点击状态栏窗口名称)</span>
+<span class="token comment"># 允许用鼠标（含触控板）翻页，但会把vim的鼠标翻页给劫持走</span>
+
+<span class="token comment"># 复制黏贴</span>
+<span class="token comment"># set-option -g default-command "reattach-to-user-namespace -l bash"</span>
+<span class="token comment"># setw -g mode-keys vi</span>
+<span class="token comment"># bind-key -t vi-copy v begin-selection</span>
+<span class="token comment"># bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"</span>
+
+<span class="token comment"># ctrl-a [ 进入 vi 模式</span>
+<span class="token comment"># q：退出vi模式</span>
+<span class="token comment"># 使用 hjkl，wb 等 vi 快捷键移动到目标位置</span>
+<span class="token comment"># v ：进入 Visual模式(即选词模式) ，开始选择内容</span>
+<span class="token comment"># 使用 vi 快捷键移动，直到要复制的内容被选中</span>
+<span class="token comment"># y：复制操作系统的粘贴板</span>
+<span class="token comment"># 粘贴：tmux内ctrl+]，在操作系统内Cmd-V</span>
+
+<span class="token comment"># ctrl+r : reload my change in this file (~/.tmux.conf)</span>
+<span class="token builtin class-name">bind</span> r source-file ~/.tmux.conf <span class="token punctuation">\</span><span class="token punctuation">;</span> display <span class="token string">"Reloaded!"</span>
+
+<span class="token comment"># 分割窗口</span>
+<span class="token builtin class-name">bind</span> <span class="token punctuation">\</span> split-window -h <span class="token comment"># prefix+\ : 竖分</span>
+unbind %
+<span class="token builtin class-name">bind</span> - split-window -v <span class="token comment"># prefix+-横分</span>
+unbind <span class="token string">'"'</span>
+
+<span class="token comment"># 窗口间移动</span>
+<span class="token builtin class-name">bind</span> h select-pane -L
+<span class="token builtin class-name">bind</span> j select-pane -D
+<span class="token builtin class-name">bind</span> k select-pane -U
+<span class="token builtin class-name">bind</span> l select-pane -R
+
+<span class="token comment"># 窗口改大小</span>
+<span class="token builtin class-name">bind</span> -r ^k resizep -U <span class="token number">5</span> <span class="token comment"># upward (prefix Ctrl+k)</span>
+<span class="token builtin class-name">bind</span> -r ^j resizep -D <span class="token number">5</span> <span class="token comment"># downward (prefix Ctrl+j)</span>
+<span class="token builtin class-name">bind</span> -r ^h resizep -L <span class="token number">5</span> <span class="token comment"># to the left (prefix Ctrl+h)</span>
+<span class="token builtin class-name">bind</span> -r ^l resizep -R <span class="token number">5</span> <span class="token comment"># to the right (prefix Ctrl+l)</span>
+
+<span class="token builtin class-name">bind</span> -r e lastp <span class="token comment"># 选择最后一个面板</span>
+<span class="token builtin class-name">bind</span> -r ^e last <span class="token comment"># 选择最后一个窗口</span>
+
+<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">[</span> swapp -U <span class="token comment"># 与前一个面板交换位置: ctrl+a+[(ctrl不松手)</span>
+<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">]</span> swapp -D <span class="token comment"># 与后一个面板交换位置：ctrl+a+](ctrl不松手)</span>
+
+<span class="token comment"># select the last pane (prefix e)</span>
+<span class="token builtin class-name">bind</span> e lastp
+<span class="token comment"># select the last window (prefix Ctrl+e)</span>
+<span class="token builtin class-name">bind</span> ^e last
+
+<span class="token comment"># kill pane (prefix q)</span>
+<span class="token builtin class-name">bind</span> q killp
+<span class="token comment"># kill window (prefix Ctrl+q)</span>
+<span class="token builtin class-name">bind</span> -r ^q killw
+<span class="token builtin class-name">bind</span> Q kill-session
+
+<span class="token comment"># 显示会话列表</span>
+unbind w
+<span class="token builtin class-name">bind</span> w display-panes
+unbind s
+unbind ^s
+unbind S
+<span class="token builtin class-name">bind</span> s choose-window
+<span class="token builtin class-name">bind</span> -r ^s choose-session
+<span class="token builtin class-name">bind</span> S choose-tree
+<span class="token comment"># list-windows -a</span>
+
+<span class="token comment"># 显示窗口列表</span>
+
+<span class="token comment"># 修改进入命令模式按键</span>
+<span class="token comment"># remap prefix to Control + a</span>
+<span class="token builtin class-name">set</span> -g prefix C-a
+unbind C-b
+<span class="token builtin class-name">bind</span> C-a send-prefix<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
@@ -7874,36 +7874,6 @@ asdas
       <categories>
         <category>器</category>
         <category>编辑器IDE</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>8.31南京航空大学跳楼事件</title>
-    <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/</url>
-    <content><![CDATA[<p>大家不要搞混2020.8.18和2020.8.31两个跳楼事件，下面的图片为831，818为西区21栋跳楼事件。</p>
-<p><img data-src="/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/wrjr40.png" alt="img"></p>
-<p><img data-src="/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/wrxI1K.png" alt="img"></p>
-<p><strong>政治性抑郁，是每一个厌恶资本主义的人，必需要迈过的一关</strong>。</p>
-<p>那怎么办呢？躲起来、过小日子、岁月静好、不看资讯、不读书、不思考、庸庸碌碌、吃药、咨询或许能缓解一时的症状，但不能根治，随着资本主义固有矛盾的加剧，艰难的生活连同抑郁症状又会回来淹没你。</p>
-<p><strong>政治性抑郁，是资本主义带来的抑郁，必须靠灭亡资本主义的行动去治疗——理论、实践</strong>：</p>
-<p><a href="https://blog.lianghy.ml/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97.md/main/">马克思主义学习资料指南</a></p>
-<p>同志们，我们用行动要写出自己的历史，而革命需要人去完成。这意味着，我们要咬紧牙关 活下去 斗争下去，不能向国内外资产阶级投降。**不能引刀成一快，必须蜡炬成灰泪始干。**就算是困在渣滓洞，或者瞎了残了，也要像保尔柯察金那样战斗下去，直到实现我们的目的——共产主义。</p>
-<p>扩展阅读</p>
-<p><a href="https://zhuanlan.zhihu.com/p/415374353">【读者来稿】大学意识形态批判及出路探讨</a></p>
-<p>上文摘录：</p>
-<blockquote>
-<p>但笔者想说的是，两个世界的秩序崩溃是我们必经的心路历程，只要一切不平等产生的根源——私有制还在，场域的创伤性内核就作为震源而存在，而作为震中的个体层面的创伤永远不可能消失。沉浸于个体创伤而绝望崩溃不是我们的归宿；因畏惧而强逼自己恢复前反思的生活，加入秩序的循环更是懦弱的体现；双脚站在意识形态世界划定的圈子里，模模糊糊地遥望校外世界的创伤，最终无法找到主体的符号学位置而选择自我毁灭，这种姿态虽有勇气，但存在更严重的问题。因为世界上不存在免费的顿悟，脱离实践，脱离调研，脱离生产环境下进行反思，一定是不真切的，违背了教员同志的基本路线。</p>
-<p>在这种环境下，反思秩序并渴望改变现状的青年们解决自身精神苦痛的出路何在呢？</p>
-<p>笔者认为，与其决裂，不如悬置；与其沉浸在意识形态世界中的痛苦之中，不若加入更深一层级的现实创伤中去：意识到自己所处环境不过是一张意识形态温床，撕开它，走出去，融入进更大更具撕裂性的创伤中，以此来回溯性取消掉自己的小创伤。也就是走出虚伪的意识形态世界，来到意识形态无法将自己缝合的，最赤裸裸的连遮羞布也不要的创伤之地。我们应该知道那是什么地方。作为小资产阶级，我们对生活在那里的人，了解太少了。</p>
-<p>只要创伤性的内核还在，个人层面的精神痛苦就永远无法解决。唯有搁置个人层面的小创伤，勇敢融入进更深一层级的大创伤中去，我们才有可能冲出自己的精神锁链。只有冲出自己的精神锁链，我们才能找到自己的人生使命。只有找到了自己的人生使命，我们才有能力解决世界的创伤性的内核。真正的哲学不是认识世界，而是要去改造世界。</p>
-<p>阳和平的母亲，伟大的国际主义战士寒春，如是说：“回顾我所走过的路，从小学到研究所的生活，不能说不幸福，但相比站在人民之中，与大家一起改造社会，用双手建立一个没有人压迫人，人剥削人，美好而富有的新国家，原来的幸福观是多么的狭隘啊。有的人改造世界的目的只是为了自己，但这种建筑在大多数人痛苦之上的幸福，不是真正的幸福，它终究会被历史所消灭。”</p>
-<p>趁着年轻，趁着还有时间，走出去，不要被意识形态世界中创造的创伤所吞噬，不要在意识形态世界里做浪费生命的循环，去走进真正面临着无法想象的创伤性的人群，去体验，去融入，去结合，去照亮。不要把我们和他们对立起来，因为我们就是他们，他们，就是我们。</p>
-</blockquote>
-<p><img data-src="/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/v2-40ff8783d510a0d92edecf896179b603_1440w.jpg" alt="v2-40ff8783d510a0d92edecf896179b603_1440w"></p>
-<p><img data-src="/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/v2-5d7e0e87f6b89e69ac680625dfed9efb_1440w.jpg" alt="v2-5d7e0e87f6b89e69ac680625dfed9efb_1440w"></p>
-]]></content>
-      <categories>
-        <category>道</category>
-        <category>Marxism笔记</category>
       </categories>
   </entry>
   <entry>
@@ -8981,6 +8951,36 @@ asdas
       </categories>
   </entry>
   <entry>
+    <title>8.31南京航空大学跳楼事件</title>
+    <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/</url>
+    <content><![CDATA[<p>大家不要搞混2020.8.18和2020.8.31两个跳楼事件，下面的图片为831，818为西区21栋跳楼事件。</p>
+<p><img data-src="/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/wrjr40.png" alt="img"></p>
+<p><img data-src="/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/wrxI1K.png" alt="img"></p>
+<p><strong>政治性抑郁，是每一个厌恶资本主义的人，必需要迈过的一关</strong>。</p>
+<p>那怎么办呢？躲起来、过小日子、岁月静好、不看资讯、不读书、不思考、庸庸碌碌、吃药、咨询或许能缓解一时的症状，但不能根治，随着资本主义固有矛盾的加剧，艰难的生活连同抑郁症状又会回来淹没你。</p>
+<p><strong>政治性抑郁，是资本主义带来的抑郁，必须靠灭亡资本主义的行动去治疗——理论、实践</strong>：</p>
+<p><a href="https://blog.lianghy.ml/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E9%A9%AC%E5%85%8B%E6%80%9D%E4%B8%BB%E4%B9%89%E5%85%A5%E9%97%A8%E6%8C%87%E5%8D%97.md/main/">马克思主义学习资料指南</a></p>
+<p>同志们，我们用行动要写出自己的历史，而革命需要人去完成。这意味着，我们要咬紧牙关 活下去 斗争下去，不能向国内外资产阶级投降。**不能引刀成一快，必须蜡炬成灰泪始干。**就算是困在渣滓洞，或者瞎了残了，也要像保尔柯察金那样战斗下去，直到实现我们的目的——共产主义。</p>
+<p>扩展阅读</p>
+<p><a href="https://zhuanlan.zhihu.com/p/415374353">【读者来稿】大学意识形态批判及出路探讨</a></p>
+<p>上文摘录：</p>
+<blockquote>
+<p>但笔者想说的是，两个世界的秩序崩溃是我们必经的心路历程，只要一切不平等产生的根源——私有制还在，场域的创伤性内核就作为震源而存在，而作为震中的个体层面的创伤永远不可能消失。沉浸于个体创伤而绝望崩溃不是我们的归宿；因畏惧而强逼自己恢复前反思的生活，加入秩序的循环更是懦弱的体现；双脚站在意识形态世界划定的圈子里，模模糊糊地遥望校外世界的创伤，最终无法找到主体的符号学位置而选择自我毁灭，这种姿态虽有勇气，但存在更严重的问题。因为世界上不存在免费的顿悟，脱离实践，脱离调研，脱离生产环境下进行反思，一定是不真切的，违背了教员同志的基本路线。</p>
+<p>在这种环境下，反思秩序并渴望改变现状的青年们解决自身精神苦痛的出路何在呢？</p>
+<p>笔者认为，与其决裂，不如悬置；与其沉浸在意识形态世界中的痛苦之中，不若加入更深一层级的现实创伤中去：意识到自己所处环境不过是一张意识形态温床，撕开它，走出去，融入进更大更具撕裂性的创伤中，以此来回溯性取消掉自己的小创伤。也就是走出虚伪的意识形态世界，来到意识形态无法将自己缝合的，最赤裸裸的连遮羞布也不要的创伤之地。我们应该知道那是什么地方。作为小资产阶级，我们对生活在那里的人，了解太少了。</p>
+<p>只要创伤性的内核还在，个人层面的精神痛苦就永远无法解决。唯有搁置个人层面的小创伤，勇敢融入进更深一层级的大创伤中去，我们才有可能冲出自己的精神锁链。只有冲出自己的精神锁链，我们才能找到自己的人生使命。只有找到了自己的人生使命，我们才有能力解决世界的创伤性的内核。真正的哲学不是认识世界，而是要去改造世界。</p>
+<p>阳和平的母亲，伟大的国际主义战士寒春，如是说：“回顾我所走过的路，从小学到研究所的生活，不能说不幸福，但相比站在人民之中，与大家一起改造社会，用双手建立一个没有人压迫人，人剥削人，美好而富有的新国家，原来的幸福观是多么的狭隘啊。有的人改造世界的目的只是为了自己，但这种建筑在大多数人痛苦之上的幸福，不是真正的幸福，它终究会被历史所消灭。”</p>
+<p>趁着年轻，趁着还有时间，走出去，不要被意识形态世界中创造的创伤所吞噬，不要在意识形态世界里做浪费生命的循环，去走进真正面临着无法想象的创伤性的人群，去体验，去融入，去结合，去照亮。不要把我们和他们对立起来，因为我们就是他们，他们，就是我们。</p>
+</blockquote>
+<p><img data-src="/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/v2-40ff8783d510a0d92edecf896179b603_1440w.jpg" alt="v2-40ff8783d510a0d92edecf896179b603_1440w"></p>
+<p><img data-src="/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/v2-5d7e0e87f6b89e69ac680625dfed9efb_1440w.jpg" alt="v2-5d7e0e87f6b89e69ac680625dfed9efb_1440w"></p>
+]]></content>
+      <categories>
+        <category>道</category>
+        <category>Marxism笔记</category>
+      </categories>
+  </entry>
+  <entry>
     <title>“春天”后怪相的逻辑链</title>
     <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E2%80%9C%E6%98%A5%E5%A4%A9%E2%80%9D%E5%90%8E%E6%80%AA%E7%9B%B8%E7%9A%84%E9%80%BB%E8%BE%91%E9%93%BE.md/main/</url>
     <content><![CDATA[<p>最近政府频繁拿捏资本，释放啥信号？是类似欧美搞分配调整给私有制续命三十年拖延危机，还是新三大改造前稳定局面争取时间和意识形态动员？未来往哪走，这取决于普罗大众（proletariat）是否普遍呼吁 对于｛｛生产，生活｝的管理权 和 ｛生活资料，生产资料，权力｝的分配权 ｝的公有化，而这又取决于普罗大众如何看待追逐利润的经济改革。</p>
@@ -9149,7 +9149,7 @@ asdas
 <p>资本主义的帝国争霸，已经上演了一个多世纪，多少血汗，多少人命，多少眼泪。走上资本主义这条路，走到垄断资本主义，走到帝国主义争霸，历史一次次再来一遍，资本主义铁一般的吃人剧本。秦人不暇自哀，而后人哀之，后人哀之而不鉴之，亦使后人而复哀后人也。</p>
 <p>这样的历史，难道要再来亿遍吗？不！要给这样的历史画句号。怎么画呢？</p>
 <h1 id="真正的国际主义"><a class="header-anchor" href="#真正的国际主义"></a>真正的国际主义</h1>
-<p>一个人自称为了英特那雄耐尔去非洲搞基建，然后说这是为了反美帝国主义，以为这样能通往共产主义，丝毫没有体现对上面几个问题的反思，不禁让人好奇这是如何理解共产主义的。难不成，是演员自己啥都懂，却不敢说实话？是谁在包装这位远渡重洋曲线选调<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>求个职位的演员？为什么要造神，用国际主义来装点帝国主义？这样涂脂抹粉掩盖的到底是什么？答案只有一个，修正主义势力要掩盖自身的反动实质，来蒙骗人民，维持剥削与压迫。</p>
+<p>一个人自称为了英特那雄耐尔去非洲搞基建，然后说这是为了反美帝国主义，以为这样能通往共产主义，丝毫没有体现对上面几个问题的反思，不禁让人好奇这是如何理解共产主义的。难不成，是演员自己啥都懂，却不敢说实话？是谁在包装这位远渡重洋曲线选调<sup class="footnote-ref"><a href="#fn4" id="fnref4">[4]</a></sup>求个职位的演员？为什么要造神，用国际主义来装点帝国主义？这样涂脂抹粉掩盖的到底是什么？答案只有一个，修正主义势力要掩盖自身的反动实质，来蒙骗人民，维持其对国内外劳动人民的剥削与压迫。</p>
 <p>无需多言，修正主义给我们带来的苦痛，我们已经领教了四十年，社会主义才是我们的出路。而对于亚非拉人民来说，解决被帝国主义剥削、压迫的唯一道路，是社会主义。帮助建立社会主义，是亚非拉人民最需要的援助。</p>
 <p><a href="https://jiliuwang.net/archives/82633">社会主义——非洲真正领导人的试金石</a>:</p>
 <blockquote>
