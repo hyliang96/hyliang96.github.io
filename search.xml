@@ -676,197 +676,6 @@ EXE<span class="token operator">=</span>[可执行文件名]
       </categories>
   </entry>
   <entry>
-    <title>github多帐号</title>
-    <url>/%E5%99%A8/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7.md/main/</url>
-    <content><![CDATA[<h1 id="多github帐号的SSH-key切换"><a class="header-anchor" href="#多github帐号的SSH-key切换"></a>多github帐号的SSH key切换</h1>
-<p>来源：<a href="https://www.cnblogs.com/BeginMan/p/3548139.html">多github帐号的SSH key切换</a></p>
-<p>我有两个github帐号，一个是个人所用，一个是为公司项目所用。如果是单用户(single-user)，很方便，默认拿id_rsa与你的github服务器的公钥对比；如果是多用户（multi-user）如user1,user2,那么就不能用在user2的身上了，这个时候就要配置一下了：</p>
-<p><strong>1、新建user2的SSH Key</strong></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 新建SSH key：</span>
-$ <span class="token builtin class-name">cd</span> ~/.ssh     <span class="token comment"># 切换到C:\Users\Administrator\.ssh</span>
-ssh-keygen -t rsa -C <span class="token string">"mywork@email.com"</span>  <span class="token comment"># 新建工作的SSH key</span>
-<span class="token comment"># 设置名称为id_rsa_work</span>
-Enter <span class="token function">file</span> <span class="token keyword">in</span> <span class="token function">which</span> to save the key <span class="token punctuation">(</span>/c/Users/Administrator/.ssh/id_rsa<span class="token punctuation">)</span>: id_rsa_work<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>2、新密钥添加到SSH agent中</strong></p>
-<p>因为默认只读取id_rsa，为了让SSH识别新的私钥，需将其添加到SSH agent中：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-add ~/.ssh/id_rsa_work <span class="token comment"># linux</span>
-ssh-add -K ~/.ssh/id_rsa_work <span class="token comment"># mac</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ul>
-<li>mac系统需加<code>-K</code>参数，以使此私钥永久加入到系统的钥匙串(key chain)中，则每次重启系统后无需再次<code>ssh-add ~/.ssh/id_rsa_work</code> ，<a href="http://www.icodeyou.com/2016/01/17/ssh-add-mac/">详见</a></li>
-</ul>
-<p><strong>debug</strong></p>
-<ul>
-<li>如果出现</li>
-</ul>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">Could not open a connection to your authentication agent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<p>的错误，就试着用以下命令：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-agent <span class="token function">bash</span>
-ssh-add ~/.ssh/id_rsa_work <span class="token comment"># linux</span>
-ssh-add -K ~/.ssh/id_rsa_work <span class="token comment"># mac</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>在后续的使用时，若<code>git push</code>报错说 它用的不是<code>.ssh/config</code>所指定的密钥<code> ~/.ssh/id_rsa_work</code>，可能是<code> ~/.ssh/id_rsa_work</code>没有<code>ssh-add</code>，请执行</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-add ~/.ssh/id_rsa_work <span class="token comment"># linux</span>
-ssh-add -K ~/.ssh/id_rsa_work <span class="token comment"># mac</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><strong>3、修改config文件</strong><br>
-在~/.ssh目录下找到config文件，如果没有就创建：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> config        <span class="token comment"># 创建config</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后修改如下：<br>
-我的config配置如下：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 该文件用于配置私钥对应的服务器</span>
-<span class="token comment"># Default github user(first@mail.com)</span>
-Host github.com
- HostName github.com
- User <span class="token function">git</span>
- IdentityFile C:/Users/Administrator/.ssh/id_rsa
-
- <span class="token comment"># second user(second@mail.com)</span>
- <span class="token comment"># 建一个github别名，新建的帐号使用这个别名做克隆和更新</span>
-Host github2
- HostName github.com
- User <span class="token function">git</span>
- IdentityFile C:/Users/Administrator/.ssh/id_rsa_work<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如果存在的话，其实就是往这个config中添加一个Host：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 建一个github别名，新建的帐号使用这个别名做克隆和更新</span>
-Host github2
-HostName github.com
-User <span class="token function">git</span>
-IdentityFile ~/.ssh/id_rsa2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>其规则就是：从上至下读取config的内容，在每个Host下寻找对应的私钥。这里将GitHub SSH仓库地址中的git@github.com替换成新建的Host别名如：github2，那么原地址是：git@github.com:funpeng/Mywork.git，替换后应该是：github2:funpeng/Mywork.git.</p>
-<p><strong>4、打开新生成的~/.ssh/id_rsa2.pub文件，将里面的内容添加到GitHub后台。</strong></p>
-<p>可不要忘了添加到你的另一个github帐号下的SSH Key中。</p>
-<p><strong>5、测试：</strong></p>
-<pre class="line-numbers language-none"><code class="language-none">Administrator@FANGPENG &#x2F;e&#x2F;work
-$ ssh -T git@github.com
-Hi BeginMan! You&#39;ve successfully authenticated, but GitHub does not provide shel
-l access.
-
-Administrator@FANGPENG &#x2F;e&#x2F;work
-$ ssh -T github2
-Hi funpeng! You&#39;ve successfully authenticated, but GitHub does not provide shell
- access.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>6、应用</strong></p>
-<p>测试成功，那么我尝试在我的work目录下克隆我@126.com账号下的远程仓库。如下：</p>
-<pre class="line-numbers language-none"><code class="language-none">Administrator@FANGPENG &#x2F;e&#x2F;work
-$ git clone github2:funpeng&#x2F;Mywork.git
-Cloning into &#39;Mywork&#39;...
-remote: Counting objects: 3, done.
-remote: Total 3 (delta 0), reused 0 (delta 0)
-Receiving objects: 100% (3&#x2F;3), done.
-Checking connectivity... done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>克隆成功，大功告成了！</p>
-<h2 id="git免密pull-push"><a class="header-anchor" href="#git免密pull-push"></a>git免密pull/push</h2>
-<p><code>git push/pull</code>要想免输入github的用户名和密码，本地仓库关联的远程仓库 之url不能是https的，需必需是<code>git@github.com</code>的，这样才能走ssh协议，调用~/.ssh/config下的密钥进行免密登录</p>
-<h3 id="git免密pull-push设置方法"><a class="header-anchor" href="#git免密pull-push设置方法"></a>git免密pull/push设置方法</h3>
-<ul>
-<li>git clone创建</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone git@github.com:【github的用户名】/【github的repo名】.git
-<span class="token comment"># 或</span>
-<span class="token function">git</span> clone【ssh_config中给github设置的alias】:【github的用户名】/【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>本地repo设置远程仓库</li>
-</ul>
-<pre class="line-numbers language-bsah" data-language="bsah"><code class="language-bsah">git remote add git@github.com:【github的用户名】&#x2F;【github的repo名】.git
-# 或
-git remote add【ssh_config中给github设置的alias】:【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="无法免密pull-push设置方法怎么办"><a class="header-anchor" href="#无法免密pull-push设置方法怎么办"></a>无法免密pull/push设置方法怎么办</h3>
-<p>需将本地repo文件夹下 <code>.git/config</code>中的远程仓库的url，从https的改为<code>git@github.com</code>的</p>
-<ul>
-<li>见https的url：</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">[remote &quot;origin&quot;]
-    url &#x3D; https:&#x2F;&#x2F;github.com&#x2F;【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>它是从github上这里复制的</p>
-<p><img data-src="/%E5%99%A8/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7.md/main/2.png" alt></p>
-<ul>
-<li>修改为<code>git@github.com</code>的：</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">[remote &quot;origin&quot;]
-    url &#x3D; git@github.com:【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>它从github上这样复制</p>
-<p><img data-src="/%E5%99%A8/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7.md/main/1.png" alt></p>
-<h3 id="多github账号的免密git-pull-push"><a class="header-anchor" href="#多github账号的免密git-pull-push"></a>多github账号的免密git pull/push</h3>
-<p>上述url还可以写成</p>
-<pre class="line-numbers language-none"><code class="language-none">[remote &quot;origin&quot;]
-    url &#x3D; 【ssh_config中给github设置的alias】:【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>【ssh_config中给github设置的alias】例如<code>github2</code>，这样就能实现多github账号的免密push/pull</p>
-<h2 id="多个本地git帐号配置"><a class="header-anchor" href="#多个本地git帐号配置"></a>多个本地git帐号配置</h2>
-<p>参考：</p>
-<ul>
-<li>
-<p><a href="https://gist.github.com/yeungeek/596984fd9e53d6c36c0d">https://gist.github.com/yeungeek/596984fd9e53d6c36c0d</a></p>
-</li>
-<li>
-<p><a href="https://stackoverflow.com/questions/3860112/multiple-github-accounts-on-the-same-computer">https://stackoverflow.com/questions/3860112/multiple-github-accounts-on-the-same-computer</a></p>
-</li>
-</ul>
-<blockquote>
-<p>在使用git，gitlab的时候，会在.ssh目录下生成对应rsa文件，那如果是有多个配置，该怎么处理？</p>
-</blockquote>
-<p>如何生成ssh密钥，可以参考 <a href="https://help.github.com/articles/generating-ssh-keys">generating-ssh-keys</a></p>
-<ol>
-<li>多帐号配置 需要在.ssh目录下，增加config配置，config可以配置多个git的帐号</li>
-</ol>
-<pre class="line-numbers language-none"><code class="language-none">#Host myhost（这里是自定义的host简称，以后连接远程服务器就可以用命令ssh myhost）[注意下面有缩进]
-    #User 登录用户名(如：git)
-    #HostName 主机名可用ip也可以是域名(如:github.com或者bitbucket.org)
-    #Port 服务器open-ssh端口（默认：22,默认时一般不写此行
-    #IdentityFile 证书文件路径（如~&#x2F;.ssh&#x2F;id_rsa_*)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>具体的实例配置</p>
-<pre class="line-numbers language-none"><code class="language-none"> #github yeungeek@gmail.com
-host github
-    hostname github.com
-    User yeungeek
-    IdentityFile &#x2F;home&#x2F;yeungeek&#x2F;.ssh&#x2F;github_id_rsa
-
-  #gitlab yeungeek@gmail.com
-host gitlab
-    hostname gitlab.widget-inc.com
-    User yeungeek
-    Port 65422
-    IdentityFile &#x2F;home&#x2F;yeungeek&#x2F;.ssh&#x2F;id_rsa
-host oschina
-    hostname git.oschina.net
-    User yeungeek
-    IdentityFile &#x2F;home&#x2F;yeungeek&#x2F;.ssh&#x2F;oschina_id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><strong>注意点</strong>：</p>
-<ul>
-<li>在配置文件中的，IdentityFile文件位置是rsa密钥，不是pub文件</li>
-<li>提交代码的时候，需要修改<code>git config</code> <a href="http://xn--user-k84fui7hq9bp7lz8gjtzn75eqhya199a.xn--emailuser-uw9o.name">可以之设置一个全局的user.email和user.name</a>，然后需要不同的配置的仓库，单独设置</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;设置global
-git config --global user.name &quot;yeungeek&quot;
-git config --global user.email &quot;yeungeek@gmail.com&quot;
-
-&#x2F;&#x2F;设置仓库的user.email和user.name
-git config  user.email &quot;yeungeek@gmail.com&quot;
-git config  user.name &quot;yeungeek&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这样配置就ok了</p>
-<ol start="2">
-<li>ssh-add说明 上面的配置完成完成，使用命令<code>ssh-add -l</code>可以看到所有的密钥列表</li>
-</ol>
-<pre class="line-numbers language-none"><code class="language-none">yeungeek@yeungeek:~&#x2F;.ssh$ ssh-add -l
-2048 db:6a:da:46:6e:03:da:94:f0:2c:43:1d:91:8a:bd:67 yeungeek@gmail.com (RSA)
-2048 07:59:9f:93:d2:e3:80:e1:df:77:ed:c9:5d:2e:3d:04 yeungeek@gmail.com (RSA)
-2048 4f:ba:6c:00:12:41:0e:a8:50:be:f5:6e:2e:7a:10:91 yeungeek@gmail.com (RSA)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>ssh-add的作用主要将密钥添加到 ssh-agent 的高速缓存中，这样在<em>当前会话</em>中就不需要再次输入密码了 具体的可以参考 <a href="http://t.cn/zWlX7vR">SSH Keys</a></p>
-<h2 id="git用户名"><a class="header-anchor" href="#git用户名"></a>git用户名</h2>
-<h3 id="查看用户名"><a class="header-anchor" href="#查看用户名"></a>查看用户名</h3>
-<pre class="line-numbers language-none"><code class="language-none">git config user.name
-git config user.email<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="设置用户名"><a class="header-anchor" href="#设置用户名"></a>设置用户名</h3>
-<pre class="line-numbers language-none"><code class="language-none">git config user.name &quot;你的用户名&quot;
-git config user.email &quot;你的邮箱&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>git</category>
-      </categories>
-  </entry>
-  <entry>
     <title>git学习笔记</title>
     <url>/%E5%99%A8/git/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md/main/</url>
     <content><![CDATA[<h1 id="GIT学习笔记"><a class="header-anchor" href="#GIT学习笔记"></a>GIT学习笔记</h1>
@@ -1240,6 +1049,197 @@ B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <h2 id="cherry-pick"><a class="header-anchor" href="#cherry-pick"></a>cherry-pick</h2>
 <p>教程: <a href="https://blog.csdn.net/FightFightFight/article/details/81039050">git cherry-pick的使用</a>  <a href="https://blog.csdn.net/qq_32452623/article/details/79449534">cherry-pick 挑好看的小樱桃</a></p>
 <p>不存在<code>git cherry-pick —squash</code>, 得用 <code>git cherry-pick -n</code>, <a href="https://stackoverflow.com/questions/35123108/cherry-pick-and-squash-a-range-of-commits-into-a-subdirectory-or-subtree">详见</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>git</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>github多帐号</title>
+    <url>/%E5%99%A8/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7.md/main/</url>
+    <content><![CDATA[<h1 id="多github帐号的SSH-key切换"><a class="header-anchor" href="#多github帐号的SSH-key切换"></a>多github帐号的SSH key切换</h1>
+<p>来源：<a href="https://www.cnblogs.com/BeginMan/p/3548139.html">多github帐号的SSH key切换</a></p>
+<p>我有两个github帐号，一个是个人所用，一个是为公司项目所用。如果是单用户(single-user)，很方便，默认拿id_rsa与你的github服务器的公钥对比；如果是多用户（multi-user）如user1,user2,那么就不能用在user2的身上了，这个时候就要配置一下了：</p>
+<p><strong>1、新建user2的SSH Key</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 新建SSH key：</span>
+$ <span class="token builtin class-name">cd</span> ~/.ssh     <span class="token comment"># 切换到C:\Users\Administrator\.ssh</span>
+ssh-keygen -t rsa -C <span class="token string">"mywork@email.com"</span>  <span class="token comment"># 新建工作的SSH key</span>
+<span class="token comment"># 设置名称为id_rsa_work</span>
+Enter <span class="token function">file</span> <span class="token keyword">in</span> <span class="token function">which</span> to save the key <span class="token punctuation">(</span>/c/Users/Administrator/.ssh/id_rsa<span class="token punctuation">)</span>: id_rsa_work<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>2、新密钥添加到SSH agent中</strong></p>
+<p>因为默认只读取id_rsa，为了让SSH识别新的私钥，需将其添加到SSH agent中：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-add ~/.ssh/id_rsa_work <span class="token comment"># linux</span>
+ssh-add -K ~/.ssh/id_rsa_work <span class="token comment"># mac</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>mac系统需加<code>-K</code>参数，以使此私钥永久加入到系统的钥匙串(key chain)中，则每次重启系统后无需再次<code>ssh-add ~/.ssh/id_rsa_work</code> ，<a href="http://www.icodeyou.com/2016/01/17/ssh-add-mac/">详见</a></li>
+</ul>
+<p><strong>debug</strong></p>
+<ul>
+<li>如果出现</li>
+</ul>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">Could not open a connection to your authentication agent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p>的错误，就试着用以下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-agent <span class="token function">bash</span>
+ssh-add ~/.ssh/id_rsa_work <span class="token comment"># linux</span>
+ssh-add -K ~/.ssh/id_rsa_work <span class="token comment"># mac</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>在后续的使用时，若<code>git push</code>报错说 它用的不是<code>.ssh/config</code>所指定的密钥<code> ~/.ssh/id_rsa_work</code>，可能是<code> ~/.ssh/id_rsa_work</code>没有<code>ssh-add</code>，请执行</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-add ~/.ssh/id_rsa_work <span class="token comment"># linux</span>
+ssh-add -K ~/.ssh/id_rsa_work <span class="token comment"># mac</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><strong>3、修改config文件</strong><br>
+在~/.ssh目录下找到config文件，如果没有就创建：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> config        <span class="token comment"># 创建config</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后修改如下：<br>
+我的config配置如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 该文件用于配置私钥对应的服务器</span>
+<span class="token comment"># Default github user(first@mail.com)</span>
+Host github.com
+ HostName github.com
+ User <span class="token function">git</span>
+ IdentityFile C:/Users/Administrator/.ssh/id_rsa
+
+ <span class="token comment"># second user(second@mail.com)</span>
+ <span class="token comment"># 建一个github别名，新建的帐号使用这个别名做克隆和更新</span>
+Host github2
+ HostName github.com
+ User <span class="token function">git</span>
+ IdentityFile C:/Users/Administrator/.ssh/id_rsa_work<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果存在的话，其实就是往这个config中添加一个Host：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 建一个github别名，新建的帐号使用这个别名做克隆和更新</span>
+Host github2
+HostName github.com
+User <span class="token function">git</span>
+IdentityFile ~/.ssh/id_rsa2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其规则就是：从上至下读取config的内容，在每个Host下寻找对应的私钥。这里将GitHub SSH仓库地址中的git@github.com替换成新建的Host别名如：github2，那么原地址是：git@github.com:funpeng/Mywork.git，替换后应该是：github2:funpeng/Mywork.git.</p>
+<p><strong>4、打开新生成的~/.ssh/id_rsa2.pub文件，将里面的内容添加到GitHub后台。</strong></p>
+<p>可不要忘了添加到你的另一个github帐号下的SSH Key中。</p>
+<p><strong>5、测试：</strong></p>
+<pre class="line-numbers language-none"><code class="language-none">Administrator@FANGPENG &#x2F;e&#x2F;work
+$ ssh -T git@github.com
+Hi BeginMan! You&#39;ve successfully authenticated, but GitHub does not provide shel
+l access.
+
+Administrator@FANGPENG &#x2F;e&#x2F;work
+$ ssh -T github2
+Hi funpeng! You&#39;ve successfully authenticated, but GitHub does not provide shell
+ access.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>6、应用</strong></p>
+<p>测试成功，那么我尝试在我的work目录下克隆我@126.com账号下的远程仓库。如下：</p>
+<pre class="line-numbers language-none"><code class="language-none">Administrator@FANGPENG &#x2F;e&#x2F;work
+$ git clone github2:funpeng&#x2F;Mywork.git
+Cloning into &#39;Mywork&#39;...
+remote: Counting objects: 3, done.
+remote: Total 3 (delta 0), reused 0 (delta 0)
+Receiving objects: 100% (3&#x2F;3), done.
+Checking connectivity... done<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>克隆成功，大功告成了！</p>
+<h2 id="git免密pull-push"><a class="header-anchor" href="#git免密pull-push"></a>git免密pull/push</h2>
+<p><code>git push/pull</code>要想免输入github的用户名和密码，本地仓库关联的远程仓库 之url不能是https的，需必需是<code>git@github.com</code>的，这样才能走ssh协议，调用~/.ssh/config下的密钥进行免密登录</p>
+<h3 id="git免密pull-push设置方法"><a class="header-anchor" href="#git免密pull-push设置方法"></a>git免密pull/push设置方法</h3>
+<ul>
+<li>git clone创建</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone git@github.com:【github的用户名】/【github的repo名】.git
+<span class="token comment"># 或</span>
+<span class="token function">git</span> clone【ssh_config中给github设置的alias】:【github的用户名】/【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>本地repo设置远程仓库</li>
+</ul>
+<pre class="line-numbers language-bsah" data-language="bsah"><code class="language-bsah">git remote add git@github.com:【github的用户名】&#x2F;【github的repo名】.git
+# 或
+git remote add【ssh_config中给github设置的alias】:【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="无法免密pull-push设置方法怎么办"><a class="header-anchor" href="#无法免密pull-push设置方法怎么办"></a>无法免密pull/push设置方法怎么办</h3>
+<p>需将本地repo文件夹下 <code>.git/config</code>中的远程仓库的url，从https的改为<code>git@github.com</code>的</p>
+<ul>
+<li>见https的url：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">[remote &quot;origin&quot;]
+    url &#x3D; https:&#x2F;&#x2F;github.com&#x2F;【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>它是从github上这里复制的</p>
+<p><img data-src="/%E5%99%A8/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7.md/main/2.png" alt></p>
+<ul>
+<li>修改为<code>git@github.com</code>的：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">[remote &quot;origin&quot;]
+    url &#x3D; git@github.com:【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>它从github上这样复制</p>
+<p><img data-src="/%E5%99%A8/git/github%E5%A4%9A%E5%B8%90%E5%8F%B7.md/main/1.png" alt></p>
+<h3 id="多github账号的免密git-pull-push"><a class="header-anchor" href="#多github账号的免密git-pull-push"></a>多github账号的免密git pull/push</h3>
+<p>上述url还可以写成</p>
+<pre class="line-numbers language-none"><code class="language-none">[remote &quot;origin&quot;]
+    url &#x3D; 【ssh_config中给github设置的alias】:【github的用户名】&#x2F;【github的repo名】.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>【ssh_config中给github设置的alias】例如<code>github2</code>，这样就能实现多github账号的免密push/pull</p>
+<h2 id="多个本地git帐号配置"><a class="header-anchor" href="#多个本地git帐号配置"></a>多个本地git帐号配置</h2>
+<p>参考：</p>
+<ul>
+<li>
+<p><a href="https://gist.github.com/yeungeek/596984fd9e53d6c36c0d">https://gist.github.com/yeungeek/596984fd9e53d6c36c0d</a></p>
+</li>
+<li>
+<p><a href="https://stackoverflow.com/questions/3860112/multiple-github-accounts-on-the-same-computer">https://stackoverflow.com/questions/3860112/multiple-github-accounts-on-the-same-computer</a></p>
+</li>
+</ul>
+<blockquote>
+<p>在使用git，gitlab的时候，会在.ssh目录下生成对应rsa文件，那如果是有多个配置，该怎么处理？</p>
+</blockquote>
+<p>如何生成ssh密钥，可以参考 <a href="https://help.github.com/articles/generating-ssh-keys">generating-ssh-keys</a></p>
+<ol>
+<li>多帐号配置 需要在.ssh目录下，增加config配置，config可以配置多个git的帐号</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">#Host myhost（这里是自定义的host简称，以后连接远程服务器就可以用命令ssh myhost）[注意下面有缩进]
+    #User 登录用户名(如：git)
+    #HostName 主机名可用ip也可以是域名(如:github.com或者bitbucket.org)
+    #Port 服务器open-ssh端口（默认：22,默认时一般不写此行
+    #IdentityFile 证书文件路径（如~&#x2F;.ssh&#x2F;id_rsa_*)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>具体的实例配置</p>
+<pre class="line-numbers language-none"><code class="language-none"> #github yeungeek@gmail.com
+host github
+    hostname github.com
+    User yeungeek
+    IdentityFile &#x2F;home&#x2F;yeungeek&#x2F;.ssh&#x2F;github_id_rsa
+
+  #gitlab yeungeek@gmail.com
+host gitlab
+    hostname gitlab.widget-inc.com
+    User yeungeek
+    Port 65422
+    IdentityFile &#x2F;home&#x2F;yeungeek&#x2F;.ssh&#x2F;id_rsa
+host oschina
+    hostname git.oschina.net
+    User yeungeek
+    IdentityFile &#x2F;home&#x2F;yeungeek&#x2F;.ssh&#x2F;oschina_id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>注意点</strong>：</p>
+<ul>
+<li>在配置文件中的，IdentityFile文件位置是rsa密钥，不是pub文件</li>
+<li>提交代码的时候，需要修改<code>git config</code> <a href="http://xn--user-k84fui7hq9bp7lz8gjtzn75eqhya199a.xn--emailuser-uw9o.name">可以之设置一个全局的user.email和user.name</a>，然后需要不同的配置的仓库，单独设置</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;&#x2F;设置global
+git config --global user.name &quot;yeungeek&quot;
+git config --global user.email &quot;yeungeek@gmail.com&quot;
+
+&#x2F;&#x2F;设置仓库的user.email和user.name
+git config  user.email &quot;yeungeek@gmail.com&quot;
+git config  user.name &quot;yeungeek&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样配置就ok了</p>
+<ol start="2">
+<li>ssh-add说明 上面的配置完成完成，使用命令<code>ssh-add -l</code>可以看到所有的密钥列表</li>
+</ol>
+<pre class="line-numbers language-none"><code class="language-none">yeungeek@yeungeek:~&#x2F;.ssh$ ssh-add -l
+2048 db:6a:da:46:6e:03:da:94:f0:2c:43:1d:91:8a:bd:67 yeungeek@gmail.com (RSA)
+2048 07:59:9f:93:d2:e3:80:e1:df:77:ed:c9:5d:2e:3d:04 yeungeek@gmail.com (RSA)
+2048 4f:ba:6c:00:12:41:0e:a8:50:be:f5:6e:2e:7a:10:91 yeungeek@gmail.com (RSA)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>ssh-add的作用主要将密钥添加到 ssh-agent 的高速缓存中，这样在<em>当前会话</em>中就不需要再次输入密码了 具体的可以参考 <a href="http://t.cn/zWlX7vR">SSH Keys</a></p>
+<h2 id="git用户名"><a class="header-anchor" href="#git用户名"></a>git用户名</h2>
+<h3 id="查看用户名"><a class="header-anchor" href="#查看用户名"></a>查看用户名</h3>
+<pre class="line-numbers language-none"><code class="language-none">git config user.name
+git config user.email<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="设置用户名"><a class="header-anchor" href="#设置用户名"></a>设置用户名</h3>
+<pre class="line-numbers language-none"><code class="language-none">git config user.name &quot;你的用户名&quot;
+git config user.email &quot;你的邮箱&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3068,45 +3068,6 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
       </categories>
   </entry>
   <entry>
-    <title>禁止safar从http跳转到https</title>
-    <url>/%E5%99%A8/mac/%E7%A6%81%E6%AD%A2safar%E4%BB%8Ehttp%E8%B7%B3%E8%BD%AC%E5%88%B0https.md/main/</url>
-    <content><![CDATA[<p>Safari对于一些用https访问的域名, 会存入一个列表, 此后访问 <code>http://此域名</code> , 会自动跳转到  <code>https://此域名</code> .</p>
-<p>若不想跳转, 可如下操作:</p>
-<ul>
-<li>
-<p>⌘+Q 退出Safari</p>
-</li>
-<li>
-<p>执行如下命令. 这个文件是个域名列表, safari见之则访https而非http. 删此文件, 则列表清空. <a href="https://discussions.apple.com/thread/6989319">出处</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 一般能解决问题.</p>
-</li>
-</ul>
-<p>若还是跳转https, 则继续下述操作</p>
-<ul>
-<li>
-<p>⌘+Q 退出Safari</p>
-</li>
-<li>
-<p>运行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>重启操作系统</p>
-</li>
-<li>
-<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 几乎都能解决.</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
     <title>mac的移动硬盘分区方案</title>
     <url>/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/</url>
     <content><![CDATA[<h3 id="分区方案"><a class="header-anchor" href="#分区方案"></a>分区方案</h3>
@@ -3168,6 +3129,49 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <p><img data-src="/%E5%99%A8/mac/mac%E7%9A%84%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88.md/main/hfs+.png" alt="hfs+"></p>
 </li>
 </ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>注销icloud后桌面文件消失</title>
+    <url>/%E5%99%A8/mac/%E6%B3%A8%E9%94%80icloud%E5%90%8E%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1.md/main/</url>
+    <content><![CDATA[<h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
+<p>注销iCloud时, <strong>若误点”不保留”</strong> icloud所同步的文档, 则系统会将所同步的文档删除, 例如若之前<code>桌面</code>和<code>文稿</code>被iCloud同步, 注销iCloud后则桌面被完全清空.</p>
+<h2 id="解决方法"><a class="header-anchor" href="#解决方法"></a>解决方法</h2>
+<p>有以下三种解决方案</p>
+<h3 id="等待icloud自己下载"><a class="header-anchor" href="#等待icloud自己下载"></a>等待icloud自己下载</h3>
+<p>登录<a href="https://www.icloud.com">网页版iCloud</a>, 回想一些你近期及远期使用过的文件, 检查icloud是否包含他们.</p>
+<p>若检查发现文件有所缺漏, 则说明是由于iCloud容量用尽, 故而只将<code>桌面</code>和<code>文稿</code>中的文件同步了一部分. 此时需要使用<a href="#%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0icloud%E5%BD%92%E6%A1%A3" title="推荐">使用本地icloud归档</a>去恢复.</p>
+<p>若检查发现文件齐全, 则可本地重新登录iCloud, 然后等iCloud从云上下载之前同步的文件. 需要网络条件好. 约要半小时.</p>
+<p>注意:</p>
+<ul>
+<li>不要从网页版iCloud上直接下载之前同步的文件, 因为网页版iCloud不支持下载文件夹, 只能一个个文件下载.</li>
+</ul>
+<h3 id="使用本地icloud归档-推荐"><a class="header-anchor" href="#使用本地icloud归档-推荐"></a>使用本地icloud归档 (推荐)</h3>
+<p><a href="https://www.jianshu.com/p/b330399a7fd4">以下操作截图来源</a></p>
+<p><img data-src="/%E5%99%A8/mac/%E6%B3%A8%E9%94%80icloud%E5%90%8E%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1.md/main/1200.jpeg" alt="img"></p>
+<h4 id="img"><a class="header-anchor" href="#img"></a><img data-src="/%E5%99%A8/mac/%E6%B3%A8%E9%94%80icloud%E5%90%8E%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1.md/main/1200-20201219225249466.jpeg" alt="img"></h4>
+<h4 id="本地icloud归档"><a class="header-anchor" href="#本地icloud归档"></a>本地icloud归档</h4>
+<p>注销iCloud时, 若<strong>误点”不保留”</strong> icloud所同步的文档, 则 那些移除的文件, 以及会自动放入本地<code>/Users/&lt;用户名&gt;/iCloud云盘（归档）</code>保存30天.</p>
+<p>在iCloud Drive中彻底删除的文件, 本地<code>/Users/&lt;用户名&gt;/iCloud云盘（归档）</code>保存30天.</p>
+<h4 id="还原丢失文件"><a class="header-anchor" href="#还原丢失文件"></a>还原丢失文件</h4>
+<p>在<code>Finder</code>进入<code>/Users/&lt;用户名&gt;/iCloud云盘（归档）</code>,  按<code>⌘⇧.</code>以显示隐藏文件, 然后分别进入其下的 <code>桌面</code> <code>文稿</code> 等所有文件夹, 挨个文件夹下, <code>⌘A</code>全选, 然后去本地的 <code>桌面</code> <code>文稿</code> 等对应文件夹下, 按 <code>⌘V</code>.</p>
+<p>注意:</p>
+<ul>
+<li>
+<p>不要使用命令行去复制文件, 因为这样无法将文件夹和文件在Finder下的标签一同复制过去</p>
+</li>
+<li>
+<p>一定记得进入Finder后, 按<code>⌘⇧.</code>以显示隐藏文件, 不然隐藏文件不会被复制过去</p>
+</li>
+</ul>
+<p>还原后, 回想近期和远期使用过的一些文件或文件夹, 看看是否都在 都能打开, 若有所缺失, 可从time machine中最近一次备份里, 还原所缺的文件和文件夹.</p>
+<h3 id="使用time-machine"><a class="header-anchor" href="#使用time-machine"></a>使用time machine</h3>
+<p>若近期使用了time machine备份了系统, 可将 <code>桌面</code> <code>文稿</code> 等文件夹 整体还原到最近一次备份.</p>
+<p>若发现使用<a href="#%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0icloud%E5%BD%92%E6%A1%A3" title="推荐">使用本地icloud归档</a>去恢复的文件有缺失, 也可从time machine中最近一次备份里, 还原所缺的文件和文件夹.</p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3265,42 +3269,38 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
       </categories>
   </entry>
   <entry>
-    <title>注销icloud后桌面文件消失</title>
-    <url>/%E5%99%A8/mac/%E6%B3%A8%E9%94%80icloud%E5%90%8E%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1.md/main/</url>
-    <content><![CDATA[<h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
-<p>注销iCloud时, <strong>若误点”不保留”</strong> icloud所同步的文档, 则系统会将所同步的文档删除, 例如若之前<code>桌面</code>和<code>文稿</code>被iCloud同步, 注销iCloud后则桌面被完全清空.</p>
-<h2 id="解决方法"><a class="header-anchor" href="#解决方法"></a>解决方法</h2>
-<p>有以下三种解决方案</p>
-<h3 id="等待icloud自己下载"><a class="header-anchor" href="#等待icloud自己下载"></a>等待icloud自己下载</h3>
-<p>登录<a href="https://www.icloud.com">网页版iCloud</a>, 回想一些你近期及远期使用过的文件, 检查icloud是否包含他们.</p>
-<p>若检查发现文件有所缺漏, 则说明是由于iCloud容量用尽, 故而只将<code>桌面</code>和<code>文稿</code>中的文件同步了一部分. 此时需要使用<a href="#%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0icloud%E5%BD%92%E6%A1%A3" title="推荐">使用本地icloud归档</a>去恢复.</p>
-<p>若检查发现文件齐全, 则可本地重新登录iCloud, 然后等iCloud从云上下载之前同步的文件. 需要网络条件好. 约要半小时.</p>
-<p>注意:</p>
-<ul>
-<li>不要从网页版iCloud上直接下载之前同步的文件, 因为网页版iCloud不支持下载文件夹, 只能一个个文件下载.</li>
-</ul>
-<h3 id="使用本地icloud归档-推荐"><a class="header-anchor" href="#使用本地icloud归档-推荐"></a>使用本地icloud归档 (推荐)</h3>
-<p><a href="https://www.jianshu.com/p/b330399a7fd4">以下操作截图来源</a></p>
-<p><img data-src="/%E5%99%A8/mac/%E6%B3%A8%E9%94%80icloud%E5%90%8E%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1.md/main/1200.jpeg" alt="img"></p>
-<h4 id="img"><a class="header-anchor" href="#img"></a><img data-src="/%E5%99%A8/mac/%E6%B3%A8%E9%94%80icloud%E5%90%8E%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1.md/main/1200-20201219225249466.jpeg" alt="img"></h4>
-<h4 id="本地icloud归档"><a class="header-anchor" href="#本地icloud归档"></a>本地icloud归档</h4>
-<p>注销iCloud时, 若<strong>误点”不保留”</strong> icloud所同步的文档, 则 那些移除的文件, 以及会自动放入本地<code>/Users/&lt;用户名&gt;/iCloud云盘（归档）</code>保存30天.</p>
-<p>在iCloud Drive中彻底删除的文件, 本地<code>/Users/&lt;用户名&gt;/iCloud云盘（归档）</code>保存30天.</p>
-<h4 id="还原丢失文件"><a class="header-anchor" href="#还原丢失文件"></a>还原丢失文件</h4>
-<p>在<code>Finder</code>进入<code>/Users/&lt;用户名&gt;/iCloud云盘（归档）</code>,  按<code>⌘⇧.</code>以显示隐藏文件, 然后分别进入其下的 <code>桌面</code> <code>文稿</code> 等所有文件夹, 挨个文件夹下, <code>⌘A</code>全选, 然后去本地的 <code>桌面</code> <code>文稿</code> 等对应文件夹下, 按 <code>⌘V</code>.</p>
-<p>注意:</p>
+    <title>禁止safar从http跳转到https</title>
+    <url>/%E5%99%A8/mac/%E7%A6%81%E6%AD%A2safar%E4%BB%8Ehttp%E8%B7%B3%E8%BD%AC%E5%88%B0https.md/main/</url>
+    <content><![CDATA[<p>Safari对于一些用https访问的域名, 会存入一个列表, 此后访问 <code>http://此域名</code> , 会自动跳转到  <code>https://此域名</code> .</p>
+<p>若不想跳转, 可如下操作:</p>
 <ul>
 <li>
-<p>不要使用命令行去复制文件, 因为这样无法将文件夹和文件在Finder下的标签一同复制过去</p>
+<p>⌘+Q 退出Safari</p>
 </li>
 <li>
-<p>一定记得进入Finder后, 按<code>⌘⇧.</code>以显示隐藏文件, 不然隐藏文件不会被复制过去</p>
+<p>执行如下命令. 这个文件是个域名列表, safari见之则访https而非http. 删此文件, 则列表清空. <a href="https://discussions.apple.com/thread/6989319">出处</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 一般能解决问题.</p>
 </li>
 </ul>
-<p>还原后, 回想近期和远期使用过的一些文件或文件夹, 看看是否都在 都能打开, 若有所缺失, 可从time machine中最近一次备份里, 还原所缺的文件和文件夹.</p>
-<h3 id="使用time-machine"><a class="header-anchor" href="#使用time-machine"></a>使用time machine</h3>
-<p>若近期使用了time machine备份了系统, 可将 <code>桌面</code> <code>文稿</code> 等文件夹 整体还原到最近一次备份.</p>
-<p>若发现使用<a href="#%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0icloud%E5%BD%92%E6%A1%A3" title="推荐">使用本地icloud归档</a>去恢复的文件有缺失, 也可从time machine中最近一次备份里, 还原所缺的文件和文件夹.</p>
+<p>若还是跳转https, 则继续下述操作</p>
+<ul>
+<li>
+<p>⌘+Q 退出Safari</p>
+</li>
+<li>
+<p>运行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>重启操作系统</p>
+</li>
+<li>
+<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 几乎都能解决.</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -4161,6 +4161,67 @@ sudo chown -R root:wheel x.x<span aria-hidden="true" class="line-numbers-rows"><
       </categories>
   </entry>
   <entry>
+    <title>virtualenv_教程</title>
+    <url>/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/</url>
+    <content><![CDATA[<h1 id="virtualenv-教程"><a class="header-anchor" href="#virtualenv-教程"></a>virtualenv 教程</h1>
+<p>参考资料：</p>
+<p><a href="http://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html">安装与使用说明</a></p>
+<p><a href="http://www.jianshu.com/p/08c657bd34f1">Python–Virtualenv简明教程</a></p>
+<h2 id="安装"><a class="header-anchor" href="#安装"></a>安装</h2>
+<p>通过pip安装virtualenv：</p>
+<pre class="line-numbers language-none"><code class="language-none">$ pip install virtualenv
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>测试你的安装</p>
+<pre class="line-numbers language-none"><code class="language-none">$ virtualenv --version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="创建环境"><a class="header-anchor" href="#创建环境"></a>创建环境</h2>
+<h3 id="查看你机子上不同版本python的地址"><a class="header-anchor" href="#查看你机子上不同版本python的地址"></a>查看你机子上不同版本python的地址</h3>
+<pre class="line-numbers language-none"><code class="language-none">which python
+which python2
+which python2.7
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>会返回一个地址，是你需要的python所在&lt;地址&gt;，复制它</p>
+<h3 id="创建虚拟环境"><a class="header-anchor" href="#创建虚拟环境"></a>创建虚拟环境</h3>
+<h4 id="创建方法"><a class="header-anchor" href="#创建方法"></a>创建方法</h4>
+<p>可在任意选定&lt;目录&gt;创建虚拟环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>目录<span class="token operator">></span>$ virtualenv --python<span class="token operator">=</span><span class="token operator">&lt;</span>地址<span class="token operator">></span> <span class="token operator">&lt;</span>虚拟环境的名字<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>创建后，&lt;目录&gt;下会生成&lt;虚拟环境的名字&gt;文件夹，其下有bin/，include/，lib/</p>
+<ul>
+<li>&lt;目录&gt;可为用户根目录（即<code>~/</code>)，用于创建整个用户的虚拟环境</li>
+<li>&lt;目录&gt;可为工程目录，用于创建本工程使用的虚拟环境</li>
+</ul>
+<h4 id="权限不足"><a class="header-anchor" href="#权限不足"></a>权限不足</h4>
+<pre class="line-numbers language-none"><code class="language-none">The program &#39;virtualenv&#39; is currently not installed. To run &#39;virtualenv&#39; please ask your administrator to install the package &#39;python-virtualenv&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>请服务器管理员安装python-virtualenv</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> pip <span class="token function">install</span> virtualenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
+<h3 id="安装python的包"><a class="header-anchor" href="#安装python的包"></a>安装python的包</h3>
+<p>装pip的软件，必须先到虚拟环境所在目录</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>目录<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>输入一下命令激活python的虚拟环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>目录<span class="token operator">></span>$ <span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>激活成功后，用户名前会加<code>(&lt;目录&gt;)</code></p>
+<p>此时，输入以下命令装软件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">&lt;</span>目录<span class="token operator">></span><span class="token punctuation">)</span>用户名@服务器名: 当前目录$ pip <span class="token function">install</span> <span class="token operator">&lt;</span>软件<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装完成后，从虚拟环境出来</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">&lt;</span>目录<span class="token operator">></span><span class="token punctuation">)</span>用户名@服务器名: deactivate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="使用python及python的包"><a class="header-anchor" href="#使用python及python的包"></a>使用python及python的包</h3>
+<ul>
+<li>
+<p>当&lt;目录&gt;为在用户根目录（即<code>~/</code>)时：</p>
+<p>只要该用户登录，无需<code>source bin/activate</code>激活，即可在任意目录下，使用虚拟环境（包括python版本及python包），但不能<code>pip install</code> 安装pyhton包</p>
+</li>
+<li>
+<p>当&lt;目录&gt;为某pyhton工程文件夹：</p>
+<p>只有在该工程目录，输入<code>source bin/activate</code>激活后，才能使用该虚拟环境的包括python版本及python包，即<code>pip install</code> 安装pyhton包，在任意目录下均可使用</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
     <title>用tqdm显示进度条</title>
     <url>/%E5%99%A8/python/%E7%94%A8tqdm%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1.md/main/</url>
     <content><![CDATA[<h2 id="tdqm用法"><a class="header-anchor" href="#tdqm用法"></a>tdqm用法</h2>
@@ -4280,67 +4341,6 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
 <blockquote>
 <pre class="line-numbers language-none"><code class="language-none">prefix 24<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 </blockquote>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>python</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>virtualenv_教程</title>
-    <url>/%E5%99%A8/python/virtualenv_%E6%95%99%E7%A8%8B.md/main/</url>
-    <content><![CDATA[<h1 id="virtualenv-教程"><a class="header-anchor" href="#virtualenv-教程"></a>virtualenv 教程</h1>
-<p>参考资料：</p>
-<p><a href="http://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html">安装与使用说明</a></p>
-<p><a href="http://www.jianshu.com/p/08c657bd34f1">Python–Virtualenv简明教程</a></p>
-<h2 id="安装"><a class="header-anchor" href="#安装"></a>安装</h2>
-<p>通过pip安装virtualenv：</p>
-<pre class="line-numbers language-none"><code class="language-none">$ pip install virtualenv
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>测试你的安装</p>
-<pre class="line-numbers language-none"><code class="language-none">$ virtualenv --version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="创建环境"><a class="header-anchor" href="#创建环境"></a>创建环境</h2>
-<h3 id="查看你机子上不同版本python的地址"><a class="header-anchor" href="#查看你机子上不同版本python的地址"></a>查看你机子上不同版本python的地址</h3>
-<pre class="line-numbers language-none"><code class="language-none">which python
-which python2
-which python2.7
-...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>会返回一个地址，是你需要的python所在&lt;地址&gt;，复制它</p>
-<h3 id="创建虚拟环境"><a class="header-anchor" href="#创建虚拟环境"></a>创建虚拟环境</h3>
-<h4 id="创建方法"><a class="header-anchor" href="#创建方法"></a>创建方法</h4>
-<p>可在任意选定&lt;目录&gt;创建虚拟环境</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>目录<span class="token operator">></span>$ virtualenv --python<span class="token operator">=</span><span class="token operator">&lt;</span>地址<span class="token operator">></span> <span class="token operator">&lt;</span>虚拟环境的名字<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>创建后，&lt;目录&gt;下会生成&lt;虚拟环境的名字&gt;文件夹，其下有bin/，include/，lib/</p>
-<ul>
-<li>&lt;目录&gt;可为用户根目录（即<code>~/</code>)，用于创建整个用户的虚拟环境</li>
-<li>&lt;目录&gt;可为工程目录，用于创建本工程使用的虚拟环境</li>
-</ul>
-<h4 id="权限不足"><a class="header-anchor" href="#权限不足"></a>权限不足</h4>
-<pre class="line-numbers language-none"><code class="language-none">The program &#39;virtualenv&#39; is currently not installed. To run &#39;virtualenv&#39; please ask your administrator to install the package &#39;python-virtualenv&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>请服务器管理员安装python-virtualenv</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> pip <span class="token function">install</span> virtualenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
-<h3 id="安装python的包"><a class="header-anchor" href="#安装python的包"></a>安装python的包</h3>
-<p>装pip的软件，必须先到虚拟环境所在目录</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>目录<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>输入一下命令激活python的虚拟环境</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>目录<span class="token operator">></span>$ <span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>激活成功后，用户名前会加<code>(&lt;目录&gt;)</code></p>
-<p>此时，输入以下命令装软件</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">&lt;</span>目录<span class="token operator">></span><span class="token punctuation">)</span>用户名@服务器名: 当前目录$ pip <span class="token function">install</span> <span class="token operator">&lt;</span>软件<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>安装完成后，从虚拟环境出来</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">&lt;</span>目录<span class="token operator">></span><span class="token punctuation">)</span>用户名@服务器名: deactivate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="使用python及python的包"><a class="header-anchor" href="#使用python及python的包"></a>使用python及python的包</h3>
-<ul>
-<li>
-<p>当&lt;目录&gt;为在用户根目录（即<code>~/</code>)时：</p>
-<p>只要该用户登录，无需<code>source bin/activate</code>激活，即可在任意目录下，使用虚拟环境（包括python版本及python包），但不能<code>pip install</code> 安装pyhton包</p>
-</li>
-<li>
-<p>当&lt;目录&gt;为某pyhton工程文件夹：</p>
-<p>只有在该工程目录，输入<code>source bin/activate</code>激活后，才能使用该虚拟环境的包括python版本及python包，即<code>pip install</code> 安装pyhton包，在任意目录下均可使用</p>
-</li>
-</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -4541,45 +4541,6 @@ os.makedirs<span class="token punctuation">(</span><span class="token operator">
       <categories>
         <category>器</category>
         <category>python</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>github_pages绑定二级域名</title>
-    <url>/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/</url>
-    <content><![CDATA[<p>参考: <a href="https://segmentfault.com/a/1190000005775893">GitHub Pages 绑定二级域名</a></p>
-<p>已申请一级域名<code>hyliang.ml</code>, 欲给 <code>hyliang96.github.io</code> 绑定二级域名<code>blog.lianghy.ml</code>, 操作如下.</p>
-<p>注意: 读者操作时<strong>切勿照抄</strong>上述url, <code>hyliang.ml</code>换成你注册的一级域名, <code>blog  </code>可随便写, <code>hyliang96.github.io</code>换成你的github page的url.</p>
-<ol>
-<li>创建<code>CNAME</code>文件</li>
-</ol>
-<ul>
-<li>
-<p>非Hexo建的GIthub Pages: 直接在 GitHub 项目里创建 <code>CNAME</code> 文件 (无后缀名), 写入全文如下.</p>
-<pre class="line-numbers language-none"><code class="language-none">blog.lianghy.ml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>Hexo建的: 创建文件 <code>&lt;hexo项目目录&gt;/source/CNAME</code>, 写入全文如上.</p>
-<p>然后编译并部署博客 <code>hexo g &amp;&amp; hexo d</code>, 这样所部署到的github pages的repo中, 总是有这个<code>CNAME</code>文件.</p>
-</li>
-</ul>
-<p>设置作用: 访问 <code>hyliang96.github.io</code>  时, 浏览器的url栏显示为 <code>blog.lianghy.ml</code>.</p>
-<ol start="2">
-<li>在域名管理网站, 添加域名解析规则, 类型为 <code>CNAME</code> , 名为 <code>blog</code>,  目标 <code>hyliang96.github.io</code></li>
-</ol>
-<p><img data-src="/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/image-20200123041020200.png" alt="image-20200123041020200"></p>
-<p>此设置的功能为: 当访问<code>blog.lianghy.ml</code>, 会跳转到 <code>hyliang96.github.io</code> .</p>
-<ol start="3">
-<li>等待10分钟， 若出现以下效果, 证明绑定成功了
-<ul>
-<li>访问 <a href="https://hyliang96.github.io">https://hyliang96.github.io</a> 时, 页面内容照常显示, 而 url 栏显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
-<li>访问 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a> 就能看到 <a href="https://hyliang96.github.io">https://hyliang96.github.io</a> 一样的页面内容, 而 url 栏也显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
-</ul>
-</li>
-</ol>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>博客搭建</category>
       </categories>
   </entry>
   <entry>
@@ -5180,6 +5141,45 @@ compdef _tmux tmux_itm
       <categories>
         <category>器</category>
         <category>shell</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>github_pages绑定二级域名</title>
+    <url>/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/</url>
+    <content><![CDATA[<p>参考: <a href="https://segmentfault.com/a/1190000005775893">GitHub Pages 绑定二级域名</a></p>
+<p>已申请一级域名<code>hyliang.ml</code>, 欲给 <code>hyliang96.github.io</code> 绑定二级域名<code>blog.lianghy.ml</code>, 操作如下.</p>
+<p>注意: 读者操作时<strong>切勿照抄</strong>上述url, <code>hyliang.ml</code>换成你注册的一级域名, <code>blog  </code>可随便写, <code>hyliang96.github.io</code>换成你的github page的url.</p>
+<ol>
+<li>创建<code>CNAME</code>文件</li>
+</ol>
+<ul>
+<li>
+<p>非Hexo建的GIthub Pages: 直接在 GitHub 项目里创建 <code>CNAME</code> 文件 (无后缀名), 写入全文如下.</p>
+<pre class="line-numbers language-none"><code class="language-none">blog.lianghy.ml<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>Hexo建的: 创建文件 <code>&lt;hexo项目目录&gt;/source/CNAME</code>, 写入全文如上.</p>
+<p>然后编译并部署博客 <code>hexo g &amp;&amp; hexo d</code>, 这样所部署到的github pages的repo中, 总是有这个<code>CNAME</code>文件.</p>
+</li>
+</ul>
+<p>设置作用: 访问 <code>hyliang96.github.io</code>  时, 浏览器的url栏显示为 <code>blog.lianghy.ml</code>.</p>
+<ol start="2">
+<li>在域名管理网站, 添加域名解析规则, 类型为 <code>CNAME</code> , 名为 <code>blog</code>,  目标 <code>hyliang96.github.io</code></li>
+</ol>
+<p><img data-src="/%E5%99%A8/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/github_pages%E7%BB%91%E5%AE%9A%E4%BA%8C%E7%BA%A7%E5%9F%9F%E5%90%8D.md/main/image-20200123041020200.png" alt="image-20200123041020200"></p>
+<p>此设置的功能为: 当访问<code>blog.lianghy.ml</code>, 会跳转到 <code>hyliang96.github.io</code> .</p>
+<ol start="3">
+<li>等待10分钟， 若出现以下效果, 证明绑定成功了
+<ul>
+<li>访问 <a href="https://hyliang96.github.io">https://hyliang96.github.io</a> 时, 页面内容照常显示, 而 url 栏显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
+<li>访问 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a> 就能看到 <a href="https://hyliang96.github.io">https://hyliang96.github.io</a> 一样的页面内容, 而 url 栏也显示为 <a href="https://blog.lianghy.ml">https://blog.lianghy.ml</a></li>
+</ul>
+</li>
+</ol>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>博客搭建</category>
       </categories>
   </entry>
   <entry>
@@ -6636,286 +6636,6 @@ fcitx-libs libqtwebkit4<span aria-hidden="true" class="line-numbers-rows"><span>
       </categories>
   </entry>
   <entry>
-    <title>TensorboardX：在pytorch上用Tensorboard</title>
-    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/TensorboardX%EF%BC%9A%E5%9C%A8pytorch%E4%B8%8A%E7%94%A8Tensorboard.md/main/</url>
-    <content><![CDATA[<p>自2019年5月后，pytorch官方支持了Tensorboard，可千万pytorch官网查询Tensorboard的文档</p>
-<h1 id="TensorboardX"><a class="header-anchor" href="#TensorboardX"></a>TensorboardX</h1>
-<h2 id="简介"><a class="header-anchor" href="#简介"></a>简介</h2>
-<h4 id="GitHub来源"><a class="header-anchor" href="#GitHub来源"></a><a href="https://github.com/lanpa/tensorboard-pytorch">GitHub来源</a></h4>
-<h4 id="原理"><a class="header-anchor" href="#原理"></a>原理</h4>
-<p>调用TensorFlow的tensorboard，接口封装成pytorch的格式</p>
-<h2 id="安装"><a class="header-anchor" href="#安装"></a>安装</h2>
-<h4 id="安装依赖包"><a class="header-anchor" href="#安装依赖包"></a>安装依赖包</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> tensorflow<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h4 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h4>
-<p>由于pip install tensorboardX安装的版本比该法低，许多功能不支持，故<br>
-请使用下法安装</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> git+https://github.com/lanpa/tensorboard-pytorch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
-<h4 id="创建demo-py"><a class="header-anchor" href="#创建demo-py"></a><a href="http://xn--demo-pj9fv59d.py">创建demo.py</a></h4>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
-<span class="token keyword">import</span> torchvision<span class="token punctuation">.</span>utils <span class="token keyword">as</span> vutils
-<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
-<span class="token keyword">import</span> torchvision<span class="token punctuation">.</span>models <span class="token keyword">as</span> models
-<span class="token keyword">from</span> torchvision <span class="token keyword">import</span> datasets
-<span class="token keyword">from</span> tensorboardX <span class="token keyword">import</span> SummaryWriter
-
-resnet18 <span class="token operator">=</span> models<span class="token punctuation">.</span>resnet18<span class="token punctuation">(</span><span class="token boolean">False</span><span class="token punctuation">)</span>
-writer <span class="token operator">=</span> SummaryWriter<span class="token punctuation">(</span><span class="token punctuation">)</span>
-sample_rate <span class="token operator">=</span> <span class="token number">44100</span>
-freqs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">262</span><span class="token punctuation">,</span> <span class="token number">294</span><span class="token punctuation">,</span> <span class="token number">330</span><span class="token punctuation">,</span> <span class="token number">349</span><span class="token punctuation">,</span> <span class="token number">392</span><span class="token punctuation">,</span> <span class="token number">440</span><span class="token punctuation">,</span> <span class="token number">440</span><span class="token punctuation">,</span> <span class="token number">440</span><span class="token punctuation">,</span> <span class="token number">440</span><span class="token punctuation">,</span> <span class="token number">440</span><span class="token punctuation">,</span> <span class="token number">440</span><span class="token punctuation">]</span>
-
-<span class="token keyword">for</span> n_iter <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-    s1 <span class="token operator">=</span> torch<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># value to keep</span>
-    s2 <span class="token operator">=</span> torch<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
-    writer<span class="token punctuation">.</span>add_scalar<span class="token punctuation">(</span><span class="token string">'data/scalar1'</span><span class="token punctuation">,</span> s1<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span> <span class="token comment">#data grouping by `slash`</span>
-    writer<span class="token punctuation">.</span>add_scalar<span class="token punctuation">(</span><span class="token string">'data/scalar2'</span><span class="token punctuation">,</span> s2<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span>
-    writer<span class="token punctuation">.</span>add_scalars<span class="token punctuation">(</span><span class="token string">'data/scalar_group'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token string">"xsinx"</span><span class="token punctuation">:</span>n_iter<span class="token operator">*</span>np<span class="token punctuation">.</span>sin<span class="token punctuation">(</span>n_iter<span class="token punctuation">)</span><span class="token punctuation">,</span>
-                                             <span class="token string">"xcosx"</span><span class="token punctuation">:</span>n_iter<span class="token operator">*</span>np<span class="token punctuation">.</span>cos<span class="token punctuation">(</span>n_iter<span class="token punctuation">)</span><span class="token punctuation">,</span>
-                                             <span class="token string">"arctanx"</span><span class="token punctuation">:</span> np<span class="token punctuation">.</span>arctan<span class="token punctuation">(</span>n_iter<span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span>
-    x <span class="token operator">=</span> torch<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span> <span class="token comment"># output from network</span>
-    <span class="token keyword">if</span> n_iter<span class="token operator">%</span><span class="token number">10</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
-        x <span class="token operator">=</span> vutils<span class="token punctuation">.</span>make_grid<span class="token punctuation">(</span>x<span class="token punctuation">,</span> normalize<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> scale_each<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-        writer<span class="token punctuation">.</span>add_image<span class="token punctuation">(</span><span class="token string">'Image'</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span>
-        x <span class="token operator">=</span> torch<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span>sample_rate<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span>
-        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            x<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>cos<span class="token punctuation">(</span>freqs<span class="token punctuation">[</span>n_iter<span class="token operator">//</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token operator">*</span>np<span class="token punctuation">.</span>pi<span class="token operator">*</span><span class="token builtin">float</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token operator">/</span><span class="token builtin">float</span><span class="token punctuation">(</span>sample_rate<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># sound amplitude should in [-1, 1]</span>
-        writer<span class="token punctuation">.</span>add_audio<span class="token punctuation">(</span><span class="token string">'myAudio'</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> n_iter<span class="token punctuation">,</span> sample_rate<span class="token operator">=</span>sample_rate<span class="token punctuation">)</span>
-        writer<span class="token punctuation">.</span>add_text<span class="token punctuation">(</span><span class="token string">'Text'</span><span class="token punctuation">,</span> <span class="token string">'text logged at step:'</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span>n_iter<span class="token punctuation">)</span><span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span>
-        <span class="token keyword">for</span> name<span class="token punctuation">,</span> param <span class="token keyword">in</span> resnet18<span class="token punctuation">.</span>named_parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
-            writer<span class="token punctuation">.</span>add_histogram<span class="token punctuation">(</span>name<span class="token punctuation">,</span> param<span class="token punctuation">.</span>clone<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span>
-        writer<span class="token punctuation">.</span>add_pr_curve<span class="token punctuation">(</span><span class="token string">'xoxo'</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span> <span class="token comment">#needs tensorboard 0.4RC or later</span>
-dataset <span class="token operator">=</span> datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span><span class="token string">'mnist'</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-images <span class="token operator">=</span> dataset<span class="token punctuation">.</span>test_data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
-label <span class="token operator">=</span> dataset<span class="token punctuation">.</span>test_labels<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">]</span>
-features <span class="token operator">=</span> images<span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">784</span><span class="token punctuation">)</span>
-writer<span class="token punctuation">.</span>add_embedding<span class="token punctuation">(</span>features<span class="token punctuation">,</span> metadata<span class="token operator">=</span>label<span class="token punctuation">,</span> label_img<span class="token operator">=</span>images<span class="token punctuation">.</span>unsqueeze<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
-
-<span class="token comment"># export scalar data to JSON for external processing</span>
-writer<span class="token punctuation">.</span>export_scalars_to_json<span class="token punctuation">(</span><span class="token string">"./all_scalars.json"</span><span class="token punctuation">)</span>
-
-writer<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="执行目标文件"><a class="header-anchor" href="#执行目标文件"></a>执行目标文件</h4>
-<p><code>python demo.py</code></p>
-<h4 id="打开TensorBoard"><a class="header-anchor" href="#打开TensorBoard"></a>打开TensorBoard</h4>
-<p><code>tensorboard --logdir runs --port=6006</code></p>
-<p>默认端口6006，可更改</p>
-<h4 id="本地访问TensorBoard"><a class="header-anchor" href="#本地访问TensorBoard"></a>本地访问TensorBoard</h4>
-<p><code>tb 4 6006</code></p>
-<ul>
-<li>
-<p>4是gpu服务器的编号</p>
-</li>
-<li>
-<p>6006是tensorboard占用的服务器端口，需保持和上面的一致</p>
-</li>
-</ul>
-<h2 id="API"><a class="header-anchor" href="#API"></a>API</h2>
-<p><a href="http://tensorboard-pytorch.readthedocs.io/en/latest/tensorboard.html">文档</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>炼丹框架</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>pytorch多卡训练</title>
-    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/</url>
-    <content><![CDATA[<h1 id="pytorch：-一机多卡训练的尝试"><a class="header-anchor" href="#pytorch：-一机多卡训练的尝试"></a>pytorch： 一机多卡训练的尝试</h1>
-<p><a href="https://www.jianshu.com/p/221d9298808e">参考</a></p>
-<p><a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel</a></p>
-<p><a href="https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>炼丹框架</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>tensorboard-PermissionError-13</title>
-    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/tensorboard-PermissionError-13.md/main/</url>
-    <content><![CDATA[<h2 id="症状"><a class="header-anchor" href="#症状"></a>症状</h2>
-<p>运行 <code>tensorboard --logdir .</code></p>
-<p>报错</p>
-<pre class="line-numbers language-none"><code class="language-none">tensorboard 8 &lt;module&gt;
-sys.exit(run_main())
-
-main.py 75 run_main
-app.run(tensorboard.main, flags_parser&#x3D;tensorboard.configure)
-
-app.py 299 run
-_run_main(main, args)
-
-app.py 250 _run_main
-sys.exit(main(argv))
-
-program.py 290 main
-return runner(self.flags) or 0
-
-program.py 308 _run_serve_subcommand
-self._register_info(server)
-
-program.py 356 _register_info
-manager.write_info_file(info)
-
-manager.py 262 write_info_file
-with open(_get_info_file_path(), &quot;w&quot;) as outfile:
-
-PermissionError:
-13
-Permission denied<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
-<p>当前用户没有<code>/tmp/.tensorboard-info</code>的读写权限, 故而tensorborad无法写入临时目录</p>
-<h2 id="对策"><a class="header-anchor" href="#对策"></a>对策</h2>
-<ul>
-<li>
-<p>若有root权限</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token number">777</span> /tmp/.tensorboard-info
-<span class="token function">sudo</span> <span class="token function">chown</span> root:root /tmp/.tensorboard-info<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>然后运行<code>tensorboard --logdir .</code></p>
-</li>
-<li>
-<p>若无root权限</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 申明环境变量</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">TMPDIR</span><span class="token operator">=</span>/tmp/<span class="token environment constant">$USER</span><span class="token punctuation">;</span>
-<span class="token comment"># 创建目录</span>
-<span class="token function">mkdir</span> -p <span class="token variable">$TMPDIR</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>然后运行<code>tensorboard --logdir .</code></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>炼丹框架</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>服务器上安装pytorch</title>
-    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85pytorch.md/main/</url>
-    <content><![CDATA[<h2 id="服务器上安装pytorch"><a class="header-anchor" href="#服务器上安装pytorch"></a>服务器上安装pytorch</h2>
-<ul>
-<li>
-<p>进入虚拟python环境（以下均在虚拟环境）</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>查看记录cuda版本</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nvcc -V<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>当执行<code>nvcc --version</code>，显示</p>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">The program &#39;nvcc&#39; is currently not installed. To run &#39;nvcc&#39; please ask your administrator to install the package &#39;nvidia-cuda-toolkit&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<p>时，则</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> /usr/local/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>若见有如下文件</p>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">cuda-8.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<p>则cuda是8.0版本的</p>
-</li>
-<li>
-<p>查看记录python版本</p>
-   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python -V<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>升级pip到最新</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U pip<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>查看pip版本</p>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip -V<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>登录pytorch官网 <a href="http://pytorch.org">http://pytorch.org</a></p>
-<p>选择linux下用pip，python、cuda选对应版本</p>
-<p>将网页上的命令复制到虚拟环境里的命令行（逐行输入）</p>
-</li>
-<li>
-<p>python安装包</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>测试安装成功否</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>在python中</p>
-<ul>
-<li>cuda测试</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">import torch
-torch.cuda.is_available()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>若返回True，则cuda可用</p>
-<ul>
-<li>求导</li>
-</ul>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> torch <span class="token keyword">import</span> Tensor <span class="token keyword">as</span> T
-<span class="token keyword">from</span> torch<span class="token punctuation">.</span>autograd <span class="token keyword">import</span> Variable <span class="token keyword">as</span> V
-a<span class="token operator">=</span>V<span class="token punctuation">(</span>T<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>require_grad<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
-b<span class="token operator">=</span>a<span class="token operator">*</span>a
-c<span class="token operator">=</span>b<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span>
-c<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
-a<span class="token punctuation">.</span>grad<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>返回若为</p>
-<blockquote>
-<pre><code>Variable containing:
- 0.5000  1.0000
- 1.5000  2.0000
-[torch.FloatTensor of size 2x2]
-</code></pre>
-</blockquote>
-<p>则正确</p>
-</li>
-</ul>
-<h2 id="安装过程中的bug"><a class="header-anchor" href="#安装过程中的bug"></a>安装过程中的bug</h2>
-<h3 id="torchvision-报错-ZN2at7getTypeERKNS-6TensorE"><a class="header-anchor" href="#torchvision-报错-ZN2at7getTypeERKNS-6TensorE"></a>torchvision 报错 <code>_ZN2at7getTypeERKNS_6TensorE</code></h3>
-<p>运行含有torchvision的代码，会报错</p>
-<pre class="line-numbers language-none"><code class="language-none">Traceback (most recent call last):
-  File &quot;main.py&quot;, line 9, in &lt;module&gt;
-    from get_data import get_data
-  File &quot;&#x2F;mfs&#x2F;haoyu&#x2F;project&#x2F;pytorch_learn&#x2F;my_template&#x2F;code&#x2F;get_data.py&quot;, line 2, in &lt;module&gt;
-    from torchvision import datasets, transforms
-  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
-    from torchvision import models
-  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;__init__.py&quot;, line 11, in &lt;module&gt;
-    from . import detection
-  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;detection&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
-    from .faster_rcnn import *
-  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;detection&#x2F;faster_rcnn.py&quot;, line 7, in &lt;module&gt;
-    from torchvision.ops import misc as misc_nn_ops
-  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;ops&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
-    from .boxes import nms, box_iou
-  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;ops&#x2F;boxes.py&quot;, line 2, in &lt;module&gt;
-    from torchvision import _C
-ImportError: &#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;_C.cpython-37m-x86_64-linux-gnu.so: undefined symbol: _ZN2at7getTypeERKNS_6TensorE<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>这是因为torchvision未安装，或安装的版本不对</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list <span class="token operator">|</span> <span class="token function">grep</span> torch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">torch                  1.2.0
-torchfile              0.1.0
-torchnet               0.0.4
-torchvision            0.3.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<p>版本不对，torch1.2.0应当和torchvision0.4.0配套，故需要升级torchvision。可采用以下方法升级：</p>
-<p>首先尝试自动升级</p>
-<pre class="line-numbers language-none"><code class="language-none">pip install -U torchvision<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>若未能升级到对应的torchvision版本，则需要手动指定版本，如</p>
-<pre class="line-numbers language-none"><code class="language-none">pip install torchvision&#x3D;&#x3D;0.4.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>若依旧未能升级到对应的torchvision版本，说明pip的安装包源没有及时更新，需要手动指定官网安装包：前往pytorch官网，寻找<a href="https://pytorch.org/get-started/previous-versions/#via-pip">历史torch版本（已build）-pip安装</a>，选择相应的cuda版本，如前往<a href="https://download.pytorch.org/whl/cu100/torch_stable.html">cuda10的pytorch下载网页</a>，寻找对应版本的torchvision，复制这个<a href="https://download.pytorch.org/whl/cu100/torchvision-0.4.0-cp37-cp37m-manylinux1_x86_64.whl">安装包下载链接</a></p>
-<ul>
-<li>
-<p>版本号的含义</p>
-<p><code>torchvision-0.4.0（torchvsion的版本）-cp37（python3.7）-cp37m-manylinux1_x86_64（linux64位）.whl</code></p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> <span class="token punctuation">[</span>安装包下载链接<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>炼丹框架</category>
-      </categories>
-  </entry>
-  <entry>
     <title>iterm2配置与使用</title>
     <url>/%E5%99%A8/%E7%BB%88%E7%AB%AF/iterm2%E9%85%8D%E7%BD%AE%E4%B8%8E%E4%BD%BF%E7%94%A8.md/main/</url>
     <content><![CDATA[<p>[TOC]</p>
@@ -7430,6 +7150,730 @@ unbind C-b
       <categories>
         <category>器</category>
         <category>终端</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>TensorboardX：在pytorch上用Tensorboard</title>
+    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/TensorboardX%EF%BC%9A%E5%9C%A8pytorch%E4%B8%8A%E7%94%A8Tensorboard.md/main/</url>
+    <content><![CDATA[<p>自2019年5月后，pytorch官方支持了Tensorboard，可千万pytorch官网查询Tensorboard的文档</p>
+<h1 id="TensorboardX"><a class="header-anchor" href="#TensorboardX"></a>TensorboardX</h1>
+<h2 id="简介"><a class="header-anchor" href="#简介"></a>简介</h2>
+<h4 id="GitHub来源"><a class="header-anchor" href="#GitHub来源"></a><a href="https://github.com/lanpa/tensorboard-pytorch">GitHub来源</a></h4>
+<h4 id="原理"><a class="header-anchor" href="#原理"></a>原理</h4>
+<p>调用TensorFlow的tensorboard，接口封装成pytorch的格式</p>
+<h2 id="安装"><a class="header-anchor" href="#安装"></a>安装</h2>
+<h4 id="安装依赖包"><a class="header-anchor" href="#安装依赖包"></a>安装依赖包</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> tensorflow<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h4>
+<p>由于pip install tensorboardX安装的版本比该法低，许多功能不支持，故<br>
+请使用下法安装</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> git+https://github.com/lanpa/tensorboard-pytorch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
+<h4 id="创建demo-py"><a class="header-anchor" href="#创建demo-py"></a><a href="http://xn--demo-pj9fv59d.py">创建demo.py</a></h4>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
+<span class="token keyword">import</span> torchvision<span class="token punctuation">.</span>utils <span class="token keyword">as</span> vutils
+<span class="token keyword">import</span> numpy <span class="token keyword">as</span> np
+<span class="token keyword">import</span> torchvision<span class="token punctuation">.</span>models <span class="token keyword">as</span> models
+<span class="token keyword">from</span> torchvision <span class="token keyword">import</span> datasets
+<span class="token keyword">from</span> tensorboardX <span class="token keyword">import</span> SummaryWriter
+
+resnet18 <span class="token operator">=</span> models<span class="token punctuation">.</span>resnet18<span class="token punctuation">(</span><span class="token boolean">False</span><span class="token punctuation">)</span>
+writer <span class="token operator">=</span> SummaryWriter<span class="token punctuation">(</span><span class="token punctuation">)</span>
+sample_rate <span class="token operator">=</span> <span class="token number">44100</span>
+freqs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">262</span><span class="token punctuation">,</span> <span class="token number">294</span><span class="token punctuation">,</span> <span class="token number">330</span><span class="token punctuation">,</span> <span class="token number">349</span><span class="token punctuation">,</span> <span class="token number">392</span><span class="token punctuation">,</span> <span class="token number">440</span><span class="token punctuation">,</span> <span class="token number">440</span><span class="token punctuation">,</span> <span class="token number">440</span><span class="token punctuation">,</span> <span class="token number">440</span><span class="token punctuation">,</span> <span class="token number">440</span><span class="token punctuation">,</span> <span class="token number">440</span><span class="token punctuation">]</span>
+
+<span class="token keyword">for</span> n_iter <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    s1 <span class="token operator">=</span> torch<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment"># value to keep</span>
+    s2 <span class="token operator">=</span> torch<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+    writer<span class="token punctuation">.</span>add_scalar<span class="token punctuation">(</span><span class="token string">'data/scalar1'</span><span class="token punctuation">,</span> s1<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span> <span class="token comment">#data grouping by `slash`</span>
+    writer<span class="token punctuation">.</span>add_scalar<span class="token punctuation">(</span><span class="token string">'data/scalar2'</span><span class="token punctuation">,</span> s2<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span>
+    writer<span class="token punctuation">.</span>add_scalars<span class="token punctuation">(</span><span class="token string">'data/scalar_group'</span><span class="token punctuation">,</span> <span class="token punctuation">&#123;</span><span class="token string">"xsinx"</span><span class="token punctuation">:</span>n_iter<span class="token operator">*</span>np<span class="token punctuation">.</span>sin<span class="token punctuation">(</span>n_iter<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                             <span class="token string">"xcosx"</span><span class="token punctuation">:</span>n_iter<span class="token operator">*</span>np<span class="token punctuation">.</span>cos<span class="token punctuation">(</span>n_iter<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                                             <span class="token string">"arctanx"</span><span class="token punctuation">:</span> np<span class="token punctuation">.</span>arctan<span class="token punctuation">(</span>n_iter<span class="token punctuation">)</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span>
+    x <span class="token operator">=</span> torch<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">32</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">,</span> <span class="token number">64</span><span class="token punctuation">)</span> <span class="token comment"># output from network</span>
+    <span class="token keyword">if</span> n_iter<span class="token operator">%</span><span class="token number">10</span><span class="token operator">==</span><span class="token number">0</span><span class="token punctuation">:</span>
+        x <span class="token operator">=</span> vutils<span class="token punctuation">.</span>make_grid<span class="token punctuation">(</span>x<span class="token punctuation">,</span> normalize<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> scale_each<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+        writer<span class="token punctuation">.</span>add_image<span class="token punctuation">(</span><span class="token string">'Image'</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span>
+        x <span class="token operator">=</span> torch<span class="token punctuation">.</span>zeros<span class="token punctuation">(</span>sample_rate<span class="token operator">*</span><span class="token number">2</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>x<span class="token punctuation">.</span>size<span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            x<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> np<span class="token punctuation">.</span>cos<span class="token punctuation">(</span>freqs<span class="token punctuation">[</span>n_iter<span class="token operator">//</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token operator">*</span>np<span class="token punctuation">.</span>pi<span class="token operator">*</span><span class="token builtin">float</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token operator">/</span><span class="token builtin">float</span><span class="token punctuation">(</span>sample_rate<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment"># sound amplitude should in [-1, 1]</span>
+        writer<span class="token punctuation">.</span>add_audio<span class="token punctuation">(</span><span class="token string">'myAudio'</span><span class="token punctuation">,</span> x<span class="token punctuation">,</span> n_iter<span class="token punctuation">,</span> sample_rate<span class="token operator">=</span>sample_rate<span class="token punctuation">)</span>
+        writer<span class="token punctuation">.</span>add_text<span class="token punctuation">(</span><span class="token string">'Text'</span><span class="token punctuation">,</span> <span class="token string">'text logged at step:'</span><span class="token operator">+</span><span class="token builtin">str</span><span class="token punctuation">(</span>n_iter<span class="token punctuation">)</span><span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span>
+        <span class="token keyword">for</span> name<span class="token punctuation">,</span> param <span class="token keyword">in</span> resnet18<span class="token punctuation">.</span>named_parameters<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            writer<span class="token punctuation">.</span>add_histogram<span class="token punctuation">(</span>name<span class="token punctuation">,</span> param<span class="token punctuation">.</span>clone<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>cpu<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>data<span class="token punctuation">.</span>numpy<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span>
+        writer<span class="token punctuation">.</span>add_pr_curve<span class="token punctuation">(</span><span class="token string">'xoxo'</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>randint<span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> size<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> np<span class="token punctuation">.</span>random<span class="token punctuation">.</span>rand<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">,</span> n_iter<span class="token punctuation">)</span> <span class="token comment">#needs tensorboard 0.4RC or later</span>
+dataset <span class="token operator">=</span> datasets<span class="token punctuation">.</span>MNIST<span class="token punctuation">(</span><span class="token string">'mnist'</span><span class="token punctuation">,</span> train<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> download<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+images <span class="token operator">=</span> dataset<span class="token punctuation">.</span>test_data<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token builtin">float</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+label <span class="token operator">=</span> dataset<span class="token punctuation">.</span>test_labels<span class="token punctuation">[</span><span class="token punctuation">:</span><span class="token number">100</span><span class="token punctuation">]</span>
+features <span class="token operator">=</span> images<span class="token punctuation">.</span>view<span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">,</span> <span class="token number">784</span><span class="token punctuation">)</span>
+writer<span class="token punctuation">.</span>add_embedding<span class="token punctuation">(</span>features<span class="token punctuation">,</span> metadata<span class="token operator">=</span>label<span class="token punctuation">,</span> label_img<span class="token operator">=</span>images<span class="token punctuation">.</span>unsqueeze<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+<span class="token comment"># export scalar data to JSON for external processing</span>
+writer<span class="token punctuation">.</span>export_scalars_to_json<span class="token punctuation">(</span><span class="token string">"./all_scalars.json"</span><span class="token punctuation">)</span>
+
+writer<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="执行目标文件"><a class="header-anchor" href="#执行目标文件"></a>执行目标文件</h4>
+<p><code>python demo.py</code></p>
+<h4 id="打开TensorBoard"><a class="header-anchor" href="#打开TensorBoard"></a>打开TensorBoard</h4>
+<p><code>tensorboard --logdir runs --port=6006</code></p>
+<p>默认端口6006，可更改</p>
+<h4 id="本地访问TensorBoard"><a class="header-anchor" href="#本地访问TensorBoard"></a>本地访问TensorBoard</h4>
+<p><code>tb 4 6006</code></p>
+<ul>
+<li>
+<p>4是gpu服务器的编号</p>
+</li>
+<li>
+<p>6006是tensorboard占用的服务器端口，需保持和上面的一致</p>
+</li>
+</ul>
+<h2 id="API"><a class="header-anchor" href="#API"></a>API</h2>
+<p><a href="http://tensorboard-pytorch.readthedocs.io/en/latest/tensorboard.html">文档</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>炼丹框架</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>pytorch多卡训练</title>
+    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/</url>
+    <content><![CDATA[<h1 id="pytorch：-一机多卡训练的尝试"><a class="header-anchor" href="#pytorch：-一机多卡训练的尝试"></a>pytorch： 一机多卡训练的尝试</h1>
+<p><a href="https://www.jianshu.com/p/221d9298808e">参考</a></p>
+<p><a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel</a></p>
+<p><a href="https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>炼丹框架</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>服务器上安装pytorch</title>
+    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E5%AE%89%E8%A3%85pytorch.md/main/</url>
+    <content><![CDATA[<h2 id="服务器上安装pytorch"><a class="header-anchor" href="#服务器上安装pytorch"></a>服务器上安装pytorch</h2>
+<ul>
+<li>
+<p>进入虚拟python环境（以下均在虚拟环境）</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>查看记录cuda版本</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">nvcc -V<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>当执行<code>nvcc --version</code>，显示</p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">The program &#39;nvcc&#39; is currently not installed. To run &#39;nvcc&#39; please ask your administrator to install the package &#39;nvidia-cuda-toolkit&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p>时，则</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> /usr/local/<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若见有如下文件</p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">cuda-8.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p>则cuda是8.0版本的</p>
+</li>
+<li>
+<p>查看记录python版本</p>
+   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python -V<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>升级pip到最新</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U pip<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>查看pip版本</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip -V<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>登录pytorch官网 <a href="http://pytorch.org">http://pytorch.org</a></p>
+<p>选择linux下用pip，python、cuda选对应版本</p>
+<p>将网页上的命令复制到虚拟环境里的命令行（逐行输入）</p>
+</li>
+<li>
+<p>python安装包</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>测试安装成功否</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>在python中</p>
+<ul>
+<li>cuda测试</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">import torch
+torch.cuda.is_available()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>若返回True，则cuda可用</p>
+<ul>
+<li>求导</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> torch <span class="token keyword">import</span> Tensor <span class="token keyword">as</span> T
+<span class="token keyword">from</span> torch<span class="token punctuation">.</span>autograd <span class="token keyword">import</span> Variable <span class="token keyword">as</span> V
+a<span class="token operator">=</span>V<span class="token punctuation">(</span>T<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>require_grad<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span>
+b<span class="token operator">=</span>a<span class="token operator">*</span>a
+c<span class="token operator">=</span>b<span class="token punctuation">.</span>mean<span class="token punctuation">(</span><span class="token punctuation">)</span>
+c<span class="token punctuation">.</span>backward<span class="token punctuation">(</span><span class="token punctuation">)</span>
+a<span class="token punctuation">.</span>grad<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>返回若为</p>
+<blockquote>
+<pre><code>Variable containing:
+ 0.5000  1.0000
+ 1.5000  2.0000
+[torch.FloatTensor of size 2x2]
+</code></pre>
+</blockquote>
+<p>则正确</p>
+</li>
+</ul>
+<h2 id="安装过程中的bug"><a class="header-anchor" href="#安装过程中的bug"></a>安装过程中的bug</h2>
+<h3 id="torchvision-报错-ZN2at7getTypeERKNS-6TensorE"><a class="header-anchor" href="#torchvision-报错-ZN2at7getTypeERKNS-6TensorE"></a>torchvision 报错 <code>_ZN2at7getTypeERKNS_6TensorE</code></h3>
+<p>运行含有torchvision的代码，会报错</p>
+<pre class="line-numbers language-none"><code class="language-none">Traceback (most recent call last):
+  File &quot;main.py&quot;, line 9, in &lt;module&gt;
+    from get_data import get_data
+  File &quot;&#x2F;mfs&#x2F;haoyu&#x2F;project&#x2F;pytorch_learn&#x2F;my_template&#x2F;code&#x2F;get_data.py&quot;, line 2, in &lt;module&gt;
+    from torchvision import datasets, transforms
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
+    from torchvision import models
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;__init__.py&quot;, line 11, in &lt;module&gt;
+    from . import detection
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;detection&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
+    from .faster_rcnn import *
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;models&#x2F;detection&#x2F;faster_rcnn.py&quot;, line 7, in &lt;module&gt;
+    from torchvision.ops import misc as misc_nn_ops
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;ops&#x2F;__init__.py&quot;, line 1, in &lt;module&gt;
+    from .boxes import nms, box_iou
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;ops&#x2F;boxes.py&quot;, line 2, in &lt;module&gt;
+    from torchvision import _C
+ImportError: &#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;python3.7&#x2F;site-packages&#x2F;torchvision&#x2F;_C.cpython-37m-x86_64-linux-gnu.so: undefined symbol: _ZN2at7getTypeERKNS_6TensorE<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这是因为torchvision未安装，或安装的版本不对</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list <span class="token operator">|</span> <span class="token function">grep</span> torch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">torch                  1.2.0
+torchfile              0.1.0
+torchnet               0.0.4
+torchvision            0.3.0<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>版本不对，torch1.2.0应当和torchvision0.4.0配套，故需要升级torchvision。可采用以下方法升级：</p>
+<p>首先尝试自动升级</p>
+<pre class="line-numbers language-none"><code class="language-none">pip install -U torchvision<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若未能升级到对应的torchvision版本，则需要手动指定版本，如</p>
+<pre class="line-numbers language-none"><code class="language-none">pip install torchvision&#x3D;&#x3D;0.4.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若依旧未能升级到对应的torchvision版本，说明pip的安装包源没有及时更新，需要手动指定官网安装包：前往pytorch官网，寻找<a href="https://pytorch.org/get-started/previous-versions/#via-pip">历史torch版本（已build）-pip安装</a>，选择相应的cuda版本，如前往<a href="https://download.pytorch.org/whl/cu100/torch_stable.html">cuda10的pytorch下载网页</a>，寻找对应版本的torchvision，复制这个<a href="https://download.pytorch.org/whl/cu100/torchvision-0.4.0-cp37-cp37m-manylinux1_x86_64.whl">安装包下载链接</a></p>
+<ul>
+<li>
+<p>版本号的含义</p>
+<p><code>torchvision-0.4.0（torchvsion的版本）-cp37（python3.7）-cp37m-manylinux1_x86_64（linux64位）.whl</code></p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> <span class="token punctuation">[</span>安装包下载链接<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>炼丹框架</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>tensorboard-PermissionError-13</title>
+    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/tensorboard-PermissionError-13.md/main/</url>
+    <content><![CDATA[<h2 id="症状"><a class="header-anchor" href="#症状"></a>症状</h2>
+<p>运行 <code>tensorboard --logdir .</code></p>
+<p>报错</p>
+<pre class="line-numbers language-none"><code class="language-none">tensorboard 8 &lt;module&gt;
+sys.exit(run_main())
+
+main.py 75 run_main
+app.run(tensorboard.main, flags_parser&#x3D;tensorboard.configure)
+
+app.py 299 run
+_run_main(main, args)
+
+app.py 250 _run_main
+sys.exit(main(argv))
+
+program.py 290 main
+return runner(self.flags) or 0
+
+program.py 308 _run_serve_subcommand
+self._register_info(server)
+
+program.py 356 _register_info
+manager.write_info_file(info)
+
+manager.py 262 write_info_file
+with open(_get_info_file_path(), &quot;w&quot;) as outfile:
+
+PermissionError:
+13
+Permission denied<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
+<p>当前用户没有<code>/tmp/.tensorboard-info</code>的读写权限, 故而tensorborad无法写入临时目录</p>
+<h2 id="对策"><a class="header-anchor" href="#对策"></a>对策</h2>
+<ul>
+<li>
+<p>若有root权限</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token number">777</span> /tmp/.tensorboard-info
+<span class="token function">sudo</span> <span class="token function">chown</span> root:root /tmp/.tensorboard-info<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>然后运行<code>tensorboard --logdir .</code></p>
+</li>
+<li>
+<p>若无root权限</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 申明环境变量</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">TMPDIR</span><span class="token operator">=</span>/tmp/<span class="token environment constant">$USER</span><span class="token punctuation">;</span>
+<span class="token comment"># 创建目录</span>
+<span class="token function">mkdir</span> -p <span class="token variable">$TMPDIR</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后运行<code>tensorboard --logdir .</code></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>炼丹框架</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Pycharm安装配置教程</title>
+    <url>/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/Pycharm%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.md/main/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h1 id="Pycharm教程"><a class="header-anchor" href="#Pycharm教程"></a>Pycharm教程</h1>
+<h2 id="汉化pycharm"><a class="header-anchor" href="#汉化pycharm"></a>汉化pycharm</h2>
+<p>链接：<a href="https://www.jianshu.com/p/8ec84bd7d3d6">https://www.jianshu.com/p/8ec84bd7d3d6</a></p>
+<h3 id="首先下载汉化包"><a class="header-anchor" href="#首先下载汉化包"></a>首先下载汉化包</h3>
+<pre class="line-numbers language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;ewen0930&#x2F;PyCharm-Chinese<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="然后生成resources-zh-jar"><a class="header-anchor" href="#然后生成resources-zh-jar"></a>然后生成resources_zh.jar</h3>
+<pre class="line-numbers language-none"><code class="language-none">bash package.cmd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="替换文件"><a class="header-anchor" href="#替换文件"></a>替换文件</h3>
+<p>把生成的resources_zh.jar放在安装目录lib文件夹下就好了</p>
+<p>mac的路径是<code>/Applications/PyCharm CE.app/Contents/lib</code></p>
+<h2 id="教育账号申请"><a class="header-anchor" href="#教育账号申请"></a>教育账号申请</h2>
+<h3 id="操作"><a class="header-anchor" href="#操作"></a>操作</h3>
+<p><a href="https://www.jetbrains.com/student/">链接</a> - <code>How do I apply?</code> - <code>Apply Now</code></p>
+<p>填入姓名 学校信息 教育邮箱（.edu.cn 可用），然后提交</p>
+<p>等五分钟左右，教育邮箱才会收到激活邮件，点其中链接</p>
+<p>填入Jet Brains的账号邮箱（可以是其他邮箱）和密码，没有账号可申请一个，提交</p>
+<p>等五分钟左右，账号邮箱才会收到激活邮件，点其中链接，会显示一个激活码，是教育账号的</p>
+<p>此激活码填入Jet Brains所有软件（如pycharm）的账号激活中，即激活成功</p>
+<h3 id="注意"><a class="header-anchor" href="#注意"></a>注意</h3>
+<ul>
+<li>教育账号有效期一年，一年后若仍是学生或老师，还可用原教育邮箱在此激活</li>
+<li>教育账号可激活多台机器上的pycahrm，但只能同时用一台上的</li>
+</ul>
+<h2 id="远程"><a class="header-anchor" href="#远程"></a>远程</h2>
+<h3 id="添加远程解释器、同步远程项目文件夹"><a class="header-anchor" href="#添加远程解释器、同步远程项目文件夹"></a>添加远程解释器、同步远程项目文件夹</h3>
+<p><a href="https://www.jianshu.com/p/9b362cdee2ab">参见</a></p>
+<h3 id="浏览远程目录"><a class="header-anchor" href="#浏览远程目录"></a>浏览远程目录</h3>
+<p><a href="https://www.jetbrains.com/help/pycharm/remote-host-tool-window.html">参见</a></p>
+<p>最终效果：远程浏览栏在右，可见整个服务器；本地浏览栏在左，只见项目目录</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/Pycharm%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.md/main/%E8%BF%9C%E7%A8%8B%E6%9C%AC%E5%9C%B0%E6%B5%8F%E8%A7%88.png" alt></p>
+<h3 id="几种用法"><a class="header-anchor" href="#几种用法"></a>几种用法</h3>
+<ul>
+<li>用远程解释器、debug或运行本地代码
+<ul>
+<li>只需添加远侧解释器，同步远程项目文件夹，即可调用远程资源运行、debug本地代码，结果返回到pycharm中的下栏</li>
+</ul>
+</li>
+<li>编辑远程代码
+<ul>
+<li>同步远程项目文件夹到本地随便一个文件夹</li>
+<li>若不添加远程解释器，则只可在ssh中运行</li>
+<li>若添加远程解释器，则可用远程解释器、debug</li>
+</ul>
+</li>
+<li>在pycharm中查看远程、编辑文件（不论文本还是图片）
+<ul>
+<li>在远程浏览栏中，服务器上所有的（不仅仅是同步的文件夹中的）文件（夹），可在pycharm内增删改重命名</li>
+<li>但是不能打开远程文件夹到pycharm，如有此需要，需新建远程项目文件夹同步</li>
+</ul>
+</li>
+<li>传输文件
+<ul>
+<li>将文件（夹）（们），拖入(移动)/<code>⌘V</code>(复制) 到本地浏览栏，会自动同步到远程项目文件夹</li>
+<li>拖入(移动)/<code>⌘V</code>(复制) 到远程浏览栏无效</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>编辑器IDE</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vim-搜索替换插件</title>
+    <url>/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vim-%E6%90%9C%E7%B4%A2%E6%9B%BF%E6%8D%A2%E6%8F%92%E4%BB%B6.md/main/</url>
+    <content><![CDATA[<h2 id="待定"><a class="header-anchor" href="#待定"></a>待定</h2>
+<p><a href="https://github.com/dyng/ctrlsf.vim:">https://github.com/dyng/ctrlsf.vim:</a> 多文件替换需要使用多光标, 麻烦了</p>
+<ul>
+<li>bug: 宽字符预览上色出错</li>
+</ul>
+<p>默认用vimgrep, 很慢</p>
+<ul>
+<li>
+<p>大小写</p>
+<p><code>:F(ar) \Cxxxx xxx xxx </code>: 大小写敏感</p>
+<p><code>:F(ar) \cxxxx xxx xxx </code>: 大小写不敏感</p>
+<p><code>:F(ar) xxxx xxx xxx </code>: 默认大小写不敏感</p>
+</li>
+<li>
+<p>正则:</p>
+<ul>
+<li>默认是正则表达式, 取消正则 <code>:F(ar) 	\Vxxx</code></li>
+</ul>
+<p><a href="https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less">https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less</a></p>
+<pre class="line-numbers language-none"><code class="language-none">command! -nargs&#x3D;1 S let @&#x2F; &#x3D; escape(&#39;&lt;args&gt;&#39;, &#39;\&#39;)
+nmap &lt;Leader&gt;S :execute(&quot;:S &quot; . input(&#39;Regex-off: &#x2F;&#39;))&lt;CR&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>整词: <code>\&lt;xxxx\&gt;</code></p>
+</li>
+</ul>
+<p><a href="http://xahlee.info/comp/unicode_index.html">http://xahlee.info/comp/unicode_index.html</a></p>
+<p>设计: 🔎 Ϙ⊕ ⊗⛒⦿⨁⨂ ⨷㉧🄋ⒻⓄ◯⨀ +⃝ ⏍ ⤭  ⇄ ⟲ ⟳ ↺ ↻  ⇲ ➲ 🔁 🔂 🔃 🔄 ➡ ⬇  ⎋Ⓡ Ⓢ ⧬</p>
+<p>◌̸</p>
+<p>⃝</p>
+<p>⃞</p>
+<p>⃣</p>
+<p>⃠</p>
+<p>⃢</p>
+<p><code>|.*|Aa|“”|+⃝ |</code><br>
+<code>|.*|Aa|“”|Ⓞ|</code></p>
+<p><code>[.*] [Aa] [“”] Ⓞ</code></p>
+<p><code>|.*| |Aa| |“”| Ⓞ</code></p>
+<p><code>|.*|Aa|“”|⬇|</code></p>
+<p><a href="https://shapeshed.com/vim-statuslines/">https://shapeshed.com/vim-statuslines/</a>, <a href="https://jdhao.github.io/2019/11/03/vim_custom_statusline/">https://jdhao.github.io/2019/11/03/vim_custom_statusline/</a></p>
+<p>rg的整词匹配: <a href="https://github.com/BurntSushi/ripgrep/issues/389">https://github.com/BurntSushi/ripgrep/issues/389</a></p>
+<p><a href="https://github.com/brooth/far.vim">https://github.com/brooth/far.vim</a></p>
+<p><a href="https://github.com/hwrod/interactive-replace">https://github.com/hwrod/interactive-replace</a></p>
+<p><a href="https://github.com/mreinhardt/greplace.vim">https://github.com/mreinhardt/greplace.vim</a></p>
+<h2 id="各种搜索后端"><a class="header-anchor" href="#各种搜索后端"></a>各种搜索后端</h2>
+<pre class="line-numbers language-none"><code class="language-none">ag --nogroup --column --nocolor --silent --max-count&#x3D;1000  --vimgrep gmg --file-search-regex&#x3D;branch.sh [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">rg --no-heading --column --no-messages --max-count&#x3D;1000 --glob&#x3D;branch.sh &#39;gmg[a-z]*&#39; --vimgrep  [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a href="https://github.com/beyondgrep/ack3/">https://github.com/beyondgrep/ack3/</a></p>
+<pre class="line-numbers language-none"><code class="language-none">ack --nogroup --column --nocolor --max-count&#x3D;1000  --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh  gmg
+[-o]
+# --smart-case --ignore-case --farft --no-recurse
+
+
+ack --nogroup --output&#x3D;&#39;$&amp;:$_&#39; --max-count&#x3D;1000 --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh gmg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="首先排除"><a class="header-anchor" href="#首先排除"></a>首先排除</h2>
+<p><a href="https://github.com/svermeulen/vim-subversive:">https://github.com/svermeulen/vim-subversive:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
+<p><a href="https://github.com/andy-kwei/vim-easy-replace:">https://github.com/andy-kwei/vim-easy-replace:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
+<p><a href="https://github.com/movitto/vim-vsearch:">https://github.com/movitto/vim-vsearch:</a> 类far.vim而不如</p>
+<p><a href="https://github.com/yegappan/greplace:">https://github.com/yegappan/greplace:</a> 文档一句话; -&gt; mreinhardt/greplace.vim</p>
+<p><a href="https://github.com/rzwierz/vim-guidgen:">https://github.com/rzwierz/vim-guidgen:</a> 只能linux的vim用</p>
+<p><a href="https://github.com/pallavagarwal07/AutoRun:">https://github.com/pallavagarwal07/AutoRun:</a> 文档一句话, 只是提供预览搜索/替换结果</p>
+<p><a href="https://github.com/pieterhuibers/findreplace:">https://github.com/pieterhuibers/findreplace:</a> 空项目</p>
+<p><a href="https://github.com/bloc40/vim-replace:">https://github.com/bloc40/vim-replace:</a> 一句话文档; 支持多文件</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>编辑器IDE</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vscode安装配置</title>
+    <url>/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/</url>
+    <content><![CDATA[<h1 id="vscode安装配置"><a class="header-anchor" href="#vscode安装配置"></a>vscode安装配置</h1>
+<h2 id="拓展安装方法"><a class="header-anchor" href="#拓展安装方法"></a>拓展安装方法</h2>
+<ul>
+<li>
+<p><code>⇧⌘P</code> -<code>Extentions: Install Extentions</code> - 输入<code>插件名称</code> - <code>install</code></p>
+</li>
+<li>
+<p>或在左侧拓展商店栏，输入<code>插件名称</code> - <code>install</code></p>
+</li>
+</ul>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/img1.png" alt></p>
+<h2 id="语言"><a class="header-anchor" href="#语言"></a>语言</h2>
+<p><code>⇧⌘P</code> -<code>Configure Display Language</code> -</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_15.54.53.png" alt></p>
+<ul>
+<li>
+<p>选择已有语言</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_15.54.43.png" alt></p>
+</li>
+<li>
+<p><code>install other language</code> -左侧拓展商店栏输入 <code>Chinese (Simplified) Language Pack for Visual Studio Code</code> - <code>install</code></p>
+</li>
+</ul>
+<h2 id="配色与字体"><a class="header-anchor" href="#配色与字体"></a>配色与字体</h2>
+<h3 id="预备"><a class="header-anchor" href="#预备"></a>预备</h3>
+<p>安装插件<code>Gruvbox Themes</code></p>
+<p><a href="https://github.com/powerline/fonts">Powerline字体安装</a></p>
+<ul>
+<li>
+<p>mac:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># clone</span>
+<span class="token function">git</span> clone https://github.com/powerline/fonts.git --depth<span class="token operator">=</span><span class="token number">1</span>
+<span class="token comment"># install</span>
+<span class="token builtin class-name">cd</span> fonts
+./install.sh
+<span class="token comment"># clean-up a bit</span>
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
+<span class="token function">rm</span> -rf fonts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>linux:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> fonts-powerline<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<p><a href="https://glitchbone.github.io/vscode-base16-term/#/">终端配色参考</a></p>
+<h3 id="配置"><a class="header-anchor" href="#配置"></a>配置</h3>
+<p><code>⌘,</code> ，在<code>用户</code>设置中</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.04.11-8598764.png" alt></p>
+<p>以打开<code>settings.json</code>，添加以下设置</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  ...
+    <span class="token comment">// 终端字体</span>
+    <span class="token property">"editor.fontFamily"</span><span class="token operator">:</span> <span class="token string">"Meslo LG S DZ for Powerline"</span><span class="token punctuation">,</span>
+    <span class="token comment">// 终端配色</span>
+    <span class="token property">"workbench.colorCustomizations"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token property">"terminal.background"</span><span class="token operator">:</span><span class="token string">"#28282a"</span> <span class="token punctuation">,</span>         <span class="token property">"terminal.foreground"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminalCursor.background"</span><span class="token operator">:</span><span class="token string">"#3b3b3b"</span><span class="token punctuation">,</span>   <span class="token property">"terminalCursor.foreground"</span><span class="token operator">:</span><span class="token string">"#A5A2A2"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiBlack"</span><span class="token operator">:</span><span class="token string">"#28282a"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightBlack"</span><span class="token operator">:</span><span class="token string">"#a2a2a2"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiWhite"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightWhite"</span><span class="token operator">:</span><span class="token string">"#feffff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiRed"</span><span class="token operator">:</span><span class="token string">"#c91b00"</span><span class="token punctuation">,</span>             <span class="token property">"terminal.ansiBrightRed"</span><span class="token operator">:</span><span class="token string">"#ff6d67"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiYellow"</span><span class="token operator">:</span><span class="token string">"#cecc4d"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightYellow"</span><span class="token operator">:</span><span class="token string">"#fefb67"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiGreen"</span><span class="token operator">:</span><span class="token string">"#89b560"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightGreen"</span><span class="token operator">:</span><span class="token string">"#74dd74"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiCyan"</span><span class="token operator">:</span><span class="token string">"#61aaab"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightCyan"</span><span class="token operator">:</span><span class="token string">"#5ffdff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiBlue"</span><span class="token operator">:</span><span class="token string">"#5168d5"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightBlue"</span><span class="token operator">:</span><span class="token string">"#6871ff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiMagenta"</span><span class="token operator">:</span><span class="token string">"#c930c7"</span><span class="token punctuation">,</span>         <span class="token property">"terminal.ansiBrightMagenta"</span><span class="token operator">:</span><span class="token string">"#ff76ff"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token comment">//  配色</span>
+    <span class="token property">"workbench.colorTheme"</span><span class="token operator">:</span> <span class="token string">"Gruvbox Dark (Medium)"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上文的<code>// ...</code>注释可以黏贴到<code>settings.json</code>中，vscode支持注释</p>
+<h2 id="终端"><a class="header-anchor" href="#终端"></a>终端</h2>
+<h3 id="内部终端-integrated-terminal"><a class="header-anchor" href="#内部终端-integrated-terminal"></a>内部终端(integrated terminal)</h3>
+<pre class="line-numbers language-⌃`" data-language="⌃`"><div class="caption"><span>```以开启内部终端</span></div><code class="language-⌃`">
+### 外部终端(external terminal)
+
+* 配置
+
+&#96;⌘,&#96; ，在&#96;用户&#96;设置中，以打开&#96;settings.json&#96;，添加以下设置
+
+
+&#96;&#96;&#96;json
+&#123;
+  ...
+  &quot;terminal.external.osxExec&quot;: &quot;iTerm.app&quot;,
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>使用：<code>⇧⌘C</code>以，会弹出一个外部<code>iTerm2</code>窗口</li>
+</ul>
+<h2 id="命令行工具"><a class="header-anchor" href="#命令行工具"></a>命令行工具</h2>
+<p><a href="https://code.visualstudio.com/docs/editor/integrated-terminal">https://code.visualstudio.com/docs/editor/integrated-terminal</a></p>
+<p><code>⇧⌘P</code> - <code>Shell Command: install 'code' command in PATH</code></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/img2.png" alt></p>
+<p>使用方法：</p>
+<ul>
+<li>在命令中输入如下命令，则会用vscode-insiders打开之</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">code-insiders 文件名/文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>在命令中输入如下命令，则会用vscode打开之</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">code 文件名&#x2F;文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上述命令适用于：本地内置终端、本地外部终端、远程开发时内置终端、<s>远程开发时的本地外部终端</s></p>
+<h2 id="远程开发"><a class="header-anchor" href="#远程开发"></a>远程开发</h2>
+<h3 id="安装插件"><a class="header-anchor" href="#安装插件"></a>安装插件</h3>
+<p>安装插件 <code>Remote Developement</code> ，目前(2019-5-23)只支持 <a href="https://code.visualstudio.com/insiders/">VSCode-Insiders</a>，不支持<a href="https://code.visualstudio.com/Download">正式版VSCode</a></p>
+<h3 id="配置本地的ssh-config"><a class="header-anchor" href="#配置本地的ssh-config"></a>配置本地的ssh config</h3>
+<p>请在本地<code>~/.ssh/config</code>或<code>/etc/ssh/ssh_config</code>中写好远程服务器的连接配置</p>
+<p>vscode的<code>Remote Developement</code> 只支持密钥登录，也支持密码登录</p>
+<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
+<p>点左下角<code>&gt;&lt;</code>按钮</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.27.00.png" alt></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.27.05.png" alt></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.27.13.png" alt></p>
+<h3 id="编辑远程文件-夹"><a class="header-anchor" href="#编辑远程文件-夹"></a>编辑远程文件(夹)</h3>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.32.52.png" alt></p>
+<p>关于远程开发的vscode命令行工具</p>
+<ul>
+<li>
+<p>vscode连接服务器后，会在服务器自动安装vscode远程开发的服务端程序，并运行之</p>
+<ul>
+<li>安装路径为<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code></li>
+<li>每当这台本机和这台服务器重新连接，就按照这个hash码，加载安装路径下，之前缓存的编辑器、内置终端、等模块的状态</li>
+<li>故<strong>重新连接服务器，编辑器、内置终端、等模块的状态均保留</strong></li>
+</ul>
+</li>
+<li>
+<p>vscode连接服务器后，在内置终端可使用   <code>code(-insiders)</code>  命令打开远程文件(夹)。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> code<span class="token punctuation">(</span>-insiders<span class="token punctuation">)</span>
+<span class="token comment"># 返回</span>
+<span class="token comment"># ~/.vscode-remote/bin/服务器的hash码/bin/code(-insiders)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>但远程开发， <strong>在 本地外部终端 输入  <code>code(-insiders)</code>，无法 打开远程文件</strong></p>
+</li>
+</ul>
+<h3 id="常见报错与处理"><a class="header-anchor" href="#常见报错与处理"></a>常见报错与处理</h3>
+<h4 id="重新连接失败"><a class="header-anchor" href="#重新连接失败"></a>重新连接失败</h4>
+<p>若之前连接过一台服务器，再次连它则报错，可杀死之前服务器端运行的 vscode 进程：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> vscode <span class="token operator">|</span> <span class="token function">grep</span> <span class="token environment constant">$USER</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">myusername     2382  0.0  0.0   4504   780 ?        S    01:33   0:00 sh &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;server.sh --port&#x3D;0
+myusername     2390  0.0  0.0 1307344 62116 ?       Sl   01:33   0:11 &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;node &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;out&#x2F;remoteExtensionHostAgent.js --port&#x3D;0
+myusername     6066  0.0  0.0  15976   972 pts&#x2F;20   S+   16:41   0:00 grep --color vscode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>杀死所有<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code>路径下的进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 教程编号 <span class="token comment"># 如上一框的 2382 2390</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后vscode重新连接服务器即可连接成功</p>
+<h4 id="wget失败"><a class="header-anchor" href="#wget失败"></a>wget失败</h4>
+<p>服务器上请不要给用alias覆盖<code>wget</code>命令，如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wget</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这样的alias会造成连接后，会报错曰，服务器上无法用wget下载vscode远程开发的服务器端</p>
+<p>此alias改为</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wgetc</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后vscode重新连接服务器即可连接成功</p>
+<h2 id="snippet"><a class="header-anchor" href="#snippet"></a>snippet</h2>
+<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">教程</a></p>
+<p>写入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">&#123;</span>
+    <span class="token string">"《snippet_name》"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"prefix"</span><span class="token builtin class-name">:</span> <span class="token string">"《snippet_toggle》"</span>,
+        <span class="token string">"body"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"《insert_code》"</span>,
+        <span class="token punctuation">]</span>,
+        <span class="token string">"description"</span><span class="token builtin class-name">:</span> <span class="token string">"《prompt》"</span>
+    <span class="token punctuation">&#125;</span>,
+    <span class="token punctuation">..</span>.
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p>json不支持跨行文本，即不支持形如</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>"asdasd
+asdasd
+asdas
+" <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>请写成</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"asda ad s ad as d"</span><span class="token punctuation">,</span>
+    <span class="token string">"asd  asd  sad as "</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>json中的文本只能用双引号，不能用单引号</p>
+</li>
+<li>
+<p><code>body</code>中的特殊字符</p>
+<ul>
+<li>转义字符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>原文本</th>
+<th>代码文本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;</code></td>
+<td><code>\&quot;</code></td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td><code>\\$</code></td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td><code>\\</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>插入后，按<code>⇥</code>、<code>⇧⇥</code>去往下、前一个可编辑区域；可编辑区域的写法</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&quot;body&quot;: [
+    &quot;asda $&#123;1:【可编辑区域的提示】&#125; s ad $&#123;2:另一个可编辑区域&#125; as d&quot;,
+    &quot;asd $&#123;1:同步可编辑区域&#125; as &quot;,
+    &quot;asd $&#123;3&#125;&quot;，
+],<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="设置同步插件"><a class="header-anchor" href="#设置同步插件"></a>设置同步插件</h2>
+<p>为方便使得多个设备可以共用一份配置，可按照vscode插件 “settings sync”，它用gist同步你的vscode的各种设置，包括本地的全局设置、快捷键、snippet、所安装插件及版本。</p>
+<h3 id="自动配置方法"><a class="header-anchor" href="#自动配置方法"></a>自动配置方法</h3>
+<ul>
+<li>清除已有配置 : 初次配置无需此步, 若要更新配置则需要此步. 按 <code>⇧⌘P</code> - <code>Sync: 重置扩展设置</code></li>
+</ul>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184531147.png" alt="image-20200316184531147"></p>
+<p>​	所谓重置, 即清空&quot;settings sync&quot;现有的配置. 重置后,  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  会看见以下页面全空</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509201718848.png" alt="image-20200509201718848"></p>
+<ul>
+<li>
+<p>按 <code>⇧⌥U</code> , 则会弹出如下页面, 点 <code>login with github</code></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509201635555.png" alt="image-20200509201635555"></p>
+</li>
+</ul>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202018164.png" alt="image-20200509202018164"></p>
+<p>然后点 <code>信任github.com这个域名</code> .</p>
+<p>然后会浏览器弹出如下网页,</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-05-20%2021.11.23.png" alt="ScreenShot 2020-05-20 21.11.23"></p>
+<p>然后会看跳转如下页面, 此时可关闭此网页,</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202211987.png" alt="image-20200509202211987"></p>
+<p>而vscode里弹出此标签页, 这意味着当前浏览器默认的github账号中, 创建了一个新的token, 可用于创建gist来同步vscode配置</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202252574.png" alt="image-20200509202252574"></p>
+<p>此时  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  的插件配置变成,</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202418088.png" alt="image-20200509202418088"></p>
+<p>这说明当前浏览器默认的github账号中, 创建了一个新的token,  可用于创建gist来同步vscode配置, 但是这个token在 github 的配置中看不见:</p>
+<ul>
+<li><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>, 显示如下</li>
+</ul>
+<pre><code>![image-20200509203832966](main/image-20200509203832966.png)
+</code></pre>
+<p>此时再按 <code>⇧⌥U</code>, 则会在此github账号, 自动创建一个新gist, 然后询问是否上传当前的vscode各种配置, 点<code>是</code></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202900380.png" alt="image-20200509202900380"></p>
+<p>打开 <code>https://gist.github.com/你的用户名 </code>来检查一下, 确实创建了新gist,</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509203035964.png" alt="image-20200509203035964"></p>
+<p>其内已上传各个vscode配置文件</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509203239628.png" alt="image-20200509203239628"></p>
+<p>这说明配置成功</p>
+<h3 id="手动配置方法-废弃"><a class="header-anchor" href="#手动配置方法-废弃"></a>手动配置方法 (废弃)</h3>
+<p>本法勿用, 目前(2020-5-9)若用本法, 会在vscode重启后, github 将下文所创建的 token 自动删除, vscode会在同步配置时显示”token无效或过期”.</p>
+<ul>
+<li>
+<p>开一个<a href="https://gist.github.com/">gist</a></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2019.00.22.png" alt="ScreenShot 2020-03-16 19.00.22"></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2019.07.01.png" alt="ScreenShot 2020-03-16 19.07.01"></p>
+<p>从url里复制gist id</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2019.07.43.png" alt="ScreenShot 2020-03-16 19.07.43"></p>
+</li>
+<li>
+<p>开一个带有gist功能的github token：</p>
+<p><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>-<code>generate new token</code></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184923683.png" alt="image-20200316184923683"></p>
+<p>勾选gist和user</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200518012345366.png" alt="image-20200518012345366"></p>
+<p>然后会显示 <code>github token</code>， 速速记录下，只会显示这一次，之后再也显示不了。</p>
+</li>
+<li>
+<p>安装 <code>Settings Sync</code> 插件</p>
+</li>
+<li>
+<p>设置 <code>Settings Sync</code> ： <code>⌘⇧P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184531147.png" alt="image-20200316184531147"></p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184543735.png" alt="image-20200316184543735"></p>
+</li>
+<li>
+<p>然后会弹出设置页面，设置方法如下</p>
+</li>
+</ul>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2018.37.32.png" alt="ScreenShot 2020-03-16 18.37.32"></p>
+<p>然后按 <code>⌥⇧U</code>， 如果状态栏显示“同步成功”，且gist上显示如下，则成功</p>
+<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316192700873.png" alt="image-20200316192700873"></p>
+<h3 id="使用方法"><a class="header-anchor" href="#使用方法"></a>使用方法</h3>
+<p>手动同步：</p>
+<ul>
+<li><code>⌥⇧U</code>：手动上传到gist</li>
+<li><code>⌥⇧D</code>：手动从gist下载</li>
+</ul>
+<p>自动同步：打开vscode时，保存配置文件时，会自动下载再上传</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>编辑器IDE</category>
       </categories>
   </entry>
   <entry>
@@ -8507,450 +8951,6 @@ unbind C-b
       </categories>
   </entry>
   <entry>
-    <title>Pycharm安装配置教程</title>
-    <url>/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/Pycharm%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.md/main/</url>
-    <content><![CDATA[<p>[TOC]</p>
-<h1 id="Pycharm教程"><a class="header-anchor" href="#Pycharm教程"></a>Pycharm教程</h1>
-<h2 id="汉化pycharm"><a class="header-anchor" href="#汉化pycharm"></a>汉化pycharm</h2>
-<p>链接：<a href="https://www.jianshu.com/p/8ec84bd7d3d6">https://www.jianshu.com/p/8ec84bd7d3d6</a></p>
-<h3 id="首先下载汉化包"><a class="header-anchor" href="#首先下载汉化包"></a>首先下载汉化包</h3>
-<pre class="line-numbers language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;ewen0930&#x2F;PyCharm-Chinese<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="然后生成resources-zh-jar"><a class="header-anchor" href="#然后生成resources-zh-jar"></a>然后生成resources_zh.jar</h3>
-<pre class="line-numbers language-none"><code class="language-none">bash package.cmd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="替换文件"><a class="header-anchor" href="#替换文件"></a>替换文件</h3>
-<p>把生成的resources_zh.jar放在安装目录lib文件夹下就好了</p>
-<p>mac的路径是<code>/Applications/PyCharm CE.app/Contents/lib</code></p>
-<h2 id="教育账号申请"><a class="header-anchor" href="#教育账号申请"></a>教育账号申请</h2>
-<h3 id="操作"><a class="header-anchor" href="#操作"></a>操作</h3>
-<p><a href="https://www.jetbrains.com/student/">链接</a> - <code>How do I apply?</code> - <code>Apply Now</code></p>
-<p>填入姓名 学校信息 教育邮箱（.edu.cn 可用），然后提交</p>
-<p>等五分钟左右，教育邮箱才会收到激活邮件，点其中链接</p>
-<p>填入Jet Brains的账号邮箱（可以是其他邮箱）和密码，没有账号可申请一个，提交</p>
-<p>等五分钟左右，账号邮箱才会收到激活邮件，点其中链接，会显示一个激活码，是教育账号的</p>
-<p>此激活码填入Jet Brains所有软件（如pycharm）的账号激活中，即激活成功</p>
-<h3 id="注意"><a class="header-anchor" href="#注意"></a>注意</h3>
-<ul>
-<li>教育账号有效期一年，一年后若仍是学生或老师，还可用原教育邮箱在此激活</li>
-<li>教育账号可激活多台机器上的pycahrm，但只能同时用一台上的</li>
-</ul>
-<h2 id="远程"><a class="header-anchor" href="#远程"></a>远程</h2>
-<h3 id="添加远程解释器、同步远程项目文件夹"><a class="header-anchor" href="#添加远程解释器、同步远程项目文件夹"></a>添加远程解释器、同步远程项目文件夹</h3>
-<p><a href="https://www.jianshu.com/p/9b362cdee2ab">参见</a></p>
-<h3 id="浏览远程目录"><a class="header-anchor" href="#浏览远程目录"></a>浏览远程目录</h3>
-<p><a href="https://www.jetbrains.com/help/pycharm/remote-host-tool-window.html">参见</a></p>
-<p>最终效果：远程浏览栏在右，可见整个服务器；本地浏览栏在左，只见项目目录</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/Pycharm%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.md/main/%E8%BF%9C%E7%A8%8B%E6%9C%AC%E5%9C%B0%E6%B5%8F%E8%A7%88.png" alt></p>
-<h3 id="几种用法"><a class="header-anchor" href="#几种用法"></a>几种用法</h3>
-<ul>
-<li>用远程解释器、debug或运行本地代码
-<ul>
-<li>只需添加远侧解释器，同步远程项目文件夹，即可调用远程资源运行、debug本地代码，结果返回到pycharm中的下栏</li>
-</ul>
-</li>
-<li>编辑远程代码
-<ul>
-<li>同步远程项目文件夹到本地随便一个文件夹</li>
-<li>若不添加远程解释器，则只可在ssh中运行</li>
-<li>若添加远程解释器，则可用远程解释器、debug</li>
-</ul>
-</li>
-<li>在pycharm中查看远程、编辑文件（不论文本还是图片）
-<ul>
-<li>在远程浏览栏中，服务器上所有的（不仅仅是同步的文件夹中的）文件（夹），可在pycharm内增删改重命名</li>
-<li>但是不能打开远程文件夹到pycharm，如有此需要，需新建远程项目文件夹同步</li>
-</ul>
-</li>
-<li>传输文件
-<ul>
-<li>将文件（夹）（们），拖入(移动)/<code>⌘V</code>(复制) 到本地浏览栏，会自动同步到远程项目文件夹</li>
-<li>拖入(移动)/<code>⌘V</code>(复制) 到远程浏览栏无效</li>
-</ul>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>编辑器IDE</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vim-搜索替换插件</title>
-    <url>/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vim-%E6%90%9C%E7%B4%A2%E6%9B%BF%E6%8D%A2%E6%8F%92%E4%BB%B6.md/main/</url>
-    <content><![CDATA[<h2 id="待定"><a class="header-anchor" href="#待定"></a>待定</h2>
-<p><a href="https://github.com/dyng/ctrlsf.vim:">https://github.com/dyng/ctrlsf.vim:</a> 多文件替换需要使用多光标, 麻烦了</p>
-<ul>
-<li>bug: 宽字符预览上色出错</li>
-</ul>
-<p>默认用vimgrep, 很慢</p>
-<ul>
-<li>
-<p>大小写</p>
-<p><code>:F(ar) \Cxxxx xxx xxx </code>: 大小写敏感</p>
-<p><code>:F(ar) \cxxxx xxx xxx </code>: 大小写不敏感</p>
-<p><code>:F(ar) xxxx xxx xxx </code>: 默认大小写不敏感</p>
-</li>
-<li>
-<p>正则:</p>
-<ul>
-<li>默认是正则表达式, 取消正则 <code>:F(ar) 	\Vxxx</code></li>
-</ul>
-<p><a href="https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less">https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less</a></p>
-<pre class="line-numbers language-none"><code class="language-none">command! -nargs&#x3D;1 S let @&#x2F; &#x3D; escape(&#39;&lt;args&gt;&#39;, &#39;\&#39;)
-nmap &lt;Leader&gt;S :execute(&quot;:S &quot; . input(&#39;Regex-off: &#x2F;&#39;))&lt;CR&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>整词: <code>\&lt;xxxx\&gt;</code></p>
-</li>
-</ul>
-<p><a href="http://xahlee.info/comp/unicode_index.html">http://xahlee.info/comp/unicode_index.html</a></p>
-<p>设计: 🔎 Ϙ⊕ ⊗⛒⦿⨁⨂ ⨷㉧🄋ⒻⓄ◯⨀ +⃝ ⏍ ⤭  ⇄ ⟲ ⟳ ↺ ↻  ⇲ ➲ 🔁 🔂 🔃 🔄 ➡ ⬇  ⎋Ⓡ Ⓢ ⧬</p>
-<p>◌̸</p>
-<p>⃝</p>
-<p>⃞</p>
-<p>⃣</p>
-<p>⃠</p>
-<p>⃢</p>
-<p><code>|.*|Aa|“”|+⃝ |</code><br>
-<code>|.*|Aa|“”|Ⓞ|</code></p>
-<p><code>[.*] [Aa] [“”] Ⓞ</code></p>
-<p><code>|.*| |Aa| |“”| Ⓞ</code></p>
-<p><code>|.*|Aa|“”|⬇|</code></p>
-<p><a href="https://shapeshed.com/vim-statuslines/">https://shapeshed.com/vim-statuslines/</a>, <a href="https://jdhao.github.io/2019/11/03/vim_custom_statusline/">https://jdhao.github.io/2019/11/03/vim_custom_statusline/</a></p>
-<p>rg的整词匹配: <a href="https://github.com/BurntSushi/ripgrep/issues/389">https://github.com/BurntSushi/ripgrep/issues/389</a></p>
-<p><a href="https://github.com/brooth/far.vim">https://github.com/brooth/far.vim</a></p>
-<p><a href="https://github.com/hwrod/interactive-replace">https://github.com/hwrod/interactive-replace</a></p>
-<p><a href="https://github.com/mreinhardt/greplace.vim">https://github.com/mreinhardt/greplace.vim</a></p>
-<h2 id="各种搜索后端"><a class="header-anchor" href="#各种搜索后端"></a>各种搜索后端</h2>
-<pre class="line-numbers language-none"><code class="language-none">ag --nogroup --column --nocolor --silent --max-count&#x3D;1000  --vimgrep gmg --file-search-regex&#x3D;branch.sh [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-none"><code class="language-none">rg --no-heading --column --no-messages --max-count&#x3D;1000 --glob&#x3D;branch.sh &#39;gmg[a-z]*&#39; --vimgrep  [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a href="https://github.com/beyondgrep/ack3/">https://github.com/beyondgrep/ack3/</a></p>
-<pre class="line-numbers language-none"><code class="language-none">ack --nogroup --column --nocolor --max-count&#x3D;1000  --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh  gmg
-[-o]
-# --smart-case --ignore-case --farft --no-recurse
-
-
-ack --nogroup --output&#x3D;&#39;$&amp;:$_&#39; --max-count&#x3D;1000 --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh gmg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="首先排除"><a class="header-anchor" href="#首先排除"></a>首先排除</h2>
-<p><a href="https://github.com/svermeulen/vim-subversive:">https://github.com/svermeulen/vim-subversive:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
-<p><a href="https://github.com/andy-kwei/vim-easy-replace:">https://github.com/andy-kwei/vim-easy-replace:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
-<p><a href="https://github.com/movitto/vim-vsearch:">https://github.com/movitto/vim-vsearch:</a> 类far.vim而不如</p>
-<p><a href="https://github.com/yegappan/greplace:">https://github.com/yegappan/greplace:</a> 文档一句话; -&gt; mreinhardt/greplace.vim</p>
-<p><a href="https://github.com/rzwierz/vim-guidgen:">https://github.com/rzwierz/vim-guidgen:</a> 只能linux的vim用</p>
-<p><a href="https://github.com/pallavagarwal07/AutoRun:">https://github.com/pallavagarwal07/AutoRun:</a> 文档一句话, 只是提供预览搜索/替换结果</p>
-<p><a href="https://github.com/pieterhuibers/findreplace:">https://github.com/pieterhuibers/findreplace:</a> 空项目</p>
-<p><a href="https://github.com/bloc40/vim-replace:">https://github.com/bloc40/vim-replace:</a> 一句话文档; 支持多文件</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>编辑器IDE</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vscode安装配置</title>
-    <url>/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/</url>
-    <content><![CDATA[<h1 id="vscode安装配置"><a class="header-anchor" href="#vscode安装配置"></a>vscode安装配置</h1>
-<h2 id="拓展安装方法"><a class="header-anchor" href="#拓展安装方法"></a>拓展安装方法</h2>
-<ul>
-<li>
-<p><code>⇧⌘P</code> -<code>Extentions: Install Extentions</code> - 输入<code>插件名称</code> - <code>install</code></p>
-</li>
-<li>
-<p>或在左侧拓展商店栏，输入<code>插件名称</code> - <code>install</code></p>
-</li>
-</ul>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/img1.png" alt></p>
-<h2 id="语言"><a class="header-anchor" href="#语言"></a>语言</h2>
-<p><code>⇧⌘P</code> -<code>Configure Display Language</code> -</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_15.54.53.png" alt></p>
-<ul>
-<li>
-<p>选择已有语言</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_15.54.43.png" alt></p>
-</li>
-<li>
-<p><code>install other language</code> -左侧拓展商店栏输入 <code>Chinese (Simplified) Language Pack for Visual Studio Code</code> - <code>install</code></p>
-</li>
-</ul>
-<h2 id="配色与字体"><a class="header-anchor" href="#配色与字体"></a>配色与字体</h2>
-<h3 id="预备"><a class="header-anchor" href="#预备"></a>预备</h3>
-<p>安装插件<code>Gruvbox Themes</code></p>
-<p><a href="https://github.com/powerline/fonts">Powerline字体安装</a></p>
-<ul>
-<li>
-<p>mac:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># clone</span>
-<span class="token function">git</span> clone https://github.com/powerline/fonts.git --depth<span class="token operator">=</span><span class="token number">1</span>
-<span class="token comment"># install</span>
-<span class="token builtin class-name">cd</span> fonts
-./install.sh
-<span class="token comment"># clean-up a bit</span>
-<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
-<span class="token function">rm</span> -rf fonts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>linux:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> fonts-powerline<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-<p><a href="https://glitchbone.github.io/vscode-base16-term/#/">终端配色参考</a></p>
-<h3 id="配置"><a class="header-anchor" href="#配置"></a>配置</h3>
-<p><code>⌘,</code> ，在<code>用户</code>设置中</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.04.11-8598764.png" alt></p>
-<p>以打开<code>settings.json</code>，添加以下设置</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-  ...
-    <span class="token comment">// 终端字体</span>
-    <span class="token property">"editor.fontFamily"</span><span class="token operator">:</span> <span class="token string">"Meslo LG S DZ for Powerline"</span><span class="token punctuation">,</span>
-    <span class="token comment">// 终端配色</span>
-    <span class="token property">"workbench.colorCustomizations"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token property">"terminal.background"</span><span class="token operator">:</span><span class="token string">"#28282a"</span> <span class="token punctuation">,</span>         <span class="token property">"terminal.foreground"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminalCursor.background"</span><span class="token operator">:</span><span class="token string">"#3b3b3b"</span><span class="token punctuation">,</span>   <span class="token property">"terminalCursor.foreground"</span><span class="token operator">:</span><span class="token string">"#A5A2A2"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiBlack"</span><span class="token operator">:</span><span class="token string">"#28282a"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightBlack"</span><span class="token operator">:</span><span class="token string">"#a2a2a2"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiWhite"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightWhite"</span><span class="token operator">:</span><span class="token string">"#feffff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiRed"</span><span class="token operator">:</span><span class="token string">"#c91b00"</span><span class="token punctuation">,</span>             <span class="token property">"terminal.ansiBrightRed"</span><span class="token operator">:</span><span class="token string">"#ff6d67"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiYellow"</span><span class="token operator">:</span><span class="token string">"#cecc4d"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightYellow"</span><span class="token operator">:</span><span class="token string">"#fefb67"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiGreen"</span><span class="token operator">:</span><span class="token string">"#89b560"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightGreen"</span><span class="token operator">:</span><span class="token string">"#74dd74"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiCyan"</span><span class="token operator">:</span><span class="token string">"#61aaab"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightCyan"</span><span class="token operator">:</span><span class="token string">"#5ffdff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiBlue"</span><span class="token operator">:</span><span class="token string">"#5168d5"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightBlue"</span><span class="token operator">:</span><span class="token string">"#6871ff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiMagenta"</span><span class="token operator">:</span><span class="token string">"#c930c7"</span><span class="token punctuation">,</span>         <span class="token property">"terminal.ansiBrightMagenta"</span><span class="token operator">:</span><span class="token string">"#ff76ff"</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-        <span class="token comment">//  配色</span>
-    <span class="token property">"workbench.colorTheme"</span><span class="token operator">:</span> <span class="token string">"Gruvbox Dark (Medium)"</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上文的<code>// ...</code>注释可以黏贴到<code>settings.json</code>中，vscode支持注释</p>
-<h2 id="终端"><a class="header-anchor" href="#终端"></a>终端</h2>
-<h3 id="内部终端-integrated-terminal"><a class="header-anchor" href="#内部终端-integrated-terminal"></a>内部终端(integrated terminal)</h3>
-<pre class="line-numbers language-⌃`" data-language="⌃`"><div class="caption"><span>```以开启内部终端</span></div><code class="language-⌃`">
-### 外部终端(external terminal)
-
-* 配置
-
-&#96;⌘,&#96; ，在&#96;用户&#96;设置中，以打开&#96;settings.json&#96;，添加以下设置
-
-
-&#96;&#96;&#96;json
-&#123;
-  ...
-  &quot;terminal.external.osxExec&quot;: &quot;iTerm.app&quot;,
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>使用：<code>⇧⌘C</code>以，会弹出一个外部<code>iTerm2</code>窗口</li>
-</ul>
-<h2 id="命令行工具"><a class="header-anchor" href="#命令行工具"></a>命令行工具</h2>
-<p><a href="https://code.visualstudio.com/docs/editor/integrated-terminal">https://code.visualstudio.com/docs/editor/integrated-terminal</a></p>
-<p><code>⇧⌘P</code> - <code>Shell Command: install 'code' command in PATH</code></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/img2.png" alt></p>
-<p>使用方法：</p>
-<ul>
-<li>在命令中输入如下命令，则会用vscode-insiders打开之</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">code-insiders 文件名/文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>在命令中输入如下命令，则会用vscode打开之</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">code 文件名&#x2F;文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>上述命令适用于：本地内置终端、本地外部终端、远程开发时内置终端、<s>远程开发时的本地外部终端</s></p>
-<h2 id="远程开发"><a class="header-anchor" href="#远程开发"></a>远程开发</h2>
-<h3 id="安装插件"><a class="header-anchor" href="#安装插件"></a>安装插件</h3>
-<p>安装插件 <code>Remote Developement</code> ，目前(2019-5-23)只支持 <a href="https://code.visualstudio.com/insiders/">VSCode-Insiders</a>，不支持<a href="https://code.visualstudio.com/Download">正式版VSCode</a></p>
-<h3 id="配置本地的ssh-config"><a class="header-anchor" href="#配置本地的ssh-config"></a>配置本地的ssh config</h3>
-<p>请在本地<code>~/.ssh/config</code>或<code>/etc/ssh/ssh_config</code>中写好远程服务器的连接配置</p>
-<p>vscode的<code>Remote Developement</code> 只支持密钥登录，也支持密码登录</p>
-<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
-<p>点左下角<code>&gt;&lt;</code>按钮</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.27.00.png" alt></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.27.05.png" alt></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.27.13.png" alt></p>
-<h3 id="编辑远程文件-夹"><a class="header-anchor" href="#编辑远程文件-夹"></a>编辑远程文件(夹)</h3>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/2019-05-23_16.32.52.png" alt></p>
-<p>关于远程开发的vscode命令行工具</p>
-<ul>
-<li>
-<p>vscode连接服务器后，会在服务器自动安装vscode远程开发的服务端程序，并运行之</p>
-<ul>
-<li>安装路径为<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code></li>
-<li>每当这台本机和这台服务器重新连接，就按照这个hash码，加载安装路径下，之前缓存的编辑器、内置终端、等模块的状态</li>
-<li>故<strong>重新连接服务器，编辑器、内置终端、等模块的状态均保留</strong></li>
-</ul>
-</li>
-<li>
-<p>vscode连接服务器后，在内置终端可使用   <code>code(-insiders)</code>  命令打开远程文件(夹)。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> code<span class="token punctuation">(</span>-insiders<span class="token punctuation">)</span>
-<span class="token comment"># 返回</span>
-<span class="token comment"># ~/.vscode-remote/bin/服务器的hash码/bin/code(-insiders)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>但远程开发， <strong>在 本地外部终端 输入  <code>code(-insiders)</code>，无法 打开远程文件</strong></p>
-</li>
-</ul>
-<h3 id="常见报错与处理"><a class="header-anchor" href="#常见报错与处理"></a>常见报错与处理</h3>
-<h4 id="重新连接失败"><a class="header-anchor" href="#重新连接失败"></a>重新连接失败</h4>
-<p>若之前连接过一台服务器，再次连它则报错，可杀死之前服务器端运行的 vscode 进程：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> vscode <span class="token operator">|</span> <span class="token function">grep</span> <span class="token environment constant">$USER</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">myusername     2382  0.0  0.0   4504   780 ?        S    01:33   0:00 sh &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;server.sh --port&#x3D;0
-myusername     2390  0.0  0.0 1307344 62116 ?       Sl   01:33   0:11 &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;node &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;out&#x2F;remoteExtensionHostAgent.js --port&#x3D;0
-myusername     6066  0.0  0.0  15976   972 pts&#x2F;20   S+   16:41   0:00 grep --color vscode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<p>杀死所有<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code>路径下的进程</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 教程编号 <span class="token comment"># 如上一框的 2382 2390</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后vscode重新连接服务器即可连接成功</p>
-<h4 id="wget失败"><a class="header-anchor" href="#wget失败"></a>wget失败</h4>
-<p>服务器上请不要给用alias覆盖<code>wget</code>命令，如</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wget</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这样的alias会造成连接后，会报错曰，服务器上无法用wget下载vscode远程开发的服务器端</p>
-<p>此alias改为</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wgetc</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后vscode重新连接服务器即可连接成功</p>
-<h2 id="snippet"><a class="header-anchor" href="#snippet"></a>snippet</h2>
-<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">教程</a></p>
-<p>写入</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">&#123;</span>
-    <span class="token string">"《snippet_name》"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token string">"prefix"</span><span class="token builtin class-name">:</span> <span class="token string">"《snippet_toggle》"</span>,
-        <span class="token string">"body"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
-            <span class="token string">"《insert_code》"</span>,
-        <span class="token punctuation">]</span>,
-        <span class="token string">"description"</span><span class="token builtin class-name">:</span> <span class="token string">"《prompt》"</span>
-    <span class="token punctuation">&#125;</span>,
-    <span class="token punctuation">..</span>.
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>
-<p>json不支持跨行文本，即不支持形如</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>"asdasd
-asdasd
-asdas
-" <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>请写成</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token string">"asda ad s ad as d"</span><span class="token punctuation">,</span>
-    <span class="token string">"asd  asd  sad as "</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>json中的文本只能用双引号，不能用单引号</p>
-</li>
-<li>
-<p><code>body</code>中的特殊字符</p>
-<ul>
-<li>转义字符</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>原文本</th>
-<th>代码文本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&quot;</code></td>
-<td><code>\&quot;</code></td>
-</tr>
-<tr>
-<td><code>$</code></td>
-<td><code>\\$</code></td>
-</tr>
-<tr>
-<td><code>\</code></td>
-<td><code>\\</code></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>插入后，按<code>⇥</code>、<code>⇧⇥</code>去往下、前一个可编辑区域；可编辑区域的写法</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">&quot;body&quot;: [
-    &quot;asda $&#123;1:【可编辑区域的提示】&#125; s ad $&#123;2:另一个可编辑区域&#125; as d&quot;,
-    &quot;asd $&#123;1:同步可编辑区域&#125; as &quot;,
-    &quot;asd $&#123;3&#125;&quot;，
-],<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ul>
-<h2 id="设置同步插件"><a class="header-anchor" href="#设置同步插件"></a>设置同步插件</h2>
-<p>为方便使得多个设备可以共用一份配置，可按照vscode插件 “settings sync”，它用gist同步你的vscode的各种设置，包括本地的全局设置、快捷键、snippet、所安装插件及版本。</p>
-<h3 id="自动配置方法"><a class="header-anchor" href="#自动配置方法"></a>自动配置方法</h3>
-<ul>
-<li>清除已有配置 : 初次配置无需此步, 若要更新配置则需要此步. 按 <code>⇧⌘P</code> - <code>Sync: 重置扩展设置</code></li>
-</ul>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184531147.png" alt="image-20200316184531147"></p>
-<p>​	所谓重置, 即清空&quot;settings sync&quot;现有的配置. 重置后,  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  会看见以下页面全空</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509201718848.png" alt="image-20200509201718848"></p>
-<ul>
-<li>
-<p>按 <code>⇧⌥U</code> , 则会弹出如下页面, 点 <code>login with github</code></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509201635555.png" alt="image-20200509201635555"></p>
-</li>
-</ul>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202018164.png" alt="image-20200509202018164"></p>
-<p>然后点 <code>信任github.com这个域名</code> .</p>
-<p>然后会浏览器弹出如下网页,</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-05-20%2021.11.23.png" alt="ScreenShot 2020-05-20 21.11.23"></p>
-<p>然后会看跳转如下页面, 此时可关闭此网页,</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202211987.png" alt="image-20200509202211987"></p>
-<p>而vscode里弹出此标签页, 这意味着当前浏览器默认的github账号中, 创建了一个新的token, 可用于创建gist来同步vscode配置</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202252574.png" alt="image-20200509202252574"></p>
-<p>此时  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  的插件配置变成,</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202418088.png" alt="image-20200509202418088"></p>
-<p>这说明当前浏览器默认的github账号中, 创建了一个新的token,  可用于创建gist来同步vscode配置, 但是这个token在 github 的配置中看不见:</p>
-<ul>
-<li><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>, 显示如下</li>
-</ul>
-<pre><code>![image-20200509203832966](main/image-20200509203832966.png)
-</code></pre>
-<p>此时再按 <code>⇧⌥U</code>, 则会在此github账号, 自动创建一个新gist, 然后询问是否上传当前的vscode各种配置, 点<code>是</code></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509202900380.png" alt="image-20200509202900380"></p>
-<p>打开 <code>https://gist.github.com/你的用户名 </code>来检查一下, 确实创建了新gist,</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509203035964.png" alt="image-20200509203035964"></p>
-<p>其内已上传各个vscode配置文件</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200509203239628.png" alt="image-20200509203239628"></p>
-<p>这说明配置成功</p>
-<h3 id="手动配置方法-废弃"><a class="header-anchor" href="#手动配置方法-废弃"></a>手动配置方法 (废弃)</h3>
-<p>本法勿用, 目前(2020-5-9)若用本法, 会在vscode重启后, github 将下文所创建的 token 自动删除, vscode会在同步配置时显示”token无效或过期”.</p>
-<ul>
-<li>
-<p>开一个<a href="https://gist.github.com/">gist</a></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2019.00.22.png" alt="ScreenShot 2020-03-16 19.00.22"></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2019.07.01.png" alt="ScreenShot 2020-03-16 19.07.01"></p>
-<p>从url里复制gist id</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2019.07.43.png" alt="ScreenShot 2020-03-16 19.07.43"></p>
-</li>
-<li>
-<p>开一个带有gist功能的github token：</p>
-<p><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>-<code>generate new token</code></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184923683.png" alt="image-20200316184923683"></p>
-<p>勾选gist和user</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200518012345366.png" alt="image-20200518012345366"></p>
-<p>然后会显示 <code>github token</code>， 速速记录下，只会显示这一次，之后再也显示不了。</p>
-</li>
-<li>
-<p>安装 <code>Settings Sync</code> 插件</p>
-</li>
-<li>
-<p>设置 <code>Settings Sync</code> ： <code>⌘⇧P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184531147.png" alt="image-20200316184531147"></p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316184543735.png" alt="image-20200316184543735"></p>
-</li>
-<li>
-<p>然后会弹出设置页面，设置方法如下</p>
-</li>
-</ul>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/ScreenShot%202020-03-16%2018.37.32.png" alt="ScreenShot 2020-03-16 18.37.32"></p>
-<p>然后按 <code>⌥⇧U</code>， 如果状态栏显示“同步成功”，且gist上显示如下，则成功</p>
-<p><img data-src="/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/vscode%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE.md/main/image-20200316192700873.png" alt="image-20200316192700873"></p>
-<h3 id="使用方法"><a class="header-anchor" href="#使用方法"></a>使用方法</h3>
-<p>手动同步：</p>
-<ul>
-<li><code>⌥⇧U</code>：手动上传到gist</li>
-<li><code>⌥⇧D</code>：手动从gist下载</li>
-</ul>
-<p>自动同步：打开vscode时，保存配置文件时，会自动下载再上传</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>编辑器IDE</category>
-      </categories>
-  </entry>
-  <entry>
     <title>8.31南京航空大学跳楼事件</title>
     <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/8.31%E5%8D%97%E4%BA%AC%E8%88%AA%E7%A9%BA%E5%A4%A7%E5%AD%A6%E8%B7%B3%E6%A5%BC%E4%BA%8B%E4%BB%B6.md/main/</url>
     <content><![CDATA[<p>大家不要搞混2020.8.18和2020.8.31两个跳楼事件，下面的图片为831，818为西区21栋跳楼事件。</p>
@@ -9149,7 +9149,7 @@ asdas
 <p>资本主义的帝国争霸，已经上演了一个多世纪，多少血汗，多少人命，多少眼泪。走上资本主义这条路，走到垄断资本主义，走到帝国主义争霸，历史一次次再来一遍，资本主义铁一般的吃人剧本。秦人不暇自哀，而后人哀之，后人哀之而不鉴之，亦使后人而复哀后人也。</p>
 <p>这样的历史，难道要再来亿遍吗？不！要给这样的历史画句号。怎么画呢？</p>
 <h1 id="真正的国际主义"><a class="header-anchor" href="#真正的国际主义"></a>真正的国际主义</h1>
-<p>一个人自称为了英特那雄耐尔去非洲搞基建，然后说这是为了反美帝国主义，以为这样能通往共产主义，丝毫没有体现对上面几个问题的反思，不禁让人好奇这是如何理解共产主义的。难不成，是演员自己啥都懂，却不敢说实话？是谁在包装这位远渡重洋曲线选调求个职位的演员，为什么要造神用共产主义来装点帝国主义？这样涂脂抹粉掩盖的到底是什么？</p>
+<p>一个人自称为了英特那雄耐尔去非洲搞基建，然后说这是为了反美帝国主义，以为这样能通往共产主义，丝毫没有体现对上面几个问题的反思，不禁让人好奇这是如何理解共产主义的。难不成，是演员自己啥都懂，却不敢说实话？是谁在包装这位远渡重洋曲线选调求个职位的演员，为什么要造神用国际主义来装点帝国主义？这样涂脂抹粉掩盖的到底是什么？答案只有一个，修正主义要掩盖，蒙骗人民。</p>
 <p>帝国主义争霸是死路一条，社会主义和国际主义才是出路。</p>
 <p><a href="https://jiliuwang.net/archives/82633">社会主义——非洲真正领导人的试金石</a>:</p>
 <blockquote>
