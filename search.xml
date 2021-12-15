@@ -867,6 +867,41 @@ git config user.email &quot;你的邮箱&quot;<span aria-hidden="true" class="li
       </categories>
   </entry>
   <entry>
+    <title>NAT设置</title>
+    <url>/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/NAT%E8%AE%BE%E7%BD%AE.md/main/</url>
+    <content><![CDATA[<h1 id="使用Iptables设置NAT"><a class="header-anchor" href="#使用Iptables设置NAT"></a>使用Iptables设置NAT</h1>
+<ul>
+<li>查看NAT映射关系列表</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -L -n --line-number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>--line-number</code>: 显示规则的<code>&lt;规则的行号&gt;</code></p>
+<ul>
+<li>查看NAT命令列表</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>开NAT</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -A PREROUTING -d <span class="token operator">&lt;</span>公网ip<span class="token operator">></span>/32 -i <span class="token operator">&lt;</span>公网访问的网卡<span class="token operator">></span> -p tcp -m tcp --dport <span class="token operator">&lt;</span>公网端口<span class="token operator">></span> -j DNAT --to-destination <span class="token operator">&lt;</span>内网ip<span class="token operator">></span>:<span class="token operator">&lt;</span>内网端口<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p><code>-A PREROUTING</code>：新规则附在已有规则最后面；若换成 <code>-I PREROUTING &lt;规则的行号&gt;(默认1)</code> ，则新规则插入在此编号的规则前面</p>
+</li>
+<li>
+<p><code>/32</code> <code>-m tcp</code> 可省，此即缺省值</p>
+</li>
+<li>
+<p>删除一条NAT规则</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -D PREROUTING <span class="token operator">&lt;</span>规则的行号<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>linux杂项</category>
+      </categories>
+  </entry>
+  <entry>
     <title>git学习笔记</title>
     <url>/%E5%99%A8/git/git%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0.md/main/</url>
     <content><![CDATA[<h1 id="GIT学习笔记"><a class="header-anchor" href="#GIT学习笔记"></a>GIT学习笔记</h1>
@@ -1244,41 +1279,6 @@ B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
       <categories>
         <category>器</category>
         <category>git</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>NAT设置</title>
-    <url>/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/NAT%E8%AE%BE%E7%BD%AE.md/main/</url>
-    <content><![CDATA[<h1 id="使用Iptables设置NAT"><a class="header-anchor" href="#使用Iptables设置NAT"></a>使用Iptables设置NAT</h1>
-<ul>
-<li>查看NAT映射关系列表</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -L -n --line-number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><code>--line-number</code>: 显示规则的<code>&lt;规则的行号&gt;</code></p>
-<ul>
-<li>查看NAT命令列表</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>开NAT</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -A PREROUTING -d <span class="token operator">&lt;</span>公网ip<span class="token operator">></span>/32 -i <span class="token operator">&lt;</span>公网访问的网卡<span class="token operator">></span> -p tcp -m tcp --dport <span class="token operator">&lt;</span>公网端口<span class="token operator">></span> -j DNAT --to-destination <span class="token operator">&lt;</span>内网ip<span class="token operator">></span>:<span class="token operator">&lt;</span>内网端口<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>
-<p><code>-A PREROUTING</code>：新规则附在已有规则最后面；若换成 <code>-I PREROUTING &lt;规则的行号&gt;(默认1)</code> ，则新规则插入在此编号的规则前面</p>
-</li>
-<li>
-<p><code>/32</code> <code>-m tcp</code> 可省，此即缺省值</p>
-</li>
-<li>
-<p>删除一条NAT规则</p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -D PREROUTING <span class="token operator">&lt;</span>规则的行号<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>linux杂项</category>
       </categories>
   </entry>
   <entry>
@@ -2295,6 +2295,84 @@ End: Fn + →<br>
       </categories>
   </entry>
   <entry>
+    <title>brew使用教程</title>
+    <url>/%E5%99%A8/mac/brew%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md/main/</url>
+    <content><![CDATA[<h1 id="安装"><a class="header-anchor" href="#安装"></a>安装</h1>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/usr/bin/ruby -e <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上边的命令行是两个命令，首先下载install文件，然后用系统的ruby工具安装。</p>
+<p>尽量再bash或者zsh下安装，fish下会提示不识别’$'。</p>
+<p>不需要使用超级权限（sudo），该文件会将HomeBrew安装至 <code>usr/local/</code> 下</p>
+<p>后边还会有一些提示。继续的话会提示输入密码，等待安装完成。</p>
+<p>安装完成后输入 <code>brew -v</code> 即可显示是否安装成功</p>
+<pre class="line-numbers language-none"><code class="language-none">Homebrew 3.2.13-86-ga78d407
+Homebrew&#x2F;homebrew-core (git revision 43c72b06c0c; last commit 2021-09-28)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="brew常用命令"><a class="header-anchor" href="#brew常用命令"></a>brew常用命令</h1>
+<h2 id="安装卸载软件"><a class="header-anchor" href="#安装卸载软件"></a>安装卸载软件</h2>
+<ul>
+<li><code>brew --version</code> 或者 <code>brew -v</code> 显示brew版本信息</li>
+<li><code>brew install &lt;软件&gt; </code> 安装指定软件</li>
+<li><code>brew install  --build-from-source &lt;软件&gt;</code> 源码编译软件并安装, 而非安装预编译的软件</li>
+<li><code>brew uninstall &lt;软件&gt; </code> 卸载指定软件, 但不卸载该软件的依赖</li>
+<li><code>brew reinstall  &lt;软件&gt;</code> 重新安装指定软件，先卸载后安装</li>
+<li><code>brew info  &lt;软件&gt;</code> 显示指定软件信息</li>
+<li><code>brew list</code> 显示所有的已安装的软件</li>
+<li><code>brew search &lt;搜索文本&gt;</code> 搜索本地远程仓库的软件，已安装会显示绿色的勾</li>
+<li><code>brew search /&lt;搜索文本&gt;</code>/<code> 使用正则表达式搜软件</code></li>
+<li><code>brew commands</code> 列出所有可用命令</li>
+</ul>
+<p>通过brew安装的文件会自动设置环境变量，所以不用担心命令行不能启动的问题。</p>
+<ul>
+<li>
+<p>卸载软件及其依赖:</p>
+<p>安装依赖卸载工具 <code>brew tap beeftornado/rmtree &amp;&amp; brew install brew-rmtree</code></p>
+<p>卸载软件及其依赖 <code>brew rmtree &lt;软件&gt;</code></p>
+</li>
+</ul>
+<h2 id="升级软件相关"><a class="header-anchor" href="#升级软件相关"></a>升级软件相关</h2>
+<ul>
+<li><code>brew update</code> 自动升级homebrew （从github下载最新版本）</li>
+<li><code>brew outdated</code> 检测已经过时的软件</li>
+<li><code>brew upgrade</code> 升级所有已过时的软件，即列出的以过时软件</li>
+<li><code>brew upgrade --all</code> 升级所有的软件包，包括未清理干净的旧版本的包</li>
+<li><code>brew upgrade  &lt;软件&gt;</code>  升级指定的软件</li>
+<li><code>brew pin &lt;软件&gt; </code> 禁止指定软件升级</li>
+<li><code>brew unpin &lt;软件&gt; </code> 解锁禁止升级</li>
+<li><code>brew edit </code> 编辑软件，不会的情况下慎用</li>
+<li><code>brew tap</code> 列出本地资源仓库，其中 homebrew 是默认仓库，其它都是第三方仓库</li>
+<li><code>brew tap &lt;仓库&gt;</code> 添加第三方仓库，命名的规则按照github来定的。<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.brew.sh%2FTaps">使用</a></li>
+<li><code>brew untap &lt;仓库&gt; </code> 删除仓库</li>
+<li><code>brew deps &lt;软件&gt; </code> 查看指定软件依赖于哪些软件</li>
+<li><code>brew uses &lt;软件&gt; </code> 查看指定软件被哪些软件所依赖</li>
+</ul>
+<h2 id="清理相关"><a class="header-anchor" href="#清理相关"></a>清理相关</h2>
+<p>homebrew再升级软件时候不会清理相关的旧版本，在软件升级后我们可以使用如下命令清理</p>
+<ul>
+<li><code>brew cleanup -n</code> 列出需要清理的内容</li>
+<li><code>brew cleanup</code> 清理所有的过时软件</li>
+<li><code>brew cleanup &lt;软件&gt;</code> 清理指定的软件过时包</li>
+<li><code>brew unistall &lt;软件&gt; </code> 卸载指定软件</li>
+<li><code>brew unistall  --force &lt;软件&gt;</code> 彻底卸载指定软件，包括旧版本</li>
+</ul>
+<h2 id="brew-cask"><a class="header-anchor" href="#brew-cask"></a>brew cask</h2>
+<h3 id="安装cask"><a class="header-anchor" href="#安装cask"></a>安装cask</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew tap caskroom/cask<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="使用"><a class="header-anchor" href="#使用"></a>使用</h3>
+<p><code>brew cask install </code> 安装指定图形界面软件</p>
+<p><code>brew cask uninstall </code> 卸载软件</p>
+<p><code>brew cask uninstall --force </code> 卸载软件，带参数</p>
+<p><code>brew cask search text</code> 搜索软件</p>
+<p><code>brew cask list</code> 列出所有通过cask安装的软件</p>
+<p><a href="https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md">其它可以参考</a></p>
+<h2 id="国内镜像安装"><a class="header-anchor" href="#国内镜像安装"></a>国内镜像安装</h2>
+<p><a href="http://mirrors.ustc.edu.cn/help/brew.git.html">中科大源</a></p>
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/">清华源</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
     <title>mac上使用X11</title>
     <url>/%E5%99%A8/mac/mac%E4%B8%8A%E4%BD%BF%E7%94%A8X11.md/main/</url>
     <content><![CDATA[<h2 id="XQuartz"><a class="header-anchor" href="#XQuartz"></a>XQuartz</h2>
@@ -2781,6 +2859,39 @@ EOF<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
       </categories>
   </entry>
   <entry>
+    <title>mac永久添加私钥到keyChain</title>
+    <url>/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/</url>
+    <content><![CDATA[<p>以下<a href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本，以备不时之需</p>
+<blockquote>
+<h1 id="Mac-重启后自动-ssh-add-私钥"><a class="header-anchor" href="#Mac-重启后自动-ssh-add-私钥"></a><a href="https://mednoter.com/ssh-add-automatically.html">Mac 重启后自动 ssh-add 私钥</a></h1>
+<p>管理服务器有一些安全常识:</p>
+<ul>
+<li>禁止 root 远程登录</li>
+<li>禁止密码登录</li>
+<li>使用 priviate / public key 作为默认的登录方式。</li>
+<li>修改 sshd 端口</li>
+</ul>
+<p>From Linode: <a href="https://www.linode.com/docs/security/securing-your-server">Securing your server</a></p>
+<p>安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，需要一次次手工 ssh-add 私钥，特别心烦。</p>
+<p>几年前有这种方法 <code>ssh-add -K privateKey</code> 可以一劳永逸的把私钥存到 keychain 中，重启后也不需要手动 ssh-add，非常方便。</p>
+<p><strong>这种方式不管用了。</strong></p>
+<p><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-ssh-add.jpeg" alt="img"></p>
+<h2 id="新的解决方法"><a class="header-anchor" href="#新的解决方法"></a>新的解决方法</h2>
+<p><strong>创建 Automator 任务加载私钥，然后放到开机启动中。</strong></p>
+<ol>
+<li>创建一个 Automator task.<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step1.jpeg" alt="img"></li>
+<li>在 task 中写一串 shell script<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step2.jpeg" alt="img"></li>
+<li>把 task 添加到 login items 中，每次系统重启后会执行这个 Automator task，自动 ssh-add 所有的私钥。<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step3.jpeg" alt="img"><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step4.jpeg" alt="img"></li>
+</ol>
+<p>搞定！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
     <title>mac开机启动项设置</title>
     <url>/%E5%99%A8/mac/mac%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8%E9%A1%B9%E8%AE%BE%E7%BD%AE.md/main/</url>
     <content><![CDATA[<h1 id="将脚本设为开机自启"><a class="header-anchor" href="#将脚本设为开机自启"></a>将脚本设为开机自启</h1>
@@ -3025,39 +3136,6 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
       </categories>
   </entry>
   <entry>
-    <title>mac永久添加私钥到keyChain</title>
-    <url>/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/</url>
-    <content><![CDATA[<p>以下<a href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本，以备不时之需</p>
-<blockquote>
-<h1 id="Mac-重启后自动-ssh-add-私钥"><a class="header-anchor" href="#Mac-重启后自动-ssh-add-私钥"></a><a href="https://mednoter.com/ssh-add-automatically.html">Mac 重启后自动 ssh-add 私钥</a></h1>
-<p>管理服务器有一些安全常识:</p>
-<ul>
-<li>禁止 root 远程登录</li>
-<li>禁止密码登录</li>
-<li>使用 priviate / public key 作为默认的登录方式。</li>
-<li>修改 sshd 端口</li>
-</ul>
-<p>From Linode: <a href="https://www.linode.com/docs/security/securing-your-server">Securing your server</a></p>
-<p>安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，需要一次次手工 ssh-add 私钥，特别心烦。</p>
-<p>几年前有这种方法 <code>ssh-add -K privateKey</code> 可以一劳永逸的把私钥存到 keychain 中，重启后也不需要手动 ssh-add，非常方便。</p>
-<p><strong>这种方式不管用了。</strong></p>
-<p><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-ssh-add.jpeg" alt="img"></p>
-<h2 id="新的解决方法"><a class="header-anchor" href="#新的解决方法"></a>新的解决方法</h2>
-<p><strong>创建 Automator 任务加载私钥，然后放到开机启动中。</strong></p>
-<ol>
-<li>创建一个 Automator task.<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step1.jpeg" alt="img"></li>
-<li>在 task 中写一串 shell script<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step2.jpeg" alt="img"></li>
-<li>把 task 添加到 login items 中，每次系统重启后会执行这个 Automator task，自动 ssh-add 所有的私钥。<img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step3.jpeg" alt="img"><img data-src="/%E5%99%A8/mac/mac%E6%B0%B8%E4%B9%85%E6%B7%BB%E5%8A%A0%E7%A7%81%E9%92%A5%E5%88%B0keyChain.md/main/2017-06-02-step4.jpeg" alt="img"></li>
-</ol>
-<p>搞定！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
     <title>注销icloud后桌面文件消失</title>
     <url>/%E5%99%A8/mac/%E6%B3%A8%E9%94%80icloud%E5%90%8E%E6%A1%8C%E9%9D%A2%E6%96%87%E4%BB%B6%E6%B6%88%E5%A4%B1.md/main/</url>
     <content><![CDATA[<h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
@@ -3223,84 +3301,6 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <h4 id="step-2-另写一个快速操作"><a class="header-anchor" href="#step-2-另写一个快速操作"></a>step 2: 另写一个快速操作</h4>
 <p>另写一个 xxx.workflow (快速操作), 其内容如下, 仅调用xxx.app. 这样, 则可以在将  xxx.workflow (快速操作) 绑定快捷键, 并添加到右键菜单, 具体做法详见<a href="#%E5%BF%AB%E9%80%9F%E6%93%8D%E4%BD%9C">上文</a>.</p>
 <p><img data-src="/%E5%99%A8/mac/%E8%87%AA%E5%8A%A8%E6%93%8D%E4%BD%9C.md/main/iShot2020-11-18%2022.03.52.png" alt="iShot2020-11-18 22.03.52"></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>brew使用教程</title>
-    <url>/%E5%99%A8/mac/brew%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B.md/main/</url>
-    <content><![CDATA[<h1 id="安装"><a class="header-anchor" href="#安装"></a>安装</h1>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/usr/bin/ruby -e <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>上边的命令行是两个命令，首先下载install文件，然后用系统的ruby工具安装。</p>
-<p>尽量再bash或者zsh下安装，fish下会提示不识别’$'。</p>
-<p>不需要使用超级权限（sudo），该文件会将HomeBrew安装至 <code>usr/local/</code> 下</p>
-<p>后边还会有一些提示。继续的话会提示输入密码，等待安装完成。</p>
-<p>安装完成后输入 <code>brew -v</code> 即可显示是否安装成功</p>
-<pre class="line-numbers language-none"><code class="language-none">Homebrew 3.2.13-86-ga78d407
-Homebrew&#x2F;homebrew-core (git revision 43c72b06c0c; last commit 2021-09-28)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h1 id="brew常用命令"><a class="header-anchor" href="#brew常用命令"></a>brew常用命令</h1>
-<h2 id="安装卸载软件"><a class="header-anchor" href="#安装卸载软件"></a>安装卸载软件</h2>
-<ul>
-<li><code>brew --version</code> 或者 <code>brew -v</code> 显示brew版本信息</li>
-<li><code>brew install &lt;软件&gt; </code> 安装指定软件</li>
-<li><code>brew install  --build-from-source &lt;软件&gt;</code> 源码编译软件并安装, 而非安装预编译的软件</li>
-<li><code>brew uninstall &lt;软件&gt; </code> 卸载指定软件, 但不卸载该软件的依赖</li>
-<li><code>brew reinstall  &lt;软件&gt;</code> 重新安装指定软件，先卸载后安装</li>
-<li><code>brew info  &lt;软件&gt;</code> 显示指定软件信息</li>
-<li><code>brew list</code> 显示所有的已安装的软件</li>
-<li><code>brew search &lt;搜索文本&gt;</code> 搜索本地远程仓库的软件，已安装会显示绿色的勾</li>
-<li><code>brew search /&lt;搜索文本&gt;</code>/<code> 使用正则表达式搜软件</code></li>
-<li><code>brew commands</code> 列出所有可用命令</li>
-</ul>
-<p>通过brew安装的文件会自动设置环境变量，所以不用担心命令行不能启动的问题。</p>
-<ul>
-<li>
-<p>卸载软件及其依赖:</p>
-<p>安装依赖卸载工具 <code>brew tap beeftornado/rmtree &amp;&amp; brew install brew-rmtree</code></p>
-<p>卸载软件及其依赖 <code>brew rmtree &lt;软件&gt;</code></p>
-</li>
-</ul>
-<h2 id="升级软件相关"><a class="header-anchor" href="#升级软件相关"></a>升级软件相关</h2>
-<ul>
-<li><code>brew update</code> 自动升级homebrew （从github下载最新版本）</li>
-<li><code>brew outdated</code> 检测已经过时的软件</li>
-<li><code>brew upgrade</code> 升级所有已过时的软件，即列出的以过时软件</li>
-<li><code>brew upgrade --all</code> 升级所有的软件包，包括未清理干净的旧版本的包</li>
-<li><code>brew upgrade  &lt;软件&gt;</code>  升级指定的软件</li>
-<li><code>brew pin &lt;软件&gt; </code> 禁止指定软件升级</li>
-<li><code>brew unpin &lt;软件&gt; </code> 解锁禁止升级</li>
-<li><code>brew edit </code> 编辑软件，不会的情况下慎用</li>
-<li><code>brew tap</code> 列出本地资源仓库，其中 homebrew 是默认仓库，其它都是第三方仓库</li>
-<li><code>brew tap &lt;仓库&gt;</code> 添加第三方仓库，命名的规则按照github来定的。<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fdocs.brew.sh%2FTaps">使用</a></li>
-<li><code>brew untap &lt;仓库&gt; </code> 删除仓库</li>
-<li><code>brew deps &lt;软件&gt; </code> 查看指定软件依赖于哪些软件</li>
-<li><code>brew uses &lt;软件&gt; </code> 查看指定软件被哪些软件所依赖</li>
-</ul>
-<h2 id="清理相关"><a class="header-anchor" href="#清理相关"></a>清理相关</h2>
-<p>homebrew再升级软件时候不会清理相关的旧版本，在软件升级后我们可以使用如下命令清理</p>
-<ul>
-<li><code>brew cleanup -n</code> 列出需要清理的内容</li>
-<li><code>brew cleanup</code> 清理所有的过时软件</li>
-<li><code>brew cleanup &lt;软件&gt;</code> 清理指定的软件过时包</li>
-<li><code>brew unistall &lt;软件&gt; </code> 卸载指定软件</li>
-<li><code>brew unistall  --force &lt;软件&gt;</code> 彻底卸载指定软件，包括旧版本</li>
-</ul>
-<h2 id="brew-cask"><a class="header-anchor" href="#brew-cask"></a>brew cask</h2>
-<h3 id="安装cask"><a class="header-anchor" href="#安装cask"></a>安装cask</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew tap caskroom/cask<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="使用"><a class="header-anchor" href="#使用"></a>使用</h3>
-<p><code>brew cask install </code> 安装指定图形界面软件</p>
-<p><code>brew cask uninstall </code> 卸载软件</p>
-<p><code>brew cask uninstall --force </code> 卸载软件，带参数</p>
-<p><code>brew cask search text</code> 搜索软件</p>
-<p><code>brew cask list</code> 列出所有通过cask安装的软件</p>
-<p><a href="https://github.com/Homebrew/homebrew-cask/blob/master/USAGE.md">其它可以参考</a></p>
-<h2 id="国内镜像安装"><a class="header-anchor" href="#国内镜像安装"></a>国内镜像安装</h2>
-<p><a href="http://mirrors.ustc.edu.cn/help/brew.git.html">中科大源</a></p>
-<p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/">清华源</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3611,103 +3611,6 @@ ModuleNotFoundError: No module named &#39;conda&#39;<span aria-hidden="true" cla
       </categories>
   </entry>
   <entry>
-    <title>jupyter_notebook更换配色</title>
-    <url>/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/</url>
-    <content><![CDATA[<h1 id="jupyter-themes-修改-jupyter-notebook-的主题"><a class="header-anchor" href="#jupyter-themes-修改-jupyter-notebook-的主题"></a>jupyter-themes: 修改 jupyter notebook 的主题</h1>
-<h2 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h2>
-<ul>
-<li>
-<p>安装</p>
-<p>看jupyter是用conda还是pip装的</p>
-<pre class="line-numbers language-none"><code class="language-none">conda list | grep -e &#39;^jupyter &#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">jupyter                   1.0.0            py36h9896ce5_0    【defaults】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<ul>
-<li>
-<p>若<code>【】</code>中为<code>default</code>，则是jupyter notebook是conda安装的，强烈建议用conda安装jupyterthemes，不然若用pip安装jupyterthemes，会出现多种依赖不匹配</p>
-  <pre class="line-numbers language-none"><code class="language-none">conda install -c conda-forge jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>若<code>【】</code>中为<code>pypi</code>，jupyter notebook是pip安装的，则</p>
-  <pre class="line-numbers language-none"><code class="language-none">pip install jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>配置</p>
-<p>终端下输入以下命令</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">jt -t gruvboxd -T -N -cellw <span class="token number">90</span>% -f roboto -fs <span class="token number">11</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这表示我选择了 gruvboxd 这个主题，同时希望打开顶部的工具栏（Toolbar），显示笔记本的名字（Name），文本框占浏览器页宽的90%，用roboto等宽字体，字号11</p>
-<p>运行过程中可能会返回报错如下，这说明已经别的用户安装了jupyterthemes，并重建了<code>/tmp/yacctab.py</code>，故你无法重写这个文件，这并不运行你使用jupyter notebook的配色。你的配色设置，保存到 <code>$HOME/.jupyter/custom/</code>，不和他的配色设置冲突。</p>
-<blockquote>
-<p>WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’<br>
-WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’</p>
-</blockquote>
-</li>
-<li>
-<p>配置文件</p>
-<p>配置文件保存到了 <code>$HOME/.jupyter/custom/</code>，下是四个配置和依赖文件<code>current_theme. txt, custom.css, custom.js, fonts/</code>，之后每次执行<code>jupyter notebook</code>启动notebook时，会加载此配置，看见你要的主题。</p>
-</li>
-</ul>
-<h2 id="依赖不匹配怎么解决"><a class="header-anchor" href="#依赖不匹配怎么解决"></a>依赖不匹配怎么解决</h2>
-<p>若jupyter notebook是conda安装，却用安装pip安装jupyterthemes，会出现多种依赖不匹配，最终如下装一圈依赖，才能安装成功</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda upgrade notebook libsodium
-pip <span class="token function">install</span> jupyterthemes
-pip <span class="token function">install</span> --upgrade --user nbconvert
-pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>以下是各个依赖不匹配的详解：</p>
-<h3 id="Found-existing-installation-terminado-0-6"><a class="header-anchor" href="#Found-existing-installation-terminado-0-6"></a>Found existing installation: terminado 0.6</h3>
-<p>执行<code>pip install jupyterthemes</code>时报错</p>
-<blockquote>
-<p>notebook 5.7.6 has requirement jupyter-core&gt;=4.4.0, but you’ll have jupyter-core 4.3.0 which is incompatible.</p>
-<p>Installing collected packages: lesscpy, terminado, pyzmq, jupyter-client, prometheus-client, Send2Trash, notebook, jupyterthemes<br>
-<strong>Found existing installation</strong>: terminado 0.6<br>
-Cannot uninstall ‘terminado’. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.</p>
-</blockquote>
-<p>这是因为，上述操作中pip自动更新了notebook，但这个notebook是用conda而非pip装的，故依赖项terminado不对</p>
-<p>解决方法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda upgrade notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>而后可正常安装</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="ImportError-libsodium-so-23"><a class="header-anchor" href="#ImportError-libsodium-so-23"></a>ImportError: libsodium.so.23</h3>
-<p>执行<code>jupyter notebook</code>，报错</p>
-<blockquote>
-<p>ImportError: libsodium.so.23: cannot open shared object file: No such file or directory</p>
-</blockquote>
-<p>这是由于<code>jupyterthemes</code>依赖的<code>libsodium</code>没有更新</p>
-<p>解决办法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda update libsodium
-<span class="token comment"># 或</span>
-conda <span class="token function">install</span> -c conda-forge libsodium<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"><a class="header-anchor" href="#ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"></a>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</h3>
-<p>运行notebook时，用浏览器成功打开notebook的目录网页，但无法打开/新建python3 的 notebook文件，命令行下报错</p>
-<blockquote>
-<p>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</p>
-<p>[E 20:28:58.544 NotebookApp]</p>
-</blockquote>
-<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>nbconvert</code>没有更新</p>
-<p>解决办法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade --user nbconvert<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后将<code>$USER/.local/bin</code>添加到PATH，即可实现上述运行</p>
-<h3 id="ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"><a class="header-anchor" href="#ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"></a>ERROR:tornado.general: Uncaught exception in zmqstream callback</h3>
-<p>运行notebook时，用浏览器成功打开notebook的目录网页，能成功打开/新建python3 的 notebook文件，但点运行，迟迟不运行，命令行下报错</p>
-<blockquote>
-<p>ERROR:tornado.general: Uncaught exception in zmqstream callback</p>
-</blockquote>
-<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>ipykernel</code>没有更新</p>
-<p>解决办法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="参考"><a class="header-anchor" href="#参考"></a>参考</h2>
-<p><a href="https://github.com/dunovank/jupyter-themes">https://github.com/dunovank/jupyter-themes</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/46242116">【内容引起舒适】让你的Jupyter Notebook不再辣眼睛</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>python</category>
-      </categories>
-  </entry>
-  <entry>
     <title>ipython与jupyter_notebook安装配置使用</title>
     <url>/%E5%99%A8/python/ipython%E4%B8%8Ejupyter_notebook%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8.md/main/</url>
     <content><![CDATA[<p>[TOC]</p>
@@ -3982,6 +3885,103 @@ c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuati
 <p><code>exit</code>或<code>logout</code>退出服务器的登录，则jupyter notebook不会立即停止</p>
 </li>
 </ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>jupyter_notebook更换配色</title>
+    <url>/%E5%99%A8/python/jupyter_notebook%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2.md/main/</url>
+    <content><![CDATA[<h1 id="jupyter-themes-修改-jupyter-notebook-的主题"><a class="header-anchor" href="#jupyter-themes-修改-jupyter-notebook-的主题"></a>jupyter-themes: 修改 jupyter notebook 的主题</h1>
+<h2 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h2>
+<ul>
+<li>
+<p>安装</p>
+<p>看jupyter是用conda还是pip装的</p>
+<pre class="line-numbers language-none"><code class="language-none">conda list | grep -e &#39;^jupyter &#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">jupyter                   1.0.0            py36h9896ce5_0    【defaults】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<ul>
+<li>
+<p>若<code>【】</code>中为<code>default</code>，则是jupyter notebook是conda安装的，强烈建议用conda安装jupyterthemes，不然若用pip安装jupyterthemes，会出现多种依赖不匹配</p>
+  <pre class="line-numbers language-none"><code class="language-none">conda install -c conda-forge jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>若<code>【】</code>中为<code>pypi</code>，jupyter notebook是pip安装的，则</p>
+  <pre class="line-numbers language-none"><code class="language-none">pip install jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>配置</p>
+<p>终端下输入以下命令</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">jt -t gruvboxd -T -N -cellw <span class="token number">90</span>% -f roboto -fs <span class="token number">11</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这表示我选择了 gruvboxd 这个主题，同时希望打开顶部的工具栏（Toolbar），显示笔记本的名字（Name），文本框占浏览器页宽的90%，用roboto等宽字体，字号11</p>
+<p>运行过程中可能会返回报错如下，这说明已经别的用户安装了jupyterthemes，并重建了<code>/tmp/yacctab.py</code>，故你无法重写这个文件，这并不运行你使用jupyter notebook的配色。你的配色设置，保存到 <code>$HOME/.jupyter/custom/</code>，不和他的配色设置冲突。</p>
+<blockquote>
+<p>WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’<br>
+WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’</p>
+</blockquote>
+</li>
+<li>
+<p>配置文件</p>
+<p>配置文件保存到了 <code>$HOME/.jupyter/custom/</code>，下是四个配置和依赖文件<code>current_theme. txt, custom.css, custom.js, fonts/</code>，之后每次执行<code>jupyter notebook</code>启动notebook时，会加载此配置，看见你要的主题。</p>
+</li>
+</ul>
+<h2 id="依赖不匹配怎么解决"><a class="header-anchor" href="#依赖不匹配怎么解决"></a>依赖不匹配怎么解决</h2>
+<p>若jupyter notebook是conda安装，却用安装pip安装jupyterthemes，会出现多种依赖不匹配，最终如下装一圈依赖，才能安装成功</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda upgrade notebook libsodium
+pip <span class="token function">install</span> jupyterthemes
+pip <span class="token function">install</span> --upgrade --user nbconvert
+pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以下是各个依赖不匹配的详解：</p>
+<h3 id="Found-existing-installation-terminado-0-6"><a class="header-anchor" href="#Found-existing-installation-terminado-0-6"></a>Found existing installation: terminado 0.6</h3>
+<p>执行<code>pip install jupyterthemes</code>时报错</p>
+<blockquote>
+<p>notebook 5.7.6 has requirement jupyter-core&gt;=4.4.0, but you’ll have jupyter-core 4.3.0 which is incompatible.</p>
+<p>Installing collected packages: lesscpy, terminado, pyzmq, jupyter-client, prometheus-client, Send2Trash, notebook, jupyterthemes<br>
+<strong>Found existing installation</strong>: terminado 0.6<br>
+Cannot uninstall ‘terminado’. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.</p>
+</blockquote>
+<p>这是因为，上述操作中pip自动更新了notebook，但这个notebook是用conda而非pip装的，故依赖项terminado不对</p>
+<p>解决方法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda upgrade notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>而后可正常安装</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="ImportError-libsodium-so-23"><a class="header-anchor" href="#ImportError-libsodium-so-23"></a>ImportError: libsodium.so.23</h3>
+<p>执行<code>jupyter notebook</code>，报错</p>
+<blockquote>
+<p>ImportError: libsodium.so.23: cannot open shared object file: No such file or directory</p>
+</blockquote>
+<p>这是由于<code>jupyterthemes</code>依赖的<code>libsodium</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda update libsodium
+<span class="token comment"># 或</span>
+conda <span class="token function">install</span> -c conda-forge libsodium<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"><a class="header-anchor" href="#ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"></a>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</h3>
+<p>运行notebook时，用浏览器成功打开notebook的目录网页，但无法打开/新建python3 的 notebook文件，命令行下报错</p>
+<blockquote>
+<p>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</p>
+<p>[E 20:28:58.544 NotebookApp]</p>
+</blockquote>
+<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>nbconvert</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade --user nbconvert<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后将<code>$USER/.local/bin</code>添加到PATH，即可实现上述运行</p>
+<h3 id="ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"><a class="header-anchor" href="#ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"></a>ERROR:tornado.general: Uncaught exception in zmqstream callback</h3>
+<p>运行notebook时，用浏览器成功打开notebook的目录网页，能成功打开/新建python3 的 notebook文件，但点运行，迟迟不运行，命令行下报错</p>
+<blockquote>
+<p>ERROR:tornado.general: Uncaught exception in zmqstream callback</p>
+</blockquote>
+<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>ipykernel</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="参考"><a class="header-anchor" href="#参考"></a>参考</h2>
+<p><a href="https://github.com/dunovank/jupyter-themes">https://github.com/dunovank/jupyter-themes</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/46242116">【内容引起舒适】让你的Jupyter Notebook不再辣眼睛</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -6636,19 +6636,6 @@ fcitx-libs libqtwebkit4<span aria-hidden="true" class="line-numbers-rows"><span>
       </categories>
   </entry>
   <entry>
-    <title>pytorch多卡训练</title>
-    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/</url>
-    <content><![CDATA[<h1 id="pytorch：-一机多卡训练的尝试"><a class="header-anchor" href="#pytorch：-一机多卡训练的尝试"></a>pytorch： 一机多卡训练的尝试</h1>
-<p><a href="https://www.jianshu.com/p/221d9298808e">参考</a></p>
-<p><a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel</a></p>
-<p><a href="https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>炼丹框架</category>
-      </categories>
-  </entry>
-  <entry>
     <title>TensorboardX：在pytorch上用Tensorboard</title>
     <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/TensorboardX%EF%BC%9A%E5%9C%A8pytorch%E4%B8%8A%E7%94%A8Tensorboard.md/main/</url>
     <content><![CDATA[<p>自2019年5月后，pytorch官方支持了Tensorboard，可千万pytorch官网查询Tensorboard的文档</p>
@@ -6725,6 +6712,19 @@ writer<span class="token punctuation">.</span>close<span class="token punctuatio
 </ul>
 <h2 id="API"><a class="header-anchor" href="#API"></a>API</h2>
 <p><a href="http://tensorboard-pytorch.readthedocs.io/en/latest/tensorboard.html">文档</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>炼丹框架</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>pytorch多卡训练</title>
+    <url>/%E5%99%A8/%E7%82%BC%E4%B8%B9%E6%A1%86%E6%9E%B6/pytorch%E5%A4%9A%E5%8D%A1%E8%AE%AD%E7%BB%83.md/main/</url>
+    <content><![CDATA[<h1 id="pytorch：-一机多卡训练的尝试"><a class="header-anchor" href="#pytorch：-一机多卡训练的尝试"></a>pytorch： 一机多卡训练的尝试</h1>
+<p><a href="https://www.jianshu.com/p/221d9298808e">参考</a></p>
+<p><a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel</a></p>
+<p><a href="https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -8981,6 +8981,35 @@ asdas
       </categories>
   </entry>
   <entry>
+    <title>“春天”后怪相的逻辑链</title>
+    <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E2%80%9C%E6%98%A5%E5%A4%A9%E2%80%9D%E5%90%8E%E6%80%AA%E7%9B%B8%E7%9A%84%E9%80%BB%E8%BE%91%E9%93%BE.md/main/</url>
+    <content><![CDATA[<p>最近政府频繁拿捏资本，释放啥信号？是类似欧美搞分配调整给私有制续命三十年拖延危机，还是新三大改造前稳定局面争取时间和意识形态动员？未来往哪走，这取决于普罗大众（proletariat）是否普遍呼吁 对于｛｛生产，生活｝的管理权 和 ｛生活资料，生产资料，权力｝的分配权 ｝的公有化，而这又取决于普罗大众如何看待追逐利润的经济改革。</p>
+<p>以下是“春天”后怪相的逻辑链:</p>
+<p>X→追逐利润的生产→双轨制→面向地下市场利润的生产→国企计划内效益差→市场经济＋国企私有化→公权力勾结资本→向资本收不到税→中央财政缺口→分税制→地方财政缺口→土地财政→高房价→追逐高薪→教育内卷+找一个人干三份活发两份工资→996→民怨→965+远程工作+降薪</p>
+<p>市场经济→利润导向生产→利润导向用工→加大剥削：加大劳动强度+延长劳动时间+压低工资+不交五险一金→劳务派遣+临时工+学生工+网络平台工</p>
+<p>X→分地→集体农业基础设施失修 基层组织断粮→三提五统→吃不饱饭→进城务工 利润导向用工→收入低 没有户口 没五险一金→地位地下→教育内卷 不当工人</p>
+<p>分地+地方财政缺口→ 基层组织断粮→农村医疗、教育、养老倒退</p>
+<p>教育内卷→学区房+课业压力大→素质教育 课上少讲→补习班 私立学校→禁止补习班 轮换老师→高等华人在海外学校 +国人阶级固化</p>
+<p>地方财政缺口→医疗拨款少→医生工资少→民办医院+以药养医→看病贵+中药利益集团</p>
+<p>利润导向用工→劳动强度大→歧视女性→收入和岗位机会少、生育歧视→住房难 教育卷 要男性分担→彩礼+房子→男性躺平→女性不生→生育率下降+性别矛盾男女打拳</p>
+<p>利润导向生产→宁用廉价人力 不用自动化→产业升级迟缓→产学转化没人买单→学术灌水维生</p>
+<p>利润导向生产→偷工减料+地沟油+污染+工伤</p>
+<p>X→计生从自愿两胎改成强制一胎→人口结构畸形→老龄化＋劳动力减少→养老金吃紧</p>
+<p>利润导向生产→追逐超额利润→加大剥削+大厂+大机器→失业+增大固定资本比例 减少劳动力成本比例→利润率（从劳动力剥削到剩余价值 ÷ 总资本）下降→制造业不赚钱 淘宝店不赚钱→资本转向平台和供应链→资本转向金融泡沫，即经济脱实向虚</p>
+<p>失业→劳动力供大于求→压低工资（工资涨的比通胀慢）</p>
+<p>压低工资+医疗贵+教育贵＋住房贵→钱不够用→内需低 内循环难→生产走低质量 薄利多销路线→高端产品滞销→产业升级迟缓</p>
+<p>以上所有怪相无法解释→各人群内心忧苦→宗教+逆行民族主义+民族主义+公知+兔学+工业党 生产力论+阴阳师+犬儒主义+人性论+ 毁灭人类思想+实用投机 盛行→思想混乱 无法团结 既可以转移注意力掩盖问题根源 也容易被乘虚而入</p>
+<p>总结：X→追逐利润的生产和分配→以上所有怪相→经济危机临近+生活压力变大→资本主义要崩溃了→要走新道路→要搞信息社会主义（公有平台经济+数字平台全过程全民直接民主+政府职能部门服务业化）</p>
+<p>详见：<a href="https://blog.lianghy.ml/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E4%BF%A1%E6%81%AF%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89.md/main/">信息社会主义</a></p>
+<p>正所谓，人民是历史的唯一创造者，人民决定了英雄能唱什么戏。如果从庙堂到小吏足够聪敏和强健，维持框架稳定的唯一选项，是将人民的意志实现。不然，人民的意志倘若不能和平地实现，也必须 迟早会 在风雨中实现。因此，题目问，这是什么信号，取决于普罗大众的头脑，是否反思了X，是否要走新路。</p>
+<p>当上述成功后，一定要严防死守新的X事件，即防范持有追逐利润思路者牟得公权力 特别是全面主持工作的权力，而信息社会主义则是防X反X的利剑与锁链，因为在那里，经济生活中不再有“利润”这个概念，取而代之的是评价是否满足需求的“绩效”。当利润从经济生活中消失，就会开始从人们脑子里消失，复活X的土壤也就消失了。</p>
+]]></content>
+      <categories>
+        <category>道</category>
+        <category>Marxism笔记</category>
+      </categories>
+  </entry>
+  <entry>
     <title>信息社会主义</title>
     <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E4%BF%A1%E6%81%AF%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89.md/main/</url>
     <content><![CDATA[<p>在信息技术日益深入生产和生活并还在迅猛发展的今天，正酝酿着新生产关系和权力结构的诞生条件，社会主义道路的发展有了新的契机。通过总结社会主义发展中在计划经济与市场经济上、在民主与法治建设上的探索，挖掘苏联的OGAS (全国自动化系统)<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> 的思想内核，展望物联网 人工智能 和区块链<sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>的应用趋势，笔者构想了一个当前信息化条件下建设社会主义的道路，即<strong>信息社会主义</strong>，它包括两方面，信息化计划指导的市场经济，和政务信息化改革。这是一条改革实现<strong>公有制度计划经济</strong>和<strong>人民民主专政</strong>的道路。</p>
@@ -9060,35 +9089,6 @@ asdas
 </li>
 </ol>
 </section>
-]]></content>
-      <categories>
-        <category>道</category>
-        <category>Marxism笔记</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>“春天”后怪相的逻辑链</title>
-    <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E2%80%9C%E6%98%A5%E5%A4%A9%E2%80%9D%E5%90%8E%E6%80%AA%E7%9B%B8%E7%9A%84%E9%80%BB%E8%BE%91%E9%93%BE.md/main/</url>
-    <content><![CDATA[<p>最近政府频繁拿捏资本，释放啥信号？是类似欧美搞分配调整给私有制续命三十年拖延危机，还是新三大改造前稳定局面争取时间和意识形态动员？未来往哪走，这取决于普罗大众（proletariat）是否普遍呼吁 对于｛｛生产，生活｝的管理权 和 ｛生活资料，生产资料，权力｝的分配权 ｝的公有化，而这又取决于普罗大众如何看待追逐利润的经济改革。</p>
-<p>以下是“春天”后怪相的逻辑链:</p>
-<p>X→追逐利润的生产→双轨制→面向地下市场利润的生产→国企计划内效益差→市场经济＋国企私有化→公权力勾结资本→向资本收不到税→中央财政缺口→分税制→地方财政缺口→土地财政→高房价→追逐高薪→教育内卷+找一个人干三份活发两份工资→996→民怨→965+远程工作+降薪</p>
-<p>市场经济→利润导向生产→利润导向用工→加大剥削：加大劳动强度+延长劳动时间+压低工资+不交五险一金→劳务派遣+临时工+学生工+网络平台工</p>
-<p>X→分地→集体农业基础设施失修 基层组织断粮→三提五统→吃不饱饭→进城务工 利润导向用工→收入低 没有户口 没五险一金→地位地下→教育内卷 不当工人</p>
-<p>分地+地方财政缺口→ 基层组织断粮→农村医疗、教育、养老倒退</p>
-<p>教育内卷→学区房+课业压力大→素质教育 课上少讲→补习班 私立学校→禁止补习班 轮换老师→高等华人在海外学校 +国人阶级固化</p>
-<p>地方财政缺口→医疗拨款少→医生工资少→民办医院+以药养医→看病贵+中药利益集团</p>
-<p>利润导向用工→劳动强度大→歧视女性→收入和岗位机会少、生育歧视→住房难 教育卷 要男性分担→彩礼+房子→男性躺平→女性不生→生育率下降+性别矛盾男女打拳</p>
-<p>利润导向生产→宁用廉价人力 不用自动化→产业升级迟缓→产学转化没人买单→学术灌水维生</p>
-<p>利润导向生产→偷工减料+地沟油+污染+工伤</p>
-<p>X→计生从自愿两胎改成强制一胎→人口结构畸形→老龄化＋劳动力减少→养老金吃紧</p>
-<p>利润导向生产→追逐超额利润→加大剥削+大厂+大机器→失业+增大固定资本比例 减少劳动力成本比例→利润率（从劳动力剥削到剩余价值 ÷ 总资本）下降→制造业不赚钱 淘宝店不赚钱→资本转向平台和供应链→资本转向金融泡沫，即经济脱实向虚</p>
-<p>失业→劳动力供大于求→压低工资（工资涨的比通胀慢）</p>
-<p>压低工资+医疗贵+教育贵＋住房贵→钱不够用→内需低 内循环难→生产走低质量 薄利多销路线→高端产品滞销→产业升级迟缓</p>
-<p>以上所有怪相无法解释→各人群内心忧苦→宗教+逆行民族主义+民族主义+公知+兔学+工业党 生产力论+阴阳师+犬儒主义+人性论+ 毁灭人类思想+实用投机 盛行→思想混乱 无法团结 既可以转移注意力掩盖问题根源 也容易被乘虚而入</p>
-<p>总结：X→追逐利润的生产和分配→以上所有怪相→经济危机临近+生活压力变大→资本主义要崩溃了→要走新道路→要搞信息社会主义（公有平台经济+数字平台全过程全民直接民主+政府职能部门服务业化）</p>
-<p>详见：<a href="https://blog.lianghy.ml/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E4%BF%A1%E6%81%AF%E7%A4%BE%E4%BC%9A%E4%B8%BB%E4%B9%89.md/main/">信息社会主义</a></p>
-<p>正所谓，人民是历史的唯一创造者，人民决定了英雄能唱什么戏。如果从庙堂到小吏足够聪敏和强健，维持框架稳定的唯一选项，是将人民的意志实现。不然，人民的意志倘若不能和平地实现，也必须 迟早会 在风雨中实现。因此，题目问，这是什么信号，取决于普罗大众的头脑，是否反思了X，是否要走新路。</p>
-<p>当上述成功后，一定要严防死守新的X事件，即防范持有追逐利润思路者牟得公权力 特别是全面主持工作的权力，而信息社会主义则是防X反X的利剑与锁链，因为在那里，经济生活中不再有“利润”这个概念，取而代之的是评价是否满足需求的“绩效”。当利润从经济生活中消失，就会开始从人们脑子里消失，复活X的土壤也就消失了。</p>
 ]]></content>
       <categories>
         <category>道</category>
@@ -9192,6 +9192,18 @@ asdas
       </categories>
   </entry>
   <entry>
+    <title>百法明门论</title>
+    <url>/%E9%81%93/%E4%BD%9B%E6%B3%95%E6%9C%AD%E8%AE%B0/%E7%99%BE%E6%B3%95%E6%98%8E%E9%97%A8%E8%AE%BA.md/main/</url>
+    <content><![CDATA[<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa.html">来源</a></p>
+<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa-1.html">参考</a></p>
+<p><img data-src="/%E9%81%93/%E4%BD%9B%E6%B3%95%E6%9C%AD%E8%AE%B0/%E7%99%BE%E6%B3%95%E6%98%8E%E9%97%A8%E8%AE%BA.md/main/100fmml.jpg" alt="100fmml"></p>
+]]></content>
+      <categories>
+        <category>道</category>
+        <category>佛法札记</category>
+      </categories>
+  </entry>
+  <entry>
     <title>学生气的小资幻想</title>
     <url>/%E9%81%93/Marxism%E7%AC%94%E8%AE%B0/%E9%AD%94%E6%80%94%E4%BA%BA%E6%97%A5%E8%AE%B0/%E5%AD%A6%E7%94%9F%E6%B0%94%E7%9A%84%E5%B0%8F%E8%B5%84%E5%B9%BB%E6%83%B3.md/main/</url>
     <content><![CDATA[<p>在清华的清芬食堂听见邻桌搞金融的同学聊天：</p>
@@ -9223,18 +9235,6 @@ asdas
         <category>道</category>
         <category>Marxism笔记</category>
         <category>魔怔人日记</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>百法明门论</title>
-    <url>/%E9%81%93/%E4%BD%9B%E6%B3%95%E6%9C%AD%E8%AE%B0/%E7%99%BE%E6%B3%95%E6%98%8E%E9%97%A8%E8%AE%BA.md/main/</url>
-    <content><![CDATA[<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa.html">来源</a></p>
-<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa-1.html">参考</a></p>
-<p><img data-src="/%E9%81%93/%E4%BD%9B%E6%B3%95%E6%9C%AD%E8%AE%B0/%E7%99%BE%E6%B3%95%E6%98%8E%E9%97%A8%E8%AE%BA.md/main/100fmml.jpg" alt="100fmml"></p>
-]]></content>
-      <categories>
-        <category>道</category>
-        <category>佛法札记</category>
       </categories>
   </entry>
   <entry>
