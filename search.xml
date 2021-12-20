@@ -1,15 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>检索指标</title>
-    <url>/posts/6416/</url>
-    <content><![CDATA[<p><a href="https://yifdu.github.io/2018/12/06/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AF%84%E4%BB%B7%E6%A0%87%E7%AD%BEMAP/">参见</a></p>
-]]></content>
-      <categories>
-        <category>术</category>
-      </categories>
-  </entry>
-  <entry>
     <title>从宇宙繁衍到科研的意义</title>
     <url>/posts/4844/</url>
     <content><![CDATA[<h2 id="背景"><a class="header-anchor" href="#背景"></a>背景</h2>
@@ -42,6 +33,27 @@
 ]]></content>
       <categories>
         <category>道</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>检索指标</title>
+    <url>/posts/6416/</url>
+    <content><![CDATA[<p><a href="https://yifdu.github.io/2018/12/06/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AF%84%E4%BB%B7%E6%A0%87%E7%AD%BEMAP/">参见</a></p>
+]]></content>
+      <categories>
+        <category>术</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>百法明门论</title>
+    <url>/posts/29929/</url>
+    <content><![CDATA[<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa.html">来源</a></p>
+<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa-1.html">参考</a></p>
+<p><img data-src="/posts/29929/100fmml.jpg" alt="100fmml"></p>
+]]></content>
+      <categories>
+        <category>道</category>
+        <category>佛法札记</category>
       </categories>
   </entry>
   <entry>
@@ -1466,121 +1478,6 @@ B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
       </categories>
   </entry>
   <entry>
-    <title>matlab在linux上安装教程</title>
-    <url>/posts/22651/</url>
-    <content><![CDATA[<h1 id="安装教程"><a class="header-anchor" href="#安装教程"></a>安装教程</h1>
-<p>适用于：linux上装matlab</p>
-<h2 id="目录结构"><a class="header-anchor" href="#目录结构"></a>目录结构</h2>
-<blockquote>
-<p>matlab2018b<br>
-├── 安装教程<br>
-│   ├── <a href="http://README.md">README.md</a><br>
-├── docs<br>
-│   ├── FAQ.txt<br>
-│   ├── MATLAB安装手册.docx<br>
-│   └── 技术支持.docx<br>
-├── installer_input.txt<br>
-├── network.lic<br>
-├── R2018b_glnxa64_dvd1.iso<br>
-├── R2018b_glnxa64_dvd2.iso<br>
-└── sn.txt</p>
-</blockquote>
-<p>用于安装清华校园版，只能在清华内网使用，服务器可用之</p>
-<h2 id="下载来源"><a class="header-anchor" href="#下载来源"></a>下载来源</h2>
-<p>-X参数可使用Xserver</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -X <span class="token operator">&lt;</span>服务器名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>用firefox打开清华的计算软件资源网站</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">firefox https://its.tsinghua.edu.cn/column/jsrj/1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>弹出图形界面窗口</p>
-<p>点击下载以下三个文件</p>
-<ul>
-<li>
-<p><a href="https://its.tsinghua.edu.cn/info/jsrj/1904">Matlab R2018b for Linux 64位（DVD1）</a></p>
-</li>
-<li>
-<p><a href="https://its.tsinghua.edu.cn/info/jsrj/1903">Matlab R2018b for Linux 64位（DVD2）</a></p>
-</li>
-<li>
-<p><a href="https://its.tsinghua.edu.cn/info/jsrj/1703">Matlab安装手册及相关文件</a></p>
-</li>
-</ul>
-<p>或者在台式机上下载好，传到服务器上亦可</p>
-<p><strong>本文件夹<code>matlab2018b/</code>下的文件即是下载所得</strong></p>
-<h2 id="安装步骤"><a class="header-anchor" href="#安装步骤"></a><a href="https://sbargoti.wordpress.com/2016/06/06/install-matlab-on-remote-server-without-x11/">安装步骤</a></h2>
-<h3 id="挂载dvd1"><a class="header-anchor" href="#挂载dvd1"></a>挂载dvd1</h3>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">mkdir</span> /mnt/matlab
-<span class="token function">sudo</span> <span class="token function">mount</span> -t iso9660 -o loop <span class="token operator">&lt;</span>path-to-R2018b_glnxa64_dvd1.iso<span class="token operator">></span> /mnt/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="修改installer-input-txt"><a class="header-anchor" href="#修改installer-input-txt"></a>修改<code>installer_input.txt</code></h3>
-<p><code>matlab2018b/installer_input.txt</code> 是已经为清华校园版修改好了，用于安装清华校园版，只能在清华内网使用，服务器可用之</p>
-<p>若不想用清华校园版的，可自行修改，依照下法：</p>
-<ul>
-<li>
-<p>挂载目录<code>/mnt/matlab</code>是只读的，但需要修改<code>/mnt/matlab/installer_input.txt</code> 文件，故打开<code>/mnt/matlab/installer_input.txt</code>，全文复制，关闭之。</p>
-</li>
-<li>
-<p>再<code>vim matlab2018b/installer_input.txt</code>，将上述复制粘贴到此文件中，然后将下述行修改成下列</p>
-</li>
-<li>
-<pre><code>fileInstallationKey=密钥形如xxxxx-xxxxx-共19节
-agreeToLicense=yes
-mode=silent
-licensePath=[license-directory]/network.lic
-<pre class="line-numbers language-none"><code class="language-none">
-  其中  &#96;密钥&#96; 和 &#96;network.lic &#96;，自行到网上找破解资源可得到
-
-### 安装
-
-&#96;&#96;&#96;bash
-cd matlab2018b
-sudo &#x2F;mnt&#x2F;matlab&#x2F;install -inputFile installer_input.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-</code></pre>
-</li>
-</ul>
-<p>注：不得<code>cd</code>到<code>/mnt/matlab</code>后，执行上述命令，不然无法正常安装</p>
-<h3 id="挂载dvd2"><a class="header-anchor" href="#挂载dvd2"></a>挂载dvd2</h3>
-<p>当终端不断出现下面输出时</p>
-<blockquote>
-<p>(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
-(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
-(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
-…</p>
-</blockquote>
-<p>新开一个窗口执行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mount</span> -t iso9660 -o loop <span class="token operator">&lt;</span>path-to-R2018b_glnxa64_dvd2.iso<span class="token operator">></span> /mnt/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>则会继续安装，并输出</p>
-<blockquote>
-<p>(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
-(Apr 09, 2019 21:37:06) Installing Product: Aerospace Blockset 4.0<br>
-(Apr 09, 2019 21:37:09) Installing Product: Aerospace Toolbox 3.0<br>
-(Apr 09, 2019 21:37:11) Installing Product: Antenna Toolbox 3.2<br>
-(Apr 09, 2019 21:37:22) Installing Product: Audio System Toolbox 1.5<br>
-(Apr 09, 2019 21:37:27) Installing Product: Automated Driving System Toolbox 1.3<br>
-(Apr 09, 2019 21:37:33) Installing Product: Bioinformatics Toolbox 4.11<br>
-…</p>
-</blockquote>
-<p>直到输出</p>
-<blockquote>
-<p>Finished</p>
-</blockquote>
-<p>则安装完成</p>
-<h3 id="修改链接"><a class="header-anchor" href="#修改链接"></a>修改链接</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /usr/bin/matlab
-<span class="token function">ln</span> -s /usr/local/MATLAB/R2018b/bin/matlab /usr/bin/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h3 id="取消挂载"><a class="header-anchor" href="#取消挂载"></a>取消挂载</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">umount</span> -l /mnt/matlab <span class="token comment"># 解挂 R2018b_glnxa64_dvd2.iso，/mnt/matlab 下恢复 R2018b_glnxa64_dvd1.iso 挂载的内容</span>
-<span class="token function">umount</span> -l /mnt/matlab <span class="token comment"># 解挂 R2018b_glnxa64_dvd1.iso，/mnt/matlab 下应该是空的</span>
-<span class="token function">rm</span> -f /mnt/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="测试能否使用"><a class="header-anchor" href="#测试能否使用"></a>测试能否使用</h3>
-<p><code>ssh 服务器名</code>后，执行<code>matlab</code>，能正常启动MATLAB的命令行界面，并执行<code>disp 'hello world'</code>，输出’hello world’</p>
-<p><code>ssh -X 服务器名</code>后，执行<code>matlab</code>，能正常启动MATLAB的图形界面，并执行<code>disp 'hello world'</code>，输出’hello world’</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>linux杂项</category>
-      </categories>
-  </entry>
-  <entry>
     <title>linux防火墙</title>
     <url>/posts/56123/</url>
     <content><![CDATA[<h2 id="概述"><a class="header-anchor" href="#概述"></a>概述</h2>
@@ -1825,6 +1722,121 @@ telnet: Unable to connect to remote host: Connection refused<span aria-hidden="t
 <li><code>&lt;扩展名&gt;</code> 不可缺省，7z不会帮你脑补扩展名</li>
 <li><code>&lt;待压缩文件(夹)&gt;</code>: 可多个， 空格分隔</li>
 </ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>linux杂项</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>matlab在linux上安装教程</title>
+    <url>/posts/22651/</url>
+    <content><![CDATA[<h1 id="安装教程"><a class="header-anchor" href="#安装教程"></a>安装教程</h1>
+<p>适用于：linux上装matlab</p>
+<h2 id="目录结构"><a class="header-anchor" href="#目录结构"></a>目录结构</h2>
+<blockquote>
+<p>matlab2018b<br>
+├── 安装教程<br>
+│   ├── <a href="http://README.md">README.md</a><br>
+├── docs<br>
+│   ├── FAQ.txt<br>
+│   ├── MATLAB安装手册.docx<br>
+│   └── 技术支持.docx<br>
+├── installer_input.txt<br>
+├── network.lic<br>
+├── R2018b_glnxa64_dvd1.iso<br>
+├── R2018b_glnxa64_dvd2.iso<br>
+└── sn.txt</p>
+</blockquote>
+<p>用于安装清华校园版，只能在清华内网使用，服务器可用之</p>
+<h2 id="下载来源"><a class="header-anchor" href="#下载来源"></a>下载来源</h2>
+<p>-X参数可使用Xserver</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -X <span class="token operator">&lt;</span>服务器名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>用firefox打开清华的计算软件资源网站</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">firefox https://its.tsinghua.edu.cn/column/jsrj/1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>弹出图形界面窗口</p>
+<p>点击下载以下三个文件</p>
+<ul>
+<li>
+<p><a href="https://its.tsinghua.edu.cn/info/jsrj/1904">Matlab R2018b for Linux 64位（DVD1）</a></p>
+</li>
+<li>
+<p><a href="https://its.tsinghua.edu.cn/info/jsrj/1903">Matlab R2018b for Linux 64位（DVD2）</a></p>
+</li>
+<li>
+<p><a href="https://its.tsinghua.edu.cn/info/jsrj/1703">Matlab安装手册及相关文件</a></p>
+</li>
+</ul>
+<p>或者在台式机上下载好，传到服务器上亦可</p>
+<p><strong>本文件夹<code>matlab2018b/</code>下的文件即是下载所得</strong></p>
+<h2 id="安装步骤"><a class="header-anchor" href="#安装步骤"></a><a href="https://sbargoti.wordpress.com/2016/06/06/install-matlab-on-remote-server-without-x11/">安装步骤</a></h2>
+<h3 id="挂载dvd1"><a class="header-anchor" href="#挂载dvd1"></a>挂载dvd1</h3>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">sudo</span> <span class="token function">mkdir</span> /mnt/matlab
+<span class="token function">sudo</span> <span class="token function">mount</span> -t iso9660 -o loop <span class="token operator">&lt;</span>path-to-R2018b_glnxa64_dvd1.iso<span class="token operator">></span> /mnt/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="修改installer-input-txt"><a class="header-anchor" href="#修改installer-input-txt"></a>修改<code>installer_input.txt</code></h3>
+<p><code>matlab2018b/installer_input.txt</code> 是已经为清华校园版修改好了，用于安装清华校园版，只能在清华内网使用，服务器可用之</p>
+<p>若不想用清华校园版的，可自行修改，依照下法：</p>
+<ul>
+<li>
+<p>挂载目录<code>/mnt/matlab</code>是只读的，但需要修改<code>/mnt/matlab/installer_input.txt</code> 文件，故打开<code>/mnt/matlab/installer_input.txt</code>，全文复制，关闭之。</p>
+</li>
+<li>
+<p>再<code>vim matlab2018b/installer_input.txt</code>，将上述复制粘贴到此文件中，然后将下述行修改成下列</p>
+</li>
+<li>
+<pre><code>fileInstallationKey=密钥形如xxxxx-xxxxx-共19节
+agreeToLicense=yes
+mode=silent
+licensePath=[license-directory]/network.lic
+<pre class="line-numbers language-none"><code class="language-none">
+  其中  &#96;密钥&#96; 和 &#96;network.lic &#96;，自行到网上找破解资源可得到
+
+### 安装
+
+&#96;&#96;&#96;bash
+cd matlab2018b
+sudo &#x2F;mnt&#x2F;matlab&#x2F;install -inputFile installer_input.txt<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</code></pre>
+</li>
+</ul>
+<p>注：不得<code>cd</code>到<code>/mnt/matlab</code>后，执行上述命令，不然无法正常安装</p>
+<h3 id="挂载dvd2"><a class="header-anchor" href="#挂载dvd2"></a>挂载dvd2</h3>
+<p>当终端不断出现下面输出时</p>
+<blockquote>
+<p>(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
+(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
+(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
+…</p>
+</blockquote>
+<p>新开一个窗口执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mount</span> -t iso9660 -o loop <span class="token operator">&lt;</span>path-to-R2018b_glnxa64_dvd2.iso<span class="token operator">></span> /mnt/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>则会继续安装，并输出</p>
+<blockquote>
+<p>(Apr 09, 2019 21:37:06) Info: Eject DVD 1 and insert DVD 2 to continue.<br>
+(Apr 09, 2019 21:37:06) Installing Product: Aerospace Blockset 4.0<br>
+(Apr 09, 2019 21:37:09) Installing Product: Aerospace Toolbox 3.0<br>
+(Apr 09, 2019 21:37:11) Installing Product: Antenna Toolbox 3.2<br>
+(Apr 09, 2019 21:37:22) Installing Product: Audio System Toolbox 1.5<br>
+(Apr 09, 2019 21:37:27) Installing Product: Automated Driving System Toolbox 1.3<br>
+(Apr 09, 2019 21:37:33) Installing Product: Bioinformatics Toolbox 4.11<br>
+…</p>
+</blockquote>
+<p>直到输出</p>
+<blockquote>
+<p>Finished</p>
+</blockquote>
+<p>则安装完成</p>
+<h3 id="修改链接"><a class="header-anchor" href="#修改链接"></a>修改链接</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /usr/bin/matlab
+<span class="token function">ln</span> -s /usr/local/MATLAB/R2018b/bin/matlab /usr/bin/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="取消挂载"><a class="header-anchor" href="#取消挂载"></a>取消挂载</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">umount</span> -l /mnt/matlab <span class="token comment"># 解挂 R2018b_glnxa64_dvd2.iso，/mnt/matlab 下恢复 R2018b_glnxa64_dvd1.iso 挂载的内容</span>
+<span class="token function">umount</span> -l /mnt/matlab <span class="token comment"># 解挂 R2018b_glnxa64_dvd1.iso，/mnt/matlab 下应该是空的</span>
+<span class="token function">rm</span> -f /mnt/matlab<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="测试能否使用"><a class="header-anchor" href="#测试能否使用"></a>测试能否使用</h3>
+<p><code>ssh 服务器名</code>后，执行<code>matlab</code>，能正常启动MATLAB的命令行界面，并执行<code>disp 'hello world'</code>，输出’hello world’</p>
+<p><code>ssh -X 服务器名</code>后，执行<code>matlab</code>，能正常启动MATLAB的图形界面，并执行<code>disp 'hello world'</code>，输出’hello world’</p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3017,6 +3029,39 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
       </categories>
   </entry>
   <entry>
+    <title>mac永久添加私钥到keyChain</title>
+    <url>/posts/46464/</url>
+    <content><![CDATA[<p>以下<a href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本，以备不时之需</p>
+<blockquote>
+<h1 id="Mac-重启后自动-ssh-add-私钥"><a class="header-anchor" href="#Mac-重启后自动-ssh-add-私钥"></a><a href="https://mednoter.com/ssh-add-automatically.html">Mac 重启后自动 ssh-add 私钥</a></h1>
+<p>管理服务器有一些安全常识:</p>
+<ul>
+<li>禁止 root 远程登录</li>
+<li>禁止密码登录</li>
+<li>使用 priviate / public key 作为默认的登录方式。</li>
+<li>修改 sshd 端口</li>
+</ul>
+<p>From Linode: <a href="https://www.linode.com/docs/security/securing-your-server">Securing your server</a></p>
+<p>安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，需要一次次手工 ssh-add 私钥，特别心烦。</p>
+<p>几年前有这种方法 <code>ssh-add -K privateKey</code> 可以一劳永逸的把私钥存到 keychain 中，重启后也不需要手动 ssh-add，非常方便。</p>
+<p><strong>这种方式不管用了。</strong></p>
+<p><img data-src="/posts/46464/2017-06-02-ssh-add.jpeg" alt="img"></p>
+<h2 id="新的解决方法"><a class="header-anchor" href="#新的解决方法"></a>新的解决方法</h2>
+<p><strong>创建 Automator 任务加载私钥，然后放到开机启动中。</strong></p>
+<ol>
+<li>创建一个 Automator task.<img data-src="/posts/46464/2017-06-02-step1.jpeg" alt="img"></li>
+<li>在 task 中写一串 shell script<img data-src="/posts/46464/2017-06-02-step2.jpeg" alt="img"></li>
+<li>把 task 添加到 login items 中，每次系统重启后会执行这个 Automator task，自动 ssh-add 所有的私钥。<img data-src="/posts/46464/2017-06-02-step3.jpeg" alt="img"><img data-src="/posts/46464/2017-06-02-step4.jpeg" alt="img"></li>
+</ol>
+<p>搞定！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
     <title>mac的移动硬盘分区方案</title>
     <url>/posts/41646/</url>
     <content><![CDATA[<h3 id="分区方案"><a class="header-anchor" href="#分区方案"></a>分区方案</h3>
@@ -3085,78 +3130,6 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
       </categories>
   </entry>
   <entry>
-    <title>禁止safar从http跳转到https</title>
-    <url>/posts/65117/</url>
-    <content><![CDATA[<p>Safari对于一些用https访问的域名, 会存入一个列表, 此后访问 <code>http://此域名</code> , 会自动跳转到  <code>https://此域名</code> .</p>
-<p>若不想跳转, 可如下操作:</p>
-<ul>
-<li>
-<p>⌘+Q 退出Safari</p>
-</li>
-<li>
-<p>执行如下命令. 这个文件是个域名列表, safari见之则访https而非http. 删此文件, 则列表清空. <a href="https://discussions.apple.com/thread/6989319">出处</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 一般能解决问题.</p>
-</li>
-</ul>
-<p>若还是跳转https, 则继续下述操作</p>
-<ul>
-<li>
-<p>⌘+Q 退出Safari</p>
-</li>
-<li>
-<p>运行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>重启操作系统</p>
-</li>
-<li>
-<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 几乎都能解决.</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>mac永久添加私钥到keyChain</title>
-    <url>/posts/46464/</url>
-    <content><![CDATA[<p>以下<a href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本，以备不时之需</p>
-<blockquote>
-<h1 id="Mac-重启后自动-ssh-add-私钥"><a class="header-anchor" href="#Mac-重启后自动-ssh-add-私钥"></a><a href="https://mednoter.com/ssh-add-automatically.html">Mac 重启后自动 ssh-add 私钥</a></h1>
-<p>管理服务器有一些安全常识:</p>
-<ul>
-<li>禁止 root 远程登录</li>
-<li>禁止密码登录</li>
-<li>使用 priviate / public key 作为默认的登录方式。</li>
-<li>修改 sshd 端口</li>
-</ul>
-<p>From Linode: <a href="https://www.linode.com/docs/security/securing-your-server">Securing your server</a></p>
-<p>安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，需要一次次手工 ssh-add 私钥，特别心烦。</p>
-<p>几年前有这种方法 <code>ssh-add -K privateKey</code> 可以一劳永逸的把私钥存到 keychain 中，重启后也不需要手动 ssh-add，非常方便。</p>
-<p><strong>这种方式不管用了。</strong></p>
-<p><img data-src="/posts/46464/2017-06-02-ssh-add.jpeg" alt="img"></p>
-<h2 id="新的解决方法"><a class="header-anchor" href="#新的解决方法"></a>新的解决方法</h2>
-<p><strong>创建 Automator 任务加载私钥，然后放到开机启动中。</strong></p>
-<ol>
-<li>创建一个 Automator task.<img data-src="/posts/46464/2017-06-02-step1.jpeg" alt="img"></li>
-<li>在 task 中写一串 shell script<img data-src="/posts/46464/2017-06-02-step2.jpeg" alt="img"></li>
-<li>把 task 添加到 login items 中，每次系统重启后会执行这个 Automator task，自动 ssh-add 所有的私钥。<img data-src="/posts/46464/2017-06-02-step3.jpeg" alt="img"><img data-src="/posts/46464/2017-06-02-step4.jpeg" alt="img"></li>
-</ol>
-<p>搞定！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
     <title>注销icloud后桌面文件消失</title>
     <url>/posts/19843/</url>
     <content><![CDATA[<h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
@@ -3193,6 +3166,45 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <h3 id="使用time-machine"><a class="header-anchor" href="#使用time-machine"></a>使用time machine</h3>
 <p>若近期使用了time machine备份了系统, 可将 <code>桌面</code> <code>文稿</code> 等文件夹 整体还原到最近一次备份.</p>
 <p>若发现使用<a href="#%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0icloud%E5%BD%92%E6%A1%A3" title="推荐">使用本地icloud归档</a>去恢复的文件有缺失, 也可从time machine中最近一次备份里, 还原所缺的文件和文件夹.</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>禁止safar从http跳转到https</title>
+    <url>/posts/65117/</url>
+    <content><![CDATA[<p>Safari对于一些用https访问的域名, 会存入一个列表, 此后访问 <code>http://此域名</code> , 会自动跳转到  <code>https://此域名</code> .</p>
+<p>若不想跳转, 可如下操作:</p>
+<ul>
+<li>
+<p>⌘+Q 退出Safari</p>
+</li>
+<li>
+<p>执行如下命令. 这个文件是个域名列表, safari见之则访https而非http. 删此文件, 则列表清空. <a href="https://discussions.apple.com/thread/6989319">出处</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 一般能解决问题.</p>
+</li>
+</ul>
+<p>若还是跳转https, 则继续下述操作</p>
+<ul>
+<li>
+<p>⌘+Q 退出Safari</p>
+</li>
+<li>
+<p>运行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>重启操作系统</p>
+</li>
+<li>
+<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 几乎都能解决.</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3287,287 +3299,6 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
       <categories>
         <category>器</category>
         <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>ipython与jupyter_notebook安装配置使用</title>
-    <url>/posts/46630/</url>
-    <content><![CDATA[<p>[TOC]</p>
-<h1 id="ipython安装配置使用"><a class="header-anchor" href="#ipython安装配置使用"></a>ipython安装配置使用</h1>
-<h2 id="配置"><a class="header-anchor" href="#配置"></a>配置</h2>
-<h3 id="生成配置文件"><a class="header-anchor" href="#生成配置文件"></a>生成配置文件</h3>
-<p>若ipython的配置文件<code>~/.ipython/profile_default/&#123;ipython_config.py,ipython_kernel_config.py&#125;</code>不存在，则执行如下命令以创建之</p>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">ipython profile create<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>会返回</p>
-<blockquote>
-<p>[ProfileCreate] Generating default config file: ‘~/.ipython/profile_default/ipython_config.py’<br>
-[ProfileCreate] Generating default config file: ‘~/.ipython/profile_default/ipython_kernel_config.py’</p>
-</blockquote>
-<h3 id="终端下ipython的配色"><a class="header-anchor" href="#终端下ipython的配色"></a>终端下ipython的配色</h3>
-<p><a href="https://stackoverflow.com/questions/14129278/how-do-i-customize-text-color-in-ipython">参考</a></p>
-<h4 id="更换配色方案"><a class="header-anchor" href="#更换配色方案"></a>更换配色方案</h4>
-<p>默认的终端下ipython配色，<code>__class__</code>等显示为深蓝色，当你的终端背景是深色时容易，深蓝字难看清，建议修改配色方案。在<code>~/.ipython/profile_default/ipython_config.py</code>，找到如下两行，删除其行首”#“，并将等号后修改为</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>InteractiveShell<span class="token punctuation">.</span>colors <span class="token operator">=</span> <span class="token string">'Linux'</span>
-c<span class="token punctuation">.</span>TerminalInteractiveShell<span class="token punctuation">.</span>highlighting_style <span class="token operator">=</span> <span class="token string">'monokai'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ul>
-<li>
-<p><code>c.InteractiveShell.colors</code>是指在ipython报错用的配色</p>
-</li>
-<li>
-<p><code>c.TerminalInteractiveShell.highlighting_style</code>是指python代码的配色。配色方案在定义在</p>
-<p><code>/Users/mac/anaconda/lib/python3.6/site-packages/pygments/styles/&lt;配色方案名称&gt;.py</code></p>
-<p>这里， &lt;配色方案名称monokai，是我找到<code>styles/</code>下较友好的配色了。</p>
-</li>
-</ul>
-<h4 id="手动修改高亮"><a class="header-anchor" href="#手动修改高亮"></a>手动修改高亮</h4>
-<p>若对所选配色方案还有不满意的地方，可以手动修改指定语法成分的高亮</p>
-<p>搜索<code>c.TerminalInteractiveShell.highlighting_style_overrides</code>，然后如下改写</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pygments<span class="token punctuation">.</span>token <span class="token keyword">import</span> Token<span class="token punctuation">,</span> Keyword<span class="token punctuation">,</span> Name<span class="token punctuation">,</span> Comment<span class="token punctuation">,</span> String<span class="token punctuation">,</span> Error<span class="token punctuation">,</span> \
-     Number<span class="token punctuation">,</span> Operator<span class="token punctuation">,</span> Generic<span class="token punctuation">,</span> Whitespace
-<span class="token comment">## Override highlighting format for specific tokens</span>
-c<span class="token punctuation">.</span>TerminalInteractiveShell<span class="token punctuation">.</span>highlighting_style_overrides <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
-
-    <span class="token comment">## Standard Pygments tokens (are all used by IPython ?)</span>
-
-    <span class="token comment"># Whitespace:                "#bbbbbb",</span>
-    <span class="token comment"># Comment:                   "italic #008800",</span>
-    <span class="token comment"># Comment.Preproc:           "noitalic",</span>
-    <span class="token comment"># Comment.Special:           "noitalic bold",</span>
-
-    Keyword<span class="token punctuation">:</span>                     <span class="token string">"bold #5fd4f9"</span><span class="token punctuation">,</span> <span class="token comment">#  8ce98c</span>
-    <span class="token comment"># Keyword.Pseudo:            "nobold",</span>
-    <span class="token comment"># Keyword.Type:              "bold #00BB00",</span>
-
-    <span class="token comment"># Operator:                  "#ff736f",   #</span>
-    <span class="token comment"># Operator.Word:             "bold #AA22FF",</span>
-
-    Name<span class="token punctuation">.</span>Builtin<span class="token punctuation">:</span>                <span class="token string">"#5fd4f9"</span><span class="token punctuation">,</span>
-    <span class="token comment"># Name.Function:             "#99f46a", #</span>
-    <span class="token comment"># Name.Class:                "#99f46a", #</span>
-    <span class="token comment"># Name.Namespace:            "bold #99f46a", #</span>
-    <span class="token comment"># Name.Exception:            "italic bold #89f9fc",</span>
-    Name<span class="token punctuation">.</span>Variable<span class="token punctuation">:</span>               <span class="token string">"italic"</span><span class="token punctuation">,</span> <span class="token comment">#</span>
-    <span class="token comment"># Name.Constant:             "#880000",</span>
-    <span class="token comment"># Name.Label:                "#A0A000",</span>
-    <span class="token comment"># Name.Entity:               "bold #999999",</span>
-    <span class="token comment"># Name.Attribute:            "#BB4444",</span>
-    <span class="token comment"># Name.Tag:                  "bold #008000",</span>
-    <span class="token comment"># Name.Decorator:            "#AA22FF",</span>
-
-
-    <span class="token comment"># String:                    "#f7f86c",</span>
-    <span class="token comment"># String.Doc:                "italic",</span>
-    <span class="token comment"># String.Interpol:           "bold #BB6688",</span>
-    <span class="token comment"># String.Escape:             "bold #BB6622",</span>
-    <span class="token comment"># String.Regex:              "#BB6688",</span>
-    <span class="token comment"># String.Symbol:             "#71f3f6", #</span>
-    <span class="token comment"># String.Other:              "#008000",</span>
-    <span class="token comment"># Number:                    "#cf97f2", #</span>
-
-    <span class="token comment"># Generic.Heading:           "bold #000080",</span>
-    <span class="token comment"># Generic.Subheading:        "bold #800080",</span>
-    <span class="token comment"># Generic.Deleted:           "#A00000",</span>
-    <span class="token comment"># Generic.Inserted:          "#5affb4", #</span>
-    <span class="token comment"># Generic.Error:             "#FF0000",</span>
-    <span class="token comment"># Generic.Emph:              "italic",</span>
-    <span class="token comment"># Generic.Strong:            "bold",</span>
-    <span class="token comment"># Generic.Prompt:            "bold #000080",</span>
-    <span class="token comment"># Generic.Output:            "#888",</span>
-    <span class="token comment"># Generic.Traceback:         "#04D",</span>
-
-    <span class="token comment"># Error:                     "border:#ff0000",</span>
-
-    <span class="token comment">## IPython</span>
-
-    <span class="token comment"># Token.Number: '#ffffff',</span>
-    <span class="token comment"># Token.Operator: 'noinherit',</span>
-    <span class="token comment"># Token.String: '#8b8',</span>
-    <span class="token comment"># Token.Name.Function: '#2080D0',</span>
-    <span class="token comment"># Token.Name.Class: 'bold #2080D0',</span>
-    <span class="token comment"># Token.Name.Namespace: 'bold #2080D0',</span>
-    <span class="token comment"># Token.Prompt: '#ffffff bold',</span>
-    <span class="token comment"># Token.PromptNum: '#888888 bold',</span>
-    Token<span class="token punctuation">.</span>OutPrompt<span class="token punctuation">:</span> <span class="token string">'#ff5753'</span><span class="token punctuation">,</span>
-    Token<span class="token punctuation">.</span>OutPromptNum<span class="token punctuation">:</span> <span class="token string">'#ff5753 bold'</span><span class="token punctuation">,</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h1 id="jupyter-notebook-安装配置使用"><a class="header-anchor" href="#jupyter-notebook-安装配置使用"></a>jupyter notebook 安装配置使用</h1>
-<p><a href="https://zhuanlan.zhihu.com/p/23110830">参考</a></p>
-<p>已经验证此配置方法可用的环境：实验室服务器juncluster、jungpu</p>
-<h2 id="配置方法"><a class="header-anchor" href="#配置方法"></a>配置方法</h2>
-<p>ssh登录服务器</p>
-<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
-<p>进入python虚拟环境</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>检查是否安装jupyter</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>如返回未安装，则安装之</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>已安装则升级之</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="配置-_2"><a class="header-anchor" href="#配置-_2"></a>配置</h3>
-<h4 id="生成配置文件-_2"><a class="header-anchor" href="#生成配置文件-_2"></a>生成配置文件</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter notebook --generate-config
-<span class="token comment"># 返回 Writing default config to: ~/.jupyter/jupyter_notebook_config.py</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>会自动创建文件夹<code>~/.jupyter</code>与配置文件<code>~/.jupyter/jupyter_notebook_config.py</code></p>
-<p>命令行会返回此【配置文件路径】，请保存</p>
-<h4 id="生成网络证书"><a class="header-anchor" href="#生成网络证书"></a>生成网络证书</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~/.jupyter
-<span class="token comment"># openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem</span>
-openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days <span class="token number">3650</span> -out mycert.pem<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>回车系统会要求你填写：国家、省份、城市、单位、项目、邮箱，按真实填写之即可。<br>
-保存【证书路径】=<code>~/.jupyter/mycert.pem</code>，【密钥路径】=<code>~/.jupyter/key.pem</code></p>
-<h4 id="生成notebook登录密码"><a class="header-anchor" href="#生成notebook登录密码"></a>生成notebook登录密码</h4>
-<p>若想给notebook设置登录密码，则做此事。可以在任何电脑上做，生成的密文是一样的</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">ipython
-In <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token keyword">from</span> notebook<span class="token punctuation">.</span>auth <span class="token keyword">import</span> passwd
-In <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> passwd<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">#  创建一个密文的密码</span>
-Enter password<span class="token punctuation">:</span> <span class="token comment"># 在此处设置notebook的【登录密码】</span>
-Verify password<span class="token punctuation">:</span> <span class="token comment"># 重复密码</span>
-Out<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token string">'sha1:adsasdasd:34da7adasdas87d0as8d70asda8sdaasd076f018'</span> <span class="token comment"># 会生成一个形如它的【哈希密码】</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>将登录密码与哈希密码保存</p>
-<h4 id="更改配置文件"><a class="header-anchor" href="#更改配置文件"></a>更改配置文件</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /home/<span class="token environment constant">$USER</span>/.jupyter/jupyter_notebook_config.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>
-<p>通用配置</p>
-<p>进入文件后</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 加在文件开头</span>
-<span class="token keyword">import</span> os
-<span class="token comment">#【证书新路径】</span>
-c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>certfile <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>expanduser<span class="token punctuation">(</span><span class="token string">u'~/.jupyter/mycert.pem'</span><span class="token punctuation">)</span>
-<span class="token comment">#【密钥路径】</span>
-c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>keyfile <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>expanduser<span class="token punctuation">(</span><span class="token string">u'~/.jupyter/key.pem'</span><span class="token punctuation">)</span>
-<span class="token comment"># NotebookApp的ip，'0.0.0.0'莫写成"*"。</span>
-<span class="token comment"># 写成"*"有时会报错”socket.gaierror: [Errno -5] No address associated with hostname“</span>
-c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>ip <span class="token operator">=</span> <span class="token string">'0.0.0.0'</span>
-<span class="token comment"># 使得服务器上输入'jupyter notebook'命令后，不会立即进入它的浏览器</span>
-c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>open_browser <span class="token operator">=</span> <span class="token boolean">False</span>
-<span class="token comment"># 在浏览器访问notebook，要在浏览器中输入密码，才能登陆</span>
-c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>password <span class="token operator">=</span> <span class="token string">u'【哈希密码】'</span>
-<span class="token comment"># 将该【服务器端口】保存，使用固定端口号，可以随便设置，建议用不常见的，以免与其他任务的端口号冲突</span>
-<span class="token comment">#  注：若别的任务先占用了该端口，输入'jupyter notebook'命令，则会自动用该端口+1，再不行+2，以此类推</span>
-c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>port <span class="token operator">=</span> <span class="token number">11328</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>ipython notebook的配置</p>
-<p>老的版本的ipython，使用的是ipython notebook；新版本的ipython，已将notebook给了jupyter，故使用的是jupyter notebook</p>
-<p>ipython notebook则还需要更</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">c <span class="token operator">=</span> get_config<span class="token punctuation">(</span><span class="token punctuation">)</span>
-c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuation">.</span>pylab <span class="token operator">=</span> <span class="token string">'inline'</span>  <span class="token comment"># if you want plotting support always</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>jupyter notebook替代“c.IPKernelApp.pylab = ‘inline’”的配置如下，这是默认设置，不用更改</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># DISABLED: use %pylab or %matplotlib in the notebook to enable matplotlib.</span>
-<span class="token comment"># c.NotebookApp.pylab = 'disabled'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>取消jupyter notebook密码</p>
-<p>这样访问notebook就可以不需要密码</p>
-<p>把</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># c.NotebookApp.token = '&lt;generated>'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>改为</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>token <span class="token operator">=</span> <span class="token string">''</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
-<h3 id="启动notebook"><a class="header-anchor" href="#启动notebook"></a>启动notebook</h3>
-<ul>
-<li>
-<p>转接</p>
-<p>服务器若设了防火墙，浏览器无法直接访问服务器的notebook【服务器端口】，只能经ssh转接</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> 【服务器】 -L127.0.0.1:11327:127.0.0.1:11328<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>注：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token string">'-L127.0.0.1:【代理端口】:127.0.0.1:【服务器端口】'</span>
-<span class="token comment"># 用户端的localhost:【代理端口】 转接到 服务器端的localhost:【服务器端口】</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>登录服务器后，这个转接终端不要关，直到不用notebook</p>
-</li>
-<li>
-<p>进入虚拟环境</p>
-<p>若jupyter装在virtualenv里，才需要这一步</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>启动notebook</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-<h3 id="访问notebook"><a class="header-anchor" href="#访问notebook"></a>访问notebook</h3>
-<p>在本地电脑，使用浏览器访问<code>https://localhost:【代理端口】 </code></p>
-<ul>
-<li>
-<p>必须是https，jupyter不支持http</p>
-</li>
-<li>
-<p>浏览器的选择</p>
-<p>支持：qq浏览器/chrome浏览器/firefox浏览器<br>
-不支持：safari(可以登陆notebook的文件管理界面；但.ipynb文件的编辑界面下，无法连接到服务器的python内核)</p>
-</li>
-<li>
-<p>浏览器警告&quot;访问不安全&quot;</p>
-<p><a href="https://www.cnblogs.com/ZhYQ-Note/p/8493848.html">参考</a></p>
-<ul>
-<li>chrome:  高级&gt;&gt;继续前往（不安全），即可访问，但即使此证书到钥匙串，chrome每次访问<strong>依旧警告</strong></li>
-<li>safari：详细信息&gt;&gt;访问此网站&gt;&gt;接下来跟着提示步骤操作，会提示“以添加此证书到钥匙串”，之后用safari查看此网页，都<strong>不再警告</strong></li>
-<li>firefox：高级&gt;&gt;添加例外&gt;&gt;勾选永远添加此例外&gt;&gt;确认安全例外，之后firefox查看此网页，都<strong>不再警告</strong></li>
-</ul>
-<p><strong>相关技术</strong></p>
-<p>手动添加网页的证书</p>
-<ul>
-<li>导出证书：firefox访问此网页，显示访问不安全，点高级&gt;&gt;添加例外&gt;&gt;确认安全例外&gt;&gt;证书状态-查看&gt;&gt;详细详细&gt;&gt;导出，导出到随便什么地方</li>
-<li>打开 钥匙串访问.app，左栏分别选 登录+证书
-<ul>
-<li>若之前用safari信任了此证书，则可见你条件的证书</li>
-<li>若没，则将导出的证书拖到这里，然后双击此证书，再点”信任“，全调整为“总是信任”，然后之前导出的证书可以删了</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>弹出jupyter页面，要求输入【登录密码】</p>
-<p>只有服务器上notebook程序重启，再次登录该网页，才需要再输入密码。<br>
-服务器上notebook程序未关，本地即便断网重连，过数天重连，同一个浏览器不用再次输入密码。</p>
-</li>
-</ul>
-<h3 id="脚本打开"><a class="header-anchor" href="#脚本打开"></a>脚本打开</h3>
-<p>上述启动、访问操作可以用shell或Python脚本打开实现</p>
-<h2 id="保持开启状态"><a class="header-anchor" href="#保持开启状态"></a>保持开启状态</h2>
-<h3 id="使用tmux"><a class="header-anchor" href="#使用tmux"></a>使用tmux</h3>
-<p>推荐此法，用tmux保持转接进程和jupyter notebook一直开启</p>
-<ul>
-<li>本机开个tmux session，用来ssh -L转接</li>
-<li>服务器上开个tmux session，用来开jupyter notebook</li>
-</ul>
-<h3 id="普通方法"><a class="header-anchor" href="#普通方法"></a>普通方法</h3>
-<ul>
-<li>
-<p>暂停jupyter notebook<br>
-服务器上按<code>ctrl+z</code>，会出现</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Stopped                 jupyter notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>表示jupyter notebook暂停，本地浏览器上无法访问Notebook网页</p>
-</li>
-<li>
-<p>放入后台运行</p>
-<p>服务器上输入</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bg</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>会出现</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+ jupyter notebook <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>表示jupyter notebook变成后台运行。</p>
-</li>
-<li>
-<p>查看进程</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">jobs</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>若返回有</p>
- <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Running                 jupyter notebook <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>则为jupyter notebook在后台运行</p>
-</li>
-<li>
-<p>退出登录</p>
-<p><code>ctrl+Q/W</code> 退出服务器的登录，则jupyter notebook立即停止</p>
-<p><code>exit</code>或<code>logout</code>退出服务器的登录，则jupyter notebook不会立即停止</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>python</category>
       </categories>
   </entry>
   <entry>
@@ -3971,6 +3702,287 @@ conda <span class="token function">install</span> -c conda-forge libsodium<span 
       </categories>
   </entry>
   <entry>
+    <title>ipython与jupyter_notebook安装配置使用</title>
+    <url>/posts/46630/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h1 id="ipython安装配置使用"><a class="header-anchor" href="#ipython安装配置使用"></a>ipython安装配置使用</h1>
+<h2 id="配置"><a class="header-anchor" href="#配置"></a>配置</h2>
+<h3 id="生成配置文件"><a class="header-anchor" href="#生成配置文件"></a>生成配置文件</h3>
+<p>若ipython的配置文件<code>~/.ipython/profile_default/&#123;ipython_config.py,ipython_kernel_config.py&#125;</code>不存在，则执行如下命令以创建之</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">ipython profile create<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>会返回</p>
+<blockquote>
+<p>[ProfileCreate] Generating default config file: ‘~/.ipython/profile_default/ipython_config.py’<br>
+[ProfileCreate] Generating default config file: ‘~/.ipython/profile_default/ipython_kernel_config.py’</p>
+</blockquote>
+<h3 id="终端下ipython的配色"><a class="header-anchor" href="#终端下ipython的配色"></a>终端下ipython的配色</h3>
+<p><a href="https://stackoverflow.com/questions/14129278/how-do-i-customize-text-color-in-ipython">参考</a></p>
+<h4 id="更换配色方案"><a class="header-anchor" href="#更换配色方案"></a>更换配色方案</h4>
+<p>默认的终端下ipython配色，<code>__class__</code>等显示为深蓝色，当你的终端背景是深色时容易，深蓝字难看清，建议修改配色方案。在<code>~/.ipython/profile_default/ipython_config.py</code>，找到如下两行，删除其行首”#“，并将等号后修改为</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>InteractiveShell<span class="token punctuation">.</span>colors <span class="token operator">=</span> <span class="token string">'Linux'</span>
+c<span class="token punctuation">.</span>TerminalInteractiveShell<span class="token punctuation">.</span>highlighting_style <span class="token operator">=</span> <span class="token string">'monokai'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p><code>c.InteractiveShell.colors</code>是指在ipython报错用的配色</p>
+</li>
+<li>
+<p><code>c.TerminalInteractiveShell.highlighting_style</code>是指python代码的配色。配色方案在定义在</p>
+<p><code>/Users/mac/anaconda/lib/python3.6/site-packages/pygments/styles/&lt;配色方案名称&gt;.py</code></p>
+<p>这里， &lt;配色方案名称monokai，是我找到<code>styles/</code>下较友好的配色了。</p>
+</li>
+</ul>
+<h4 id="手动修改高亮"><a class="header-anchor" href="#手动修改高亮"></a>手动修改高亮</h4>
+<p>若对所选配色方案还有不满意的地方，可以手动修改指定语法成分的高亮</p>
+<p>搜索<code>c.TerminalInteractiveShell.highlighting_style_overrides</code>，然后如下改写</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pygments<span class="token punctuation">.</span>token <span class="token keyword">import</span> Token<span class="token punctuation">,</span> Keyword<span class="token punctuation">,</span> Name<span class="token punctuation">,</span> Comment<span class="token punctuation">,</span> String<span class="token punctuation">,</span> Error<span class="token punctuation">,</span> \
+     Number<span class="token punctuation">,</span> Operator<span class="token punctuation">,</span> Generic<span class="token punctuation">,</span> Whitespace
+<span class="token comment">## Override highlighting format for specific tokens</span>
+c<span class="token punctuation">.</span>TerminalInteractiveShell<span class="token punctuation">.</span>highlighting_style_overrides <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">## Standard Pygments tokens (are all used by IPython ?)</span>
+
+    <span class="token comment"># Whitespace:                "#bbbbbb",</span>
+    <span class="token comment"># Comment:                   "italic #008800",</span>
+    <span class="token comment"># Comment.Preproc:           "noitalic",</span>
+    <span class="token comment"># Comment.Special:           "noitalic bold",</span>
+
+    Keyword<span class="token punctuation">:</span>                     <span class="token string">"bold #5fd4f9"</span><span class="token punctuation">,</span> <span class="token comment">#  8ce98c</span>
+    <span class="token comment"># Keyword.Pseudo:            "nobold",</span>
+    <span class="token comment"># Keyword.Type:              "bold #00BB00",</span>
+
+    <span class="token comment"># Operator:                  "#ff736f",   #</span>
+    <span class="token comment"># Operator.Word:             "bold #AA22FF",</span>
+
+    Name<span class="token punctuation">.</span>Builtin<span class="token punctuation">:</span>                <span class="token string">"#5fd4f9"</span><span class="token punctuation">,</span>
+    <span class="token comment"># Name.Function:             "#99f46a", #</span>
+    <span class="token comment"># Name.Class:                "#99f46a", #</span>
+    <span class="token comment"># Name.Namespace:            "bold #99f46a", #</span>
+    <span class="token comment"># Name.Exception:            "italic bold #89f9fc",</span>
+    Name<span class="token punctuation">.</span>Variable<span class="token punctuation">:</span>               <span class="token string">"italic"</span><span class="token punctuation">,</span> <span class="token comment">#</span>
+    <span class="token comment"># Name.Constant:             "#880000",</span>
+    <span class="token comment"># Name.Label:                "#A0A000",</span>
+    <span class="token comment"># Name.Entity:               "bold #999999",</span>
+    <span class="token comment"># Name.Attribute:            "#BB4444",</span>
+    <span class="token comment"># Name.Tag:                  "bold #008000",</span>
+    <span class="token comment"># Name.Decorator:            "#AA22FF",</span>
+
+
+    <span class="token comment"># String:                    "#f7f86c",</span>
+    <span class="token comment"># String.Doc:                "italic",</span>
+    <span class="token comment"># String.Interpol:           "bold #BB6688",</span>
+    <span class="token comment"># String.Escape:             "bold #BB6622",</span>
+    <span class="token comment"># String.Regex:              "#BB6688",</span>
+    <span class="token comment"># String.Symbol:             "#71f3f6", #</span>
+    <span class="token comment"># String.Other:              "#008000",</span>
+    <span class="token comment"># Number:                    "#cf97f2", #</span>
+
+    <span class="token comment"># Generic.Heading:           "bold #000080",</span>
+    <span class="token comment"># Generic.Subheading:        "bold #800080",</span>
+    <span class="token comment"># Generic.Deleted:           "#A00000",</span>
+    <span class="token comment"># Generic.Inserted:          "#5affb4", #</span>
+    <span class="token comment"># Generic.Error:             "#FF0000",</span>
+    <span class="token comment"># Generic.Emph:              "italic",</span>
+    <span class="token comment"># Generic.Strong:            "bold",</span>
+    <span class="token comment"># Generic.Prompt:            "bold #000080",</span>
+    <span class="token comment"># Generic.Output:            "#888",</span>
+    <span class="token comment"># Generic.Traceback:         "#04D",</span>
+
+    <span class="token comment"># Error:                     "border:#ff0000",</span>
+
+    <span class="token comment">## IPython</span>
+
+    <span class="token comment"># Token.Number: '#ffffff',</span>
+    <span class="token comment"># Token.Operator: 'noinherit',</span>
+    <span class="token comment"># Token.String: '#8b8',</span>
+    <span class="token comment"># Token.Name.Function: '#2080D0',</span>
+    <span class="token comment"># Token.Name.Class: 'bold #2080D0',</span>
+    <span class="token comment"># Token.Name.Namespace: 'bold #2080D0',</span>
+    <span class="token comment"># Token.Prompt: '#ffffff bold',</span>
+    <span class="token comment"># Token.PromptNum: '#888888 bold',</span>
+    Token<span class="token punctuation">.</span>OutPrompt<span class="token punctuation">:</span> <span class="token string">'#ff5753'</span><span class="token punctuation">,</span>
+    Token<span class="token punctuation">.</span>OutPromptNum<span class="token punctuation">:</span> <span class="token string">'#ff5753 bold'</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="jupyter-notebook-安装配置使用"><a class="header-anchor" href="#jupyter-notebook-安装配置使用"></a>jupyter notebook 安装配置使用</h1>
+<p><a href="https://zhuanlan.zhihu.com/p/23110830">参考</a></p>
+<p>已经验证此配置方法可用的环境：实验室服务器juncluster、jungpu</p>
+<h2 id="配置方法"><a class="header-anchor" href="#配置方法"></a>配置方法</h2>
+<p>ssh登录服务器</p>
+<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
+<p>进入python虚拟环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>检查是否安装jupyter</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如返回未安装，则安装之</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>已安装则升级之</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="配置-_2"><a class="header-anchor" href="#配置-_2"></a>配置</h3>
+<h4 id="生成配置文件-_2"><a class="header-anchor" href="#生成配置文件-_2"></a>生成配置文件</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter notebook --generate-config
+<span class="token comment"># 返回 Writing default config to: ~/.jupyter/jupyter_notebook_config.py</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>会自动创建文件夹<code>~/.jupyter</code>与配置文件<code>~/.jupyter/jupyter_notebook_config.py</code></p>
+<p>命令行会返回此【配置文件路径】，请保存</p>
+<h4 id="生成网络证书"><a class="header-anchor" href="#生成网络证书"></a>生成网络证书</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~/.jupyter
+<span class="token comment"># openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem</span>
+openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days <span class="token number">3650</span> -out mycert.pem<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>回车系统会要求你填写：国家、省份、城市、单位、项目、邮箱，按真实填写之即可。<br>
+保存【证书路径】=<code>~/.jupyter/mycert.pem</code>，【密钥路径】=<code>~/.jupyter/key.pem</code></p>
+<h4 id="生成notebook登录密码"><a class="header-anchor" href="#生成notebook登录密码"></a>生成notebook登录密码</h4>
+<p>若想给notebook设置登录密码，则做此事。可以在任何电脑上做，生成的密文是一样的</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">ipython
+In <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token keyword">from</span> notebook<span class="token punctuation">.</span>auth <span class="token keyword">import</span> passwd
+In <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> passwd<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">#  创建一个密文的密码</span>
+Enter password<span class="token punctuation">:</span> <span class="token comment"># 在此处设置notebook的【登录密码】</span>
+Verify password<span class="token punctuation">:</span> <span class="token comment"># 重复密码</span>
+Out<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token string">'sha1:adsasdasd:34da7adasdas87d0as8d70asda8sdaasd076f018'</span> <span class="token comment"># 会生成一个形如它的【哈希密码】</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>将登录密码与哈希密码保存</p>
+<h4 id="更改配置文件"><a class="header-anchor" href="#更改配置文件"></a>更改配置文件</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /home/<span class="token environment constant">$USER</span>/.jupyter/jupyter_notebook_config.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>通用配置</p>
+<p>进入文件后</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 加在文件开头</span>
+<span class="token keyword">import</span> os
+<span class="token comment">#【证书新路径】</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>certfile <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>expanduser<span class="token punctuation">(</span><span class="token string">u'~/.jupyter/mycert.pem'</span><span class="token punctuation">)</span>
+<span class="token comment">#【密钥路径】</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>keyfile <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>expanduser<span class="token punctuation">(</span><span class="token string">u'~/.jupyter/key.pem'</span><span class="token punctuation">)</span>
+<span class="token comment"># NotebookApp的ip，'0.0.0.0'莫写成"*"。</span>
+<span class="token comment"># 写成"*"有时会报错”socket.gaierror: [Errno -5] No address associated with hostname“</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>ip <span class="token operator">=</span> <span class="token string">'0.0.0.0'</span>
+<span class="token comment"># 使得服务器上输入'jupyter notebook'命令后，不会立即进入它的浏览器</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>open_browser <span class="token operator">=</span> <span class="token boolean">False</span>
+<span class="token comment"># 在浏览器访问notebook，要在浏览器中输入密码，才能登陆</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>password <span class="token operator">=</span> <span class="token string">u'【哈希密码】'</span>
+<span class="token comment"># 将该【服务器端口】保存，使用固定端口号，可以随便设置，建议用不常见的，以免与其他任务的端口号冲突</span>
+<span class="token comment">#  注：若别的任务先占用了该端口，输入'jupyter notebook'命令，则会自动用该端口+1，再不行+2，以此类推</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>port <span class="token operator">=</span> <span class="token number">11328</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>ipython notebook的配置</p>
+<p>老的版本的ipython，使用的是ipython notebook；新版本的ipython，已将notebook给了jupyter，故使用的是jupyter notebook</p>
+<p>ipython notebook则还需要更</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c <span class="token operator">=</span> get_config<span class="token punctuation">(</span><span class="token punctuation">)</span>
+c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuation">.</span>pylab <span class="token operator">=</span> <span class="token string">'inline'</span>  <span class="token comment"># if you want plotting support always</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>jupyter notebook替代“c.IPKernelApp.pylab = ‘inline’”的配置如下，这是默认设置，不用更改</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># DISABLED: use %pylab or %matplotlib in the notebook to enable matplotlib.</span>
+<span class="token comment"># c.NotebookApp.pylab = 'disabled'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>取消jupyter notebook密码</p>
+<p>这样访问notebook就可以不需要密码</p>
+<p>把</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># c.NotebookApp.token = '&lt;generated>'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>改为</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>token <span class="token operator">=</span> <span class="token string">''</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
+<h3 id="启动notebook"><a class="header-anchor" href="#启动notebook"></a>启动notebook</h3>
+<ul>
+<li>
+<p>转接</p>
+<p>服务器若设了防火墙，浏览器无法直接访问服务器的notebook【服务器端口】，只能经ssh转接</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> 【服务器】 -L127.0.0.1:11327:127.0.0.1:11328<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>注：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token string">'-L127.0.0.1:【代理端口】:127.0.0.1:【服务器端口】'</span>
+<span class="token comment"># 用户端的localhost:【代理端口】 转接到 服务器端的localhost:【服务器端口】</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>登录服务器后，这个转接终端不要关，直到不用notebook</p>
+</li>
+<li>
+<p>进入虚拟环境</p>
+<p>若jupyter装在virtualenv里，才需要这一步</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>启动notebook</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<h3 id="访问notebook"><a class="header-anchor" href="#访问notebook"></a>访问notebook</h3>
+<p>在本地电脑，使用浏览器访问<code>https://localhost:【代理端口】 </code></p>
+<ul>
+<li>
+<p>必须是https，jupyter不支持http</p>
+</li>
+<li>
+<p>浏览器的选择</p>
+<p>支持：qq浏览器/chrome浏览器/firefox浏览器<br>
+不支持：safari(可以登陆notebook的文件管理界面；但.ipynb文件的编辑界面下，无法连接到服务器的python内核)</p>
+</li>
+<li>
+<p>浏览器警告&quot;访问不安全&quot;</p>
+<p><a href="https://www.cnblogs.com/ZhYQ-Note/p/8493848.html">参考</a></p>
+<ul>
+<li>chrome:  高级&gt;&gt;继续前往（不安全），即可访问，但即使此证书到钥匙串，chrome每次访问<strong>依旧警告</strong></li>
+<li>safari：详细信息&gt;&gt;访问此网站&gt;&gt;接下来跟着提示步骤操作，会提示“以添加此证书到钥匙串”，之后用safari查看此网页，都<strong>不再警告</strong></li>
+<li>firefox：高级&gt;&gt;添加例外&gt;&gt;勾选永远添加此例外&gt;&gt;确认安全例外，之后firefox查看此网页，都<strong>不再警告</strong></li>
+</ul>
+<p><strong>相关技术</strong></p>
+<p>手动添加网页的证书</p>
+<ul>
+<li>导出证书：firefox访问此网页，显示访问不安全，点高级&gt;&gt;添加例外&gt;&gt;确认安全例外&gt;&gt;证书状态-查看&gt;&gt;详细详细&gt;&gt;导出，导出到随便什么地方</li>
+<li>打开 钥匙串访问.app，左栏分别选 登录+证书
+<ul>
+<li>若之前用safari信任了此证书，则可见你条件的证书</li>
+<li>若没，则将导出的证书拖到这里，然后双击此证书，再点”信任“，全调整为“总是信任”，然后之前导出的证书可以删了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>弹出jupyter页面，要求输入【登录密码】</p>
+<p>只有服务器上notebook程序重启，再次登录该网页，才需要再输入密码。<br>
+服务器上notebook程序未关，本地即便断网重连，过数天重连，同一个浏览器不用再次输入密码。</p>
+</li>
+</ul>
+<h3 id="脚本打开"><a class="header-anchor" href="#脚本打开"></a>脚本打开</h3>
+<p>上述启动、访问操作可以用shell或Python脚本打开实现</p>
+<h2 id="保持开启状态"><a class="header-anchor" href="#保持开启状态"></a>保持开启状态</h2>
+<h3 id="使用tmux"><a class="header-anchor" href="#使用tmux"></a>使用tmux</h3>
+<p>推荐此法，用tmux保持转接进程和jupyter notebook一直开启</p>
+<ul>
+<li>本机开个tmux session，用来ssh -L转接</li>
+<li>服务器上开个tmux session，用来开jupyter notebook</li>
+</ul>
+<h3 id="普通方法"><a class="header-anchor" href="#普通方法"></a>普通方法</h3>
+<ul>
+<li>
+<p>暂停jupyter notebook<br>
+服务器上按<code>ctrl+z</code>，会出现</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Stopped                 jupyter notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>表示jupyter notebook暂停，本地浏览器上无法访问Notebook网页</p>
+</li>
+<li>
+<p>放入后台运行</p>
+<p>服务器上输入</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bg</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>会出现</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+ jupyter notebook <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>表示jupyter notebook变成后台运行。</p>
+</li>
+<li>
+<p>查看进程</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">jobs</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若返回有</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Running                 jupyter notebook <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>则为jupyter notebook在后台运行</p>
+</li>
+<li>
+<p>退出登录</p>
+<p><code>ctrl+Q/W</code> 退出服务器的登录，则jupyter notebook立即停止</p>
+<p><code>exit</code>或<code>logout</code>退出服务器的登录，则jupyter notebook不会立即停止</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
     <title>mac安装与卸载系统自带Python</title>
     <url>/posts/41793/</url>
     <content><![CDATA[<p>[TOC]</p>
@@ -4136,6 +4148,67 @@ sudo chown -R root:wheel x.x<span aria-hidden="true" class="line-numbers-rows"><
 <li>看装了的包的信息</li>
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip show 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>virtualenv_教程</title>
+    <url>/posts/41669/</url>
+    <content><![CDATA[<h1 id="virtualenv-教程"><a class="header-anchor" href="#virtualenv-教程"></a>virtualenv 教程</h1>
+<p>参考资料：</p>
+<p><a href="http://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html">安装与使用说明</a></p>
+<p><a href="http://www.jianshu.com/p/08c657bd34f1">Python–Virtualenv简明教程</a></p>
+<h2 id="安装"><a class="header-anchor" href="#安装"></a>安装</h2>
+<p>通过pip安装virtualenv：</p>
+<pre class="line-numbers language-none"><code class="language-none">$ pip install virtualenv
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>测试你的安装</p>
+<pre class="line-numbers language-none"><code class="language-none">$ virtualenv --version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="创建环境"><a class="header-anchor" href="#创建环境"></a>创建环境</h2>
+<h3 id="查看你机子上不同版本python的地址"><a class="header-anchor" href="#查看你机子上不同版本python的地址"></a>查看你机子上不同版本python的地址</h3>
+<pre class="line-numbers language-none"><code class="language-none">which python
+which python2
+which python2.7
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>会返回一个地址，是你需要的python所在&lt;地址&gt;，复制它</p>
+<h3 id="创建虚拟环境"><a class="header-anchor" href="#创建虚拟环境"></a>创建虚拟环境</h3>
+<h4 id="创建方法"><a class="header-anchor" href="#创建方法"></a>创建方法</h4>
+<p>可在任意选定&lt;目录&gt;创建虚拟环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>目录<span class="token operator">></span>$ virtualenv --python<span class="token operator">=</span><span class="token operator">&lt;</span>地址<span class="token operator">></span> <span class="token operator">&lt;</span>虚拟环境的名字<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>创建后，&lt;目录&gt;下会生成&lt;虚拟环境的名字&gt;文件夹，其下有bin/，include/，lib/</p>
+<ul>
+<li>&lt;目录&gt;可为用户根目录（即<code>~/</code>)，用于创建整个用户的虚拟环境</li>
+<li>&lt;目录&gt;可为工程目录，用于创建本工程使用的虚拟环境</li>
+</ul>
+<h4 id="权限不足"><a class="header-anchor" href="#权限不足"></a>权限不足</h4>
+<pre class="line-numbers language-none"><code class="language-none">The program &#39;virtualenv&#39; is currently not installed. To run &#39;virtualenv&#39; please ask your administrator to install the package &#39;python-virtualenv&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>请服务器管理员安装python-virtualenv</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> pip <span class="token function">install</span> virtualenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
+<h3 id="安装python的包"><a class="header-anchor" href="#安装python的包"></a>安装python的包</h3>
+<p>装pip的软件，必须先到虚拟环境所在目录</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>目录<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>输入一下命令激活python的虚拟环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>目录<span class="token operator">></span>$ <span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>激活成功后，用户名前会加<code>(&lt;目录&gt;)</code></p>
+<p>此时，输入以下命令装软件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">&lt;</span>目录<span class="token operator">></span><span class="token punctuation">)</span>用户名@服务器名: 当前目录$ pip <span class="token function">install</span> <span class="token operator">&lt;</span>软件<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装完成后，从虚拟环境出来</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">&lt;</span>目录<span class="token operator">></span><span class="token punctuation">)</span>用户名@服务器名: deactivate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="使用python及python的包"><a class="header-anchor" href="#使用python及python的包"></a>使用python及python的包</h3>
+<ul>
+<li>
+<p>当&lt;目录&gt;为在用户根目录（即<code>~/</code>)时：</p>
+<p>只要该用户登录，无需<code>source bin/activate</code>激活，即可在任意目录下，使用虚拟环境（包括python版本及python包），但不能<code>pip install</code> 安装pyhton包</p>
+</li>
+<li>
+<p>当&lt;目录&gt;为某pyhton工程文件夹：</p>
+<p>只有在该工程目录，输入<code>source bin/activate</code>激活后，才能使用该虚拟环境的包括python版本及python包，即<code>pip install</code> 安装pyhton包，在任意目录下均可使用</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -4332,67 +4405,6 @@ sleep<span class="token punctuation">(</span><span class="token number">1</span>
 os.makedirs<span class="token punctuation">(</span><span class="token operator">&lt;</span>path_string<span class="token operator">></span>, <span class="token assign-left variable">exist_ok</span><span class="token operator">=</span>True<span class="token punctuation">)</span> <span class="token comment"># 此文件夹已经存在不报错</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>连接路径名，在不同操作系统下都work</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>path_string<span class="token operator">></span> <span class="token operator">=</span> os.path.join<span class="token punctuation">(</span><span class="token operator">&lt;</span>path_string<span class="token operator"><span class="token file-descriptor important">1</span>></span>,<span class="token operator">&lt;</span>path_string<span class="token operator"><span class="token file-descriptor important">2</span>></span>,<span class="token punctuation">..</span>.<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>python</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>virtualenv_教程</title>
-    <url>/posts/41669/</url>
-    <content><![CDATA[<h1 id="virtualenv-教程"><a class="header-anchor" href="#virtualenv-教程"></a>virtualenv 教程</h1>
-<p>参考资料：</p>
-<p><a href="http://pythonguidecn.readthedocs.io/zh/latest/dev/virtualenvs.html">安装与使用说明</a></p>
-<p><a href="http://www.jianshu.com/p/08c657bd34f1">Python–Virtualenv简明教程</a></p>
-<h2 id="安装"><a class="header-anchor" href="#安装"></a>安装</h2>
-<p>通过pip安装virtualenv：</p>
-<pre class="line-numbers language-none"><code class="language-none">$ pip install virtualenv
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>测试你的安装</p>
-<pre class="line-numbers language-none"><code class="language-none">$ virtualenv --version<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="创建环境"><a class="header-anchor" href="#创建环境"></a>创建环境</h2>
-<h3 id="查看你机子上不同版本python的地址"><a class="header-anchor" href="#查看你机子上不同版本python的地址"></a>查看你机子上不同版本python的地址</h3>
-<pre class="line-numbers language-none"><code class="language-none">which python
-which python2
-which python2.7
-...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>会返回一个地址，是你需要的python所在&lt;地址&gt;，复制它</p>
-<h3 id="创建虚拟环境"><a class="header-anchor" href="#创建虚拟环境"></a>创建虚拟环境</h3>
-<h4 id="创建方法"><a class="header-anchor" href="#创建方法"></a>创建方法</h4>
-<p>可在任意选定&lt;目录&gt;创建虚拟环境</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>目录<span class="token operator">></span>$ virtualenv --python<span class="token operator">=</span><span class="token operator">&lt;</span>地址<span class="token operator">></span> <span class="token operator">&lt;</span>虚拟环境的名字<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>创建后，&lt;目录&gt;下会生成&lt;虚拟环境的名字&gt;文件夹，其下有bin/，include/，lib/</p>
-<ul>
-<li>&lt;目录&gt;可为用户根目录（即<code>~/</code>)，用于创建整个用户的虚拟环境</li>
-<li>&lt;目录&gt;可为工程目录，用于创建本工程使用的虚拟环境</li>
-</ul>
-<h4 id="权限不足"><a class="header-anchor" href="#权限不足"></a>权限不足</h4>
-<pre class="line-numbers language-none"><code class="language-none">The program &#39;virtualenv&#39; is currently not installed. To run &#39;virtualenv&#39; please ask your administrator to install the package &#39;python-virtualenv&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>请服务器管理员安装python-virtualenv</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> pip <span class="token function">install</span> virtualenv<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
-<h3 id="安装python的包"><a class="header-anchor" href="#安装python的包"></a>安装python的包</h3>
-<p>装pip的软件，必须先到虚拟环境所在目录</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>目录<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>输入一下命令激活python的虚拟环境</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>目录<span class="token operator">></span>$ <span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>激活成功后，用户名前会加<code>(&lt;目录&gt;)</code></p>
-<p>此时，输入以下命令装软件</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">&lt;</span>目录<span class="token operator">></span><span class="token punctuation">)</span>用户名@服务器名: 当前目录$ pip <span class="token function">install</span> <span class="token operator">&lt;</span>软件<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>安装完成后，从虚拟环境出来</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span><span class="token operator">&lt;</span>目录<span class="token operator">></span><span class="token punctuation">)</span>用户名@服务器名: deactivate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="使用python及python的包"><a class="header-anchor" href="#使用python及python的包"></a>使用python及python的包</h3>
-<ul>
-<li>
-<p>当&lt;目录&gt;为在用户根目录（即<code>~/</code>)时：</p>
-<p>只要该用户登录，无需<code>source bin/activate</code>激活，即可在任意目录下，使用虚拟环境（包括python版本及python包），但不能<code>pip install</code> 安装pyhton包</p>
-</li>
-<li>
-<p>当&lt;目录&gt;为某pyhton工程文件夹：</p>
-<p>只有在该工程目录，输入<code>source bin/activate</code>激活后，才能使用该虚拟环境的包括python版本及python包，即<code>pip install</code> 安装pyhton包，在任意目录下均可使用</p>
-</li>
-</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -5383,6 +5395,178 @@ compdef _tmux tmux_itm
       </categories>
   </entry>
   <entry>
+    <title>rsync教程</title>
+    <url>/posts/31283/</url>
+    <content><![CDATA[<h2 id="mac-升级-rsync"><a class="header-anchor" href="#mac-升级-rsync"></a>mac 升级 rsync</h2>
+<p>mac自带rsync在<code>/usr/bin/rsync</code>，版本 <code>rsync  version 2.6.9  protocol version 29</code>太老，不支持用一条命令将多个远程文件传到本地，需要升级才支持。</p>
+<p>升级方法：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">rsync</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装在<code>/usr/local/bin/rsync</code>，版本<code>rsync  version 3.1.3  protocol version 31</code></p>
+<h2 id="用法"><a class="header-anchor" href="#用法"></a>用法</h2>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rsync</span> <span class="token punctuation">(</span>参数<span class="token punctuation">)</span>  <span class="token operator">&lt;</span>源<span class="token operator">></span> <span class="token operator">&lt;</span>收<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="源-收路径写法"><a class="header-anchor" href="#源-收路径写法"></a>源/收路径写法</h3>
+<table>
+<thead>
+<tr>
+<th>源\得\收</th>
+<th><code>已有文件夹(/)</code></th>
+<th><code>已有文件夹/新建名</code><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></th>
+<th><code>已有文件夹/新建名/</code></th>
+<th><code>已有文件夹(/(新建文件夹(/))</code> 下有同名文件(夹)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>一个文件</td>
+<td>已有文件夹/同名文件</td>
+<td><code>已有文件夹/新建名</code> 文件重命名了</td>
+<td>已有文件夹/新建名/同名文件</td>
+<td>覆盖原同名文件</td>
+</tr>
+<tr>
+<td>一个文件夹</td>
+<td>已有文件夹/同名文件夹</td>
+<td>已有文件夹/新建名/同名文件夹</td>
+<td>同左</td>
+<td>覆盖原同名文件</td>
+</tr>
+<tr>
+<td>多个文件(夹)</td>
+<td>已有文件夹/多个同名文件(夹)</td>
+<td>已有文件夹/新建名/多个同名文件(夹)</td>
+<td>同左</td>
+<td>覆盖原同名文件</td>
+</tr>
+</tbody>
+</table>
+<p>源文件（夹）的特殊写法</p>
+<ul>
+<li><code>源文件夹</code> 则得到 <code>接收文件夹/源文件夹</code></li>
+<li><code>源文件夹/</code> 则得到 <code>接收文件夹/源文件夹下所有的文件(包括隐藏文件)</code></li>
+<li><code>源文件夹/*</code> 则得到 <code>接收文件夹/源文件夹下所有非隐藏文件</code></li>
+</ul>
+<p>远程文件的写法</p>
+<ul>
+<li><code>服务器</code> 单独写不可以，一定要有<code>:</code></li>
+<li><code>服务器:(.(/))</code> 拷贝到 <code>服务器:/home/$USER</code></li>
+<li><code>服务器:(./)路径</code> 拷贝到  <code>服务器:/home/$USER/路径</code></li>
+</ul>
+<p>多个远程文件</p>
+<ul>
+<li>多个远程文件(夹)传到本地：<code>rsync （参数） 服务器1:源1路径 :源2路径 服务器2:源3路径 本地接受目录</code>
+<ul>
+<li><code>服务器1:源1路径 :源2路径</code> 表示 <code>服务器1:源1路径 </code>与 <code>服务器1:源2路径</code></li>
+<li><code>服务器:源路径</code>可以含有<code>&#123;xx,xx,xx&#125;</code>用以表示多个路径</li>
+<li><code>本地接受目录</code>只能写一个</li>
+</ul>
+</li>
+<li>本地文件(夹)传到多个远程文件(夹)：目前 rsync 不支持 (目前版本为<code>rsync  version 3.1.3  protocol version 31</code>)。<code>prsync</code> 支持这个，详见下<a href="#prsync">prsync</a>。</li>
+</ul>
+<h3 id="默认参数"><a class="header-anchor" href="#默认参数"></a>默认参数</h3>
+<p><code>rsync</code> 会使用 <code>/etc/ssh/ssh_config</code>和<code>~/.ssh/config</code> ，支持ssh跳板机连接</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rsync</span> -aHhvzP 本地路径1 <span class="token punctuation">(</span>本地路径2 <span class="token punctuation">..</span>.<span class="token punctuation">)</span>  服务器别名:远程路径
+<span class="token function">rsync</span> -aHhvzP 本地路径1 <span class="token punctuation">(</span>本地路径2 <span class="token punctuation">..</span>.<span class="token punctuation">)</span>  用户名@ip:远程路径 -e <span class="token string">'ssh -p 端口'</span>
+<span class="token function">rsync</span> -aHhvzP 服务器别名:远程路径1 <span class="token punctuation">(</span>:远程路径2<span class="token punctuation">..</span>.<span class="token punctuation">)</span>  本地路径
+<span class="token function">rsync</span> -aHhvzP -e <span class="token string">'ssh -p 端口'</span> 用户名@ip:远程路径1 <span class="token punctuation">(</span>:远程路径2<span class="token punctuation">..</span>.<span class="token punctuation">)</span>  本地路径<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">-a 					归档模式 &#x3D; -rlptgoD
+    -r 				递归目录
+    -l				保留软链接	   # scp 无论什么参数都做不到，所以不推荐用scp，而用rsync
+    -p				保持文件权限
+    -t				保持修改时间
+    -g				保持文件属组信息
+    -o				保持文件属主信息
+    -D 				&#x3D; --devices --specials
+    --devices  保留设备文件 (此命令需要sudu权限)
+  --specials 保留特殊文件
+-H 					保留硬链接
+-h					kMG B计文件大小
+-v          详细模式输出
+-z 					压缩传输
+-P          &#x3D; --partial --progress
+    --partial   保留没传完的文件，支持断点续传
+    --progress  进度条
+--partial-dir&#x3D;何处保存没传完的文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="封装成alias"><a class="header-anchor" href="#封装成alias"></a>封装成alias</h3>
+<p>按如下方法封装，zsh下，输入<code>autots</code>函数、<code>ts</code>(alias)，按tab，能得到和<code>rsync</code>一样的本地目录和远程目录的自动补全</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 自动端点续传，传送失败后隔180秒自动重新连接</span>
+
+<span class="token comment"># autots（alias）会被下面的autots函数覆盖，用来使得下面的autots函数能够和rsync一样自动补全本地和远程目录</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">autots</span><span class="token operator">=</span><span class="token string">'rsync'</span>
+<span class="token keyword">function</span> <span class="token function-name function">autots</span> <span class="token punctuation">&#123;</span>
+    <span class="token builtin class-name">local</span> <span class="token assign-left variable">retry_time</span><span class="token operator">=</span><span class="token number">180</span> <span class="token comment"># second</span>
+    <span class="token keyword">while</span> <span class="token punctuation">[</span> <span class="token number">1</span> <span class="token punctuation">]</span>
+    <span class="token keyword">do</span>
+        <span class="token function">rsync</span> -aHhvzP <span class="token variable">$*</span>
+        <span class="token comment"># command 调用系统的 rsync 命令，避免递归调用rsync</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$?</span>"</span> <span class="token operator">=</span> <span class="token string">"0"</span> <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">"rsync completed normally"</span>
+            <span class="token builtin class-name">break</span>
+        <span class="token keyword">else</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">"Rsync failure. Backing off and retrying in <span class="token variable">$retry_time</span> seconds..."</span>
+            <span class="token function">sleep</span> <span class="token variable">$retry_time</span>
+        <span class="token keyword">fi</span>
+    <span class="token keyword">done</span>
+<span class="token punctuation">&#125;</span>
+<span class="token comment"># rsync 封装多种参数，但不支持断点续传; ts能够和rsync一样自动补全远程目录</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ts</span><span class="token operator">=</span><span class="token string">'rsync -aHhvz --progress'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="报错"><a class="header-anchor" href="#报错"></a>报错</h2>
+<h3 id="protocol-version-mismatch"><a class="header-anchor" href="#protocol-version-mismatch"></a>protocol version mismatch</h3>
+<p>若远程主机的登录文件( 如<code>.bash_profile</code>)中有stdout输出(即<code>echo &quot;xxxx&quot;</code>或 <code>echo &quot;xxx&quot; &gt;&amp;1</code>)，则在用rsync与远程主机传输文件(不论上传、下载)，均会报错如下，且无法传输文件。</p>
+<pre class="line-numbers language-none"><code class="language-none">protocol version mismatch -- is your shell clean?
+(see the rsync man page for an explanation)
+rsync error: protocol incompatibility (code 2) at compat.c(185) [sender&#x3D;3.1.3]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>将stdout输出改为stderr输出(即<code>echo &quot;xxx&quot; &gt;&amp;2</code>)，则此报错消失</p>
+<h1 id="参考阅读"><a class="header-anchor" href="#参考阅读"></a>参考阅读</h1>
+<h2 id="zsh的自动补全"><a class="header-anchor" href="#zsh的自动补全"></a>zsh的自动补全</h2>
+<p><a href="https://mads-hartmann.com/2017/08/06/writing-zsh-completion-scripts.html">https://mads-hartmann.com/2017/08/06/writing-zsh-completion-scripts.html</a></p>
+<p><a href="https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org">https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org</a></p>
+<p><a href="https://superuser.com/questions/420525/scp-with-zsh-no-matches-found">https://superuser.com/questions/420525/scp-with-zsh-no-matches-found</a></p>
+<p><a href="https://www.zsh.org/mla/users/2009/msg00936.html">https://www.zsh.org/mla/users/2009/msg00936.html</a></p>
+<p><a href="https://segmentfault.com/a/1190000002994217">https://segmentfault.com/a/1190000002994217</a></p>
+<h2 id="rsync-部分参数的含义"><a class="header-anchor" href="#rsync-部分参数的含义"></a>rsync 部分参数的含义</h2>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">-</span>a<span class="token punctuation">,</span> <span class="token operator">--</span>archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于<span class="token operator">-</span>rlptgoD
+<span class="token operator">-</span>v<span class="token punctuation">,</span> <span class="token operator">--</span>verbose 详细模式输出
+<span class="token operator">-</span>p<span class="token punctuation">,</span> <span class="token operator">--</span>perms 保持文件权限
+<span class="token operator">-</span>g<span class="token punctuation">,</span> <span class="token operator">--</span>group 保持文件属组信息
+<span class="token operator">-</span>o<span class="token punctuation">,</span> <span class="token operator">--</span>owner 保持文件属主信息
+<span class="token operator">-</span>r<span class="token punctuation">,</span> <span class="token operator">--</span>recursive 对子目录以递归模式处理。同步目录的时候要加上这个参数
+<span class="token operator">-</span>l<span class="token punctuation">,</span> <span class="token operator">--</span>links 保留软链结，加上这个参数，同步过来的文件会保持之前的软链接属性不变
+<span class="token operator">-</span><span class="token constant">H</span><span class="token punctuation">,</span> <span class="token operator">--</span>hard<span class="token operator">-</span>links 保留硬链结
+<span class="token operator">-</span>e<span class="token punctuation">,</span> <span class="token operator">--</span>rsh<span class="token operator">=</span><span class="token constant">COMMAND</span> 指定使用rsh、ssh方式进行数据同步
+<span class="token operator">-</span>z<span class="token punctuation">,</span> <span class="token operator">--</span>compress 对备份的文件在传输时进行压缩处理
+<span class="token operator">--</span>stats 给出某些文件的传输状态
+<span class="token operator">--</span>progress 打印同步的过程
+<span class="token operator">--</span>timeout<span class="token operator">=</span><span class="token constant">TIME</span> 同步过程中，<span class="token constant">IP</span>超时时间，单位为秒
+<span class="token operator">--</span><span class="token keyword">delete</span> 删除那些目标目录中有而源目录中没有的多余文件。这个是rsync做增量方式的全备份的最佳选择方案！！！！！！
+<span class="token operator">--</span><span class="token keyword">delete</span><span class="token operator">-</span>before 接受者在输出之前进行删除操作。即先将目标目录中文件全部删除，再将源目录文件拷贝过去。这是rsync保持目标目录跟源目录一致的方案！！！
+<span class="token operator">--</span><span class="token keyword">delete</span><span class="token operator">-</span>after 在同步操作之后做比较，删除那些目标目录中有而源目录中没有的多余文件
+<span class="token operator">--</span><span class="token keyword">delete</span><span class="token operator">-</span>excluded 删除目标目录中那些被该选项指定排除的文件
+<span class="token operator">--</span>ignore<span class="token operator">-</span>errors 即使出现<span class="token constant">IO</span>错误也进行删除，忽略错误
+<span class="token operator">--</span>exclude <span class="token function">指定同步时需要过滤掉的文件或子目录</span><span class="token punctuation">(</span>即不需要同步过去的<span class="token punctuation">)</span><span class="token function">，后面直接跟不需要同步的单个文件名或子目录</span><span class="token punctuation">(</span>不需要跟路径<span class="token punctuation">)</span> ，过滤多个文件或子目录，就使用多个<span class="token operator">--</span>exclude
+<span class="token operator">--</span>exclude<span class="token operator">-</span>from <span class="token function">指定同步时需要过滤掉的文件或子目录，后面跟文件</span><span class="token punctuation">(</span>比如<span class="token operator">/</span>root<span class="token operator">/</span>exclue<span class="token punctuation">.</span>txt<span class="token punctuation">)</span>，然后将不需要同步的文件和子目录放到<span class="token operator">/</span>root<span class="token operator">/</span>exclue<span class="token punctuation">.</span>txt下。
+<span class="token operator">--</span>version 打印版本信息
+<span class="token operator">--</span>port<span class="token operator">=</span><span class="token constant">PORT</span> 指定其他的rsync服务端口
+<span class="token operator">--</span>log<span class="token operator">-</span>format<span class="token operator">=</span>formAT 指定日志文件格式
+<span class="token operator">--</span>password<span class="token operator">-</span>file<span class="token operator">=</span><span class="token constant">FILE</span> 从<span class="token constant">FILE</span>中得到密码
+<span class="token operator">--</span>bwlimit<span class="token operator">=</span><span class="token constant">KBPS</span> 限制<span class="token constant">I</span><span class="token operator">/</span><span class="token constant">O</span>带宽，KBytes per second<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="prsync"><a class="header-anchor" href="#prsync"></a>prsync</h2>
+<p><code>prsync</code>可以并行发送文件到多台服务器</p>
+<p><a href="https://www.tecmint.com/copy-files-to-multiple-linux-servers/">https://www.tecmint.com/copy-files-to-multiple-linux-servers/</a></p>
+<p><a href="https://www.cnblogs.com/Peter2014/p/8251886.html">轻量级运维工具-pssh,pscp,prsync,pslurp,pnuke</a></p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>不可<code>已有文件夹/新建名/新建名</code>，新建&gt;=2层文件夹会报错 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>服务器连接</category>
+      </categories>
+  </entry>
+  <entry>
     <title>sshfs</title>
     <url>/posts/55028/</url>
     <content><![CDATA[<h1 id="sshfs教程"><a class="header-anchor" href="#sshfs教程"></a>sshfs教程</h1>
@@ -5612,178 +5796,6 @@ pgrep -lf sshfs <span class="token comment"># 再列出，若空则杀尽</span>
 <p><code>killall macfusionAgent </code>后，从图标重启macfusionAgent.app，然后再mount gpu7，依然上述报错</p>
 </li>
 </ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>服务器连接</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>rsync教程</title>
-    <url>/posts/31283/</url>
-    <content><![CDATA[<h2 id="mac-升级-rsync"><a class="header-anchor" href="#mac-升级-rsync"></a>mac 升级 rsync</h2>
-<p>mac自带rsync在<code>/usr/bin/rsync</code>，版本 <code>rsync  version 2.6.9  protocol version 29</code>太老，不支持用一条命令将多个远程文件传到本地，需要升级才支持。</p>
-<p>升级方法：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">rsync</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>安装在<code>/usr/local/bin/rsync</code>，版本<code>rsync  version 3.1.3  protocol version 31</code></p>
-<h2 id="用法"><a class="header-anchor" href="#用法"></a>用法</h2>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rsync</span> <span class="token punctuation">(</span>参数<span class="token punctuation">)</span>  <span class="token operator">&lt;</span>源<span class="token operator">></span> <span class="token operator">&lt;</span>收<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="源-收路径写法"><a class="header-anchor" href="#源-收路径写法"></a>源/收路径写法</h3>
-<table>
-<thead>
-<tr>
-<th>源\得\收</th>
-<th><code>已有文件夹(/)</code></th>
-<th><code>已有文件夹/新建名</code><sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></th>
-<th><code>已有文件夹/新建名/</code></th>
-<th><code>已有文件夹(/(新建文件夹(/))</code> 下有同名文件(夹)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>一个文件</td>
-<td>已有文件夹/同名文件</td>
-<td><code>已有文件夹/新建名</code> 文件重命名了</td>
-<td>已有文件夹/新建名/同名文件</td>
-<td>覆盖原同名文件</td>
-</tr>
-<tr>
-<td>一个文件夹</td>
-<td>已有文件夹/同名文件夹</td>
-<td>已有文件夹/新建名/同名文件夹</td>
-<td>同左</td>
-<td>覆盖原同名文件</td>
-</tr>
-<tr>
-<td>多个文件(夹)</td>
-<td>已有文件夹/多个同名文件(夹)</td>
-<td>已有文件夹/新建名/多个同名文件(夹)</td>
-<td>同左</td>
-<td>覆盖原同名文件</td>
-</tr>
-</tbody>
-</table>
-<p>源文件（夹）的特殊写法</p>
-<ul>
-<li><code>源文件夹</code> 则得到 <code>接收文件夹/源文件夹</code></li>
-<li><code>源文件夹/</code> 则得到 <code>接收文件夹/源文件夹下所有的文件(包括隐藏文件)</code></li>
-<li><code>源文件夹/*</code> 则得到 <code>接收文件夹/源文件夹下所有非隐藏文件</code></li>
-</ul>
-<p>远程文件的写法</p>
-<ul>
-<li><code>服务器</code> 单独写不可以，一定要有<code>:</code></li>
-<li><code>服务器:(.(/))</code> 拷贝到 <code>服务器:/home/$USER</code></li>
-<li><code>服务器:(./)路径</code> 拷贝到  <code>服务器:/home/$USER/路径</code></li>
-</ul>
-<p>多个远程文件</p>
-<ul>
-<li>多个远程文件(夹)传到本地：<code>rsync （参数） 服务器1:源1路径 :源2路径 服务器2:源3路径 本地接受目录</code>
-<ul>
-<li><code>服务器1:源1路径 :源2路径</code> 表示 <code>服务器1:源1路径 </code>与 <code>服务器1:源2路径</code></li>
-<li><code>服务器:源路径</code>可以含有<code>&#123;xx,xx,xx&#125;</code>用以表示多个路径</li>
-<li><code>本地接受目录</code>只能写一个</li>
-</ul>
-</li>
-<li>本地文件(夹)传到多个远程文件(夹)：目前 rsync 不支持 (目前版本为<code>rsync  version 3.1.3  protocol version 31</code>)。<code>prsync</code> 支持这个，详见下<a href="#prsync">prsync</a>。</li>
-</ul>
-<h3 id="默认参数"><a class="header-anchor" href="#默认参数"></a>默认参数</h3>
-<p><code>rsync</code> 会使用 <code>/etc/ssh/ssh_config</code>和<code>~/.ssh/config</code> ，支持ssh跳板机连接</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rsync</span> -aHhvzP 本地路径1 <span class="token punctuation">(</span>本地路径2 <span class="token punctuation">..</span>.<span class="token punctuation">)</span>  服务器别名:远程路径
-<span class="token function">rsync</span> -aHhvzP 本地路径1 <span class="token punctuation">(</span>本地路径2 <span class="token punctuation">..</span>.<span class="token punctuation">)</span>  用户名@ip:远程路径 -e <span class="token string">'ssh -p 端口'</span>
-<span class="token function">rsync</span> -aHhvzP 服务器别名:远程路径1 <span class="token punctuation">(</span>:远程路径2<span class="token punctuation">..</span>.<span class="token punctuation">)</span>  本地路径
-<span class="token function">rsync</span> -aHhvzP -e <span class="token string">'ssh -p 端口'</span> 用户名@ip:远程路径1 <span class="token punctuation">(</span>:远程路径2<span class="token punctuation">..</span>.<span class="token punctuation">)</span>  本地路径<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-none"><code class="language-none">-a 					归档模式 &#x3D; -rlptgoD
-    -r 				递归目录
-    -l				保留软链接	   # scp 无论什么参数都做不到，所以不推荐用scp，而用rsync
-    -p				保持文件权限
-    -t				保持修改时间
-    -g				保持文件属组信息
-    -o				保持文件属主信息
-    -D 				&#x3D; --devices --specials
-    --devices  保留设备文件 (此命令需要sudu权限)
-  --specials 保留特殊文件
--H 					保留硬链接
--h					kMG B计文件大小
--v          详细模式输出
--z 					压缩传输
--P          &#x3D; --partial --progress
-    --partial   保留没传完的文件，支持断点续传
-    --progress  进度条
---partial-dir&#x3D;何处保存没传完的文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="封装成alias"><a class="header-anchor" href="#封装成alias"></a>封装成alias</h3>
-<p>按如下方法封装，zsh下，输入<code>autots</code>函数、<code>ts</code>(alias)，按tab，能得到和<code>rsync</code>一样的本地目录和远程目录的自动补全</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 自动端点续传，传送失败后隔180秒自动重新连接</span>
-
-<span class="token comment"># autots（alias）会被下面的autots函数覆盖，用来使得下面的autots函数能够和rsync一样自动补全本地和远程目录</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">autots</span><span class="token operator">=</span><span class="token string">'rsync'</span>
-<span class="token keyword">function</span> <span class="token function-name function">autots</span> <span class="token punctuation">&#123;</span>
-    <span class="token builtin class-name">local</span> <span class="token assign-left variable">retry_time</span><span class="token operator">=</span><span class="token number">180</span> <span class="token comment"># second</span>
-    <span class="token keyword">while</span> <span class="token punctuation">[</span> <span class="token number">1</span> <span class="token punctuation">]</span>
-    <span class="token keyword">do</span>
-        <span class="token function">rsync</span> -aHhvzP <span class="token variable">$*</span>
-        <span class="token comment"># command 调用系统的 rsync 命令，避免递归调用rsync</span>
-        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$?</span>"</span> <span class="token operator">=</span> <span class="token string">"0"</span> <span class="token punctuation">]</span> <span class="token punctuation">;</span> <span class="token keyword">then</span>
-            <span class="token builtin class-name">echo</span> <span class="token string">"rsync completed normally"</span>
-            <span class="token builtin class-name">break</span>
-        <span class="token keyword">else</span>
-            <span class="token builtin class-name">echo</span> <span class="token string">"Rsync failure. Backing off and retrying in <span class="token variable">$retry_time</span> seconds..."</span>
-            <span class="token function">sleep</span> <span class="token variable">$retry_time</span>
-        <span class="token keyword">fi</span>
-    <span class="token keyword">done</span>
-<span class="token punctuation">&#125;</span>
-<span class="token comment"># rsync 封装多种参数，但不支持断点续传; ts能够和rsync一样自动补全远程目录</span>
-<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ts</span><span class="token operator">=</span><span class="token string">'rsync -aHhvz --progress'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="报错"><a class="header-anchor" href="#报错"></a>报错</h2>
-<h3 id="protocol-version-mismatch"><a class="header-anchor" href="#protocol-version-mismatch"></a>protocol version mismatch</h3>
-<p>若远程主机的登录文件( 如<code>.bash_profile</code>)中有stdout输出(即<code>echo &quot;xxxx&quot;</code>或 <code>echo &quot;xxx&quot; &gt;&amp;1</code>)，则在用rsync与远程主机传输文件(不论上传、下载)，均会报错如下，且无法传输文件。</p>
-<pre class="line-numbers language-none"><code class="language-none">protocol version mismatch -- is your shell clean?
-(see the rsync man page for an explanation)
-rsync error: protocol incompatibility (code 2) at compat.c(185) [sender&#x3D;3.1.3]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>将stdout输出改为stderr输出(即<code>echo &quot;xxx&quot; &gt;&amp;2</code>)，则此报错消失</p>
-<h1 id="参考阅读"><a class="header-anchor" href="#参考阅读"></a>参考阅读</h1>
-<h2 id="zsh的自动补全"><a class="header-anchor" href="#zsh的自动补全"></a>zsh的自动补全</h2>
-<p><a href="https://mads-hartmann.com/2017/08/06/writing-zsh-completion-scripts.html">https://mads-hartmann.com/2017/08/06/writing-zsh-completion-scripts.html</a></p>
-<p><a href="https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org">https://github.com/zsh-users/zsh-completions/blob/master/zsh-completions-howto.org</a></p>
-<p><a href="https://superuser.com/questions/420525/scp-with-zsh-no-matches-found">https://superuser.com/questions/420525/scp-with-zsh-no-matches-found</a></p>
-<p><a href="https://www.zsh.org/mla/users/2009/msg00936.html">https://www.zsh.org/mla/users/2009/msg00936.html</a></p>
-<p><a href="https://segmentfault.com/a/1190000002994217">https://segmentfault.com/a/1190000002994217</a></p>
-<h2 id="rsync-部分参数的含义"><a class="header-anchor" href="#rsync-部分参数的含义"></a>rsync 部分参数的含义</h2>
-<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript"><span class="token operator">-</span>a<span class="token punctuation">,</span> <span class="token operator">--</span>archive 归档模式，表示以递归方式传输文件，并保持所有文件属性，等于<span class="token operator">-</span>rlptgoD
-<span class="token operator">-</span>v<span class="token punctuation">,</span> <span class="token operator">--</span>verbose 详细模式输出
-<span class="token operator">-</span>p<span class="token punctuation">,</span> <span class="token operator">--</span>perms 保持文件权限
-<span class="token operator">-</span>g<span class="token punctuation">,</span> <span class="token operator">--</span>group 保持文件属组信息
-<span class="token operator">-</span>o<span class="token punctuation">,</span> <span class="token operator">--</span>owner 保持文件属主信息
-<span class="token operator">-</span>r<span class="token punctuation">,</span> <span class="token operator">--</span>recursive 对子目录以递归模式处理。同步目录的时候要加上这个参数
-<span class="token operator">-</span>l<span class="token punctuation">,</span> <span class="token operator">--</span>links 保留软链结，加上这个参数，同步过来的文件会保持之前的软链接属性不变
-<span class="token operator">-</span><span class="token constant">H</span><span class="token punctuation">,</span> <span class="token operator">--</span>hard<span class="token operator">-</span>links 保留硬链结
-<span class="token operator">-</span>e<span class="token punctuation">,</span> <span class="token operator">--</span>rsh<span class="token operator">=</span><span class="token constant">COMMAND</span> 指定使用rsh、ssh方式进行数据同步
-<span class="token operator">-</span>z<span class="token punctuation">,</span> <span class="token operator">--</span>compress 对备份的文件在传输时进行压缩处理
-<span class="token operator">--</span>stats 给出某些文件的传输状态
-<span class="token operator">--</span>progress 打印同步的过程
-<span class="token operator">--</span>timeout<span class="token operator">=</span><span class="token constant">TIME</span> 同步过程中，<span class="token constant">IP</span>超时时间，单位为秒
-<span class="token operator">--</span><span class="token keyword">delete</span> 删除那些目标目录中有而源目录中没有的多余文件。这个是rsync做增量方式的全备份的最佳选择方案！！！！！！
-<span class="token operator">--</span><span class="token keyword">delete</span><span class="token operator">-</span>before 接受者在输出之前进行删除操作。即先将目标目录中文件全部删除，再将源目录文件拷贝过去。这是rsync保持目标目录跟源目录一致的方案！！！
-<span class="token operator">--</span><span class="token keyword">delete</span><span class="token operator">-</span>after 在同步操作之后做比较，删除那些目标目录中有而源目录中没有的多余文件
-<span class="token operator">--</span><span class="token keyword">delete</span><span class="token operator">-</span>excluded 删除目标目录中那些被该选项指定排除的文件
-<span class="token operator">--</span>ignore<span class="token operator">-</span>errors 即使出现<span class="token constant">IO</span>错误也进行删除，忽略错误
-<span class="token operator">--</span>exclude <span class="token function">指定同步时需要过滤掉的文件或子目录</span><span class="token punctuation">(</span>即不需要同步过去的<span class="token punctuation">)</span><span class="token function">，后面直接跟不需要同步的单个文件名或子目录</span><span class="token punctuation">(</span>不需要跟路径<span class="token punctuation">)</span> ，过滤多个文件或子目录，就使用多个<span class="token operator">--</span>exclude
-<span class="token operator">--</span>exclude<span class="token operator">-</span>from <span class="token function">指定同步时需要过滤掉的文件或子目录，后面跟文件</span><span class="token punctuation">(</span>比如<span class="token operator">/</span>root<span class="token operator">/</span>exclue<span class="token punctuation">.</span>txt<span class="token punctuation">)</span>，然后将不需要同步的文件和子目录放到<span class="token operator">/</span>root<span class="token operator">/</span>exclue<span class="token punctuation">.</span>txt下。
-<span class="token operator">--</span>version 打印版本信息
-<span class="token operator">--</span>port<span class="token operator">=</span><span class="token constant">PORT</span> 指定其他的rsync服务端口
-<span class="token operator">--</span>log<span class="token operator">-</span>format<span class="token operator">=</span>formAT 指定日志文件格式
-<span class="token operator">--</span>password<span class="token operator">-</span>file<span class="token operator">=</span><span class="token constant">FILE</span> 从<span class="token constant">FILE</span>中得到密码
-<span class="token operator">--</span>bwlimit<span class="token operator">=</span><span class="token constant">KBPS</span> 限制<span class="token constant">I</span><span class="token operator">/</span><span class="token constant">O</span>带宽，KBytes per second<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="prsync"><a class="header-anchor" href="#prsync"></a>prsync</h2>
-<p><code>prsync</code>可以并行发送文件到多台服务器</p>
-<p><a href="https://www.tecmint.com/copy-files-to-multiple-linux-servers/">https://www.tecmint.com/copy-files-to-multiple-linux-servers/</a></p>
-<p><a href="https://www.cnblogs.com/Peter2014/p/8251886.html">轻量级运维工具-pssh,pscp,prsync,pslurp,pnuke</a></p>
-<hr class="footnotes-sep">
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>不可<code>已有文件夹/新建名/新建名</code>，新建&gt;=2层文件夹会报错 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
 ]]></content>
       <categories>
         <category>器</category>
@@ -6898,140 +6910,6 @@ torchvision            0.3.0<span aria-hidden="true" class="line-numbers-rows"><
       </categories>
   </entry>
   <entry>
-    <title>tmux配置与使用</title>
-    <url>/posts/62737/</url>
-    <content><![CDATA[<h2 id="tmux-使用"><a class="header-anchor" href="#tmux-使用"></a>tmux 使用</h2>
-<ul>
-<li>
-<ul>
-<li>窗口进程管理<br>
-即使终端关闭（<code>cmd+Q/W</code>），tmux的窗口依旧运行<br>
-打开一个tmux窗口</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">tmux new -s 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>将该tmux窗口放入后台</p>
-<pre class="line-numbers language-none"><code class="language-none">ctrl+b d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>查看所有tmux窗口的方法</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux ls<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>唤出（使后台的窗口显示）tmux窗口</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux a -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>显示最后放入后台的窗口</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>杀死tmux窗口的方法</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux kill-session -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>杀死当前窗口</p>
-<pre class="line-numbers language-none"><code class="language-none">ctrl+b &amp;
-选择y （yes）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>窗口分区管理</p>
-</li>
-<li>
-<p>页面<br>
-单个程序只给一屏用于输出，超出此范围，要翻页查看：<br>
-<code>ctrl+b [   fn+↑/↓  esc</code><br>
-进入拷贝模式：拷贝模式中，新输出的文字不会显示<br>
-<code>ctrl+b [</code>	：进入拷贝模式<br>
-<code>fn+上/下键</code>	：翻页<br>
-<code>esc</code>			：退出拷贝模式<br>
-进入黏贴模式<br>
-<code>ctrl+b ]</code></p>
-</li>
-</ul>
-<h2 id="tmux配置"><a class="header-anchor" href="#tmux配置"></a>tmux配置</h2>
-<p>我的<code>~/.tmux.conf</code>文件</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># --- base --- #</span>
-<span class="token builtin class-name">set</span> -g default-terminal <span class="token string">"screen-256color"</span>
-<span class="token builtin class-name">set</span> -g display-time <span class="token number">3000</span>
-<span class="token builtin class-name">set</span> -g history-limit <span class="token number">10000</span>
-<span class="token builtin class-name">set</span> -g base-index <span class="token number">1</span>
-<span class="token builtin class-name">set</span> -g pane-base-index <span class="token number">1</span>
-<span class="token builtin class-name">set</span> -s escape-time <span class="token number">0</span>
-<span class="token comment"># set -g mouse on # 打开以下各个鼠标功能</span>
-
-<span class="token comment"># set -g mode-mouse on # 支持鼠标选取文本等</span>
-<span class="token comment"># set -g mouse-resize-pane on # 支持鼠标拖动调整面板的大小(通过拖动面板间的分割线)</span>
-<span class="token comment"># set -g mouse-select-pane on # 支持鼠标选中并切换面板</span>
-<span class="token comment"># set -g mouse-select-window on # 支持鼠标选中并切换窗口(通过点击状态栏窗口名称)</span>
-<span class="token comment"># 允许用鼠标（含触控板）翻页，但会把vim的鼠标翻页给劫持走</span>
-
-<span class="token comment"># 复制黏贴</span>
-<span class="token comment"># set-option -g default-command "reattach-to-user-namespace -l bash"</span>
-<span class="token comment"># setw -g mode-keys vi</span>
-<span class="token comment"># bind-key -t vi-copy v begin-selection</span>
-<span class="token comment"># bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"</span>
-
-<span class="token comment"># ctrl-a [ 进入 vi 模式</span>
-<span class="token comment"># q：退出vi模式</span>
-<span class="token comment"># 使用 hjkl，wb 等 vi 快捷键移动到目标位置</span>
-<span class="token comment"># v ：进入 Visual模式(即选词模式) ，开始选择内容</span>
-<span class="token comment"># 使用 vi 快捷键移动，直到要复制的内容被选中</span>
-<span class="token comment"># y：复制操作系统的粘贴板</span>
-<span class="token comment"># 粘贴：tmux内ctrl+]，在操作系统内Cmd-V</span>
-
-<span class="token comment"># ctrl+r : reload my change in this file (~/.tmux.conf)</span>
-<span class="token builtin class-name">bind</span> r source-file ~/.tmux.conf <span class="token punctuation">\</span><span class="token punctuation">;</span> display <span class="token string">"Reloaded!"</span>
-
-<span class="token comment"># 分割窗口</span>
-<span class="token builtin class-name">bind</span> <span class="token punctuation">\</span> split-window -h <span class="token comment"># prefix+\ : 竖分</span>
-unbind %
-<span class="token builtin class-name">bind</span> - split-window -v <span class="token comment"># prefix+-横分</span>
-unbind <span class="token string">'"'</span>
-
-<span class="token comment"># 窗口间移动</span>
-<span class="token builtin class-name">bind</span> h select-pane -L
-<span class="token builtin class-name">bind</span> j select-pane -D
-<span class="token builtin class-name">bind</span> k select-pane -U
-<span class="token builtin class-name">bind</span> l select-pane -R
-
-<span class="token comment"># 窗口改大小</span>
-<span class="token builtin class-name">bind</span> -r ^k resizep -U <span class="token number">5</span> <span class="token comment"># upward (prefix Ctrl+k)</span>
-<span class="token builtin class-name">bind</span> -r ^j resizep -D <span class="token number">5</span> <span class="token comment"># downward (prefix Ctrl+j)</span>
-<span class="token builtin class-name">bind</span> -r ^h resizep -L <span class="token number">5</span> <span class="token comment"># to the left (prefix Ctrl+h)</span>
-<span class="token builtin class-name">bind</span> -r ^l resizep -R <span class="token number">5</span> <span class="token comment"># to the right (prefix Ctrl+l)</span>
-
-<span class="token builtin class-name">bind</span> -r e lastp <span class="token comment"># 选择最后一个面板</span>
-<span class="token builtin class-name">bind</span> -r ^e last <span class="token comment"># 选择最后一个窗口</span>
-
-<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">[</span> swapp -U <span class="token comment"># 与前一个面板交换位置: ctrl+a+[(ctrl不松手)</span>
-<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">]</span> swapp -D <span class="token comment"># 与后一个面板交换位置：ctrl+a+](ctrl不松手)</span>
-
-<span class="token comment"># select the last pane (prefix e)</span>
-<span class="token builtin class-name">bind</span> e lastp
-<span class="token comment"># select the last window (prefix Ctrl+e)</span>
-<span class="token builtin class-name">bind</span> ^e last
-
-<span class="token comment"># kill pane (prefix q)</span>
-<span class="token builtin class-name">bind</span> q killp
-<span class="token comment"># kill window (prefix Ctrl+q)</span>
-<span class="token builtin class-name">bind</span> -r ^q killw
-<span class="token builtin class-name">bind</span> Q kill-session
-
-<span class="token comment"># 显示会话列表</span>
-unbind w
-<span class="token builtin class-name">bind</span> w display-panes
-unbind s
-unbind ^s
-unbind S
-<span class="token builtin class-name">bind</span> s choose-window
-<span class="token builtin class-name">bind</span> -r ^s choose-session
-<span class="token builtin class-name">bind</span> S choose-tree
-<span class="token comment"># list-windows -a</span>
-
-<span class="token comment"># 显示窗口列表</span>
-
-<span class="token comment"># 修改进入命令模式按键</span>
-<span class="token comment"># remap prefix to Control + a</span>
-<span class="token builtin class-name">set</span> -g prefix C-a
-unbind C-b
-<span class="token builtin class-name">bind</span> C-a send-prefix<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>终端</category>
-      </categories>
-  </entry>
-  <entry>
     <title>iterm2配置与使用</title>
     <url>/posts/51368/</url>
     <content><![CDATA[<p>[TOC]</p>
@@ -7415,447 +7293,137 @@ Detached<span aria-hidden="true" class="line-numbers-rows"><span></span><span></
       </categories>
   </entry>
   <entry>
-    <title>Pycharm安装配置教程</title>
-    <url>/posts/50549/</url>
-    <content><![CDATA[<p>[TOC]</p>
-<h1 id="Pycharm教程"><a class="header-anchor" href="#Pycharm教程"></a>Pycharm教程</h1>
-<h2 id="汉化pycharm"><a class="header-anchor" href="#汉化pycharm"></a>汉化pycharm</h2>
-<p>链接：<a href="https://www.jianshu.com/p/8ec84bd7d3d6">https://www.jianshu.com/p/8ec84bd7d3d6</a></p>
-<h3 id="首先下载汉化包"><a class="header-anchor" href="#首先下载汉化包"></a>首先下载汉化包</h3>
-<pre class="line-numbers language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;ewen0930&#x2F;PyCharm-Chinese<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="然后生成resources-zh-jar"><a class="header-anchor" href="#然后生成resources-zh-jar"></a>然后生成resources_zh.jar</h3>
-<pre class="line-numbers language-none"><code class="language-none">bash package.cmd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="替换文件"><a class="header-anchor" href="#替换文件"></a>替换文件</h3>
-<p>把生成的resources_zh.jar放在安装目录lib文件夹下就好了</p>
-<p>mac的路径是<code>/Applications/PyCharm CE.app/Contents/lib</code></p>
-<h2 id="教育账号申请"><a class="header-anchor" href="#教育账号申请"></a>教育账号申请</h2>
-<h3 id="操作"><a class="header-anchor" href="#操作"></a>操作</h3>
-<p><a href="https://www.jetbrains.com/student/">链接</a> - <code>How do I apply?</code> - <code>Apply Now</code></p>
-<p>填入姓名 学校信息 教育邮箱（.edu.cn 可用），然后提交</p>
-<p>等五分钟左右，教育邮箱才会收到激活邮件，点其中链接</p>
-<p>填入Jet Brains的账号邮箱（可以是其他邮箱）和密码，没有账号可申请一个，提交</p>
-<p>等五分钟左右，账号邮箱才会收到激活邮件，点其中链接，会显示一个激活码，是教育账号的</p>
-<p>此激活码填入Jet Brains所有软件（如pycharm）的账号激活中，即激活成功</p>
-<h3 id="注意"><a class="header-anchor" href="#注意"></a>注意</h3>
+    <title>tmux配置与使用</title>
+    <url>/posts/62737/</url>
+    <content><![CDATA[<h2 id="tmux-使用"><a class="header-anchor" href="#tmux-使用"></a>tmux 使用</h2>
 <ul>
-<li>教育账号有效期一年，一年后若仍是学生或老师，还可用原教育邮箱在此激活</li>
-<li>教育账号可激活多台机器上的pycahrm，但只能同时用一台上的</li>
+<li>
+<ul>
+<li>窗口进程管理<br>
+即使终端关闭（<code>cmd+Q/W</code>），tmux的窗口依旧运行<br>
+打开一个tmux窗口</li>
 </ul>
-<h2 id="远程"><a class="header-anchor" href="#远程"></a>远程</h2>
-<h3 id="添加远程解释器、同步远程项目文件夹"><a class="header-anchor" href="#添加远程解释器、同步远程项目文件夹"></a>添加远程解释器、同步远程项目文件夹</h3>
-<p><a href="https://www.jianshu.com/p/9b362cdee2ab">参见</a></p>
-<h3 id="浏览远程目录"><a class="header-anchor" href="#浏览远程目录"></a>浏览远程目录</h3>
-<p><a href="https://www.jetbrains.com/help/pycharm/remote-host-tool-window.html">参见</a></p>
-<p>最终效果：远程浏览栏在右，可见整个服务器；本地浏览栏在左，只见项目目录</p>
-<p><img data-src="/posts/50549/%E8%BF%9C%E7%A8%8B%E6%9C%AC%E5%9C%B0%E6%B5%8F%E8%A7%88.png" alt></p>
-<h3 id="几种用法"><a class="header-anchor" href="#几种用法"></a>几种用法</h3>
-<ul>
-<li>用远程解释器、debug或运行本地代码
-<ul>
-<li>只需添加远侧解释器，同步远程项目文件夹，即可调用远程资源运行、debug本地代码，结果返回到pycharm中的下栏</li>
-</ul>
+<pre class="line-numbers language-none"><code class="language-none">tmux new -s 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>将该tmux窗口放入后台</p>
+<pre class="line-numbers language-none"><code class="language-none">ctrl+b d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>查看所有tmux窗口的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux ls<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>唤出（使后台的窗口显示）tmux窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux a -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>显示最后放入后台的窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>杀死tmux窗口的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux kill-session -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>杀死当前窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">ctrl+b &amp;
+选择y （yes）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
-<li>编辑远程代码
-<ul>
-<li>同步远程项目文件夹到本地随便一个文件夹</li>
-<li>若不添加远程解释器，则只可在ssh中运行</li>
-<li>若添加远程解释器，则可用远程解释器、debug</li>
-</ul>
+<li>
+<p>窗口分区管理</p>
 </li>
-<li>在pycharm中查看远程、编辑文件（不论文本还是图片）
-<ul>
-<li>在远程浏览栏中，服务器上所有的（不仅仅是同步的文件夹中的）文件（夹），可在pycharm内增删改重命名</li>
-<li>但是不能打开远程文件夹到pycharm，如有此需要，需新建远程项目文件夹同步</li>
-</ul>
-</li>
-<li>传输文件
-<ul>
-<li>将文件（夹）（们），拖入(移动)/<code>⌘V</code>(复制) 到本地浏览栏，会自动同步到远程项目文件夹</li>
-<li>拖入(移动)/<code>⌘V</code>(复制) 到远程浏览栏无效</li>
-</ul>
+<li>
+<p>页面<br>
+单个程序只给一屏用于输出，超出此范围，要翻页查看：<br>
+<code>ctrl+b [   fn+↑/↓  esc</code><br>
+进入拷贝模式：拷贝模式中，新输出的文字不会显示<br>
+<code>ctrl+b [</code>	：进入拷贝模式<br>
+<code>fn+上/下键</code>	：翻页<br>
+<code>esc</code>			：退出拷贝模式<br>
+进入黏贴模式<br>
+<code>ctrl+b ]</code></p>
 </li>
 </ul>
+<h2 id="tmux配置"><a class="header-anchor" href="#tmux配置"></a>tmux配置</h2>
+<p>我的<code>~/.tmux.conf</code>文件</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># --- base --- #</span>
+<span class="token builtin class-name">set</span> -g default-terminal <span class="token string">"screen-256color"</span>
+<span class="token builtin class-name">set</span> -g display-time <span class="token number">3000</span>
+<span class="token builtin class-name">set</span> -g history-limit <span class="token number">10000</span>
+<span class="token builtin class-name">set</span> -g base-index <span class="token number">1</span>
+<span class="token builtin class-name">set</span> -g pane-base-index <span class="token number">1</span>
+<span class="token builtin class-name">set</span> -s escape-time <span class="token number">0</span>
+<span class="token comment"># set -g mouse on # 打开以下各个鼠标功能</span>
+
+<span class="token comment"># set -g mode-mouse on # 支持鼠标选取文本等</span>
+<span class="token comment"># set -g mouse-resize-pane on # 支持鼠标拖动调整面板的大小(通过拖动面板间的分割线)</span>
+<span class="token comment"># set -g mouse-select-pane on # 支持鼠标选中并切换面板</span>
+<span class="token comment"># set -g mouse-select-window on # 支持鼠标选中并切换窗口(通过点击状态栏窗口名称)</span>
+<span class="token comment"># 允许用鼠标（含触控板）翻页，但会把vim的鼠标翻页给劫持走</span>
+
+<span class="token comment"># 复制黏贴</span>
+<span class="token comment"># set-option -g default-command "reattach-to-user-namespace -l bash"</span>
+<span class="token comment"># setw -g mode-keys vi</span>
+<span class="token comment"># bind-key -t vi-copy v begin-selection</span>
+<span class="token comment"># bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"</span>
+
+<span class="token comment"># ctrl-a [ 进入 vi 模式</span>
+<span class="token comment"># q：退出vi模式</span>
+<span class="token comment"># 使用 hjkl，wb 等 vi 快捷键移动到目标位置</span>
+<span class="token comment"># v ：进入 Visual模式(即选词模式) ，开始选择内容</span>
+<span class="token comment"># 使用 vi 快捷键移动，直到要复制的内容被选中</span>
+<span class="token comment"># y：复制操作系统的粘贴板</span>
+<span class="token comment"># 粘贴：tmux内ctrl+]，在操作系统内Cmd-V</span>
+
+<span class="token comment"># ctrl+r : reload my change in this file (~/.tmux.conf)</span>
+<span class="token builtin class-name">bind</span> r source-file ~/.tmux.conf <span class="token punctuation">\</span><span class="token punctuation">;</span> display <span class="token string">"Reloaded!"</span>
+
+<span class="token comment"># 分割窗口</span>
+<span class="token builtin class-name">bind</span> <span class="token punctuation">\</span> split-window -h <span class="token comment"># prefix+\ : 竖分</span>
+unbind %
+<span class="token builtin class-name">bind</span> - split-window -v <span class="token comment"># prefix+-横分</span>
+unbind <span class="token string">'"'</span>
+
+<span class="token comment"># 窗口间移动</span>
+<span class="token builtin class-name">bind</span> h select-pane -L
+<span class="token builtin class-name">bind</span> j select-pane -D
+<span class="token builtin class-name">bind</span> k select-pane -U
+<span class="token builtin class-name">bind</span> l select-pane -R
+
+<span class="token comment"># 窗口改大小</span>
+<span class="token builtin class-name">bind</span> -r ^k resizep -U <span class="token number">5</span> <span class="token comment"># upward (prefix Ctrl+k)</span>
+<span class="token builtin class-name">bind</span> -r ^j resizep -D <span class="token number">5</span> <span class="token comment"># downward (prefix Ctrl+j)</span>
+<span class="token builtin class-name">bind</span> -r ^h resizep -L <span class="token number">5</span> <span class="token comment"># to the left (prefix Ctrl+h)</span>
+<span class="token builtin class-name">bind</span> -r ^l resizep -R <span class="token number">5</span> <span class="token comment"># to the right (prefix Ctrl+l)</span>
+
+<span class="token builtin class-name">bind</span> -r e lastp <span class="token comment"># 选择最后一个面板</span>
+<span class="token builtin class-name">bind</span> -r ^e last <span class="token comment"># 选择最后一个窗口</span>
+
+<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">[</span> swapp -U <span class="token comment"># 与前一个面板交换位置: ctrl+a+[(ctrl不松手)</span>
+<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">]</span> swapp -D <span class="token comment"># 与后一个面板交换位置：ctrl+a+](ctrl不松手)</span>
+
+<span class="token comment"># select the last pane (prefix e)</span>
+<span class="token builtin class-name">bind</span> e lastp
+<span class="token comment"># select the last window (prefix Ctrl+e)</span>
+<span class="token builtin class-name">bind</span> ^e last
+
+<span class="token comment"># kill pane (prefix q)</span>
+<span class="token builtin class-name">bind</span> q killp
+<span class="token comment"># kill window (prefix Ctrl+q)</span>
+<span class="token builtin class-name">bind</span> -r ^q killw
+<span class="token builtin class-name">bind</span> Q kill-session
+
+<span class="token comment"># 显示会话列表</span>
+unbind w
+<span class="token builtin class-name">bind</span> w display-panes
+unbind s
+unbind ^s
+unbind S
+<span class="token builtin class-name">bind</span> s choose-window
+<span class="token builtin class-name">bind</span> -r ^s choose-session
+<span class="token builtin class-name">bind</span> S choose-tree
+<span class="token comment"># list-windows -a</span>
+
+<span class="token comment"># 显示窗口列表</span>
+
+<span class="token comment"># 修改进入命令模式按键</span>
+<span class="token comment"># remap prefix to Control + a</span>
+<span class="token builtin class-name">set</span> -g prefix C-a
+unbind C-b
+<span class="token builtin class-name">bind</span> C-a send-prefix<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
-        <category>编辑器IDE</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vim-搜索替换插件</title>
-    <url>/posts/32311/</url>
-    <content><![CDATA[<h2 id="待定"><a class="header-anchor" href="#待定"></a>待定</h2>
-<p><a href="https://github.com/dyng/ctrlsf.vim:">https://github.com/dyng/ctrlsf.vim:</a> 多文件替换需要使用多光标, 麻烦了</p>
-<ul>
-<li>bug: 宽字符预览上色出错</li>
-</ul>
-<p>默认用vimgrep, 很慢</p>
-<ul>
-<li>
-<p>大小写</p>
-<p><code>:F(ar) \Cxxxx xxx xxx </code>: 大小写敏感</p>
-<p><code>:F(ar) \cxxxx xxx xxx </code>: 大小写不敏感</p>
-<p><code>:F(ar) xxxx xxx xxx </code>: 默认大小写不敏感</p>
-</li>
-<li>
-<p>正则:</p>
-<ul>
-<li>默认是正则表达式, 取消正则 <code>:F(ar) 	\Vxxx</code></li>
-</ul>
-<p><a href="https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less">https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less</a></p>
-<pre class="line-numbers language-none"><code class="language-none">command! -nargs&#x3D;1 S let @&#x2F; &#x3D; escape(&#39;&lt;args&gt;&#39;, &#39;\&#39;)
-nmap &lt;Leader&gt;S :execute(&quot;:S &quot; . input(&#39;Regex-off: &#x2F;&#39;))&lt;CR&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>整词: <code>\&lt;xxxx\&gt;</code></p>
-</li>
-</ul>
-<p><a href="http://xahlee.info/comp/unicode_index.html">http://xahlee.info/comp/unicode_index.html</a></p>
-<p>设计: 🔎 Ϙ⊕ ⊗⛒⦿⨁⨂ ⨷㉧🄋ⒻⓄ◯⨀ +⃝ ⏍ ⤭  ⇄ ⟲ ⟳ ↺ ↻  ⇲ ➲ 🔁 🔂 🔃 🔄 ➡ ⬇  ⎋Ⓡ Ⓢ ⧬</p>
-<p>◌̸</p>
-<p>⃝</p>
-<p>⃞</p>
-<p>⃣</p>
-<p>⃠</p>
-<p>⃢</p>
-<p><code>|.*|Aa|“”|+⃝ |</code><br>
-<code>|.*|Aa|“”|Ⓞ|</code></p>
-<p><code>[.*] [Aa] [“”] Ⓞ</code></p>
-<p><code>|.*| |Aa| |“”| Ⓞ</code></p>
-<p><code>|.*|Aa|“”|⬇|</code></p>
-<p><a href="https://shapeshed.com/vim-statuslines/">https://shapeshed.com/vim-statuslines/</a>, <a href="https://jdhao.github.io/2019/11/03/vim_custom_statusline/">https://jdhao.github.io/2019/11/03/vim_custom_statusline/</a></p>
-<p>rg的整词匹配: <a href="https://github.com/BurntSushi/ripgrep/issues/389">https://github.com/BurntSushi/ripgrep/issues/389</a></p>
-<p><a href="https://github.com/brooth/far.vim">https://github.com/brooth/far.vim</a></p>
-<p><a href="https://github.com/hwrod/interactive-replace">https://github.com/hwrod/interactive-replace</a></p>
-<p><a href="https://github.com/mreinhardt/greplace.vim">https://github.com/mreinhardt/greplace.vim</a></p>
-<h2 id="各种搜索后端"><a class="header-anchor" href="#各种搜索后端"></a>各种搜索后端</h2>
-<pre class="line-numbers language-none"><code class="language-none">ag --nogroup --column --nocolor --silent --max-count&#x3D;1000  --vimgrep gmg --file-search-regex&#x3D;branch.sh [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-none"><code class="language-none">rg --no-heading --column --no-messages --max-count&#x3D;1000 --glob&#x3D;branch.sh &#39;gmg[a-z]*&#39; --vimgrep  [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a href="https://github.com/beyondgrep/ack3/">https://github.com/beyondgrep/ack3/</a></p>
-<pre class="line-numbers language-none"><code class="language-none">ack --nogroup --column --nocolor --max-count&#x3D;1000  --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh  gmg
-[-o]
-# --smart-case --ignore-case --farft --no-recurse
-
-
-ack --nogroup --output&#x3D;&#39;$&amp;:$_&#39; --max-count&#x3D;1000 --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh gmg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="首先排除"><a class="header-anchor" href="#首先排除"></a>首先排除</h2>
-<p><a href="https://github.com/svermeulen/vim-subversive:">https://github.com/svermeulen/vim-subversive:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
-<p><a href="https://github.com/andy-kwei/vim-easy-replace:">https://github.com/andy-kwei/vim-easy-replace:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
-<p><a href="https://github.com/movitto/vim-vsearch:">https://github.com/movitto/vim-vsearch:</a> 类far.vim而不如</p>
-<p><a href="https://github.com/yegappan/greplace:">https://github.com/yegappan/greplace:</a> 文档一句话; -&gt; mreinhardt/greplace.vim</p>
-<p><a href="https://github.com/rzwierz/vim-guidgen:">https://github.com/rzwierz/vim-guidgen:</a> 只能linux的vim用</p>
-<p><a href="https://github.com/pallavagarwal07/AutoRun:">https://github.com/pallavagarwal07/AutoRun:</a> 文档一句话, 只是提供预览搜索/替换结果</p>
-<p><a href="https://github.com/pieterhuibers/findreplace:">https://github.com/pieterhuibers/findreplace:</a> 空项目</p>
-<p><a href="https://github.com/bloc40/vim-replace:">https://github.com/bloc40/vim-replace:</a> 一句话文档; 支持多文件</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>编辑器IDE</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vscode安装配置</title>
-    <url>/posts/25455/</url>
-    <content><![CDATA[<h1 id="vscode安装配置"><a class="header-anchor" href="#vscode安装配置"></a>vscode安装配置</h1>
-<h2 id="拓展安装方法"><a class="header-anchor" href="#拓展安装方法"></a>拓展安装方法</h2>
-<ul>
-<li>
-<p><code>⇧⌘P</code> -<code>Extentions: Install Extentions</code> - 输入<code>插件名称</code> - <code>install</code></p>
-</li>
-<li>
-<p>或在左侧拓展商店栏，输入<code>插件名称</code> - <code>install</code></p>
-</li>
-</ul>
-<p><img data-src="/posts/25455/img1.png" alt></p>
-<h2 id="语言"><a class="header-anchor" href="#语言"></a>语言</h2>
-<p><code>⇧⌘P</code> -<code>Configure Display Language</code> -</p>
-<p><img data-src="/posts/25455/2019-05-23_15.54.53.png" alt></p>
-<ul>
-<li>
-<p>选择已有语言</p>
-<p><img data-src="/posts/25455/2019-05-23_15.54.43.png" alt></p>
-</li>
-<li>
-<p><code>install other language</code> -左侧拓展商店栏输入 <code>Chinese (Simplified) Language Pack for Visual Studio Code</code> - <code>install</code></p>
-</li>
-</ul>
-<h2 id="配色与字体"><a class="header-anchor" href="#配色与字体"></a>配色与字体</h2>
-<h3 id="预备"><a class="header-anchor" href="#预备"></a>预备</h3>
-<p>安装插件<code>Gruvbox Themes</code></p>
-<p><a href="https://github.com/powerline/fonts">Powerline字体安装</a></p>
-<ul>
-<li>
-<p>mac:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># clone</span>
-<span class="token function">git</span> clone https://github.com/powerline/fonts.git --depth<span class="token operator">=</span><span class="token number">1</span>
-<span class="token comment"># install</span>
-<span class="token builtin class-name">cd</span> fonts
-./install.sh
-<span class="token comment"># clean-up a bit</span>
-<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
-<span class="token function">rm</span> -rf fonts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>linux:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> fonts-powerline<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-<p><a href="https://glitchbone.github.io/vscode-base16-term/#/">终端配色参考</a></p>
-<h3 id="配置"><a class="header-anchor" href="#配置"></a>配置</h3>
-<p><code>⌘,</code> ，在<code>用户</code>设置中</p>
-<p><img data-src="/posts/25455/2019-05-23_16.04.11-8598764.png" alt></p>
-<p>以打开<code>settings.json</code>，添加以下设置</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-  ...
-    <span class="token comment">// 终端字体</span>
-    <span class="token property">"editor.fontFamily"</span><span class="token operator">:</span> <span class="token string">"Meslo LG S DZ for Powerline"</span><span class="token punctuation">,</span>
-    <span class="token comment">// 终端配色</span>
-    <span class="token property">"workbench.colorCustomizations"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token property">"terminal.background"</span><span class="token operator">:</span><span class="token string">"#28282a"</span> <span class="token punctuation">,</span>         <span class="token property">"terminal.foreground"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminalCursor.background"</span><span class="token operator">:</span><span class="token string">"#3b3b3b"</span><span class="token punctuation">,</span>   <span class="token property">"terminalCursor.foreground"</span><span class="token operator">:</span><span class="token string">"#A5A2A2"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiBlack"</span><span class="token operator">:</span><span class="token string">"#28282a"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightBlack"</span><span class="token operator">:</span><span class="token string">"#a2a2a2"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiWhite"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightWhite"</span><span class="token operator">:</span><span class="token string">"#feffff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiRed"</span><span class="token operator">:</span><span class="token string">"#c91b00"</span><span class="token punctuation">,</span>             <span class="token property">"terminal.ansiBrightRed"</span><span class="token operator">:</span><span class="token string">"#ff6d67"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiYellow"</span><span class="token operator">:</span><span class="token string">"#cecc4d"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightYellow"</span><span class="token operator">:</span><span class="token string">"#fefb67"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiGreen"</span><span class="token operator">:</span><span class="token string">"#89b560"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightGreen"</span><span class="token operator">:</span><span class="token string">"#74dd74"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiCyan"</span><span class="token operator">:</span><span class="token string">"#61aaab"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightCyan"</span><span class="token operator">:</span><span class="token string">"#5ffdff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiBlue"</span><span class="token operator">:</span><span class="token string">"#5168d5"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightBlue"</span><span class="token operator">:</span><span class="token string">"#6871ff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiMagenta"</span><span class="token operator">:</span><span class="token string">"#c930c7"</span><span class="token punctuation">,</span>         <span class="token property">"terminal.ansiBrightMagenta"</span><span class="token operator">:</span><span class="token string">"#ff76ff"</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-        <span class="token comment">//  配色</span>
-    <span class="token property">"workbench.colorTheme"</span><span class="token operator">:</span> <span class="token string">"Gruvbox Dark (Medium)"</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上文的<code>// ...</code>注释可以黏贴到<code>settings.json</code>中，vscode支持注释</p>
-<h2 id="终端"><a class="header-anchor" href="#终端"></a>终端</h2>
-<h3 id="内部终端-integrated-terminal"><a class="header-anchor" href="#内部终端-integrated-terminal"></a>内部终端(integrated terminal)</h3>
-<pre class="line-numbers language-⌃`" data-language="⌃`"><div class="caption"><span>```以开启内部终端</span></div><code class="language-⌃`">
-### 外部终端(external terminal)
-
-* 配置
-
-&#96;⌘,&#96; ，在&#96;用户&#96;设置中，以打开&#96;settings.json&#96;，添加以下设置
-
-
-&#96;&#96;&#96;json
-&#123;
-  ...
-  &quot;terminal.external.osxExec&quot;: &quot;iTerm.app&quot;,
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>使用：<code>⇧⌘C</code>以，会弹出一个外部<code>iTerm2</code>窗口</li>
-</ul>
-<h2 id="命令行工具"><a class="header-anchor" href="#命令行工具"></a>命令行工具</h2>
-<p><a href="https://code.visualstudio.com/docs/editor/integrated-terminal">https://code.visualstudio.com/docs/editor/integrated-terminal</a></p>
-<p><code>⇧⌘P</code> - <code>Shell Command: install 'code' command in PATH</code></p>
-<p><img data-src="/posts/25455/img2.png" alt></p>
-<p>使用方法：</p>
-<ul>
-<li>在命令中输入如下命令，则会用vscode-insiders打开之</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">code-insiders 文件名/文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>在命令中输入如下命令，则会用vscode打开之</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">code 文件名&#x2F;文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>上述命令适用于：本地内置终端、本地外部终端、远程开发时内置终端、<s>远程开发时的本地外部终端</s></p>
-<h2 id="远程开发"><a class="header-anchor" href="#远程开发"></a>远程开发</h2>
-<h3 id="安装插件"><a class="header-anchor" href="#安装插件"></a>安装插件</h3>
-<p>安装插件 <code>Remote Developement</code> ，目前(2019-5-23)只支持 <a href="https://code.visualstudio.com/insiders/">VSCode-Insiders</a>，不支持<a href="https://code.visualstudio.com/Download">正式版VSCode</a></p>
-<h3 id="配置本地的ssh-config"><a class="header-anchor" href="#配置本地的ssh-config"></a>配置本地的ssh config</h3>
-<p>请在本地<code>~/.ssh/config</code>或<code>/etc/ssh/ssh_config</code>中写好远程服务器的连接配置</p>
-<p>vscode的<code>Remote Developement</code> 只支持密钥登录，也支持密码登录</p>
-<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
-<p>点左下角<code>&gt;&lt;</code>按钮</p>
-<p><img data-src="/posts/25455/2019-05-23_16.27.00.png" alt></p>
-<p><img data-src="/posts/25455/2019-05-23_16.27.05.png" alt></p>
-<p><img data-src="/posts/25455/2019-05-23_16.27.13.png" alt></p>
-<h3 id="编辑远程文件-夹"><a class="header-anchor" href="#编辑远程文件-夹"></a>编辑远程文件(夹)</h3>
-<p><img data-src="/posts/25455/2019-05-23_16.32.52.png" alt></p>
-<p>关于远程开发的vscode命令行工具</p>
-<ul>
-<li>
-<p>vscode连接服务器后，会在服务器自动安装vscode远程开发的服务端程序，并运行之</p>
-<ul>
-<li>安装路径为<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code></li>
-<li>每当这台本机和这台服务器重新连接，就按照这个hash码，加载安装路径下，之前缓存的编辑器、内置终端、等模块的状态</li>
-<li>故<strong>重新连接服务器，编辑器、内置终端、等模块的状态均保留</strong></li>
-</ul>
-</li>
-<li>
-<p>vscode连接服务器后，在内置终端可使用   <code>code(-insiders)</code>  命令打开远程文件(夹)。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> code<span class="token punctuation">(</span>-insiders<span class="token punctuation">)</span>
-<span class="token comment"># 返回</span>
-<span class="token comment"># ~/.vscode-remote/bin/服务器的hash码/bin/code(-insiders)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>但远程开发， <strong>在 本地外部终端 输入  <code>code(-insiders)</code>，无法 打开远程文件</strong></p>
-</li>
-</ul>
-<h3 id="常见报错与处理"><a class="header-anchor" href="#常见报错与处理"></a>常见报错与处理</h3>
-<h4 id="重新连接失败"><a class="header-anchor" href="#重新连接失败"></a>重新连接失败</h4>
-<p>若之前连接过一台服务器，再次连它则报错，可杀死之前服务器端运行的 vscode 进程：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> vscode <span class="token operator">|</span> <span class="token function">grep</span> <span class="token environment constant">$USER</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">myusername     2382  0.0  0.0   4504   780 ?        S    01:33   0:00 sh &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;server.sh --port&#x3D;0
-myusername     2390  0.0  0.0 1307344 62116 ?       Sl   01:33   0:11 &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;node &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;out&#x2F;remoteExtensionHostAgent.js --port&#x3D;0
-myusername     6066  0.0  0.0  15976   972 pts&#x2F;20   S+   16:41   0:00 grep --color vscode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<p>杀死所有<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code>路径下的进程</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 教程编号 <span class="token comment"># 如上一框的 2382 2390</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后vscode重新连接服务器即可连接成功</p>
-<h4 id="wget失败"><a class="header-anchor" href="#wget失败"></a>wget失败</h4>
-<p>服务器上请不要给用alias覆盖<code>wget</code>命令，如</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wget</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这样的alias会造成连接后，会报错曰，服务器上无法用wget下载vscode远程开发的服务器端</p>
-<p>此alias改为</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wgetc</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后vscode重新连接服务器即可连接成功</p>
-<h2 id="snippet"><a class="header-anchor" href="#snippet"></a>snippet</h2>
-<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">教程</a></p>
-<p>写入</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">&#123;</span>
-    <span class="token string">"《snippet_name》"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token string">"prefix"</span><span class="token builtin class-name">:</span> <span class="token string">"《snippet_toggle》"</span>,
-        <span class="token string">"body"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
-            <span class="token string">"《insert_code》"</span>,
-        <span class="token punctuation">]</span>,
-        <span class="token string">"description"</span><span class="token builtin class-name">:</span> <span class="token string">"《prompt》"</span>
-    <span class="token punctuation">&#125;</span>,
-    <span class="token punctuation">..</span>.
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>
-<p>json不支持跨行文本，即不支持形如</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>"asdasd
-asdasd
-asdas
-" <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>请写成</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token string">"asda ad s ad as d"</span><span class="token punctuation">,</span>
-    <span class="token string">"asd  asd  sad as "</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>json中的文本只能用双引号，不能用单引号</p>
-</li>
-<li>
-<p><code>body</code>中的特殊字符</p>
-<ul>
-<li>转义字符</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>原文本</th>
-<th>代码文本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&quot;</code></td>
-<td><code>\&quot;</code></td>
-</tr>
-<tr>
-<td><code>$</code></td>
-<td><code>\\$</code></td>
-</tr>
-<tr>
-<td><code>\</code></td>
-<td><code>\\</code></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>插入后，按<code>⇥</code>、<code>⇧⇥</code>去往下、前一个可编辑区域；可编辑区域的写法</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">&quot;body&quot;: [
-    &quot;asda $&#123;1:【可编辑区域的提示】&#125; s ad $&#123;2:另一个可编辑区域&#125; as d&quot;,
-    &quot;asd $&#123;1:同步可编辑区域&#125; as &quot;,
-    &quot;asd $&#123;3&#125;&quot;，
-],<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ul>
-<h2 id="设置同步插件"><a class="header-anchor" href="#设置同步插件"></a>设置同步插件</h2>
-<p>为方便使得多个设备可以共用一份配置，可按照vscode插件 “settings sync”，它用gist同步你的vscode的各种设置，包括本地的全局设置、快捷键、snippet、所安装插件及版本。</p>
-<h3 id="自动配置方法"><a class="header-anchor" href="#自动配置方法"></a>自动配置方法</h3>
-<ul>
-<li>清除已有配置 : 初次配置无需此步, 若要更新配置则需要此步. 按 <code>⇧⌘P</code> - <code>Sync: 重置扩展设置</code></li>
-</ul>
-<p><img data-src="/posts/25455/image-20200316184531147.png" alt="image-20200316184531147"></p>
-<p>​	所谓重置, 即清空&quot;settings sync&quot;现有的配置. 重置后,  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  会看见以下页面全空</p>
-<p><img data-src="/posts/25455/image-20200509201718848.png" alt="image-20200509201718848"></p>
-<ul>
-<li>
-<p>按 <code>⇧⌥U</code> , 则会弹出如下页面, 点 <code>login with github</code></p>
-<p><img data-src="/posts/25455/image-20200509201635555.png" alt="image-20200509201635555"></p>
-</li>
-</ul>
-<p><img data-src="/posts/25455/image-20200509202018164.png" alt="image-20200509202018164"></p>
-<p>然后点 <code>信任github.com这个域名</code> .</p>
-<p>然后会浏览器弹出如下网页,</p>
-<p><img data-src="/posts/25455/ScreenShot%202020-05-20%2021.11.23.png" alt="ScreenShot 2020-05-20 21.11.23"></p>
-<p>然后会看跳转如下页面, 此时可关闭此网页,</p>
-<p><img data-src="/posts/25455/image-20200509202211987.png" alt="image-20200509202211987"></p>
-<p>而vscode里弹出此标签页, 这意味着当前浏览器默认的github账号中, 创建了一个新的token, 可用于创建gist来同步vscode配置</p>
-<p><img data-src="/posts/25455/image-20200509202252574.png" alt="image-20200509202252574"></p>
-<p>此时  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  的插件配置变成,</p>
-<p><img data-src="/posts/25455/image-20200509202418088.png" alt="image-20200509202418088"></p>
-<p>这说明当前浏览器默认的github账号中, 创建了一个新的token,  可用于创建gist来同步vscode配置, 但是这个token在 github 的配置中看不见:</p>
-<ul>
-<li><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>, 显示如下</li>
-</ul>
-<pre><code>![image-20200509203832966](main/image-20200509203832966.png)
-</code></pre>
-<p>此时再按 <code>⇧⌥U</code>, 则会在此github账号, 自动创建一个新gist, 然后询问是否上传当前的vscode各种配置, 点<code>是</code></p>
-<p><img data-src="/posts/25455/image-20200509202900380.png" alt="image-20200509202900380"></p>
-<p>打开 <code>https://gist.github.com/你的用户名 </code>来检查一下, 确实创建了新gist,</p>
-<p><img data-src="/posts/25455/image-20200509203035964.png" alt="image-20200509203035964"></p>
-<p>其内已上传各个vscode配置文件</p>
-<p><img data-src="/posts/25455/image-20200509203239628.png" alt="image-20200509203239628"></p>
-<p>这说明配置成功</p>
-<h3 id="手动配置方法-废弃"><a class="header-anchor" href="#手动配置方法-废弃"></a>手动配置方法 (废弃)</h3>
-<p>本法勿用, 目前(2020-5-9)若用本法, 会在vscode重启后, github 将下文所创建的 token 自动删除, vscode会在同步配置时显示”token无效或过期”.</p>
-<ul>
-<li>
-<p>开一个<a href="https://gist.github.com/">gist</a></p>
-<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2019.00.22.png" alt="ScreenShot 2020-03-16 19.00.22"></p>
-<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2019.07.01.png" alt="ScreenShot 2020-03-16 19.07.01"></p>
-<p>从url里复制gist id</p>
-<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2019.07.43.png" alt="ScreenShot 2020-03-16 19.07.43"></p>
-</li>
-<li>
-<p>开一个带有gist功能的github token：</p>
-<p><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>-<code>generate new token</code></p>
-<p><img data-src="/posts/25455/image-20200316184923683.png" alt="image-20200316184923683"></p>
-<p>勾选gist和user</p>
-<p><img data-src="/posts/25455/image-20200518012345366.png" alt="image-20200518012345366"></p>
-<p>然后会显示 <code>github token</code>， 速速记录下，只会显示这一次，之后再也显示不了。</p>
-</li>
-<li>
-<p>安装 <code>Settings Sync</code> 插件</p>
-</li>
-<li>
-<p>设置 <code>Settings Sync</code> ： <code>⌘⇧P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code></p>
-<p><img data-src="/posts/25455/image-20200316184531147.png" alt="image-20200316184531147"></p>
-<p><img data-src="/posts/25455/image-20200316184543735.png" alt="image-20200316184543735"></p>
-</li>
-<li>
-<p>然后会弹出设置页面，设置方法如下</p>
-</li>
-</ul>
-<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2018.37.32.png" alt="ScreenShot 2020-03-16 18.37.32"></p>
-<p>然后按 <code>⌥⇧U</code>， 如果状态栏显示“同步成功”，且gist上显示如下，则成功</p>
-<p><img data-src="/posts/25455/image-20200316192700873.png" alt="image-20200316192700873"></p>
-<h3 id="使用方法"><a class="header-anchor" href="#使用方法"></a>使用方法</h3>
-<p>手动同步：</p>
-<ul>
-<li><code>⌥⇧U</code>：手动上传到gist</li>
-<li><code>⌥⇧D</code>：手动从gist下载</li>
-</ul>
-<p>自动同步：打开vscode时，保存配置文件时，会自动下载再上传</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>编辑器IDE</category>
+        <category>终端</category>
       </categories>
   </entry>
   <entry>
@@ -8933,15 +8501,447 @@ asdas
       </categories>
   </entry>
   <entry>
-    <title>百法明门论</title>
-    <url>/posts/29929/</url>
-    <content><![CDATA[<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa.html">来源</a></p>
-<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa-1.html">参考</a></p>
-<p><img data-src="/posts/29929/100fmml.jpg" alt="100fmml"></p>
+    <title>Pycharm安装配置教程</title>
+    <url>/posts/50549/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h1 id="Pycharm教程"><a class="header-anchor" href="#Pycharm教程"></a>Pycharm教程</h1>
+<h2 id="汉化pycharm"><a class="header-anchor" href="#汉化pycharm"></a>汉化pycharm</h2>
+<p>链接：<a href="https://www.jianshu.com/p/8ec84bd7d3d6">https://www.jianshu.com/p/8ec84bd7d3d6</a></p>
+<h3 id="首先下载汉化包"><a class="header-anchor" href="#首先下载汉化包"></a>首先下载汉化包</h3>
+<pre class="line-numbers language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;ewen0930&#x2F;PyCharm-Chinese<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="然后生成resources-zh-jar"><a class="header-anchor" href="#然后生成resources-zh-jar"></a>然后生成resources_zh.jar</h3>
+<pre class="line-numbers language-none"><code class="language-none">bash package.cmd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="替换文件"><a class="header-anchor" href="#替换文件"></a>替换文件</h3>
+<p>把生成的resources_zh.jar放在安装目录lib文件夹下就好了</p>
+<p>mac的路径是<code>/Applications/PyCharm CE.app/Contents/lib</code></p>
+<h2 id="教育账号申请"><a class="header-anchor" href="#教育账号申请"></a>教育账号申请</h2>
+<h3 id="操作"><a class="header-anchor" href="#操作"></a>操作</h3>
+<p><a href="https://www.jetbrains.com/student/">链接</a> - <code>How do I apply?</code> - <code>Apply Now</code></p>
+<p>填入姓名 学校信息 教育邮箱（.edu.cn 可用），然后提交</p>
+<p>等五分钟左右，教育邮箱才会收到激活邮件，点其中链接</p>
+<p>填入Jet Brains的账号邮箱（可以是其他邮箱）和密码，没有账号可申请一个，提交</p>
+<p>等五分钟左右，账号邮箱才会收到激活邮件，点其中链接，会显示一个激活码，是教育账号的</p>
+<p>此激活码填入Jet Brains所有软件（如pycharm）的账号激活中，即激活成功</p>
+<h3 id="注意"><a class="header-anchor" href="#注意"></a>注意</h3>
+<ul>
+<li>教育账号有效期一年，一年后若仍是学生或老师，还可用原教育邮箱在此激活</li>
+<li>教育账号可激活多台机器上的pycahrm，但只能同时用一台上的</li>
+</ul>
+<h2 id="远程"><a class="header-anchor" href="#远程"></a>远程</h2>
+<h3 id="添加远程解释器、同步远程项目文件夹"><a class="header-anchor" href="#添加远程解释器、同步远程项目文件夹"></a>添加远程解释器、同步远程项目文件夹</h3>
+<p><a href="https://www.jianshu.com/p/9b362cdee2ab">参见</a></p>
+<h3 id="浏览远程目录"><a class="header-anchor" href="#浏览远程目录"></a>浏览远程目录</h3>
+<p><a href="https://www.jetbrains.com/help/pycharm/remote-host-tool-window.html">参见</a></p>
+<p>最终效果：远程浏览栏在右，可见整个服务器；本地浏览栏在左，只见项目目录</p>
+<p><img data-src="/posts/50549/%E8%BF%9C%E7%A8%8B%E6%9C%AC%E5%9C%B0%E6%B5%8F%E8%A7%88.png" alt></p>
+<h3 id="几种用法"><a class="header-anchor" href="#几种用法"></a>几种用法</h3>
+<ul>
+<li>用远程解释器、debug或运行本地代码
+<ul>
+<li>只需添加远侧解释器，同步远程项目文件夹，即可调用远程资源运行、debug本地代码，结果返回到pycharm中的下栏</li>
+</ul>
+</li>
+<li>编辑远程代码
+<ul>
+<li>同步远程项目文件夹到本地随便一个文件夹</li>
+<li>若不添加远程解释器，则只可在ssh中运行</li>
+<li>若添加远程解释器，则可用远程解释器、debug</li>
+</ul>
+</li>
+<li>在pycharm中查看远程、编辑文件（不论文本还是图片）
+<ul>
+<li>在远程浏览栏中，服务器上所有的（不仅仅是同步的文件夹中的）文件（夹），可在pycharm内增删改重命名</li>
+<li>但是不能打开远程文件夹到pycharm，如有此需要，需新建远程项目文件夹同步</li>
+</ul>
+</li>
+<li>传输文件
+<ul>
+<li>将文件（夹）（们），拖入(移动)/<code>⌘V</code>(复制) 到本地浏览栏，会自动同步到远程项目文件夹</li>
+<li>拖入(移动)/<code>⌘V</code>(复制) 到远程浏览栏无效</li>
+</ul>
+</li>
+</ul>
 ]]></content>
       <categories>
-        <category>道</category>
-        <category>佛法札记</category>
+        <category>器</category>
+        <category>编辑器IDE</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vim-搜索替换插件</title>
+    <url>/posts/32311/</url>
+    <content><![CDATA[<h2 id="待定"><a class="header-anchor" href="#待定"></a>待定</h2>
+<p><a href="https://github.com/dyng/ctrlsf.vim:">https://github.com/dyng/ctrlsf.vim:</a> 多文件替换需要使用多光标, 麻烦了</p>
+<ul>
+<li>bug: 宽字符预览上色出错</li>
+</ul>
+<p>默认用vimgrep, 很慢</p>
+<ul>
+<li>
+<p>大小写</p>
+<p><code>:F(ar) \Cxxxx xxx xxx </code>: 大小写敏感</p>
+<p><code>:F(ar) \cxxxx xxx xxx </code>: 大小写不敏感</p>
+<p><code>:F(ar) xxxx xxx xxx </code>: 默认大小写不敏感</p>
+</li>
+<li>
+<p>正则:</p>
+<ul>
+<li>默认是正则表达式, 取消正则 <code>:F(ar) 	\Vxxx</code></li>
+</ul>
+<p><a href="https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less">https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less</a></p>
+<pre class="line-numbers language-none"><code class="language-none">command! -nargs&#x3D;1 S let @&#x2F; &#x3D; escape(&#39;&lt;args&gt;&#39;, &#39;\&#39;)
+nmap &lt;Leader&gt;S :execute(&quot;:S &quot; . input(&#39;Regex-off: &#x2F;&#39;))&lt;CR&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>整词: <code>\&lt;xxxx\&gt;</code></p>
+</li>
+</ul>
+<p><a href="http://xahlee.info/comp/unicode_index.html">http://xahlee.info/comp/unicode_index.html</a></p>
+<p>设计: 🔎 Ϙ⊕ ⊗⛒⦿⨁⨂ ⨷㉧🄋ⒻⓄ◯⨀ +⃝ ⏍ ⤭  ⇄ ⟲ ⟳ ↺ ↻  ⇲ ➲ 🔁 🔂 🔃 🔄 ➡ ⬇  ⎋Ⓡ Ⓢ ⧬</p>
+<p>◌̸</p>
+<p>⃝</p>
+<p>⃞</p>
+<p>⃣</p>
+<p>⃠</p>
+<p>⃢</p>
+<p><code>|.*|Aa|“”|+⃝ |</code><br>
+<code>|.*|Aa|“”|Ⓞ|</code></p>
+<p><code>[.*] [Aa] [“”] Ⓞ</code></p>
+<p><code>|.*| |Aa| |“”| Ⓞ</code></p>
+<p><code>|.*|Aa|“”|⬇|</code></p>
+<p><a href="https://shapeshed.com/vim-statuslines/">https://shapeshed.com/vim-statuslines/</a>, <a href="https://jdhao.github.io/2019/11/03/vim_custom_statusline/">https://jdhao.github.io/2019/11/03/vim_custom_statusline/</a></p>
+<p>rg的整词匹配: <a href="https://github.com/BurntSushi/ripgrep/issues/389">https://github.com/BurntSushi/ripgrep/issues/389</a></p>
+<p><a href="https://github.com/brooth/far.vim">https://github.com/brooth/far.vim</a></p>
+<p><a href="https://github.com/hwrod/interactive-replace">https://github.com/hwrod/interactive-replace</a></p>
+<p><a href="https://github.com/mreinhardt/greplace.vim">https://github.com/mreinhardt/greplace.vim</a></p>
+<h2 id="各种搜索后端"><a class="header-anchor" href="#各种搜索后端"></a>各种搜索后端</h2>
+<pre class="line-numbers language-none"><code class="language-none">ag --nogroup --column --nocolor --silent --max-count&#x3D;1000  --vimgrep gmg --file-search-regex&#x3D;branch.sh [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">rg --no-heading --column --no-messages --max-count&#x3D;1000 --glob&#x3D;branch.sh &#39;gmg[a-z]*&#39; --vimgrep  [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a href="https://github.com/beyondgrep/ack3/">https://github.com/beyondgrep/ack3/</a></p>
+<pre class="line-numbers language-none"><code class="language-none">ack --nogroup --column --nocolor --max-count&#x3D;1000  --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh  gmg
+[-o]
+# --smart-case --ignore-case --farft --no-recurse
+
+
+ack --nogroup --output&#x3D;&#39;$&amp;:$_&#39; --max-count&#x3D;1000 --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh gmg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="首先排除"><a class="header-anchor" href="#首先排除"></a>首先排除</h2>
+<p><a href="https://github.com/svermeulen/vim-subversive:">https://github.com/svermeulen/vim-subversive:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
+<p><a href="https://github.com/andy-kwei/vim-easy-replace:">https://github.com/andy-kwei/vim-easy-replace:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
+<p><a href="https://github.com/movitto/vim-vsearch:">https://github.com/movitto/vim-vsearch:</a> 类far.vim而不如</p>
+<p><a href="https://github.com/yegappan/greplace:">https://github.com/yegappan/greplace:</a> 文档一句话; -&gt; mreinhardt/greplace.vim</p>
+<p><a href="https://github.com/rzwierz/vim-guidgen:">https://github.com/rzwierz/vim-guidgen:</a> 只能linux的vim用</p>
+<p><a href="https://github.com/pallavagarwal07/AutoRun:">https://github.com/pallavagarwal07/AutoRun:</a> 文档一句话, 只是提供预览搜索/替换结果</p>
+<p><a href="https://github.com/pieterhuibers/findreplace:">https://github.com/pieterhuibers/findreplace:</a> 空项目</p>
+<p><a href="https://github.com/bloc40/vim-replace:">https://github.com/bloc40/vim-replace:</a> 一句话文档; 支持多文件</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>编辑器IDE</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vscode安装配置</title>
+    <url>/posts/25455/</url>
+    <content><![CDATA[<h1 id="vscode安装配置"><a class="header-anchor" href="#vscode安装配置"></a>vscode安装配置</h1>
+<h2 id="拓展安装方法"><a class="header-anchor" href="#拓展安装方法"></a>拓展安装方法</h2>
+<ul>
+<li>
+<p><code>⇧⌘P</code> -<code>Extentions: Install Extentions</code> - 输入<code>插件名称</code> - <code>install</code></p>
+</li>
+<li>
+<p>或在左侧拓展商店栏，输入<code>插件名称</code> - <code>install</code></p>
+</li>
+</ul>
+<p><img data-src="/posts/25455/img1.png" alt></p>
+<h2 id="语言"><a class="header-anchor" href="#语言"></a>语言</h2>
+<p><code>⇧⌘P</code> -<code>Configure Display Language</code> -</p>
+<p><img data-src="/posts/25455/2019-05-23_15.54.53.png" alt></p>
+<ul>
+<li>
+<p>选择已有语言</p>
+<p><img data-src="/posts/25455/2019-05-23_15.54.43.png" alt></p>
+</li>
+<li>
+<p><code>install other language</code> -左侧拓展商店栏输入 <code>Chinese (Simplified) Language Pack for Visual Studio Code</code> - <code>install</code></p>
+</li>
+</ul>
+<h2 id="配色与字体"><a class="header-anchor" href="#配色与字体"></a>配色与字体</h2>
+<h3 id="预备"><a class="header-anchor" href="#预备"></a>预备</h3>
+<p>安装插件<code>Gruvbox Themes</code></p>
+<p><a href="https://github.com/powerline/fonts">Powerline字体安装</a></p>
+<ul>
+<li>
+<p>mac:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># clone</span>
+<span class="token function">git</span> clone https://github.com/powerline/fonts.git --depth<span class="token operator">=</span><span class="token number">1</span>
+<span class="token comment"># install</span>
+<span class="token builtin class-name">cd</span> fonts
+./install.sh
+<span class="token comment"># clean-up a bit</span>
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
+<span class="token function">rm</span> -rf fonts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>linux:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> fonts-powerline<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<p><a href="https://glitchbone.github.io/vscode-base16-term/#/">终端配色参考</a></p>
+<h3 id="配置"><a class="header-anchor" href="#配置"></a>配置</h3>
+<p><code>⌘,</code> ，在<code>用户</code>设置中</p>
+<p><img data-src="/posts/25455/2019-05-23_16.04.11-8598764.png" alt></p>
+<p>以打开<code>settings.json</code>，添加以下设置</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  ...
+    <span class="token comment">// 终端字体</span>
+    <span class="token property">"editor.fontFamily"</span><span class="token operator">:</span> <span class="token string">"Meslo LG S DZ for Powerline"</span><span class="token punctuation">,</span>
+    <span class="token comment">// 终端配色</span>
+    <span class="token property">"workbench.colorCustomizations"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token property">"terminal.background"</span><span class="token operator">:</span><span class="token string">"#28282a"</span> <span class="token punctuation">,</span>         <span class="token property">"terminal.foreground"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminalCursor.background"</span><span class="token operator">:</span><span class="token string">"#3b3b3b"</span><span class="token punctuation">,</span>   <span class="token property">"terminalCursor.foreground"</span><span class="token operator">:</span><span class="token string">"#A5A2A2"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiBlack"</span><span class="token operator">:</span><span class="token string">"#28282a"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightBlack"</span><span class="token operator">:</span><span class="token string">"#a2a2a2"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiWhite"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightWhite"</span><span class="token operator">:</span><span class="token string">"#feffff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiRed"</span><span class="token operator">:</span><span class="token string">"#c91b00"</span><span class="token punctuation">,</span>             <span class="token property">"terminal.ansiBrightRed"</span><span class="token operator">:</span><span class="token string">"#ff6d67"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiYellow"</span><span class="token operator">:</span><span class="token string">"#cecc4d"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightYellow"</span><span class="token operator">:</span><span class="token string">"#fefb67"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiGreen"</span><span class="token operator">:</span><span class="token string">"#89b560"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightGreen"</span><span class="token operator">:</span><span class="token string">"#74dd74"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiCyan"</span><span class="token operator">:</span><span class="token string">"#61aaab"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightCyan"</span><span class="token operator">:</span><span class="token string">"#5ffdff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiBlue"</span><span class="token operator">:</span><span class="token string">"#5168d5"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightBlue"</span><span class="token operator">:</span><span class="token string">"#6871ff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiMagenta"</span><span class="token operator">:</span><span class="token string">"#c930c7"</span><span class="token punctuation">,</span>         <span class="token property">"terminal.ansiBrightMagenta"</span><span class="token operator">:</span><span class="token string">"#ff76ff"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token comment">//  配色</span>
+    <span class="token property">"workbench.colorTheme"</span><span class="token operator">:</span> <span class="token string">"Gruvbox Dark (Medium)"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上文的<code>// ...</code>注释可以黏贴到<code>settings.json</code>中，vscode支持注释</p>
+<h2 id="终端"><a class="header-anchor" href="#终端"></a>终端</h2>
+<h3 id="内部终端-integrated-terminal"><a class="header-anchor" href="#内部终端-integrated-terminal"></a>内部终端(integrated terminal)</h3>
+<pre class="line-numbers language-⌃`" data-language="⌃`"><div class="caption"><span>```以开启内部终端</span></div><code class="language-⌃`">
+### 外部终端(external terminal)
+
+* 配置
+
+&#96;⌘,&#96; ，在&#96;用户&#96;设置中，以打开&#96;settings.json&#96;，添加以下设置
+
+
+&#96;&#96;&#96;json
+&#123;
+  ...
+  &quot;terminal.external.osxExec&quot;: &quot;iTerm.app&quot;,
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>使用：<code>⇧⌘C</code>以，会弹出一个外部<code>iTerm2</code>窗口</li>
+</ul>
+<h2 id="命令行工具"><a class="header-anchor" href="#命令行工具"></a>命令行工具</h2>
+<p><a href="https://code.visualstudio.com/docs/editor/integrated-terminal">https://code.visualstudio.com/docs/editor/integrated-terminal</a></p>
+<p><code>⇧⌘P</code> - <code>Shell Command: install 'code' command in PATH</code></p>
+<p><img data-src="/posts/25455/img2.png" alt></p>
+<p>使用方法：</p>
+<ul>
+<li>在命令中输入如下命令，则会用vscode-insiders打开之</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">code-insiders 文件名/文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>在命令中输入如下命令，则会用vscode打开之</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">code 文件名&#x2F;文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上述命令适用于：本地内置终端、本地外部终端、远程开发时内置终端、<s>远程开发时的本地外部终端</s></p>
+<h2 id="远程开发"><a class="header-anchor" href="#远程开发"></a>远程开发</h2>
+<h3 id="安装插件"><a class="header-anchor" href="#安装插件"></a>安装插件</h3>
+<p>安装插件 <code>Remote Developement</code> ，目前(2019-5-23)只支持 <a href="https://code.visualstudio.com/insiders/">VSCode-Insiders</a>，不支持<a href="https://code.visualstudio.com/Download">正式版VSCode</a></p>
+<h3 id="配置本地的ssh-config"><a class="header-anchor" href="#配置本地的ssh-config"></a>配置本地的ssh config</h3>
+<p>请在本地<code>~/.ssh/config</code>或<code>/etc/ssh/ssh_config</code>中写好远程服务器的连接配置</p>
+<p>vscode的<code>Remote Developement</code> 只支持密钥登录，也支持密码登录</p>
+<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
+<p>点左下角<code>&gt;&lt;</code>按钮</p>
+<p><img data-src="/posts/25455/2019-05-23_16.27.00.png" alt></p>
+<p><img data-src="/posts/25455/2019-05-23_16.27.05.png" alt></p>
+<p><img data-src="/posts/25455/2019-05-23_16.27.13.png" alt></p>
+<h3 id="编辑远程文件-夹"><a class="header-anchor" href="#编辑远程文件-夹"></a>编辑远程文件(夹)</h3>
+<p><img data-src="/posts/25455/2019-05-23_16.32.52.png" alt></p>
+<p>关于远程开发的vscode命令行工具</p>
+<ul>
+<li>
+<p>vscode连接服务器后，会在服务器自动安装vscode远程开发的服务端程序，并运行之</p>
+<ul>
+<li>安装路径为<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code></li>
+<li>每当这台本机和这台服务器重新连接，就按照这个hash码，加载安装路径下，之前缓存的编辑器、内置终端、等模块的状态</li>
+<li>故<strong>重新连接服务器，编辑器、内置终端、等模块的状态均保留</strong></li>
+</ul>
+</li>
+<li>
+<p>vscode连接服务器后，在内置终端可使用   <code>code(-insiders)</code>  命令打开远程文件(夹)。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> code<span class="token punctuation">(</span>-insiders<span class="token punctuation">)</span>
+<span class="token comment"># 返回</span>
+<span class="token comment"># ~/.vscode-remote/bin/服务器的hash码/bin/code(-insiders)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>但远程开发， <strong>在 本地外部终端 输入  <code>code(-insiders)</code>，无法 打开远程文件</strong></p>
+</li>
+</ul>
+<h3 id="常见报错与处理"><a class="header-anchor" href="#常见报错与处理"></a>常见报错与处理</h3>
+<h4 id="重新连接失败"><a class="header-anchor" href="#重新连接失败"></a>重新连接失败</h4>
+<p>若之前连接过一台服务器，再次连它则报错，可杀死之前服务器端运行的 vscode 进程：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> vscode <span class="token operator">|</span> <span class="token function">grep</span> <span class="token environment constant">$USER</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">myusername     2382  0.0  0.0   4504   780 ?        S    01:33   0:00 sh &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;server.sh --port&#x3D;0
+myusername     2390  0.0  0.0 1307344 62116 ?       Sl   01:33   0:11 &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;node &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;out&#x2F;remoteExtensionHostAgent.js --port&#x3D;0
+myusername     6066  0.0  0.0  15976   972 pts&#x2F;20   S+   16:41   0:00 grep --color vscode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>杀死所有<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code>路径下的进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 教程编号 <span class="token comment"># 如上一框的 2382 2390</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后vscode重新连接服务器即可连接成功</p>
+<h4 id="wget失败"><a class="header-anchor" href="#wget失败"></a>wget失败</h4>
+<p>服务器上请不要给用alias覆盖<code>wget</code>命令，如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wget</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这样的alias会造成连接后，会报错曰，服务器上无法用wget下载vscode远程开发的服务器端</p>
+<p>此alias改为</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wgetc</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后vscode重新连接服务器即可连接成功</p>
+<h2 id="snippet"><a class="header-anchor" href="#snippet"></a>snippet</h2>
+<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">教程</a></p>
+<p>写入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">&#123;</span>
+    <span class="token string">"《snippet_name》"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"prefix"</span><span class="token builtin class-name">:</span> <span class="token string">"《snippet_toggle》"</span>,
+        <span class="token string">"body"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"《insert_code》"</span>,
+        <span class="token punctuation">]</span>,
+        <span class="token string">"description"</span><span class="token builtin class-name">:</span> <span class="token string">"《prompt》"</span>
+    <span class="token punctuation">&#125;</span>,
+    <span class="token punctuation">..</span>.
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p>json不支持跨行文本，即不支持形如</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>"asdasd
+asdasd
+asdas
+" <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>请写成</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"asda ad s ad as d"</span><span class="token punctuation">,</span>
+    <span class="token string">"asd  asd  sad as "</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>json中的文本只能用双引号，不能用单引号</p>
+</li>
+<li>
+<p><code>body</code>中的特殊字符</p>
+<ul>
+<li>转义字符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>原文本</th>
+<th>代码文本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;</code></td>
+<td><code>\&quot;</code></td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td><code>\\$</code></td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td><code>\\</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>插入后，按<code>⇥</code>、<code>⇧⇥</code>去往下、前一个可编辑区域；可编辑区域的写法</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&quot;body&quot;: [
+    &quot;asda $&#123;1:【可编辑区域的提示】&#125; s ad $&#123;2:另一个可编辑区域&#125; as d&quot;,
+    &quot;asd $&#123;1:同步可编辑区域&#125; as &quot;,
+    &quot;asd $&#123;3&#125;&quot;，
+],<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="设置同步插件"><a class="header-anchor" href="#设置同步插件"></a>设置同步插件</h2>
+<p>为方便使得多个设备可以共用一份配置，可按照vscode插件 “settings sync”，它用gist同步你的vscode的各种设置，包括本地的全局设置、快捷键、snippet、所安装插件及版本。</p>
+<h3 id="自动配置方法"><a class="header-anchor" href="#自动配置方法"></a>自动配置方法</h3>
+<ul>
+<li>清除已有配置 : 初次配置无需此步, 若要更新配置则需要此步. 按 <code>⇧⌘P</code> - <code>Sync: 重置扩展设置</code></li>
+</ul>
+<p><img data-src="/posts/25455/image-20200316184531147.png" alt="image-20200316184531147"></p>
+<p>​	所谓重置, 即清空&quot;settings sync&quot;现有的配置. 重置后,  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  会看见以下页面全空</p>
+<p><img data-src="/posts/25455/image-20200509201718848.png" alt="image-20200509201718848"></p>
+<ul>
+<li>
+<p>按 <code>⇧⌥U</code> , 则会弹出如下页面, 点 <code>login with github</code></p>
+<p><img data-src="/posts/25455/image-20200509201635555.png" alt="image-20200509201635555"></p>
+</li>
+</ul>
+<p><img data-src="/posts/25455/image-20200509202018164.png" alt="image-20200509202018164"></p>
+<p>然后点 <code>信任github.com这个域名</code> .</p>
+<p>然后会浏览器弹出如下网页,</p>
+<p><img data-src="/posts/25455/ScreenShot%202020-05-20%2021.11.23.png" alt="ScreenShot 2020-05-20 21.11.23"></p>
+<p>然后会看跳转如下页面, 此时可关闭此网页,</p>
+<p><img data-src="/posts/25455/image-20200509202211987.png" alt="image-20200509202211987"></p>
+<p>而vscode里弹出此标签页, 这意味着当前浏览器默认的github账号中, 创建了一个新的token, 可用于创建gist来同步vscode配置</p>
+<p><img data-src="/posts/25455/image-20200509202252574.png" alt="image-20200509202252574"></p>
+<p>此时  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  的插件配置变成,</p>
+<p><img data-src="/posts/25455/image-20200509202418088.png" alt="image-20200509202418088"></p>
+<p>这说明当前浏览器默认的github账号中, 创建了一个新的token,  可用于创建gist来同步vscode配置, 但是这个token在 github 的配置中看不见:</p>
+<ul>
+<li><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>, 显示如下</li>
+</ul>
+<pre><code>![image-20200509203832966](main/image-20200509203832966.png)
+</code></pre>
+<p>此时再按 <code>⇧⌥U</code>, 则会在此github账号, 自动创建一个新gist, 然后询问是否上传当前的vscode各种配置, 点<code>是</code></p>
+<p><img data-src="/posts/25455/image-20200509202900380.png" alt="image-20200509202900380"></p>
+<p>打开 <code>https://gist.github.com/你的用户名 </code>来检查一下, 确实创建了新gist,</p>
+<p><img data-src="/posts/25455/image-20200509203035964.png" alt="image-20200509203035964"></p>
+<p>其内已上传各个vscode配置文件</p>
+<p><img data-src="/posts/25455/image-20200509203239628.png" alt="image-20200509203239628"></p>
+<p>这说明配置成功</p>
+<h3 id="手动配置方法-废弃"><a class="header-anchor" href="#手动配置方法-废弃"></a>手动配置方法 (废弃)</h3>
+<p>本法勿用, 目前(2020-5-9)若用本法, 会在vscode重启后, github 将下文所创建的 token 自动删除, vscode会在同步配置时显示”token无效或过期”.</p>
+<ul>
+<li>
+<p>开一个<a href="https://gist.github.com/">gist</a></p>
+<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2019.00.22.png" alt="ScreenShot 2020-03-16 19.00.22"></p>
+<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2019.07.01.png" alt="ScreenShot 2020-03-16 19.07.01"></p>
+<p>从url里复制gist id</p>
+<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2019.07.43.png" alt="ScreenShot 2020-03-16 19.07.43"></p>
+</li>
+<li>
+<p>开一个带有gist功能的github token：</p>
+<p><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>-<code>generate new token</code></p>
+<p><img data-src="/posts/25455/image-20200316184923683.png" alt="image-20200316184923683"></p>
+<p>勾选gist和user</p>
+<p><img data-src="/posts/25455/image-20200518012345366.png" alt="image-20200518012345366"></p>
+<p>然后会显示 <code>github token</code>， 速速记录下，只会显示这一次，之后再也显示不了。</p>
+</li>
+<li>
+<p>安装 <code>Settings Sync</code> 插件</p>
+</li>
+<li>
+<p>设置 <code>Settings Sync</code> ： <code>⌘⇧P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code></p>
+<p><img data-src="/posts/25455/image-20200316184531147.png" alt="image-20200316184531147"></p>
+<p><img data-src="/posts/25455/image-20200316184543735.png" alt="image-20200316184543735"></p>
+</li>
+<li>
+<p>然后会弹出设置页面，设置方法如下</p>
+</li>
+</ul>
+<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2018.37.32.png" alt="ScreenShot 2020-03-16 18.37.32"></p>
+<p>然后按 <code>⌥⇧U</code>， 如果状态栏显示“同步成功”，且gist上显示如下，则成功</p>
+<p><img data-src="/posts/25455/image-20200316192700873.png" alt="image-20200316192700873"></p>
+<h3 id="使用方法"><a class="header-anchor" href="#使用方法"></a>使用方法</h3>
+<p>手动同步：</p>
+<ul>
+<li><code>⌥⇧U</code>：手动上传到gist</li>
+<li><code>⌥⇧D</code>：手动从gist下载</li>
+</ul>
+<p>自动同步：打开vscode时，保存配置文件时，会自动下载再上传</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>编辑器IDE</category>
       </categories>
   </entry>
   <entry>
@@ -10528,7 +10528,7 @@ https:&#x2F;&#x2F;post.zz173.com&#x2F;posts&#x2F;1690090958.html<span aria-hidde
 <p>生成完后，原<code>md</code>文件的Front-matter 内会增加<code>abbrlink</code> 字段，值为生成的ID 。这个字段确保了在我们修改了Front-matter 内的博客标题title或创建日期date字段之后而不会改变链接地址。</p>
 <h2 id="浏览计数"><a class="header-anchor" href="#浏览计数"></a>浏览计数</h2>
 <h3 id="整个网站的浏览人数和次数统计"><a class="header-anchor" href="#整个网站的浏览人数和次数统计"></a>整个网站的浏览人数和次数统计</h3>
-<p>计数<code>busuanzi</code>工具已经预置在<code>next</code>主题内, 在<code>_config.next.yml</code>中如下配置</p>
+<p>计数<code>busuanzi</code>工具已经预置在<code>next</code>主题内, 无需另外安装, 只需在<code>_config.next.yml</code>中如下配置</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Show Views / Visitors of the website / page with busuanzi.</span>
 <span class="token comment"># For more information: http://ibruce.info/2015/04/04/busuanzi/</span>
 busuanzi_count:
@@ -10540,17 +10540,20 @@ busuanzi_count:
   post_views: <span class="token boolean">false</span>
   post_views_icon: far fa-eye<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>其中<code>post_views</code>填<code>false</code>, 即不使用<code>busuanzi</code>统计文章的浏览次数.</p>
-<p>这是因为, 因为safari若开启“阻止跨站”, <code>busuanzi</code>会有两错误, <a href="https://github.com/next-theme/hexo-theme-next/issues/142">参考</a>:</p>
-<p><img data-src="/posts/b27b9f95/image-20211220193153301.png" alt="image-20211220193153301"></p>
+<p>这是因为,  <code>busuanzi</code>会有三个问题, <a href="https://github.com/next-theme/hexo-theme-next/issues/142">参考</a>:</p>
 <ul>
-<li><code>busuanzi</code>统计出的文章浏览次数直接与整个网站的浏览次数相同</li>
+<li>在首页中无法显示各篇文章的浏览次数</li>
+<li>因为safari若开启“阻止跨站”, <code>busuanzi</code>统计出的文章浏览次数直接与整个网站的浏览次数相同</li>
 </ul>
 <p><img data-src="/posts/b27b9f95/99628710-aaca7c80-2a71-11eb-9f9a-2b6ffef38704.png" alt="image"></p>
 <ul>
-<li></li>
+<li>因为safari若开启“阻止跨站”, <code>busuanzi</code>统出的网站浏览人数(下图人头), 在每次刷新或站内切换网页后会加1, 这是按网站浏览次数(下图眼睛)的逻辑去更新了</li>
 </ul>
+<p><img data-src="/posts/b27b9f95/image-20211220201408902.png" alt="image-20211220201408902"></p>
+<p><img data-src="/posts/b27b9f95/image-20211220193153301.png" alt="image-20211220193153301"></p>
 <h3 id="每个文章的浏览次数统计"><a class="header-anchor" href="#每个文章的浏览次数统计"></a>每个文章的浏览次数统计</h3>
-<p><a href="https://blog.csdn.net/lijing742180/article/details/87928554">参考本文</a>配置LeanClound 中的变量 <code>Counter</code>， 并如下在<code>_config.next.yml</code>填写<code>app_id</code>和<code>app_key</code>. 并设置<code>security: false</code>，以免安装<code>hexo-leancloud-counter-security</code> (安装很麻烦, <a href="https://www.dazhuanlan.com/codingmonkey/topics/1589913">详见</a>)</p>
+<p><a href="https://blog.csdn.net/lijing742180/article/details/87928554">参考本文</a>, 配置LeanClound 中的变量 <code>Counter</code>,  并如下在<code>_config.next.yml</code>填写<code>app_id</code>和<code>app_key</code>. 并设置<code>security: false</code>，以免安装<code>hexo-leancloud-counter-security</code> (安装很麻烦, <a href="https://www.dazhuanlan.com/codingmonkey/topics/1589913">详见</a>)</p>
+<p>这个LeanClound账号和当中的应用实例, 可以和Vercel评论区所使用的共用, 因而<code>app_id</code>和<code>app_key</code>也与Vercel评论区的相同.</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># Show number of visitors of each article.</span>
 <span class="token comment"># You can visit https://www.leancloud.cn to get AppID and AppKey.</span>
 leancloud_visitors:
@@ -10564,6 +10567,11 @@ leancloud_visitors:
   <span class="token comment"># (without hexo-leancloud-counter-security plugin), set `security` to `false`.</span>
   security: <span class="token boolean">false</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>记录文章访问量的唯一标识符是文章的发布日期和文章的标题，因此要确保这两个数值组合的唯一性，如果你更改了这两个数值，会造成文章阅读数值的清零重计。</p>
+<p>相比于 <code>busuanzi</code>, 使用LeanCloud统计文章浏览次数, 有两个优点:</p>
+<ul>
+<li>可首页中无法显示各篇文章的浏览次数</li>
+<li>使用safari访问, 每篇文章单独计数, 不会所有文章浏览次数和整个网站的浏览次数相同</li>
+</ul>
 <h1 id="报错"><a class="header-anchor" href="#报错"></a>报错</h1>
 <h2 id="gyp-ERR-stack-Error-gyp-failed-with-exit-code-1"><a class="header-anchor" href="#gyp-ERR-stack-Error-gyp-failed-with-exit-code-1"></a>gyp ERR! stack Error: <code>gyp</code> failed with exit code: 1</h2>
 <p>报错</p>
