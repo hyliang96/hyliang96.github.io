@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>检索指标</title>
+    <url>/posts/6416/</url>
+    <content><![CDATA[<p><a href="https://yifdu.github.io/2018/12/06/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AF%84%E4%BB%B7%E6%A0%87%E7%AD%BEMAP/">参见</a></p>
+]]></content>
+      <categories>
+        <category>术</category>
+      </categories>
+  </entry>
+  <entry>
     <title>从宇宙繁衍到科研的意义</title>
     <url>/posts/4844/</url>
     <content><![CDATA[<h2 id="背景"><a class="header-anchor" href="#背景"></a>背景</h2>
@@ -33,27 +42,6 @@
 ]]></content>
       <categories>
         <category>道</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>检索指标</title>
-    <url>/posts/6416/</url>
-    <content><![CDATA[<p><a href="https://yifdu.github.io/2018/12/06/%E4%BF%A1%E6%81%AF%E6%A3%80%E7%B4%A2%E5%B8%B8%E7%94%A8%E7%9A%84%E8%AF%84%E4%BB%B7%E6%A0%87%E7%AD%BEMAP/">参见</a></p>
-]]></content>
-      <categories>
-        <category>术</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>百法明门论</title>
-    <url>/posts/29929/</url>
-    <content><![CDATA[<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa.html">来源</a></p>
-<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa-1.html">参考</a></p>
-<p><img data-src="/posts/29929/100fmml.jpg" alt="100fmml"></p>
-]]></content>
-      <categories>
-        <category>道</category>
-        <category>佛法札记</category>
       </categories>
   </entry>
   <entry>
@@ -861,6 +849,41 @@ git config user.email &quot;你的邮箱&quot;<span aria-hidden="true" class="li
       </categories>
   </entry>
   <entry>
+    <title>NAT设置</title>
+    <url>/posts/39223/</url>
+    <content><![CDATA[<h1 id="使用Iptables设置NAT"><a class="header-anchor" href="#使用Iptables设置NAT"></a>使用Iptables设置NAT</h1>
+<ul>
+<li>查看NAT映射关系列表</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -L -n --line-number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>--line-number</code>: 显示规则的<code>&lt;规则的行号&gt;</code></p>
+<ul>
+<li>查看NAT命令列表</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>开NAT</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -A PREROUTING -d <span class="token operator">&lt;</span>公网ip<span class="token operator">></span>/32 -i <span class="token operator">&lt;</span>公网访问的网卡<span class="token operator">></span> -p tcp -m tcp --dport <span class="token operator">&lt;</span>公网端口<span class="token operator">></span> -j DNAT --to-destination <span class="token operator">&lt;</span>内网ip<span class="token operator">></span>:<span class="token operator">&lt;</span>内网端口<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p><code>-A PREROUTING</code>：新规则附在已有规则最后面；若换成 <code>-I PREROUTING &lt;规则的行号&gt;(默认1)</code> ，则新规则插入在此编号的规则前面</p>
+</li>
+<li>
+<p><code>/32</code> <code>-m tcp</code> 可省，此即缺省值</p>
+</li>
+<li>
+<p>删除一条NAT规则</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -D PREROUTING <span class="token operator">&lt;</span>规则的行号<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>linux杂项</category>
+      </categories>
+  </entry>
+  <entry>
     <title>git学习笔记</title>
     <url>/posts/14696/</url>
     <content><![CDATA[<h1 id="GIT学习笔记"><a class="header-anchor" href="#GIT学习笔记"></a>GIT学习笔记</h1>
@@ -1241,41 +1264,6 @@ B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
       </categories>
   </entry>
   <entry>
-    <title>NAT设置</title>
-    <url>/posts/39223/</url>
-    <content><![CDATA[<h1 id="使用Iptables设置NAT"><a class="header-anchor" href="#使用Iptables设置NAT"></a>使用Iptables设置NAT</h1>
-<ul>
-<li>查看NAT映射关系列表</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -L -n --line-number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><code>--line-number</code>: 显示规则的<code>&lt;规则的行号&gt;</code></p>
-<ul>
-<li>查看NAT命令列表</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>开NAT</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -A PREROUTING -d <span class="token operator">&lt;</span>公网ip<span class="token operator">></span>/32 -i <span class="token operator">&lt;</span>公网访问的网卡<span class="token operator">></span> -p tcp -m tcp --dport <span class="token operator">&lt;</span>公网端口<span class="token operator">></span> -j DNAT --to-destination <span class="token operator">&lt;</span>内网ip<span class="token operator">></span>:<span class="token operator">&lt;</span>内网端口<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>
-<p><code>-A PREROUTING</code>：新规则附在已有规则最后面；若换成 <code>-I PREROUTING &lt;规则的行号&gt;(默认1)</code> ，则新规则插入在此编号的规则前面</p>
-</li>
-<li>
-<p><code>/32</code> <code>-m tcp</code> 可省，此即缺省值</p>
-</li>
-<li>
-<p>删除一条NAT规则</p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -D PREROUTING <span class="token operator">&lt;</span>规则的行号<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>linux杂项</category>
-      </categories>
-  </entry>
-  <entry>
     <title>docker使用教程</title>
     <url>/posts/60800/</url>
     <content><![CDATA[<h1 id="docker安装"><a class="header-anchor" href="#docker安装"></a>docker安装</h1>
@@ -1636,99 +1624,6 @@ telnet: Unable to connect to remote host: Connection refused<span aria-hidden="t
       </categories>
   </entry>
   <entry>
-    <title>压缩解压工具</title>
-    <url>/posts/8633/</url>
-    <content><![CDATA[<h1 id="压缩解压工具"><a class="header-anchor" href="#压缩解压工具"></a>压缩解压工具</h1>
-<h3 id="Linux下压缩解压算法与工具比较"><a class="header-anchor" href="#Linux下压缩解压算法与工具比较"></a><a href="(https://www.jianshu.com/p/38b32107bc3e)">Linux下压缩解压算法与工具比较</a></h3>
-<table>
-<thead>
-<tr>
-<th>方法</th>
-<th>Linux自带否</th>
-<th>优点</th>
-<th>压缩命令</th>
-<th>解压命令</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>zip</td>
-<td>是</td>
-<td><strong>所有操作系统都自带</strong>，可压缩文件夹</td>
-<td><code>zip -r xxx.zip 一或多个文件会文件夹</code></td>
-<td><code>unzip xxx.zip -d 解压到的路径</code>  （会自动创建解压到的路径；压缩包内根目录下诸物皆解压到解压到的路径）</td>
-</tr>
-<tr>
-<td>7z</td>
-<td>否</td>
-<td>压缩解压都<strong>最快</strong>，可压缩文件夹</td>
-<td><code>7z a  xxx.7z  一或多个文件会文件夹 </code>(注意： <code>a</code>前无<code>-</code>)</td>
-<td><code>7z e xxx.7z  -o解压到的路径</code> (注意：<code>x</code>前无<code>-</code>;<code>-o</code>后没空格；会自动创建解压到的路径，压缩包内根目录下诸物皆解压到解压到的路径)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="7z"><a class="header-anchor" href="#7z"></a>7z</h2>
-<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
-<h4 id="apt-get安装"><a class="header-anchor" href="#apt-get安装"></a>apt-get安装</h4>
-<p>推荐<code>p7zip-full</code> 和<code>p7zip-rar</code>都装</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip <span class="token comment"># 包含7zr（最小的7zip归档工具），只支持7z格式。</span>
-<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip-full <span class="token comment"># 包含完整7z，支持7z、LZMA2、XZ、ZIP、CAB、GZIP、BZIP2、ARJ、TAR、CPIO、RPM、ISO和DEB格式，不支持rar</span>
-<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip-rar <span class="token comment"># 只支持RAR格式</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h4 id="conda安装"><a class="header-anchor" href="#conda安装"></a>conda安装</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c bioconda p7zip <span class="token comment"># 安装的是p7zip-full，不支持rar</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="用法"><a class="header-anchor" href="#用法"></a>用法</h3>
-<h3 id="命令"><a class="header-anchor" href="#命令"></a>命令</h3>
-<p><a href="https://wiki.archlinux.org/index.php/P7zip_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">参考</a></p>
-<p>安装了三种二进制文件， <code>/usr/bin/&#123;7z,7za,7zr&#125;</code></p>
-<ul>
-<li><code>7z  </code>  : <code>/usr/bin/7z</code>调用插件<code>/usr/lib/p7zip/7z</code>，支持众多格式；因此若只将<code>/usr/bin/7z</code>拷贝到别的电脑，并不能运行<code>7z</code>。</li>
-<li><code>7za </code> : 独立程序，不用插件；支持一些格式，比<code>7z</code>少</li>
-<li><code>7zr</code>  : 独立程序，不用插件；只支持&quot;.7z&quot;格式</li>
-</ul>
-<p>一般用<code>7z</code>就好，支持格式最多</p>
-<p>拷到别的电脑——需把<code>/usr/lib/p7zip/</code>和 <code>/usr/bin/&#123;7z,7za,7zr&#125;</code>拷走</p>
-<h4 id="解压"><a class="header-anchor" href="#解压"></a>解压</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">7z x -t<span class="token operator">&lt;</span>格式<span class="token operator">></span> <span class="token operator">&lt;</span>压缩文件<span class="token operator">></span>.<span class="token operator">&lt;</span>扩展名<span class="token operator">></span> -o<span class="token operator">&lt;</span>解压目录<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li><code>x</code>： 解压</li>
-<li><code>-t&lt;格式&gt;</code>：
-<ul>
-<li>如 &lt;格式&gt; = “7z”,“zip”,&quot;.tar.bz2&quot;等</li>
-<li>缺省：&lt;格式&gt;=“7z”</li>
-</ul>
-</li>
-<li><code>&lt;压缩文件&gt;.&lt;扩展名&gt;</code> : <strong>仅一个</strong></li>
-<li><code>&lt;扩展名&gt;</code> 不可缺省，7z不会帮你脑补扩展名</li>
-<li><code>-o&lt;解压目录&gt;</code>
-<ul>
-<li>压缩包内根目录下文件(夹)都解压到&lt;解压目录&gt;</li>
-<li><strong>强烈建议</strong>写成<code>-o&lt;目录&gt;/&lt;新建文件夹&gt;</code>, 7z<strong>会帮你创建</strong>&lt;解压目录&gt;/&lt;新建文件夹&gt;。可避免，压缩包内根级目录下多个文件(夹)<strong>堆满&lt;目录&gt;</strong></li>
-<li>缺省： &lt;格式&gt;=“./”</li>
-</ul>
-</li>
-<li><code>-o</code>,  <code> -t</code> 后没有空格</li>
-</ul>
-<h4 id="压缩"><a class="header-anchor" href="#压缩"></a>压缩</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">7z a -t<span class="token operator">&lt;</span>格式<span class="token operator">></span> <span class="token operator">&lt;</span>压缩文件<span class="token operator">></span>.<span class="token operator">&lt;</span>扩展名<span class="token operator">></span> <span class="token operator">&lt;</span>待压缩文件<span class="token punctuation">(</span>夹<span class="token punctuation">)</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li><code>a</code>： 压缩</li>
-<li><code>-t&lt;格式&gt;</code>：
-<ul>
-<li>如 &lt;格式&gt; = “7z”,&quot;zip&quot;等</li>
-<li>缺省：&lt;格式&gt;=“7z”</li>
-</ul>
-</li>
-<li><code>&lt;扩展名&gt;</code> 不可缺省，7z不会帮你脑补扩展名</li>
-<li><code>&lt;待压缩文件(夹)&gt;</code>: 可多个， 空格分隔</li>
-</ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>linux杂项</category>
-      </categories>
-  </entry>
-  <entry>
     <title>matlab在linux上安装教程</title>
     <url>/posts/22651/</url>
     <content><![CDATA[<h1 id="安装教程"><a class="header-anchor" href="#安装教程"></a>安装教程</h1>
@@ -1837,6 +1732,99 @@ sudo &#x2F;mnt&#x2F;matlab&#x2F;install -inputFile installer_input.txt<span aria
 <h3 id="测试能否使用"><a class="header-anchor" href="#测试能否使用"></a>测试能否使用</h3>
 <p><code>ssh 服务器名</code>后，执行<code>matlab</code>，能正常启动MATLAB的命令行界面，并执行<code>disp 'hello world'</code>，输出’hello world’</p>
 <p><code>ssh -X 服务器名</code>后，执行<code>matlab</code>，能正常启动MATLAB的图形界面，并执行<code>disp 'hello world'</code>，输出’hello world’</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>linux杂项</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>压缩解压工具</title>
+    <url>/posts/8633/</url>
+    <content><![CDATA[<h1 id="压缩解压工具"><a class="header-anchor" href="#压缩解压工具"></a>压缩解压工具</h1>
+<h3 id="Linux下压缩解压算法与工具比较"><a class="header-anchor" href="#Linux下压缩解压算法与工具比较"></a><a href="(https://www.jianshu.com/p/38b32107bc3e)">Linux下压缩解压算法与工具比较</a></h3>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>Linux自带否</th>
+<th>优点</th>
+<th>压缩命令</th>
+<th>解压命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zip</td>
+<td>是</td>
+<td><strong>所有操作系统都自带</strong>，可压缩文件夹</td>
+<td><code>zip -r xxx.zip 一或多个文件会文件夹</code></td>
+<td><code>unzip xxx.zip -d 解压到的路径</code>  （会自动创建解压到的路径；压缩包内根目录下诸物皆解压到解压到的路径）</td>
+</tr>
+<tr>
+<td>7z</td>
+<td>否</td>
+<td>压缩解压都<strong>最快</strong>，可压缩文件夹</td>
+<td><code>7z a  xxx.7z  一或多个文件会文件夹 </code>(注意： <code>a</code>前无<code>-</code>)</td>
+<td><code>7z e xxx.7z  -o解压到的路径</code> (注意：<code>x</code>前无<code>-</code>;<code>-o</code>后没空格；会自动创建解压到的路径，压缩包内根目录下诸物皆解压到解压到的路径)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="7z"><a class="header-anchor" href="#7z"></a>7z</h2>
+<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
+<h4 id="apt-get安装"><a class="header-anchor" href="#apt-get安装"></a>apt-get安装</h4>
+<p>推荐<code>p7zip-full</code> 和<code>p7zip-rar</code>都装</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip <span class="token comment"># 包含7zr（最小的7zip归档工具），只支持7z格式。</span>
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip-full <span class="token comment"># 包含完整7z，支持7z、LZMA2、XZ、ZIP、CAB、GZIP、BZIP2、ARJ、TAR、CPIO、RPM、ISO和DEB格式，不支持rar</span>
+<span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> p7zip-rar <span class="token comment"># 只支持RAR格式</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="conda安装"><a class="header-anchor" href="#conda安装"></a>conda安装</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c bioconda p7zip <span class="token comment"># 安装的是p7zip-full，不支持rar</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="用法"><a class="header-anchor" href="#用法"></a>用法</h3>
+<h3 id="命令"><a class="header-anchor" href="#命令"></a>命令</h3>
+<p><a href="https://wiki.archlinux.org/index.php/P7zip_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)">参考</a></p>
+<p>安装了三种二进制文件， <code>/usr/bin/&#123;7z,7za,7zr&#125;</code></p>
+<ul>
+<li><code>7z  </code>  : <code>/usr/bin/7z</code>调用插件<code>/usr/lib/p7zip/7z</code>，支持众多格式；因此若只将<code>/usr/bin/7z</code>拷贝到别的电脑，并不能运行<code>7z</code>。</li>
+<li><code>7za </code> : 独立程序，不用插件；支持一些格式，比<code>7z</code>少</li>
+<li><code>7zr</code>  : 独立程序，不用插件；只支持&quot;.7z&quot;格式</li>
+</ul>
+<p>一般用<code>7z</code>就好，支持格式最多</p>
+<p>拷到别的电脑——需把<code>/usr/lib/p7zip/</code>和 <code>/usr/bin/&#123;7z,7za,7zr&#125;</code>拷走</p>
+<h4 id="解压"><a class="header-anchor" href="#解压"></a>解压</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">7z x -t<span class="token operator">&lt;</span>格式<span class="token operator">></span> <span class="token operator">&lt;</span>压缩文件<span class="token operator">></span>.<span class="token operator">&lt;</span>扩展名<span class="token operator">></span> -o<span class="token operator">&lt;</span>解压目录<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li><code>x</code>： 解压</li>
+<li><code>-t&lt;格式&gt;</code>：
+<ul>
+<li>如 &lt;格式&gt; = “7z”,“zip”,&quot;.tar.bz2&quot;等</li>
+<li>缺省：&lt;格式&gt;=“7z”</li>
+</ul>
+</li>
+<li><code>&lt;压缩文件&gt;.&lt;扩展名&gt;</code> : <strong>仅一个</strong></li>
+<li><code>&lt;扩展名&gt;</code> 不可缺省，7z不会帮你脑补扩展名</li>
+<li><code>-o&lt;解压目录&gt;</code>
+<ul>
+<li>压缩包内根目录下文件(夹)都解压到&lt;解压目录&gt;</li>
+<li><strong>强烈建议</strong>写成<code>-o&lt;目录&gt;/&lt;新建文件夹&gt;</code>, 7z<strong>会帮你创建</strong>&lt;解压目录&gt;/&lt;新建文件夹&gt;。可避免，压缩包内根级目录下多个文件(夹)<strong>堆满&lt;目录&gt;</strong></li>
+<li>缺省： &lt;格式&gt;=“./”</li>
+</ul>
+</li>
+<li><code>-o</code>,  <code> -t</code> 后没有空格</li>
+</ul>
+<h4 id="压缩"><a class="header-anchor" href="#压缩"></a>压缩</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">7z a -t<span class="token operator">&lt;</span>格式<span class="token operator">></span> <span class="token operator">&lt;</span>压缩文件<span class="token operator">></span>.<span class="token operator">&lt;</span>扩展名<span class="token operator">></span> <span class="token operator">&lt;</span>待压缩文件<span class="token punctuation">(</span>夹<span class="token punctuation">)</span><span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li><code>a</code>： 压缩</li>
+<li><code>-t&lt;格式&gt;</code>：
+<ul>
+<li>如 &lt;格式&gt; = “7z”,&quot;zip&quot;等</li>
+<li>缺省：&lt;格式&gt;=“7z”</li>
+</ul>
+</li>
+<li><code>&lt;扩展名&gt;</code> 不可缺省，7z不会帮你脑补扩展名</li>
+<li><code>&lt;待压缩文件(夹)&gt;</code>: 可多个， 空格分隔</li>
+</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -2199,6 +2187,20 @@ End: Fn + →<br>
       </categories>
   </entry>
   <entry>
+    <title>mac_命令行专属命令</title>
+    <url>/posts/4437/</url>
+    <content><![CDATA[<h1 id="mac-命令行专属命令"><a class="header-anchor" href="#mac-命令行专属命令"></a>mac 命令行专属命令</h1>
+<h3 id="mac-命令行专属命令-_2"><a class="header-anchor" href="#mac-命令行专属命令-_2"></a>mac 命令行专属命令</h3>
+<p>永久修改hostname (命令行行首提示中的主机名)</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> scutil --set HostName <span class="token operator">&lt;</span>新hostname<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a href="https://blog.csdn.net/flyter/article/details/8880583">参考</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
     <title>brew使用教程</title>
     <url>/posts/45270/</url>
     <content><![CDATA[<h1 id="安装"><a class="header-anchor" href="#安装"></a>安装</h1>
@@ -2277,13 +2279,15 @@ Homebrew&#x2F;homebrew-core (git revision 43c72b06c0c; last commit 2021-09-28)<s
       </categories>
   </entry>
   <entry>
-    <title>mac_命令行专属命令</title>
-    <url>/posts/4437/</url>
-    <content><![CDATA[<h1 id="mac-命令行专属命令"><a class="header-anchor" href="#mac-命令行专属命令"></a>mac 命令行专属命令</h1>
-<h3 id="mac-命令行专属命令-_2"><a class="header-anchor" href="#mac-命令行专属命令-_2"></a>mac 命令行专属命令</h3>
-<p>永久修改hostname (命令行行首提示中的主机名)</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> scutil --set HostName <span class="token operator">&lt;</span>新hostname<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a href="https://blog.csdn.net/flyter/article/details/8880583">参考</a></p>
+    <title>mac上使用X11</title>
+    <url>/posts/27469/</url>
+    <content><![CDATA[<h2 id="XQuartz"><a class="header-anchor" href="#XQuartz"></a>XQuartz</h2>
+<h3 id><a class="header-anchor" href="#"></a></h3>
+<h3 id="多显示屏XQuartz闪退"><a class="header-anchor" href="#多显示屏XQuartz闪退"></a>多显示屏XQuartz闪退</h3>
+<p><a href="https://apple.stackexchange.com/questions/235279/inkscape-or-other-xquartz-window-disappears-when-using-external-screen">对策</a> <a href="https://www.laptopmag.com/articles/mirror-display-macos">对策参考</a></p>
+<h2 id="MacPorts安装X11"><a class="header-anchor" href="#MacPorts安装X11"></a>MacPorts安装X11</h2>
+<p><a href="https://www.jianshu.com/p/fd422e004f62">安装教程</a> 我依照此教程安装后，X11.app打不开，故卸载了macports</p>
+<p><a href="https://guide.macports.org/chunked/installing.macports.uninstalling.html">卸载macports</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -2360,22 +2364,6 @@ Homebrew&#x2F;homebrew-core (git revision 43c72b06c0c; last commit 2021-09-28)<s
 <p>然后再次执行如下指令即可</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">codesign --force --deep --sign - /Applications/<span class="token operator">&lt;</span>软件名<span class="token operator">></span>.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>如果以上步骤执行完成后还是无法运行，尝试关闭一下SIP，再重复上述操作</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>mac上使用X11</title>
-    <url>/posts/27469/</url>
-    <content><![CDATA[<h2 id="XQuartz"><a class="header-anchor" href="#XQuartz"></a>XQuartz</h2>
-<h3 id><a class="header-anchor" href="#"></a></h3>
-<h3 id="多显示屏XQuartz闪退"><a class="header-anchor" href="#多显示屏XQuartz闪退"></a>多显示屏XQuartz闪退</h3>
-<p><a href="https://apple.stackexchange.com/questions/235279/inkscape-or-other-xquartz-window-disappears-when-using-external-screen">对策</a> <a href="https://www.laptopmag.com/articles/mirror-display-macos">对策参考</a></p>
-<h2 id="MacPorts安装X11"><a class="header-anchor" href="#MacPorts安装X11"></a>MacPorts安装X11</h2>
-<p><a href="https://www.jianshu.com/p/fd422e004f62">安装教程</a> 我依照此教程安装后，X11.app打不开，故卸载了macports</p>
-<p><a href="https://guide.macports.org/chunked/installing.macports.uninstalling.html">卸载macports</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3130,6 +3118,45 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
       </categories>
   </entry>
   <entry>
+    <title>禁止safar从http跳转到https</title>
+    <url>/posts/65117/</url>
+    <content><![CDATA[<p>Safari对于一些用https访问的域名, 会存入一个列表, 此后访问 <code>http://此域名</code> , 会自动跳转到  <code>https://此域名</code> .</p>
+<p>若不想跳转, 可如下操作:</p>
+<ul>
+<li>
+<p>⌘+Q 退出Safari</p>
+</li>
+<li>
+<p>执行如下命令. 这个文件是个域名列表, safari见之则访https而非http. 删此文件, 则列表清空. <a href="https://discussions.apple.com/thread/6989319">出处</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 一般能解决问题.</p>
+</li>
+</ul>
+<p>若还是跳转https, 则继续下述操作</p>
+<ul>
+<li>
+<p>⌘+Q 退出Safari</p>
+</li>
+<li>
+<p>运行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>重启操作系统</p>
+</li>
+<li>
+<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 几乎都能解决.</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
     <title>注销icloud后桌面文件消失</title>
     <url>/posts/19843/</url>
     <content><![CDATA[<h2 id="原因"><a class="header-anchor" href="#原因"></a>原因</h2>
@@ -3166,45 +3193,6 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
 <h3 id="使用time-machine"><a class="header-anchor" href="#使用time-machine"></a>使用time machine</h3>
 <p>若近期使用了time machine备份了系统, 可将 <code>桌面</code> <code>文稿</code> 等文件夹 整体还原到最近一次备份.</p>
 <p>若发现使用<a href="#%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0icloud%E5%BD%92%E6%A1%A3" title="推荐">使用本地icloud归档</a>去恢复的文件有缺失, 也可从time machine中最近一次备份里, 还原所缺的文件和文件夹.</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>禁止safar从http跳转到https</title>
-    <url>/posts/65117/</url>
-    <content><![CDATA[<p>Safari对于一些用https访问的域名, 会存入一个列表, 此后访问 <code>http://此域名</code> , 会自动跳转到  <code>https://此域名</code> .</p>
-<p>若不想跳转, 可如下操作:</p>
-<ul>
-<li>
-<p>⌘+Q 退出Safari</p>
-</li>
-<li>
-<p>执行如下命令. 这个文件是个域名列表, safari见之则访https而非http. 删此文件, 则列表清空. <a href="https://discussions.apple.com/thread/6989319">出处</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 一般能解决问题.</p>
-</li>
-</ul>
-<p>若还是跳转https, 则继续下述操作</p>
-<ul>
-<li>
-<p>⌘+Q 退出Safari</p>
-</li>
-<li>
-<p>运行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/Library/Cookies/HSTS.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>重启操作系统</p>
-</li>
-<li>
-<p>打开 Safari, 访问<code>http://&lt;目标域名&gt;</code>, 几乎都能解决.</p>
-</li>
-</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3605,103 +3593,6 @@ ModuleNotFoundError: No module named &#39;conda&#39;<span aria-hidden="true" cla
       </categories>
   </entry>
   <entry>
-    <title>jupyter_notebook更换配色</title>
-    <url>/posts/35219/</url>
-    <content><![CDATA[<h1 id="jupyter-themes-修改-jupyter-notebook-的主题"><a class="header-anchor" href="#jupyter-themes-修改-jupyter-notebook-的主题"></a>jupyter-themes: 修改 jupyter notebook 的主题</h1>
-<h2 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h2>
-<ul>
-<li>
-<p>安装</p>
-<p>看jupyter是用conda还是pip装的</p>
-<pre class="line-numbers language-none"><code class="language-none">conda list | grep -e &#39;^jupyter &#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">jupyter                   1.0.0            py36h9896ce5_0    【defaults】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<ul>
-<li>
-<p>若<code>【】</code>中为<code>default</code>，则是jupyter notebook是conda安装的，强烈建议用conda安装jupyterthemes，不然若用pip安装jupyterthemes，会出现多种依赖不匹配</p>
-  <pre class="line-numbers language-none"><code class="language-none">conda install -c conda-forge jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>若<code>【】</code>中为<code>pypi</code>，jupyter notebook是pip安装的，则</p>
-  <pre class="line-numbers language-none"><code class="language-none">pip install jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>配置</p>
-<p>终端下输入以下命令</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">jt -t gruvboxd -T -N -cellw <span class="token number">90</span>% -f roboto -fs <span class="token number">11</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这表示我选择了 gruvboxd 这个主题，同时希望打开顶部的工具栏（Toolbar），显示笔记本的名字（Name），文本框占浏览器页宽的90%，用roboto等宽字体，字号11</p>
-<p>运行过程中可能会返回报错如下，这说明已经别的用户安装了jupyterthemes，并重建了<code>/tmp/yacctab.py</code>，故你无法重写这个文件，这并不运行你使用jupyter notebook的配色。你的配色设置，保存到 <code>$HOME/.jupyter/custom/</code>，不和他的配色设置冲突。</p>
-<blockquote>
-<p>WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’<br>
-WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’</p>
-</blockquote>
-</li>
-<li>
-<p>配置文件</p>
-<p>配置文件保存到了 <code>$HOME/.jupyter/custom/</code>，下是四个配置和依赖文件<code>current_theme. txt, custom.css, custom.js, fonts/</code>，之后每次执行<code>jupyter notebook</code>启动notebook时，会加载此配置，看见你要的主题。</p>
-</li>
-</ul>
-<h2 id="依赖不匹配怎么解决"><a class="header-anchor" href="#依赖不匹配怎么解决"></a>依赖不匹配怎么解决</h2>
-<p>若jupyter notebook是conda安装，却用安装pip安装jupyterthemes，会出现多种依赖不匹配，最终如下装一圈依赖，才能安装成功</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda upgrade notebook libsodium
-pip <span class="token function">install</span> jupyterthemes
-pip <span class="token function">install</span> --upgrade --user nbconvert
-pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>以下是各个依赖不匹配的详解：</p>
-<h3 id="Found-existing-installation-terminado-0-6"><a class="header-anchor" href="#Found-existing-installation-terminado-0-6"></a>Found existing installation: terminado 0.6</h3>
-<p>执行<code>pip install jupyterthemes</code>时报错</p>
-<blockquote>
-<p>notebook 5.7.6 has requirement jupyter-core&gt;=4.4.0, but you’ll have jupyter-core 4.3.0 which is incompatible.</p>
-<p>Installing collected packages: lesscpy, terminado, pyzmq, jupyter-client, prometheus-client, Send2Trash, notebook, jupyterthemes<br>
-<strong>Found existing installation</strong>: terminado 0.6<br>
-Cannot uninstall ‘terminado’. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.</p>
-</blockquote>
-<p>这是因为，上述操作中pip自动更新了notebook，但这个notebook是用conda而非pip装的，故依赖项terminado不对</p>
-<p>解决方法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda upgrade notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>而后可正常安装</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="ImportError-libsodium-so-23"><a class="header-anchor" href="#ImportError-libsodium-so-23"></a>ImportError: libsodium.so.23</h3>
-<p>执行<code>jupyter notebook</code>，报错</p>
-<blockquote>
-<p>ImportError: libsodium.so.23: cannot open shared object file: No such file or directory</p>
-</blockquote>
-<p>这是由于<code>jupyterthemes</code>依赖的<code>libsodium</code>没有更新</p>
-<p>解决办法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda update libsodium
-<span class="token comment"># 或</span>
-conda <span class="token function">install</span> -c conda-forge libsodium<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"><a class="header-anchor" href="#ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"></a>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</h3>
-<p>运行notebook时，用浏览器成功打开notebook的目录网页，但无法打开/新建python3 的 notebook文件，命令行下报错</p>
-<blockquote>
-<p>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</p>
-<p>[E 20:28:58.544 NotebookApp]</p>
-</blockquote>
-<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>nbconvert</code>没有更新</p>
-<p>解决办法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade --user nbconvert<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后将<code>$USER/.local/bin</code>添加到PATH，即可实现上述运行</p>
-<h3 id="ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"><a class="header-anchor" href="#ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"></a>ERROR:tornado.general: Uncaught exception in zmqstream callback</h3>
-<p>运行notebook时，用浏览器成功打开notebook的目录网页，能成功打开/新建python3 的 notebook文件，但点运行，迟迟不运行，命令行下报错</p>
-<blockquote>
-<p>ERROR:tornado.general: Uncaught exception in zmqstream callback</p>
-</blockquote>
-<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>ipykernel</code>没有更新</p>
-<p>解决办法：</p>
-<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="参考"><a class="header-anchor" href="#参考"></a>参考</h2>
-<p><a href="https://github.com/dunovank/jupyter-themes">https://github.com/dunovank/jupyter-themes</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/46242116">【内容引起舒适】让你的Jupyter Notebook不再辣眼睛</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>python</category>
-      </categories>
-  </entry>
-  <entry>
     <title>ipython与jupyter_notebook安装配置使用</title>
     <url>/posts/46630/</url>
     <content><![CDATA[<p>[TOC]</p>
@@ -3976,6 +3867,103 @@ c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuati
 <p><code>exit</code>或<code>logout</code>退出服务器的登录，则jupyter notebook不会立即停止</p>
 </li>
 </ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>jupyter_notebook更换配色</title>
+    <url>/posts/35219/</url>
+    <content><![CDATA[<h1 id="jupyter-themes-修改-jupyter-notebook-的主题"><a class="header-anchor" href="#jupyter-themes-修改-jupyter-notebook-的主题"></a>jupyter-themes: 修改 jupyter notebook 的主题</h1>
+<h2 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h2>
+<ul>
+<li>
+<p>安装</p>
+<p>看jupyter是用conda还是pip装的</p>
+<pre class="line-numbers language-none"><code class="language-none">conda list | grep -e &#39;^jupyter &#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">jupyter                   1.0.0            py36h9896ce5_0    【defaults】<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<ul>
+<li>
+<p>若<code>【】</code>中为<code>default</code>，则是jupyter notebook是conda安装的，强烈建议用conda安装jupyterthemes，不然若用pip安装jupyterthemes，会出现多种依赖不匹配</p>
+  <pre class="line-numbers language-none"><code class="language-none">conda install -c conda-forge jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>若<code>【】</code>中为<code>pypi</code>，jupyter notebook是pip安装的，则</p>
+  <pre class="line-numbers language-none"><code class="language-none">pip install jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>配置</p>
+<p>终端下输入以下命令</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">jt -t gruvboxd -T -N -cellw <span class="token number">90</span>% -f roboto -fs <span class="token number">11</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这表示我选择了 gruvboxd 这个主题，同时希望打开顶部的工具栏（Toolbar），显示笔记本的名字（Name），文本框占浏览器页宽的90%，用roboto等宽字体，字号11</p>
+<p>运行过程中可能会返回报错如下，这说明已经别的用户安装了jupyterthemes，并重建了<code>/tmp/yacctab.py</code>，故你无法重写这个文件，这并不运行你使用jupyter notebook的配色。你的配色设置，保存到 <code>$HOME/.jupyter/custom/</code>，不和他的配色设置冲突。</p>
+<blockquote>
+<p>WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’<br>
+WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/yacctab.py’</p>
+</blockquote>
+</li>
+<li>
+<p>配置文件</p>
+<p>配置文件保存到了 <code>$HOME/.jupyter/custom/</code>，下是四个配置和依赖文件<code>current_theme. txt, custom.css, custom.js, fonts/</code>，之后每次执行<code>jupyter notebook</code>启动notebook时，会加载此配置，看见你要的主题。</p>
+</li>
+</ul>
+<h2 id="依赖不匹配怎么解决"><a class="header-anchor" href="#依赖不匹配怎么解决"></a>依赖不匹配怎么解决</h2>
+<p>若jupyter notebook是conda安装，却用安装pip安装jupyterthemes，会出现多种依赖不匹配，最终如下装一圈依赖，才能安装成功</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda upgrade notebook libsodium
+pip <span class="token function">install</span> jupyterthemes
+pip <span class="token function">install</span> --upgrade --user nbconvert
+pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>以下是各个依赖不匹配的详解：</p>
+<h3 id="Found-existing-installation-terminado-0-6"><a class="header-anchor" href="#Found-existing-installation-terminado-0-6"></a>Found existing installation: terminado 0.6</h3>
+<p>执行<code>pip install jupyterthemes</code>时报错</p>
+<blockquote>
+<p>notebook 5.7.6 has requirement jupyter-core&gt;=4.4.0, but you’ll have jupyter-core 4.3.0 which is incompatible.</p>
+<p>Installing collected packages: lesscpy, terminado, pyzmq, jupyter-client, prometheus-client, Send2Trash, notebook, jupyterthemes<br>
+<strong>Found existing installation</strong>: terminado 0.6<br>
+Cannot uninstall ‘terminado’. It is a distutils installed project and thus we cannot accurately determine which files belong to it which would lead to only a partial uninstall.</p>
+</blockquote>
+<p>这是因为，上述操作中pip自动更新了notebook，但这个notebook是用conda而非pip装的，故依赖项terminado不对</p>
+<p>解决方法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda upgrade notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>而后可正常安装</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> jupyterthemes<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="ImportError-libsodium-so-23"><a class="header-anchor" href="#ImportError-libsodium-so-23"></a>ImportError: libsodium.so.23</h3>
+<p>执行<code>jupyter notebook</code>，报错</p>
+<blockquote>
+<p>ImportError: libsodium.so.23: cannot open shared object file: No such file or directory</p>
+</blockquote>
+<p>这是由于<code>jupyterthemes</code>依赖的<code>libsodium</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">conda update libsodium
+<span class="token comment"># 或</span>
+conda <span class="token function">install</span> -c conda-forge libsodium<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"><a class="header-anchor" href="#ModuleNotFoundError-No-module-named-‘nbconvert-exporters-base’"></a>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</h3>
+<p>运行notebook时，用浏览器成功打开notebook的目录网页，但无法打开/新建python3 的 notebook文件，命令行下报错</p>
+<blockquote>
+<p>ModuleNotFoundError: No module named ‘nbconvert.exporters.base’</p>
+<p>[E 20:28:58.544 NotebookApp]</p>
+</blockquote>
+<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>nbconvert</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade --user nbconvert<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后将<code>$USER/.local/bin</code>添加到PATH，即可实现上述运行</p>
+<h3 id="ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"><a class="header-anchor" href="#ERROR-tornado-general-Uncaught-exception-in-zmqstream-callback"></a>ERROR:tornado.general: Uncaught exception in zmqstream callback</h3>
+<p>运行notebook时，用浏览器成功打开notebook的目录网页，能成功打开/新建python3 的 notebook文件，但点运行，迟迟不运行，命令行下报错</p>
+<blockquote>
+<p>ERROR:tornado.general: Uncaught exception in zmqstream callback</p>
+</blockquote>
+<p>这是因为，这是由于<code>jupyterthemes</code>依赖的<code>ipykernel</code>没有更新</p>
+<p>解决办法：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell">pip <span class="token function">install</span> --upgrade ipykernel<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="参考"><a class="header-anchor" href="#参考"></a>参考</h2>
+<p><a href="https://github.com/dunovank/jupyter-themes">https://github.com/dunovank/jupyter-themes</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/46242116">【内容引起舒适】让你的Jupyter Notebook不再辣眼睛</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -7427,6 +7415,450 @@ unbind C-b
       </categories>
   </entry>
   <entry>
+    <title>Pycharm安装配置教程</title>
+    <url>/posts/50549/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h1 id="Pycharm教程"><a class="header-anchor" href="#Pycharm教程"></a>Pycharm教程</h1>
+<h2 id="汉化pycharm"><a class="header-anchor" href="#汉化pycharm"></a>汉化pycharm</h2>
+<p>链接：<a href="https://www.jianshu.com/p/8ec84bd7d3d6">https://www.jianshu.com/p/8ec84bd7d3d6</a></p>
+<h3 id="首先下载汉化包"><a class="header-anchor" href="#首先下载汉化包"></a>首先下载汉化包</h3>
+<pre class="line-numbers language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;ewen0930&#x2F;PyCharm-Chinese<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="然后生成resources-zh-jar"><a class="header-anchor" href="#然后生成resources-zh-jar"></a>然后生成resources_zh.jar</h3>
+<pre class="line-numbers language-none"><code class="language-none">bash package.cmd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="替换文件"><a class="header-anchor" href="#替换文件"></a>替换文件</h3>
+<p>把生成的resources_zh.jar放在安装目录lib文件夹下就好了</p>
+<p>mac的路径是<code>/Applications/PyCharm CE.app/Contents/lib</code></p>
+<h2 id="教育账号申请"><a class="header-anchor" href="#教育账号申请"></a>教育账号申请</h2>
+<h3 id="操作"><a class="header-anchor" href="#操作"></a>操作</h3>
+<p><a href="https://www.jetbrains.com/student/">链接</a> - <code>How do I apply?</code> - <code>Apply Now</code></p>
+<p>填入姓名 学校信息 教育邮箱（.edu.cn 可用），然后提交</p>
+<p>等五分钟左右，教育邮箱才会收到激活邮件，点其中链接</p>
+<p>填入Jet Brains的账号邮箱（可以是其他邮箱）和密码，没有账号可申请一个，提交</p>
+<p>等五分钟左右，账号邮箱才会收到激活邮件，点其中链接，会显示一个激活码，是教育账号的</p>
+<p>此激活码填入Jet Brains所有软件（如pycharm）的账号激活中，即激活成功</p>
+<h3 id="注意"><a class="header-anchor" href="#注意"></a>注意</h3>
+<ul>
+<li>教育账号有效期一年，一年后若仍是学生或老师，还可用原教育邮箱在此激活</li>
+<li>教育账号可激活多台机器上的pycahrm，但只能同时用一台上的</li>
+</ul>
+<h2 id="远程"><a class="header-anchor" href="#远程"></a>远程</h2>
+<h3 id="添加远程解释器、同步远程项目文件夹"><a class="header-anchor" href="#添加远程解释器、同步远程项目文件夹"></a>添加远程解释器、同步远程项目文件夹</h3>
+<p><a href="https://www.jianshu.com/p/9b362cdee2ab">参见</a></p>
+<h3 id="浏览远程目录"><a class="header-anchor" href="#浏览远程目录"></a>浏览远程目录</h3>
+<p><a href="https://www.jetbrains.com/help/pycharm/remote-host-tool-window.html">参见</a></p>
+<p>最终效果：远程浏览栏在右，可见整个服务器；本地浏览栏在左，只见项目目录</p>
+<p><img data-src="/posts/50549/%E8%BF%9C%E7%A8%8B%E6%9C%AC%E5%9C%B0%E6%B5%8F%E8%A7%88.png" alt></p>
+<h3 id="几种用法"><a class="header-anchor" href="#几种用法"></a>几种用法</h3>
+<ul>
+<li>用远程解释器、debug或运行本地代码
+<ul>
+<li>只需添加远侧解释器，同步远程项目文件夹，即可调用远程资源运行、debug本地代码，结果返回到pycharm中的下栏</li>
+</ul>
+</li>
+<li>编辑远程代码
+<ul>
+<li>同步远程项目文件夹到本地随便一个文件夹</li>
+<li>若不添加远程解释器，则只可在ssh中运行</li>
+<li>若添加远程解释器，则可用远程解释器、debug</li>
+</ul>
+</li>
+<li>在pycharm中查看远程、编辑文件（不论文本还是图片）
+<ul>
+<li>在远程浏览栏中，服务器上所有的（不仅仅是同步的文件夹中的）文件（夹），可在pycharm内增删改重命名</li>
+<li>但是不能打开远程文件夹到pycharm，如有此需要，需新建远程项目文件夹同步</li>
+</ul>
+</li>
+<li>传输文件
+<ul>
+<li>将文件（夹）（们），拖入(移动)/<code>⌘V</code>(复制) 到本地浏览栏，会自动同步到远程项目文件夹</li>
+<li>拖入(移动)/<code>⌘V</code>(复制) 到远程浏览栏无效</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>编辑器IDE</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vim-搜索替换插件</title>
+    <url>/posts/32311/</url>
+    <content><![CDATA[<h2 id="待定"><a class="header-anchor" href="#待定"></a>待定</h2>
+<p><a href="https://github.com/dyng/ctrlsf.vim:">https://github.com/dyng/ctrlsf.vim:</a> 多文件替换需要使用多光标, 麻烦了</p>
+<ul>
+<li>bug: 宽字符预览上色出错</li>
+</ul>
+<p>默认用vimgrep, 很慢</p>
+<ul>
+<li>
+<p>大小写</p>
+<p><code>:F(ar) \Cxxxx xxx xxx </code>: 大小写敏感</p>
+<p><code>:F(ar) \cxxxx xxx xxx </code>: 大小写不敏感</p>
+<p><code>:F(ar) xxxx xxx xxx </code>: 默认大小写不敏感</p>
+</li>
+<li>
+<p>正则:</p>
+<ul>
+<li>默认是正则表达式, 取消正则 <code>:F(ar) 	\Vxxx</code></li>
+</ul>
+<p><a href="https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less">https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less</a></p>
+<pre class="line-numbers language-none"><code class="language-none">command! -nargs&#x3D;1 S let @&#x2F; &#x3D; escape(&#39;&lt;args&gt;&#39;, &#39;\&#39;)
+nmap &lt;Leader&gt;S :execute(&quot;:S &quot; . input(&#39;Regex-off: &#x2F;&#39;))&lt;CR&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>整词: <code>\&lt;xxxx\&gt;</code></p>
+</li>
+</ul>
+<p><a href="http://xahlee.info/comp/unicode_index.html">http://xahlee.info/comp/unicode_index.html</a></p>
+<p>设计: 🔎 Ϙ⊕ ⊗⛒⦿⨁⨂ ⨷㉧🄋ⒻⓄ◯⨀ +⃝ ⏍ ⤭  ⇄ ⟲ ⟳ ↺ ↻  ⇲ ➲ 🔁 🔂 🔃 🔄 ➡ ⬇  ⎋Ⓡ Ⓢ ⧬</p>
+<p>◌̸</p>
+<p>⃝</p>
+<p>⃞</p>
+<p>⃣</p>
+<p>⃠</p>
+<p>⃢</p>
+<p><code>|.*|Aa|“”|+⃝ |</code><br>
+<code>|.*|Aa|“”|Ⓞ|</code></p>
+<p><code>[.*] [Aa] [“”] Ⓞ</code></p>
+<p><code>|.*| |Aa| |“”| Ⓞ</code></p>
+<p><code>|.*|Aa|“”|⬇|</code></p>
+<p><a href="https://shapeshed.com/vim-statuslines/">https://shapeshed.com/vim-statuslines/</a>, <a href="https://jdhao.github.io/2019/11/03/vim_custom_statusline/">https://jdhao.github.io/2019/11/03/vim_custom_statusline/</a></p>
+<p>rg的整词匹配: <a href="https://github.com/BurntSushi/ripgrep/issues/389">https://github.com/BurntSushi/ripgrep/issues/389</a></p>
+<p><a href="https://github.com/brooth/far.vim">https://github.com/brooth/far.vim</a></p>
+<p><a href="https://github.com/hwrod/interactive-replace">https://github.com/hwrod/interactive-replace</a></p>
+<p><a href="https://github.com/mreinhardt/greplace.vim">https://github.com/mreinhardt/greplace.vim</a></p>
+<h2 id="各种搜索后端"><a class="header-anchor" href="#各种搜索后端"></a>各种搜索后端</h2>
+<pre class="line-numbers language-none"><code class="language-none">ag --nogroup --column --nocolor --silent --max-count&#x3D;1000  --vimgrep gmg --file-search-regex&#x3D;branch.sh [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">rg --no-heading --column --no-messages --max-count&#x3D;1000 --glob&#x3D;branch.sh &#39;gmg[a-z]*&#39; --vimgrep  [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a href="https://github.com/beyondgrep/ack3/">https://github.com/beyondgrep/ack3/</a></p>
+<pre class="line-numbers language-none"><code class="language-none">ack --nogroup --column --nocolor --max-count&#x3D;1000  --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh  gmg
+[-o]
+# --smart-case --ignore-case --farft --no-recurse
+
+
+ack --nogroup --output&#x3D;&#39;$&amp;:$_&#39; --max-count&#x3D;1000 --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh gmg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="首先排除"><a class="header-anchor" href="#首先排除"></a>首先排除</h2>
+<p><a href="https://github.com/svermeulen/vim-subversive:">https://github.com/svermeulen/vim-subversive:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
+<p><a href="https://github.com/andy-kwei/vim-easy-replace:">https://github.com/andy-kwei/vim-easy-replace:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
+<p><a href="https://github.com/movitto/vim-vsearch:">https://github.com/movitto/vim-vsearch:</a> 类far.vim而不如</p>
+<p><a href="https://github.com/yegappan/greplace:">https://github.com/yegappan/greplace:</a> 文档一句话; -&gt; mreinhardt/greplace.vim</p>
+<p><a href="https://github.com/rzwierz/vim-guidgen:">https://github.com/rzwierz/vim-guidgen:</a> 只能linux的vim用</p>
+<p><a href="https://github.com/pallavagarwal07/AutoRun:">https://github.com/pallavagarwal07/AutoRun:</a> 文档一句话, 只是提供预览搜索/替换结果</p>
+<p><a href="https://github.com/pieterhuibers/findreplace:">https://github.com/pieterhuibers/findreplace:</a> 空项目</p>
+<p><a href="https://github.com/bloc40/vim-replace:">https://github.com/bloc40/vim-replace:</a> 一句话文档; 支持多文件</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>编辑器IDE</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vscode安装配置</title>
+    <url>/posts/25455/</url>
+    <content><![CDATA[<h1 id="vscode安装配置"><a class="header-anchor" href="#vscode安装配置"></a>vscode安装配置</h1>
+<h2 id="拓展安装方法"><a class="header-anchor" href="#拓展安装方法"></a>拓展安装方法</h2>
+<ul>
+<li>
+<p><code>⇧⌘P</code> -<code>Extentions: Install Extentions</code> - 输入<code>插件名称</code> - <code>install</code></p>
+</li>
+<li>
+<p>或在左侧拓展商店栏，输入<code>插件名称</code> - <code>install</code></p>
+</li>
+</ul>
+<p><img data-src="/posts/25455/img1.png" alt></p>
+<h2 id="语言"><a class="header-anchor" href="#语言"></a>语言</h2>
+<p><code>⇧⌘P</code> -<code>Configure Display Language</code> -</p>
+<p><img data-src="/posts/25455/2019-05-23_15.54.53.png" alt></p>
+<ul>
+<li>
+<p>选择已有语言</p>
+<p><img data-src="/posts/25455/2019-05-23_15.54.43.png" alt></p>
+</li>
+<li>
+<p><code>install other language</code> -左侧拓展商店栏输入 <code>Chinese (Simplified) Language Pack for Visual Studio Code</code> - <code>install</code></p>
+</li>
+</ul>
+<h2 id="配色与字体"><a class="header-anchor" href="#配色与字体"></a>配色与字体</h2>
+<h3 id="预备"><a class="header-anchor" href="#预备"></a>预备</h3>
+<p>安装插件<code>Gruvbox Themes</code></p>
+<p><a href="https://github.com/powerline/fonts">Powerline字体安装</a></p>
+<ul>
+<li>
+<p>mac:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># clone</span>
+<span class="token function">git</span> clone https://github.com/powerline/fonts.git --depth<span class="token operator">=</span><span class="token number">1</span>
+<span class="token comment"># install</span>
+<span class="token builtin class-name">cd</span> fonts
+./install.sh
+<span class="token comment"># clean-up a bit</span>
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
+<span class="token function">rm</span> -rf fonts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>linux:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> fonts-powerline<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<p><a href="https://glitchbone.github.io/vscode-base16-term/#/">终端配色参考</a></p>
+<h3 id="配置"><a class="header-anchor" href="#配置"></a>配置</h3>
+<p><code>⌘,</code> ，在<code>用户</code>设置中</p>
+<p><img data-src="/posts/25455/2019-05-23_16.04.11-8598764.png" alt></p>
+<p>以打开<code>settings.json</code>，添加以下设置</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  ...
+    <span class="token comment">// 终端字体</span>
+    <span class="token property">"editor.fontFamily"</span><span class="token operator">:</span> <span class="token string">"Meslo LG S DZ for Powerline"</span><span class="token punctuation">,</span>
+    <span class="token comment">// 终端配色</span>
+    <span class="token property">"workbench.colorCustomizations"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token property">"terminal.background"</span><span class="token operator">:</span><span class="token string">"#28282a"</span> <span class="token punctuation">,</span>         <span class="token property">"terminal.foreground"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminalCursor.background"</span><span class="token operator">:</span><span class="token string">"#3b3b3b"</span><span class="token punctuation">,</span>   <span class="token property">"terminalCursor.foreground"</span><span class="token operator">:</span><span class="token string">"#A5A2A2"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiBlack"</span><span class="token operator">:</span><span class="token string">"#28282a"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightBlack"</span><span class="token operator">:</span><span class="token string">"#a2a2a2"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiWhite"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightWhite"</span><span class="token operator">:</span><span class="token string">"#feffff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiRed"</span><span class="token operator">:</span><span class="token string">"#c91b00"</span><span class="token punctuation">,</span>             <span class="token property">"terminal.ansiBrightRed"</span><span class="token operator">:</span><span class="token string">"#ff6d67"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiYellow"</span><span class="token operator">:</span><span class="token string">"#cecc4d"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightYellow"</span><span class="token operator">:</span><span class="token string">"#fefb67"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiGreen"</span><span class="token operator">:</span><span class="token string">"#89b560"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightGreen"</span><span class="token operator">:</span><span class="token string">"#74dd74"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiCyan"</span><span class="token operator">:</span><span class="token string">"#61aaab"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightCyan"</span><span class="token operator">:</span><span class="token string">"#5ffdff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiBlue"</span><span class="token operator">:</span><span class="token string">"#5168d5"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightBlue"</span><span class="token operator">:</span><span class="token string">"#6871ff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiMagenta"</span><span class="token operator">:</span><span class="token string">"#c930c7"</span><span class="token punctuation">,</span>         <span class="token property">"terminal.ansiBrightMagenta"</span><span class="token operator">:</span><span class="token string">"#ff76ff"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token comment">//  配色</span>
+    <span class="token property">"workbench.colorTheme"</span><span class="token operator">:</span> <span class="token string">"Gruvbox Dark (Medium)"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上文的<code>// ...</code>注释可以黏贴到<code>settings.json</code>中，vscode支持注释</p>
+<h2 id="终端"><a class="header-anchor" href="#终端"></a>终端</h2>
+<h3 id="内部终端-integrated-terminal"><a class="header-anchor" href="#内部终端-integrated-terminal"></a>内部终端(integrated terminal)</h3>
+<pre class="line-numbers language-⌃`" data-language="⌃`"><div class="caption"><span>```以开启内部终端</span></div><code class="language-⌃`">
+### 外部终端(external terminal)
+
+* 配置
+
+&#96;⌘,&#96; ，在&#96;用户&#96;设置中，以打开&#96;settings.json&#96;，添加以下设置
+
+
+&#96;&#96;&#96;json
+&#123;
+  ...
+  &quot;terminal.external.osxExec&quot;: &quot;iTerm.app&quot;,
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>使用：<code>⇧⌘C</code>以，会弹出一个外部<code>iTerm2</code>窗口</li>
+</ul>
+<h2 id="命令行工具"><a class="header-anchor" href="#命令行工具"></a>命令行工具</h2>
+<p><a href="https://code.visualstudio.com/docs/editor/integrated-terminal">https://code.visualstudio.com/docs/editor/integrated-terminal</a></p>
+<p><code>⇧⌘P</code> - <code>Shell Command: install 'code' command in PATH</code></p>
+<p><img data-src="/posts/25455/img2.png" alt></p>
+<p>使用方法：</p>
+<ul>
+<li>在命令中输入如下命令，则会用vscode-insiders打开之</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">code-insiders 文件名/文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>在命令中输入如下命令，则会用vscode打开之</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">code 文件名&#x2F;文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上述命令适用于：本地内置终端、本地外部终端、远程开发时内置终端、<s>远程开发时的本地外部终端</s></p>
+<h2 id="远程开发"><a class="header-anchor" href="#远程开发"></a>远程开发</h2>
+<h3 id="安装插件"><a class="header-anchor" href="#安装插件"></a>安装插件</h3>
+<p>安装插件 <code>Remote Developement</code> ，目前(2019-5-23)只支持 <a href="https://code.visualstudio.com/insiders/">VSCode-Insiders</a>，不支持<a href="https://code.visualstudio.com/Download">正式版VSCode</a></p>
+<h3 id="配置本地的ssh-config"><a class="header-anchor" href="#配置本地的ssh-config"></a>配置本地的ssh config</h3>
+<p>请在本地<code>~/.ssh/config</code>或<code>/etc/ssh/ssh_config</code>中写好远程服务器的连接配置</p>
+<p>vscode的<code>Remote Developement</code> 只支持密钥登录，也支持密码登录</p>
+<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
+<p>点左下角<code>&gt;&lt;</code>按钮</p>
+<p><img data-src="/posts/25455/2019-05-23_16.27.00.png" alt></p>
+<p><img data-src="/posts/25455/2019-05-23_16.27.05.png" alt></p>
+<p><img data-src="/posts/25455/2019-05-23_16.27.13.png" alt></p>
+<h3 id="编辑远程文件-夹"><a class="header-anchor" href="#编辑远程文件-夹"></a>编辑远程文件(夹)</h3>
+<p><img data-src="/posts/25455/2019-05-23_16.32.52.png" alt></p>
+<p>关于远程开发的vscode命令行工具</p>
+<ul>
+<li>
+<p>vscode连接服务器后，会在服务器自动安装vscode远程开发的服务端程序，并运行之</p>
+<ul>
+<li>安装路径为<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code></li>
+<li>每当这台本机和这台服务器重新连接，就按照这个hash码，加载安装路径下，之前缓存的编辑器、内置终端、等模块的状态</li>
+<li>故<strong>重新连接服务器，编辑器、内置终端、等模块的状态均保留</strong></li>
+</ul>
+</li>
+<li>
+<p>vscode连接服务器后，在内置终端可使用   <code>code(-insiders)</code>  命令打开远程文件(夹)。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> code<span class="token punctuation">(</span>-insiders<span class="token punctuation">)</span>
+<span class="token comment"># 返回</span>
+<span class="token comment"># ~/.vscode-remote/bin/服务器的hash码/bin/code(-insiders)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>但远程开发， <strong>在 本地外部终端 输入  <code>code(-insiders)</code>，无法 打开远程文件</strong></p>
+</li>
+</ul>
+<h3 id="常见报错与处理"><a class="header-anchor" href="#常见报错与处理"></a>常见报错与处理</h3>
+<h4 id="重新连接失败"><a class="header-anchor" href="#重新连接失败"></a>重新连接失败</h4>
+<p>若之前连接过一台服务器，再次连它则报错，可杀死之前服务器端运行的 vscode 进程：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> vscode <span class="token operator">|</span> <span class="token function">grep</span> <span class="token environment constant">$USER</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">myusername     2382  0.0  0.0   4504   780 ?        S    01:33   0:00 sh &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;server.sh --port&#x3D;0
+myusername     2390  0.0  0.0 1307344 62116 ?       Sl   01:33   0:11 &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;node &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;out&#x2F;remoteExtensionHostAgent.js --port&#x3D;0
+myusername     6066  0.0  0.0  15976   972 pts&#x2F;20   S+   16:41   0:00 grep --color vscode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>杀死所有<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code>路径下的进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 教程编号 <span class="token comment"># 如上一框的 2382 2390</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后vscode重新连接服务器即可连接成功</p>
+<h4 id="wget失败"><a class="header-anchor" href="#wget失败"></a>wget失败</h4>
+<p>服务器上请不要给用alias覆盖<code>wget</code>命令，如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wget</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这样的alias会造成连接后，会报错曰，服务器上无法用wget下载vscode远程开发的服务器端</p>
+<p>此alias改为</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wgetc</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后vscode重新连接服务器即可连接成功</p>
+<h2 id="snippet"><a class="header-anchor" href="#snippet"></a>snippet</h2>
+<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">教程</a></p>
+<p>写入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">&#123;</span>
+    <span class="token string">"《snippet_name》"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"prefix"</span><span class="token builtin class-name">:</span> <span class="token string">"《snippet_toggle》"</span>,
+        <span class="token string">"body"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"《insert_code》"</span>,
+        <span class="token punctuation">]</span>,
+        <span class="token string">"description"</span><span class="token builtin class-name">:</span> <span class="token string">"《prompt》"</span>
+    <span class="token punctuation">&#125;</span>,
+    <span class="token punctuation">..</span>.
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p>json不支持跨行文本，即不支持形如</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>"asdasd
+asdasd
+asdas
+" <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>请写成</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"asda ad s ad as d"</span><span class="token punctuation">,</span>
+    <span class="token string">"asd  asd  sad as "</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>json中的文本只能用双引号，不能用单引号</p>
+</li>
+<li>
+<p><code>body</code>中的特殊字符</p>
+<ul>
+<li>转义字符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>原文本</th>
+<th>代码文本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;</code></td>
+<td><code>\&quot;</code></td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td><code>\\$</code></td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td><code>\\</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>插入后，按<code>⇥</code>、<code>⇧⇥</code>去往下、前一个可编辑区域；可编辑区域的写法</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&quot;body&quot;: [
+    &quot;asda $&#123;1:【可编辑区域的提示】&#125; s ad $&#123;2:另一个可编辑区域&#125; as d&quot;,
+    &quot;asd $&#123;1:同步可编辑区域&#125; as &quot;,
+    &quot;asd $&#123;3&#125;&quot;，
+],<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="设置同步插件"><a class="header-anchor" href="#设置同步插件"></a>设置同步插件</h2>
+<p>为方便使得多个设备可以共用一份配置，可按照vscode插件 “settings sync”，它用gist同步你的vscode的各种设置，包括本地的全局设置、快捷键、snippet、所安装插件及版本。</p>
+<h3 id="自动配置方法"><a class="header-anchor" href="#自动配置方法"></a>自动配置方法</h3>
+<ul>
+<li>清除已有配置 : 初次配置无需此步, 若要更新配置则需要此步. 按 <code>⇧⌘P</code> - <code>Sync: 重置扩展设置</code></li>
+</ul>
+<p><img data-src="/posts/25455/image-20200316184531147.png" alt="image-20200316184531147"></p>
+<p>​	所谓重置, 即清空&quot;settings sync&quot;现有的配置. 重置后,  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  会看见以下页面全空</p>
+<p><img data-src="/posts/25455/image-20200509201718848.png" alt="image-20200509201718848"></p>
+<ul>
+<li>
+<p>按 <code>⇧⌥U</code> , 则会弹出如下页面, 点 <code>login with github</code></p>
+<p><img data-src="/posts/25455/image-20200509201635555.png" alt="image-20200509201635555"></p>
+</li>
+</ul>
+<p><img data-src="/posts/25455/image-20200509202018164.png" alt="image-20200509202018164"></p>
+<p>然后点 <code>信任github.com这个域名</code> .</p>
+<p>然后会浏览器弹出如下网页,</p>
+<p><img data-src="/posts/25455/ScreenShot%202020-05-20%2021.11.23.png" alt="ScreenShot 2020-05-20 21.11.23"></p>
+<p>然后会看跳转如下页面, 此时可关闭此网页,</p>
+<p><img data-src="/posts/25455/image-20200509202211987.png" alt="image-20200509202211987"></p>
+<p>而vscode里弹出此标签页, 这意味着当前浏览器默认的github账号中, 创建了一个新的token, 可用于创建gist来同步vscode配置</p>
+<p><img data-src="/posts/25455/image-20200509202252574.png" alt="image-20200509202252574"></p>
+<p>此时  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  的插件配置变成,</p>
+<p><img data-src="/posts/25455/image-20200509202418088.png" alt="image-20200509202418088"></p>
+<p>这说明当前浏览器默认的github账号中, 创建了一个新的token,  可用于创建gist来同步vscode配置, 但是这个token在 github 的配置中看不见:</p>
+<ul>
+<li><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>, 显示如下</li>
+</ul>
+<pre><code>![image-20200509203832966](main/image-20200509203832966.png)
+</code></pre>
+<p>此时再按 <code>⇧⌥U</code>, 则会在此github账号, 自动创建一个新gist, 然后询问是否上传当前的vscode各种配置, 点<code>是</code></p>
+<p><img data-src="/posts/25455/image-20200509202900380.png" alt="image-20200509202900380"></p>
+<p>打开 <code>https://gist.github.com/你的用户名 </code>来检查一下, 确实创建了新gist,</p>
+<p><img data-src="/posts/25455/image-20200509203035964.png" alt="image-20200509203035964"></p>
+<p>其内已上传各个vscode配置文件</p>
+<p><img data-src="/posts/25455/image-20200509203239628.png" alt="image-20200509203239628"></p>
+<p>这说明配置成功</p>
+<h3 id="手动配置方法-废弃"><a class="header-anchor" href="#手动配置方法-废弃"></a>手动配置方法 (废弃)</h3>
+<p>本法勿用, 目前(2020-5-9)若用本法, 会在vscode重启后, github 将下文所创建的 token 自动删除, vscode会在同步配置时显示”token无效或过期”.</p>
+<ul>
+<li>
+<p>开一个<a href="https://gist.github.com/">gist</a></p>
+<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2019.00.22.png" alt="ScreenShot 2020-03-16 19.00.22"></p>
+<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2019.07.01.png" alt="ScreenShot 2020-03-16 19.07.01"></p>
+<p>从url里复制gist id</p>
+<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2019.07.43.png" alt="ScreenShot 2020-03-16 19.07.43"></p>
+</li>
+<li>
+<p>开一个带有gist功能的github token：</p>
+<p><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>-<code>generate new token</code></p>
+<p><img data-src="/posts/25455/image-20200316184923683.png" alt="image-20200316184923683"></p>
+<p>勾选gist和user</p>
+<p><img data-src="/posts/25455/image-20200518012345366.png" alt="image-20200518012345366"></p>
+<p>然后会显示 <code>github token</code>， 速速记录下，只会显示这一次，之后再也显示不了。</p>
+</li>
+<li>
+<p>安装 <code>Settings Sync</code> 插件</p>
+</li>
+<li>
+<p>设置 <code>Settings Sync</code> ： <code>⌘⇧P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code></p>
+<p><img data-src="/posts/25455/image-20200316184531147.png" alt="image-20200316184531147"></p>
+<p><img data-src="/posts/25455/image-20200316184543735.png" alt="image-20200316184543735"></p>
+</li>
+<li>
+<p>然后会弹出设置页面，设置方法如下</p>
+</li>
+</ul>
+<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2018.37.32.png" alt="ScreenShot 2020-03-16 18.37.32"></p>
+<p>然后按 <code>⌥⇧U</code>， 如果状态栏显示“同步成功”，且gist上显示如下，则成功</p>
+<p><img data-src="/posts/25455/image-20200316192700873.png" alt="image-20200316192700873"></p>
+<h3 id="使用方法"><a class="header-anchor" href="#使用方法"></a>使用方法</h3>
+<p>手动同步：</p>
+<ul>
+<li><code>⌥⇧U</code>：手动上传到gist</li>
+<li><code>⌥⇧D</code>：手动从gist下载</li>
+</ul>
+<p>自动同步：打开vscode时，保存配置文件时，会自动下载再上传</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>编辑器IDE</category>
+      </categories>
+  </entry>
+  <entry>
     <title>小鹤音形码</title>
     <url>/posts/44263/</url>
     <content><![CDATA[<h1 id="小鹤音形码"><a class="header-anchor" href="#小鹤音形码"></a>小鹤音形码</h1>
@@ -8501,447 +8933,15 @@ unbind C-b
       </categories>
   </entry>
   <entry>
-    <title>Pycharm安装配置教程</title>
-    <url>/posts/50549/</url>
-    <content><![CDATA[<p>[TOC]</p>
-<h1 id="Pycharm教程"><a class="header-anchor" href="#Pycharm教程"></a>Pycharm教程</h1>
-<h2 id="汉化pycharm"><a class="header-anchor" href="#汉化pycharm"></a>汉化pycharm</h2>
-<p>链接：<a href="https://www.jianshu.com/p/8ec84bd7d3d6">https://www.jianshu.com/p/8ec84bd7d3d6</a></p>
-<h3 id="首先下载汉化包"><a class="header-anchor" href="#首先下载汉化包"></a>首先下载汉化包</h3>
-<pre class="line-numbers language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;ewen0930&#x2F;PyCharm-Chinese<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="然后生成resources-zh-jar"><a class="header-anchor" href="#然后生成resources-zh-jar"></a>然后生成resources_zh.jar</h3>
-<pre class="line-numbers language-none"><code class="language-none">bash package.cmd<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="替换文件"><a class="header-anchor" href="#替换文件"></a>替换文件</h3>
-<p>把生成的resources_zh.jar放在安装目录lib文件夹下就好了</p>
-<p>mac的路径是<code>/Applications/PyCharm CE.app/Contents/lib</code></p>
-<h2 id="教育账号申请"><a class="header-anchor" href="#教育账号申请"></a>教育账号申请</h2>
-<h3 id="操作"><a class="header-anchor" href="#操作"></a>操作</h3>
-<p><a href="https://www.jetbrains.com/student/">链接</a> - <code>How do I apply?</code> - <code>Apply Now</code></p>
-<p>填入姓名 学校信息 教育邮箱（.edu.cn 可用），然后提交</p>
-<p>等五分钟左右，教育邮箱才会收到激活邮件，点其中链接</p>
-<p>填入Jet Brains的账号邮箱（可以是其他邮箱）和密码，没有账号可申请一个，提交</p>
-<p>等五分钟左右，账号邮箱才会收到激活邮件，点其中链接，会显示一个激活码，是教育账号的</p>
-<p>此激活码填入Jet Brains所有软件（如pycharm）的账号激活中，即激活成功</p>
-<h3 id="注意"><a class="header-anchor" href="#注意"></a>注意</h3>
-<ul>
-<li>教育账号有效期一年，一年后若仍是学生或老师，还可用原教育邮箱在此激活</li>
-<li>教育账号可激活多台机器上的pycahrm，但只能同时用一台上的</li>
-</ul>
-<h2 id="远程"><a class="header-anchor" href="#远程"></a>远程</h2>
-<h3 id="添加远程解释器、同步远程项目文件夹"><a class="header-anchor" href="#添加远程解释器、同步远程项目文件夹"></a>添加远程解释器、同步远程项目文件夹</h3>
-<p><a href="https://www.jianshu.com/p/9b362cdee2ab">参见</a></p>
-<h3 id="浏览远程目录"><a class="header-anchor" href="#浏览远程目录"></a>浏览远程目录</h3>
-<p><a href="https://www.jetbrains.com/help/pycharm/remote-host-tool-window.html">参见</a></p>
-<p>最终效果：远程浏览栏在右，可见整个服务器；本地浏览栏在左，只见项目目录</p>
-<p><img data-src="/posts/50549/%E8%BF%9C%E7%A8%8B%E6%9C%AC%E5%9C%B0%E6%B5%8F%E8%A7%88.png" alt></p>
-<h3 id="几种用法"><a class="header-anchor" href="#几种用法"></a>几种用法</h3>
-<ul>
-<li>用远程解释器、debug或运行本地代码
-<ul>
-<li>只需添加远侧解释器，同步远程项目文件夹，即可调用远程资源运行、debug本地代码，结果返回到pycharm中的下栏</li>
-</ul>
-</li>
-<li>编辑远程代码
-<ul>
-<li>同步远程项目文件夹到本地随便一个文件夹</li>
-<li>若不添加远程解释器，则只可在ssh中运行</li>
-<li>若添加远程解释器，则可用远程解释器、debug</li>
-</ul>
-</li>
-<li>在pycharm中查看远程、编辑文件（不论文本还是图片）
-<ul>
-<li>在远程浏览栏中，服务器上所有的（不仅仅是同步的文件夹中的）文件（夹），可在pycharm内增删改重命名</li>
-<li>但是不能打开远程文件夹到pycharm，如有此需要，需新建远程项目文件夹同步</li>
-</ul>
-</li>
-<li>传输文件
-<ul>
-<li>将文件（夹）（们），拖入(移动)/<code>⌘V</code>(复制) 到本地浏览栏，会自动同步到远程项目文件夹</li>
-<li>拖入(移动)/<code>⌘V</code>(复制) 到远程浏览栏无效</li>
-</ul>
-</li>
-</ul>
+    <title>百法明门论</title>
+    <url>/posts/29929/</url>
+    <content><![CDATA[<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa.html">来源</a></p>
+<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa-1.html">参考</a></p>
+<p><img data-src="/posts/29929/100fmml.jpg" alt="100fmml"></p>
 ]]></content>
       <categories>
-        <category>器</category>
-        <category>编辑器IDE</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vim-搜索替换插件</title>
-    <url>/posts/32311/</url>
-    <content><![CDATA[<h2 id="待定"><a class="header-anchor" href="#待定"></a>待定</h2>
-<p><a href="https://github.com/dyng/ctrlsf.vim:">https://github.com/dyng/ctrlsf.vim:</a> 多文件替换需要使用多光标, 麻烦了</p>
-<ul>
-<li>bug: 宽字符预览上色出错</li>
-</ul>
-<p>默认用vimgrep, 很慢</p>
-<ul>
-<li>
-<p>大小写</p>
-<p><code>:F(ar) \Cxxxx xxx xxx </code>: 大小写敏感</p>
-<p><code>:F(ar) \cxxxx xxx xxx </code>: 大小写不敏感</p>
-<p><code>:F(ar) xxxx xxx xxx </code>: 默认大小写不敏感</p>
-</li>
-<li>
-<p>正则:</p>
-<ul>
-<li>默认是正则表达式, 取消正则 <code>:F(ar) 	\Vxxx</code></li>
-</ul>
-<p><a href="https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less">https://stackoverflow.com/questions/1550734/exact-string-match-in-vim-like-regex-off-mode-in-less</a></p>
-<pre class="line-numbers language-none"><code class="language-none">command! -nargs&#x3D;1 S let @&#x2F; &#x3D; escape(&#39;&lt;args&gt;&#39;, &#39;\&#39;)
-nmap &lt;Leader&gt;S :execute(&quot;:S &quot; . input(&#39;Regex-off: &#x2F;&#39;))&lt;CR&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>整词: <code>\&lt;xxxx\&gt;</code></p>
-</li>
-</ul>
-<p><a href="http://xahlee.info/comp/unicode_index.html">http://xahlee.info/comp/unicode_index.html</a></p>
-<p>设计: 🔎 Ϙ⊕ ⊗⛒⦿⨁⨂ ⨷㉧🄋ⒻⓄ◯⨀ +⃝ ⏍ ⤭  ⇄ ⟲ ⟳ ↺ ↻  ⇲ ➲ 🔁 🔂 🔃 🔄 ➡ ⬇  ⎋Ⓡ Ⓢ ⧬</p>
-<p>◌̸</p>
-<p>⃝</p>
-<p>⃞</p>
-<p>⃣</p>
-<p>⃠</p>
-<p>⃢</p>
-<p><code>|.*|Aa|“”|+⃝ |</code><br>
-<code>|.*|Aa|“”|Ⓞ|</code></p>
-<p><code>[.*] [Aa] [“”] Ⓞ</code></p>
-<p><code>|.*| |Aa| |“”| Ⓞ</code></p>
-<p><code>|.*|Aa|“”|⬇|</code></p>
-<p><a href="https://shapeshed.com/vim-statuslines/">https://shapeshed.com/vim-statuslines/</a>, <a href="https://jdhao.github.io/2019/11/03/vim_custom_statusline/">https://jdhao.github.io/2019/11/03/vim_custom_statusline/</a></p>
-<p>rg的整词匹配: <a href="https://github.com/BurntSushi/ripgrep/issues/389">https://github.com/BurntSushi/ripgrep/issues/389</a></p>
-<p><a href="https://github.com/brooth/far.vim">https://github.com/brooth/far.vim</a></p>
-<p><a href="https://github.com/hwrod/interactive-replace">https://github.com/hwrod/interactive-replace</a></p>
-<p><a href="https://github.com/mreinhardt/greplace.vim">https://github.com/mreinhardt/greplace.vim</a></p>
-<h2 id="各种搜索后端"><a class="header-anchor" href="#各种搜索后端"></a>各种搜索后端</h2>
-<pre class="line-numbers language-none"><code class="language-none">ag --nogroup --column --nocolor --silent --max-count&#x3D;1000  --vimgrep gmg --file-search-regex&#x3D;branch.sh [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<pre class="line-numbers language-none"><code class="language-none">rg --no-heading --column --no-messages --max-count&#x3D;1000 --glob&#x3D;branch.sh &#39;gmg[a-z]*&#39; --vimgrep  [-o]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a href="https://github.com/beyondgrep/ack3/">https://github.com/beyondgrep/ack3/</a></p>
-<pre class="line-numbers language-none"><code class="language-none">ack --nogroup --column --nocolor --max-count&#x3D;1000  --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh  gmg
-[-o]
-# --smart-case --ignore-case --farft --no-recurse
-
-
-ack --nogroup --output&#x3D;&#39;$&amp;:$_&#39; --max-count&#x3D;1000 --type-set&#x3D;farft:match:--wtf --type-add&#x3D;wtf:is:branch.sh gmg<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="首先排除"><a class="header-anchor" href="#首先排除"></a>首先排除</h2>
-<p><a href="https://github.com/svermeulen/vim-subversive:">https://github.com/svermeulen/vim-subversive:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
-<p><a href="https://github.com/andy-kwei/vim-easy-replace:">https://github.com/andy-kwei/vim-easy-replace:</a> 类似多光标, 而只有替换功能, 只能单文件</p>
-<p><a href="https://github.com/movitto/vim-vsearch:">https://github.com/movitto/vim-vsearch:</a> 类far.vim而不如</p>
-<p><a href="https://github.com/yegappan/greplace:">https://github.com/yegappan/greplace:</a> 文档一句话; -&gt; mreinhardt/greplace.vim</p>
-<p><a href="https://github.com/rzwierz/vim-guidgen:">https://github.com/rzwierz/vim-guidgen:</a> 只能linux的vim用</p>
-<p><a href="https://github.com/pallavagarwal07/AutoRun:">https://github.com/pallavagarwal07/AutoRun:</a> 文档一句话, 只是提供预览搜索/替换结果</p>
-<p><a href="https://github.com/pieterhuibers/findreplace:">https://github.com/pieterhuibers/findreplace:</a> 空项目</p>
-<p><a href="https://github.com/bloc40/vim-replace:">https://github.com/bloc40/vim-replace:</a> 一句话文档; 支持多文件</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>编辑器IDE</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vscode安装配置</title>
-    <url>/posts/25455/</url>
-    <content><![CDATA[<h1 id="vscode安装配置"><a class="header-anchor" href="#vscode安装配置"></a>vscode安装配置</h1>
-<h2 id="拓展安装方法"><a class="header-anchor" href="#拓展安装方法"></a>拓展安装方法</h2>
-<ul>
-<li>
-<p><code>⇧⌘P</code> -<code>Extentions: Install Extentions</code> - 输入<code>插件名称</code> - <code>install</code></p>
-</li>
-<li>
-<p>或在左侧拓展商店栏，输入<code>插件名称</code> - <code>install</code></p>
-</li>
-</ul>
-<p><img data-src="/posts/25455/img1.png" alt></p>
-<h2 id="语言"><a class="header-anchor" href="#语言"></a>语言</h2>
-<p><code>⇧⌘P</code> -<code>Configure Display Language</code> -</p>
-<p><img data-src="/posts/25455/2019-05-23_15.54.53.png" alt></p>
-<ul>
-<li>
-<p>选择已有语言</p>
-<p><img data-src="/posts/25455/2019-05-23_15.54.43.png" alt></p>
-</li>
-<li>
-<p><code>install other language</code> -左侧拓展商店栏输入 <code>Chinese (Simplified) Language Pack for Visual Studio Code</code> - <code>install</code></p>
-</li>
-</ul>
-<h2 id="配色与字体"><a class="header-anchor" href="#配色与字体"></a>配色与字体</h2>
-<h3 id="预备"><a class="header-anchor" href="#预备"></a>预备</h3>
-<p>安装插件<code>Gruvbox Themes</code></p>
-<p><a href="https://github.com/powerline/fonts">Powerline字体安装</a></p>
-<ul>
-<li>
-<p>mac:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># clone</span>
-<span class="token function">git</span> clone https://github.com/powerline/fonts.git --depth<span class="token operator">=</span><span class="token number">1</span>
-<span class="token comment"># install</span>
-<span class="token builtin class-name">cd</span> fonts
-./install.sh
-<span class="token comment"># clean-up a bit</span>
-<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
-<span class="token function">rm</span> -rf fonts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>linux:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> fonts-powerline<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-<p><a href="https://glitchbone.github.io/vscode-base16-term/#/">终端配色参考</a></p>
-<h3 id="配置"><a class="header-anchor" href="#配置"></a>配置</h3>
-<p><code>⌘,</code> ，在<code>用户</code>设置中</p>
-<p><img data-src="/posts/25455/2019-05-23_16.04.11-8598764.png" alt></p>
-<p>以打开<code>settings.json</code>，添加以下设置</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-  ...
-    <span class="token comment">// 终端字体</span>
-    <span class="token property">"editor.fontFamily"</span><span class="token operator">:</span> <span class="token string">"Meslo LG S DZ for Powerline"</span><span class="token punctuation">,</span>
-    <span class="token comment">// 终端配色</span>
-    <span class="token property">"workbench.colorCustomizations"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token property">"terminal.background"</span><span class="token operator">:</span><span class="token string">"#28282a"</span> <span class="token punctuation">,</span>         <span class="token property">"terminal.foreground"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminalCursor.background"</span><span class="token operator">:</span><span class="token string">"#3b3b3b"</span><span class="token punctuation">,</span>   <span class="token property">"terminalCursor.foreground"</span><span class="token operator">:</span><span class="token string">"#A5A2A2"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiBlack"</span><span class="token operator">:</span><span class="token string">"#28282a"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightBlack"</span><span class="token operator">:</span><span class="token string">"#a2a2a2"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiWhite"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightWhite"</span><span class="token operator">:</span><span class="token string">"#feffff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiRed"</span><span class="token operator">:</span><span class="token string">"#c91b00"</span><span class="token punctuation">,</span>             <span class="token property">"terminal.ansiBrightRed"</span><span class="token operator">:</span><span class="token string">"#ff6d67"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiYellow"</span><span class="token operator">:</span><span class="token string">"#cecc4d"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightYellow"</span><span class="token operator">:</span><span class="token string">"#fefb67"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiGreen"</span><span class="token operator">:</span><span class="token string">"#89b560"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightGreen"</span><span class="token operator">:</span><span class="token string">"#74dd74"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiCyan"</span><span class="token operator">:</span><span class="token string">"#61aaab"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightCyan"</span><span class="token operator">:</span><span class="token string">"#5ffdff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiBlue"</span><span class="token operator">:</span><span class="token string">"#5168d5"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightBlue"</span><span class="token operator">:</span><span class="token string">"#6871ff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiMagenta"</span><span class="token operator">:</span><span class="token string">"#c930c7"</span><span class="token punctuation">,</span>         <span class="token property">"terminal.ansiBrightMagenta"</span><span class="token operator">:</span><span class="token string">"#ff76ff"</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-        <span class="token comment">//  配色</span>
-    <span class="token property">"workbench.colorTheme"</span><span class="token operator">:</span> <span class="token string">"Gruvbox Dark (Medium)"</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上文的<code>// ...</code>注释可以黏贴到<code>settings.json</code>中，vscode支持注释</p>
-<h2 id="终端"><a class="header-anchor" href="#终端"></a>终端</h2>
-<h3 id="内部终端-integrated-terminal"><a class="header-anchor" href="#内部终端-integrated-terminal"></a>内部终端(integrated terminal)</h3>
-<pre class="line-numbers language-⌃`" data-language="⌃`"><div class="caption"><span>```以开启内部终端</span></div><code class="language-⌃`">
-### 外部终端(external terminal)
-
-* 配置
-
-&#96;⌘,&#96; ，在&#96;用户&#96;设置中，以打开&#96;settings.json&#96;，添加以下设置
-
-
-&#96;&#96;&#96;json
-&#123;
-  ...
-  &quot;terminal.external.osxExec&quot;: &quot;iTerm.app&quot;,
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>使用：<code>⇧⌘C</code>以，会弹出一个外部<code>iTerm2</code>窗口</li>
-</ul>
-<h2 id="命令行工具"><a class="header-anchor" href="#命令行工具"></a>命令行工具</h2>
-<p><a href="https://code.visualstudio.com/docs/editor/integrated-terminal">https://code.visualstudio.com/docs/editor/integrated-terminal</a></p>
-<p><code>⇧⌘P</code> - <code>Shell Command: install 'code' command in PATH</code></p>
-<p><img data-src="/posts/25455/img2.png" alt></p>
-<p>使用方法：</p>
-<ul>
-<li>在命令中输入如下命令，则会用vscode-insiders打开之</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">code-insiders 文件名/文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>在命令中输入如下命令，则会用vscode打开之</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">code 文件名&#x2F;文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>上述命令适用于：本地内置终端、本地外部终端、远程开发时内置终端、<s>远程开发时的本地外部终端</s></p>
-<h2 id="远程开发"><a class="header-anchor" href="#远程开发"></a>远程开发</h2>
-<h3 id="安装插件"><a class="header-anchor" href="#安装插件"></a>安装插件</h3>
-<p>安装插件 <code>Remote Developement</code> ，目前(2019-5-23)只支持 <a href="https://code.visualstudio.com/insiders/">VSCode-Insiders</a>，不支持<a href="https://code.visualstudio.com/Download">正式版VSCode</a></p>
-<h3 id="配置本地的ssh-config"><a class="header-anchor" href="#配置本地的ssh-config"></a>配置本地的ssh config</h3>
-<p>请在本地<code>~/.ssh/config</code>或<code>/etc/ssh/ssh_config</code>中写好远程服务器的连接配置</p>
-<p>vscode的<code>Remote Developement</code> 只支持密钥登录，也支持密码登录</p>
-<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
-<p>点左下角<code>&gt;&lt;</code>按钮</p>
-<p><img data-src="/posts/25455/2019-05-23_16.27.00.png" alt></p>
-<p><img data-src="/posts/25455/2019-05-23_16.27.05.png" alt></p>
-<p><img data-src="/posts/25455/2019-05-23_16.27.13.png" alt></p>
-<h3 id="编辑远程文件-夹"><a class="header-anchor" href="#编辑远程文件-夹"></a>编辑远程文件(夹)</h3>
-<p><img data-src="/posts/25455/2019-05-23_16.32.52.png" alt></p>
-<p>关于远程开发的vscode命令行工具</p>
-<ul>
-<li>
-<p>vscode连接服务器后，会在服务器自动安装vscode远程开发的服务端程序，并运行之</p>
-<ul>
-<li>安装路径为<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code></li>
-<li>每当这台本机和这台服务器重新连接，就按照这个hash码，加载安装路径下，之前缓存的编辑器、内置终端、等模块的状态</li>
-<li>故<strong>重新连接服务器，编辑器、内置终端、等模块的状态均保留</strong></li>
-</ul>
-</li>
-<li>
-<p>vscode连接服务器后，在内置终端可使用   <code>code(-insiders)</code>  命令打开远程文件(夹)。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> code<span class="token punctuation">(</span>-insiders<span class="token punctuation">)</span>
-<span class="token comment"># 返回</span>
-<span class="token comment"># ~/.vscode-remote/bin/服务器的hash码/bin/code(-insiders)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>但远程开发， <strong>在 本地外部终端 输入  <code>code(-insiders)</code>，无法 打开远程文件</strong></p>
-</li>
-</ul>
-<h3 id="常见报错与处理"><a class="header-anchor" href="#常见报错与处理"></a>常见报错与处理</h3>
-<h4 id="重新连接失败"><a class="header-anchor" href="#重新连接失败"></a>重新连接失败</h4>
-<p>若之前连接过一台服务器，再次连它则报错，可杀死之前服务器端运行的 vscode 进程：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> vscode <span class="token operator">|</span> <span class="token function">grep</span> <span class="token environment constant">$USER</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">myusername     2382  0.0  0.0   4504   780 ?        S    01:33   0:00 sh &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;server.sh --port&#x3D;0
-myusername     2390  0.0  0.0 1307344 62116 ?       Sl   01:33   0:11 &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;node &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;out&#x2F;remoteExtensionHostAgent.js --port&#x3D;0
-myusername     6066  0.0  0.0  15976   972 pts&#x2F;20   S+   16:41   0:00 grep --color vscode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<p>杀死所有<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code>路径下的进程</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 教程编号 <span class="token comment"># 如上一框的 2382 2390</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后vscode重新连接服务器即可连接成功</p>
-<h4 id="wget失败"><a class="header-anchor" href="#wget失败"></a>wget失败</h4>
-<p>服务器上请不要给用alias覆盖<code>wget</code>命令，如</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wget</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这样的alias会造成连接后，会报错曰，服务器上无法用wget下载vscode远程开发的服务器端</p>
-<p>此alias改为</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wgetc</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后vscode重新连接服务器即可连接成功</p>
-<h2 id="snippet"><a class="header-anchor" href="#snippet"></a>snippet</h2>
-<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">教程</a></p>
-<p>写入</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">&#123;</span>
-    <span class="token string">"《snippet_name》"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token string">"prefix"</span><span class="token builtin class-name">:</span> <span class="token string">"《snippet_toggle》"</span>,
-        <span class="token string">"body"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
-            <span class="token string">"《insert_code》"</span>,
-        <span class="token punctuation">]</span>,
-        <span class="token string">"description"</span><span class="token builtin class-name">:</span> <span class="token string">"《prompt》"</span>
-    <span class="token punctuation">&#125;</span>,
-    <span class="token punctuation">..</span>.
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>
-<p>json不支持跨行文本，即不支持形如</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>"asdasd
-asdasd
-asdas
-" <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>请写成</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token string">"asda ad s ad as d"</span><span class="token punctuation">,</span>
-    <span class="token string">"asd  asd  sad as "</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>json中的文本只能用双引号，不能用单引号</p>
-</li>
-<li>
-<p><code>body</code>中的特殊字符</p>
-<ul>
-<li>转义字符</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>原文本</th>
-<th>代码文本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&quot;</code></td>
-<td><code>\&quot;</code></td>
-</tr>
-<tr>
-<td><code>$</code></td>
-<td><code>\\$</code></td>
-</tr>
-<tr>
-<td><code>\</code></td>
-<td><code>\\</code></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>插入后，按<code>⇥</code>、<code>⇧⇥</code>去往下、前一个可编辑区域；可编辑区域的写法</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">&quot;body&quot;: [
-    &quot;asda $&#123;1:【可编辑区域的提示】&#125; s ad $&#123;2:另一个可编辑区域&#125; as d&quot;,
-    &quot;asd $&#123;1:同步可编辑区域&#125; as &quot;,
-    &quot;asd $&#123;3&#125;&quot;，
-],<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ul>
-<h2 id="设置同步插件"><a class="header-anchor" href="#设置同步插件"></a>设置同步插件</h2>
-<p>为方便使得多个设备可以共用一份配置，可按照vscode插件 “settings sync”，它用gist同步你的vscode的各种设置，包括本地的全局设置、快捷键、snippet、所安装插件及版本。</p>
-<h3 id="自动配置方法"><a class="header-anchor" href="#自动配置方法"></a>自动配置方法</h3>
-<ul>
-<li>清除已有配置 : 初次配置无需此步, 若要更新配置则需要此步. 按 <code>⇧⌘P</code> - <code>Sync: 重置扩展设置</code></li>
-</ul>
-<p><img data-src="/posts/25455/image-20200316184531147.png" alt="image-20200316184531147"></p>
-<p>​	所谓重置, 即清空&quot;settings sync&quot;现有的配置. 重置后,  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  会看见以下页面全空</p>
-<p><img data-src="/posts/25455/image-20200509201718848.png" alt="image-20200509201718848"></p>
-<ul>
-<li>
-<p>按 <code>⇧⌥U</code> , 则会弹出如下页面, 点 <code>login with github</code></p>
-<p><img data-src="/posts/25455/image-20200509201635555.png" alt="image-20200509201635555"></p>
-</li>
-</ul>
-<p><img data-src="/posts/25455/image-20200509202018164.png" alt="image-20200509202018164"></p>
-<p>然后点 <code>信任github.com这个域名</code> .</p>
-<p>然后会浏览器弹出如下网页,</p>
-<p><img data-src="/posts/25455/ScreenShot%202020-05-20%2021.11.23.png" alt="ScreenShot 2020-05-20 21.11.23"></p>
-<p>然后会看跳转如下页面, 此时可关闭此网页,</p>
-<p><img data-src="/posts/25455/image-20200509202211987.png" alt="image-20200509202211987"></p>
-<p>而vscode里弹出此标签页, 这意味着当前浏览器默认的github账号中, 创建了一个新的token, 可用于创建gist来同步vscode配置</p>
-<p><img data-src="/posts/25455/image-20200509202252574.png" alt="image-20200509202252574"></p>
-<p>此时  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  的插件配置变成,</p>
-<p><img data-src="/posts/25455/image-20200509202418088.png" alt="image-20200509202418088"></p>
-<p>这说明当前浏览器默认的github账号中, 创建了一个新的token,  可用于创建gist来同步vscode配置, 但是这个token在 github 的配置中看不见:</p>
-<ul>
-<li><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>, 显示如下</li>
-</ul>
-<pre><code>![image-20200509203832966](main/image-20200509203832966.png)
-</code></pre>
-<p>此时再按 <code>⇧⌥U</code>, 则会在此github账号, 自动创建一个新gist, 然后询问是否上传当前的vscode各种配置, 点<code>是</code></p>
-<p><img data-src="/posts/25455/image-20200509202900380.png" alt="image-20200509202900380"></p>
-<p>打开 <code>https://gist.github.com/你的用户名 </code>来检查一下, 确实创建了新gist,</p>
-<p><img data-src="/posts/25455/image-20200509203035964.png" alt="image-20200509203035964"></p>
-<p>其内已上传各个vscode配置文件</p>
-<p><img data-src="/posts/25455/image-20200509203239628.png" alt="image-20200509203239628"></p>
-<p>这说明配置成功</p>
-<h3 id="手动配置方法-废弃"><a class="header-anchor" href="#手动配置方法-废弃"></a>手动配置方法 (废弃)</h3>
-<p>本法勿用, 目前(2020-5-9)若用本法, 会在vscode重启后, github 将下文所创建的 token 自动删除, vscode会在同步配置时显示”token无效或过期”.</p>
-<ul>
-<li>
-<p>开一个<a href="https://gist.github.com/">gist</a></p>
-<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2019.00.22.png" alt="ScreenShot 2020-03-16 19.00.22"></p>
-<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2019.07.01.png" alt="ScreenShot 2020-03-16 19.07.01"></p>
-<p>从url里复制gist id</p>
-<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2019.07.43.png" alt="ScreenShot 2020-03-16 19.07.43"></p>
-</li>
-<li>
-<p>开一个带有gist功能的github token：</p>
-<p><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>-<code>generate new token</code></p>
-<p><img data-src="/posts/25455/image-20200316184923683.png" alt="image-20200316184923683"></p>
-<p>勾选gist和user</p>
-<p><img data-src="/posts/25455/image-20200518012345366.png" alt="image-20200518012345366"></p>
-<p>然后会显示 <code>github token</code>， 速速记录下，只会显示这一次，之后再也显示不了。</p>
-</li>
-<li>
-<p>安装 <code>Settings Sync</code> 插件</p>
-</li>
-<li>
-<p>设置 <code>Settings Sync</code> ： <code>⌘⇧P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code></p>
-<p><img data-src="/posts/25455/image-20200316184531147.png" alt="image-20200316184531147"></p>
-<p><img data-src="/posts/25455/image-20200316184543735.png" alt="image-20200316184543735"></p>
-</li>
-<li>
-<p>然后会弹出设置页面，设置方法如下</p>
-</li>
-</ul>
-<p><img data-src="/posts/25455/ScreenShot%202020-03-16%2018.37.32.png" alt="ScreenShot 2020-03-16 18.37.32"></p>
-<p>然后按 <code>⌥⇧U</code>， 如果状态栏显示“同步成功”，且gist上显示如下，则成功</p>
-<p><img data-src="/posts/25455/image-20200316192700873.png" alt="image-20200316192700873"></p>
-<h3 id="使用方法"><a class="header-anchor" href="#使用方法"></a>使用方法</h3>
-<p>手动同步：</p>
-<ul>
-<li><code>⌥⇧U</code>：手动上传到gist</li>
-<li><code>⌥⇧D</code>：手动从gist下载</li>
-</ul>
-<p>自动同步：打开vscode时，保存配置文件时，会自动下载再上传</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>编辑器IDE</category>
+        <category>道</category>
+        <category>佛法札记</category>
       </categories>
   </entry>
   <entry>
