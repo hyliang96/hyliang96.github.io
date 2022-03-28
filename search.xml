@@ -849,6 +849,41 @@ git config user.email &quot;你的邮箱&quot;<span aria-hidden="true" class="li
       </categories>
   </entry>
   <entry>
+    <title>NAT设置</title>
+    <url>/posts/c6f1da62/</url>
+    <content><![CDATA[<h1 id="使用Iptables设置NAT"><a class="header-anchor" href="#使用Iptables设置NAT"></a>使用Iptables设置NAT</h1>
+<ul>
+<li>查看NAT映射关系列表</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -L -n --line-number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>--line-number</code>: 显示规则的<code>&lt;规则的行号&gt;</code></p>
+<ul>
+<li>查看NAT命令列表</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>开NAT</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -A PREROUTING -d <span class="token operator">&lt;</span>公网ip<span class="token operator">></span>/32 -i <span class="token operator">&lt;</span>公网访问的网卡<span class="token operator">></span> -p tcp -m tcp --dport <span class="token operator">&lt;</span>公网端口<span class="token operator">></span> -j DNAT --to-destination <span class="token operator">&lt;</span>内网ip<span class="token operator">></span>:<span class="token operator">&lt;</span>内网端口<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p><code>-A PREROUTING</code>：新规则附在已有规则最后面；若换成 <code>-I PREROUTING &lt;规则的行号&gt;(默认1)</code> ，则新规则插入在此编号的规则前面</p>
+</li>
+<li>
+<p><code>/32</code> <code>-m tcp</code> 可省，此即缺省值</p>
+</li>
+<li>
+<p>删除一条NAT规则</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -D PREROUTING <span class="token operator">&lt;</span>规则的行号<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>linux杂项</category>
+      </categories>
+  </entry>
+  <entry>
     <title>git学习笔记</title>
     <url>/posts/21db94ec/</url>
     <content><![CDATA[<h1 id="GIT学习笔记"><a class="header-anchor" href="#GIT学习笔记"></a>GIT学习笔记</h1>
@@ -1229,68 +1264,6 @@ B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
       </categories>
   </entry>
   <entry>
-    <title>NAT设置</title>
-    <url>/posts/c6f1da62/</url>
-    <content><![CDATA[<h1 id="使用Iptables设置NAT"><a class="header-anchor" href="#使用Iptables设置NAT"></a>使用Iptables设置NAT</h1>
-<ul>
-<li>查看NAT映射关系列表</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -L -n --line-number<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><code>--line-number</code>: 显示规则的<code>&lt;规则的行号&gt;</code></p>
-<ul>
-<li>查看NAT命令列表</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>开NAT</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -A PREROUTING -d <span class="token operator">&lt;</span>公网ip<span class="token operator">></span>/32 -i <span class="token operator">&lt;</span>公网访问的网卡<span class="token operator">></span> -p tcp -m tcp --dport <span class="token operator">&lt;</span>公网端口<span class="token operator">></span> -j DNAT --to-destination <span class="token operator">&lt;</span>内网ip<span class="token operator">></span>:<span class="token operator">&lt;</span>内网端口<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>
-<p><code>-A PREROUTING</code>：新规则附在已有规则最后面；若换成 <code>-I PREROUTING &lt;规则的行号&gt;(默认1)</code> ，则新规则插入在此编号的规则前面</p>
-</li>
-<li>
-<p><code>/32</code> <code>-m tcp</code> 可省，此即缺省值</p>
-</li>
-<li>
-<p>删除一条NAT规则</p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -D PREROUTING <span class="token operator">&lt;</span>规则的行号<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>linux杂项</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>iso镜像</title>
-    <url>/posts/5453726a/</url>
-    <content><![CDATA[<h2 id="ISO介绍"><a class="header-anchor" href="#ISO介绍"></a>ISO介绍</h2>
-<p><code>xxxx.iso</code>文件，称镜像（mirror）文件，相当于光盘，内存有文件。</p>
-<h2 id="安装ISO中的文件"><a class="header-anchor" href="#安装ISO中的文件"></a>安装ISO中的文件</h2>
-<h3 id="挂载镜像"><a class="header-anchor" href="#挂载镜像"></a>挂载镜像</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mkdir</span> /mnt/<span class="token operator">&lt;</span>挂载文件夹名<span class="token operator">></span>
-<span class="token function">sudo</span> <span class="token function">mount</span> -o loop <span class="token operator">&lt;</span>xxx<span class="token operator">></span>.iso /mnt/<span class="token operator">&lt;</span>挂载文件夹名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>注：只有root用户才能执行<code>mount</code>命令</p>
-<p>参数</p>
-<ul>
-<li><code>-t iso9660</code>    -t（文件系统类型）=  iso9660（CD-ROM光盘标准文件系统），此参数可选，非必需</li>
-<li><code>-o loop</code>      -o （选项） loop （用来把一个文件或着镜像当成分区挂上系统）</li>
-</ul>
-<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /mnt/<span class="token operator">&lt;</span>挂载文件夹名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>可以看见其下的文件，而后按照当中的文件即可，如<code>./&lt;可执行安装文件&gt;</code> ，或 自己 <code>make</code> 安装，等等</p>
-<h3 id="解挂载"><a class="header-anchor" href="#解挂载"></a>解挂载</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">umount</span> <span class="token operator">&lt;</span>挂载路径<span class="token operator">></span>
-<span class="token function">sudo</span> <span class="token function">rm</span> -rf <span class="token operator">&lt;</span>挂载路径<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>linux杂项</category>
-      </categories>
-  </entry>
-  <entry>
     <title>docker使用教程</title>
     <url>/posts/e8880219/</url>
     <content><![CDATA[<h1 id="docker安装"><a class="header-anchor" href="#docker安装"></a>docker安装</h1>
@@ -1327,6 +1300,33 @@ B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <p><a href="https://zhenye-na.github.io/2019/09/29/docker-practical-guide.html">Docker 容器技术 (基础篇) </a></p>
 <p><a href="http://leilux.github.io/lou/docker_practice/index.html">Docker —— 从入门到实践</a></p>
 <p><a href="https://cloud.tencent.com/developer/article/1484322">利用 Katacoda 免费同步 Docker 镜像到 Docker Hub</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>linux杂项</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>iso镜像</title>
+    <url>/posts/5453726a/</url>
+    <content><![CDATA[<h2 id="ISO介绍"><a class="header-anchor" href="#ISO介绍"></a>ISO介绍</h2>
+<p><code>xxxx.iso</code>文件，称镜像（mirror）文件，相当于光盘，内存有文件。</p>
+<h2 id="安装ISO中的文件"><a class="header-anchor" href="#安装ISO中的文件"></a>安装ISO中的文件</h2>
+<h3 id="挂载镜像"><a class="header-anchor" href="#挂载镜像"></a>挂载镜像</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mkdir</span> /mnt/<span class="token operator">&lt;</span>挂载文件夹名<span class="token operator">></span>
+<span class="token function">sudo</span> <span class="token function">mount</span> -o loop <span class="token operator">&lt;</span>xxx<span class="token operator">></span>.iso /mnt/<span class="token operator">&lt;</span>挂载文件夹名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>注：只有root用户才能执行<code>mount</code>命令</p>
+<p>参数</p>
+<ul>
+<li><code>-t iso9660</code>    -t（文件系统类型）=  iso9660（CD-ROM光盘标准文件系统），此参数可选，非必需</li>
+<li><code>-o loop</code>      -o （选项） loop （用来把一个文件或着镜像当成分区挂上系统）</li>
+</ul>
+<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /mnt/<span class="token operator">&lt;</span>挂载文件夹名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>可以看见其下的文件，而后按照当中的文件即可，如<code>./&lt;可执行安装文件&gt;</code> ，或 自己 <code>make</code> 安装，等等</p>
+<h3 id="解挂载"><a class="header-anchor" href="#解挂载"></a>解挂载</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">umount</span> <span class="token operator">&lt;</span>挂载路径<span class="token operator">></span>
+<span class="token function">sudo</span> <span class="token function">rm</span> -rf <span class="token operator">&lt;</span>挂载路径<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
@@ -1832,6 +1832,32 @@ sudo &#x2F;mnt&#x2F;matlab&#x2F;install -inputFile installer_input.txt<span aria
       </categories>
   </entry>
   <entry>
+    <title>Mac按键符号</title>
+    <url>/posts/39e47bde/</url>
+    <content><![CDATA[<h2 id="Mac符号"><a class="header-anchor" href="#Mac符号"></a>Mac符号</h2>
+<p><a href="https://blog.csdn.net/libing_zeng/article/details/73201264">参考</a></p>
+<p>⌘: Command<br>
+⇧: Shift<br>
+⌥: Option<br>
+⌃: Control<br>
+↩︎: Return/Enter<br>
+⌫: Delete<br>
+⌦: 向前删除键（Fn+Delete）<br>
+⇞: Page Up（Fn+↑）<br>
+⇟: Page Down（Fn+↓）<br>
+Home: Fn + ←<br>
+End: Fn + →<br>
+⇥: 右制表符（Tab键）<br>
+⇤: 左制表符（Shift+Tab）<br>
+⎋: Escape (Esc)</p>
+<p><img data-src="/posts/39e47bde/20170614103620686.png" alt></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
     <title>磁盘配额设置</title>
     <url>/posts/bd0cccac/</url>
     <content><![CDATA[<h2 id="目录下统计磁盘用量"><a class="header-anchor" href="#目录下统计磁盘用量"></a>目录下统计磁盘用量</h2>
@@ -2154,32 +2180,6 @@ Try &#39;rm --help&#39; for more information.<span aria-hidden="true" class="lin
 <li><code>-d ~/.locate.db</code> : 指定数据库文件</li>
 </ul>
 <p>之后, 输入<code>mylocate</code> 则只搜 <code>$HOME</code> 里的文件.</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>Mac按键符号</title>
-    <url>/posts/39e47bde/</url>
-    <content><![CDATA[<h2 id="Mac符号"><a class="header-anchor" href="#Mac符号"></a>Mac符号</h2>
-<p><a href="https://blog.csdn.net/libing_zeng/article/details/73201264">参考</a></p>
-<p>⌘: Command<br>
-⇧: Shift<br>
-⌥: Option<br>
-⌃: Control<br>
-↩︎: Return/Enter<br>
-⌫: Delete<br>
-⌦: 向前删除键（Fn+Delete）<br>
-⇞: Page Up（Fn+↑）<br>
-⇟: Page Down（Fn+↓）<br>
-Home: Fn + ←<br>
-End: Fn + →<br>
-⇥: 右制表符（Tab键）<br>
-⇤: 左制表符（Shift+Tab）<br>
-⎋: Escape (Esc)</p>
-<p><img data-src="/posts/39e47bde/20170614103620686.png" alt></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -4526,26 +4526,6 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
       </categories>
   </entry>
   <entry>
-    <title>shell下的颜色</title>
-    <url>/posts/7fde870c/</url>
-    <content><![CDATA[<h2 id="显示256色的预览"><a class="header-anchor" href="#显示256色的预览"></a>显示256色的预览</h2>
-<p>执行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ <span class="token operator">|</span> <span class="token function">bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>会返回</p>
-<p><img data-src="/posts/7fde870c/image-20200120192157283.png" alt="image-20200120192157283"></p>
-<p>注意:</p>
-<ul>
-<li>同色号的字, 非粗体和粗体(bold)的前景颜色不同</li>
-<li>同色号的前景颜色和背景颜色不同</li>
-<li>第0-15号色在iterm2下实际显示何种颜色, 取决于iterm的中 Preference-Profile-color-ANSI color的设置</li>
-</ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>shell</category>
-      </categories>
-  </entry>
-  <entry>
     <title>bash设置</title>
     <url>/posts/e303a4a3/</url>
     <content><![CDATA[<h2 id="配置环境变量"><a class="header-anchor" href="#配置环境变量"></a>配置环境变量</h2>
@@ -4846,6 +4826,26 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
 <span class="token builtin class-name">alias</span> <span class="token assign-left variable">lk</span><span class="token operator">=</span><span class="token string">'ln -s'</span>
 <span class="token comment"># 创建软连接</span>
 <span class="token builtin class-name">alias</span> <span class="token punctuation">..</span><span class="token operator">=</span><span class="token string">'cd ../'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>shell</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>shell下的颜色</title>
+    <url>/posts/7fde870c/</url>
+    <content><![CDATA[<h2 id="显示256色的预览"><a class="header-anchor" href="#显示256色的预览"></a>显示256色的预览</h2>
+<p>执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ <span class="token operator">|</span> <span class="token function">bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>会返回</p>
+<p><img data-src="/posts/7fde870c/image-20200120192157283.png" alt="image-20200120192157283"></p>
+<p>注意:</p>
+<ul>
+<li>同色号的字, 非粗体和粗体(bold)的前景颜色不同</li>
+<li>同色号的前景颜色和背景颜色不同</li>
+<li>第0-15号色在iterm2下实际显示何种颜色, 取决于iterm的中 Preference-Profile-color-ANSI color的设置</li>
+</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -6021,132 +6021,6 @@ Host <span class="token punctuation">[</span>跳板<span class="token punctuatio
       </categories>
   </entry>
   <entry>
-    <title>vnc安装方法</title>
-    <url>/posts/de6bda9/</url>
-    <content><![CDATA[<h1 id="vnc安装方法"><a class="header-anchor" href="#vnc安装方法"></a>vnc安装方法</h1>
-<h2 id="安装配置VNC"><a class="header-anchor" href="#安装配置VNC"></a>安装配置VNC</h2>
-<h3 id="服务器"><a class="header-anchor" href="#服务器"></a>服务器</h3>
-<h4 id="依赖安装"><a class="header-anchor" href="#依赖安装"></a>依赖安装</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> tightvncserver xfce4 xfce4-goodies powerline fonts-powerline ttf-wqy-zenhei  autocutsel fcitx-googlepinyin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>
-<p>详解</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> tightvncserver      <span class="token comment"># 桌面转发服务端</span>
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> xfce4 xfce4-goodies <span class="token comment"># 桌面及桌面程序</span>
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> powerline fonts-powerline <span class="token comment"># powerline字体，以便终端下显示</span>
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> ttf-wqy-zenhei <span class="token comment"># 中文字体</span>
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> autocutsel <span class="token comment"># 客户端和服务器的复制黏贴同步</span>
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> fcitx-googlepinyin <span class="token comment"># 中文输入法</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ul>
-<h4 id="配置"><a class="header-anchor" href="#配置"></a>配置</h4>
-<p>将以下alias添加到<code>~/.bashrc</code>之类的文件，然后source之</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function-name function">vncs</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> -eq <span class="token number">0</span> <span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"start"</span> <span class="token punctuation">]</span>
-    <span class="token keyword">then</span>
-        vncserver :1 -geometry 1366x768
-    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"stop"</span> <span class="token punctuation">]</span>
-    <span class="token keyword">then</span>
-        vncserver -kill :1
-    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"restart"</span> <span class="token punctuation">]</span>
-    <span class="token keyword">then</span>
-        vncserver -kill :1
-        vncserver :1 -geometry 1366x768
-    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"passwd"</span> <span class="token punctuation">]</span>
-    <span class="token keyword">then</span>
-        vncpasswd
-    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"config"</span> <span class="token punctuation">]</span>
-    <span class="token keyword">then</span>
-        <span class="token function">vim</span> ~/.vnc/xstartup
-    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"help"</span> <span class="token punctuation">]</span>
-    <span class="token keyword">then</span>
-        <span class="token builtin class-name">echo</span> <span class="token string">'Usage: vnc [ start(default)) | stop | restart | passwd | config | help ]'</span>
-    <span class="token keyword">else</span>
-        <span class="token builtin class-name">echo</span> <span class="token string">'Usage: vnc [ start(default)) | stop | restart | passwd | config | help ]'</span>
-    <span class="token keyword">fi</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>设置密码：<code>vncs passwd</code> 即 <code>vncpasswd</code>，然后在交互提示下设置密码，可选择设置只读密码</p>
-<p>配置vnc server的启动项：<code>vncs config</code> 即 <code>vim ~/.vnc/xstartup</code>，替换全文为</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
-
-<span class="token builtin class-name">unset</span> <span class="token environment constant">SESSION_MANAGER</span>
-<span class="token builtin class-name">unset</span> <span class="token environment constant">DBUS_SESSION_BUS_ADDRESS</span>
-dbus-launch /usr/bin/startxfce4 <span class="token operator">&amp;</span>
-
-autocutsel -f <span class="token comment"># 共享剪切板，在vnc viewer里，ctrl+shift+c/v 复制/黏贴</span>
-
-<span class="token comment"># 输入法</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span>zh_CN.UTF-8 <span class="token comment"># 启用中文环境</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">LANGUAGE</span></span><span class="token operator">=</span>zh_CN:en_US
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">LC_CTYPE</span><span class="token operator">=</span>en_US.UTF-8
-
-<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">XMODIFIERS</span></span><span class="token operator">=</span><span class="token string">"@im=fcitx"</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">GTK_IM_MODULE</span><span class="token operator">=</span>fcitx
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">QT_IM_MODULE</span><span class="token operator">=</span>fcitx
-<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">XMODIFIERS</span></span><span class="token operator">=</span>@im<span class="token operator">=</span>fcitx
-fcitx <span class="token operator">&amp;</span>
-
-<span class="token punctuation">[</span> -x /etc/vnc/xstartup <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">exec</span> /etc/vnc/xstartup
-<span class="token punctuation">[</span> -r <span class="token environment constant">$HOME</span>/.Xresources <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> xrdb <span class="token environment constant">$HOME</span>/.Xresources
-xsetroot -solid grey
-vncconfig -iconic <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>每次更改配置文件，输入<code>vnc resatrt</code>以重启vnc server</p>
-<h3 id="客户端-笔记本-安装"><a class="header-anchor" href="#客户端-笔记本-安装"></a>客户端(笔记本)安装</h3>
-<p>mac随有系统自带的vnc客户端，<code>⌃space</code>搜索 <code>屏幕共享.app</code>，然后填入<code>ip:端口号</code>，即可连接，但它拖动远程桌面中的窗口有残影，不推荐使用</p>
-<p>推荐另外安装<code>vnc viewer</code>，<a href="https://www.realvnc.com/en/connect/download/viewer/macos/">官方下载链接</a>，个人版免费但不支持文件传输，<a href="https://www.realvnc.com/en/connect/docs/file-transfer.html">专业版、企业版支持文件传输</a></p>
-<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">alias</span> <span class="token assign-left variable">vncv</span><span class="token operator">=</span><span class="token string">'ssh -L 5901:127.0.0.1:5901 -C -N'</span>
-<span class="token comment"># -C: require compresion for all data(including stdin, stdout, stderr, and data for forwarded X11, TCP and UNIX-domain connections).</span>
-<span class="token comment"># -N: Do not execute a remote command.  This is useful for just forwarding ports.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">vncv  服务器名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后打开<code>vnc viewer.app</code>，点 <code>File-NewConnection</code>， 弹出窗口里输入</p>
-<p><img data-src="/posts/de6bda9/2019-04-19_21.59.00.png" alt></p>
-<p>双击连接</p>
-<p><img data-src="/posts/de6bda9/2019-04-19_22.01.38.png" alt></p>
-<p>首次连接需要输入vnc server的密码</p>
-<p><img data-src="/posts/de6bda9/2019-04-19_21.59.36.png" alt></p>
-<p>然后会显示对面的桌面</p>
-<p><img data-src="/posts/de6bda9/2019-04-19_22.03.41.png" alt></p>
-<h3 id="输入法配置"><a class="header-anchor" href="#输入法配置"></a>输入法配置</h3>
-<p>用<code>vnc viewer</code>连上服务器，显示后桌面后</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">im-config <span class="token comment"># 弹出对话框，一路选确定，然后选fcitx作为默认是输入法</span>
-fcitx-config-gtk3 <span class="token comment"># 弹出对话框，添加googlepinyin输入法；在Addon中，选中advance，然后勾除Kimpanel</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>在可以输入的地方（如终端），<code>⌃+space</code>切换输入法，或单击右上方键盘图标切换输入法</p>
-<p>右上角出现<code>g</code>字样的logo，代表现在在googlepinyin输入法</p>
-<p><img data-src="/posts/de6bda9/2019-04-19_22.14.13.png" alt></p>
-<p><img data-src="/posts/de6bda9/2019-04-19_22.14.23.png" alt></p>
-<h2 id="其他设置"><a class="header-anchor" href="#其他设置"></a>其他设置</h2>
-<h3 id="更换终端"><a class="header-anchor" href="#更换终端"></a>更换终端</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> update-alternatives --config x-terminal-emulator<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>出现交互界面</p>
-<pre class="line-numbers language-none"><code class="language-none">[sudo] password for $USER:
-There are 7 choices for the alternative x-terminal-emulator (providing &#x2F;usr&#x2F;bin&#x2F;x-terminal-emulator).
-
-  Selection    Path                             Priority   Status
-------------------------------------------------------------
-* 0            &#x2F;usr&#x2F;bin&#x2F;konsole                  40        auto mode
-  1            &#x2F;usr&#x2F;bin&#x2F;koi8rxterm               20        manual mode
-  2            &#x2F;usr&#x2F;bin&#x2F;konsole                  40        manual mode
-  3            &#x2F;usr&#x2F;bin&#x2F;lxterm                   30        manual mode
-  4            &#x2F;usr&#x2F;bin&#x2F;uxterm                   20        manual mode
-  5            &#x2F;usr&#x2F;bin&#x2F;xfce4-terminal.wrapper   40        manual mode
-  6            &#x2F;usr&#x2F;bin&#x2F;xterm                    20        manual mode
-  7            &#x2F;usr&#x2F;bin&#x2F;xvt                      10        manual mode
-
-Press &lt;enter&gt; to keep the current choice[*], or type selection number: 5
-update-alternatives: using &#x2F;usr&#x2F;bin&#x2F;xfce4-terminal.wrapper to provide &#x2F;usr&#x2F;bin&#x2F;x-terminal-emulator (x-terminal-emulator) in manual mode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>其中  <code>/usr/bin/xfce4-terminal.wrapper </code> 是 <code>xfce4</code> 自带的终端模拟器</p>
-<h1 id="卸载方法"><a class="header-anchor" href="#卸载方法"></a>卸载方法</h1>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> remove --purge tightvncserver xfce4* xfce4-goodies powerline fonts-powerline ttf-wqy-zenhei  autocutsel *fcitx* fcitx-googlepinyin libgooglepinyin*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><strong>请勿</strong>运行<code>apt autoremove</code>，它可能会把除了上述包相关的包也卸载了。用上面的匹配就能卸干净</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /tmp/.X11-unix/X1 /tmp/.X1-lock ~/.vnc/<span class="token punctuation">&#123;</span>*.log,*.pid<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>服务器连接</category>
-      </categories>
-  </entry>
-  <entry>
     <title>teamviewer-检测为商业用途</title>
     <url>/posts/17f6ba77/</url>
     <content><![CDATA[<h2 id="简介"><a class="header-anchor" href="#简介"></a>简介</h2>
@@ -6401,6 +6275,132 @@ C:\Users\Administrator\AppData\Roaming\TeamViewer<span aria-hidden="true" class=
 <ul>
 <li>重新安装Teamviewer,  关掉任何网络代理, 开启teamviewer, 会显示一个新的Teamviewer ID. 此时需要重新登录teamviewer账号, 输入原来teamviewer邮箱和密码, 此邮箱会受到确认信, 需确认才能完成登录.</li>
 </ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>服务器连接</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>vnc安装方法</title>
+    <url>/posts/de6bda9/</url>
+    <content><![CDATA[<h1 id="vnc安装方法"><a class="header-anchor" href="#vnc安装方法"></a>vnc安装方法</h1>
+<h2 id="安装配置VNC"><a class="header-anchor" href="#安装配置VNC"></a>安装配置VNC</h2>
+<h3 id="服务器"><a class="header-anchor" href="#服务器"></a>服务器</h3>
+<h4 id="依赖安装"><a class="header-anchor" href="#依赖安装"></a>依赖安装</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> tightvncserver xfce4 xfce4-goodies powerline fonts-powerline ttf-wqy-zenhei  autocutsel fcitx-googlepinyin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>详解</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> tightvncserver      <span class="token comment"># 桌面转发服务端</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> xfce4 xfce4-goodies <span class="token comment"># 桌面及桌面程序</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> powerline fonts-powerline <span class="token comment"># powerline字体，以便终端下显示</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> ttf-wqy-zenhei <span class="token comment"># 中文字体</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> autocutsel <span class="token comment"># 客户端和服务器的复制黏贴同步</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> fcitx-googlepinyin <span class="token comment"># 中文输入法</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h4 id="配置"><a class="header-anchor" href="#配置"></a>配置</h4>
+<p>将以下alias添加到<code>~/.bashrc</code>之类的文件，然后source之</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function-name function">vncs</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> -eq <span class="token number">0</span> <span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"start"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        vncserver :1 -geometry 1366x768
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"stop"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        vncserver -kill :1
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"restart"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        vncserver -kill :1
+        vncserver :1 -geometry 1366x768
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"passwd"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        vncpasswd
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"config"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        <span class="token function">vim</span> ~/.vnc/xstartup
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"help"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">'Usage: vnc [ start(default)) | stop | restart | passwd | config | help ]'</span>
+    <span class="token keyword">else</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">'Usage: vnc [ start(default)) | stop | restart | passwd | config | help ]'</span>
+    <span class="token keyword">fi</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>设置密码：<code>vncs passwd</code> 即 <code>vncpasswd</code>，然后在交互提示下设置密码，可选择设置只读密码</p>
+<p>配置vnc server的启动项：<code>vncs config</code> 即 <code>vim ~/.vnc/xstartup</code>，替换全文为</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
+
+<span class="token builtin class-name">unset</span> <span class="token environment constant">SESSION_MANAGER</span>
+<span class="token builtin class-name">unset</span> <span class="token environment constant">DBUS_SESSION_BUS_ADDRESS</span>
+dbus-launch /usr/bin/startxfce4 <span class="token operator">&amp;</span>
+
+autocutsel -f <span class="token comment"># 共享剪切板，在vnc viewer里，ctrl+shift+c/v 复制/黏贴</span>
+
+<span class="token comment"># 输入法</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span>zh_CN.UTF-8 <span class="token comment"># 启用中文环境</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">LANGUAGE</span></span><span class="token operator">=</span>zh_CN:en_US
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LC_CTYPE</span><span class="token operator">=</span>en_US.UTF-8
+
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">XMODIFIERS</span></span><span class="token operator">=</span><span class="token string">"@im=fcitx"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">GTK_IM_MODULE</span><span class="token operator">=</span>fcitx
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">QT_IM_MODULE</span><span class="token operator">=</span>fcitx
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">XMODIFIERS</span></span><span class="token operator">=</span>@im<span class="token operator">=</span>fcitx
+fcitx <span class="token operator">&amp;</span>
+
+<span class="token punctuation">[</span> -x /etc/vnc/xstartup <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">exec</span> /etc/vnc/xstartup
+<span class="token punctuation">[</span> -r <span class="token environment constant">$HOME</span>/.Xresources <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> xrdb <span class="token environment constant">$HOME</span>/.Xresources
+xsetroot -solid grey
+vncconfig -iconic <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>每次更改配置文件，输入<code>vnc resatrt</code>以重启vnc server</p>
+<h3 id="客户端-笔记本-安装"><a class="header-anchor" href="#客户端-笔记本-安装"></a>客户端(笔记本)安装</h3>
+<p>mac随有系统自带的vnc客户端，<code>⌃space</code>搜索 <code>屏幕共享.app</code>，然后填入<code>ip:端口号</code>，即可连接，但它拖动远程桌面中的窗口有残影，不推荐使用</p>
+<p>推荐另外安装<code>vnc viewer</code>，<a href="https://www.realvnc.com/en/connect/download/viewer/macos/">官方下载链接</a>，个人版免费但不支持文件传输，<a href="https://www.realvnc.com/en/connect/docs/file-transfer.html">专业版、企业版支持文件传输</a></p>
+<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">alias</span> <span class="token assign-left variable">vncv</span><span class="token operator">=</span><span class="token string">'ssh -L 5901:127.0.0.1:5901 -C -N'</span>
+<span class="token comment"># -C: require compresion for all data(including stdin, stdout, stderr, and data for forwarded X11, TCP and UNIX-domain connections).</span>
+<span class="token comment"># -N: Do not execute a remote command.  This is useful for just forwarding ports.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">vncv  服务器名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后打开<code>vnc viewer.app</code>，点 <code>File-NewConnection</code>， 弹出窗口里输入</p>
+<p><img data-src="/posts/de6bda9/2019-04-19_21.59.00.png" alt></p>
+<p>双击连接</p>
+<p><img data-src="/posts/de6bda9/2019-04-19_22.01.38.png" alt></p>
+<p>首次连接需要输入vnc server的密码</p>
+<p><img data-src="/posts/de6bda9/2019-04-19_21.59.36.png" alt></p>
+<p>然后会显示对面的桌面</p>
+<p><img data-src="/posts/de6bda9/2019-04-19_22.03.41.png" alt></p>
+<h3 id="输入法配置"><a class="header-anchor" href="#输入法配置"></a>输入法配置</h3>
+<p>用<code>vnc viewer</code>连上服务器，显示后桌面后</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">im-config <span class="token comment"># 弹出对话框，一路选确定，然后选fcitx作为默认是输入法</span>
+fcitx-config-gtk3 <span class="token comment"># 弹出对话框，添加googlepinyin输入法；在Addon中，选中advance，然后勾除Kimpanel</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>在可以输入的地方（如终端），<code>⌃+space</code>切换输入法，或单击右上方键盘图标切换输入法</p>
+<p>右上角出现<code>g</code>字样的logo，代表现在在googlepinyin输入法</p>
+<p><img data-src="/posts/de6bda9/2019-04-19_22.14.13.png" alt></p>
+<p><img data-src="/posts/de6bda9/2019-04-19_22.14.23.png" alt></p>
+<h2 id="其他设置"><a class="header-anchor" href="#其他设置"></a>其他设置</h2>
+<h3 id="更换终端"><a class="header-anchor" href="#更换终端"></a>更换终端</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> update-alternatives --config x-terminal-emulator<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>出现交互界面</p>
+<pre class="line-numbers language-none"><code class="language-none">[sudo] password for $USER:
+There are 7 choices for the alternative x-terminal-emulator (providing &#x2F;usr&#x2F;bin&#x2F;x-terminal-emulator).
+
+  Selection    Path                             Priority   Status
+------------------------------------------------------------
+* 0            &#x2F;usr&#x2F;bin&#x2F;konsole                  40        auto mode
+  1            &#x2F;usr&#x2F;bin&#x2F;koi8rxterm               20        manual mode
+  2            &#x2F;usr&#x2F;bin&#x2F;konsole                  40        manual mode
+  3            &#x2F;usr&#x2F;bin&#x2F;lxterm                   30        manual mode
+  4            &#x2F;usr&#x2F;bin&#x2F;uxterm                   20        manual mode
+  5            &#x2F;usr&#x2F;bin&#x2F;xfce4-terminal.wrapper   40        manual mode
+  6            &#x2F;usr&#x2F;bin&#x2F;xterm                    20        manual mode
+  7            &#x2F;usr&#x2F;bin&#x2F;xvt                      10        manual mode
+
+Press &lt;enter&gt; to keep the current choice[*], or type selection number: 5
+update-alternatives: using &#x2F;usr&#x2F;bin&#x2F;xfce4-terminal.wrapper to provide &#x2F;usr&#x2F;bin&#x2F;x-terminal-emulator (x-terminal-emulator) in manual mode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中  <code>/usr/bin/xfce4-terminal.wrapper </code> 是 <code>xfce4</code> 自带的终端模拟器</p>
+<h1 id="卸载方法"><a class="header-anchor" href="#卸载方法"></a>卸载方法</h1>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> remove --purge tightvncserver xfce4* xfce4-goodies powerline fonts-powerline ttf-wqy-zenhei  autocutsel *fcitx* fcitx-googlepinyin libgooglepinyin*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>请勿</strong>运行<code>apt autoremove</code>，它可能会把除了上述包相关的包也卸载了。用上面的匹配就能卸干净</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /tmp/.X11-unix/X1 /tmp/.X1-lock ~/.vnc/<span class="token punctuation">&#123;</span>*.log,*.pid<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
@@ -11299,6 +11299,578 @@ security <span class="token function">import</span> ipmi.pem  -k ~/Library/Keych
       </categories>
   </entry>
   <entry>
+    <title>vim配置</title>
+    <url>/posts/dba3bb35/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h1 id="在服务器和本机上通用的Vim配置"><a class="header-anchor" href="#在服务器和本机上通用的Vim配置"></a>在服务器和本机上通用的Vim配置</h1>
+<p>先安装依赖配置，以下依赖文件可直接复制到<code>~/.vimrc</code>文件（若无该文件，则<code>vim ~/.vimrc</code>创建该文件）</p>
+<p>不用激活该文件，直接打开vi或vim，设置即可生效</p>
+<h2 id="vimrc文件示例"><a class="header-anchor" href="#vimrc文件示例"></a>.vimrc文件示例</h2>
+<p>当前在用的是<code>模板.vim/, .vimrc进入查看隐藏文件</code>/{<code>.vim/</code>,<code>.vimrc</code>}，适用于linux服务器和macvim</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token string">"=========================================================================
+"</span> DesCRiption: 适合自己使用的vimrc文件，for Linux/Windows, GUI/Console
+<span class="token string">" Last Change: 2010年08月02日 15时13分
+"</span> Version:     <span class="token number">1.80</span>
+<span class="token string">" Source: http://www.cnblogs.com/zourrou/archive/2011/04/16/2018493.html
+"</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>
+<span class="token builtin class-name">set</span> nocompatible            <span class="token string">" 关闭 vi 兼容模式
+syntax on                   "</span> 自动语法高亮
+colorscheme molokai         <span class="token string">" 设定配色方案
+"</span> <span class="token builtin class-name">set</span> number                  <span class="token string">" 显示行号
+set cursorline              "</span> 突出显示当前行
+<span class="token builtin class-name">set</span> ruler                   <span class="token string">" 打开状态栏标尺
+set shiftwidth=4            "</span> 设定 <span class="token operator">&lt;&lt;</span> 和 <span class="token operator">>></span> 命令移动时的宽度为 <span class="token number">4</span>
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">softtabstop</span><span class="token operator">=</span><span class="token number">4</span>           <span class="token string">" 使得按退格键时可以一次删掉 4 个空格
+set tabstop=4               "</span> 设定 tab 长度为 <span class="token number">4</span>
+<span class="token builtin class-name">set</span> nobackup                <span class="token string">" 覆盖文件时不备份
+set autochdir               "</span> 自动切换当前目录为当前文件所在的目录
+filetype plugin indent on   <span class="token string">" 开启插件
+set backupcopy=yes          "</span> 设置备份时的行为为覆盖
+<span class="token builtin class-name">set</span> ignorecase smartcase    <span class="token string">" 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
+set nowrapscan              "</span> 禁止在搜索到文件两端时重新搜索
+<span class="token builtin class-name">set</span> incsearch               <span class="token string">" 输入搜索内容时就显示搜索结果
+set hlsearch                "</span> 搜索时高亮显示被找到的文本
+<span class="token builtin class-name">set</span> noerrorbells            <span class="token string">" 关闭错误信息响铃
+set novisualbell            "</span> 关闭使用可视响铃代替呼叫
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">t_vb</span><span class="token operator">=</span>                   <span class="token string">" 置空错误铃声的终端代码
+"</span> <span class="token builtin class-name">set</span> showmatch               <span class="token string">" 插入括号时，短暂地跳转到匹配的对应括号
+"</span> <span class="token builtin class-name">set</span> <span class="token assign-left variable">matchtime</span><span class="token operator">=</span><span class="token number">2</span>             <span class="token string">" 短暂跳转到匹配括号的时间
+set magic                   "</span> 设置魔术
+<span class="token builtin class-name">set</span> hidden                  <span class="token string">" 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
+set guioptions-=T           "</span> 隐藏工具栏
+<span class="token builtin class-name">set</span> guioptions-<span class="token operator">=</span>m           <span class="token string">" 隐藏菜单栏
+set smartindent             "</span> 开启新行时使用智能自动缩进
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">backspace</span><span class="token operator">=</span>indent,eol,start
+                            <span class="token string">" 不设定在插入状态无法用退格键和 Delete 键删除回车符
+set cmdheight=1             "</span> 设定命令行的行数为 <span class="token number">1</span>
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">laststatus</span><span class="token operator">=</span><span class="token number">2</span>            <span class="token string">" 显示状态栏 (默认值为 1, 无法显示状态栏)
+set statusline=\ %&lt;%F[%1*%M%*%n%R%H]%=\ %y\ %0(%&#123;&amp;fileformat&#125;\ %&#123;&amp;encoding&#125;\ %c:%l/%L%)\
+                            "</span> 设置在状态行显示的信息
+<span class="token builtin class-name">set</span> foldenable              <span class="token string">" 开始折叠
+set foldmethod=syntax       "</span> 设置语法折叠
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">foldcolumn</span><span class="token operator">=</span><span class="token number">0</span>            <span class="token string">" 设置折叠区域的宽度
+setlocal foldlevel=1        "</span> 设置折叠层数为
+<span class="token string">" set foldclose=all           "</span> 设置为自动关闭折叠
+<span class="token string">" nnoremap &lt;space> @=<span class="token variable"><span class="token punctuation">((</span>foldclosed<span class="token punctuation">(</span>line<span class="token punctuation">(</span>'.'<span class="token punctuation">))</span></span> &lt; 0) ? 'zc' : 'zo')&lt;CR>
+                            "</span> 用空格键来开关折叠
+<span class="token string">" return OS type, eg: windows, or linux, mac, et.st..
+function! MySys()
+    if has("</span>win16<span class="token string">") || has("</span>win32<span class="token string">") || has("</span>win64<span class="token string">") || has("</span>win95<span class="token string">")
+        return "</span>windows<span class="token string">"
+    elseif has("</span>unix<span class="token string">")
+        return "</span>linux<span class="token string">"
+    endif
+endfunction
+"</span> 用户目录变量<span class="token variable">$VIMFILES</span>
+<span class="token keyword">if</span> MySys<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"windows"</span>
+    <span class="token builtin class-name">let</span> <span class="token variable">$VIMFILES</span> <span class="token operator">=</span> <span class="token variable">$VIM</span><span class="token builtin class-name">.</span><span class="token string">'/vimfiles'</span>
+elseif MySys<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"linux"</span>
+    <span class="token builtin class-name">let</span> <span class="token variable">$VIMFILES</span> <span class="token operator">=</span> <span class="token environment constant">$HOME</span><span class="token builtin class-name">.</span><span class="token string">'/.vim'</span>
+endif
+<span class="token string">" 设定doc文档目录
+let helptags=<span class="token variable">$VIMFILES</span>.'/doc'
+"</span> 设置字体 以及中文支持
+<span class="token keyword">if</span> has<span class="token punctuation">(</span><span class="token string">"win32"</span><span class="token punctuation">)</span>
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">guifont</span><span class="token operator">=</span>Inconsolata:h12:cANSI
+endif
+<span class="token string">" 配置多语言环境
+if has("</span>multi_byte<span class="token string">")
+    "</span> UTF-8 编码
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">encoding</span><span class="token operator">=</span>utf-8
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">termencoding</span><span class="token operator">=</span>utf-8
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">formatoptions</span><span class="token operator">+=</span>mM
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">fencs</span><span class="token operator">=</span>utf-8,gbk
+    <span class="token keyword">if</span> v:lang <span class="token operator">=~</span>? <span class="token string">'^\(zh\)\|\(ja\)\|\(ko\)'</span>
+        <span class="token builtin class-name">set</span> <span class="token assign-left variable">ambiwidth</span><span class="token operator">=</span>double
+    endif
+    <span class="token keyword">if</span> has<span class="token punctuation">(</span><span class="token string">"win32"</span><span class="token punctuation">)</span>
+        <span class="token builtin class-name">source</span> <span class="token variable">$VIMRUNTIME</span>/delmenu.vim
+        <span class="token builtin class-name">source</span> <span class="token variable">$VIMRUNTIME</span>/menu.vim
+        language messages zh_CN.utf-8
+    endif
+<span class="token keyword">else</span>
+    echoerr <span class="token string">"Sorry, this version of (g)vim was not compiled with +multi_byte"</span>
+endif
+<span class="token string">" Buffers操作快捷方式!
+nnoremap &lt;C-RETURN> :bnext&lt;CR>
+nnoremap &lt;C-S-RETURN> :bprevious&lt;CR>
+"</span> Tab操作快捷方式<span class="token operator">!</span>
+nnoremap <span class="token operator">&lt;</span>C-TAB<span class="token operator">></span> :tabnext<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>C-S-TAB<span class="token operator">></span> :tabprev<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">"关于tab的快捷键
+"</span> map tn :tabnext<span class="token operator">&lt;</span>cr<span class="token operator">></span>
+<span class="token string">" map tp :tabprevious&lt;cr>
+"</span> map td :tabnew .<span class="token operator">&lt;</span>cr<span class="token operator">></span>
+<span class="token string">" map te :tabedit
+"</span> map tc :tabclose<span class="token operator">&lt;</span>cr<span class="token operator">></span>
+<span class="token string">"窗口分割时,进行切换的按键热键需要连接两次,比如从下方窗口移动
+"</span>光标到上方窗口,需要<span class="token operator">&lt;</span>c-w<span class="token operator">></span><span class="token operator">&lt;</span>c-w<span class="token operator">></span>k,非常麻烦,现在重映射为<span class="token operator">&lt;</span>c-k<span class="token operator">></span>,切换的
+<span class="token string">"时候会变得非常方便.
+nnoremap &lt;C-h> &lt;C-w>h
+nnoremap &lt;C-j> &lt;C-w>j
+nnoremap &lt;C-k> &lt;C-w>k
+nnoremap &lt;C-l> &lt;C-w>l
+"</span>一些不错的映射转换语法（如果在一个文件中混合了不同语言时有用）
+nnoremap <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token number">1</span> :set <span class="token assign-left variable">filetype</span><span class="token operator">=</span>xhtml<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token number">2</span> :set <span class="token assign-left variable">filetype</span><span class="token operator">=</span>css<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token number">3</span> :set <span class="token assign-left variable">filetype</span><span class="token operator">=</span>javascript<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token number">4</span> :set <span class="token assign-left variable">filetype</span><span class="token operator">=</span>php<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">" set fileformats=unix,dos,mac
+"</span> nmap <span class="token operator">&lt;</span>leader<span class="token operator">></span>fd :se <span class="token assign-left variable">fileformat</span><span class="token operator">=</span>dos<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">" nmap &lt;leader>fu :se fileformat=unix&lt;CR>
+"</span> use Ctrl+<span class="token punctuation">[</span>l<span class="token operator">|</span>n<span class="token operator">|</span>p<span class="token operator">|</span>cc<span class="token punctuation">]</span> to list<span class="token operator">|</span>next<span class="token operator">|</span>previous<span class="token operator">|</span>jump to count the result
+<span class="token string">" map &lt;C-x>l &lt;ESC>:cl&lt;CR>
+"</span> map <span class="token operator">&lt;</span>C-x<span class="token operator">></span>n <span class="token operator">&lt;</span>ESC<span class="token operator">></span>:cn<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">" map &lt;C-x>p &lt;ESC>:cp&lt;CR>
+"</span> map <span class="token operator">&lt;</span>C-x<span class="token operator">></span>c <span class="token operator">&lt;</span>ESC<span class="token operator">></span>:cc<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">" 让 Tohtml 产生有 CSS 语法的 html
+"</span> syntax/2html.vim，可以用:runtime<span class="token operator">!</span> syntax/2html.vim
+<span class="token builtin class-name">let</span> <span class="token assign-left variable">html_use_css</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token string">" Python 文件的一般设置，比如不要 tab 等
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
+autocmd FileType python map &lt;F12> :!python %&lt;CR>
+"</span> 选中状态下 Ctrl+c 复制
+vmap <span class="token operator">&lt;</span>C-c<span class="token operator">></span> <span class="token string">"+y
+"</span> 打开javascript折叠
+<span class="token builtin class-name">let</span> b:javascript_fold<span class="token operator">=</span><span class="token number">1</span>
+<span class="token string">" 打开javascript对dom、html和css的支持
+let javascript_enable_domhtmlcss=1
+"</span> 设置字典 ~/.vim/dict/文件的路径
+autocmd filetype javascript <span class="token builtin class-name">set</span> <span class="token assign-left variable">dictionary</span><span class="token operator">=</span><span class="token variable">$VIMFILES</span>/dict/javascript.dict
+autocmd filetype css <span class="token builtin class-name">set</span> <span class="token assign-left variable">dictionary</span><span class="token operator">=</span><span class="token variable">$VIMFILES</span>/dict/css.dict
+autocmd filetype php <span class="token builtin class-name">set</span> <span class="token assign-left variable">dictionary</span><span class="token operator">=</span><span class="token variable">$VIMFILES</span>/dict/php.dict
+<span class="token string">"-----------------------------------------------------------------
+"</span> plugin - bufexplorer.vim Buffers切换
+<span class="token string">" <span class="token entity" title="\b">\b</span>e 全屏方式查看全部打开的文件列表
+"</span> <span class="token punctuation">\</span>bv 左右方式查看   <span class="token punctuation">\</span>bs 上下方式查看
+<span class="token string">"-----------------------------------------------------------------
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin - taglist.vim  查看函数列表，需要ctags程序
+"</span> F4 打开隐藏taglist窗口
+<span class="token string">"-----------------------------------------------------------------
+if MySys() == "</span>windows<span class="token string">"                "</span> 设定windows系统中ctags程序的位置
+    <span class="token builtin class-name">let</span> Tlist_Ctags_Cmd <span class="token operator">=</span> <span class="token string">'"'</span><span class="token builtin class-name">.</span><span class="token variable">$VIMRUNTIME</span><span class="token builtin class-name">.</span><span class="token string">'/ctags.exe"'</span>
+elseif MySys<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"linux"</span>              <span class="token string">" 设定windows系统中ctags程序的位置
+    let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+endif
+nnoremap &lt;silent>&lt;F4> :TlistToggle&lt;CR>
+let Tlist_Show_One_File = 1            "</span> 不同时显示多个文件的tag，只显示当前文件的
+<span class="token builtin class-name">let</span> Tlist_Exit_OnlyWindow <span class="token operator">=</span> <span class="token number">1</span>          <span class="token string">" 如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1         "</span> 在右侧窗口中显示taglist窗口
+<span class="token builtin class-name">let</span> <span class="token assign-left variable">Tlist_File_Fold_Auto_Close</span><span class="token operator">=</span><span class="token number">1</span>       <span class="token string">" 自动折叠当前非编辑文件的方法列表
+let Tlist_Auto_Open = 0
+let Tlist_Auto_Update = 1
+let Tlist_Hightlight_Tag_On_BufEnter = 1
+let Tlist_Enable_Fold_Column = 0
+let Tlist_Process_File_Always = 1
+let Tlist_Display_Prototype = 0
+let Tlist_Compact_Format = 1
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin - mark.vim 给各种tags标记不同的颜色，便于观看调式的插件。
+"</span> <span class="token punctuation">\</span>m  mark or unmark the word under <span class="token punctuation">(</span>or before<span class="token punctuation">)</span> the cursor
+<span class="token string">" <span class="token entity" title="\r">\r</span>  manually input a regular expression. 用于搜索.
+"</span> <span class="token punctuation">\</span>n  <span class="token function">clear</span> this mark <span class="token punctuation">(</span>i.e. the mark under the cursor<span class="token punctuation">)</span>, or <span class="token function">clear</span> all highlighted marks <span class="token builtin class-name">.</span>
+<span class="token string">" \*  当前MarkWord的下一个     \#  当前MarkWord的上一个
+"</span> <span class="token punctuation">\</span>/  所有MarkWords的下一个    <span class="token punctuation">\</span>?  所有MarkWords的上一个
+<span class="token string">"-----------------------------------------------------------------
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin - NERD_tree.vim 以树状方式浏览系统中的文件和目录
+"</span> :ERDtree 打开NERD_tree         :NERDtreeClose    关闭NERD_tree
+<span class="token string">" o 打开关闭文件或者目录         t 在标签页中打开
+"</span> T 在后台标签页中打开           <span class="token operator">!</span> 执行此文件
+<span class="token string">" p 到上层目录                   P 到根目录
+"</span> K 到第一个节点                 J 到最后一个节点
+<span class="token string">" u 打开上层目录                 m 显示文件系统菜单（添加、删除、移动操作）
+"</span> r 递归刷新当前目录             R 递归刷新当前根目录
+<span class="token string">"-----------------------------------------------------------------
+"</span> F3 NERDTree 切换
+map <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">3</span>></span> :NERDTreeToggle<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+imap <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">3</span>></span> <span class="token operator">&lt;</span>ESC<span class="token operator">></span>:NERDTreeToggle<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">"-----------------------------------------------------------------
+"</span> plugin - NERD_commenter.vim   注释代码用的，
+<span class="token string">" [count],cc 光标以下count行逐行添加注释(7,cc)
+"</span> <span class="token punctuation">[</span>count<span class="token punctuation">]</span>,cu 光标以下count行逐行取消注释<span class="token punctuation">(</span><span class="token number">7</span>,cu<span class="token punctuation">)</span>
+<span class="token string">" [count],cm 光标以下count行尝试添加块注释(7,cm)
+"</span> ,cA 在行尾插入 /* */,并且进入插入模式。 这个命令方便写注释。
+<span class="token string">" 注：count参数可选，无则默认为选中行或当前行
+"</span>-----------------------------------------------------------------
+<span class="token builtin class-name">let</span> <span class="token assign-left variable">NERDSpaceDelims</span><span class="token operator">=</span><span class="token number">1</span>       <span class="token string">" 让注释符与语句之间留一个空格
+let NERDCompactSexyComs=1   "</span> 多行注释时样子更好看
+<span class="token string">"-----------------------------------------------------------------
+"</span> plugin - DoxygenToolkit.vim  由注释生成文档，并且能够快速生成函数标准注释
+<span class="token string">"-----------------------------------------------------------------
+let g:DoxygenToolkit_authorName="</span>Asins - asinsimple AT gmail DOT com<span class="token string">"
+let g:DoxygenToolkit_briefTag_funcName="</span><span class="token function">yes</span><span class="token string">"
+map &lt;leader>da :DoxAuthor&lt;CR>
+map &lt;leader>df :Dox&lt;CR>
+map &lt;leader>db :DoxBlock&lt;CR>
+map &lt;leader>dc a /*  */&lt;LEFT>&lt;LEFT>&lt;LEFT>
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin – ZenCoding.vim 很酷的插件，HTML代码生成
+"</span> 插件最新版：http://github.com/mattn/zencoding-vim
+<span class="token string">" 常用命令可看：http://nootn.com/blog/Tool/23/
+"</span>-----------------------------------------------------------------
+<span class="token string">"-----------------------------------------------------------------
+"</span> plugin – checksyntax.vim    JavaScript常见语法错误检查
+<span class="token string">" 默认快捷方式为 F5
+"</span>-----------------------------------------------------------------
+<span class="token builtin class-name">let</span> g:checksyntax_auto <span class="token operator">=</span> <span class="token number">0</span> <span class="token string">" 不自动检查
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin - NeoComplCache.vim    自动补全插件
+"</span>-----------------------------------------------------------------
+<span class="token builtin class-name">let</span> g:AutoComplPop_NotEnableAtStartup <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_EnableAtStartup <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_SmartCase <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_TagsAutoUpdate <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_EnableInfo <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_EnableCamelCaseCompletion <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_MinSyntaxLength <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_EnableSkipCompletion <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_SkipInputTime <span class="token operator">=</span> <span class="token string">'0.5'</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_SnippetsDir <span class="token operator">=</span> <span class="token variable">$VIMFILES</span><span class="token builtin class-name">.</span><span class="token string">'/snippets'</span>
+<span class="token string">" &lt;TAB> completion.
+inoremap &lt;expr>&lt;TAB> pumvisible() ? "</span><span class="token punctuation">\</span><span class="token operator">&lt;</span>C-n<span class="token operator">></span><span class="token string">" : "</span><span class="token punctuation">\</span><span class="token operator">&lt;</span>TAB<span class="token operator">></span><span class="token string">"
+"</span> snippets <span class="token function">expand</span> key
+imap <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>C-e<span class="token operator">></span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>neocomplcache_snippets_expand<span class="token punctuation">)</span>
+smap <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>C-e<span class="token operator">></span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>neocomplcache_snippets_expand<span class="token punctuation">)</span>
+<span class="token string">"-----------------------------------------------------------------
+"</span> plugin - matchit.vim   对%命令进行扩展使得能在嵌套标签和语句之间跳转
+<span class="token string">" % 正向匹配      g% 反向匹配
+"</span> <span class="token punctuation">[</span>% 定位块首     <span class="token punctuation">]</span>% 定位块尾
+<span class="token string">"-----------------------------------------------------------------
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin - vcscommand.vim   对%命令进行扩展使得能在嵌套标签和语句之间跳转
+"</span> SVN/git管理工具
+<span class="token string">"-----------------------------------------------------------------
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin – a.vim
+"</span>-----------------------------------------------------------------<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>另一套.vimrc <a href="https://github.com/bjjvvv/vim/blob/master/.vimrc">https://github.com/bjjvvv/vim/blob/master/.vimrc</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">set</span> nocp <span class="token string">" 非vi
+
+let mapleader = "</span><span class="token punctuation">\</span><span class="token punctuation">\</span>"
+lef g:mapleader <span class="token operator">=</span> <span class="token string">"<span class="token entity" title="\\">\\</span>"</span>
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">t_Co</span><span class="token operator">=</span><span class="token number">256</span>
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">path</span><span class="token operator">=</span>.,/usr/include,**
+
+<span class="token string">"解决编码问题
+if has("</span>multi_byte<span class="token string">")
+    "</span> UTF-8 编码
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">encoding</span><span class="token operator">=</span>utf-8
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">termencoding</span><span class="token operator">=</span>utf-8
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">fileencodings</span><span class="token operator">=</span>ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1 <span class="token string">" 编码
+    if v:lang =~? '^/(zh/)/|/(ja/)/|/(ko/)'
+        set ambiwidth=double
+    endif
+    if has("</span>win32<span class="token string">")
+        source <span class="token variable">$VIMRUNTIME</span>/delmenu.vim
+        source <span class="token variable">$VIMRUNTIME</span>/menu.vim
+        language messages zh_CN.utf-8
+    else
+        "</span>Ubuntu <span class="token number">14.04</span>下GVIM的字体间距过宽
+        <span class="token builtin class-name">set</span> <span class="token assign-left variable">guifont</span><span class="token operator">=</span>Meslo<span class="token punctuation">\</span> LG<span class="token punctuation">\</span> S<span class="token punctuation">\</span> DZ<span class="token punctuation">\</span> for<span class="token punctuation">\</span> Powerline<span class="token punctuation">\</span> <span class="token number">12</span>
+    endif
+<span class="token keyword">else</span>
+    echoerr <span class="token string">"Sorry, this version of (g)vim was not compiled with +multi_byte"</span>
+endif
+
+
+<span class="token string">"----------------------------------------Voudle
+if filereadable(expand("</span>~/.vim/.vimrc.bundles<span class="token string">"))
+source ~/.vim/.vimrc.bundles
+endif
+"</span>----------------------------------------Voudle
+
+<span class="token string">"-------------------------------语法
+syntax enable
+syntax enable "</span> 开启
+syntax on <span class="token string">" 语法高亮
+"</span>---------------------------------------
+
+<span class="token string">"----------------------------------------显示
+colorscheme solarized "</span> 设置主题
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">background</span><span class="token operator">=</span>dark
+<span class="token builtin class-name">set</span> cursorcolumn
+<span class="token builtin class-name">set</span> cursorline
+<span class="token builtin class-name">set</span> hls <span class="token string">" 匹配高亮
+set incsearch "</span> 增量搜索（实时匹配）
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">laststatus</span><span class="token operator">=</span><span class="token number">2</span> <span class="token string">" 状态栏
+set number "</span> 行号
+<span class="token builtin class-name">set</span> number <span class="token string">" 行号
+"</span><span class="token builtin class-name">set</span> relativenumber
+<span class="token builtin class-name">set</span> ruler <span class="token string">" 标尺
+set showcmd "</span> 显示当前输入命令
+<span class="token string">" set scrolloff=8 "</span> 屏幕上下保留
+<span class="token string">" 清屏同时清除高亮
+nnoremap &lt;silent> &lt;C-l>  :&lt;C-u>nohlsearch&lt;Cr>&lt;C-l>
+"</span>------------------------------------
+
+<span class="token string">"----------------------------------------缩进
+filetype plugin indent on
+set sw=4 "</span> 缩进4个空格
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">ts</span><span class="token operator">=</span><span class="token number">4</span> <span class="token string">" tab为4个字符
+set et "</span> tab替换为空格
+<span class="token builtin class-name">set</span> smarttab <span class="token string">" 删除tab的4个空格
+set nospell "</span> 拼写检查
+<span class="token builtin class-name">set</span> wrap
+<span class="token builtin class-name">set</span> nolbr
+<span class="token string">" set tw=78 "</span> 设置光标超过78的时候折行
+<span class="token string">" set lbr "</span> 不在单词中间折断
+<span class="token string">" set fo+=mB "</span> 汉字断行处理
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">backspace</span><span class="token operator">=</span>start,eol,indent<span class="token string">" 删除行尾，回车，缩进
+set whichwrap=b,s,h,l,&lt;,>,[,] "</span> 支持左右跨行移动
+<span class="token string">" set sm "</span> 括号配对
+<span class="token builtin class-name">set</span> cin <span class="token string">" 打开c/c++自动缩进
+"</span> <span class="token builtin class-name">set</span> ai <span class="token string">" 自动缩进
+"</span> 基于缩进或语法进行代码折叠
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">foldmethod</span><span class="token operator">=</span>indent
+<span class="token string">"set foldmethod=syntax
+"</span> 启动 <span class="token function">vim</span> 时关闭折叠代码
+<span class="token builtin class-name">set</span> nofoldenable
+<span class="token string">"---------------------------------------
+
+
+"</span>---------------------------------------map
+<span class="token string">" 用空格来当mapleader
+map &lt;Space> &lt;Leader>
+"</span> quick switch background color between dark and light
+map  <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>Leader<span class="token operator">></span>bg :let <span class="token operator">&amp;</span>background <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token operator">&amp;</span>background <span class="token operator">==</span> <span class="token string">"dark"</span>? <span class="token string">"light"</span> <span class="token builtin class-name">:</span> <span class="token string">"dark"</span> <span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">" 使 &lt;C-p> &lt;C-n> 支持历史过滤
+cnoremap &lt;C-p> &lt;Up>
+cnoremap &lt;C-n> &lt;Down>
+"</span> ex命令中%%转换为当前缓存文件目录路径
+cnoremap <span class="token operator">&lt;</span>expr<span class="token operator">></span> %% getcmdtype<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">':'</span> ? expand<span class="token punctuation">(</span><span class="token string">'%:h'</span><span class="token punctuation">)</span>.<span class="token string">'/'</span> <span class="token builtin class-name">:</span> <span class="token string">'%%'</span>
+nnoremap  <span class="token operator">&lt;</span>leader<span class="token operator">></span>cn  :<span class="token operator">&lt;</span>C-u<span class="token operator">></span>cnext<span class="token operator">&lt;</span>Cr<span class="token operator">></span> <span class="token string">" quicklist next
+nnoremap  &lt;leader>cp  :&lt;C-u>cprevious&lt;Cr> "</span> quicklist previous
+<span class="token string">"---------------------------
+
+
+"</span>-------------------------------实用
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">pastetoggle</span><span class="token operator">=</span><span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">5</span>></span>
+<span class="token builtin class-name">set</span> ignorecase <span class="token string">" 忽略忽略大小写
+set smartcase "</span> 和 ignorecase 一起智能
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">history</span><span class="token operator">=</span><span class="token number">200</span>
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">wildignore</span><span class="token operator">+=</span>*/tmp/*,*.so,*.swp,*.zip,*.py<span class="token punctuation">[</span>oc<span class="token punctuation">]</span>     <span class="token string">" MacOSX/Linux
+"</span>-------------------------------------
+
+<span class="token string">"-------------------autocmd
+"</span> Delete trailing white space on save, useful <span class="token keyword">for</span> Python and CoffeeScript <span class="token punctuation">;</span><span class="token punctuation">)</span>
+func<span class="token operator">!</span> DeleteTrailingWS<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  exe <span class="token string">"normal mz"</span>
+  %s/<span class="token punctuation">\</span>s<span class="token punctuation">\</span>+$//ge
+  exe "normal `z<span class="token string">"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS()
+"</span>-------------------------------------
+
+<span class="token string">"------------------------来自《Vim 实用技巧》
+"</span>runtime macros/matchit.vim
+<span class="token builtin class-name">set</span> hidden <span class="token string">" 缓存切换位保存不提醒
+if has("</span>autocmd<span class="token string">")
+    autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+endif
+"</span> :Qargs 将quickfix 列表中的文件加入 args 列表中
+command<span class="token operator">!</span> -nargs<span class="token operator">=</span><span class="token number">0</span> -bar Qargs execute <span class="token string">'args'</span> QuickfixFilenames<span class="token punctuation">(</span><span class="token punctuation">)</span>
+function<span class="token operator">!</span> QuickfixFilenames<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token string">" Building a hash ensures we get each buffer only once
+  let buffer_numbers = &#123;&#125;
+  for quickfix_item in getqflist()
+    let bufnr = quickfix_item['bufnr']
+    "</span> Lines without files will appear as <span class="token assign-left variable">bufnr</span><span class="token operator">=</span><span class="token number">0</span>
+    <span class="token keyword">if</span> bufnr <span class="token operator">></span> <span class="token number">0</span>
+      <span class="token builtin class-name">let</span> buffer_numbers<span class="token punctuation">[</span>bufnr<span class="token punctuation">]</span> <span class="token operator">=</span> bufname<span class="token punctuation">(</span>bufnr<span class="token punctuation">)</span>
+    endif
+  endfor
+  <span class="token builtin class-name">return</span> join<span class="token punctuation">(</span>map<span class="token punctuation">(</span>values<span class="token punctuation">(</span>buffer_numbers<span class="token punctuation">)</span>, <span class="token string">'fnameescape(v:val)'</span><span class="token punctuation">))</span>
+endfunction
+
+<span class="token string">" makes * and # work on visual mode too.
+function! s:VSetSearch(cmdtype)
+  let temp = @s
+  norm! gv"</span>sy
+  <span class="token builtin class-name">let</span> @/ <span class="token operator">=</span> <span class="token string">'\V'</span> <span class="token builtin class-name">.</span> substitute<span class="token punctuation">(</span>escape<span class="token punctuation">(</span>@s, a:cmdtype.<span class="token string">'\'</span><span class="token punctuation">)</span>, <span class="token string">'\n'</span>, <span class="token string">'\\n'</span>, <span class="token string">'g'</span><span class="token punctuation">)</span>
+  <span class="token builtin class-name">let</span> @s <span class="token operator">=</span> temp
+endfunction
+
+xnoremap * :<span class="token operator">&lt;</span>C-u<span class="token operator">></span>call <span class="token operator">&lt;</span>SID<span class="token operator">></span>VSetSearch<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>/<span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>@/<span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+xnoremap <span class="token comment"># :&lt;C-u>call &lt;SID>VSetSearch('?')&lt;CR>?&lt;C-R>=@/&lt;CR>&lt;CR></span>
+
+<span class="token string">" recursively vimgrep for word under cursor or selection if you hit leader-star
+nmap &lt;leader>* :execute 'noautocmd vimgrep /\V' . substitute(escape(expand("</span><span class="token operator">&lt;</span>cword<span class="token operator">></span><span class="token string">"), '\'), '<span class="token entity" title="\n">\n</span>', '<span class="token entity" title="\\">\\</span>n', 'g') . '/ **'&lt;CR>
+vmap &lt;leader>* :&lt;C-u>call &lt;SID>VSetSearch('/')&lt;CR>:execute 'noautocmd vimgrep /' . @/ . '/ **'&lt;CR>
+
+"</span>-------------------------------------<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="依赖配置"><a class="header-anchor" href="#依赖配置"></a>依赖配置</h2>
+<h3 id="Vim使用molokai配色"><a class="header-anchor" href="#Vim使用molokai配色"></a><a href="http://www.jianshu.com/p/418ec70e7aed">Vim使用molokai配色</a></h3>
+<ul>
+<li>复制以下全部命令，到命令行执行</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 下载molokai主题(https://github.com/tomasr/molokai)</span>
+<span class="token function">wget</span> https://github.com/tomasr/molokai/archive/master.zip --no-check-certificate
+<span class="token function">unzip</span> master.zip
+<span class="token comment"># 将molokai.vim拷贝到 ~/.vim/colors/</span>
+<span class="token function">cp</span> molokai-master/colors/molokai.vim  ~/.vim/colors/
+<span class="token comment"># 若无~/.vim/，或无~/.vim/colors/，则mkdir他们</span>
+
+<span class="token comment"># 在 ~/.vimrc 中添加：colorscheme molokai</span>
+<span class="token comment"># 由于上述.vimrc文件中有这下句，故此处注释掉</span>
+<span class="token comment"># echo 'colorscheme molokai' >> ~/.vimrc</span>
+
+<span class="token comment"># 扫尾</span>
+<span class="token function">rm</span> master.zip
+<span class="token function">rm</span> molokai-master -rf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>tmux与vim配色冲突：在tmux里进入vim，文字自带不透明纯黑底色，为无文字处的底色是<code>dark</code>色。为了使得文字也变成透明底色，需设置<code>vim ~/.vim/colors/molokai.vim  </code>，将全文中，所有<code>hi Normal ... ctermbg=xxx</code>改为<code>hi Normal ... ctermbg=NONE    </code>。这样修改，对macvim没有干扰。</li>
+</ul>
+<h2 id="功效"><a class="header-anchor" href="#功效"></a>功效</h2>
+<p>此配置可解决原生（.vimrc是空的）vim的以下问题：</p>
+<ul>
+<li>输入模式下，按上下左右键会出<code>A</code> <code>B</code>乱码，无法上下左右移动光标</li>
+<li><code>cmd+V</code>黏贴（mac客户端的操作），会在粘完之后，出现<code>A</code> <code>B</code>乱码</li>
+</ul>
+<h1 id="从服务器VIM-复制-剪切到本机系统剪贴板"><a class="header-anchor" href="#从服务器VIM-复制-剪切到本机系统剪贴板"></a>从服务器VIM 复制/剪切到本机系统剪贴板</h1>
+<p><a href="https://hiberabyss.github.io/2017/11/30/vim-remote-copy/">参考</a></p>
+<h2 id="安装clipper"><a class="header-anchor" href="#安装clipper"></a>安装clipper</h2>
+<ul>
+<li>
+<p>在个人电脑 安装clipper，MacOS使用  <code>brew install clipper</code> 安装</p>
+</li>
+<li>
+<p>用brew将clipper为开机自启 <code>brew services start clipper</code></p>
+</li>
+<li>
+<p>检查clipper否正常启动</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> -ef <span class="token operator">|</span> <span class="token function">grep</span> clipper
+<span class="token comment"># 返回 502   463     1   0  3:07PM ??         0:00.09 /usr/local/opt/clipper/bin/clipper</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="简单演示"><a class="header-anchor" href="#简单演示"></a>简单演示</h2>
+<ul>
+<li>clipper启动后，通过下面的命令连接到远程机器：</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> 用户名@网址或ip -R <span class="token number">8377</span>:localhost:8377<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>-R 服务器端口:localhost:本机端口</code>其含义是在ssh时，将此服务器端口将转发到此本地端口。</p>
+<p>clipper默认从<code>8377</code>读取远程传来的文本，将其写入到本机系统剪切板。</p>
+<ul>
+<li>确认远程机器上安装有 <code>nc</code></li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">nc</span>
+<span class="token comment"># 返回</span>
+<span class="token comment"># usage: nc [-46AacCDdEFhklMnOortUuvz] [-K tc] [-b boundif] [-i interval] [-p source_port] # [--apple-delegate-pid pid] [--apple-delegate-uuid uuid]</span>
+<span class="token comment">#     [-s source_ip_address] [-w timeout] [-X proxy_version]</span>
+<span class="token comment">#     [-x proxy_address[:port]] [hostname] [port[s]]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>简单演示</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> hello,world <span class="token operator">|</span> <span class="token function">timeout</span> <span class="token number">0.1</span> <span class="token function">nc</span> localhost <span class="token number">8377</span> <span class="token comment"># 服务器端口</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>则 “hello,world” 字符转已经成功复制到本机的剪贴板了，可以<code>command+v</code>贴出。</p>
+<ul>
+<li><code>timeout 0.1</code>表示0.1秒内发出去，超时就结束连接，不管对面收没收到</li>
+</ul>
+<p>若不加此参数，在我用的nc版本</p>
+<pre class="line-numbers language-none"><code class="language-none">OpenBSD netcat (Debian patchlevel 1.187-1ubuntu0.1)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>命令行下敲完<code>echo hello,world | nc localhost 8377 </code>，会一致等待，而不允许输入下一行命令，除非ctrl+C结束。</p>
+<ul>
+<li>配置ssh设置</li>
+</ul>
+<p>为免去每次登录加 <code>-R 8377:localhost:8377</code> 参数，可修改 <code>~/.ssh/config</code> 文件，其中每个Host配置下加一句<code>RemoteForward 8377 localhost:8377</code>（<code>RemoteForward 服务器端口 localhost:本机端口</code>）。完整的一个Host配置例如：</p>
+<pre class="line-numbers language-none"><code class="language-none">Host 别名
+    HostName 网址或ip
+    Port 端口号
+    User 用户名
+    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
+    RemoteForward 8377 localhost:8377<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="在远程主机的VIM里复制内容"><a class="header-anchor" href="#在远程主机的VIM里复制内容"></a>在远程主机的VIM里复制内容</h2>
+<ul>
+<li>我们可以利用 <code>:[range]w[rite] [++opt] !&#123;cmd&#125;</code> 来实现文件内容的复制：
+<ul>
+<li>复制当前行：在 VIM 中执行 <code>:.w !nc localhost 8377</code></li>
+<li>复制选中的行：选中要复制的行后，执行 <code>:'&lt;,'&gt;w !nc localhost 8377</code> ( vy选中后，进入命令行模式后 VIM 会自动帮忙填充 <code>'&lt;,'&gt;</code>)</li>
+<li>复制整个文件：在 VIM 中执行 <code>:%w !nc localhost 8377</code></li>
+<li>复制 VIM 默认 register 的内容：在 VIM 中执行 <code>:call system('nc localhost 8377', @&quot;)</code></li>
+</ul>
+</li>
+<li>为方便起见，在<code>~/.vimrc</code>加入</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&quot; 从服务器的vim里复制&#x2F;剪切文字到本地电脑的剪切板
+&quot; v,y复制&#x2F;v,d剪切&#x2F;(数字)dd 整行剪切，发送到笔记本的系统剪切板，但不清空vim的寄存器
+vmap y y:call system(&#39;timeout 0.1 nc localhost 8377&#39;, @&quot;)&lt;CR&gt;
+vmap d d:call system(&#39;timeout 0.1 nc localhost 8377&#39;, @&quot;)&lt;CR&gt;
+nmap dd dd:call system(&#39;timeout 0.1 nc localhost 8377&#39;, @&quot;)&lt;CR&gt;
+&quot; ctrl+a 整个文件发送到笔记本的系统剪切板
+map &lt;C-a&gt; :%w !timeout 0.1 nc localhost 8377&lt;CR&gt;&lt;CR&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中<code>@&quot;</code>表示vim的<code>&quot;</code>剪切板中的内容，在原生的vim中，每次按<code>y</code> <code>yy</code> <code>d</code> <code>dd</code> <code>c</code> <code>cc</code>操作，都会写到这个剪切板</p>
+<h2 id="报错"><a class="header-anchor" href="#报错"></a>报错</h2>
+<h3 id="服务器上端口占用"><a class="header-anchor" href="#服务器上端口占用"></a>服务器上端口占用</h3>
+<ul>
+<li>症状</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span>  user@host -R <span class="token number">8377</span>:localhost:8377
+<span class="token comment"># 返回如下</span>
+Warning: remote port forwarding failed <span class="token keyword">for</span> listen port <span class="token number">8377</span>   <span class="token comment"># 服务器上8377端口占用</span>
+Welcome to Ubuntu <span class="token number">16.04</span>.4 LTS <span class="token punctuation">(</span>GNU/Linux <span class="token number">4.4</span>.0-112-generic x86_64<span class="token punctuation">)</span>
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Fri Aug <span class="token number">10</span> <span class="token number">17</span>:19:13 CST <span class="token number">2018</span>
+
+  System load:  <span class="token number">4.79</span>              Processes:              <span class="token number">819</span>
+  Usage of /:   <span class="token number">55.2</span>% of <span class="token number">3</span>.52TB   Users logged in:        <span class="token number">11</span>
+  Memory usage: <span class="token number">61</span>%               IP address <span class="token keyword">for</span> em1:     <span class="token number">192.168</span>.245.157
+  Swap usage:   <span class="token number">3</span>%                IP address <span class="token keyword">for</span> docker0: <span class="token number">172.17</span>.0.1
+
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+<span class="token number">176</span> packages can be updated.
+<span class="token number">105</span> updates are security updates.
+
+*** System restart required ***
+Last login: Fri Aug <span class="token number">10</span> <span class="token number">17</span>:16:27 <span class="token number">2018</span> from <span class="token number">117.43</span>.160.228<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>登录后，若强行在vim中进行v-y, v-d, dd操作，本机剪切板收不到发来的文字，服务器端会在vim的底栏返回</p>
+<pre class="line-numbers language-none"><code class="language-none">:call system(&#39;nc localhost 8377&#39;, @&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>一直卡在这里（这个操作阻塞了），做不了任何vim的操作（<code>:q</code>也不行），需要<code>ctrl+c</code>才能结束恢复各种vim操作。</p>
+<ul>
+<li>
+<p>解决方法</p>
+<p>在服务器上，用sudo权限（若不用sudo权限则看不完全）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">lsof</span> -i:8377 <span class="token comment"># 返回占用8377端口的进程，取出其pid</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其返回如下</p>
+<pre class="line-numbers language-none"><code class="language-none">COMMAND   PID    USER   FD   TYPE  DEVICE SIZE&#x2F;OFF NODE NAME
+sshd    17188 myusername    9u  IPv6 4032419      0t0  TCP ip6-localhost:8377 (LISTEN)
+sshd    17188 myusername   10u  IPv4 4032420      0t0  TCP localhost:8377 (LISTEN)
+sshd    17188 myusername   14u  IPv4 4051809      0t0  TCP localhost:8377-&gt;localhost:40802 (CLOSE_WAIT)
+sshd    17188 myusername   17u  IPv4 4058793      0t0  TCP localhost:8377-&gt;localhost:40828 (CLOSE_WAIT)
+sshd    17188 myusername   18u  IPv4 4054593      0t0  TCP localhost:8377-&gt;localhost:40832 (CLOSE_WAIT)
+sshd    17188 myusername   19u  IPv4 4054699      0t0  TCP localhost:8377-&gt;localhost:40840 (CLOSE_WAIT)
+sshd    17188 myusername   20u  IPv4 4054757      0t0  TCP localhost:8377-&gt;localhost:40848 (CLOSE_WAIT)
+sshd    17188 myusername   21u  IPv4 4054765      0t0  TCP localhost:8377-&gt;localhost:40850 (CLOSE_WAIT)
+sshd    17188 myusername   22u  IPv4 4054894      0t0  TCP localhost:8377-&gt;localhost:40864 (CLOSE_WAIT)
+sshd    17188 myusername   23u  IPv4 4057945      0t0  TCP localhost:8377-&gt;localhost:40874 (CLOSE_WAIT)
+sshd    17188 myusername   24u  IPv4 4058045      0t0  TCP localhost:8377-&gt;localhost:40882 (CLOSE_WAIT)
+sshd    17188 myusername   25u  IPv4 4063283      0t0  TCP localhost:8377-&gt;localhost:40892 (CLOSE_WAIT)
+sshd    17188 myusername   26u  IPv4 4063384      0t0  TCP localhost:8377-&gt;localhost:40902 (CLOSE_WAIT)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>杀进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 <span class="token operator">&lt;</span>其pid<span class="token operator">></span> <span class="token comment"># 上述案例pid=17188</span>
+<span class="token function">sudo</span> <span class="token function">lsof</span> -i:8377
+<span class="token comment"># 若返回空，说明杀干净了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>然后需退出服务器，重新登录服务器，进入vim，测试一下v-y, v-d, dd操作，本机剪切板能收到发来的文字，则成功解决。</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>编辑器IDE</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Sublime安装配置使用教程</title>
     <url>/posts/680b6b42/</url>
     <content><![CDATA[<h1 id="Sublime教程"><a class="header-anchor" href="#Sublime教程"></a>Sublime教程</h1>
@@ -11955,578 +12527,6 @@ remote_paths <span class="token operator">=</span> <span class="token punctuatio
 
     <span class="token keyword">return</span> HostConfig
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>编辑器IDE</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>vim配置</title>
-    <url>/posts/dba3bb35/</url>
-    <content><![CDATA[<p>[TOC]</p>
-<h1 id="在服务器和本机上通用的Vim配置"><a class="header-anchor" href="#在服务器和本机上通用的Vim配置"></a>在服务器和本机上通用的Vim配置</h1>
-<p>先安装依赖配置，以下依赖文件可直接复制到<code>~/.vimrc</code>文件（若无该文件，则<code>vim ~/.vimrc</code>创建该文件）</p>
-<p>不用激活该文件，直接打开vi或vim，设置即可生效</p>
-<h2 id="vimrc文件示例"><a class="header-anchor" href="#vimrc文件示例"></a>.vimrc文件示例</h2>
-<p>当前在用的是<code>模板.vim/, .vimrc进入查看隐藏文件</code>/{<code>.vim/</code>,<code>.vimrc</code>}，适用于linux服务器和macvim</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token string">"=========================================================================
-"</span> DesCRiption: 适合自己使用的vimrc文件，for Linux/Windows, GUI/Console
-<span class="token string">" Last Change: 2010年08月02日 15时13分
-"</span> Version:     <span class="token number">1.80</span>
-<span class="token string">" Source: http://www.cnblogs.com/zourrou/archive/2011/04/16/2018493.html
-"</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>
-<span class="token builtin class-name">set</span> nocompatible            <span class="token string">" 关闭 vi 兼容模式
-syntax on                   "</span> 自动语法高亮
-colorscheme molokai         <span class="token string">" 设定配色方案
-"</span> <span class="token builtin class-name">set</span> number                  <span class="token string">" 显示行号
-set cursorline              "</span> 突出显示当前行
-<span class="token builtin class-name">set</span> ruler                   <span class="token string">" 打开状态栏标尺
-set shiftwidth=4            "</span> 设定 <span class="token operator">&lt;&lt;</span> 和 <span class="token operator">>></span> 命令移动时的宽度为 <span class="token number">4</span>
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">softtabstop</span><span class="token operator">=</span><span class="token number">4</span>           <span class="token string">" 使得按退格键时可以一次删掉 4 个空格
-set tabstop=4               "</span> 设定 tab 长度为 <span class="token number">4</span>
-<span class="token builtin class-name">set</span> nobackup                <span class="token string">" 覆盖文件时不备份
-set autochdir               "</span> 自动切换当前目录为当前文件所在的目录
-filetype plugin indent on   <span class="token string">" 开启插件
-set backupcopy=yes          "</span> 设置备份时的行为为覆盖
-<span class="token builtin class-name">set</span> ignorecase smartcase    <span class="token string">" 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
-set nowrapscan              "</span> 禁止在搜索到文件两端时重新搜索
-<span class="token builtin class-name">set</span> incsearch               <span class="token string">" 输入搜索内容时就显示搜索结果
-set hlsearch                "</span> 搜索时高亮显示被找到的文本
-<span class="token builtin class-name">set</span> noerrorbells            <span class="token string">" 关闭错误信息响铃
-set novisualbell            "</span> 关闭使用可视响铃代替呼叫
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">t_vb</span><span class="token operator">=</span>                   <span class="token string">" 置空错误铃声的终端代码
-"</span> <span class="token builtin class-name">set</span> showmatch               <span class="token string">" 插入括号时，短暂地跳转到匹配的对应括号
-"</span> <span class="token builtin class-name">set</span> <span class="token assign-left variable">matchtime</span><span class="token operator">=</span><span class="token number">2</span>             <span class="token string">" 短暂跳转到匹配括号的时间
-set magic                   "</span> 设置魔术
-<span class="token builtin class-name">set</span> hidden                  <span class="token string">" 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
-set guioptions-=T           "</span> 隐藏工具栏
-<span class="token builtin class-name">set</span> guioptions-<span class="token operator">=</span>m           <span class="token string">" 隐藏菜单栏
-set smartindent             "</span> 开启新行时使用智能自动缩进
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">backspace</span><span class="token operator">=</span>indent,eol,start
-                            <span class="token string">" 不设定在插入状态无法用退格键和 Delete 键删除回车符
-set cmdheight=1             "</span> 设定命令行的行数为 <span class="token number">1</span>
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">laststatus</span><span class="token operator">=</span><span class="token number">2</span>            <span class="token string">" 显示状态栏 (默认值为 1, 无法显示状态栏)
-set statusline=\ %&lt;%F[%1*%M%*%n%R%H]%=\ %y\ %0(%&#123;&amp;fileformat&#125;\ %&#123;&amp;encoding&#125;\ %c:%l/%L%)\
-                            "</span> 设置在状态行显示的信息
-<span class="token builtin class-name">set</span> foldenable              <span class="token string">" 开始折叠
-set foldmethod=syntax       "</span> 设置语法折叠
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">foldcolumn</span><span class="token operator">=</span><span class="token number">0</span>            <span class="token string">" 设置折叠区域的宽度
-setlocal foldlevel=1        "</span> 设置折叠层数为
-<span class="token string">" set foldclose=all           "</span> 设置为自动关闭折叠
-<span class="token string">" nnoremap &lt;space> @=<span class="token variable"><span class="token punctuation">((</span>foldclosed<span class="token punctuation">(</span>line<span class="token punctuation">(</span>'.'<span class="token punctuation">))</span></span> &lt; 0) ? 'zc' : 'zo')&lt;CR>
-                            "</span> 用空格键来开关折叠
-<span class="token string">" return OS type, eg: windows, or linux, mac, et.st..
-function! MySys()
-    if has("</span>win16<span class="token string">") || has("</span>win32<span class="token string">") || has("</span>win64<span class="token string">") || has("</span>win95<span class="token string">")
-        return "</span>windows<span class="token string">"
-    elseif has("</span>unix<span class="token string">")
-        return "</span>linux<span class="token string">"
-    endif
-endfunction
-"</span> 用户目录变量<span class="token variable">$VIMFILES</span>
-<span class="token keyword">if</span> MySys<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"windows"</span>
-    <span class="token builtin class-name">let</span> <span class="token variable">$VIMFILES</span> <span class="token operator">=</span> <span class="token variable">$VIM</span><span class="token builtin class-name">.</span><span class="token string">'/vimfiles'</span>
-elseif MySys<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"linux"</span>
-    <span class="token builtin class-name">let</span> <span class="token variable">$VIMFILES</span> <span class="token operator">=</span> <span class="token environment constant">$HOME</span><span class="token builtin class-name">.</span><span class="token string">'/.vim'</span>
-endif
-<span class="token string">" 设定doc文档目录
-let helptags=<span class="token variable">$VIMFILES</span>.'/doc'
-"</span> 设置字体 以及中文支持
-<span class="token keyword">if</span> has<span class="token punctuation">(</span><span class="token string">"win32"</span><span class="token punctuation">)</span>
-    <span class="token builtin class-name">set</span> <span class="token assign-left variable">guifont</span><span class="token operator">=</span>Inconsolata:h12:cANSI
-endif
-<span class="token string">" 配置多语言环境
-if has("</span>multi_byte<span class="token string">")
-    "</span> UTF-8 编码
-    <span class="token builtin class-name">set</span> <span class="token assign-left variable">encoding</span><span class="token operator">=</span>utf-8
-    <span class="token builtin class-name">set</span> <span class="token assign-left variable">termencoding</span><span class="token operator">=</span>utf-8
-    <span class="token builtin class-name">set</span> <span class="token assign-left variable">formatoptions</span><span class="token operator">+=</span>mM
-    <span class="token builtin class-name">set</span> <span class="token assign-left variable">fencs</span><span class="token operator">=</span>utf-8,gbk
-    <span class="token keyword">if</span> v:lang <span class="token operator">=~</span>? <span class="token string">'^\(zh\)\|\(ja\)\|\(ko\)'</span>
-        <span class="token builtin class-name">set</span> <span class="token assign-left variable">ambiwidth</span><span class="token operator">=</span>double
-    endif
-    <span class="token keyword">if</span> has<span class="token punctuation">(</span><span class="token string">"win32"</span><span class="token punctuation">)</span>
-        <span class="token builtin class-name">source</span> <span class="token variable">$VIMRUNTIME</span>/delmenu.vim
-        <span class="token builtin class-name">source</span> <span class="token variable">$VIMRUNTIME</span>/menu.vim
-        language messages zh_CN.utf-8
-    endif
-<span class="token keyword">else</span>
-    echoerr <span class="token string">"Sorry, this version of (g)vim was not compiled with +multi_byte"</span>
-endif
-<span class="token string">" Buffers操作快捷方式!
-nnoremap &lt;C-RETURN> :bnext&lt;CR>
-nnoremap &lt;C-S-RETURN> :bprevious&lt;CR>
-"</span> Tab操作快捷方式<span class="token operator">!</span>
-nnoremap <span class="token operator">&lt;</span>C-TAB<span class="token operator">></span> :tabnext<span class="token operator">&lt;</span>CR<span class="token operator">></span>
-nnoremap <span class="token operator">&lt;</span>C-S-TAB<span class="token operator">></span> :tabprev<span class="token operator">&lt;</span>CR<span class="token operator">></span>
-<span class="token string">"关于tab的快捷键
-"</span> map tn :tabnext<span class="token operator">&lt;</span>cr<span class="token operator">></span>
-<span class="token string">" map tp :tabprevious&lt;cr>
-"</span> map td :tabnew .<span class="token operator">&lt;</span>cr<span class="token operator">></span>
-<span class="token string">" map te :tabedit
-"</span> map tc :tabclose<span class="token operator">&lt;</span>cr<span class="token operator">></span>
-<span class="token string">"窗口分割时,进行切换的按键热键需要连接两次,比如从下方窗口移动
-"</span>光标到上方窗口,需要<span class="token operator">&lt;</span>c-w<span class="token operator">></span><span class="token operator">&lt;</span>c-w<span class="token operator">></span>k,非常麻烦,现在重映射为<span class="token operator">&lt;</span>c-k<span class="token operator">></span>,切换的
-<span class="token string">"时候会变得非常方便.
-nnoremap &lt;C-h> &lt;C-w>h
-nnoremap &lt;C-j> &lt;C-w>j
-nnoremap &lt;C-k> &lt;C-w>k
-nnoremap &lt;C-l> &lt;C-w>l
-"</span>一些不错的映射转换语法（如果在一个文件中混合了不同语言时有用）
-nnoremap <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token number">1</span> :set <span class="token assign-left variable">filetype</span><span class="token operator">=</span>xhtml<span class="token operator">&lt;</span>CR<span class="token operator">></span>
-nnoremap <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token number">2</span> :set <span class="token assign-left variable">filetype</span><span class="token operator">=</span>css<span class="token operator">&lt;</span>CR<span class="token operator">></span>
-nnoremap <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token number">3</span> :set <span class="token assign-left variable">filetype</span><span class="token operator">=</span>javascript<span class="token operator">&lt;</span>CR<span class="token operator">></span>
-nnoremap <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token number">4</span> :set <span class="token assign-left variable">filetype</span><span class="token operator">=</span>php<span class="token operator">&lt;</span>CR<span class="token operator">></span>
-<span class="token string">" set fileformats=unix,dos,mac
-"</span> nmap <span class="token operator">&lt;</span>leader<span class="token operator">></span>fd :se <span class="token assign-left variable">fileformat</span><span class="token operator">=</span>dos<span class="token operator">&lt;</span>CR<span class="token operator">></span>
-<span class="token string">" nmap &lt;leader>fu :se fileformat=unix&lt;CR>
-"</span> use Ctrl+<span class="token punctuation">[</span>l<span class="token operator">|</span>n<span class="token operator">|</span>p<span class="token operator">|</span>cc<span class="token punctuation">]</span> to list<span class="token operator">|</span>next<span class="token operator">|</span>previous<span class="token operator">|</span>jump to count the result
-<span class="token string">" map &lt;C-x>l &lt;ESC>:cl&lt;CR>
-"</span> map <span class="token operator">&lt;</span>C-x<span class="token operator">></span>n <span class="token operator">&lt;</span>ESC<span class="token operator">></span>:cn<span class="token operator">&lt;</span>CR<span class="token operator">></span>
-<span class="token string">" map &lt;C-x>p &lt;ESC>:cp&lt;CR>
-"</span> map <span class="token operator">&lt;</span>C-x<span class="token operator">></span>c <span class="token operator">&lt;</span>ESC<span class="token operator">></span>:cc<span class="token operator">&lt;</span>CR<span class="token operator">></span>
-<span class="token string">" 让 Tohtml 产生有 CSS 语法的 html
-"</span> syntax/2html.vim，可以用:runtime<span class="token operator">!</span> syntax/2html.vim
-<span class="token builtin class-name">let</span> <span class="token assign-left variable">html_use_css</span><span class="token operator">=</span><span class="token number">1</span>
-<span class="token string">" Python 文件的一般设置，比如不要 tab 等
-autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
-autocmd FileType python map &lt;F12> :!python %&lt;CR>
-"</span> 选中状态下 Ctrl+c 复制
-vmap <span class="token operator">&lt;</span>C-c<span class="token operator">></span> <span class="token string">"+y
-"</span> 打开javascript折叠
-<span class="token builtin class-name">let</span> b:javascript_fold<span class="token operator">=</span><span class="token number">1</span>
-<span class="token string">" 打开javascript对dom、html和css的支持
-let javascript_enable_domhtmlcss=1
-"</span> 设置字典 ~/.vim/dict/文件的路径
-autocmd filetype javascript <span class="token builtin class-name">set</span> <span class="token assign-left variable">dictionary</span><span class="token operator">=</span><span class="token variable">$VIMFILES</span>/dict/javascript.dict
-autocmd filetype css <span class="token builtin class-name">set</span> <span class="token assign-left variable">dictionary</span><span class="token operator">=</span><span class="token variable">$VIMFILES</span>/dict/css.dict
-autocmd filetype php <span class="token builtin class-name">set</span> <span class="token assign-left variable">dictionary</span><span class="token operator">=</span><span class="token variable">$VIMFILES</span>/dict/php.dict
-<span class="token string">"-----------------------------------------------------------------
-"</span> plugin - bufexplorer.vim Buffers切换
-<span class="token string">" <span class="token entity" title="\b">\b</span>e 全屏方式查看全部打开的文件列表
-"</span> <span class="token punctuation">\</span>bv 左右方式查看   <span class="token punctuation">\</span>bs 上下方式查看
-<span class="token string">"-----------------------------------------------------------------
-"</span>-----------------------------------------------------------------
-<span class="token string">" plugin - taglist.vim  查看函数列表，需要ctags程序
-"</span> F4 打开隐藏taglist窗口
-<span class="token string">"-----------------------------------------------------------------
-if MySys() == "</span>windows<span class="token string">"                "</span> 设定windows系统中ctags程序的位置
-    <span class="token builtin class-name">let</span> Tlist_Ctags_Cmd <span class="token operator">=</span> <span class="token string">'"'</span><span class="token builtin class-name">.</span><span class="token variable">$VIMRUNTIME</span><span class="token builtin class-name">.</span><span class="token string">'/ctags.exe"'</span>
-elseif MySys<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"linux"</span>              <span class="token string">" 设定windows系统中ctags程序的位置
-    let Tlist_Ctags_Cmd = '/usr/bin/ctags'
-endif
-nnoremap &lt;silent>&lt;F4> :TlistToggle&lt;CR>
-let Tlist_Show_One_File = 1            "</span> 不同时显示多个文件的tag，只显示当前文件的
-<span class="token builtin class-name">let</span> Tlist_Exit_OnlyWindow <span class="token operator">=</span> <span class="token number">1</span>          <span class="token string">" 如果taglist窗口是最后一个窗口，则退出vim
-let Tlist_Use_Right_Window = 1         "</span> 在右侧窗口中显示taglist窗口
-<span class="token builtin class-name">let</span> <span class="token assign-left variable">Tlist_File_Fold_Auto_Close</span><span class="token operator">=</span><span class="token number">1</span>       <span class="token string">" 自动折叠当前非编辑文件的方法列表
-let Tlist_Auto_Open = 0
-let Tlist_Auto_Update = 1
-let Tlist_Hightlight_Tag_On_BufEnter = 1
-let Tlist_Enable_Fold_Column = 0
-let Tlist_Process_File_Always = 1
-let Tlist_Display_Prototype = 0
-let Tlist_Compact_Format = 1
-"</span>-----------------------------------------------------------------
-<span class="token string">" plugin - mark.vim 给各种tags标记不同的颜色，便于观看调式的插件。
-"</span> <span class="token punctuation">\</span>m  mark or unmark the word under <span class="token punctuation">(</span>or before<span class="token punctuation">)</span> the cursor
-<span class="token string">" <span class="token entity" title="\r">\r</span>  manually input a regular expression. 用于搜索.
-"</span> <span class="token punctuation">\</span>n  <span class="token function">clear</span> this mark <span class="token punctuation">(</span>i.e. the mark under the cursor<span class="token punctuation">)</span>, or <span class="token function">clear</span> all highlighted marks <span class="token builtin class-name">.</span>
-<span class="token string">" \*  当前MarkWord的下一个     \#  当前MarkWord的上一个
-"</span> <span class="token punctuation">\</span>/  所有MarkWords的下一个    <span class="token punctuation">\</span>?  所有MarkWords的上一个
-<span class="token string">"-----------------------------------------------------------------
-"</span>-----------------------------------------------------------------
-<span class="token string">" plugin - NERD_tree.vim 以树状方式浏览系统中的文件和目录
-"</span> :ERDtree 打开NERD_tree         :NERDtreeClose    关闭NERD_tree
-<span class="token string">" o 打开关闭文件或者目录         t 在标签页中打开
-"</span> T 在后台标签页中打开           <span class="token operator">!</span> 执行此文件
-<span class="token string">" p 到上层目录                   P 到根目录
-"</span> K 到第一个节点                 J 到最后一个节点
-<span class="token string">" u 打开上层目录                 m 显示文件系统菜单（添加、删除、移动操作）
-"</span> r 递归刷新当前目录             R 递归刷新当前根目录
-<span class="token string">"-----------------------------------------------------------------
-"</span> F3 NERDTree 切换
-map <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">3</span>></span> :NERDTreeToggle<span class="token operator">&lt;</span>CR<span class="token operator">></span>
-imap <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">3</span>></span> <span class="token operator">&lt;</span>ESC<span class="token operator">></span>:NERDTreeToggle<span class="token operator">&lt;</span>CR<span class="token operator">></span>
-<span class="token string">"-----------------------------------------------------------------
-"</span> plugin - NERD_commenter.vim   注释代码用的，
-<span class="token string">" [count],cc 光标以下count行逐行添加注释(7,cc)
-"</span> <span class="token punctuation">[</span>count<span class="token punctuation">]</span>,cu 光标以下count行逐行取消注释<span class="token punctuation">(</span><span class="token number">7</span>,cu<span class="token punctuation">)</span>
-<span class="token string">" [count],cm 光标以下count行尝试添加块注释(7,cm)
-"</span> ,cA 在行尾插入 /* */,并且进入插入模式。 这个命令方便写注释。
-<span class="token string">" 注：count参数可选，无则默认为选中行或当前行
-"</span>-----------------------------------------------------------------
-<span class="token builtin class-name">let</span> <span class="token assign-left variable">NERDSpaceDelims</span><span class="token operator">=</span><span class="token number">1</span>       <span class="token string">" 让注释符与语句之间留一个空格
-let NERDCompactSexyComs=1   "</span> 多行注释时样子更好看
-<span class="token string">"-----------------------------------------------------------------
-"</span> plugin - DoxygenToolkit.vim  由注释生成文档，并且能够快速生成函数标准注释
-<span class="token string">"-----------------------------------------------------------------
-let g:DoxygenToolkit_authorName="</span>Asins - asinsimple AT gmail DOT com<span class="token string">"
-let g:DoxygenToolkit_briefTag_funcName="</span><span class="token function">yes</span><span class="token string">"
-map &lt;leader>da :DoxAuthor&lt;CR>
-map &lt;leader>df :Dox&lt;CR>
-map &lt;leader>db :DoxBlock&lt;CR>
-map &lt;leader>dc a /*  */&lt;LEFT>&lt;LEFT>&lt;LEFT>
-"</span>-----------------------------------------------------------------
-<span class="token string">" plugin – ZenCoding.vim 很酷的插件，HTML代码生成
-"</span> 插件最新版：http://github.com/mattn/zencoding-vim
-<span class="token string">" 常用命令可看：http://nootn.com/blog/Tool/23/
-"</span>-----------------------------------------------------------------
-<span class="token string">"-----------------------------------------------------------------
-"</span> plugin – checksyntax.vim    JavaScript常见语法错误检查
-<span class="token string">" 默认快捷方式为 F5
-"</span>-----------------------------------------------------------------
-<span class="token builtin class-name">let</span> g:checksyntax_auto <span class="token operator">=</span> <span class="token number">0</span> <span class="token string">" 不自动检查
-"</span>-----------------------------------------------------------------
-<span class="token string">" plugin - NeoComplCache.vim    自动补全插件
-"</span>-----------------------------------------------------------------
-<span class="token builtin class-name">let</span> g:AutoComplPop_NotEnableAtStartup <span class="token operator">=</span> <span class="token number">1</span>
-<span class="token builtin class-name">let</span> g:NeoComplCache_EnableAtStartup <span class="token operator">=</span> <span class="token number">1</span>
-<span class="token builtin class-name">let</span> g:NeoComplCache_SmartCase <span class="token operator">=</span> <span class="token number">1</span>
-<span class="token builtin class-name">let</span> g:NeoComplCache_TagsAutoUpdate <span class="token operator">=</span> <span class="token number">1</span>
-<span class="token builtin class-name">let</span> g:NeoComplCache_EnableInfo <span class="token operator">=</span> <span class="token number">1</span>
-<span class="token builtin class-name">let</span> g:NeoComplCache_EnableCamelCaseCompletion <span class="token operator">=</span> <span class="token number">1</span>
-<span class="token builtin class-name">let</span> g:NeoComplCache_MinSyntaxLength <span class="token operator">=</span> <span class="token number">3</span>
-<span class="token builtin class-name">let</span> g:NeoComplCache_EnableSkipCompletion <span class="token operator">=</span> <span class="token number">1</span>
-<span class="token builtin class-name">let</span> g:NeoComplCache_SkipInputTime <span class="token operator">=</span> <span class="token string">'0.5'</span>
-<span class="token builtin class-name">let</span> g:NeoComplCache_SnippetsDir <span class="token operator">=</span> <span class="token variable">$VIMFILES</span><span class="token builtin class-name">.</span><span class="token string">'/snippets'</span>
-<span class="token string">" &lt;TAB> completion.
-inoremap &lt;expr>&lt;TAB> pumvisible() ? "</span><span class="token punctuation">\</span><span class="token operator">&lt;</span>C-n<span class="token operator">></span><span class="token string">" : "</span><span class="token punctuation">\</span><span class="token operator">&lt;</span>TAB<span class="token operator">></span><span class="token string">"
-"</span> snippets <span class="token function">expand</span> key
-imap <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>C-e<span class="token operator">></span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>neocomplcache_snippets_expand<span class="token punctuation">)</span>
-smap <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>C-e<span class="token operator">></span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>neocomplcache_snippets_expand<span class="token punctuation">)</span>
-<span class="token string">"-----------------------------------------------------------------
-"</span> plugin - matchit.vim   对%命令进行扩展使得能在嵌套标签和语句之间跳转
-<span class="token string">" % 正向匹配      g% 反向匹配
-"</span> <span class="token punctuation">[</span>% 定位块首     <span class="token punctuation">]</span>% 定位块尾
-<span class="token string">"-----------------------------------------------------------------
-"</span>-----------------------------------------------------------------
-<span class="token string">" plugin - vcscommand.vim   对%命令进行扩展使得能在嵌套标签和语句之间跳转
-"</span> SVN/git管理工具
-<span class="token string">"-----------------------------------------------------------------
-"</span>-----------------------------------------------------------------
-<span class="token string">" plugin – a.vim
-"</span>-----------------------------------------------------------------<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>另一套.vimrc <a href="https://github.com/bjjvvv/vim/blob/master/.vimrc">https://github.com/bjjvvv/vim/blob/master/.vimrc</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">set</span> nocp <span class="token string">" 非vi
-
-let mapleader = "</span><span class="token punctuation">\</span><span class="token punctuation">\</span>"
-lef g:mapleader <span class="token operator">=</span> <span class="token string">"<span class="token entity" title="\\">\\</span>"</span>
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">t_Co</span><span class="token operator">=</span><span class="token number">256</span>
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">path</span><span class="token operator">=</span>.,/usr/include,**
-
-<span class="token string">"解决编码问题
-if has("</span>multi_byte<span class="token string">")
-    "</span> UTF-8 编码
-    <span class="token builtin class-name">set</span> <span class="token assign-left variable">encoding</span><span class="token operator">=</span>utf-8
-    <span class="token builtin class-name">set</span> <span class="token assign-left variable">termencoding</span><span class="token operator">=</span>utf-8
-    <span class="token builtin class-name">set</span> <span class="token assign-left variable">fileencodings</span><span class="token operator">=</span>ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1 <span class="token string">" 编码
-    if v:lang =~? '^/(zh/)/|/(ja/)/|/(ko/)'
-        set ambiwidth=double
-    endif
-    if has("</span>win32<span class="token string">")
-        source <span class="token variable">$VIMRUNTIME</span>/delmenu.vim
-        source <span class="token variable">$VIMRUNTIME</span>/menu.vim
-        language messages zh_CN.utf-8
-    else
-        "</span>Ubuntu <span class="token number">14.04</span>下GVIM的字体间距过宽
-        <span class="token builtin class-name">set</span> <span class="token assign-left variable">guifont</span><span class="token operator">=</span>Meslo<span class="token punctuation">\</span> LG<span class="token punctuation">\</span> S<span class="token punctuation">\</span> DZ<span class="token punctuation">\</span> for<span class="token punctuation">\</span> Powerline<span class="token punctuation">\</span> <span class="token number">12</span>
-    endif
-<span class="token keyword">else</span>
-    echoerr <span class="token string">"Sorry, this version of (g)vim was not compiled with +multi_byte"</span>
-endif
-
-
-<span class="token string">"----------------------------------------Voudle
-if filereadable(expand("</span>~/.vim/.vimrc.bundles<span class="token string">"))
-source ~/.vim/.vimrc.bundles
-endif
-"</span>----------------------------------------Voudle
-
-<span class="token string">"-------------------------------语法
-syntax enable
-syntax enable "</span> 开启
-syntax on <span class="token string">" 语法高亮
-"</span>---------------------------------------
-
-<span class="token string">"----------------------------------------显示
-colorscheme solarized "</span> 设置主题
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">background</span><span class="token operator">=</span>dark
-<span class="token builtin class-name">set</span> cursorcolumn
-<span class="token builtin class-name">set</span> cursorline
-<span class="token builtin class-name">set</span> hls <span class="token string">" 匹配高亮
-set incsearch "</span> 增量搜索（实时匹配）
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">laststatus</span><span class="token operator">=</span><span class="token number">2</span> <span class="token string">" 状态栏
-set number "</span> 行号
-<span class="token builtin class-name">set</span> number <span class="token string">" 行号
-"</span><span class="token builtin class-name">set</span> relativenumber
-<span class="token builtin class-name">set</span> ruler <span class="token string">" 标尺
-set showcmd "</span> 显示当前输入命令
-<span class="token string">" set scrolloff=8 "</span> 屏幕上下保留
-<span class="token string">" 清屏同时清除高亮
-nnoremap &lt;silent> &lt;C-l>  :&lt;C-u>nohlsearch&lt;Cr>&lt;C-l>
-"</span>------------------------------------
-
-<span class="token string">"----------------------------------------缩进
-filetype plugin indent on
-set sw=4 "</span> 缩进4个空格
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">ts</span><span class="token operator">=</span><span class="token number">4</span> <span class="token string">" tab为4个字符
-set et "</span> tab替换为空格
-<span class="token builtin class-name">set</span> smarttab <span class="token string">" 删除tab的4个空格
-set nospell "</span> 拼写检查
-<span class="token builtin class-name">set</span> wrap
-<span class="token builtin class-name">set</span> nolbr
-<span class="token string">" set tw=78 "</span> 设置光标超过78的时候折行
-<span class="token string">" set lbr "</span> 不在单词中间折断
-<span class="token string">" set fo+=mB "</span> 汉字断行处理
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">backspace</span><span class="token operator">=</span>start,eol,indent<span class="token string">" 删除行尾，回车，缩进
-set whichwrap=b,s,h,l,&lt;,>,[,] "</span> 支持左右跨行移动
-<span class="token string">" set sm "</span> 括号配对
-<span class="token builtin class-name">set</span> cin <span class="token string">" 打开c/c++自动缩进
-"</span> <span class="token builtin class-name">set</span> ai <span class="token string">" 自动缩进
-"</span> 基于缩进或语法进行代码折叠
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">foldmethod</span><span class="token operator">=</span>indent
-<span class="token string">"set foldmethod=syntax
-"</span> 启动 <span class="token function">vim</span> 时关闭折叠代码
-<span class="token builtin class-name">set</span> nofoldenable
-<span class="token string">"---------------------------------------
-
-
-"</span>---------------------------------------map
-<span class="token string">" 用空格来当mapleader
-map &lt;Space> &lt;Leader>
-"</span> quick switch background color between dark and light
-map  <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>Leader<span class="token operator">></span>bg :let <span class="token operator">&amp;</span>background <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token operator">&amp;</span>background <span class="token operator">==</span> <span class="token string">"dark"</span>? <span class="token string">"light"</span> <span class="token builtin class-name">:</span> <span class="token string">"dark"</span> <span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
-<span class="token string">" 使 &lt;C-p> &lt;C-n> 支持历史过滤
-cnoremap &lt;C-p> &lt;Up>
-cnoremap &lt;C-n> &lt;Down>
-"</span> ex命令中%%转换为当前缓存文件目录路径
-cnoremap <span class="token operator">&lt;</span>expr<span class="token operator">></span> %% getcmdtype<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">':'</span> ? expand<span class="token punctuation">(</span><span class="token string">'%:h'</span><span class="token punctuation">)</span>.<span class="token string">'/'</span> <span class="token builtin class-name">:</span> <span class="token string">'%%'</span>
-nnoremap  <span class="token operator">&lt;</span>leader<span class="token operator">></span>cn  :<span class="token operator">&lt;</span>C-u<span class="token operator">></span>cnext<span class="token operator">&lt;</span>Cr<span class="token operator">></span> <span class="token string">" quicklist next
-nnoremap  &lt;leader>cp  :&lt;C-u>cprevious&lt;Cr> "</span> quicklist previous
-<span class="token string">"---------------------------
-
-
-"</span>-------------------------------实用
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">pastetoggle</span><span class="token operator">=</span><span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">5</span>></span>
-<span class="token builtin class-name">set</span> ignorecase <span class="token string">" 忽略忽略大小写
-set smartcase "</span> 和 ignorecase 一起智能
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">history</span><span class="token operator">=</span><span class="token number">200</span>
-<span class="token builtin class-name">set</span> <span class="token assign-left variable">wildignore</span><span class="token operator">+=</span>*/tmp/*,*.so,*.swp,*.zip,*.py<span class="token punctuation">[</span>oc<span class="token punctuation">]</span>     <span class="token string">" MacOSX/Linux
-"</span>-------------------------------------
-
-<span class="token string">"-------------------autocmd
-"</span> Delete trailing white space on save, useful <span class="token keyword">for</span> Python and CoffeeScript <span class="token punctuation">;</span><span class="token punctuation">)</span>
-func<span class="token operator">!</span> DeleteTrailingWS<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  exe <span class="token string">"normal mz"</span>
-  %s/<span class="token punctuation">\</span>s<span class="token punctuation">\</span>+$//ge
-  exe "normal `z<span class="token string">"
-endfunc
-autocmd BufWrite *.py :call DeleteTrailingWS()
-autocmd BufWrite *.coffee :call DeleteTrailingWS()
-"</span>-------------------------------------
-
-<span class="token string">"------------------------来自《Vim 实用技巧》
-"</span>runtime macros/matchit.vim
-<span class="token builtin class-name">set</span> hidden <span class="token string">" 缓存切换位保存不提醒
-if has("</span>autocmd<span class="token string">")
-    autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
-endif
-"</span> :Qargs 将quickfix 列表中的文件加入 args 列表中
-command<span class="token operator">!</span> -nargs<span class="token operator">=</span><span class="token number">0</span> -bar Qargs execute <span class="token string">'args'</span> QuickfixFilenames<span class="token punctuation">(</span><span class="token punctuation">)</span>
-function<span class="token operator">!</span> QuickfixFilenames<span class="token punctuation">(</span><span class="token punctuation">)</span>
-  <span class="token string">" Building a hash ensures we get each buffer only once
-  let buffer_numbers = &#123;&#125;
-  for quickfix_item in getqflist()
-    let bufnr = quickfix_item['bufnr']
-    "</span> Lines without files will appear as <span class="token assign-left variable">bufnr</span><span class="token operator">=</span><span class="token number">0</span>
-    <span class="token keyword">if</span> bufnr <span class="token operator">></span> <span class="token number">0</span>
-      <span class="token builtin class-name">let</span> buffer_numbers<span class="token punctuation">[</span>bufnr<span class="token punctuation">]</span> <span class="token operator">=</span> bufname<span class="token punctuation">(</span>bufnr<span class="token punctuation">)</span>
-    endif
-  endfor
-  <span class="token builtin class-name">return</span> join<span class="token punctuation">(</span>map<span class="token punctuation">(</span>values<span class="token punctuation">(</span>buffer_numbers<span class="token punctuation">)</span>, <span class="token string">'fnameescape(v:val)'</span><span class="token punctuation">))</span>
-endfunction
-
-<span class="token string">" makes * and # work on visual mode too.
-function! s:VSetSearch(cmdtype)
-  let temp = @s
-  norm! gv"</span>sy
-  <span class="token builtin class-name">let</span> @/ <span class="token operator">=</span> <span class="token string">'\V'</span> <span class="token builtin class-name">.</span> substitute<span class="token punctuation">(</span>escape<span class="token punctuation">(</span>@s, a:cmdtype.<span class="token string">'\'</span><span class="token punctuation">)</span>, <span class="token string">'\n'</span>, <span class="token string">'\\n'</span>, <span class="token string">'g'</span><span class="token punctuation">)</span>
-  <span class="token builtin class-name">let</span> @s <span class="token operator">=</span> temp
-endfunction
-
-xnoremap * :<span class="token operator">&lt;</span>C-u<span class="token operator">></span>call <span class="token operator">&lt;</span>SID<span class="token operator">></span>VSetSearch<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>/<span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>@/<span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
-xnoremap <span class="token comment"># :&lt;C-u>call &lt;SID>VSetSearch('?')&lt;CR>?&lt;C-R>=@/&lt;CR>&lt;CR></span>
-
-<span class="token string">" recursively vimgrep for word under cursor or selection if you hit leader-star
-nmap &lt;leader>* :execute 'noautocmd vimgrep /\V' . substitute(escape(expand("</span><span class="token operator">&lt;</span>cword<span class="token operator">></span><span class="token string">"), '\'), '<span class="token entity" title="\n">\n</span>', '<span class="token entity" title="\\">\\</span>n', 'g') . '/ **'&lt;CR>
-vmap &lt;leader>* :&lt;C-u>call &lt;SID>VSetSearch('/')&lt;CR>:execute 'noautocmd vimgrep /' . @/ . '/ **'&lt;CR>
-
-"</span>-------------------------------------<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="依赖配置"><a class="header-anchor" href="#依赖配置"></a>依赖配置</h2>
-<h3 id="Vim使用molokai配色"><a class="header-anchor" href="#Vim使用molokai配色"></a><a href="http://www.jianshu.com/p/418ec70e7aed">Vim使用molokai配色</a></h3>
-<ul>
-<li>复制以下全部命令，到命令行执行</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 下载molokai主题(https://github.com/tomasr/molokai)</span>
-<span class="token function">wget</span> https://github.com/tomasr/molokai/archive/master.zip --no-check-certificate
-<span class="token function">unzip</span> master.zip
-<span class="token comment"># 将molokai.vim拷贝到 ~/.vim/colors/</span>
-<span class="token function">cp</span> molokai-master/colors/molokai.vim  ~/.vim/colors/
-<span class="token comment"># 若无~/.vim/，或无~/.vim/colors/，则mkdir他们</span>
-
-<span class="token comment"># 在 ~/.vimrc 中添加：colorscheme molokai</span>
-<span class="token comment"># 由于上述.vimrc文件中有这下句，故此处注释掉</span>
-<span class="token comment"># echo 'colorscheme molokai' >> ~/.vimrc</span>
-
-<span class="token comment"># 扫尾</span>
-<span class="token function">rm</span> master.zip
-<span class="token function">rm</span> molokai-master -rf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>tmux与vim配色冲突：在tmux里进入vim，文字自带不透明纯黑底色，为无文字处的底色是<code>dark</code>色。为了使得文字也变成透明底色，需设置<code>vim ~/.vim/colors/molokai.vim  </code>，将全文中，所有<code>hi Normal ... ctermbg=xxx</code>改为<code>hi Normal ... ctermbg=NONE    </code>。这样修改，对macvim没有干扰。</li>
-</ul>
-<h2 id="功效"><a class="header-anchor" href="#功效"></a>功效</h2>
-<p>此配置可解决原生（.vimrc是空的）vim的以下问题：</p>
-<ul>
-<li>输入模式下，按上下左右键会出<code>A</code> <code>B</code>乱码，无法上下左右移动光标</li>
-<li><code>cmd+V</code>黏贴（mac客户端的操作），会在粘完之后，出现<code>A</code> <code>B</code>乱码</li>
-</ul>
-<h1 id="从服务器VIM-复制-剪切到本机系统剪贴板"><a class="header-anchor" href="#从服务器VIM-复制-剪切到本机系统剪贴板"></a>从服务器VIM 复制/剪切到本机系统剪贴板</h1>
-<p><a href="https://hiberabyss.github.io/2017/11/30/vim-remote-copy/">参考</a></p>
-<h2 id="安装clipper"><a class="header-anchor" href="#安装clipper"></a>安装clipper</h2>
-<ul>
-<li>
-<p>在个人电脑 安装clipper，MacOS使用  <code>brew install clipper</code> 安装</p>
-</li>
-<li>
-<p>用brew将clipper为开机自启 <code>brew services start clipper</code></p>
-</li>
-<li>
-<p>检查clipper否正常启动</p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> -ef <span class="token operator">|</span> <span class="token function">grep</span> clipper
-<span class="token comment"># 返回 502   463     1   0  3:07PM ??         0:00.09 /usr/local/opt/clipper/bin/clipper</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<h2 id="简单演示"><a class="header-anchor" href="#简单演示"></a>简单演示</h2>
-<ul>
-<li>clipper启动后，通过下面的命令连接到远程机器：</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> 用户名@网址或ip -R <span class="token number">8377</span>:localhost:8377<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><code>-R 服务器端口:localhost:本机端口</code>其含义是在ssh时，将此服务器端口将转发到此本地端口。</p>
-<p>clipper默认从<code>8377</code>读取远程传来的文本，将其写入到本机系统剪切板。</p>
-<ul>
-<li>确认远程机器上安装有 <code>nc</code></li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">nc</span>
-<span class="token comment"># 返回</span>
-<span class="token comment"># usage: nc [-46AacCDdEFhklMnOortUuvz] [-K tc] [-b boundif] [-i interval] [-p source_port] # [--apple-delegate-pid pid] [--apple-delegate-uuid uuid]</span>
-<span class="token comment">#     [-s source_ip_address] [-w timeout] [-X proxy_version]</span>
-<span class="token comment">#     [-x proxy_address[:port]] [hostname] [port[s]]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>简单演示</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> hello,world <span class="token operator">|</span> <span class="token function">timeout</span> <span class="token number">0.1</span> <span class="token function">nc</span> localhost <span class="token number">8377</span> <span class="token comment"># 服务器端口</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>则 “hello,world” 字符转已经成功复制到本机的剪贴板了，可以<code>command+v</code>贴出。</p>
-<ul>
-<li><code>timeout 0.1</code>表示0.1秒内发出去，超时就结束连接，不管对面收没收到</li>
-</ul>
-<p>若不加此参数，在我用的nc版本</p>
-<pre class="line-numbers language-none"><code class="language-none">OpenBSD netcat (Debian patchlevel 1.187-1ubuntu0.1)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>命令行下敲完<code>echo hello,world | nc localhost 8377 </code>，会一致等待，而不允许输入下一行命令，除非ctrl+C结束。</p>
-<ul>
-<li>配置ssh设置</li>
-</ul>
-<p>为免去每次登录加 <code>-R 8377:localhost:8377</code> 参数，可修改 <code>~/.ssh/config</code> 文件，其中每个Host配置下加一句<code>RemoteForward 8377 localhost:8377</code>（<code>RemoteForward 服务器端口 localhost:本机端口</code>）。完整的一个Host配置例如：</p>
-<pre class="line-numbers language-none"><code class="language-none">Host 别名
-    HostName 网址或ip
-    Port 端口号
-    User 用户名
-    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
-    RemoteForward 8377 localhost:8377<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="在远程主机的VIM里复制内容"><a class="header-anchor" href="#在远程主机的VIM里复制内容"></a>在远程主机的VIM里复制内容</h2>
-<ul>
-<li>我们可以利用 <code>:[range]w[rite] [++opt] !&#123;cmd&#125;</code> 来实现文件内容的复制：
-<ul>
-<li>复制当前行：在 VIM 中执行 <code>:.w !nc localhost 8377</code></li>
-<li>复制选中的行：选中要复制的行后，执行 <code>:'&lt;,'&gt;w !nc localhost 8377</code> ( vy选中后，进入命令行模式后 VIM 会自动帮忙填充 <code>'&lt;,'&gt;</code>)</li>
-<li>复制整个文件：在 VIM 中执行 <code>:%w !nc localhost 8377</code></li>
-<li>复制 VIM 默认 register 的内容：在 VIM 中执行 <code>:call system('nc localhost 8377', @&quot;)</code></li>
-</ul>
-</li>
-<li>为方便起见，在<code>~/.vimrc</code>加入</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">&quot; 从服务器的vim里复制&#x2F;剪切文字到本地电脑的剪切板
-&quot; v,y复制&#x2F;v,d剪切&#x2F;(数字)dd 整行剪切，发送到笔记本的系统剪切板，但不清空vim的寄存器
-vmap y y:call system(&#39;timeout 0.1 nc localhost 8377&#39;, @&quot;)&lt;CR&gt;
-vmap d d:call system(&#39;timeout 0.1 nc localhost 8377&#39;, @&quot;)&lt;CR&gt;
-nmap dd dd:call system(&#39;timeout 0.1 nc localhost 8377&#39;, @&quot;)&lt;CR&gt;
-&quot; ctrl+a 整个文件发送到笔记本的系统剪切板
-map &lt;C-a&gt; :%w !timeout 0.1 nc localhost 8377&lt;CR&gt;&lt;CR&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>其中<code>@&quot;</code>表示vim的<code>&quot;</code>剪切板中的内容，在原生的vim中，每次按<code>y</code> <code>yy</code> <code>d</code> <code>dd</code> <code>c</code> <code>cc</code>操作，都会写到这个剪切板</p>
-<h2 id="报错"><a class="header-anchor" href="#报错"></a>报错</h2>
-<h3 id="服务器上端口占用"><a class="header-anchor" href="#服务器上端口占用"></a>服务器上端口占用</h3>
-<ul>
-<li>症状</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span>  user@host -R <span class="token number">8377</span>:localhost:8377
-<span class="token comment"># 返回如下</span>
-Warning: remote port forwarding failed <span class="token keyword">for</span> listen port <span class="token number">8377</span>   <span class="token comment"># 服务器上8377端口占用</span>
-Welcome to Ubuntu <span class="token number">16.04</span>.4 LTS <span class="token punctuation">(</span>GNU/Linux <span class="token number">4.4</span>.0-112-generic x86_64<span class="token punctuation">)</span>
-
- * Documentation:  https://help.ubuntu.com
- * Management:     https://landscape.canonical.com
- * Support:        https://ubuntu.com/advantage
-
-  System information as of Fri Aug <span class="token number">10</span> <span class="token number">17</span>:19:13 CST <span class="token number">2018</span>
-
-  System load:  <span class="token number">4.79</span>              Processes:              <span class="token number">819</span>
-  Usage of /:   <span class="token number">55.2</span>% of <span class="token number">3</span>.52TB   Users logged in:        <span class="token number">11</span>
-  Memory usage: <span class="token number">61</span>%               IP address <span class="token keyword">for</span> em1:     <span class="token number">192.168</span>.245.157
-  Swap usage:   <span class="token number">3</span>%                IP address <span class="token keyword">for</span> docker0: <span class="token number">172.17</span>.0.1
-
-  Graph this data and manage this system at:
-    https://landscape.canonical.com/
-
-<span class="token number">176</span> packages can be updated.
-<span class="token number">105</span> updates are security updates.
-
-*** System restart required ***
-Last login: Fri Aug <span class="token number">10</span> <span class="token number">17</span>:16:27 <span class="token number">2018</span> from <span class="token number">117.43</span>.160.228<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>登录后，若强行在vim中进行v-y, v-d, dd操作，本机剪切板收不到发来的文字，服务器端会在vim的底栏返回</p>
-<pre class="line-numbers language-none"><code class="language-none">:call system(&#39;nc localhost 8377&#39;, @&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>一直卡在这里（这个操作阻塞了），做不了任何vim的操作（<code>:q</code>也不行），需要<code>ctrl+c</code>才能结束恢复各种vim操作。</p>
-<ul>
-<li>
-<p>解决方法</p>
-<p>在服务器上，用sudo权限（若不用sudo权限则看不完全）</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">lsof</span> -i:8377 <span class="token comment"># 返回占用8377端口的进程，取出其pid</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>其返回如下</p>
-<pre class="line-numbers language-none"><code class="language-none">COMMAND   PID    USER   FD   TYPE  DEVICE SIZE&#x2F;OFF NODE NAME
-sshd    17188 myusername    9u  IPv6 4032419      0t0  TCP ip6-localhost:8377 (LISTEN)
-sshd    17188 myusername   10u  IPv4 4032420      0t0  TCP localhost:8377 (LISTEN)
-sshd    17188 myusername   14u  IPv4 4051809      0t0  TCP localhost:8377-&gt;localhost:40802 (CLOSE_WAIT)
-sshd    17188 myusername   17u  IPv4 4058793      0t0  TCP localhost:8377-&gt;localhost:40828 (CLOSE_WAIT)
-sshd    17188 myusername   18u  IPv4 4054593      0t0  TCP localhost:8377-&gt;localhost:40832 (CLOSE_WAIT)
-sshd    17188 myusername   19u  IPv4 4054699      0t0  TCP localhost:8377-&gt;localhost:40840 (CLOSE_WAIT)
-sshd    17188 myusername   20u  IPv4 4054757      0t0  TCP localhost:8377-&gt;localhost:40848 (CLOSE_WAIT)
-sshd    17188 myusername   21u  IPv4 4054765      0t0  TCP localhost:8377-&gt;localhost:40850 (CLOSE_WAIT)
-sshd    17188 myusername   22u  IPv4 4054894      0t0  TCP localhost:8377-&gt;localhost:40864 (CLOSE_WAIT)
-sshd    17188 myusername   23u  IPv4 4057945      0t0  TCP localhost:8377-&gt;localhost:40874 (CLOSE_WAIT)
-sshd    17188 myusername   24u  IPv4 4058045      0t0  TCP localhost:8377-&gt;localhost:40882 (CLOSE_WAIT)
-sshd    17188 myusername   25u  IPv4 4063283      0t0  TCP localhost:8377-&gt;localhost:40892 (CLOSE_WAIT)
-sshd    17188 myusername   26u  IPv4 4063384      0t0  TCP localhost:8377-&gt;localhost:40902 (CLOSE_WAIT)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>杀进程</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 <span class="token operator">&lt;</span>其pid<span class="token operator">></span> <span class="token comment"># 上述案例pid=17188</span>
-<span class="token function">sudo</span> <span class="token function">lsof</span> -i:8377
-<span class="token comment"># 若返回空，说明杀干净了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>然后需退出服务器，重新登录服务器，进入vim，测试一下v-y, v-d, dd操作，本机剪切板能收到发来的文字，则成功解决。</p>
-</li>
-</ul>
 ]]></content>
       <categories>
         <category>器</category>
