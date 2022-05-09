@@ -2021,32 +2021,6 @@ quota: Cannot open quotafile &#x2F;&#x2F;quota.user: No such file or directory<s
       </categories>
   </entry>
   <entry>
-    <title>Mac按键符号</title>
-    <url>/posts/39e47bde/</url>
-    <content><![CDATA[<h2 id="Mac符号"><a class="header-anchor" href="#Mac符号"></a>Mac符号</h2>
-<p><a href="https://blog.csdn.net/libing_zeng/article/details/73201264">参考</a></p>
-<p>⌘: Command<br>
-⇧: Shift<br>
-⌥: Option<br>
-⌃: Control<br>
-↩︎: Return/Enter<br>
-⌫: Delete<br>
-⌦: 向前删除键（Fn+Delete）<br>
-⇞: Page Up（Fn+↑）<br>
-⇟: Page Down（Fn+↓）<br>
-Home: Fn + ←<br>
-End: Fn + →<br>
-⇥: 右制表符（Tab键）<br>
-⇤: 左制表符（Shift+Tab）<br>
-⎋: Escape (Esc)</p>
-<p><img data-src="/posts/39e47bde/20170614103620686.png" alt></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
     <title>Mac上使用locate</title>
     <url>/posts/9e0a1c71/</url>
     <content><![CDATA[<h1 id="系统级locate"><a class="header-anchor" href="#系统级locate"></a>系统级locate</h1>
@@ -2180,6 +2154,32 @@ Try &#39;rm --help&#39; for more information.<span aria-hidden="true" class="lin
 <li><code>-d ~/.locate.db</code> : 指定数据库文件</li>
 </ul>
 <p>之后, 输入<code>mylocate</code> 则只搜 <code>$HOME</code> 里的文件.</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>Mac按键符号</title>
+    <url>/posts/39e47bde/</url>
+    <content><![CDATA[<h2 id="Mac符号"><a class="header-anchor" href="#Mac符号"></a>Mac符号</h2>
+<p><a href="https://blog.csdn.net/libing_zeng/article/details/73201264">参考</a></p>
+<p>⌘: Command<br>
+⇧: Shift<br>
+⌥: Option<br>
+⌃: Control<br>
+↩︎: Return/Enter<br>
+⌫: Delete<br>
+⌦: 向前删除键（Fn+Delete）<br>
+⇞: Page Up（Fn+↑）<br>
+⇟: Page Down（Fn+↓）<br>
+Home: Fn + ←<br>
+End: Fn + →<br>
+⇥: 右制表符（Tab键）<br>
+⇤: 左制表符（Shift+Tab）<br>
+⎋: Escape (Esc)</p>
+<p><img data-src="/posts/39e47bde/20170614103620686.png" alt></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -7554,308 +7554,15 @@ ack --nogroup --output&#x3D;&#39;$&amp;:$_&#39; --max-count&#x3D;1000 --type-set
       </categories>
   </entry>
   <entry>
-    <title>vscode安装配置</title>
-    <url>/posts/9a4ae6c6/</url>
-    <content><![CDATA[<h1 id="vscode安装配置"><a class="header-anchor" href="#vscode安装配置"></a>vscode安装配置</h1>
-<h2 id="拓展安装方法"><a class="header-anchor" href="#拓展安装方法"></a>拓展安装方法</h2>
-<ul>
-<li>
-<p><code>⇧⌘P</code> -<code>Extentions: Install Extentions</code> - 输入<code>插件名称</code> - <code>install</code></p>
-</li>
-<li>
-<p>或在左侧拓展商店栏，输入<code>插件名称</code> - <code>install</code></p>
-</li>
-</ul>
-<p><img data-src="/posts/9a4ae6c6/img1.png" alt></p>
-<h2 id="语言"><a class="header-anchor" href="#语言"></a>语言</h2>
-<p><code>⇧⌘P</code> -<code>Configure Display Language</code> -</p>
-<p><img data-src="/posts/9a4ae6c6/2019-05-23_15.54.53.png" alt></p>
-<ul>
-<li>
-<p>选择已有语言</p>
-<p><img data-src="/posts/9a4ae6c6/2019-05-23_15.54.43.png" alt></p>
-</li>
-<li>
-<p><code>install other language</code> -左侧拓展商店栏输入 <code>Chinese (Simplified) Language Pack for Visual Studio Code</code> - <code>install</code></p>
-</li>
-</ul>
-<h2 id="配色与字体"><a class="header-anchor" href="#配色与字体"></a>配色与字体</h2>
-<h3 id="预备"><a class="header-anchor" href="#预备"></a>预备</h3>
-<p>安装插件<code>Gruvbox Themes</code></p>
-<p><a href="https://github.com/powerline/fonts">Powerline字体安装</a></p>
-<ul>
-<li>
-<p>mac:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># clone</span>
-<span class="token function">git</span> clone https://github.com/powerline/fonts.git --depth<span class="token operator">=</span><span class="token number">1</span>
-<span class="token comment"># install</span>
-<span class="token builtin class-name">cd</span> fonts
-./install.sh
-<span class="token comment"># clean-up a bit</span>
-<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
-<span class="token function">rm</span> -rf fonts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>linux:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> fonts-powerline<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-<p><a href="https://glitchbone.github.io/vscode-base16-term/#/">终端配色参考</a></p>
-<h3 id="配置"><a class="header-anchor" href="#配置"></a>配置</h3>
-<p><code>⌘,</code> ，在<code>用户</code>设置中</p>
-<p><img data-src="/posts/9a4ae6c6/2019-05-23_16.04.11-8598764.png" alt></p>
-<p>以打开<code>settings.json</code>，添加以下设置</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
-  ...
-    <span class="token comment">// 终端字体</span>
-    <span class="token property">"editor.fontFamily"</span><span class="token operator">:</span> <span class="token string">"Meslo LG S DZ for Powerline"</span><span class="token punctuation">,</span>
-    <span class="token comment">// 终端配色</span>
-    <span class="token property">"workbench.colorCustomizations"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token property">"terminal.background"</span><span class="token operator">:</span><span class="token string">"#28282a"</span> <span class="token punctuation">,</span>         <span class="token property">"terminal.foreground"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminalCursor.background"</span><span class="token operator">:</span><span class="token string">"#3b3b3b"</span><span class="token punctuation">,</span>   <span class="token property">"terminalCursor.foreground"</span><span class="token operator">:</span><span class="token string">"#A5A2A2"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiBlack"</span><span class="token operator">:</span><span class="token string">"#28282a"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightBlack"</span><span class="token operator">:</span><span class="token string">"#a2a2a2"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiWhite"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightWhite"</span><span class="token operator">:</span><span class="token string">"#feffff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiRed"</span><span class="token operator">:</span><span class="token string">"#c91b00"</span><span class="token punctuation">,</span>             <span class="token property">"terminal.ansiBrightRed"</span><span class="token operator">:</span><span class="token string">"#ff6d67"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiYellow"</span><span class="token operator">:</span><span class="token string">"#cecc4d"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightYellow"</span><span class="token operator">:</span><span class="token string">"#fefb67"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiGreen"</span><span class="token operator">:</span><span class="token string">"#89b560"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightGreen"</span><span class="token operator">:</span><span class="token string">"#74dd74"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiCyan"</span><span class="token operator">:</span><span class="token string">"#61aaab"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightCyan"</span><span class="token operator">:</span><span class="token string">"#5ffdff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiBlue"</span><span class="token operator">:</span><span class="token string">"#5168d5"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightBlue"</span><span class="token operator">:</span><span class="token string">"#6871ff"</span><span class="token punctuation">,</span>
-        <span class="token property">"terminal.ansiMagenta"</span><span class="token operator">:</span><span class="token string">"#c930c7"</span><span class="token punctuation">,</span>         <span class="token property">"terminal.ansiBrightMagenta"</span><span class="token operator">:</span><span class="token string">"#ff76ff"</span><span class="token punctuation">,</span>
-    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
-        <span class="token comment">//  配色</span>
-    <span class="token property">"workbench.colorTheme"</span><span class="token operator">:</span> <span class="token string">"Gruvbox Dark (Medium)"</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上文的<code>// ...</code>注释可以黏贴到<code>settings.json</code>中，vscode支持注释</p>
-<h2 id="终端"><a class="header-anchor" href="#终端"></a>终端</h2>
-<h3 id="内部终端-integrated-terminal"><a class="header-anchor" href="#内部终端-integrated-terminal"></a>内部终端(integrated terminal)</h3>
-<pre class="line-numbers language-⌃`" data-language="⌃`"><div class="caption"><span>```以开启内部终端</span></div><code class="language-⌃`">
-### 外部终端(external terminal)
-
-* 配置
-
-&#96;⌘,&#96; ，在&#96;用户&#96;设置中，以打开&#96;settings.json&#96;，添加以下设置
-
-
-&#96;&#96;&#96;json
-&#123;
-  ...
-  &quot;terminal.external.osxExec&quot;: &quot;iTerm.app&quot;,
-&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>使用：<code>⇧⌘C</code>以，会弹出一个外部<code>iTerm2</code>窗口</li>
-</ul>
-<h2 id="命令行工具"><a class="header-anchor" href="#命令行工具"></a>命令行工具</h2>
-<p><a href="https://code.visualstudio.com/docs/editor/integrated-terminal">https://code.visualstudio.com/docs/editor/integrated-terminal</a></p>
-<p><code>⇧⌘P</code> - <code>Shell Command: install 'code' command in PATH</code></p>
-<p><img data-src="/posts/9a4ae6c6/img2.png" alt></p>
-<p>使用方法：</p>
-<ul>
-<li>在命令中输入如下命令，则会用vscode-insiders打开之</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">code-insiders 文件名/文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>在命令中输入如下命令，则会用vscode打开之</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">code 文件名&#x2F;文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>上述命令适用于：本地内置终端、本地外部终端、远程开发时内置终端、<s>远程开发时的本地外部终端</s></p>
-<h2 id="远程开发"><a class="header-anchor" href="#远程开发"></a>远程开发</h2>
-<h3 id="安装插件"><a class="header-anchor" href="#安装插件"></a>安装插件</h3>
-<p>安装插件 <code>Remote Developement</code> ，目前(2019-5-23)只支持 <a href="https://code.visualstudio.com/insiders/">VSCode-Insiders</a>，不支持<a href="https://code.visualstudio.com/Download">正式版VSCode</a></p>
-<h3 id="配置本地的ssh-config"><a class="header-anchor" href="#配置本地的ssh-config"></a>配置本地的ssh config</h3>
-<p>请在本地<code>~/.ssh/config</code>或<code>/etc/ssh/ssh_config</code>中写好远程服务器的连接配置</p>
-<p>vscode的<code>Remote Developement</code> 只支持密钥登录，也支持密码登录</p>
-<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
-<p>点左下角<code>&gt;&lt;</code>按钮</p>
-<p><img data-src="/posts/9a4ae6c6/2019-05-23_16.27.00.png" alt></p>
-<p><img data-src="/posts/9a4ae6c6/2019-05-23_16.27.05.png" alt></p>
-<p><img data-src="/posts/9a4ae6c6/2019-05-23_16.27.13.png" alt></p>
-<h3 id="编辑远程文件-夹"><a class="header-anchor" href="#编辑远程文件-夹"></a>编辑远程文件(夹)</h3>
-<p><img data-src="/posts/9a4ae6c6/2019-05-23_16.32.52.png" alt></p>
-<p>关于远程开发的vscode命令行工具</p>
-<ul>
-<li>
-<p>vscode连接服务器后，会在服务器自动安装vscode远程开发的服务端程序，并运行之</p>
-<ul>
-<li>安装路径为<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code></li>
-<li>每当这台本机和这台服务器重新连接，就按照这个hash码，加载安装路径下，之前缓存的编辑器、内置终端、等模块的状态</li>
-<li>故<strong>重新连接服务器，编辑器、内置终端、等模块的状态均保留</strong></li>
-</ul>
-</li>
-<li>
-<p>vscode连接服务器后，在内置终端可使用   <code>code(-insiders)</code>  命令打开远程文件(夹)。</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> code<span class="token punctuation">(</span>-insiders<span class="token punctuation">)</span>
-<span class="token comment"># 返回</span>
-<span class="token comment"># ~/.vscode-remote/bin/服务器的hash码/bin/code(-insiders)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>但远程开发， <strong>在 本地外部终端 输入  <code>code(-insiders)</code>，无法 打开远程文件</strong></p>
-</li>
-</ul>
-<h3 id="常见报错与处理"><a class="header-anchor" href="#常见报错与处理"></a>常见报错与处理</h3>
-<h4 id="重新连接失败"><a class="header-anchor" href="#重新连接失败"></a>重新连接失败</h4>
-<p>若之前连接过一台服务器，再次连它则报错，可杀死之前服务器端运行的 vscode 进程：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> vscode <span class="token operator">|</span> <span class="token function">grep</span> <span class="token environment constant">$USER</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">myusername     2382  0.0  0.0   4504   780 ?        S    01:33   0:00 sh &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;server.sh --port&#x3D;0
-myusername     2390  0.0  0.0 1307344 62116 ?       Sl   01:33   0:11 &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;node &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;out&#x2F;remoteExtensionHostAgent.js --port&#x3D;0
-myusername     6066  0.0  0.0  15976   972 pts&#x2F;20   S+   16:41   0:00 grep --color vscode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<p>杀死所有<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code>路径下的进程</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 教程编号 <span class="token comment"># 如上一框的 2382 2390</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后vscode重新连接服务器即可连接成功</p>
-<h4 id="wget失败"><a class="header-anchor" href="#wget失败"></a>wget失败</h4>
-<p>服务器上请不要给用alias覆盖<code>wget</code>命令，如</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wget</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这样的alias会造成连接后，会报错曰，服务器上无法用wget下载vscode远程开发的服务器端</p>
-<p>此alias改为</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wgetc</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后vscode重新连接服务器即可连接成功</p>
-<h2 id="snippet"><a class="header-anchor" href="#snippet"></a>snippet</h2>
-<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">教程</a></p>
-<p>写入</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">&#123;</span>
-    <span class="token string">"《snippet_name》"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
-        <span class="token string">"prefix"</span><span class="token builtin class-name">:</span> <span class="token string">"《snippet_toggle》"</span>,
-        <span class="token string">"body"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
-            <span class="token string">"《insert_code》"</span>,
-        <span class="token punctuation">]</span>,
-        <span class="token string">"description"</span><span class="token builtin class-name">:</span> <span class="token string">"《prompt》"</span>
-    <span class="token punctuation">&#125;</span>,
-    <span class="token punctuation">..</span>.
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>
-<p>json不支持跨行文本，即不支持形如</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>"asdasd
-asdasd
-asdas
-" <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>请写成</p>
-<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
-    <span class="token string">"asda ad s ad as d"</span><span class="token punctuation">,</span>
-    <span class="token string">"asd  asd  sad as "</span><span class="token punctuation">,</span>
-<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>json中的文本只能用双引号，不能用单引号</p>
-</li>
-<li>
-<p><code>body</code>中的特殊字符</p>
-<ul>
-<li>转义字符</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>原文本</th>
-<th>代码文本</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&quot;</code></td>
-<td><code>\&quot;</code></td>
-</tr>
-<tr>
-<td><code>$</code></td>
-<td><code>\\$</code></td>
-</tr>
-<tr>
-<td><code>\</code></td>
-<td><code>\\</code></td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>插入后，按<code>⇥</code>、<code>⇧⇥</code>去往下、前一个可编辑区域；可编辑区域的写法</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">&quot;body&quot;: [
-    &quot;asda $&#123;1:【可编辑区域的提示】&#125; s ad $&#123;2:另一个可编辑区域&#125; as d&quot;,
-    &quot;asd $&#123;1:同步可编辑区域&#125; as &quot;,
-    &quot;asd $&#123;3&#125;&quot;，
-],<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ul>
-<h2 id="设置同步插件"><a class="header-anchor" href="#设置同步插件"></a>设置同步插件</h2>
-<p>为方便使得多个设备可以共用一份配置，可按照vscode插件 “settings sync”，它用gist同步你的vscode的各种设置，包括本地的全局设置、快捷键、snippet、所安装插件及版本。</p>
-<h3 id="自动配置方法"><a class="header-anchor" href="#自动配置方法"></a>自动配置方法</h3>
-<ul>
-<li>清除已有配置 : 初次配置无需此步, 若要更新配置则需要此步. 按 <code>⇧⌘P</code> - <code>Sync: 重置扩展设置</code></li>
-</ul>
-<p><img data-src="/posts/9a4ae6c6/image-20200316184531147.png" alt="image-20200316184531147"></p>
-<p>​	所谓重置, 即清空&quot;settings sync&quot;现有的配置. 重置后,  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  会看见以下页面全空</p>
-<p><img data-src="/posts/9a4ae6c6/image-20200509201718848.png" alt="image-20200509201718848"></p>
-<ul>
-<li>
-<p>按 <code>⇧⌥U</code> , 则会弹出如下页面, 点 <code>login with github</code></p>
-<p><img data-src="/posts/9a4ae6c6/image-20200509201635555.png" alt="image-20200509201635555"></p>
-</li>
-</ul>
-<p><img data-src="/posts/9a4ae6c6/image-20200509202018164.png" alt="image-20200509202018164"></p>
-<p>然后点 <code>信任github.com这个域名</code> .</p>
-<p>然后会浏览器弹出如下网页,</p>
-<p><img data-src="/posts/9a4ae6c6/ScreenShot%202020-05-20%2021.11.23.png" alt="ScreenShot 2020-05-20 21.11.23"></p>
-<p>然后会看跳转如下页面, 此时可关闭此网页,</p>
-<p><img data-src="/posts/9a4ae6c6/image-20200509202211987.png" alt="image-20200509202211987"></p>
-<p>而vscode里弹出此标签页, 这意味着当前浏览器默认的github账号中, 创建了一个新的token, 可用于创建gist来同步vscode配置</p>
-<p><img data-src="/posts/9a4ae6c6/image-20200509202252574.png" alt="image-20200509202252574"></p>
-<p>此时  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  的插件配置变成,</p>
-<p><img data-src="/posts/9a4ae6c6/image-20200509202418088.png" alt="image-20200509202418088"></p>
-<p>这说明当前浏览器默认的github账号中, 创建了一个新的token,  可用于创建gist来同步vscode配置, 但是这个token在 github 的配置中看不见:</p>
-<ul>
-<li><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>, 显示如下</li>
-</ul>
-<pre><code>![image-20200509203832966](assets/image-20200509203832966.png)
-</code></pre>
-<p>此时再按 <code>⇧⌥U</code>, 则会在此github账号, 自动创建一个新gist, 然后询问是否上传当前的vscode各种配置, 点<code>是</code></p>
-<p><img data-src="/posts/9a4ae6c6/image-20200509202900380.png" alt="image-20200509202900380"></p>
-<p>打开 <code>https://gist.github.com/你的用户名 </code>来检查一下, 确实创建了新gist,</p>
-<p><img data-src="/posts/9a4ae6c6/image-20200509203035964.png" alt="image-20200509203035964"></p>
-<p>其内已上传各个vscode配置文件</p>
-<p><img data-src="/posts/9a4ae6c6/image-20200509203239628.png" alt="image-20200509203239628"></p>
-<p>这说明配置成功</p>
-<h3 id="手动配置方法-废弃"><a class="header-anchor" href="#手动配置方法-废弃"></a>手动配置方法 (废弃)</h3>
-<p>本法勿用, 目前(2020-5-9)若用本法, 会在vscode重启后, github 将下文所创建的 token 自动删除, vscode会在同步配置时显示”token无效或过期”.</p>
-<ul>
-<li>
-<p>开一个<a href="https://gist.github.com/">gist</a></p>
-<p><img data-src="/posts/9a4ae6c6/ScreenShot%202020-03-16%2019.00.22.png" alt="ScreenShot 2020-03-16 19.00.22"></p>
-<p><img data-src="/posts/9a4ae6c6/ScreenShot%202020-03-16%2019.07.01.png" alt="ScreenShot 2020-03-16 19.07.01"></p>
-<p>从url里复制gist id</p>
-<p><img data-src="/posts/9a4ae6c6/ScreenShot%202020-03-16%2019.07.43.png" alt="ScreenShot 2020-03-16 19.07.43"></p>
-</li>
-<li>
-<p>开一个带有gist功能的github token：</p>
-<p><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>-<code>generate new token</code></p>
-<p><img data-src="/posts/9a4ae6c6/image-20200316184923683.png" alt="image-20200316184923683"></p>
-<p>勾选gist和user</p>
-<p><img data-src="/posts/9a4ae6c6/image-20200518012345366.png" alt="image-20200518012345366"></p>
-<p>然后会显示 <code>github token</code>， 速速记录下，只会显示这一次，之后再也显示不了。</p>
-</li>
-<li>
-<p>安装 <code>Settings Sync</code> 插件</p>
-</li>
-<li>
-<p>设置 <code>Settings Sync</code> ： <code>⌘⇧P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code></p>
-<p><img data-src="/posts/9a4ae6c6/image-20200316184531147.png" alt="image-20200316184531147"></p>
-<p><img data-src="/posts/9a4ae6c6/image-20200316184543735.png" alt="image-20200316184543735"></p>
-</li>
-<li>
-<p>然后会弹出设置页面，设置方法如下</p>
-</li>
-</ul>
-<p><img data-src="/posts/9a4ae6c6/ScreenShot%202020-03-16%2018.37.32.png" alt="ScreenShot 2020-03-16 18.37.32"></p>
-<p>然后按 <code>⌥⇧U</code>， 如果状态栏显示“同步成功”，且gist上显示如下，则成功</p>
-<p><img data-src="/posts/9a4ae6c6/image-20200316192700873.png" alt="image-20200316192700873"></p>
-<h3 id="使用方法"><a class="header-anchor" href="#使用方法"></a>使用方法</h3>
-<p>手动同步：</p>
-<ul>
-<li><code>⌥⇧U</code>：手动上传到gist</li>
-<li><code>⌥⇧D</code>：手动从gist下载</li>
-</ul>
-<p>自动同步：打开vscode时，保存配置文件时，会自动下载再上传</p>
+    <title>百法明门论</title>
+    <url>/posts/1b59a003/</url>
+    <content><![CDATA[<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa.html">来源</a></p>
+<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa-1.html">参考</a></p>
+<p><img data-src="/posts/1b59a003/100fmml.jpg" alt="100fmml"></p>
 ]]></content>
       <categories>
-        <category>器</category>
-        <category>编辑器IDE</category>
+        <category>道</category>
+        <category>佛法札记</category>
       </categories>
   </entry>
   <entry>
@@ -8933,15 +8640,308 @@ asdas
       </categories>
   </entry>
   <entry>
-    <title>百法明门论</title>
-    <url>/posts/1b59a003/</url>
-    <content><![CDATA[<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa.html">来源</a></p>
-<p><a href="http://www.fosss.org/Book/BaiFaMingMenLun/100fa-1.html">参考</a></p>
-<p><img data-src="/posts/1b59a003/100fmml.jpg" alt="100fmml"></p>
+    <title>vscode安装配置</title>
+    <url>/posts/9a4ae6c6/</url>
+    <content><![CDATA[<h1 id="vscode安装配置"><a class="header-anchor" href="#vscode安装配置"></a>vscode安装配置</h1>
+<h2 id="拓展安装方法"><a class="header-anchor" href="#拓展安装方法"></a>拓展安装方法</h2>
+<ul>
+<li>
+<p><code>⇧⌘P</code> -<code>Extentions: Install Extentions</code> - 输入<code>插件名称</code> - <code>install</code></p>
+</li>
+<li>
+<p>或在左侧拓展商店栏，输入<code>插件名称</code> - <code>install</code></p>
+</li>
+</ul>
+<p><img data-src="/posts/9a4ae6c6/img1.png" alt></p>
+<h2 id="语言"><a class="header-anchor" href="#语言"></a>语言</h2>
+<p><code>⇧⌘P</code> -<code>Configure Display Language</code> -</p>
+<p><img data-src="/posts/9a4ae6c6/2019-05-23_15.54.53.png" alt></p>
+<ul>
+<li>
+<p>选择已有语言</p>
+<p><img data-src="/posts/9a4ae6c6/2019-05-23_15.54.43.png" alt></p>
+</li>
+<li>
+<p><code>install other language</code> -左侧拓展商店栏输入 <code>Chinese (Simplified) Language Pack for Visual Studio Code</code> - <code>install</code></p>
+</li>
+</ul>
+<h2 id="配色与字体"><a class="header-anchor" href="#配色与字体"></a>配色与字体</h2>
+<h3 id="预备"><a class="header-anchor" href="#预备"></a>预备</h3>
+<p>安装插件<code>Gruvbox Themes</code></p>
+<p><a href="https://github.com/powerline/fonts">Powerline字体安装</a></p>
+<ul>
+<li>
+<p>mac:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># clone</span>
+<span class="token function">git</span> clone https://github.com/powerline/fonts.git --depth<span class="token operator">=</span><span class="token number">1</span>
+<span class="token comment"># install</span>
+<span class="token builtin class-name">cd</span> fonts
+./install.sh
+<span class="token comment"># clean-up a bit</span>
+<span class="token builtin class-name">cd</span> <span class="token punctuation">..</span>
+<span class="token function">rm</span> -rf fonts<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>linux:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> fonts-powerline<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<p><a href="https://glitchbone.github.io/vscode-base16-term/#/">终端配色参考</a></p>
+<h3 id="配置"><a class="header-anchor" href="#配置"></a>配置</h3>
+<p><code>⌘,</code> ，在<code>用户</code>设置中</p>
+<p><img data-src="/posts/9a4ae6c6/2019-05-23_16.04.11-8598764.png" alt></p>
+<p>以打开<code>settings.json</code>，添加以下设置</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+  ...
+    <span class="token comment">// 终端字体</span>
+    <span class="token property">"editor.fontFamily"</span><span class="token operator">:</span> <span class="token string">"Meslo LG S DZ for Powerline"</span><span class="token punctuation">,</span>
+    <span class="token comment">// 终端配色</span>
+    <span class="token property">"workbench.colorCustomizations"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token property">"terminal.background"</span><span class="token operator">:</span><span class="token string">"#28282a"</span> <span class="token punctuation">,</span>         <span class="token property">"terminal.foreground"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminalCursor.background"</span><span class="token operator">:</span><span class="token string">"#3b3b3b"</span><span class="token punctuation">,</span>   <span class="token property">"terminalCursor.foreground"</span><span class="token operator">:</span><span class="token string">"#A5A2A2"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiBlack"</span><span class="token operator">:</span><span class="token string">"#28282a"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightBlack"</span><span class="token operator">:</span><span class="token string">"#a2a2a2"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiWhite"</span><span class="token operator">:</span><span class="token string">"#c7c7c7"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightWhite"</span><span class="token operator">:</span><span class="token string">"#feffff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiRed"</span><span class="token operator">:</span><span class="token string">"#c91b00"</span><span class="token punctuation">,</span>             <span class="token property">"terminal.ansiBrightRed"</span><span class="token operator">:</span><span class="token string">"#ff6d67"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiYellow"</span><span class="token operator">:</span><span class="token string">"#cecc4d"</span><span class="token punctuation">,</span>          <span class="token property">"terminal.ansiBrightYellow"</span><span class="token operator">:</span><span class="token string">"#fefb67"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiGreen"</span><span class="token operator">:</span><span class="token string">"#89b560"</span><span class="token punctuation">,</span>           <span class="token property">"terminal.ansiBrightGreen"</span><span class="token operator">:</span><span class="token string">"#74dd74"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiCyan"</span><span class="token operator">:</span><span class="token string">"#61aaab"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightCyan"</span><span class="token operator">:</span><span class="token string">"#5ffdff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiBlue"</span><span class="token operator">:</span><span class="token string">"#5168d5"</span><span class="token punctuation">,</span>            <span class="token property">"terminal.ansiBrightBlue"</span><span class="token operator">:</span><span class="token string">"#6871ff"</span><span class="token punctuation">,</span>
+        <span class="token property">"terminal.ansiMagenta"</span><span class="token operator">:</span><span class="token string">"#c930c7"</span><span class="token punctuation">,</span>         <span class="token property">"terminal.ansiBrightMagenta"</span><span class="token operator">:</span><span class="token string">"#ff76ff"</span><span class="token punctuation">,</span>
+    <span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+        <span class="token comment">//  配色</span>
+    <span class="token property">"workbench.colorTheme"</span><span class="token operator">:</span> <span class="token string">"Gruvbox Dark (Medium)"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上文的<code>// ...</code>注释可以黏贴到<code>settings.json</code>中，vscode支持注释</p>
+<h2 id="终端"><a class="header-anchor" href="#终端"></a>终端</h2>
+<h3 id="内部终端-integrated-terminal"><a class="header-anchor" href="#内部终端-integrated-terminal"></a>内部终端(integrated terminal)</h3>
+<pre class="line-numbers language-⌃`" data-language="⌃`"><div class="caption"><span>```以开启内部终端</span></div><code class="language-⌃`">
+### 外部终端(external terminal)
+
+* 配置
+
+&#96;⌘,&#96; ，在&#96;用户&#96;设置中，以打开&#96;settings.json&#96;，添加以下设置
+
+
+&#96;&#96;&#96;json
+&#123;
+  ...
+  &quot;terminal.external.osxExec&quot;: &quot;iTerm.app&quot;,
+&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>使用：<code>⇧⌘C</code>以，会弹出一个外部<code>iTerm2</code>窗口</li>
+</ul>
+<h2 id="命令行工具"><a class="header-anchor" href="#命令行工具"></a>命令行工具</h2>
+<p><a href="https://code.visualstudio.com/docs/editor/integrated-terminal">https://code.visualstudio.com/docs/editor/integrated-terminal</a></p>
+<p><code>⇧⌘P</code> - <code>Shell Command: install 'code' command in PATH</code></p>
+<p><img data-src="/posts/9a4ae6c6/img2.png" alt></p>
+<p>使用方法：</p>
+<ul>
+<li>在命令中输入如下命令，则会用vscode-insiders打开之</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">code-insiders 文件名/文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>在命令中输入如下命令，则会用vscode打开之</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">code 文件名&#x2F;文件夹名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上述命令适用于：本地内置终端、本地外部终端、远程开发时内置终端、<s>远程开发时的本地外部终端</s></p>
+<h2 id="远程开发"><a class="header-anchor" href="#远程开发"></a>远程开发</h2>
+<h3 id="安装插件"><a class="header-anchor" href="#安装插件"></a>安装插件</h3>
+<p>安装插件 <code>Remote Developement</code> ，目前(2019-5-23)只支持 <a href="https://code.visualstudio.com/insiders/">VSCode-Insiders</a>，不支持<a href="https://code.visualstudio.com/Download">正式版VSCode</a></p>
+<h3 id="配置本地的ssh-config"><a class="header-anchor" href="#配置本地的ssh-config"></a>配置本地的ssh config</h3>
+<p>请在本地<code>~/.ssh/config</code>或<code>/etc/ssh/ssh_config</code>中写好远程服务器的连接配置</p>
+<p>vscode的<code>Remote Developement</code> 只支持密钥登录，也支持密码登录</p>
+<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
+<p>点左下角<code>&gt;&lt;</code>按钮</p>
+<p><img data-src="/posts/9a4ae6c6/2019-05-23_16.27.00.png" alt></p>
+<p><img data-src="/posts/9a4ae6c6/2019-05-23_16.27.05.png" alt></p>
+<p><img data-src="/posts/9a4ae6c6/2019-05-23_16.27.13.png" alt></p>
+<h3 id="编辑远程文件-夹"><a class="header-anchor" href="#编辑远程文件-夹"></a>编辑远程文件(夹)</h3>
+<p><img data-src="/posts/9a4ae6c6/2019-05-23_16.32.52.png" alt></p>
+<p>关于远程开发的vscode命令行工具</p>
+<ul>
+<li>
+<p>vscode连接服务器后，会在服务器自动安装vscode远程开发的服务端程序，并运行之</p>
+<ul>
+<li>安装路径为<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code></li>
+<li>每当这台本机和这台服务器重新连接，就按照这个hash码，加载安装路径下，之前缓存的编辑器、内置终端、等模块的状态</li>
+<li>故<strong>重新连接服务器，编辑器、内置终端、等模块的状态均保留</strong></li>
+</ul>
+</li>
+<li>
+<p>vscode连接服务器后，在内置终端可使用   <code>code(-insiders)</code>  命令打开远程文件(夹)。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> code<span class="token punctuation">(</span>-insiders<span class="token punctuation">)</span>
+<span class="token comment"># 返回</span>
+<span class="token comment"># ~/.vscode-remote/bin/服务器的hash码/bin/code(-insiders)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>但远程开发， <strong>在 本地外部终端 输入  <code>code(-insiders)</code>，无法 打开远程文件</strong></p>
+</li>
+</ul>
+<h3 id="常见报错与处理"><a class="header-anchor" href="#常见报错与处理"></a>常见报错与处理</h3>
+<h4 id="重新连接失败"><a class="header-anchor" href="#重新连接失败"></a>重新连接失败</h4>
+<p>若之前连接过一台服务器，再次连它则报错，可杀死之前服务器端运行的 vscode 进程：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> vscode <span class="token operator">|</span> <span class="token function">grep</span> <span class="token environment constant">$USER</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">myusername     2382  0.0  0.0   4504   780 ?        S    01:33   0:00 sh &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;server.sh --port&#x3D;0
+myusername     2390  0.0  0.0 1307344 62116 ?       Sl   01:33   0:11 &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;node &#x2F;home&#x2F;myusername&#x2F;.vscode-remote&#x2F;bin&#x2F;4ca38ce5584d7cd67b435b3c32ef1240c6a29628&#x2F;out&#x2F;remoteExtensionHostAgent.js --port&#x3D;0
+myusername     6066  0.0  0.0  15976   972 pts&#x2F;20   S+   16:41   0:00 grep --color vscode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>杀死所有<code>~/.vscode-remote/bin/服务器本机配对的hash码/</code>路径下的进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 教程编号 <span class="token comment"># 如上一框的 2382 2390</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后vscode重新连接服务器即可连接成功</p>
+<h4 id="wget失败"><a class="header-anchor" href="#wget失败"></a>wget失败</h4>
+<p>服务器上请不要给用alias覆盖<code>wget</code>命令，如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wget</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>这样的alias会造成连接后，会报错曰，服务器上无法用wget下载vscode远程开发的服务器端</p>
+<p>此alias改为</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">alais <span class="token assign-left variable">wgetc</span><span class="token operator">=</span><span class="token string">'wget -C -t 0'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后vscode重新连接服务器即可连接成功</p>
+<h2 id="snippet"><a class="header-anchor" href="#snippet"></a>snippet</h2>
+<p><a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets">教程</a></p>
+<p>写入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">&#123;</span>
+    <span class="token string">"《snippet_name》"</span><span class="token builtin class-name">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token string">"prefix"</span><span class="token builtin class-name">:</span> <span class="token string">"《snippet_toggle》"</span>,
+        <span class="token string">"body"</span><span class="token builtin class-name">:</span> <span class="token punctuation">[</span>
+            <span class="token string">"《insert_code》"</span>,
+        <span class="token punctuation">]</span>,
+        <span class="token string">"description"</span><span class="token builtin class-name">:</span> <span class="token string">"《prompt》"</span>
+    <span class="token punctuation">&#125;</span>,
+    <span class="token punctuation">..</span>.
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p>json不支持跨行文本，即不支持形如</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>"asdasd
+asdasd
+asdas
+" <span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>请写成</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"body"</span><span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token string">"asda ad s ad as d"</span><span class="token punctuation">,</span>
+    <span class="token string">"asd  asd  sad as "</span><span class="token punctuation">,</span>
+<span class="token punctuation">]</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>json中的文本只能用双引号，不能用单引号</p>
+</li>
+<li>
+<p><code>body</code>中的特殊字符</p>
+<ul>
+<li>转义字符</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>原文本</th>
+<th>代码文本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&quot;</code></td>
+<td><code>\&quot;</code></td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td><code>\\$</code></td>
+</tr>
+<tr>
+<td><code>\</code></td>
+<td><code>\\</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>插入后，按<code>⇥</code>、<code>⇧⇥</code>去往下、前一个可编辑区域；可编辑区域的写法</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&quot;body&quot;: [
+    &quot;asda $&#123;1:【可编辑区域的提示】&#125; s ad $&#123;2:另一个可编辑区域&#125; as d&quot;,
+    &quot;asd $&#123;1:同步可编辑区域&#125; as &quot;,
+    &quot;asd $&#123;3&#125;&quot;，
+],<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="设置同步插件"><a class="header-anchor" href="#设置同步插件"></a>设置同步插件</h2>
+<p>为方便使得多个设备可以共用一份配置，可按照vscode插件 “settings sync”，它用gist同步你的vscode的各种设置，包括本地的全局设置、快捷键、snippet、所安装插件及版本。</p>
+<h3 id="自动配置方法"><a class="header-anchor" href="#自动配置方法"></a>自动配置方法</h3>
+<ul>
+<li>清除已有配置 : 初次配置无需此步, 若要更新配置则需要此步. 按 <code>⇧⌘P</code> - <code>Sync: 重置扩展设置</code></li>
+</ul>
+<p><img data-src="/posts/9a4ae6c6/image-20200316184531147.png" alt="image-20200316184531147"></p>
+<p>​	所谓重置, 即清空&quot;settings sync&quot;现有的配置. 重置后,  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  会看见以下页面全空</p>
+<p><img data-src="/posts/9a4ae6c6/image-20200509201718848.png" alt="image-20200509201718848"></p>
+<ul>
+<li>
+<p>按 <code>⇧⌥U</code> , 则会弹出如下页面, 点 <code>login with github</code></p>
+<p><img data-src="/posts/9a4ae6c6/image-20200509201635555.png" alt="image-20200509201635555"></p>
+</li>
+</ul>
+<p><img data-src="/posts/9a4ae6c6/image-20200509202018164.png" alt="image-20200509202018164"></p>
+<p>然后点 <code>信任github.com这个域名</code> .</p>
+<p>然后会浏览器弹出如下网页,</p>
+<p><img data-src="/posts/9a4ae6c6/ScreenShot%202020-05-20%2021.11.23.png" alt="ScreenShot 2020-05-20 21.11.23"></p>
+<p>然后会看跳转如下页面, 此时可关闭此网页,</p>
+<p><img data-src="/posts/9a4ae6c6/image-20200509202211987.png" alt="image-20200509202211987"></p>
+<p>而vscode里弹出此标签页, 这意味着当前浏览器默认的github账号中, 创建了一个新的token, 可用于创建gist来同步vscode配置</p>
+<p><img data-src="/posts/9a4ae6c6/image-20200509202252574.png" alt="image-20200509202252574"></p>
+<p>此时  <code>⇧⌘P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code>  的插件配置变成,</p>
+<p><img data-src="/posts/9a4ae6c6/image-20200509202418088.png" alt="image-20200509202418088"></p>
+<p>这说明当前浏览器默认的github账号中, 创建了一个新的token,  可用于创建gist来同步vscode配置, 但是这个token在 github 的配置中看不见:</p>
+<ul>
+<li><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>, 显示如下</li>
+</ul>
+<pre><code>![image-20200509203832966](assets/image-20200509203832966.png)
+</code></pre>
+<p>此时再按 <code>⇧⌥U</code>, 则会在此github账号, 自动创建一个新gist, 然后询问是否上传当前的vscode各种配置, 点<code>是</code></p>
+<p><img data-src="/posts/9a4ae6c6/image-20200509202900380.png" alt="image-20200509202900380"></p>
+<p>打开 <code>https://gist.github.com/你的用户名 </code>来检查一下, 确实创建了新gist,</p>
+<p><img data-src="/posts/9a4ae6c6/image-20200509203035964.png" alt="image-20200509203035964"></p>
+<p>其内已上传各个vscode配置文件</p>
+<p><img data-src="/posts/9a4ae6c6/image-20200509203239628.png" alt="image-20200509203239628"></p>
+<p>这说明配置成功</p>
+<h3 id="手动配置方法-废弃"><a class="header-anchor" href="#手动配置方法-废弃"></a>手动配置方法 (废弃)</h3>
+<p>本法勿用, 目前(2020-5-9)若用本法, 会在vscode重启后, github 将下文所创建的 token 自动删除, vscode会在同步配置时显示”token无效或过期”.</p>
+<ul>
+<li>
+<p>开一个<a href="https://gist.github.com/">gist</a></p>
+<p><img data-src="/posts/9a4ae6c6/ScreenShot%202020-03-16%2019.00.22.png" alt="ScreenShot 2020-03-16 19.00.22"></p>
+<p><img data-src="/posts/9a4ae6c6/ScreenShot%202020-03-16%2019.07.01.png" alt="ScreenShot 2020-03-16 19.07.01"></p>
+<p>从url里复制gist id</p>
+<p><img data-src="/posts/9a4ae6c6/ScreenShot%202020-03-16%2019.07.43.png" alt="ScreenShot 2020-03-16 19.07.43"></p>
+</li>
+<li>
+<p>开一个带有gist功能的github token：</p>
+<p><code>github网页</code>-<code>setting-developer settings</code>-<code>personal access token</code>-<code>generate new token</code></p>
+<p><img data-src="/posts/9a4ae6c6/image-20200316184923683.png" alt="image-20200316184923683"></p>
+<p>勾选gist和user</p>
+<p><img data-src="/posts/9a4ae6c6/image-20200518012345366.png" alt="image-20200518012345366"></p>
+<p>然后会显示 <code>github token</code>， 速速记录下，只会显示这一次，之后再也显示不了。</p>
+</li>
+<li>
+<p>安装 <code>Settings Sync</code> 插件</p>
+</li>
+<li>
+<p>设置 <code>Settings Sync</code> ： <code>⌘⇧P</code> - <code>Sync: Advanced Options</code> - <code>Sync: 打开设置</code></p>
+<p><img data-src="/posts/9a4ae6c6/image-20200316184531147.png" alt="image-20200316184531147"></p>
+<p><img data-src="/posts/9a4ae6c6/image-20200316184543735.png" alt="image-20200316184543735"></p>
+</li>
+<li>
+<p>然后会弹出设置页面，设置方法如下</p>
+</li>
+</ul>
+<p><img data-src="/posts/9a4ae6c6/ScreenShot%202020-03-16%2018.37.32.png" alt="ScreenShot 2020-03-16 18.37.32"></p>
+<p>然后按 <code>⌥⇧U</code>， 如果状态栏显示“同步成功”，且gist上显示如下，则成功</p>
+<p><img data-src="/posts/9a4ae6c6/image-20200316192700873.png" alt="image-20200316192700873"></p>
+<h3 id="使用方法"><a class="header-anchor" href="#使用方法"></a>使用方法</h3>
+<p>手动同步：</p>
+<ul>
+<li><code>⌥⇧U</code>：手动上传到gist</li>
+<li><code>⌥⇧D</code>：手动从gist下载</li>
+</ul>
+<p>自动同步：打开vscode时，保存配置文件时，会自动下载再上传</p>
 ]]></content>
       <categories>
-        <category>道</category>
-        <category>佛法札记</category>
+        <category>器</category>
+        <category>编辑器IDE</category>
       </categories>
   </entry>
   <entry>
@@ -14122,7 +14122,7 @@ normal</p>
 </tr>
 <tr>
 <td>-w file</td>
-<td>存在且当前用户可写</td>
+<td>存在且当前用户可写<video src="../../../../../../../../Downloads/4-6jdVGugpLkIEvO.mp4"></video></td>
 <td>[ -w /var/mytmp.txt ]</td>
 </tr>
 <tr>
