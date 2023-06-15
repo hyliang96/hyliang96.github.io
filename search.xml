@@ -1307,50 +1307,6 @@ B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
       </categories>
   </entry>
   <entry>
-    <title>linux开机界面</title>
-    <url>/posts/d3d6ed05/</url>
-    <content><![CDATA[<h2 id="开机过程中"><a class="header-anchor" href="#开机过程中"></a>开机过程中</h2>
-<p><code>alt+ctrl+del</code>：在系统启动完成前，按此可重启系统，而无需去按电源键 <a href="https://askubuntu.com/questions/995286/restart-ubuntu-via-keyboard">参考</a></p>
-<h3 id="BIOS-界面"><a class="header-anchor" href="#BIOS-界面"></a>BIOS 界面</h3>
-<p><code>esc</code>: 一开机/重启, 就持反复之, 直到首次出现供应商的页面(如超威/斯腾合力), 而后会进入 BIOS 界面:</p>
-<p>.<img data-src="/posts/d3d6ed05/E469CC2F-B4E7-4B61-9E2E-5A845E69AD5E.jpeg" alt="Image result for bios界面"></p>
-<p>在 BIOS 界面中的操作:</p>
-<ul>
-<li>可以配置 IPMI 等内容</li>
-<li>配置完成, 按 <code>esc</code> 选 yes 退出 BIOS 界面</li>
-</ul>
-<h3 id="grub-界面"><a class="header-anchor" href="#grub-界面"></a>grub 界面</h3>
-<p>从 BIOS 界面退出会进入 Grub 界面:</p>
-<p><img data-src="/posts/d3d6ed05/2191577195586.jpg" alt="2191577195586_.pic"></p>
-<ul>
-<li>
-<p>若选 Ubuntu 则正常开机</p>
-</li>
-<li>
-<p>若选 Advanced options for Ubuntu, 回车, 则进入如下界面</p>
-</li>
-</ul>
-<p><img data-src="/posts/d3d6ed05/20130824023747255.png" alt="img"></p>
-<p>此界面中若选 recovery mode, 回车, 则进入恢复模式界面</p>
-<h3 id="恢复模式"><a class="header-anchor" href="#恢复模式"></a>恢复模式</h3>
-<p>恢复模式界面如图:</p>
-<p><img data-src="/posts/d3d6ed05/20130824023748114.png" alt="img"></p>
-<p>若选 root, 回车, 则其下方出现 root 终端, 可再此输入命令, 如修改用户密码/root 密码/修改网络配置/修改防火墙配置 等等</p>
-<p><img data-src="/posts/d3d6ed05/558.png" alt="img"></p>
-<p>完成后, 在下方终端 <code>exit</code>, 而后弹出对话框中选 yes (or ok), 而后会根据修改后的配置, 继续正常开机</p>
-<h2 id="开机完成后"><a class="header-anchor" href="#开机完成后"></a>开机完成后</h2>
-<h3 id="窗口切换的快捷键"><a class="header-anchor" href="#窗口切换的快捷键"></a>窗口切换的快捷键</h3>
-<p><code>alt+ctrl+f1~F5</code>：在五个终端登录窗口之间切换</p>
-<p><code>alt+ctrl+f6</code>：切换到图形窗口</p>
-<h2 id="参考资料"><a class="header-anchor" href="#参考资料"></a>参考资料</h2>
-<p>部分图片来源, 侵删: <a href="https://www.jianshu.com/p/66ac9441fd1b">https://www.jianshu.com/p/66ac9441fd1b</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>linux杂项</category>
-      </categories>
-  </entry>
-  <entry>
     <title>iso镜像</title>
     <url>/posts/5453726a/</url>
     <content><![CDATA[<h2 id="ISO介绍"><a class="header-anchor" href="#ISO介绍"></a>ISO介绍</h2>
@@ -1459,6 +1415,50 @@ B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> run-parts /etc/update-motd.d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img data-src="/posts/28b9a0fd/ScreenShot%202019-12-04%2017.59.39.png" alt="ScreenShot 2019-12-04 17.59.39"></p>
 <p>如得到上述输出，则配置成功。之后每次<code>ssh &lt;服务器&gt;</code>的截面均是上图输出。注：非ssh登录，则不会有此输出，例如当ssh登录后运行<code>bash</code>，则无此输出。</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>linux杂项</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>linux开机界面</title>
+    <url>/posts/d3d6ed05/</url>
+    <content><![CDATA[<h2 id="开机过程中"><a class="header-anchor" href="#开机过程中"></a>开机过程中</h2>
+<p><code>alt+ctrl+del</code>：在系统启动完成前，按此可重启系统，而无需去按电源键 <a href="https://askubuntu.com/questions/995286/restart-ubuntu-via-keyboard">参考</a></p>
+<h3 id="BIOS-界面"><a class="header-anchor" href="#BIOS-界面"></a>BIOS 界面</h3>
+<p><code>esc</code>: 一开机/重启, 就持反复之, 直到首次出现供应商的页面(如超威/斯腾合力), 而后会进入 BIOS 界面:</p>
+<p>.<img data-src="/posts/d3d6ed05/E469CC2F-B4E7-4B61-9E2E-5A845E69AD5E.jpeg" alt="Image result for bios界面"></p>
+<p>在 BIOS 界面中的操作:</p>
+<ul>
+<li>可以配置 IPMI 等内容</li>
+<li>配置完成, 按 <code>esc</code> 选 yes 退出 BIOS 界面</li>
+</ul>
+<h3 id="grub-界面"><a class="header-anchor" href="#grub-界面"></a>grub 界面</h3>
+<p>从 BIOS 界面退出会进入 Grub 界面:</p>
+<p><img data-src="/posts/d3d6ed05/2191577195586.jpg" alt="2191577195586_.pic"></p>
+<ul>
+<li>
+<p>若选 Ubuntu 则正常开机</p>
+</li>
+<li>
+<p>若选 Advanced options for Ubuntu, 回车, 则进入如下界面</p>
+</li>
+</ul>
+<p><img data-src="/posts/d3d6ed05/20130824023747255.png" alt="img"></p>
+<p>此界面中若选 recovery mode, 回车, 则进入恢复模式界面</p>
+<h3 id="恢复模式"><a class="header-anchor" href="#恢复模式"></a>恢复模式</h3>
+<p>恢复模式界面如图:</p>
+<p><img data-src="/posts/d3d6ed05/20130824023748114.png" alt="img"></p>
+<p>若选 root, 回车, 则其下方出现 root 终端, 可再此输入命令, 如修改用户密码/root 密码/修改网络配置/修改防火墙配置 等等</p>
+<p><img data-src="/posts/d3d6ed05/558.png" alt="img"></p>
+<p>完成后, 在下方终端 <code>exit</code>, 而后弹出对话框中选 yes (or ok), 而后会根据修改后的配置, 继续正常开机</p>
+<h2 id="开机完成后"><a class="header-anchor" href="#开机完成后"></a>开机完成后</h2>
+<h3 id="窗口切换的快捷键"><a class="header-anchor" href="#窗口切换的快捷键"></a>窗口切换的快捷键</h3>
+<p><code>alt+ctrl+f1~F5</code>：在五个终端登录窗口之间切换</p>
+<p><code>alt+ctrl+f6</code>：切换到图形窗口</p>
+<h2 id="参考资料"><a class="header-anchor" href="#参考资料"></a>参考资料</h2>
+<p>部分图片来源, 侵删: <a href="https://www.jianshu.com/p/66ac9441fd1b">https://www.jianshu.com/p/66ac9441fd1b</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -1617,195 +1617,6 @@ SSH-2.0-OpenSSH_7.6p1 Ubuntu-4ubuntu0.3<span aria-hidden="true" class="line-numb
 <p>否则返回</p>
 <pre class="line-numbers language-none"><code class="language-none">Trying &lt;ip&gt;...
 telnet: Unable to connect to remote host: Connection refused<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>linux杂项</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>磁盘配额设置</title>
-    <url>/posts/bd0cccac/</url>
-    <content><![CDATA[<h2 id="目录下统计磁盘用量"><a class="header-anchor" href="#目录下统计磁盘用量"></a>目录下统计磁盘用量</h2>
-<h3 id="法一-使用duc-推荐"><a class="header-anchor" href="#法一-使用duc-推荐"></a>法一 使用<a href="http://duc.zevv.nl">duc</a> (推荐)</h3>
-<p>仅能统计磁盘大小, 不能统计文件数目. 是按照子文件夹来统计, 而不是文件归属的用户来统计.</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> duc <span class="token comment"># install duc</span>
-<span class="token function">sudo</span> duc index -fHpx <span class="token operator">&lt;</span>dir<span class="token operator">></span> <span class="token comment"># build the index of any &lt;dir> to a dataset file $HOME/.duc.db</span>
-<span class="token comment"># it which will be upated every time when things under &lt;dir> change</span>
-<span class="token function">sudo</span> duc <span class="token function">ls</span> -Fg <span class="token operator">&lt;</span>dir<span class="token operator">></span> <span class="token comment"># list the subdirs and their size of &lt;dir>, No wait times</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<h3 id="法二-使用quota"><a class="header-anchor" href="#法二-使用quota"></a>法二 使用quota</h3>
-<p>使用quota, 只统计每个用户的磁盘大小和文件数目用量, 不用限制用户的使用.</p>
-<p>可以按文件归属的用户来统计, 也可以按照子文件夹来统计.</p>
-<h2 id="quota安装与配置"><a class="header-anchor" href="#quota安装与配置"></a>quota安装与配置</h2>
-<p>本文在此<a href="https://www.howtoing.com/set-filesystem-disk-quotas-on-ubuntu">教程</a>上修改. 其他参考: <a href="http://cn.linux.vbird.org/linux_basic/fedora_4/0420quota-fc4.php">鸟哥</a>.</p>
-<h3 id="安装quota"><a class="header-anchor" href="#安装quota"></a>安装quota</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> update
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">quota</span> -y
-<span class="token function">sudo</span> <span class="token function">quota</span> --version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="安装配额内核模块"><a class="header-anchor" href="#安装配额内核模块"></a>安装配额内核模块</h3>
-<p>确认是否安装配额内核模块</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> /lib/modules/<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -r<span class="token variable">`</span></span> -type f -name <span class="token string">'*quota_v*.ko*'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>若返回</p>
-<blockquote>
-  <pre class="line-numbers language-none"><code class="language-none">&#x2F;lib&#x2F;modules&#x2F;4.15.0-88-generic&#x2F;kernel&#x2F;fs&#x2F;quota&#x2F;quota_v2.ko
-&#x2F;lib&#x2F;modules&#x2F;4.15.0-88-generic&#x2F;kernel&#x2F;fs&#x2F;quota&#x2F;quota_v1.ko<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</blockquote>
-<p>则此两模块已安装额内核模块; 若返回为空, 则未安装 (通常云服务器由此物体), 需要手动安装</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> linux-image-extra-virtual -y<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>而后再次执行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> /lib/modules/<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -r<span class="token variable">`</span></span> -type f -name <span class="token string">'*quota_v*.ko*'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>确认已安装额内核模块.</p>
-<h3 id="更新文件系统挂载选项"><a class="header-anchor" href="#更新文件系统挂载选项"></a>更新文件系统挂载选项</h3>
-<ul>
-<li>
-<p>通过修改 <code>/etc/fstab</code> 文件来决定哪些文件系统需要使用quota</p>
-<p><code>sudo vim /etc/fstab</code>, 找到需要的文件系统 (如<code>/</code>) 所在行, 第四字段尾部增加<code>,usrquota,grpquota</code>选项, 这样会对此文件系统启用对用户和用户组的限额.</p>
-<p>例如:</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;dev&#x2F;mapper&#x2F;jungpu21--vg-root &#x2F;               ext4    errors&#x3D;remount-ro,usrquota,grpquota 0       1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>或</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;dev&#x2F;mapper&#x2F;jungpu21--vg-root &#x2F;               ext4    defaults,usrquota,grpquota 0       1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><strong>注:</strong></p>
-<ul>
-<li>查看文件系统的格式 <code>df -T -h</code>, <code>-T</code> 显示文件系统, <code>-h</code> 可读的磁盘大小</li>
-<li>第四字段若为<code>defaults</code>, 表示所有选项全部使用默认配置, 包括rw, suid, dev, exec, auto, nouser, 和 async。一般用户没有特殊需求，直接使用 <code>defaults</code> 就可以了</li>
-<li>若 <code>/etc/fstab</code> 中已有不同于<code>defaults</code>的选项, 把<code>,usrquota,grpquota</code>加在已有的选项后即可</li>
-</ul>
-</li>
-<li>
-<p>重新挂载文件系统，以使更改生效</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mount</span> -o remount /<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>验证quota选项生效</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">cat</span> /proc/mounts <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">' / '</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>若返回如下则继续</p>
-</li>
-</ul>
-<blockquote>
-  <pre class="line-numbers language-none"><code class="language-none">&#x2F;dev&#x2F;mapper&#x2F;jungpu21--vg-root &#x2F; ext4 rw,relatime,quota,usrquota,grpquota,errors&#x3D;remount-ro,data&#x3D;ordered 0 0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<h3 id="启用quota程序"><a class="header-anchor" href="#启用quota程序"></a>启用quota程序</h3>
-<ul>
-<li>
-<p>创建配额文件</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">quotacheck</span> -ugm /<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>该命令将在<code>/</code>创建  <code>aquota.group</code>  与 <code>aquota.user</code> 文件，即配额用户和配额组，它们具有有关文件系统的限制和使用情况的信息。 在开始使用配额之前，这些文件必须存在。</p>
-<ul>
-<li><code>-u</code> ：表示将创建基于用户的配额文件。</li>
-<li><code>-g</code> ：表示将创建基于组的配额文件。</li>
-<li><code>-m</code>: disables remounting of the file system as a read-only while at the same time gives accurate results in an environment where the user keeps saving files. 在安装过程中此选项不是必需的。</li>
-</ul>
-<p>确认已创建  <code>aquota.group</code>  与 <code>aquota.user</code> 文件.</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> <span class="token variable">$mount_point</span> <span class="token operator">|</span> <span class="token function">grep</span> aquota<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>启用quota程序</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> quotaon -v /<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>若显示如下则成功</p>
-<pre class="line-numbers language-none"><code class="language-none">&#x2F;dev&#x2F;sda4 [&#x2F;]: group quotas turned on
-&#x2F;dev&#x2F;sda4 [&#x2F;]: user quotas turned on<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-</ul>
-<h3 id="单个用户的配额"><a class="header-anchor" href="#单个用户的配额"></a>单个用户的配额</h3>
-<ul>
-<li>
-<p>非交互设置配额</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> setquota -u <span class="token operator">&lt;</span>用户名<span class="token operator">></span> <span class="token operator">&lt;</span>soft-block-limit<span class="token operator">></span> <span class="token operator">&lt;</span>hard-block-limit<span class="token operator">></span> <span class="token operator">&lt;</span>soft-index-limit<span class="token operator">></span> <span class="token operator">&lt;</span>hard-block-limit<span class="token operator">></span> /
-<span class="token function">sudo</span> setquota -g <span class="token operator">&lt;</span>用户组名<span class="token operator">></span> <span class="token operator">&lt;</span>soft-block-limit<span class="token operator">></span> <span class="token operator">&lt;</span>hard-block-limit<span class="token operator">></span> <span class="token operator">&lt;</span>soft-index-limit<span class="token operator">></span> <span class="token operator">&lt;</span>hard-block-limit<span class="token operator">></span> /<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ul>
-<li><code>&lt;soft-block-limit&gt;</code> : 磁盘大小软限制, 单位1kB, 可写成 <code>12321</code> (12321kB), <code>12M</code> (12MB), <code>12G</code>, <code>12T</code> (1024升位)</li>
-<li><code>&lt;hard-block-limit&gt;</code> : 磁盘大小硬限制, 写法同<code>&lt;soft-block-limit&gt;</code></li>
-<li><code>&lt;soft-index-limit&gt;</code>: 文件数目软限制, 单位1个文件, 可写成 <code>12121</code> (<code>12121</code>个文件), <code>12k</code> (12,000个文件),  <code>12M</code>, <code>12G</code>,  <code>12T</code> (1000升位)</li>
-<li><code>&lt;hard-index-limit&gt;</code>: 文件数目硬限制, 写法同<code>&lt;soft-index-limit&gt;</code></li>
-</ul>
-<p>当用户超过</p>
-<ul>
-<li>
-<p>软限制: 在宽限期 (grace) 内仍然可继续写入文件, 但向此用户发警告; 超过宽限期, 则不得继续写入并报错.</p>
-</li>
-<li>
-<p>硬限制: 不得继续写入并报错如下.</p>
-<pre class="line-numbers language-none"><code class="language-none">sdb1: write failed, user block limit reached.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-</li>
-<li>
-<p>交互设置配额</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> edquota -u <span class="token operator">&lt;</span>用户名<span class="token operator">></span>
-<span class="token function">sudo</span> edquota -g <span class="token operator">&lt;</span>用户组名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img data-src="/posts/bd0cccac/Check-User-Quota-on-Disk.png" alt="检查磁盘上的用户配额"></p>
-<p>修改文件中的soft/hard限额, 保存退出编辑器即可.</p>
-</li>
-</ul>
-<h3 id="设置宽限期"><a class="header-anchor" href="#设置宽限期"></a>设置宽限期</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> setquota -t <span class="token operator">&lt;</span>block-grace<span class="token operator">></span> <span class="token operator">&lt;</span>index-grace<span class="token operator">></span> /<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li><code>&lt;block-grace&gt;</code>: 磁盘大小配额的宽限期, 单位必须为秒, 写成例如 <code>864000</code> , 即10天.</li>
-<li><code>&lt;index-grace&gt;</code> : 文件数目配额的宽限期, 写法如上.</li>
-</ul>
-<h3 id="查看配额"><a class="header-anchor" href="#查看配额"></a>查看配额</h3>
-<p>查看单个用户/用户组</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">quota</span> -vs <span class="token operator">&lt;</span>用户名<span class="token operator">></span>
-<span class="token function">sudo</span> <span class="token function">quota</span> -vsg <span class="token operator">&lt;</span>用户组名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ul>
-<li><code>-s</code> : 人类可读的数字格式</li>
-<li><code>-v</code> : verbose</li>
-</ul>
-<p><img data-src="/posts/bd0cccac/Verify-User-Quota-Limit.png" alt="验证用户配额限制"></p>
-<p>查看所有用户/用户组</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> repquota -s /
-<span class="token function">sudo</span> repquota -sg /<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p><img data-src="/posts/bd0cccac/Generate-Quota-Reports.png" alt="生成配额报告"></p>
-<h2 id="常见错误消息"><a class="header-anchor" href="#常见错误消息"></a>常见错误消息</h2>
-<h3 id="quotaon-cannot-find-aquota-group-on-dev-vda1"><a class="header-anchor" href="#quotaon-cannot-find-aquota-group-on-dev-vda1"></a>quotaon: cannot find <a href="//aquota.group">//aquota.group</a> on /dev/vda1 [/]</h3>
-<pre class="line-numbers language-none"><code class="language-none">quotaon: cannot find &#x2F;&#x2F;aquota.group on &#x2F;dev&#x2F;vda1 [&#x2F;]
-quotaon: cannot find &#x2F;&#x2F;aquota.user on &#x2F;dev&#x2F;vda1 [&#x2F;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>如果您尝试使用命令<strong>qoutaon</strong>打开配额，然后再尝试使用命令 <code>sudo quotacheck -ugm /</code>  检查配额的状态</p>
-<h3 id="quotaon-Quota-format-not-supported-in-kernel"><a class="header-anchor" href="#quotaon-Quota-format-not-supported-in-kernel"></a>quotaon: Quota format not supported in kernel</h3>
-<pre class="line-numbers language-none"><code class="language-none">quotaon: using &#x2F;&#x2F;aquota.group on &#x2F;dev&#x2F;vda1 [&#x2F;]: No such process
-quotaon: Quota format not supported in kernel.
-quotaon: using &#x2F;&#x2F;aquota.user on &#x2F;dev&#x2F;vda1 [&#x2F;]: No such process
-quotaon: Quota format not supported in kernel.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>此错误告诉管理员内核不支持  <code>quota_v1</code> 和 <code>quota_v2</code> ，或者您在计算机上的版本可能不正确。 对于<strong>Ubuntu而言</strong> ，此类错误在基于云的虚拟服务器上很常见。通过<code>sudo apt install linux-image-extra-virtual -y</code>来修复错误。</p>
-<p>更多参考:</p>
-<p><a href="https://askubuntu.com/questions/109585/quota-format-not-supported-in-kernel">https://askubuntu.com/questions/109585/quota-format-not-supported-in-kernel</a></p>
-<p><a href="https://serverfault.com/questions/843994/ubuntu-quota-format-not-supported-in-kernel">https://serverfault.com/questions/843994/ubuntu-quota-format-not-supported-in-kernel</a></p>
-<h3 id="quota-Cannot-open-quotafile-aquota-user-Permission-denied"><a class="header-anchor" href="#quota-Cannot-open-quotafile-aquota-user-Permission-denied"></a>quota: Cannot open quotafile <a href="//aquota.user">//aquota.user</a>: Permission denied</h3>
-<pre class="line-numbers language-none"><code class="language-none">quota: Cannot open quotafile &#x2F;&#x2F;aquota.user: Permission denied
-quota: Cannot open quotafile &#x2F;&#x2F;aquota.user: Permission denied
-quota: Cannot open quotafile &#x2F;&#x2F;quota.user: No such file or directory<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<p>当当前用户没有读取配额文件的权限时，该错误将很明显。使用 <code>sudo</code>即可避免此错误。</p>
-<h2 id="测试quota有效"><a class="header-anchor" href="#测试quota有效"></a>测试quota有效</h2>
-<p>测试quota有效</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建用户组 quota, 其下有 用户quser1, 用户 quser2</span>
-<span class="token function">sudo</span> <span class="token function">groupadd</span> <span class="token function">quota</span>
-<span class="token function">sudo</span> <span class="token function">useradd</span> -m -g <span class="token function">quota</span> quser1
-<span class="token function">sudo</span> <span class="token function">useradd</span> -m -g <span class="token function">quota</span> quser2
-<span class="token function">sudo</span> <span class="token function">passwd</span> quser1
-<span class="token function">sudo</span> <span class="token function">passwd</span> quser2
-
-<span class="token comment"># 为用户添加限额</span>
-<span class="token function">sudo</span> setquota -u quser1 200M 220M <span class="token number">0</span> <span class="token number">0</span> /
-<span class="token function">sudo</span> setquota -u quser2 200M 220M <span class="token number">0</span> <span class="token number">0</span> /
-<span class="token function">sudo</span> setquota -g <span class="token function">quota</span> 300M 320M <span class="token number">0</span> <span class="token number">0</span> /
-
-<span class="token comment"># 显示配额</span>
-<span class="token function">sudo</span> <span class="token function">quota</span> -vs  quser1
-<span class="token function">sudo</span> <span class="token function">quota</span> -vs  quser2
-<span class="token function">sudo</span> setquota -vsg <span class="token function">quota</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>登录  <code>quser1</code></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在当前目录下会生成一个190MB的test文件，文件内容为全0</span>
-<span class="token function">dd</span> <span class="token assign-left variable">if</span><span class="token operator">=</span>/dev/zero <span class="token assign-left variable">of</span><span class="token operator">=</span>test <span class="token assign-left variable">bs</span><span class="token operator">=</span>1M <span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token number">190</span> <span class="token comment"># 未超过软限额, 不报错</span>
-<span class="token function">dd</span> <span class="token assign-left variable">if</span><span class="token operator">=</span>/dev/zero <span class="token assign-left variable">of</span><span class="token operator">=</span>test <span class="token assign-left variable">bs</span><span class="token operator">=</span>1M <span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token number">210</span> <span class="token comment"># 超过软限额, 未超过硬限额, 也不报错</span>
-<span class="token function">dd</span> <span class="token assign-left variable">if</span><span class="token operator">=</span>/dev/zero <span class="token assign-left variable">of</span><span class="token operator">=</span>test <span class="token assign-left variable">bs</span><span class="token operator">=</span>1M <span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token number">230</span> <span class="token comment"># 超过硬限额, 报错如下, 并test只写入了220M</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-  <pre class="line-numbers language-none"><code class="language-none">sdb1: write failed, user block limit reached.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</blockquote>
-<h2 id="超过软quota发送警告"><a class="header-anchor" href="#超过软quota发送警告"></a>超过软quota发送警告</h2>
-<p>法一: 通过邮件给用户发送警告, 参考: <a href="http://cn.linux.vbird.org/linux_basic/0420quota_1.php">warnquota</a>.</p>
-<p>法二: 定时发送到用户的终端上, 使用我开发的此<a href="https://github.com/hyliang96/admin_tool">工具</a>, 参见<a href="/mfs/haoyu/server_conf/ENV/serverENV/.git/modules/admin_tool/index.lock">readme</a>.</p>
-<h2 id="Project-quota"><a class="header-anchor" href="#Project-quota"></a>Project quota</h2>
-<p>不同于限制用户/用户组的磁盘使用, 将文件夹及其下文件, 设置为从属于一个项目, 对项目限制磁盘使用. 参考: <a href="https://blog.csdn.net/luckyapple1028/article/details/75754591">project quota</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -2021,6 +1832,195 @@ sudo &#x2F;mnt&#x2F;matlab&#x2F;install -inputFile installer_input.txt<span aria
       </categories>
   </entry>
   <entry>
+    <title>磁盘配额设置</title>
+    <url>/posts/bd0cccac/</url>
+    <content><![CDATA[<h2 id="目录下统计磁盘用量"><a class="header-anchor" href="#目录下统计磁盘用量"></a>目录下统计磁盘用量</h2>
+<h3 id="法一-使用duc-推荐"><a class="header-anchor" href="#法一-使用duc-推荐"></a>法一 使用<a href="http://duc.zevv.nl">duc</a> (推荐)</h3>
+<p>仅能统计磁盘大小, 不能统计文件数目. 是按照子文件夹来统计, 而不是文件归属的用户来统计.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> duc <span class="token comment"># install duc</span>
+<span class="token function">sudo</span> duc index -fHpx <span class="token operator">&lt;</span>dir<span class="token operator">></span> <span class="token comment"># build the index of any &lt;dir> to a dataset file $HOME/.duc.db</span>
+<span class="token comment"># it which will be upated every time when things under &lt;dir> change</span>
+<span class="token function">sudo</span> duc <span class="token function">ls</span> -Fg <span class="token operator">&lt;</span>dir<span class="token operator">></span> <span class="token comment"># list the subdirs and their size of &lt;dir>, No wait times</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="法二-使用quota"><a class="header-anchor" href="#法二-使用quota"></a>法二 使用quota</h3>
+<p>使用quota, 只统计每个用户的磁盘大小和文件数目用量, 不用限制用户的使用.</p>
+<p>可以按文件归属的用户来统计, 也可以按照子文件夹来统计.</p>
+<h2 id="quota安装与配置"><a class="header-anchor" href="#quota安装与配置"></a>quota安装与配置</h2>
+<p>本文在此<a href="https://www.howtoing.com/set-filesystem-disk-quotas-on-ubuntu">教程</a>上修改. 其他参考: <a href="http://cn.linux.vbird.org/linux_basic/fedora_4/0420quota-fc4.php">鸟哥</a>.</p>
+<h3 id="安装quota"><a class="header-anchor" href="#安装quota"></a>安装quota</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> update
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">quota</span> -y
+<span class="token function">sudo</span> <span class="token function">quota</span> --version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="安装配额内核模块"><a class="header-anchor" href="#安装配额内核模块"></a>安装配额内核模块</h3>
+<p>确认是否安装配额内核模块</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> /lib/modules/<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -r<span class="token variable">`</span></span> -type f -name <span class="token string">'*quota_v*.ko*'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若返回</p>
+<blockquote>
+  <pre class="line-numbers language-none"><code class="language-none">&#x2F;lib&#x2F;modules&#x2F;4.15.0-88-generic&#x2F;kernel&#x2F;fs&#x2F;quota&#x2F;quota_v2.ko
+&#x2F;lib&#x2F;modules&#x2F;4.15.0-88-generic&#x2F;kernel&#x2F;fs&#x2F;quota&#x2F;quota_v1.ko<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</blockquote>
+<p>则此两模块已安装额内核模块; 若返回为空, 则未安装 (通常云服务器由此物体), 需要手动安装</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> linux-image-extra-virtual -y<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>而后再次执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">find</span> /lib/modules/<span class="token variable"><span class="token variable">`</span><span class="token function">uname</span> -r<span class="token variable">`</span></span> -type f -name <span class="token string">'*quota_v*.ko*'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>确认已安装额内核模块.</p>
+<h3 id="更新文件系统挂载选项"><a class="header-anchor" href="#更新文件系统挂载选项"></a>更新文件系统挂载选项</h3>
+<ul>
+<li>
+<p>通过修改 <code>/etc/fstab</code> 文件来决定哪些文件系统需要使用quota</p>
+<p><code>sudo vim /etc/fstab</code>, 找到需要的文件系统 (如<code>/</code>) 所在行, 第四字段尾部增加<code>,usrquota,grpquota</code>选项, 这样会对此文件系统启用对用户和用户组的限额.</p>
+<p>例如:</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;dev&#x2F;mapper&#x2F;jungpu21--vg-root &#x2F;               ext4    errors&#x3D;remount-ro,usrquota,grpquota 0       1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>或</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;dev&#x2F;mapper&#x2F;jungpu21--vg-root &#x2F;               ext4    defaults,usrquota,grpquota 0       1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>注:</strong></p>
+<ul>
+<li>查看文件系统的格式 <code>df -T -h</code>, <code>-T</code> 显示文件系统, <code>-h</code> 可读的磁盘大小</li>
+<li>第四字段若为<code>defaults</code>, 表示所有选项全部使用默认配置, 包括rw, suid, dev, exec, auto, nouser, 和 async。一般用户没有特殊需求，直接使用 <code>defaults</code> 就可以了</li>
+<li>若 <code>/etc/fstab</code> 中已有不同于<code>defaults</code>的选项, 把<code>,usrquota,grpquota</code>加在已有的选项后即可</li>
+</ul>
+</li>
+<li>
+<p>重新挂载文件系统，以使更改生效</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">mount</span> -o remount /<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>验证quota选项生效</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">cat</span> /proc/mounts <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">' / '</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若返回如下则继续</p>
+</li>
+</ul>
+<blockquote>
+  <pre class="line-numbers language-none"><code class="language-none">&#x2F;dev&#x2F;mapper&#x2F;jungpu21--vg-root &#x2F; ext4 rw,relatime,quota,usrquota,grpquota,errors&#x3D;remount-ro,data&#x3D;ordered 0 0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h3 id="启用quota程序"><a class="header-anchor" href="#启用quota程序"></a>启用quota程序</h3>
+<ul>
+<li>
+<p>创建配额文件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">quotacheck</span> -ugm /<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>该命令将在<code>/</code>创建  <code>aquota.group</code>  与 <code>aquota.user</code> 文件，即配额用户和配额组，它们具有有关文件系统的限制和使用情况的信息。 在开始使用配额之前，这些文件必须存在。</p>
+<ul>
+<li><code>-u</code> ：表示将创建基于用户的配额文件。</li>
+<li><code>-g</code> ：表示将创建基于组的配额文件。</li>
+<li><code>-m</code>: disables remounting of the file system as a read-only while at the same time gives accurate results in an environment where the user keeps saving files. 在安装过程中此选项不是必需的。</li>
+</ul>
+<p>确认已创建  <code>aquota.group</code>  与 <code>aquota.user</code> 文件.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> <span class="token variable">$mount_point</span> <span class="token operator">|</span> <span class="token function">grep</span> aquota<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>启用quota程序</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> quotaon -v /<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若显示如下则成功</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;dev&#x2F;sda4 [&#x2F;]: group quotas turned on
+&#x2F;dev&#x2F;sda4 [&#x2F;]: user quotas turned on<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h3 id="单个用户的配额"><a class="header-anchor" href="#单个用户的配额"></a>单个用户的配额</h3>
+<ul>
+<li>
+<p>非交互设置配额</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> setquota -u <span class="token operator">&lt;</span>用户名<span class="token operator">></span> <span class="token operator">&lt;</span>soft-block-limit<span class="token operator">></span> <span class="token operator">&lt;</span>hard-block-limit<span class="token operator">></span> <span class="token operator">&lt;</span>soft-index-limit<span class="token operator">></span> <span class="token operator">&lt;</span>hard-block-limit<span class="token operator">></span> /
+<span class="token function">sudo</span> setquota -g <span class="token operator">&lt;</span>用户组名<span class="token operator">></span> <span class="token operator">&lt;</span>soft-block-limit<span class="token operator">></span> <span class="token operator">&lt;</span>hard-block-limit<span class="token operator">></span> <span class="token operator">&lt;</span>soft-index-limit<span class="token operator">></span> <span class="token operator">&lt;</span>hard-block-limit<span class="token operator">></span> /<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li><code>&lt;soft-block-limit&gt;</code> : 磁盘大小软限制, 单位1kB, 可写成 <code>12321</code> (12321kB), <code>12M</code> (12MB), <code>12G</code>, <code>12T</code> (1024升位)</li>
+<li><code>&lt;hard-block-limit&gt;</code> : 磁盘大小硬限制, 写法同<code>&lt;soft-block-limit&gt;</code></li>
+<li><code>&lt;soft-index-limit&gt;</code>: 文件数目软限制, 单位1个文件, 可写成 <code>12121</code> (<code>12121</code>个文件), <code>12k</code> (12,000个文件),  <code>12M</code>, <code>12G</code>,  <code>12T</code> (1000升位)</li>
+<li><code>&lt;hard-index-limit&gt;</code>: 文件数目硬限制, 写法同<code>&lt;soft-index-limit&gt;</code></li>
+</ul>
+<p>当用户超过</p>
+<ul>
+<li>
+<p>软限制: 在宽限期 (grace) 内仍然可继续写入文件, 但向此用户发警告; 超过宽限期, 则不得继续写入并报错.</p>
+</li>
+<li>
+<p>硬限制: 不得继续写入并报错如下.</p>
+<pre class="line-numbers language-none"><code class="language-none">sdb1: write failed, user block limit reached.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+<li>
+<p>交互设置配额</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> edquota -u <span class="token operator">&lt;</span>用户名<span class="token operator">></span>
+<span class="token function">sudo</span> edquota -g <span class="token operator">&lt;</span>用户组名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img data-src="/posts/bd0cccac/Check-User-Quota-on-Disk.png" alt="检查磁盘上的用户配额"></p>
+<p>修改文件中的soft/hard限额, 保存退出编辑器即可.</p>
+</li>
+</ul>
+<h3 id="设置宽限期"><a class="header-anchor" href="#设置宽限期"></a>设置宽限期</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> setquota -t <span class="token operator">&lt;</span>block-grace<span class="token operator">></span> <span class="token operator">&lt;</span>index-grace<span class="token operator">></span> /<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li><code>&lt;block-grace&gt;</code>: 磁盘大小配额的宽限期, 单位必须为秒, 写成例如 <code>864000</code> , 即10天.</li>
+<li><code>&lt;index-grace&gt;</code> : 文件数目配额的宽限期, 写法如上.</li>
+</ul>
+<h3 id="查看配额"><a class="header-anchor" href="#查看配额"></a>查看配额</h3>
+<p>查看单个用户/用户组</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">quota</span> -vs <span class="token operator">&lt;</span>用户名<span class="token operator">></span>
+<span class="token function">sudo</span> <span class="token function">quota</span> -vsg <span class="token operator">&lt;</span>用户组名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li><code>-s</code> : 人类可读的数字格式</li>
+<li><code>-v</code> : verbose</li>
+</ul>
+<p><img data-src="/posts/bd0cccac/Verify-User-Quota-Limit.png" alt="验证用户配额限制"></p>
+<p>查看所有用户/用户组</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> repquota -s /
+<span class="token function">sudo</span> repquota -sg /<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img data-src="/posts/bd0cccac/Generate-Quota-Reports.png" alt="生成配额报告"></p>
+<h2 id="常见错误消息"><a class="header-anchor" href="#常见错误消息"></a>常见错误消息</h2>
+<h3 id="quotaon-cannot-find-aquota-group-on-dev-vda1"><a class="header-anchor" href="#quotaon-cannot-find-aquota-group-on-dev-vda1"></a>quotaon: cannot find <a href="//aquota.group">//aquota.group</a> on /dev/vda1 [/]</h3>
+<pre class="line-numbers language-none"><code class="language-none">quotaon: cannot find &#x2F;&#x2F;aquota.group on &#x2F;dev&#x2F;vda1 [&#x2F;]
+quotaon: cannot find &#x2F;&#x2F;aquota.user on &#x2F;dev&#x2F;vda1 [&#x2F;]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>如果您尝试使用命令<strong>qoutaon</strong>打开配额，然后再尝试使用命令 <code>sudo quotacheck -ugm /</code>  检查配额的状态</p>
+<h3 id="quotaon-Quota-format-not-supported-in-kernel"><a class="header-anchor" href="#quotaon-Quota-format-not-supported-in-kernel"></a>quotaon: Quota format not supported in kernel</h3>
+<pre class="line-numbers language-none"><code class="language-none">quotaon: using &#x2F;&#x2F;aquota.group on &#x2F;dev&#x2F;vda1 [&#x2F;]: No such process
+quotaon: Quota format not supported in kernel.
+quotaon: using &#x2F;&#x2F;aquota.user on &#x2F;dev&#x2F;vda1 [&#x2F;]: No such process
+quotaon: Quota format not supported in kernel.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此错误告诉管理员内核不支持  <code>quota_v1</code> 和 <code>quota_v2</code> ，或者您在计算机上的版本可能不正确。 对于<strong>Ubuntu而言</strong> ，此类错误在基于云的虚拟服务器上很常见。通过<code>sudo apt install linux-image-extra-virtual -y</code>来修复错误。</p>
+<p>更多参考:</p>
+<p><a href="https://askubuntu.com/questions/109585/quota-format-not-supported-in-kernel">https://askubuntu.com/questions/109585/quota-format-not-supported-in-kernel</a></p>
+<p><a href="https://serverfault.com/questions/843994/ubuntu-quota-format-not-supported-in-kernel">https://serverfault.com/questions/843994/ubuntu-quota-format-not-supported-in-kernel</a></p>
+<h3 id="quota-Cannot-open-quotafile-aquota-user-Permission-denied"><a class="header-anchor" href="#quota-Cannot-open-quotafile-aquota-user-Permission-denied"></a>quota: Cannot open quotafile <a href="//aquota.user">//aquota.user</a>: Permission denied</h3>
+<pre class="line-numbers language-none"><code class="language-none">quota: Cannot open quotafile &#x2F;&#x2F;aquota.user: Permission denied
+quota: Cannot open quotafile &#x2F;&#x2F;aquota.user: Permission denied
+quota: Cannot open quotafile &#x2F;&#x2F;quota.user: No such file or directory<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>当当前用户没有读取配额文件的权限时，该错误将很明显。使用 <code>sudo</code>即可避免此错误。</p>
+<h2 id="测试quota有效"><a class="header-anchor" href="#测试quota有效"></a>测试quota有效</h2>
+<p>测试quota有效</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 创建用户组 quota, 其下有 用户quser1, 用户 quser2</span>
+<span class="token function">sudo</span> <span class="token function">groupadd</span> <span class="token function">quota</span>
+<span class="token function">sudo</span> <span class="token function">useradd</span> -m -g <span class="token function">quota</span> quser1
+<span class="token function">sudo</span> <span class="token function">useradd</span> -m -g <span class="token function">quota</span> quser2
+<span class="token function">sudo</span> <span class="token function">passwd</span> quser1
+<span class="token function">sudo</span> <span class="token function">passwd</span> quser2
+
+<span class="token comment"># 为用户添加限额</span>
+<span class="token function">sudo</span> setquota -u quser1 200M 220M <span class="token number">0</span> <span class="token number">0</span> /
+<span class="token function">sudo</span> setquota -u quser2 200M 220M <span class="token number">0</span> <span class="token number">0</span> /
+<span class="token function">sudo</span> setquota -g <span class="token function">quota</span> 300M 320M <span class="token number">0</span> <span class="token number">0</span> /
+
+<span class="token comment"># 显示配额</span>
+<span class="token function">sudo</span> <span class="token function">quota</span> -vs  quser1
+<span class="token function">sudo</span> <span class="token function">quota</span> -vs  quser2
+<span class="token function">sudo</span> setquota -vsg <span class="token function">quota</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>登录  <code>quser1</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在当前目录下会生成一个190MB的test文件，文件内容为全0</span>
+<span class="token function">dd</span> <span class="token assign-left variable">if</span><span class="token operator">=</span>/dev/zero <span class="token assign-left variable">of</span><span class="token operator">=</span>test <span class="token assign-left variable">bs</span><span class="token operator">=</span>1M <span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token number">190</span> <span class="token comment"># 未超过软限额, 不报错</span>
+<span class="token function">dd</span> <span class="token assign-left variable">if</span><span class="token operator">=</span>/dev/zero <span class="token assign-left variable">of</span><span class="token operator">=</span>test <span class="token assign-left variable">bs</span><span class="token operator">=</span>1M <span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token number">210</span> <span class="token comment"># 超过软限额, 未超过硬限额, 也不报错</span>
+<span class="token function">dd</span> <span class="token assign-left variable">if</span><span class="token operator">=</span>/dev/zero <span class="token assign-left variable">of</span><span class="token operator">=</span>test <span class="token assign-left variable">bs</span><span class="token operator">=</span>1M <span class="token assign-left variable">count</span><span class="token operator">=</span><span class="token number">230</span> <span class="token comment"># 超过硬限额, 报错如下, 并test只写入了220M</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+  <pre class="line-numbers language-none"><code class="language-none">sdb1: write failed, user block limit reached.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<h2 id="超过软quota发送警告"><a class="header-anchor" href="#超过软quota发送警告"></a>超过软quota发送警告</h2>
+<p>法一: 通过邮件给用户发送警告, 参考: <a href="http://cn.linux.vbird.org/linux_basic/0420quota_1.php">warnquota</a>.</p>
+<p>法二: 定时发送到用户的终端上, 使用我开发的此<a href="https://github.com/hyliang96/admin_tool">工具</a>, 参见<a href="/mfs/haoyu/server_conf/ENV/serverENV/.git/modules/admin_tool/index.lock">readme</a>.</p>
+<h2 id="Project-quota"><a class="header-anchor" href="#Project-quota"></a>Project quota</h2>
+<p>不同于限制用户/用户组的磁盘使用, 将文件夹及其下文件, 设置为从属于一个项目, 对项目限制磁盘使用. 参考: <a href="https://blog.csdn.net/luckyapple1028/article/details/75754591">project quota</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>linux杂项</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Mac上使用locate</title>
     <url>/posts/9e0a1c71/</url>
     <content><![CDATA[<h1 id="系统级locate"><a class="header-anchor" href="#系统级locate"></a>系统级locate</h1>
@@ -2161,6 +2161,20 @@ Try &#39;rm --help&#39; for more information.<span aria-hidden="true" class="lin
       </categories>
   </entry>
   <entry>
+    <title>mac_命令行专属命令</title>
+    <url>/posts/e3c7e/</url>
+    <content><![CDATA[<h1 id="mac-命令行专属命令"><a class="header-anchor" href="#mac-命令行专属命令"></a>mac 命令行专属命令</h1>
+<h3 id="mac-命令行专属命令-_2"><a class="header-anchor" href="#mac-命令行专属命令-_2"></a>mac 命令行专属命令</h3>
+<p>永久修改hostname (命令行行首提示中的主机名)</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> scutil --set HostName <span class="token operator">&lt;</span>新hostname<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a href="https://blog.csdn.net/flyter/article/details/8880583">参考</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
     <title>Mac按键符号</title>
     <url>/posts/39e47bde/</url>
     <content><![CDATA[<h2 id="Mac符号"><a class="header-anchor" href="#Mac符号"></a>Mac符号</h2>
@@ -2180,6 +2194,98 @@ End: Fn + →<br>
 ⇤: 左制表符（Shift+Tab）<br>
 ⎋: Escape (Esc)</p>
 <p><img data-src="/posts/39e47bde/20170614103620686.png" alt></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>mac_软件安装</title>
+    <url>/posts/72c36e9e/</url>
+    <content><![CDATA[<h2 id="第三方的软件-xxx-app-已损坏-无法打开"><a class="header-anchor" href="#第三方的软件-xxx-app-已损坏-无法打开"></a>第三方的软件  <code>xxx.app 已损坏, 无法打开</code></h2>
+<p><code>xxx.app</code> 安装后, 初次打开时显示 <code>xxx.app 已损坏, 无法打开</code>， 原因是 Mac在安装第三方的软件的时候会对第三方的身份做check. 若显示  <code>xxx.app 已损坏, 无法打开</code>,</p>
+<h3 id="开全局的允许安装任意来源的app"><a class="header-anchor" href="#开全局的允许安装任意来源的app"></a>开全局的允许安装任意来源的app</h3>
+<p>只需要在<code>系统偏好设置 </code> -&gt; <code>安全与隐私</code> -&gt; <code>通用设置</code> 中</p>
+<ul>
+<li>
+<p>若<code>任何来源</code> 选项被苹果隐藏起来了，如下图, 则运行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> spctl --master-disable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<p><img data-src="/posts/72c36e9e/v2-6d5737e6a0f07394b8c07a48980f2e0a_720w.jpg" alt="img"></p>
+<ul>
+<li>点击左下角的锁图标, 输入用户密码</li>
+<li>然后选择选择 <code>任何来源</code> 然后选择 <code>仍要运行</code> 即可运行第三方的软件</li>
+</ul>
+<p><img data-src="/posts/72c36e9e/v2-64a193723017abb571e65cd63c694c42_720w.jpg" alt="img"></p>
+<ul>
+<li>若初次打开<code>xxx.app</code>仍然时显示 <code>xxx.app 已损坏, 无法打开</code>，重装<code>xxx.app</code>, 然后再打开<code>xxx.app</code>, 则可成功打开</li>
+</ul>
+<h3 id="授权单个app安装-macOS-Catalina-10-15-Catalina-10-15-4"><a class="header-anchor" href="#授权单个app安装-macOS-Catalina-10-15-Catalina-10-15-4"></a>授权单个app安装 (macOS &gt;=Catalina 10.15, &lt;Catalina 10.15.4)</h3>
+<p>若上述操作后仍然能启动成功, 则需要授权单个app安装. 运行如下命令</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> xattr -d com.apple.quarantine /Applications/xxxx.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后打开软件<code>xxx.app</code>, 即可运行成功</p>
+<p>若初次打开<code>xxx.app</code>仍然时显示 <code>xxx.app 已损坏, 无法打开</code>，重装<code>xxx.app</code>, 然后再打开<code>xxx.app</code>, 则可成功打开</p>
+<h2 id="TNT软件打开意外退出及崩溃闪退-macOS-Catalina-10-15-4"><a class="header-anchor" href="#TNT软件打开意外退出及崩溃闪退-macOS-Catalina-10-15-4"></a>TNT软件打开<code>意外退出</code>及<code>崩溃闪退</code> (macOS &gt;= Catalina 10.15.4 )</h2>
+<p>TNT破解软件安装后, 初次打开报错 <code>意外退出</code>及<code>崩溃闪退</code></p>
+<h3 id="原因"><a class="header-anchor" href="#原因"></a>原因</h3>
+<p>apple删除了 TNT 破解软件的代码签名.</p>
+<h3 id="对策"><a class="header-anchor" href="#对策"></a>对策</h3>
+<p>自己给软件做代码签名</p>
+<h4 id="安装xcode-Command-Line-Tools"><a class="header-anchor" href="#安装xcode-Command-Line-Tools"></a>安装xcode Command Line Tools</h4>
+<h5 id="法一-若未装xcode-则直接装xcode-Command-Line-Tools"><a class="header-anchor" href="#法一-若未装xcode-则直接装xcode-Command-Line-Tools"></a>法一 若未装xcode, 则直接装xcode Command Line Tools</h5>
+<p>访问<a href="https://developer.apple.com/download/more/">苹果开发者下载网站</a>, 选最新的xcode Command Line Tools , 点下载并按安装</p>
+<h5 id="法二-若已经装过xcode-则装对应版本的xcode-Command-Line-Tools"><a class="header-anchor" href="#法二-若已经装过xcode-则装对应版本的xcode-Command-Line-Tools"></a>法二 若已经装过xcode, 则装对应版本的xcode Command Line Tools</h5>
+<ul>
+<li>
+<p>若已经装过了<a href="https://nav.xpeople.design/tag/xcode/">xcode</a></p>
+<p>可以在App Store中下载安装xCode，并且至少运行一次。</p>
+</li>
+<li>
+<p>则需要安装xcode版本对应的安装Command Line Tools 工具</p>
+<p>做法是, 打开终端工具输入如下命令</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">xcode-select --install<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>弹出后选择继续安装。</p>
+</li>
+</ul>
+<h4 id="签名"><a class="header-anchor" href="#签名"></a>签名</h4>
+<p>打开终端工具输入并执行如下命令：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">codesign --force --deep --sign - /Applications/<span class="token operator">&lt;</span>软件名<span class="token operator">></span>.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>输出结果</p>
+<blockquote>
+<p>/Applications/&lt;软件名&gt;.app : replacing existing signature</p>
+</blockquote>
+<p>注意后面的文件路径，你可以打开访达找到应用程序，找到要签名的软件，直接拖入 <code>终端</code> 界面，即可自动生成路径。</p>
+<p>而后重新打开软件, 即可</p>
+<h3 id="报错"><a class="header-anchor" href="#报错"></a>报错</h3>
+<h4 id="similar-detritus-not-allowed"><a class="header-anchor" href="#similar-detritus-not-allowed"></a>similar detritus not allowed</h4>
+<p>若如下报错</p>
+<blockquote>
+<p>/Applications/&lt;软件名&gt;.app : replacing existing signature<br>
+/Applications/&lt;软件名&gt;.app : resource fork,Finder information,or similar detritus not allowed</p>
+</blockquote>
+<p>则先在终端执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">xattr -cr /Applications/<span class="token operator">&lt;</span>软件名<span class="token operator">></span>.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后再次执行如下指令即可</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">codesign --force --deep --sign - /Applications/<span class="token operator">&lt;</span>软件名<span class="token operator">></span>.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果以上步骤执行完成后还是无法运行，尝试关闭一下SIP，再重复上述操作</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>mac</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>mac上使用X11</title>
+    <url>/posts/3ad41d06/</url>
+    <content><![CDATA[<h2 id="XQuartz"><a class="header-anchor" href="#XQuartz"></a>XQuartz</h2>
+<h3 id><a class="header-anchor" href="#"></a></h3>
+<h3 id="多显示屏XQuartz闪退"><a class="header-anchor" href="#多显示屏XQuartz闪退"></a>多显示屏XQuartz闪退</h3>
+<p><a href="https://apple.stackexchange.com/questions/235279/inkscape-or-other-xquartz-window-disappears-when-using-external-screen">对策</a> <a href="https://www.laptopmag.com/articles/mirror-display-macos">对策参考</a></p>
+<h2 id="MacPorts安装X11"><a class="header-anchor" href="#MacPorts安装X11"></a>MacPorts安装X11</h2>
+<p><a href="https://www.jianshu.com/p/fd422e004f62">安装教程</a> 我依照此教程安装后，X11.app打不开，故卸载了macports</p>
+<p><a href="https://guide.macports.org/chunked/installing.macports.uninstalling.html">卸载macports</a></p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -2258,112 +2364,6 @@ Homebrew&#x2F;homebrew-core (git revision 43c72b06c0c; last commit 2021-09-28)<s
 <h2 id="国内镜像安装"><a class="header-anchor" href="#国内镜像安装"></a>国内镜像安装</h2>
 <p><a href="http://mirrors.ustc.edu.cn/help/brew.git.html">中科大源</a></p>
 <p><a href="https://mirrors.tuna.tsinghua.edu.cn/help/homebrew/">清华源</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>mac上使用X11</title>
-    <url>/posts/3ad41d06/</url>
-    <content><![CDATA[<h2 id="XQuartz"><a class="header-anchor" href="#XQuartz"></a>XQuartz</h2>
-<h3 id><a class="header-anchor" href="#"></a></h3>
-<h3 id="多显示屏XQuartz闪退"><a class="header-anchor" href="#多显示屏XQuartz闪退"></a>多显示屏XQuartz闪退</h3>
-<p><a href="https://apple.stackexchange.com/questions/235279/inkscape-or-other-xquartz-window-disappears-when-using-external-screen">对策</a> <a href="https://www.laptopmag.com/articles/mirror-display-macos">对策参考</a></p>
-<h2 id="MacPorts安装X11"><a class="header-anchor" href="#MacPorts安装X11"></a>MacPorts安装X11</h2>
-<p><a href="https://www.jianshu.com/p/fd422e004f62">安装教程</a> 我依照此教程安装后，X11.app打不开，故卸载了macports</p>
-<p><a href="https://guide.macports.org/chunked/installing.macports.uninstalling.html">卸载macports</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>mac_命令行专属命令</title>
-    <url>/posts/e3c7e/</url>
-    <content><![CDATA[<h1 id="mac-命令行专属命令"><a class="header-anchor" href="#mac-命令行专属命令"></a>mac 命令行专属命令</h1>
-<h3 id="mac-命令行专属命令-_2"><a class="header-anchor" href="#mac-命令行专属命令-_2"></a>mac 命令行专属命令</h3>
-<p>永久修改hostname (命令行行首提示中的主机名)</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> scutil --set HostName <span class="token operator">&lt;</span>新hostname<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a href="https://blog.csdn.net/flyter/article/details/8880583">参考</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>mac_软件安装</title>
-    <url>/posts/72c36e9e/</url>
-    <content><![CDATA[<h2 id="第三方的软件-xxx-app-已损坏-无法打开"><a class="header-anchor" href="#第三方的软件-xxx-app-已损坏-无法打开"></a>第三方的软件  <code>xxx.app 已损坏, 无法打开</code></h2>
-<p><code>xxx.app</code> 安装后, 初次打开时显示 <code>xxx.app 已损坏, 无法打开</code>， 原因是 Mac在安装第三方的软件的时候会对第三方的身份做check. 若显示  <code>xxx.app 已损坏, 无法打开</code>,</p>
-<h3 id="开全局的允许安装任意来源的app"><a class="header-anchor" href="#开全局的允许安装任意来源的app"></a>开全局的允许安装任意来源的app</h3>
-<p>只需要在<code>系统偏好设置 </code> -&gt; <code>安全与隐私</code> -&gt; <code>通用设置</code> 中</p>
-<ul>
-<li>
-<p>若<code>任何来源</code> 选项被苹果隐藏起来了，如下图, 则运行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> spctl --master-disable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-</ul>
-<p><img data-src="/posts/72c36e9e/v2-6d5737e6a0f07394b8c07a48980f2e0a_720w.jpg" alt="img"></p>
-<ul>
-<li>点击左下角的锁图标, 输入用户密码</li>
-<li>然后选择选择 <code>任何来源</code> 然后选择 <code>仍要运行</code> 即可运行第三方的软件</li>
-</ul>
-<p><img data-src="/posts/72c36e9e/v2-64a193723017abb571e65cd63c694c42_720w.jpg" alt="img"></p>
-<ul>
-<li>若初次打开<code>xxx.app</code>仍然时显示 <code>xxx.app 已损坏, 无法打开</code>，重装<code>xxx.app</code>, 然后再打开<code>xxx.app</code>, 则可成功打开</li>
-</ul>
-<h3 id="授权单个app安装-macOS-Catalina-10-15-Catalina-10-15-4"><a class="header-anchor" href="#授权单个app安装-macOS-Catalina-10-15-Catalina-10-15-4"></a>授权单个app安装 (macOS &gt;=Catalina 10.15, &lt;Catalina 10.15.4)</h3>
-<p>若上述操作后仍然能启动成功, 则需要授权单个app安装. 运行如下命令</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> xattr -d com.apple.quarantine /Applications/xxxx.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后打开软件<code>xxx.app</code>, 即可运行成功</p>
-<p>若初次打开<code>xxx.app</code>仍然时显示 <code>xxx.app 已损坏, 无法打开</code>，重装<code>xxx.app</code>, 然后再打开<code>xxx.app</code>, 则可成功打开</p>
-<h2 id="TNT软件打开意外退出及崩溃闪退-macOS-Catalina-10-15-4"><a class="header-anchor" href="#TNT软件打开意外退出及崩溃闪退-macOS-Catalina-10-15-4"></a>TNT软件打开<code>意外退出</code>及<code>崩溃闪退</code> (macOS &gt;= Catalina 10.15.4 )</h2>
-<p>TNT破解软件安装后, 初次打开报错 <code>意外退出</code>及<code>崩溃闪退</code></p>
-<h3 id="原因"><a class="header-anchor" href="#原因"></a>原因</h3>
-<p>apple删除了 TNT 破解软件的代码签名.</p>
-<h3 id="对策"><a class="header-anchor" href="#对策"></a>对策</h3>
-<p>自己给软件做代码签名</p>
-<h4 id="安装xcode-Command-Line-Tools"><a class="header-anchor" href="#安装xcode-Command-Line-Tools"></a>安装xcode Command Line Tools</h4>
-<h5 id="法一-若未装xcode-则直接装xcode-Command-Line-Tools"><a class="header-anchor" href="#法一-若未装xcode-则直接装xcode-Command-Line-Tools"></a>法一 若未装xcode, 则直接装xcode Command Line Tools</h5>
-<p>访问<a href="https://developer.apple.com/download/more/">苹果开发者下载网站</a>, 选最新的xcode Command Line Tools , 点下载并按安装</p>
-<h5 id="法二-若已经装过xcode-则装对应版本的xcode-Command-Line-Tools"><a class="header-anchor" href="#法二-若已经装过xcode-则装对应版本的xcode-Command-Line-Tools"></a>法二 若已经装过xcode, 则装对应版本的xcode Command Line Tools</h5>
-<ul>
-<li>
-<p>若已经装过了<a href="https://nav.xpeople.design/tag/xcode/">xcode</a></p>
-<p>可以在App Store中下载安装xCode，并且至少运行一次。</p>
-</li>
-<li>
-<p>则需要安装xcode版本对应的安装Command Line Tools 工具</p>
-<p>做法是, 打开终端工具输入如下命令</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">xcode-select --install<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>弹出后选择继续安装。</p>
-</li>
-</ul>
-<h4 id="签名"><a class="header-anchor" href="#签名"></a>签名</h4>
-<p>打开终端工具输入并执行如下命令：</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">codesign --force --deep --sign - /Applications/<span class="token operator">&lt;</span>软件名<span class="token operator">></span>.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>输出结果</p>
-<blockquote>
-<p>/Applications/&lt;软件名&gt;.app : replacing existing signature</p>
-</blockquote>
-<p>注意后面的文件路径，你可以打开访达找到应用程序，找到要签名的软件，直接拖入 <code>终端</code> 界面，即可自动生成路径。</p>
-<p>而后重新打开软件, 即可</p>
-<h3 id="报错"><a class="header-anchor" href="#报错"></a>报错</h3>
-<h4 id="similar-detritus-not-allowed"><a class="header-anchor" href="#similar-detritus-not-allowed"></a>similar detritus not allowed</h4>
-<p>若如下报错</p>
-<blockquote>
-<p>/Applications/&lt;软件名&gt;.app : replacing existing signature<br>
-/Applications/&lt;软件名&gt;.app : resource fork,Finder information,or similar detritus not allowed</p>
-</blockquote>
-<p>则先在终端执行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">xattr -cr /Applications/<span class="token operator">&lt;</span>软件名<span class="token operator">></span>.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后再次执行如下指令即可</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">codesign --force --deep --sign - /Applications/<span class="token operator">&lt;</span>软件名<span class="token operator">></span>.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>如果以上步骤执行完成后还是无法运行，尝试关闭一下SIP，再重复上述操作</p>
 ]]></content>
       <categories>
         <category>器</category>
@@ -2841,32 +2841,67 @@ EOF<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
       </categories>
   </entry>
   <entry>
-    <title>mac永久添加私钥到keyChain</title>
-    <url>/posts/d85f8f75/</url>
-    <content><![CDATA[<p>以下<a href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本，以备不时之需</p>
-<blockquote>
-<h1 id="Mac-重启后自动-ssh-add-私钥"><a class="header-anchor" href="#Mac-重启后自动-ssh-add-私钥"></a><a href="https://mednoter.com/ssh-add-automatically.html">Mac 重启后自动 ssh-add 私钥</a></h1>
-<p>管理服务器有一些安全常识:</p>
+    <title>mac的移动硬盘分区方案</title>
+    <url>/posts/6f7822e5/</url>
+    <content><![CDATA[<h3 id="分区方案"><a class="header-anchor" href="#分区方案"></a>分区方案</h3>
+<p>完全参照https://www.jianshu.com/p/5f8b4d9a8922</p>
+<p>主力分区是<code>NTFS</code>格式，以确保和windows的数据交换，配套Tuxera NTFS for Mac来解决Mac系统无法写入NTFS文件系统的问题。</p>
+<p>mac的备份区用<code>OS X 拓展（日志式）</code>格式。</p>
+<h3 id="NTFS写入软件的选择"><a class="header-anchor" href="#NTFS写入软件的选择"></a>NTFS写入软件的选择</h3>
+<table>
+<thead>
+<tr>
+<th>软件</th>
+<th>速度</th>
+<th>进阶功能</th>
+<th>稳定性</th>
+<th>收费否</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Paragon NTFS</td>
+<td>中</td>
+<td>无</td>
+<td>次稳定</td>
+<td>￥150</td>
+</tr>
+<tr>
+<td>Tuxera NTFS</td>
+<td>快</td>
+<td>有</td>
+<td>最稳定</td>
+<td>￥100</td>
+</tr>
+<tr>
+<td>mount类：如mountly软件 或 开启mac自带的ntfs写入功能</td>
+<td>快</td>
+<td>无</td>
+<td>很不稳定</td>
+<td>免费</td>
+</tr>
+</tbody>
+</table>
+<p>使用过程中出现设备断电或 USB 接口拔出等意外情况，Tuxera 的故障安全技术会确保各类文件完整，并防止驱动器损坏；而mount类则很容易丢失数据、损坏；Paragon也可能丢如此。</p>
+<p><img data-src="/posts/6f7822e5/v2-58016781c731bb96345e5e1b3ae069b7_hd.jpg" alt="v2-58016781c731bb96345e5e1b3ae069b7_hd"></p>
+<p><a href="https://zhuanlan.zhihu.com/p/68927971">参考</a></p>
+<p>建议：</p>
 <ul>
-<li>禁止 root 远程登录</li>
-<li>禁止密码登录</li>
-<li>使用 priviate / public key 作为默认的登录方式。</li>
-<li>修改 sshd 端口</li>
+<li>办公、写代码、日常备份资料，对速度要求不高，则稳定最要紧最高，推荐选择Tuxera</li>
+<li>影视制作，对速度要求高，推荐选Paragon</li>
 </ul>
-<p>From Linode: <a href="https://www.linode.com/docs/security/securing-your-server">Securing your server</a></p>
-<p>安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，需要一次次手工 ssh-add 私钥，特别心烦。</p>
-<p>几年前有这种方法 <code>ssh-add -K privateKey</code> 可以一劳永逸的把私钥存到 keychain 中，重启后也不需要手动 ssh-add，非常方便。</p>
-<p><strong>这种方式不管用了。</strong></p>
-<p><img data-src="/posts/d85f8f75/2017-06-02-ssh-add.jpeg" alt="img"></p>
-<h2 id="新的解决方法"><a class="header-anchor" href="#新的解决方法"></a>新的解决方法</h2>
-<p><strong>创建 Automator 任务加载私钥，然后放到开机启动中。</strong></p>
-<ol>
-<li>创建一个 Automator task.<img data-src="/posts/d85f8f75/2017-06-02-step1.jpeg" alt="img"></li>
-<li>在 task 中写一串 shell script<img data-src="/posts/d85f8f75/2017-06-02-step2.jpeg" alt="img"></li>
-<li>把 task 添加到 login items 中，每次系统重启后会执行这个 Automator task，自动 ssh-add 所有的私钥。<img data-src="/posts/d85f8f75/2017-06-02-step3.jpeg" alt="img"><img data-src="/posts/d85f8f75/2017-06-02-step4.jpeg" alt="img"></li>
-</ol>
-<p>搞定！</p>
-</blockquote>
+<h3 id="读写速度对比速度"><a class="header-anchor" href="#读写速度对比速度"></a>读写速度对比速度</h3>
+<p>使用Disk Speed Test软件测试移动硬盘不同格式分区的读写速度，<code>OS X 拓展（日志式）</code>和<code>NTFS</code>(Tuxera NTFS for Mac)读写速度相差不大</p>
+<ul>
+<li>
+<p>使用Tuxera NTFS for Mac，写入NTFS格式的分区，结果如下</p>
+<p><img data-src="/posts/6f7822e5/ntfs.png" alt="ntfs"></p>
+</li>
+<li>
+<p>读写入&quot;OS X 拓展（日志式）&quot;格式的分区，结果如下</p>
+<p><img data-src="/posts/6f7822e5/hfs+.png" alt="hfs+"></p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3050,67 +3085,32 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
       </categories>
   </entry>
   <entry>
-    <title>mac的移动硬盘分区方案</title>
-    <url>/posts/6f7822e5/</url>
-    <content><![CDATA[<h3 id="分区方案"><a class="header-anchor" href="#分区方案"></a>分区方案</h3>
-<p>完全参照https://www.jianshu.com/p/5f8b4d9a8922</p>
-<p>主力分区是<code>NTFS</code>格式，以确保和windows的数据交换，配套Tuxera NTFS for Mac来解决Mac系统无法写入NTFS文件系统的问题。</p>
-<p>mac的备份区用<code>OS X 拓展（日志式）</code>格式。</p>
-<h3 id="NTFS写入软件的选择"><a class="header-anchor" href="#NTFS写入软件的选择"></a>NTFS写入软件的选择</h3>
-<table>
-<thead>
-<tr>
-<th>软件</th>
-<th>速度</th>
-<th>进阶功能</th>
-<th>稳定性</th>
-<th>收费否</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Paragon NTFS</td>
-<td>中</td>
-<td>无</td>
-<td>次稳定</td>
-<td>￥150</td>
-</tr>
-<tr>
-<td>Tuxera NTFS</td>
-<td>快</td>
-<td>有</td>
-<td>最稳定</td>
-<td>￥100</td>
-</tr>
-<tr>
-<td>mount类：如mountly软件 或 开启mac自带的ntfs写入功能</td>
-<td>快</td>
-<td>无</td>
-<td>很不稳定</td>
-<td>免费</td>
-</tr>
-</tbody>
-</table>
-<p>使用过程中出现设备断电或 USB 接口拔出等意外情况，Tuxera 的故障安全技术会确保各类文件完整，并防止驱动器损坏；而mount类则很容易丢失数据、损坏；Paragon也可能丢如此。</p>
-<p><img data-src="/posts/6f7822e5/v2-58016781c731bb96345e5e1b3ae069b7_hd.jpg" alt="v2-58016781c731bb96345e5e1b3ae069b7_hd"></p>
-<p><a href="https://zhuanlan.zhihu.com/p/68927971">参考</a></p>
-<p>建议：</p>
+    <title>mac永久添加私钥到keyChain</title>
+    <url>/posts/d85f8f75/</url>
+    <content><![CDATA[<p>以下<a href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本，以备不时之需</p>
+<blockquote>
+<h1 id="Mac-重启后自动-ssh-add-私钥"><a class="header-anchor" href="#Mac-重启后自动-ssh-add-私钥"></a><a href="https://mednoter.com/ssh-add-automatically.html">Mac 重启后自动 ssh-add 私钥</a></h1>
+<p>管理服务器有一些安全常识:</p>
 <ul>
-<li>办公、写代码、日常备份资料，对速度要求不高，则稳定最要紧最高，推荐选择Tuxera</li>
-<li>影视制作，对速度要求高，推荐选Paragon</li>
+<li>禁止 root 远程登录</li>
+<li>禁止密码登录</li>
+<li>使用 priviate / public key 作为默认的登录方式。</li>
+<li>修改 sshd 端口</li>
 </ul>
-<h3 id="读写速度对比速度"><a class="header-anchor" href="#读写速度对比速度"></a>读写速度对比速度</h3>
-<p>使用Disk Speed Test软件测试移动硬盘不同格式分区的读写速度，<code>OS X 拓展（日志式）</code>和<code>NTFS</code>(Tuxera NTFS for Mac)读写速度相差不大</p>
-<ul>
-<li>
-<p>使用Tuxera NTFS for Mac，写入NTFS格式的分区，结果如下</p>
-<p><img data-src="/posts/6f7822e5/ntfs.png" alt="ntfs"></p>
-</li>
-<li>
-<p>读写入&quot;OS X 拓展（日志式）&quot;格式的分区，结果如下</p>
-<p><img data-src="/posts/6f7822e5/hfs+.png" alt="hfs+"></p>
-</li>
-</ul>
+<p>From Linode: <a href="https://www.linode.com/docs/security/securing-your-server">Securing your server</a></p>
+<p>安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，需要一次次手工 ssh-add 私钥，特别心烦。</p>
+<p>几年前有这种方法 <code>ssh-add -K privateKey</code> 可以一劳永逸的把私钥存到 keychain 中，重启后也不需要手动 ssh-add，非常方便。</p>
+<p><strong>这种方式不管用了。</strong></p>
+<p><img data-src="/posts/d85f8f75/2017-06-02-ssh-add.jpeg" alt="img"></p>
+<h2 id="新的解决方法"><a class="header-anchor" href="#新的解决方法"></a>新的解决方法</h2>
+<p><strong>创建 Automator 任务加载私钥，然后放到开机启动中。</strong></p>
+<ol>
+<li>创建一个 Automator task.<img data-src="/posts/d85f8f75/2017-06-02-step1.jpeg" alt="img"></li>
+<li>在 task 中写一串 shell script<img data-src="/posts/d85f8f75/2017-06-02-step2.jpeg" alt="img"></li>
+<li>把 task 添加到 login items 中，每次系统重启后会执行这个 Automator task，自动 ssh-add 所有的私钥。<img data-src="/posts/d85f8f75/2017-06-02-step3.jpeg" alt="img"><img data-src="/posts/d85f8f75/2017-06-02-step4.jpeg" alt="img"></li>
+</ol>
+<p>搞定！</p>
+</blockquote>
 ]]></content>
       <categories>
         <category>器</category>
@@ -3197,309 +3197,6 @@ end run<span aria-hidden="true" class="line-numbers-rows"><span></span><span></s
       <categories>
         <category>器</category>
         <category>mac</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>anaconda安装与使用</title>
-    <url>/posts/1a6992ea/</url>
-    <content><![CDATA[<p>[TOC]</p>
-<h2 id="参考链接"><a class="header-anchor" href="#参考链接"></a>参考链接</h2>
-<p><a href="https://conda.io/docs/">conda文档</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/24664358">Linux下Anaconda的安装使用与卸载</a></p>
-<p><a href="http://www.jianshu.com/p/d2e15200ee9b">anaconda的使用和环境管理</a></p>
-<h2 id="安装anaconda"><a class="header-anchor" href="#安装anaconda"></a>安装anaconda</h2>
-<p>参见<a href="https://zhuanlan.zhihu.com/p/24664358">Linux下Anaconda的安装使用与卸载</a></p>
-<ul>
-<li>
-<p>在PC上，去<a href="https://www.continuum.io/downloads">Anaconda官网</a>，获得安装包的下载链接</p>
-<ul>
-<li>Download for Your Preferred Platform下，选Linux，根据需要选Python版本和操作系统位数</li>
-<li>右键点击下载按钮，选<code>复制链接</code>，如https://repo.continuum.io/archive/Anaconda2-4.4.0-Linux-x86_64.sh</li>
-</ul>
-</li>
-<li>
-<p>cd到服务器上自己d的用户目录</p>
-<ul>
-<li>
-<p>下载安装文件b</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> 上述链接<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>查看安装文件是否下载成功</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>看见有形如<code>	Anaconda3-4.0.0-Linux-x86_64.sh</code>的文件说明下载成功</p>
-</li>
-<li>
-<p>执行安装文件，如</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> Anaconda2-4.4.0-Linux-x86_64.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-</li>
-<li>
-<p>整个过程点几下回车，或者选yes就好了。</p>
-</li>
-<li>
-<p>但到最后一步，会提示是否把anaconda加入到系统环境变量中，选no（直接回车即可，默认就是no）</p>
-<p><img data-src="/posts/1a6992ea/conda%E5%AE%89%E8%A3%85.png" alt="conda安装"></p>
-</li>
-<li>
-<p>安装完成后，</p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span>
-<span class="token comment"># 会有anaconda2或者anaconda3文件夹， 分别对应python2 或 python3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<ul>
-<li>此时若终端中输入conda，发现command not found。这是因为，尚未向用户环境变量加入ananconda</li>
-</ul>
-</li>
-</ul>
-<h2 id="配置"><a class="header-anchor" href="#配置"></a>配置</h2>
-<ul>
-<li>向用户环境变量加入ananconda</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 将anaconda的bin目录加入PATH，根据版本不同，也可能是~/anaconda3/bin</span>
-<span class="token builtin class-name">echo</span> <span class="token string">'export PATH=~/anaconda2/bin:$PATH'</span> <span class="token operator">>></span> ~/.bashrc
-<span class="token comment"># 激活bashrc以立即生效</span>
-<span class="token builtin class-name">source</span> ~/.bashrc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>
-<p>如用户登录服务器后，conda无l法使用</p>
-<ul>
-<li>症状：conda命令、conda虚拟环境、conda-forge安装的软件无法使用，ls显示的文件不是彩色的</li>
-<li>对策：重新激活bashrc</li>
-</ul>
-</li>
-<li>
-<p>此时，用户目录下就可以正常使用conda了。测试方法如下</p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 调出conda</span>
-conda
-<span class="token comment"># 查看安装了那些包</span>
-conda list
-<span class="token comment"># 查看anaconda是否成功劫持python命令</span>
-<span class="token function">which</span> python
-<span class="token comment"># 若返回/home/$USER/anaconda2/bin/python则成功</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>测试anaconda预装的软件能否打开</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># jupter notebook</span>
-jupyter notebook
-<span class="token punctuation">[</span>I <span class="token number">11</span>:38:51.999 NotebookApp<span class="token punctuation">]</span> Serving notebooks from <span class="token builtin class-name">local</span> directory: /home/<span class="token variable">$USERliang</span>
-<span class="token punctuation">[</span>I <span class="token number">11</span>:38:51.999 NotebookApp<span class="token punctuation">]</span> <span class="token number">0</span> active kernels
-<span class="token punctuation">[</span>I <span class="token number">11</span>:38:51.999 NotebookApp<span class="token punctuation">]</span> The Jupyter Notebook is running at: http://localhost:8888/?token<span class="token operator">=</span>2f2a56290a357f0ab3aa3be983091614474113ca24f9edc1
-<span class="token punctuation">[</span>I <span class="token number">11</span>:38:52.000 NotebookApp<span class="token punctuation">]</span> Use Control-C to stop this server and shut down all kernels <span class="token punctuation">(</span>twice to skip confirmation<span class="token punctuation">)</span>.
-<span class="token punctuation">[</span>W <span class="token number">11</span>:38:52.000 NotebookApp<span class="token punctuation">]</span> No web browser found: could not <span class="token function">locate</span> runnable browser.
-<span class="token punctuation">[</span>C <span class="token number">11</span>:38:52.000 NotebookApp<span class="token punctuation">]</span>
-
-    Copy/paste this URL into your browser when you connect <span class="token keyword">for</span> the first time,
-    to login with a token:
-        http://localhost:8888/?token<span class="token operator">=</span>2f2a56290a357f0ab3aa3be983091614474113ca24f9edc1
-<span class="token comment"># spyder</span>
-spyder
-QXcbConnection: Could not connect to display
-Aborted <span class="token punctuation">(</span>core dumped<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="卸载"><a class="header-anchor" href="#卸载"></a>卸载</h2>
-<ul>
-<li>直接删除用户目录下的anaconda文件夹即可</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> -rf ~/anaconda2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>更改用户环境变量为系统的python</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">'export PATH=/usr/bin/:$PATH'</span> <span class="token operator">>></span> .bashrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>测试python能否使用</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> python
-<span class="token comment"># 得到 /usr/bin/python 则说明更改成功</span>
-python
-pip
-<span class="token comment"># 都能成功打开则说明成功</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h2 id="conda下安装包-软件"><a class="header-anchor" href="#conda下安装包-软件"></a>conda下安装包/软件</h2>
-<h3 id="python的包"><a class="header-anchor" href="#python的包"></a>python的包</h3>
-<h4 id="conda命令概述"><a class="header-anchor" href="#conda命令概述"></a>conda命令概述</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda 命令             <span class="token comment"># 在当前虚拟环境下执行</span>
-conda 命令 -n 虚拟环境名 <span class="token comment"># 在指定虚拟环境下执行</span>
-<span class="token comment"># 如 conda -n python2.7 list,  conda -n python2.7 install numpy</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h4 id="包的管理"><a class="header-anchor" href="#包的管理"></a>包的管理</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda list       <span class="token comment"># 查看已装包</span>
-conda search  包 <span class="token comment"># 查找包信息——从网上获取所有版本的这个包的列表，标 * 的是已装的</span>
-conda <span class="token function">install</span> 包 <span class="token comment"># 安装包</span>
-conda -c channel <span class="token function">install</span> 包 <span class="token comment"># 通过指定channel安装</span>
-<span class="token comment"># 如 conda -c conda-forge install tmux</span>
-<span class="token comment"># 如 conda install -c bioconda coreutils</span>
-conda update     <span class="token comment"># 更新包</span>
-conda remove     <span class="token comment"># 卸载包——会删除包所在的文件夹</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<h4 id="conda与pip的区别"><a class="header-anchor" href="#conda与pip的区别"></a>conda与pip的区别</h4>
-<ul>
-<li>
-<p>install</p>
-<ul>
-<li>conda install会自动列出，要装某包，缺何版本的哪些依赖包，问你要不要一并装掉，只需按<code>y</code>，即自动安装。还能装非python的包，只要anaconda cloud上有。</li>
-<li>pip install遇到缺依赖包，则直接终端安装，且并不总能报错说缺什么包。只能装python的包。</li>
-</ul>
-<p>故，pip install装不上去的包，用conda install常能装上。</p>
-</li>
-<li>
-<p>list</p>
-<ul>
-<li>conda list可见pip list可见的所有包：最新版的conda从<code>conda/env/环境名称/lib/python3.6/site-packages/</code>文件夹中搜索已装的包，不依赖于pip，可显示各种方式（含pip安装、自己make的）安装的包</li>
-<li>pip list可见初创conda环境中所有的包，但不可见之后conda安装、和自己make的包</li>
-</ul>
-</li>
-<li>
-<p>uninstall</p>
-<ul>
-<li>conda不能卸载用pip安装的包：因为conda卸载时，要分析包的依赖。但pip装的包，conda不知其在conda上的来源，故无法分析。</li>
-<li>pip不能卸载环境创建后用conda安装的包：pip list 可见的包才可pip卸载</li>
-</ul>
-</li>
-<li>
-<p>克隆环境</p>
-<p>使用conda<a href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83">克隆环境</a>（可以跨电脑克隆），只要在<code>conda/env/环境名称/lib/python3.6/site-packages/</code>下，不论以何种方式（如pip, conda, 自己make）安装的python包，都会克隆</p>
-</li>
-</ul>
-<h3 id="非python软件"><a class="header-anchor" href="#非python软件"></a>非python软件</h3>
-<p>anaconda是一个用户环境，而非单纯的python包管理器，其下不仅仅可以安装python的包，还可以通过conda forge/biconda等通道(channel)安装其他软件</p>
-<h4 id="安装"><a class="header-anchor" href="#安装"></a>安装</h4>
-<ul>
-<li>
-<p>登录<a href="https://anaconda.org/search?q=">conda cloud</a>，在搜索栏搜索软件名称，如<code>tmux</code></p>
-</li>
-<li>
-<p>得到tmux软件列表，点击<a href="https://anaconda.org/conda-forge"> conda-forge</a> 下的 <a href="https://anaconda.org/conda-forge/tmux"><strong>tmux</strong> 2.3</a></p>
-</li>
-<li>
-<p>进入tmux2.3的安装网页，会显示安装命令，如<code>conda install -c conda-forge tmux</code></p>
-</li>
-<li>
-<p>在用户目录下执行上述命令</p>
-</li>
-</ul>
-<h4 id="效果"><a class="header-anchor" href="#效果"></a>效果</h4>
-<ul>
-<li>之后该用户登录后，不论在何目录下，均可运行tmux</li>
-</ul>
-<h4 id="安装网页链接与安装命令"><a class="header-anchor" href="#安装网页链接与安装命令"></a>安装网页链接与安装命令</h4>
-<p><a href="https://anaconda.org/conda-forge/tmux">tmux</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c conda-forge tmux<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a href="https://anaconda.org/conda-forge/htop">htop</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c conda-forge <span class="token function">htop</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><a href="https://anaconda.org/bioconda/coreutils">coreutils</a></p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c bioconda coreutils<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>安装后，在htop中可见所有用户的进程</p>
-<h2 id="虚拟环境"><a class="header-anchor" href="#虚拟环境"></a>虚拟环境</h2>
-<p>参见<a href="http://www.jianshu.com/p/d2e15200ee9b">anaconda的使用和环境管理</a></p>
-<ul>
-<li>
-<p>功能简介</p>
-<p>anaconda的各虚拟环境相互独立，可装有不同包，可为多个python版本（如python2，python3，不论你装的是anaconda2还是anaconda3）</p>
-</li>
-<li>
-<p>创建环境</p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda create -n 环境的名字<span class="token punctuation">(</span>如conda_python2.7<span class="token punctuation">)</span> <span class="token assign-left variable">python</span><span class="token operator">=</span><span class="token number">2.7</span>
-<span class="token comment"># -n 即 --name</span>
-<span class="token comment"># 还可以写其他python版本号</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>查看环境</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda info -e                 <span class="token comment"># -e 即 --envs  , enviroments之意</span>
-root                  *  /home/<span class="token environment constant">$USER</span>/anaconda2 <span class="token comment"># * 表示当前处在这个环境下</span>
-<span class="token comment"># root环境，即用户环境变量中的python路径</span>
-conda_python2.7          /home/<span class="token environment constant">$USER</span>/anaconda2/envs/conda_python2.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>切换环境</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> activate 环境的名字<span class="token punctuation">(</span>如conda_python2.7<span class="token punctuation">)</span> <span class="token comment">#Linux，OS X</span>
-activate 环境的名字<span class="token punctuation">(</span>如conda_python2.7<span class="token punctuation">)</span> <span class="token comment"># Windows</span>
-<span class="token comment"># 效果如下</span>
-<span class="token punctuation">(</span>conda_python2.7<span class="token punctuation">)</span>conda info -e        <span class="token comment"># (conda_python2.7)表示处在虚拟环境里</span>
-root                     /home/<span class="token environment constant">$USER</span>/anaconda2         <span class="token comment"># * 表示当前处在这个环境下</span>
-conda_python2.7        * /home/<span class="token environment constant">$USER</span>/anaconda2/envs/conda_python2.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>返回root环境</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span>conda_python2.7<span class="token punctuation">)</span>source deactivate <span class="token comment"># Linux，OS X</span>
-<span class="token punctuation">(</span>conda_python2.7<span class="token punctuation">)</span>deactivate <span class="token comment"># Windows</span>
-<span class="token comment"># 效果为 (conda_python2.7)消失，* 标记到 root</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<ul>
-<li>克隆环境</li>
-</ul>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda create -n 新环境名字 --clone 原环境名字或原环境所在路径<span class="token punctuation">(</span>anaconda/envs/原环境名<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>原环境名字 ：</p>
-<ul>
-<li>
-<p>“base” (等价于&quot;root&quot;): conda默认环境</p>
-</li>
-<li>
-<p>其他conda环境: anaconda/envs/下的文件夹名即是，或<code>conda info -e</code>可见</p>
-</li>
-</ul>
-<p>原环境所在路径：</p>
-<ul>
-<li>
-<p>可将别的电脑上<code>anaconda/envs/原环境名</code>文件夹拷过来，其环境下用conda和pip安装的python与非python包，克隆后仍皆可用   <span id="anchor">锚点</span></p>
-</li>
-<li>
-<p>也可是本机上的<code>anaconda/envs/原环境名</code>文件夹</p>
-</li>
-<li>
-<p>删除环境</p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda remove -n 环境名字 --all<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h2 id="不兼容"><a class="header-anchor" href="#不兼容"></a>不兼容</h2>
-<h3 id="matplotlib"><a class="header-anchor" href="#matplotlib"></a>matplotlib</h3>
-<ul>
-<li>
-<p>问题描述</p>
-<p>在<strong>mac系统</strong>上的<strong>虚拟环境</strong>（不论是anaconda还是virtualenv的）中，<strong>matplotlib</strong>无法使用：</p>
-<p>import matplotlib.pyplot时，显示</p>
-<blockquote>
-<p>RuntimeError: Python is not installed as a framework. The Mac OS X backend will not be able to function correctly if Python is not installed as a framework…(略)…See ‘Working with Matplotlib on OSX’ in the Matplotlib FAQ for more information.</p>
-</blockquote>
-</li>
-<li>
-<p>解决方法1</p>
-<p>在~/.matplotlib下，新建matplotlibrc文件，写入<code>&quot;backend : TkAgg&quot;</code></p>
-</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"backend : TkAgg"</span> <span class="token operator">></span> ~/.matplotlib/matplotlibrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>​	该方法可使得虚拟环境能用matplotlib，但不影响conda的root环境、操作系统的python使用matplotlib</p>
-<ul>
-<li>
-<p>解决方法2</p>
-<p>每次在虚拟环境下用matplotlib时，python代码中这样import</p>
-</li>
-</ul>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> matplotlib       <span class="token comment"># 先import它，以便下一行</span>
-matplotlib<span class="token punctuation">.</span>use<span class="token punctuation">(</span><span class="token string">'TkAgg'</span><span class="token punctuation">)</span> <span class="token comment"># 加入此行，之后可import matplotlib中的各种模块</span>
-<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt <span class="token comment"># 例如</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h1 id="报错"><a class="header-anchor" href="#报错"></a>报错</h1>
-<h2 id="anaconda报错-ImportError-No-module-named-conda-cli"><a class="header-anchor" href="#anaconda报错-ImportError-No-module-named-conda-cli"></a>anaconda报错 <code>ImportError: No module named conda.cli</code></h2>
-<p><a href="https://blog.csdn.net/u011331731/article/details/89407914">参考</a></p>
-<h4 id="症状"><a class="header-anchor" href="#症状"></a>症状</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<blockquote>
-<pre class="line-numbers language-none"><code class="language-none">Traceback (most recent call last):
-  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;bin&#x2F;conda&quot;, line 12, in &lt;module&gt;
-    from conda.cli import main
-ModuleNotFoundError: No module named &#39;conda&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-</blockquote>
-<h4 id="对策"><a class="header-anchor" href="#对策"></a>对策</h4>
-<h5 id="更新式重装"><a class="header-anchor" href="#更新式重装"></a>更新式重装</h5>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> Anaconda3-2018.12-Linux-x86_64.sh -u<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>安装过程中选择之前的<code>&lt;anaconda根目录&gt;</code></p>
-<p>注：<code>bash Anaconda3-2018.12-Linux-x86_64.sh -h </code>显示 <code>-u</code> 表示 “update an existing installation”，如此更新式重装anaconda，但anaconda的base环境及其他自定义环境均会保留</p>
-<h5 id="重装"><a class="header-anchor" href="#重装"></a>重装</h5>
-<p>若依旧不能解决上述bug，则删掉之前的<code>&lt;anaconda根目录&gt;</code>，然后重装anaconda</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> Anaconda3-2018.12-Linux-x86_64.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>anaconda的base环境及其他自定义环境均不会保留</p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>python</category>
       </categories>
   </entry>
   <entry>
@@ -3874,6 +3571,309 @@ c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuati
       </categories>
   </entry>
   <entry>
+    <title>anaconda安装与使用</title>
+    <url>/posts/1a6992ea/</url>
+    <content><![CDATA[<p>[TOC]</p>
+<h2 id="参考链接"><a class="header-anchor" href="#参考链接"></a>参考链接</h2>
+<p><a href="https://conda.io/docs/">conda文档</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/24664358">Linux下Anaconda的安装使用与卸载</a></p>
+<p><a href="http://www.jianshu.com/p/d2e15200ee9b">anaconda的使用和环境管理</a></p>
+<h2 id="安装anaconda"><a class="header-anchor" href="#安装anaconda"></a>安装anaconda</h2>
+<p>参见<a href="https://zhuanlan.zhihu.com/p/24664358">Linux下Anaconda的安装使用与卸载</a></p>
+<ul>
+<li>
+<p>在PC上，去<a href="https://www.continuum.io/downloads">Anaconda官网</a>，获得安装包的下载链接</p>
+<ul>
+<li>Download for Your Preferred Platform下，选Linux，根据需要选Python版本和操作系统位数</li>
+<li>右键点击下载按钮，选<code>复制链接</code>，如https://repo.continuum.io/archive/Anaconda2-4.4.0-Linux-x86_64.sh</li>
+</ul>
+</li>
+<li>
+<p>cd到服务器上自己d的用户目录</p>
+<ul>
+<li>
+<p>下载安装文件b</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> 上述链接<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>查看安装文件是否下载成功</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>看见有形如<code>	Anaconda3-4.0.0-Linux-x86_64.sh</code>的文件说明下载成功</p>
+</li>
+<li>
+<p>执行安装文件，如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> Anaconda2-4.4.0-Linux-x86_64.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>整个过程点几下回车，或者选yes就好了。</p>
+</li>
+<li>
+<p>但到最后一步，会提示是否把anaconda加入到系统环境变量中，选no（直接回车即可，默认就是no）</p>
+<p><img data-src="/posts/1a6992ea/conda%E5%AE%89%E8%A3%85.png" alt="conda安装"></p>
+</li>
+<li>
+<p>安装完成后，</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span>
+<span class="token comment"># 会有anaconda2或者anaconda3文件夹， 分别对应python2 或 python3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>此时若终端中输入conda，发现command not found。这是因为，尚未向用户环境变量加入ananconda</li>
+</ul>
+</li>
+</ul>
+<h2 id="配置"><a class="header-anchor" href="#配置"></a>配置</h2>
+<ul>
+<li>向用户环境变量加入ananconda</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 将anaconda的bin目录加入PATH，根据版本不同，也可能是~/anaconda3/bin</span>
+<span class="token builtin class-name">echo</span> <span class="token string">'export PATH=~/anaconda2/bin:$PATH'</span> <span class="token operator">>></span> ~/.bashrc
+<span class="token comment"># 激活bashrc以立即生效</span>
+<span class="token builtin class-name">source</span> ~/.bashrc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p>如用户登录服务器后，conda无l法使用</p>
+<ul>
+<li>症状：conda命令、conda虚拟环境、conda-forge安装的软件无法使用，ls显示的文件不是彩色的</li>
+<li>对策：重新激活bashrc</li>
+</ul>
+</li>
+<li>
+<p>此时，用户目录下就可以正常使用conda了。测试方法如下</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 调出conda</span>
+conda
+<span class="token comment"># 查看安装了那些包</span>
+conda list
+<span class="token comment"># 查看anaconda是否成功劫持python命令</span>
+<span class="token function">which</span> python
+<span class="token comment"># 若返回/home/$USER/anaconda2/bin/python则成功</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>测试anaconda预装的软件能否打开</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># jupter notebook</span>
+jupyter notebook
+<span class="token punctuation">[</span>I <span class="token number">11</span>:38:51.999 NotebookApp<span class="token punctuation">]</span> Serving notebooks from <span class="token builtin class-name">local</span> directory: /home/<span class="token variable">$USERliang</span>
+<span class="token punctuation">[</span>I <span class="token number">11</span>:38:51.999 NotebookApp<span class="token punctuation">]</span> <span class="token number">0</span> active kernels
+<span class="token punctuation">[</span>I <span class="token number">11</span>:38:51.999 NotebookApp<span class="token punctuation">]</span> The Jupyter Notebook is running at: http://localhost:8888/?token<span class="token operator">=</span>2f2a56290a357f0ab3aa3be983091614474113ca24f9edc1
+<span class="token punctuation">[</span>I <span class="token number">11</span>:38:52.000 NotebookApp<span class="token punctuation">]</span> Use Control-C to stop this server and shut down all kernels <span class="token punctuation">(</span>twice to skip confirmation<span class="token punctuation">)</span>.
+<span class="token punctuation">[</span>W <span class="token number">11</span>:38:52.000 NotebookApp<span class="token punctuation">]</span> No web browser found: could not <span class="token function">locate</span> runnable browser.
+<span class="token punctuation">[</span>C <span class="token number">11</span>:38:52.000 NotebookApp<span class="token punctuation">]</span>
+
+    Copy/paste this URL into your browser when you connect <span class="token keyword">for</span> the first time,
+    to login with a token:
+        http://localhost:8888/?token<span class="token operator">=</span>2f2a56290a357f0ab3aa3be983091614474113ca24f9edc1
+<span class="token comment"># spyder</span>
+spyder
+QXcbConnection: Could not connect to display
+Aborted <span class="token punctuation">(</span>core dumped<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="卸载"><a class="header-anchor" href="#卸载"></a>卸载</h2>
+<ul>
+<li>直接删除用户目录下的anaconda文件夹即可</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> -rf ~/anaconda2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>更改用户环境变量为系统的python</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">'export PATH=/usr/bin/:$PATH'</span> <span class="token operator">>></span> .bashrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>测试python能否使用</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> python
+<span class="token comment"># 得到 /usr/bin/python 则说明更改成功</span>
+python
+pip
+<span class="token comment"># 都能成功打开则说明成功</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="conda下安装包-软件"><a class="header-anchor" href="#conda下安装包-软件"></a>conda下安装包/软件</h2>
+<h3 id="python的包"><a class="header-anchor" href="#python的包"></a>python的包</h3>
+<h4 id="conda命令概述"><a class="header-anchor" href="#conda命令概述"></a>conda命令概述</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda 命令             <span class="token comment"># 在当前虚拟环境下执行</span>
+conda 命令 -n 虚拟环境名 <span class="token comment"># 在指定虚拟环境下执行</span>
+<span class="token comment"># 如 conda -n python2.7 list,  conda -n python2.7 install numpy</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="包的管理"><a class="header-anchor" href="#包的管理"></a>包的管理</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda list       <span class="token comment"># 查看已装包</span>
+conda search  包 <span class="token comment"># 查找包信息——从网上获取所有版本的这个包的列表，标 * 的是已装的</span>
+conda <span class="token function">install</span> 包 <span class="token comment"># 安装包</span>
+conda -c channel <span class="token function">install</span> 包 <span class="token comment"># 通过指定channel安装</span>
+<span class="token comment"># 如 conda -c conda-forge install tmux</span>
+<span class="token comment"># 如 conda install -c bioconda coreutils</span>
+conda update     <span class="token comment"># 更新包</span>
+conda remove     <span class="token comment"># 卸载包——会删除包所在的文件夹</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="conda与pip的区别"><a class="header-anchor" href="#conda与pip的区别"></a>conda与pip的区别</h4>
+<ul>
+<li>
+<p>install</p>
+<ul>
+<li>conda install会自动列出，要装某包，缺何版本的哪些依赖包，问你要不要一并装掉，只需按<code>y</code>，即自动安装。还能装非python的包，只要anaconda cloud上有。</li>
+<li>pip install遇到缺依赖包，则直接终端安装，且并不总能报错说缺什么包。只能装python的包。</li>
+</ul>
+<p>故，pip install装不上去的包，用conda install常能装上。</p>
+</li>
+<li>
+<p>list</p>
+<ul>
+<li>conda list可见pip list可见的所有包：最新版的conda从<code>conda/env/环境名称/lib/python3.6/site-packages/</code>文件夹中搜索已装的包，不依赖于pip，可显示各种方式（含pip安装、自己make的）安装的包</li>
+<li>pip list可见初创conda环境中所有的包，但不可见之后conda安装、和自己make的包</li>
+</ul>
+</li>
+<li>
+<p>uninstall</p>
+<ul>
+<li>conda不能卸载用pip安装的包：因为conda卸载时，要分析包的依赖。但pip装的包，conda不知其在conda上的来源，故无法分析。</li>
+<li>pip不能卸载环境创建后用conda安装的包：pip list 可见的包才可pip卸载</li>
+</ul>
+</li>
+<li>
+<p>克隆环境</p>
+<p>使用conda<a href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83">克隆环境</a>（可以跨电脑克隆），只要在<code>conda/env/环境名称/lib/python3.6/site-packages/</code>下，不论以何种方式（如pip, conda, 自己make）安装的python包，都会克隆</p>
+</li>
+</ul>
+<h3 id="非python软件"><a class="header-anchor" href="#非python软件"></a>非python软件</h3>
+<p>anaconda是一个用户环境，而非单纯的python包管理器，其下不仅仅可以安装python的包，还可以通过conda forge/biconda等通道(channel)安装其他软件</p>
+<h4 id="安装"><a class="header-anchor" href="#安装"></a>安装</h4>
+<ul>
+<li>
+<p>登录<a href="https://anaconda.org/search?q=">conda cloud</a>，在搜索栏搜索软件名称，如<code>tmux</code></p>
+</li>
+<li>
+<p>得到tmux软件列表，点击<a href="https://anaconda.org/conda-forge"> conda-forge</a> 下的 <a href="https://anaconda.org/conda-forge/tmux"><strong>tmux</strong> 2.3</a></p>
+</li>
+<li>
+<p>进入tmux2.3的安装网页，会显示安装命令，如<code>conda install -c conda-forge tmux</code></p>
+</li>
+<li>
+<p>在用户目录下执行上述命令</p>
+</li>
+</ul>
+<h4 id="效果"><a class="header-anchor" href="#效果"></a>效果</h4>
+<ul>
+<li>之后该用户登录后，不论在何目录下，均可运行tmux</li>
+</ul>
+<h4 id="安装网页链接与安装命令"><a class="header-anchor" href="#安装网页链接与安装命令"></a>安装网页链接与安装命令</h4>
+<p><a href="https://anaconda.org/conda-forge/tmux">tmux</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c conda-forge tmux<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a href="https://anaconda.org/conda-forge/htop">htop</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c conda-forge <span class="token function">htop</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a href="https://anaconda.org/bioconda/coreutils">coreutils</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c bioconda coreutils<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装后，在htop中可见所有用户的进程</p>
+<h2 id="虚拟环境"><a class="header-anchor" href="#虚拟环境"></a>虚拟环境</h2>
+<p>参见<a href="http://www.jianshu.com/p/d2e15200ee9b">anaconda的使用和环境管理</a></p>
+<ul>
+<li>
+<p>功能简介</p>
+<p>anaconda的各虚拟环境相互独立，可装有不同包，可为多个python版本（如python2，python3，不论你装的是anaconda2还是anaconda3）</p>
+</li>
+<li>
+<p>创建环境</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda create -n 环境的名字<span class="token punctuation">(</span>如conda_python2.7<span class="token punctuation">)</span> <span class="token assign-left variable">python</span><span class="token operator">=</span><span class="token number">2.7</span>
+<span class="token comment"># -n 即 --name</span>
+<span class="token comment"># 还可以写其他python版本号</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>查看环境</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda info -e                 <span class="token comment"># -e 即 --envs  , enviroments之意</span>
+root                  *  /home/<span class="token environment constant">$USER</span>/anaconda2 <span class="token comment"># * 表示当前处在这个环境下</span>
+<span class="token comment"># root环境，即用户环境变量中的python路径</span>
+conda_python2.7          /home/<span class="token environment constant">$USER</span>/anaconda2/envs/conda_python2.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>切换环境</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> activate 环境的名字<span class="token punctuation">(</span>如conda_python2.7<span class="token punctuation">)</span> <span class="token comment">#Linux，OS X</span>
+activate 环境的名字<span class="token punctuation">(</span>如conda_python2.7<span class="token punctuation">)</span> <span class="token comment"># Windows</span>
+<span class="token comment"># 效果如下</span>
+<span class="token punctuation">(</span>conda_python2.7<span class="token punctuation">)</span>conda info -e        <span class="token comment"># (conda_python2.7)表示处在虚拟环境里</span>
+root                     /home/<span class="token environment constant">$USER</span>/anaconda2         <span class="token comment"># * 表示当前处在这个环境下</span>
+conda_python2.7        * /home/<span class="token environment constant">$USER</span>/anaconda2/envs/conda_python2.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>返回root环境</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span>conda_python2.7<span class="token punctuation">)</span>source deactivate <span class="token comment"># Linux，OS X</span>
+<span class="token punctuation">(</span>conda_python2.7<span class="token punctuation">)</span>deactivate <span class="token comment"># Windows</span>
+<span class="token comment"># 效果为 (conda_python2.7)消失，* 标记到 root</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>克隆环境</li>
+</ul>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda create -n 新环境名字 --clone 原环境名字或原环境所在路径<span class="token punctuation">(</span>anaconda/envs/原环境名<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>原环境名字 ：</p>
+<ul>
+<li>
+<p>“base” (等价于&quot;root&quot;): conda默认环境</p>
+</li>
+<li>
+<p>其他conda环境: anaconda/envs/下的文件夹名即是，或<code>conda info -e</code>可见</p>
+</li>
+</ul>
+<p>原环境所在路径：</p>
+<ul>
+<li>
+<p>可将别的电脑上<code>anaconda/envs/原环境名</code>文件夹拷过来，其环境下用conda和pip安装的python与非python包，克隆后仍皆可用   <span id="anchor">锚点</span></p>
+</li>
+<li>
+<p>也可是本机上的<code>anaconda/envs/原环境名</code>文件夹</p>
+</li>
+<li>
+<p>删除环境</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda remove -n 环境名字 --all<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="不兼容"><a class="header-anchor" href="#不兼容"></a>不兼容</h2>
+<h3 id="matplotlib"><a class="header-anchor" href="#matplotlib"></a>matplotlib</h3>
+<ul>
+<li>
+<p>问题描述</p>
+<p>在<strong>mac系统</strong>上的<strong>虚拟环境</strong>（不论是anaconda还是virtualenv的）中，<strong>matplotlib</strong>无法使用：</p>
+<p>import matplotlib.pyplot时，显示</p>
+<blockquote>
+<p>RuntimeError: Python is not installed as a framework. The Mac OS X backend will not be able to function correctly if Python is not installed as a framework…(略)…See ‘Working with Matplotlib on OSX’ in the Matplotlib FAQ for more information.</p>
+</blockquote>
+</li>
+<li>
+<p>解决方法1</p>
+<p>在~/.matplotlib下，新建matplotlibrc文件，写入<code>&quot;backend : TkAgg&quot;</code></p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"backend : TkAgg"</span> <span class="token operator">></span> ~/.matplotlib/matplotlibrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>​	该方法可使得虚拟环境能用matplotlib，但不影响conda的root环境、操作系统的python使用matplotlib</p>
+<ul>
+<li>
+<p>解决方法2</p>
+<p>每次在虚拟环境下用matplotlib时，python代码中这样import</p>
+</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> matplotlib       <span class="token comment"># 先import它，以便下一行</span>
+matplotlib<span class="token punctuation">.</span>use<span class="token punctuation">(</span><span class="token string">'TkAgg'</span><span class="token punctuation">)</span> <span class="token comment"># 加入此行，之后可import matplotlib中的各种模块</span>
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt <span class="token comment"># 例如</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h1 id="报错"><a class="header-anchor" href="#报错"></a>报错</h1>
+<h2 id="anaconda报错-ImportError-No-module-named-conda-cli"><a class="header-anchor" href="#anaconda报错-ImportError-No-module-named-conda-cli"></a>anaconda报错 <code>ImportError: No module named conda.cli</code></h2>
+<p><a href="https://blog.csdn.net/u011331731/article/details/89407914">参考</a></p>
+<h4 id="症状"><a class="header-anchor" href="#症状"></a>症状</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">Traceback (most recent call last):
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;bin&#x2F;conda&quot;, line 12, in &lt;module&gt;
+    from conda.cli import main
+ModuleNotFoundError: No module named &#39;conda&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="对策"><a class="header-anchor" href="#对策"></a>对策</h4>
+<h5 id="更新式重装"><a class="header-anchor" href="#更新式重装"></a>更新式重装</h5>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> Anaconda3-2018.12-Linux-x86_64.sh -u<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装过程中选择之前的<code>&lt;anaconda根目录&gt;</code></p>
+<p>注：<code>bash Anaconda3-2018.12-Linux-x86_64.sh -h </code>显示 <code>-u</code> 表示 “update an existing installation”，如此更新式重装anaconda，但anaconda的base环境及其他自定义环境均会保留</p>
+<h5 id="重装"><a class="header-anchor" href="#重装"></a>重装</h5>
+<p>若依旧不能解决上述bug，则删掉之前的<code>&lt;anaconda根目录&gt;</code>，然后重装anaconda</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> Anaconda3-2018.12-Linux-x86_64.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>anaconda的base环境及其他自定义环境均不会保留</p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
     <title>jupyter_notebook更换配色</title>
     <url>/posts/b10b86e7/</url>
     <content><![CDATA[<h1 id="jupyter-themes-修改-jupyter-notebook-的主题"><a class="header-anchor" href="#jupyter-themes-修改-jupyter-notebook-的主题"></a>jupyter-themes: 修改 jupyter notebook 的主题</h1>
@@ -4108,6 +4108,41 @@ sudo chown -R root:wheel x.x<span aria-hidden="true" class="line-numbers-rows"><
       </categories>
   </entry>
   <entry>
+    <title>pip使用方法</title>
+    <url>/posts/749bd8bc/</url>
+    <content><![CDATA[<h2 id="pip使用方法"><a class="header-anchor" href="#pip使用方法"></a>pip使用方法</h2>
+<ul>
+<li>装包</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>卸包</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip uninstall 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>升级到最新版本</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>升级/降级到制定版本</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span class="token operator">==</span>版本号<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>上述方法，令包为<code>pip</code>，即可 卸/升级/降级 pip 自己</li>
+<li>看有哪些包</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>看装了的包的信息</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip show 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>python</category>
+      </categories>
+  </entry>
+  <entry>
     <title>virtualenv_教程</title>
     <url>/posts/48c97705/</url>
     <content><![CDATA[<h1 id="virtualenv-教程"><a class="header-anchor" href="#virtualenv-教程"></a>virtualenv 教程</h1>
@@ -4162,41 +4197,6 @@ which python2.7
 <p>只有在该工程目录，输入<code>source bin/activate</code>激活后，才能使用该虚拟环境的包括python版本及python包，即<code>pip install</code> 安装pyhton包，在任意目录下均可使用</p>
 </li>
 </ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>python</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>pip使用方法</title>
-    <url>/posts/749bd8bc/</url>
-    <content><![CDATA[<h2 id="pip使用方法"><a class="header-anchor" href="#pip使用方法"></a>pip使用方法</h2>
-<ul>
-<li>装包</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>卸包</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip uninstall 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>升级到最新版本</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>升级/降级到制定版本</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U 包<span class="token operator">==</span>版本号<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>上述方法，令包为<code>pip</code>，即可 卸/升级/降级 pip 自己</li>
-<li>看有哪些包</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>看装了的包的信息</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip show 包<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 ]]></content>
       <categories>
         <category>器</category>
@@ -4526,26 +4526,6 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
       </categories>
   </entry>
   <entry>
-    <title>shell下的颜色</title>
-    <url>/posts/7fde870c/</url>
-    <content><![CDATA[<h2 id="显示256色的预览"><a class="header-anchor" href="#显示256色的预览"></a>显示256色的预览</h2>
-<p>执行</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ <span class="token operator">|</span> <span class="token function">bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>会返回</p>
-<p><img data-src="/posts/7fde870c/image-20200120192157283.png" alt="image-20200120192157283"></p>
-<p>注意:</p>
-<ul>
-<li>同色号的字, 非粗体和粗体(bold)的前景颜色不同</li>
-<li>同色号的前景颜色和背景颜色不同</li>
-<li>第0-15号色在iterm2下实际显示何种颜色, 取决于iterm的中 Preference-Profile-color-ANSI color的设置</li>
-</ul>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>shell</category>
-      </categories>
-  </entry>
-  <entry>
     <title>bash设置</title>
     <url>/posts/e303a4a3/</url>
     <content><![CDATA[<h2 id="配置环境变量"><a class="header-anchor" href="#配置环境变量"></a>配置环境变量</h2>
@@ -4846,6 +4826,26 @@ pbar<span class="token punctuation">.</span>close<span class="token punctuation"
 <span class="token builtin class-name">alias</span> <span class="token assign-left variable">lk</span><span class="token operator">=</span><span class="token string">'ln -s'</span>
 <span class="token comment"># 创建软连接</span>
 <span class="token builtin class-name">alias</span> <span class="token punctuation">..</span><span class="token operator">=</span><span class="token string">'cd ../'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>shell</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>shell下的颜色</title>
+    <url>/posts/7fde870c/</url>
+    <content><![CDATA[<h2 id="显示256色的预览"><a class="header-anchor" href="#显示256色的预览"></a>显示256色的预览</h2>
+<p>执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -s https://gist.githubusercontent.com/HaleTom/89ffe32783f89f403bba96bd7bcd1263/raw/ <span class="token operator">|</span> <span class="token function">bash</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>会返回</p>
+<p><img data-src="/posts/7fde870c/image-20200120192157283.png" alt="image-20200120192157283"></p>
+<p>注意:</p>
+<ul>
+<li>同色号的字, 非粗体和粗体(bold)的前景颜色不同</li>
+<li>同色号的前景颜色和背景颜色不同</li>
+<li>第0-15号色在iterm2下实际显示何种颜色, 取决于iterm的中 Preference-Profile-color-ANSI color的设置</li>
+</ul>
 ]]></content>
       <categories>
         <category>器</category>
@@ -6282,132 +6282,6 @@ C:\Users\Administrator\AppData\Roaming\TeamViewer<span aria-hidden="true" class=
       </categories>
   </entry>
   <entry>
-    <title>vnc安装方法</title>
-    <url>/posts/de6bda9/</url>
-    <content><![CDATA[<h1 id="vnc安装方法"><a class="header-anchor" href="#vnc安装方法"></a>vnc安装方法</h1>
-<h2 id="安装配置VNC"><a class="header-anchor" href="#安装配置VNC"></a>安装配置VNC</h2>
-<h3 id="服务器"><a class="header-anchor" href="#服务器"></a>服务器</h3>
-<h4 id="依赖安装"><a class="header-anchor" href="#依赖安装"></a>依赖安装</h4>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> tightvncserver xfce4 xfce4-goodies powerline fonts-powerline ttf-wqy-zenhei  autocutsel fcitx-googlepinyin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>
-<p>详解</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> tightvncserver      <span class="token comment"># 桌面转发服务端</span>
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> xfce4 xfce4-goodies <span class="token comment"># 桌面及桌面程序</span>
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> powerline fonts-powerline <span class="token comment"># powerline字体，以便终端下显示</span>
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> ttf-wqy-zenhei <span class="token comment"># 中文字体</span>
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> autocutsel <span class="token comment"># 客户端和服务器的复制黏贴同步</span>
-<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> fcitx-googlepinyin <span class="token comment"># 中文输入法</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-</li>
-</ul>
-<h4 id="配置"><a class="header-anchor" href="#配置"></a>配置</h4>
-<p>将以下alias添加到<code>~/.bashrc</code>之类的文件，然后source之</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function-name function">vncs</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
-    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> -eq <span class="token number">0</span> <span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"start"</span> <span class="token punctuation">]</span>
-    <span class="token keyword">then</span>
-        vncserver :1 -geometry 1366x768
-    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"stop"</span> <span class="token punctuation">]</span>
-    <span class="token keyword">then</span>
-        vncserver -kill :1
-    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"restart"</span> <span class="token punctuation">]</span>
-    <span class="token keyword">then</span>
-        vncserver -kill :1
-        vncserver :1 -geometry 1366x768
-    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"passwd"</span> <span class="token punctuation">]</span>
-    <span class="token keyword">then</span>
-        vncpasswd
-    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"config"</span> <span class="token punctuation">]</span>
-    <span class="token keyword">then</span>
-        <span class="token function">vim</span> ~/.vnc/xstartup
-    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"help"</span> <span class="token punctuation">]</span>
-    <span class="token keyword">then</span>
-        <span class="token builtin class-name">echo</span> <span class="token string">'Usage: vnc [ start(default)) | stop | restart | passwd | config | help ]'</span>
-    <span class="token keyword">else</span>
-        <span class="token builtin class-name">echo</span> <span class="token string">'Usage: vnc [ start(default)) | stop | restart | passwd | config | help ]'</span>
-    <span class="token keyword">fi</span>
-<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>设置密码：<code>vncs passwd</code> 即 <code>vncpasswd</code>，然后在交互提示下设置密码，可选择设置只读密码</p>
-<p>配置vnc server的启动项：<code>vncs config</code> 即 <code>vim ~/.vnc/xstartup</code>，替换全文为</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
-
-<span class="token builtin class-name">unset</span> <span class="token environment constant">SESSION_MANAGER</span>
-<span class="token builtin class-name">unset</span> <span class="token environment constant">DBUS_SESSION_BUS_ADDRESS</span>
-dbus-launch /usr/bin/startxfce4 <span class="token operator">&amp;</span>
-
-autocutsel -f <span class="token comment"># 共享剪切板，在vnc viewer里，ctrl+shift+c/v 复制/黏贴</span>
-
-<span class="token comment"># 输入法</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span>zh_CN.UTF-8 <span class="token comment"># 启用中文环境</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">LANGUAGE</span></span><span class="token operator">=</span>zh_CN:en_US
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">LC_CTYPE</span><span class="token operator">=</span>en_US.UTF-8
-
-<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">XMODIFIERS</span></span><span class="token operator">=</span><span class="token string">"@im=fcitx"</span>
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">GTK_IM_MODULE</span><span class="token operator">=</span>fcitx
-<span class="token builtin class-name">export</span> <span class="token assign-left variable">QT_IM_MODULE</span><span class="token operator">=</span>fcitx
-<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">XMODIFIERS</span></span><span class="token operator">=</span>@im<span class="token operator">=</span>fcitx
-fcitx <span class="token operator">&amp;</span>
-
-<span class="token punctuation">[</span> -x /etc/vnc/xstartup <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">exec</span> /etc/vnc/xstartup
-<span class="token punctuation">[</span> -r <span class="token environment constant">$HOME</span>/.Xresources <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> xrdb <span class="token environment constant">$HOME</span>/.Xresources
-xsetroot -solid grey
-vncconfig -iconic <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>每次更改配置文件，输入<code>vnc resatrt</code>以重启vnc server</p>
-<h3 id="客户端-笔记本-安装"><a class="header-anchor" href="#客户端-笔记本-安装"></a>客户端(笔记本)安装</h3>
-<p>mac随有系统自带的vnc客户端，<code>⌃space</code>搜索 <code>屏幕共享.app</code>，然后填入<code>ip:端口号</code>，即可连接，但它拖动远程桌面中的窗口有残影，不推荐使用</p>
-<p>推荐另外安装<code>vnc viewer</code>，<a href="https://www.realvnc.com/en/connect/download/viewer/macos/">官方下载链接</a>，个人版免费但不支持文件传输，<a href="https://www.realvnc.com/en/connect/docs/file-transfer.html">专业版、企业版支持文件传输</a></p>
-<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">alias</span> <span class="token assign-left variable">vncv</span><span class="token operator">=</span><span class="token string">'ssh -L 5901:127.0.0.1:5901 -C -N'</span>
-<span class="token comment"># -C: require compresion for all data(including stdin, stdout, stderr, and data for forwarded X11, TCP and UNIX-domain connections).</span>
-<span class="token comment"># -N: Do not execute a remote command.  This is useful for just forwarding ports.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">vncv  服务器名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后打开<code>vnc viewer.app</code>，点 <code>File-NewConnection</code>， 弹出窗口里输入</p>
-<p><img data-src="/posts/de6bda9/2019-04-19_21.59.00.png" alt></p>
-<p>双击连接</p>
-<p><img data-src="/posts/de6bda9/2019-04-19_22.01.38.png" alt></p>
-<p>首次连接需要输入vnc server的密码</p>
-<p><img data-src="/posts/de6bda9/2019-04-19_21.59.36.png" alt></p>
-<p>然后会显示对面的桌面</p>
-<p><img data-src="/posts/de6bda9/2019-04-19_22.03.41.png" alt></p>
-<h3 id="输入法配置"><a class="header-anchor" href="#输入法配置"></a>输入法配置</h3>
-<p>用<code>vnc viewer</code>连上服务器，显示后桌面后</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">im-config <span class="token comment"># 弹出对话框，一路选确定，然后选fcitx作为默认是输入法</span>
-fcitx-config-gtk3 <span class="token comment"># 弹出对话框，添加googlepinyin输入法；在Addon中，选中advance，然后勾除Kimpanel</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>在可以输入的地方（如终端），<code>⌃+space</code>切换输入法，或单击右上方键盘图标切换输入法</p>
-<p>右上角出现<code>g</code>字样的logo，代表现在在googlepinyin输入法</p>
-<p><img data-src="/posts/de6bda9/2019-04-19_22.14.13.png" alt></p>
-<p><img data-src="/posts/de6bda9/2019-04-19_22.14.23.png" alt></p>
-<h2 id="其他设置"><a class="header-anchor" href="#其他设置"></a>其他设置</h2>
-<h3 id="更换终端"><a class="header-anchor" href="#更换终端"></a>更换终端</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> update-alternatives --config x-terminal-emulator<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>出现交互界面</p>
-<pre class="line-numbers language-none"><code class="language-none">[sudo] password for $USER:
-There are 7 choices for the alternative x-terminal-emulator (providing &#x2F;usr&#x2F;bin&#x2F;x-terminal-emulator).
-
-  Selection    Path                             Priority   Status
-------------------------------------------------------------
-* 0            &#x2F;usr&#x2F;bin&#x2F;konsole                  40        auto mode
-  1            &#x2F;usr&#x2F;bin&#x2F;koi8rxterm               20        manual mode
-  2            &#x2F;usr&#x2F;bin&#x2F;konsole                  40        manual mode
-  3            &#x2F;usr&#x2F;bin&#x2F;lxterm                   30        manual mode
-  4            &#x2F;usr&#x2F;bin&#x2F;uxterm                   20        manual mode
-  5            &#x2F;usr&#x2F;bin&#x2F;xfce4-terminal.wrapper   40        manual mode
-  6            &#x2F;usr&#x2F;bin&#x2F;xterm                    20        manual mode
-  7            &#x2F;usr&#x2F;bin&#x2F;xvt                      10        manual mode
-
-Press &lt;enter&gt; to keep the current choice[*], or type selection number: 5
-update-alternatives: using &#x2F;usr&#x2F;bin&#x2F;xfce4-terminal.wrapper to provide &#x2F;usr&#x2F;bin&#x2F;x-terminal-emulator (x-terminal-emulator) in manual mode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>其中  <code>/usr/bin/xfce4-terminal.wrapper </code> 是 <code>xfce4</code> 自带的终端模拟器</p>
-<h1 id="卸载方法"><a class="header-anchor" href="#卸载方法"></a>卸载方法</h1>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> remove --purge tightvncserver xfce4* xfce4-goodies powerline fonts-powerline ttf-wqy-zenhei  autocutsel *fcitx* fcitx-googlepinyin libgooglepinyin*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><strong>请勿</strong>运行<code>apt autoremove</code>，它可能会把除了上述包相关的包也卸载了。用上面的匹配就能卸干净</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /tmp/.X11-unix/X1 /tmp/.X1-lock ~/.vnc/<span class="token punctuation">&#123;</span>*.log,*.pid<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>服务器连接</category>
-      </categories>
-  </entry>
-  <entry>
     <title>安装配置VNC——debug的日志</title>
     <url>/posts/253eafd2/</url>
     <content><![CDATA[<h1 id="安装配置VNC——debug的日志"><a class="header-anchor" href="#安装配置VNC——debug的日志"></a>安装配置VNC——debug的日志</h1>
@@ -6618,6 +6492,132 @@ fcitx-libs libqtwebkit4<span aria-hidden="true" class="line-numbers-rows"><span>
       </categories>
   </entry>
   <entry>
+    <title>vnc安装方法</title>
+    <url>/posts/de6bda9/</url>
+    <content><![CDATA[<h1 id="vnc安装方法"><a class="header-anchor" href="#vnc安装方法"></a>vnc安装方法</h1>
+<h2 id="安装配置VNC"><a class="header-anchor" href="#安装配置VNC"></a>安装配置VNC</h2>
+<h3 id="服务器"><a class="header-anchor" href="#服务器"></a>服务器</h3>
+<h4 id="依赖安装"><a class="header-anchor" href="#依赖安装"></a>依赖安装</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> tightvncserver xfce4 xfce4-goodies powerline fonts-powerline ttf-wqy-zenhei  autocutsel fcitx-googlepinyin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>详解</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> tightvncserver      <span class="token comment"># 桌面转发服务端</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> xfce4 xfce4-goodies <span class="token comment"># 桌面及桌面程序</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> powerline fonts-powerline <span class="token comment"># powerline字体，以便终端下显示</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> ttf-wqy-zenhei <span class="token comment"># 中文字体</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> autocutsel <span class="token comment"># 客户端和服务器的复制黏贴同步</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> fcitx-googlepinyin <span class="token comment"># 中文输入法</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h4 id="配置"><a class="header-anchor" href="#配置"></a>配置</h4>
+<p>将以下alias添加到<code>~/.bashrc</code>之类的文件，然后source之</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function-name function">vncs</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> -eq <span class="token number">0</span> <span class="token punctuation">]</span> <span class="token operator">||</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"start"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        vncserver :1 -geometry 1366x768
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"stop"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        vncserver -kill :1
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"restart"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        vncserver -kill :1
+        vncserver :1 -geometry 1366x768
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"passwd"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        vncpasswd
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"config"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        <span class="token function">vim</span> ~/.vnc/xstartup
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">"help"</span> <span class="token punctuation">]</span>
+    <span class="token keyword">then</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">'Usage: vnc [ start(default)) | stop | restart | passwd | config | help ]'</span>
+    <span class="token keyword">else</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">'Usage: vnc [ start(default)) | stop | restart | passwd | config | help ]'</span>
+    <span class="token keyword">fi</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>设置密码：<code>vncs passwd</code> 即 <code>vncpasswd</code>，然后在交互提示下设置密码，可选择设置只读密码</p>
+<p>配置vnc server的启动项：<code>vncs config</code> 即 <code>vim ~/.vnc/xstartup</code>，替换全文为</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
+
+<span class="token builtin class-name">unset</span> <span class="token environment constant">SESSION_MANAGER</span>
+<span class="token builtin class-name">unset</span> <span class="token environment constant">DBUS_SESSION_BUS_ADDRESS</span>
+dbus-launch /usr/bin/startxfce4 <span class="token operator">&amp;</span>
+
+autocutsel -f <span class="token comment"># 共享剪切板，在vnc viewer里，ctrl+shift+c/v 复制/黏贴</span>
+
+<span class="token comment"># 输入法</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span>zh_CN.UTF-8 <span class="token comment"># 启用中文环境</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">LANGUAGE</span></span><span class="token operator">=</span>zh_CN:en_US
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LC_CTYPE</span><span class="token operator">=</span>en_US.UTF-8
+
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">XMODIFIERS</span></span><span class="token operator">=</span><span class="token string">"@im=fcitx"</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">GTK_IM_MODULE</span><span class="token operator">=</span>fcitx
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">QT_IM_MODULE</span><span class="token operator">=</span>fcitx
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">XMODIFIERS</span></span><span class="token operator">=</span>@im<span class="token operator">=</span>fcitx
+fcitx <span class="token operator">&amp;</span>
+
+<span class="token punctuation">[</span> -x /etc/vnc/xstartup <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">exec</span> /etc/vnc/xstartup
+<span class="token punctuation">[</span> -r <span class="token environment constant">$HOME</span>/.Xresources <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> xrdb <span class="token environment constant">$HOME</span>/.Xresources
+xsetroot -solid grey
+vncconfig -iconic <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>每次更改配置文件，输入<code>vnc resatrt</code>以重启vnc server</p>
+<h3 id="客户端-笔记本-安装"><a class="header-anchor" href="#客户端-笔记本-安装"></a>客户端(笔记本)安装</h3>
+<p>mac随有系统自带的vnc客户端，<code>⌃space</code>搜索 <code>屏幕共享.app</code>，然后填入<code>ip:端口号</code>，即可连接，但它拖动远程桌面中的窗口有残影，不推荐使用</p>
+<p>推荐另外安装<code>vnc viewer</code>，<a href="https://www.realvnc.com/en/connect/download/viewer/macos/">官方下载链接</a>，个人版免费但不支持文件传输，<a href="https://www.realvnc.com/en/connect/docs/file-transfer.html">专业版、企业版支持文件传输</a></p>
+<h3 id="连接方法"><a class="header-anchor" href="#连接方法"></a>连接方法</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">alias</span> <span class="token assign-left variable">vncv</span><span class="token operator">=</span><span class="token string">'ssh -L 5901:127.0.0.1:5901 -C -N'</span>
+<span class="token comment"># -C: require compresion for all data(including stdin, stdout, stderr, and data for forwarded X11, TCP and UNIX-domain connections).</span>
+<span class="token comment"># -N: Do not execute a remote command.  This is useful for just forwarding ports.</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">vncv  服务器名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后打开<code>vnc viewer.app</code>，点 <code>File-NewConnection</code>， 弹出窗口里输入</p>
+<p><img data-src="/posts/de6bda9/2019-04-19_21.59.00.png" alt></p>
+<p>双击连接</p>
+<p><img data-src="/posts/de6bda9/2019-04-19_22.01.38.png" alt></p>
+<p>首次连接需要输入vnc server的密码</p>
+<p><img data-src="/posts/de6bda9/2019-04-19_21.59.36.png" alt></p>
+<p>然后会显示对面的桌面</p>
+<p><img data-src="/posts/de6bda9/2019-04-19_22.03.41.png" alt></p>
+<h3 id="输入法配置"><a class="header-anchor" href="#输入法配置"></a>输入法配置</h3>
+<p>用<code>vnc viewer</code>连上服务器，显示后桌面后</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">im-config <span class="token comment"># 弹出对话框，一路选确定，然后选fcitx作为默认是输入法</span>
+fcitx-config-gtk3 <span class="token comment"># 弹出对话框，添加googlepinyin输入法；在Addon中，选中advance，然后勾除Kimpanel</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>在可以输入的地方（如终端），<code>⌃+space</code>切换输入法，或单击右上方键盘图标切换输入法</p>
+<p>右上角出现<code>g</code>字样的logo，代表现在在googlepinyin输入法</p>
+<p><img data-src="/posts/de6bda9/2019-04-19_22.14.13.png" alt></p>
+<p><img data-src="/posts/de6bda9/2019-04-19_22.14.23.png" alt></p>
+<h2 id="其他设置"><a class="header-anchor" href="#其他设置"></a>其他设置</h2>
+<h3 id="更换终端"><a class="header-anchor" href="#更换终端"></a>更换终端</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> update-alternatives --config x-terminal-emulator<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>出现交互界面</p>
+<pre class="line-numbers language-none"><code class="language-none">[sudo] password for $USER:
+There are 7 choices for the alternative x-terminal-emulator (providing &#x2F;usr&#x2F;bin&#x2F;x-terminal-emulator).
+
+  Selection    Path                             Priority   Status
+------------------------------------------------------------
+* 0            &#x2F;usr&#x2F;bin&#x2F;konsole                  40        auto mode
+  1            &#x2F;usr&#x2F;bin&#x2F;koi8rxterm               20        manual mode
+  2            &#x2F;usr&#x2F;bin&#x2F;konsole                  40        manual mode
+  3            &#x2F;usr&#x2F;bin&#x2F;lxterm                   30        manual mode
+  4            &#x2F;usr&#x2F;bin&#x2F;uxterm                   20        manual mode
+  5            &#x2F;usr&#x2F;bin&#x2F;xfce4-terminal.wrapper   40        manual mode
+  6            &#x2F;usr&#x2F;bin&#x2F;xterm                    20        manual mode
+  7            &#x2F;usr&#x2F;bin&#x2F;xvt                      10        manual mode
+
+Press &lt;enter&gt; to keep the current choice[*], or type selection number: 5
+update-alternatives: using &#x2F;usr&#x2F;bin&#x2F;xfce4-terminal.wrapper to provide &#x2F;usr&#x2F;bin&#x2F;x-terminal-emulator (x-terminal-emulator) in manual mode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中  <code>/usr/bin/xfce4-terminal.wrapper </code> 是 <code>xfce4</code> 自带的终端模拟器</p>
+<h1 id="卸载方法"><a class="header-anchor" href="#卸载方法"></a>卸载方法</h1>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> remove --purge tightvncserver xfce4* xfce4-goodies powerline fonts-powerline ttf-wqy-zenhei  autocutsel *fcitx* fcitx-googlepinyin libgooglepinyin*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>请勿</strong>运行<code>apt autoremove</code>，它可能会把除了上述包相关的包也卸载了。用上面的匹配就能卸干净</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /tmp/.X11-unix/X1 /tmp/.X1-lock ~/.vnc/<span class="token punctuation">&#123;</span>*.log,*.pid<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>服务器连接</category>
+      </categories>
+  </entry>
+  <entry>
     <title>TensorboardX：在pytorch上用Tensorboard</title>
     <url>/posts/218adcf6/</url>
     <content><![CDATA[<p>自2019年5月后，pytorch官方支持了Tensorboard，可千万pytorch官网查询Tensorboard的文档</p>
@@ -6701,6 +6701,19 @@ writer<span class="token punctuation">.</span>close<span class="token punctuatio
       </categories>
   </entry>
   <entry>
+    <title>pytorch多卡训练</title>
+    <url>/posts/72581c6a/</url>
+    <content><![CDATA[<h1 id="pytorch：-一机多卡训练的尝试"><a class="header-anchor" href="#pytorch：-一机多卡训练的尝试"></a>pytorch： 一机多卡训练的尝试</h1>
+<p><a href="https://www.jianshu.com/p/221d9298808e">参考</a></p>
+<p><a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel</a></p>
+<p><a href="https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel</a></p>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>炼丹框架</category>
+      </categories>
+  </entry>
+  <entry>
     <title>tensorboard-PermissionError-13</title>
     <url>/posts/306d2d2/</url>
     <content><![CDATA[<h2 id="症状"><a class="header-anchor" href="#症状"></a>症状</h2>
@@ -6756,6 +6769,39 @@ Permission denied<span aria-hidden="true" class="line-numbers-rows"><span></span
       <categories>
         <category>器</category>
         <category>炼丹框架</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>固态硬盘的TRIM、性能测试、磁盘备份</title>
+    <url>/posts/501f8c5c/</url>
+    <content><![CDATA[<h2 id="TRIM原理"><a class="header-anchor" href="#TRIM原理"></a><a href="https://www.bilibili.com/video/BV1SJ41137PJ/?spm_id_from=333.788&amp;vd_source=1293090d1a39c4163894e04f11db5045">TRIM原理</a></h2>
+<p>文件系统会用文件表记录每个文件存放在磁盘上的物理地址。</p>
+<p>在机械硬盘上，文件被删除后，仅仅删除其对应的文件表，使得文件系统上不再显示此文件，但不会将磁盘上文件所在处的数据擦除，因而，被误删的文件往往能够找回，即通过磁盘上的详细数据推断出被删文件的文件表。机械硬盘在已有数据的位置，可以直接写入新数据，而无需先擦除，因此，删文件仅删文件表不擦数据，<strong>并不会影响机械硬盘的表现</strong>。</p>
+<p>若固态硬盘<strong>不开TRIM</strong>，则被删除的文件仅仅删除其对应的文件表，而不将磁盘上文件所在处的数据擦除。不同于机械硬盘，固态硬盘在已有数据的位置，必须先擦出原数据才能写入新数据，因此，若关闭TRIM，当空白磁盘被用尽，文件系统就开始向被删文件残余数据处写入数据，这就要浪费大量的时间去擦原数据，因而从这开始，**固态硬盘写入速度断崖下跌。**但和机械硬盘一样，被误删的文件往往能够找回。</p>
+<p>若固态硬盘<strong>开TRIM</strong>，删除一个文件，首先会删除其对应的文件表，然后在磁盘闲置时，自动擦除对应的数据，以便之后在此处写入数据时，可以直接写入。**这样就避免了固态硬盘越用越慢点问题。**但代价就是，往往当你发现自己误删文件时，<strong>TRIM机制已经擦除数据了，因而无法恢复数据</strong>；除非高价找恢复数据的公司，不保证一定能成功。</p>
+<p>合理的建议是，备份是数据防丢失的最佳选择，而不是使用固态硬盘关TRIM、或机械硬盘都。不论用机械硬盘还是固态硬盘，如果数据很重要，不能丢失，就应使用多块硬盘或云盘，定期备份固态硬盘上的数据，而不要指望数据丢失后恢复数据。只要有数据备份，使用固态硬盘时，要开启TRIM，来优化写入效率，而不是关闭TRIM，牺牲写入效率。选择机械硬盘，从来不是追求其数据误删后可恢复，而是追求便宜；选择固态硬盘，是追求读写快和在颠簸中数据不受损，既然已经追求读写快了，就不应为此关闭TRIM牺牲写入效率。</p>
+<h2 id="磁盘备份：FreeFileSync-软件"><a class="header-anchor" href="#磁盘备份：FreeFileSync-软件"></a>磁盘备份：<a href="https://freefilesync.org">FreeFileSync 软件</a></h2>
+<p>可以同步两个磁盘、或两个文件夹。</p>
+<p>免费开源软件。支持mac、linux、windows。</p>
+<p>会按照两个软件，FreeFileSync负责手动同步，RealTimeSync负责自动同步。</p>
+<h2 id="固态硬盘Trim命令的使用方法"><a class="header-anchor" href="#固态硬盘Trim命令的使用方法"></a><a href="https://www.zhihu.com/tardis/zm/art/370770594?source_id=1003">固态硬盘Trim命令的使用方法</a></h2>
+<p><code>disabledeletenotify=0</code> : 说明固态硬盘TRIM功能开启</p>
+<p><code>disabledeletenotify=1</code> :  说明固态硬盘TRIM功能关闭</p>
+<h2 id="佳翼硬盘盒开启TRIM指令工具-打包下载-发表于-2022-11-6"><a class="header-anchor" href="#佳翼硬盘盒开启TRIM指令工具-打包下载-发表于-2022-11-6"></a><a href="http://jeyi.net/forum.php?mod=viewthread&amp;tid=2010">佳翼硬盘盒开启TRIM指令工具 打包下载 <em>发表于 2022-11-6</em></a></h2>
+<p>有Trim开启，Trim关闭，Trim状态，Trim测试四个exe文件，需在windos上运行</p>
+<h2 id="金百达KP230-Pro，2TB固态硬盘评测，长江存储-联芸主控"><a class="header-anchor" href="#金百达KP230-Pro，2TB固态硬盘评测，长江存储-联芸主控"></a><a href="https://zhuanlan.zhihu.com/p/586983006">金百达KP230 Pro，2TB固态硬盘评测，长江存储+联芸主控</a></h2>
+<p>使用了以下五个只能在windows上运行的硬盘测试软件</p>
+<ol>
+<li>Crystal Disk Info</li>
+<li>Crystal Disk Mark</li>
+<li>AS SSD Benchmark</li>
+<li>HD Tune</li>
+<li>ATTO测试</li>
+</ol>
+]]></content>
+      <categories>
+        <category>器</category>
+        <category>硬件</category>
       </categories>
   </entry>
   <entry>
@@ -6882,52 +6928,6 @@ torchvision            0.3.0<span aria-hidden="true" class="line-numbers-rows"><
       <categories>
         <category>器</category>
         <category>炼丹框架</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>pytorch多卡训练</title>
-    <url>/posts/72581c6a/</url>
-    <content><![CDATA[<h1 id="pytorch：-一机多卡训练的尝试"><a class="header-anchor" href="#pytorch：-一机多卡训练的尝试"></a>pytorch： 一机多卡训练的尝试</h1>
-<p><a href="https://www.jianshu.com/p/221d9298808e">参考</a></p>
-<p><a href="https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/saving_loading_models.html?highlight=dataparallel</a></p>
-<p><a href="https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel">https://pytorch.org/tutorials/beginner/former_torchies/parallelism_tutorial.html?highlight=dataparallel</a></p>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>炼丹框架</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>固态硬盘的TRIM、性能测试、磁盘备份</title>
-    <url>/posts/501f8c5c/</url>
-    <content><![CDATA[<h2 id="TRIM原理"><a class="header-anchor" href="#TRIM原理"></a><a href="https://www.bilibili.com/video/BV1SJ41137PJ/?spm_id_from=333.788&amp;vd_source=1293090d1a39c4163894e04f11db5045">TRIM原理</a></h2>
-<p>文件系统会用文件表记录每个文件存放在磁盘上的物理地址。</p>
-<p>在机械硬盘上，文件被删除后，仅仅删除其对应的文件表，使得文件系统上不再显示此文件，但不会将磁盘上文件所在处的数据擦除，因而，被误删的文件往往能够找回，即通过磁盘上的详细数据推断出被删文件的文件表。机械硬盘在已有数据的位置，可以直接写入新数据，而无需先擦除，因此，删文件仅删文件表不擦数据，<strong>并不会影响机械硬盘的表现</strong>。</p>
-<p>若固态硬盘<strong>不开TRIM</strong>，则被删除的文件仅仅删除其对应的文件表，而不将磁盘上文件所在处的数据擦除。不同于机械硬盘，固态硬盘在已有数据的位置，必须先擦出原数据才能写入新数据，因此，若关闭TRIM，当空白磁盘被用尽，文件系统就开始向被删文件残余数据处写入数据，这就要浪费大量的时间去擦原数据，因而从这开始，**固态硬盘写入速度断崖下跌。**但和机械硬盘一样，被误删的文件往往能够找回。</p>
-<p>若固态硬盘<strong>开TRIM</strong>，删除一个文件，首先会删除其对应的文件表，然后在磁盘闲置时，自动擦除对应的数据，以便之后在此处写入数据时，可以直接写入。**这样就避免了固态硬盘越用越慢点问题。**但代价就是，往往当你发现自己误删文件时，<strong>TRIM机制已经擦除数据了，因而无法恢复数据</strong>；除非高价找恢复数据的公司，不保证一定能成功。</p>
-<p>合理的建议是，备份是数据防丢失的最佳选择，而不是使用固态硬盘关TRIM、或机械硬盘都。不论用机械硬盘还是固态硬盘，如果数据很重要，不能丢失，就应使用多块硬盘或云盘，定期备份固态硬盘上的数据，而不要指望数据丢失后恢复数据。只要有数据备份，使用固态硬盘时，要开启TRIM，来优化写入效率，而不是关闭TRIM，牺牲写入效率。选择机械硬盘，从来不是追求其数据误删后可恢复，而是追求便宜；选择固态硬盘，是追求读写快和在颠簸中数据不受损，既然已经追求读写快了，就不应为此关闭TRIM牺牲写入效率。</p>
-<h2 id="磁盘备份：FreeFileSync-软件"><a class="header-anchor" href="#磁盘备份：FreeFileSync-软件"></a>磁盘备份：<a href="https://freefilesync.org">FreeFileSync 软件</a></h2>
-<p>可以同步两个磁盘、或两个文件夹。</p>
-<p>免费开源软件。支持mac、linux、windows。</p>
-<p>会按照两个软件，FreeFileSync负责手动同步，RealTimeSync负责自动同步。</p>
-<h2 id="固态硬盘Trim命令的使用方法"><a class="header-anchor" href="#固态硬盘Trim命令的使用方法"></a><a href="https://www.zhihu.com/tardis/zm/art/370770594?source_id=1003">固态硬盘Trim命令的使用方法</a></h2>
-<p><code>disabledeletenotify=0</code> : 说明固态硬盘TRIM功能开启</p>
-<p><code>disabledeletenotify=1</code> :  说明固态硬盘TRIM功能关闭</p>
-<h2 id="佳翼硬盘盒开启TRIM指令工具-打包下载-发表于-2022-11-6"><a class="header-anchor" href="#佳翼硬盘盒开启TRIM指令工具-打包下载-发表于-2022-11-6"></a><a href="http://jeyi.net/forum.php?mod=viewthread&amp;tid=2010">佳翼硬盘盒开启TRIM指令工具 打包下载 <em>发表于 2022-11-6</em></a></h2>
-<p>有Trim开启，Trim关闭，Trim状态，Trim测试四个exe文件，需在windos上运行</p>
-<h2 id="金百达KP230-Pro，2TB固态硬盘评测，长江存储-联芸主控"><a class="header-anchor" href="#金百达KP230-Pro，2TB固态硬盘评测，长江存储-联芸主控"></a><a href="https://zhuanlan.zhihu.com/p/586983006">金百达KP230 Pro，2TB固态硬盘评测，长江存储+联芸主控</a></h2>
-<p>使用了以下五个只能在windows上运行的硬盘测试软件</p>
-<ol>
-<li>Crystal Disk Info</li>
-<li>Crystal Disk Mark</li>
-<li>AS SSD Benchmark</li>
-<li>HD Tune</li>
-<li>ATTO测试</li>
-</ol>
-]]></content>
-      <categories>
-        <category>器</category>
-        <category>硬件</category>
       </categories>
   </entry>
   <entry>
