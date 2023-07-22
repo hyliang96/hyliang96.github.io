@@ -1809,164 +1809,6 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.172767.xyz/posts/1d810cbf/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="∞亼">
-      <meta itemprop="description" content="一切节约归根到底是时间的节约">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/1d810cbf/" class="post-title-link" itemprop="url">tmux配置与使用</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/%E7%BB%88%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">终端</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/posts/1d810cbf/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/posts/1d810cbf/" data-xid="/posts/1d810cbf/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>7 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="tmux-使用"><a class="header-anchor" href="#tmux-使用"></a>tmux 使用</h2>
-<ul>
-<li>
-<ul>
-<li>窗口进程管理<br>
-即使终端关闭（<code>cmd+Q/W</code>），tmux的窗口依旧运行<br>
-打开一个tmux窗口</li>
-</ul>
-<pre class="line-numbers language-none"><code class="language-none">tmux new -s 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>将该tmux窗口放入后台</p>
-<pre class="line-numbers language-none"><code class="language-none">ctrl+b d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>查看所有tmux窗口的方法</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux ls<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>唤出（使后台的窗口显示）tmux窗口</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux a -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>显示最后放入后台的窗口</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>杀死tmux窗口的方法</p>
-<pre class="line-numbers language-none"><code class="language-none">tmux kill-session -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>杀死当前窗口</p>
-<pre class="line-numbers language-none"><code class="language-none">ctrl+b &amp;
-选择y （yes）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>窗口分区管理</p>
-</li>
-<li>
-<p>页面<br>
-单个程序只给一屏用于输出，超出此范围，要翻页查看：<br>
-<code>ctrl+b [   fn+↑/↓  esc</code><br>
-进入拷贝模式：拷贝模式中，新输出的文字不会显示<br>
-<code>ctrl+b [</code>	：进入拷贝模式<br>
-<code>fn+上/下键</code>	：翻页<br>
-<code>esc</code>			：退出拷贝模式<br>
-进入黏贴模式<br>
-<code>ctrl+b ]</code></p>
-</li>
-</ul>
-<h2 id="tmux配置"><a class="header-anchor" href="#tmux配置"></a>tmux配置</h2>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/1d810cbf/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://blog.172767.xyz/posts/e9538bec/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2181,6 +2023,164 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/b61a1a24/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.172767.xyz/posts/1d810cbf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/1d810cbf/" class="post-title-link" itemprop="url">tmux配置与使用</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E7%BB%88%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">终端</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/1d810cbf/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/1d810cbf/" data-xid="/posts/1d810cbf/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="tmux-使用"><a class="header-anchor" href="#tmux-使用"></a>tmux 使用</h2>
+<ul>
+<li>
+<ul>
+<li>窗口进程管理<br>
+即使终端关闭（<code>cmd+Q/W</code>），tmux的窗口依旧运行<br>
+打开一个tmux窗口</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">tmux new -s 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>将该tmux窗口放入后台</p>
+<pre class="line-numbers language-none"><code class="language-none">ctrl+b d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>查看所有tmux窗口的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux ls<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>唤出（使后台的窗口显示）tmux窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux a -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>显示最后放入后台的窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>杀死tmux窗口的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux kill-session -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>杀死当前窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">ctrl+b &amp;
+选择y （yes）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>窗口分区管理</p>
+</li>
+<li>
+<p>页面<br>
+单个程序只给一屏用于输出，超出此范围，要翻页查看：<br>
+<code>ctrl+b [   fn+↑/↓  esc</code><br>
+进入拷贝模式：拷贝模式中，新输出的文字不会显示<br>
+<code>ctrl+b [</code>	：进入拷贝模式<br>
+<code>fn+上/下键</code>	：翻页<br>
+<code>esc</code>			：退出拷贝模式<br>
+进入黏贴模式<br>
+<code>ctrl+b ]</code></p>
+</li>
+</ul>
+<h2 id="tmux配置"><a class="header-anchor" href="#tmux配置"></a>tmux配置</h2>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/1d810cbf/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -6164,128 +6164,6 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.172767.xyz/posts/d4fc8fbf/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="∞亼">
-      <meta itemprop="description" content="一切节约归根到底是时间的节约">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/d4fc8fbf/" class="post-title-link" itemprop="url">mac开机启动项设置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/posts/d4fc8fbf/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/posts/d4fc8fbf/" data-xid="/posts/d4fc8fbf/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>2.6k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>9 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="将脚本设为开机自启"><a class="header-anchor" href="#将脚本设为开机自启"></a>将脚本设为开机自启</h1>
-<h2 id="非sudo的自启脚本"><a class="header-anchor" href="#非sudo的自启脚本"></a>非sudo的自启脚本</h2>
-<p>mac下，网上可查到脚本开机自启方法众多，经验证，有效的方法包括不限于以下两种</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/d4fc8fbf/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://blog.172767.xyz/posts/4bc94fac/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -6408,7 +6286,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.172767.xyz/posts/3ad41d06/">
+    <link itemprop="mainEntityOfPage" href="https://blog.172767.xyz/posts/d4fc8fbf/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/heat.jpg">
@@ -6421,7 +6299,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/3ad41d06/" class="post-title-link" itemprop="url">mac上使用X11</a>
+          <a href="/posts/d4fc8fbf/" class="post-title-link" itemprop="url">mac开机启动项设置</a>
         </h2>
 
         <div class="post-meta-container">
@@ -6432,7 +6310,7 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2021-07-30 21:17:59" itemprop="dateCreated datePublished" datetime="2021-07-30T21:17:59+08:00">2021-07-30</time>
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
     </span>
       <span class="post-meta-item">
         <span class="post-meta-item-icon">
@@ -6464,8 +6342,8 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
     </span>
     <span class="post-meta-item-text">Waline：</span>
   
-    <a title="waline" href="/posts/3ad41d06/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/posts/3ad41d06/" data-xid="/posts/3ad41d06/" itemprop="commentCount"></span>
+    <a title="waline" href="/posts/d4fc8fbf/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/d4fc8fbf/" data-xid="/posts/d4fc8fbf/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -6476,14 +6354,14 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>86</span>
+      <span>2.6k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>9 分钟</span>
     </span>
 </div>
 
@@ -6494,12 +6372,12 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
     
     
     <div class="post-body" itemprop="articleBody">
-          <h2 id="XQuartz"><a class="header-anchor" href="#XQuartz"></a>XQuartz</h2>
-<h3 id><a class="header-anchor" href="#"></a></h3>
-<h3 id="多显示屏XQuartz闪退"><a class="header-anchor" href="#多显示屏XQuartz闪退"></a>多显示屏XQuartz闪退</h3>
+          <h1 id="将脚本设为开机自启"><a class="header-anchor" href="#将脚本设为开机自启"></a>将脚本设为开机自启</h1>
+<h2 id="非sudo的自启脚本"><a class="header-anchor" href="#非sudo的自启脚本"></a>非sudo的自启脚本</h2>
+<p>mac下，网上可查到脚本开机自启方法众多，经验证，有效的方法包括不限于以下两种</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/posts/3ad41d06/#more" rel="contents">
+              <a class="btn" href="/posts/d4fc8fbf/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -6701,6 +6579,250 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
 </table>
 <p><img data-src="/posts/5863fcf3/v2-cacc571eedb04c2fb116e64bb02733ac_720w.jpg" alt="img"></p>
 
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.172767.xyz/posts/3ad41d06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/3ad41d06/" class="post-title-link" itemprop="url">mac上使用X11</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-30 21:17:59" itemprop="dateCreated datePublished" datetime="2021-07-30T21:17:59+08:00">2021-07-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/3ad41d06/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/3ad41d06/" data-xid="/posts/3ad41d06/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>86</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="XQuartz"><a class="header-anchor" href="#XQuartz"></a>XQuartz</h2>
+<h3 id><a class="header-anchor" href="#"></a></h3>
+<h3 id="多显示屏XQuartz闪退"><a class="header-anchor" href="#多显示屏XQuartz闪退"></a>多显示屏XQuartz闪退</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/3ad41d06/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://blog.172767.xyz/posts/bb7b572e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/bb7b572e/" class="post-title-link" itemprop="url">brew使用教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-09-29 17:00:12" itemprop="dateCreated datePublished" datetime="2021-09-29T17:00:12+08:00">2021-09-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/bb7b572e/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/bb7b572e/" data-xid="/posts/bb7b572e/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="安装"><a class="header-anchor" href="#安装"></a>安装</h1>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/usr/bin/ruby -e <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上边的命令行是两个命令，首先下载install文件，然后用系统的ruby工具安装。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/bb7b572e/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -6940,128 +7062,6 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/72c36e9e/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://blog.172767.xyz/posts/bb7b572e/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="∞亼">
-      <meta itemprop="description" content="一切节约归根到底是时间的节约">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/bb7b572e/" class="post-title-link" itemprop="url">brew使用教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-09-29 17:00:12" itemprop="dateCreated datePublished" datetime="2021-09-29T17:00:12+08:00">2021-09-29</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/posts/bb7b572e/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/posts/bb7b572e/" data-xid="/posts/bb7b572e/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.6k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="安装"><a class="header-anchor" href="#安装"></a>安装</h1>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">/usr/bin/ruby -e <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>上边的命令行是两个命令，首先下载install文件，然后用系统的ruby工具安装。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/bb7b572e/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
