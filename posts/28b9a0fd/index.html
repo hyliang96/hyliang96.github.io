@@ -22,19 +22,21 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"blog.172767.xyz","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="自定制终端登录界面 用sudo创建可执行文件&#x2F;etc&#x2F;update-motd.d&#x2F;&lt;执行序号&gt;-文件名（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如">
+<meta name="description" content="自定制ssh登录界面 用sudo创建可执行文件&#x2F;etc&#x2F;update-motd.d&#x2F;&lt;执行序号&gt;-文件名（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如">
 <meta property="og:type" content="article">
-<meta property="og:title" content="linux终端登录界面">
+<meta property="og:title" content="linuxssh登录界面">
 <meta property="og:url" content="https://blog.172767.xyz/posts/28b9a0fd/index.html">
 <meta property="og:site_name" content="丹炉志">
-<meta property="og:description" content="自定制终端登录界面 用sudo创建可执行文件&#x2F;etc&#x2F;update-motd.d&#x2F;&lt;执行序号&gt;-文件名（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如">
+<meta property="og:description" content="自定制ssh登录界面 用sudo创建可执行文件&#x2F;etc&#x2F;update-motd.d&#x2F;&lt;执行序号&gt;-文件名（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.172767.xyz/posts/28b9a0fd/ScreenShot%202019-12-04%2017.59.39.png">
 <meta property="og:image" content="https://blog.172767.xyz/posts/28b9a0fd/ScreenShot%202019-12-04%2017.59.39%E7%9A%84%E5%89%AF%E6%9C%AC.png">
+<meta property="og:image" content="https://blog.172767.xyz/posts/28b9a0fd/image-20231120165641914.png">
 <meta property="og:image" content="https://blog.172767.xyz/posts/28b9a0fd/ScreenShot%202019-12-04%2017.59.39%E7%9A%84%E5%89%AF%E6%9C%AC-2.png">
+<meta property="og:image" content="https://blog.172767.xyz/posts/28b9a0fd/image-20231120170110450.png">
 <meta property="og:image" content="https://blog.172767.xyz/posts/28b9a0fd/ScreenShot%202019-12-04%2017.59.39.png">
 <meta property="article:published_time" content="2021-07-30T13:17:59.000Z">
-<meta property="article:modified_time" content="2022-03-23T09:14:46.126Z">
+<meta property="article:modified_time" content="2023-11-21T07:34:16.565Z">
 <meta property="article:author" content="∞亼">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.172767.xyz/posts/28b9a0fd/ScreenShot%202019-12-04%2017.59.39.png">
@@ -44,10 +46,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.172767.xyz/posts/28b9a0fd/","path":"posts/28b9a0fd/","title":"linux终端登录界面"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://blog.172767.xyz/posts/28b9a0fd/","path":"posts/28b9a0fd/","title":"linuxssh登录界面"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>linux终端登录界面 | 丹炉志</title>
+<title>linuxssh登录界面 | 丹炉志</title>
   
 
 
@@ -157,7 +159,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E5%88%B6%E7%BB%88%E7%AB%AF%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2"><span class="nav-text">自定制终端登录界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95"><span class="nav-text">安装方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%BE%93%E5%87%BA-hostname"><span class="nav-text">配置开机输出-hostname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%BC%80%E6%9C%BA%E8%BE%93%E5%87%BA-%E7%A3%81%E7%9B%98%E4%BD%BF%E7%94%A8"><span class="nav-text">配置开机输出-磁盘使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%95%E8%BF%90%E8%A1%8C-%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="nav-text">试运行-最终效果</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E5%88%B6ssh%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2"><span class="nav-text">自定制ssh登录界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95"><span class="nav-text">安装方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="nav-text">安装依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hostname-color%EF%BC%9A%E4%B8%BB%E6%9C%BA%E5%90%8D"><span class="nav-text">hostname-color：主机名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#neofetch%EF%BC%9A%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF"><span class="nav-text">neofetch：系统信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#diskspace%EF%BC%9A%E7%A3%81%E7%9B%98%E4%BD%BF%E7%94%A8"><span class="nav-text">diskspace：磁盘使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#landscape-sysinfo%EF%BC%9A%E5%90%84%E7%B1%BB%E8%B4%9F%E8%8D%B7"><span class="nav-text">landscape-sysinfo：各类负荷</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#motd%EF%BC%9A%E4%BB%8A%E6%97%A5%E4%BF%A1%E6%81%AF"><span class="nav-text">motd：今日信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%95%E8%BF%90%E8%A1%8C-%E6%9C%80%E7%BB%88%E6%95%88%E6%9E%9C"><span class="nav-text">试运行-最终效果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%97%ADssh%E7%99%BB%E5%BD%95%E7%95%8C%E9%9D%A2%E6%8F%90%E7%A4%BA"><span class="nav-text">关闭ssh登录界面提示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E6%89%80%E6%9C%89%E6%8F%90%E7%A4%BA"><span class="nav-text">关闭所有提示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E7%89%B9%E5%AE%9A%E6%9D%A1%E7%9B%AE%E7%9A%84%E6%8F%90%E7%A4%BA"><span class="nav-text">关闭特定条目的提示</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -172,7 +174,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -240,7 +242,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          linux终端登录界面
+          linuxssh登录界面
         </h1>
 
         <div class="post-meta-container">
@@ -258,7 +260,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+        <time title="修改时间：2023-11-21 15:34:16" itemprop="dateModified" datetime="2023-11-21T15:34:16+08:00">2023-11-21</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -302,14 +304,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>1.5k</span>
+      <span>3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>5 分钟</span>
+      <span>10 分钟</span>
     </span>
 </div>
 
@@ -320,12 +322,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="自定制终端登录界面"><a class="header-anchor" href="#自定制终端登录界面"></a>自定制终端登录界面</h2>
+        <h2 id="自定制ssh登录界面"><a class="header-anchor" href="#自定制ssh登录界面"></a>自定制ssh登录界面</h2>
 <p>用sudo创建可执行文件<code>/etc/update-motd.d/&lt;执行序号&gt;-文件名</code>（bash脚本），则此脚本会在ssh登录时执行，脚本输出会显示在ssh登录界面上。此法可用户定制酷炫的ssh登录界面，例如</p>
 <p><img data-src="/posts/28b9a0fd/ScreenShot%202019-12-04%2017.59.39.png" alt="ScreenShot 2019-12-04 17.59.39"></p>
 <h2 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h2>
 <h3 id="安装依赖"><a class="header-anchor" href="#安装依赖"></a>安装依赖</h3>
 <ul>
+<li>
+<p><code>update-motd</code>显示ssh登录提示</p>
+</li>
 <li>
 <p><code>lolcat</code> 让终端输出彩虹色</p>
 </li>
@@ -333,8 +338,9 @@
 <p><code>figlet</code> 让终端创建字符图案</p>
 </li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> lolcat figlet<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="配置开机输出-hostname"><a class="header-anchor" href="#配置开机输出-hostname"></a>配置开机输出-hostname</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> update
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> update-motd lolcat figlet<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="hostname-color：主机名"><a class="header-anchor" href="#hostname-color：主机名"></a>hostname-color：主机名</h3>
 <p>预期效果</p>
 <p><img data-src="/posts/28b9a0fd/ScreenShot%202019-12-04%2017.59.39%E7%9A%84%E5%89%AF%E6%9C%AC.png" alt="ScreenShot 2019-12-04 17.59.39的副本"></p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">tmp</span><span class="token operator">=</span><span class="token string">'/etc/update-motd.d/10-hostname-color'</span>
@@ -343,9 +349,23 @@
 <span class="token function">sudo</span> <span class="token function">vim</span> <span class="token variable">$tmp</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>vim中写入</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
-
-/usr/bin/figlet <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">hostname</span><span class="token variable">)</span></span>"</span> <span class="token operator">|</span> /usr/games/lolcat -f<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-<h3 id="配置开机输出-磁盘使用"><a class="header-anchor" href="#配置开机输出-磁盘使用"></a>配置开机输出-磁盘使用</h3>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -e /usr/bin/figlet <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">[</span> -e /usr/games/lolcat <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    /usr/bin/figlet <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">hostname</span><span class="token variable">)</span></span>"</span> <span class="token operator">|</span> /usr/games/lolcat -f
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="neofetch：系统信息"><a class="header-anchor" href="#neofetch：系统信息"></a>neofetch：系统信息</h3>
+<p>预期效果</p>
+<p><img data-src="/posts/28b9a0fd/image-20231120165641914.png" alt="image-20231120165641914"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> neofetch<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">tmp</span><span class="token operator">=</span><span class="token string">'/etc/update-motd.d/12-neofetch'</span>
+<span class="token function">sudo</span> <span class="token function">touch</span> <span class="token variable">$tmp</span>
+<span class="token function">sudo</span> <span class="token function">chmod</span> a+x <span class="token variable">$tmp</span>
+<span class="token function">sudo</span> <span class="token function">vim</span> <span class="token variable">$tmp</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/bash</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -e /usr/bin/neofetch <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">""</span>
+    /usr/bin/neofetch --off --colors <span class="token number">0</span> <span class="token number">0</span> <span class="token number">6</span> <span class="token number">6</span> <span class="token number">3</span> <span class="token number">7</span> --color_blocks off --underline off --bar_border off --disable title line_break
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="diskspace：磁盘使用"><a class="header-anchor" href="#diskspace：磁盘使用"></a>diskspace：磁盘使用</h3>
 <p>预期效果</p>
 <p><img data-src="/posts/28b9a0fd/ScreenShot%202019-12-04%2017.59.39%E7%9A%84%E5%89%AF%E6%9C%AC-2.png" alt="ScreenShot 2019-12-04 17.59.39的副本 2"></p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">tmp</span><span class="token operator">=</span><span class="token string">'/etc/update-motd.d/35-diskspace'</span>
@@ -394,11 +414,59 @@
     <span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable">$&#123;line&#125;</span>"</span> <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&#123; printf("%-31s%+3s used out of %+4s\n", $1, $2, $3); &#125;'</span> <span class="token operator">|</span> <span class="token function">sed</span> -e <span class="token string">'s/^/  /'</span>
     <span class="token builtin class-name">echo</span> -e <span class="token string">"<span class="token variable">$&#123;bar&#125;</span>"</span> <span class="token operator">|</span> <span class="token function">sed</span> -e <span class="token string">'s/^/  /'</span>
 <span class="token keyword">done</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="landscape-sysinfo：各类负荷"><a class="header-anchor" href="#landscape-sysinfo：各类负荷"></a>landscape-sysinfo：各类负荷</h3>
+<p>预期效果</p>
+<p><img data-src="/posts/28b9a0fd/image-20231120170110450.png" alt="image-20231120170110450"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> <span class="token function">bc</span> landscape-common<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">tmp</span><span class="token operator">=</span><span class="token string">'/etc/update-motd.d/50-landscape-sysinfo'</span>
+<span class="token function">sudo</span> <span class="token function">touch</span> <span class="token variable">$tmp</span>
+<span class="token function">sudo</span> <span class="token function">chmod</span> a+x <span class="token variable">$tmp</span>
+<span class="token function">sudo</span> <span class="token function">vim</span> <span class="token variable">$tmp</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>vim中写入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token shebang important">#!/bin/sh</span>
+<span class="token comment"># pam_motd does not carry the environment</span>
+<span class="token punctuation">[</span> -f /etc/default/locale <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">.</span> /etc/default/locale
+<span class="token builtin class-name">export</span> <span class="token environment constant">LANG</span>
+<span class="token assign-left variable">cores</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">grep</span> -c ^processor /proc/cpuinfo <span class="token operator"><span class="token file-descriptor important">2</span>></span>/dev/null<span class="token variable">)</span></span>
+<span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$cores</span>"</span> -eq <span class="token string">"0"</span> <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token assign-left variable">cores</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token assign-left variable">threshold</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;cores<span class="token operator">:-</span>1&#125;</span>.0"</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">echo</span> <span class="token string">"<span class="token variable"><span class="token variable">`</span><span class="token function">cut</span> -f1 -d <span class="token string">' '</span> /proc/loadavg<span class="token variable">`</span></span> &lt; <span class="token variable">$threshold</span>"</span> <span class="token operator">|</span> <span class="token function">bc</span><span class="token variable">)</span></span> -eq <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">echo</span>
+    <span class="token builtin class-name">echo</span> -n <span class="token string">"  System information as of "</span>
+    /bin/date
+    <span class="token builtin class-name">echo</span>
+    /usr/bin/landscape-sysinfo
+<span class="token keyword">else</span>
+    <span class="token builtin class-name">echo</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">" System information disabled due to load higher than <span class="token variable">$threshold</span>"</span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="motd：今日信息"><a class="header-anchor" href="#motd：今日信息"></a>motd：今日信息</h3>
+<p>motd，即Message of The Day</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">tmp</span><span class="token operator">=</span><span class="token string">'/etc/update-motd.d/50-landscape-sysinfo'</span>
+<span class="token function">sudo</span> <span class="token function">touch</span> <span class="token variable">$tmp</span>
+<span class="token function">sudo</span> <span class="token function">chmod</span> a+x <span class="token variable">$tmp</span>
+<span class="token function">sudo</span> <span class="token function">vim</span> <span class="token variable">$tmp</span> <span class="token comment"># 用vim向当中手动添加自定义的今日提示消息。默认文件内容为空。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="试运行-最终效果"><a class="header-anchor" href="#试运行-最终效果"></a>试运行-最终效果</h3>
 <p>运行登录输出的出现</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> run-parts /etc/update-motd.d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p><img data-src="/posts/28b9a0fd/ScreenShot%202019-12-04%2017.59.39.png" alt="ScreenShot 2019-12-04 17.59.39"></p>
 <p>如得到上述输出，则配置成功。之后每次<code>ssh &lt;服务器&gt;</code>的截面均是上图输出。注：非ssh登录，则不会有此输出，例如当ssh登录后运行<code>bash</code>，则无此输出。</p>
+<h2 id="关闭ssh登录界面提示"><a class="header-anchor" href="#关闭ssh登录界面提示"></a>关闭ssh登录界面提示</h2>
+<h3 id="关闭所有提示"><a class="header-anchor" href="#关闭所有提示"></a>关闭所有提示</h3>
+<p>修改ssh服务端配置</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">vim</span> /etc/ssh/sshd_config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其中<code>UsePAM no</code>表示关闭ssh登录提示，<code>UsePAM yes</code>表示开启</p>
+<p>重启ssh服务端</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> /etc/init.d/ssh restart<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>而后ssh登录时，上述修改就会生效。</p>
+<p>但执行<code>sudo run-parts /etc/update-motd.d</code>时，始终都会显示ssh登录提示。</p>
+<h3 id="关闭特定条目的提示"><a class="header-anchor" href="#关闭特定条目的提示"></a>关闭特定条目的提示</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /etc/update-motd.d
+<span class="token comment"># 关闭特定条目的提示</span>
+<span class="token function">sudo</span> <span class="token function">chmod</span> -x /etc/update-motd.d/<span class="token operator">&lt;</span>特定条目的配置文件<span class="token operator">></span>
+<span class="token comment"># 打开特定条目的提示</span>
+<span class="token function">sudo</span> <span class="token function">chmod</span> +x /etc/update-motd.d/<span class="token operator">&lt;</span>特定条目的配置文件<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>执行<code>sudo run-parts /etc/update-motd.d</code>时，始终都会显示修改后的ssh登录提示。</p>
 
     </div>
 
@@ -441,7 +509,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -452,13 +520,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">326k</span>
+    <span title="站点总字数">338k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18:05</span>
+    <span title="站点阅读时长">18:45</span>
   </span>
 </div>
 <div class="busuanzi-count">

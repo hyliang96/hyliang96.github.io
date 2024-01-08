@@ -30,7 +30,7 @@
 <meta property="og:description" content="使用Iptables设置NAT  查看NAT映射关系列表  sudo iptables -t nat -L -n --line-number">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-30T13:17:59.000Z">
-<meta property="article:modified_time" content="2022-03-23T09:14:46.124Z">
+<meta property="article:modified_time" content="2023-10-24T09:10:02.852Z">
 <meta property="article:author" content="∞亼">
 <meta name="twitter:card" content="summary">
 
@@ -167,7 +167,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -253,7 +253,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+        <time title="修改时间：2023-10-24 17:10:02" itemprop="dateModified" datetime="2023-10-24T17:10:02+08:00">2023-10-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -297,14 +297,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>387</span>
+      <span>1.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>4 分钟</span>
     </span>
 </div>
 
@@ -326,21 +326,48 @@
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -S<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
-<li>开NAT</li>
+<li>
+<p>开NAT：</p>
+<ul>
+<li>在第n条前插入新规则：使新规则成为第n条规则，而原来编号&gt;=n的规则则编号加1</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -I PREROUTING <span class="token operator">&lt;</span>n<span class="token operator">></span> -d <span class="token operator">&lt;</span>公网ip<span class="token operator">></span>/32 -i <span class="token operator">&lt;</span>公网访问的网卡<span class="token operator">></span> -p tcp -m tcp --dport <span class="token operator">&lt;</span>公网端口<span class="token operator">></span> -j DNAT --to-destination <span class="token operator">&lt;</span>内网ip<span class="token operator">></span>:<span class="token operator">&lt;</span>内网端口<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>替换第n条规则：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">sudo iptables -t nat -R PREROUTING &lt;n&gt; -d &lt;公网ip&gt;&#x2F;32 -i &lt;公网访问的网卡&gt; -p tcp -m tcp --dport &lt;公网端口&gt; -j DNAT --to-destination &lt;内网ip&gt;:&lt;内网端口&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>在PREROUTING的结尾添加规则</li>
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -A PREROUTING -d <span class="token operator">&lt;</span>公网ip<span class="token operator">></span>/32 -i <span class="token operator">&lt;</span>公网访问的网卡<span class="token operator">></span> -p tcp -m tcp --dport <span class="token operator">&lt;</span>公网端口<span class="token operator">></span> -j DNAT --to-destination <span class="token operator">&lt;</span>内网ip<span class="token operator">></span>:<span class="token operator">&lt;</span>内网端口<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>
-<p><code>-A PREROUTING</code>：新规则附在已有规则最后面；若换成 <code>-I PREROUTING &lt;规则的行号&gt;(默认1)</code> ，则新规则插入在此编号的规则前面</p>
-</li>
-<li>
-<p><code>/32</code> <code>-m tcp</code> 可省，此即缺省值</p>
+<p>上面命令中的<code>/32</code> <code>-m tcp</code> 可省，此即缺省值</p>
 </li>
 <li>
 <p>删除一条NAT规则</p>
 </li>
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables -t nat -D PREROUTING <span class="token operator">&lt;</span>规则的行号<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>去除重复的iptables规则，<a target="_blank" rel="noopener" href="https://blog.csdn.net/tobyliu415/article/details/124781249">详见</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables-save <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'&#123;if($1=="COMMIT")&#123;delete x&#125;&#125;$1=="-A"?!x[$0]++:1'</span> <span class="token operator">|</span> <span class="token function">sudo</span> iptables-restore<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>请勿使用</strong>以下方法:</p>
+<ul>
+<li>
+<p>没有排序（<code>sort</code>)就用<code>uniq</code>，会有漏网之鱼</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables-save <span class="token operator">|</span> <span class="token function">uniq</span> <span class="token operator">|</span> 【请勿使用本方法】 <span class="token function">sudo</span> iptables-restore<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p><code>sort</code>会打乱iptables规则的排序，使得规则的执行顺序发生变化（编号从小到大执行），详见<a target="_blank" rel="noopener" href="https://juejin.cn/s/iptables%E8%AF%A6%E8%A7%A3%20%E5%A4%84%E7%90%86%E9%A1%BA%E5%BA%8F">iptables详解 处理顺序</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables-save <span class="token operator">|</span> <span class="token function">sort</span> <span class="token operator">|</span> <span class="token function">uniq</span> <span class="token operator">|</span> 【请勿使用本方法】 <span class="token function">sudo</span> iptables-restore<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>会误删“COMMIT”这种正常的重复语句。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> iptables-save <span class="token operator">|</span> <span class="token function">awk</span> <span class="token string">'!x[$0]++'</span> <span class="token operator">|</span> 【请勿使用本方法】sudo iptables-store<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+</ul>
 
     </div>
 
@@ -383,7 +410,7 @@
 
 <div class="copyright">
   &copy; 
-  <span itemprop="copyrightYear">2023</span>
+  <span itemprop="copyrightYear">2024</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -394,13 +421,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">326k</span>
+    <span title="站点总字数">338k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18:05</span>
+    <span title="站点阅读时长">18:45</span>
   </span>
 </div>
 <div class="busuanzi-count">
