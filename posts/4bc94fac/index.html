@@ -34,14 +34,16 @@
 <meta property="og:image" content="https://blog.172767.xyz/posts/4bc94fac/image-20201107204216961.png">
 <meta property="og:image" content="https://blog.172767.xyz/posts/4bc94fac/image-20201107204232666.png">
 <meta property="og:image" content="https://blog.172767.xyz/posts/4bc94fac/image-20201107235631208.png">
-<meta property="og:image" content="https://blog.172767.xyz/posts/4bc94fac/run-zh.jpg">
+<meta property="og:image" content="https://blog.172767.xyz/posts/4bc94fac/iShot_2024-01-08_19.07.12.png">
+<meta property="og:image" content="https://blog.172767.xyz/posts/4bc94fac/iShot_2024-01-08_19.07.12-4712253.png">
+<meta property="og:image" content="https://blog.172767.xyz/posts/4bc94fac/image-20240108191227568.png">
 <meta property="og:image" content="https://blog.172767.xyz/posts/4bc94fac/image-20201107174828256.png">
 <meta property="og:image" content="https://blog.172767.xyz/posts/4bc94fac/image-20201110061629462.png">
 <meta property="og:image" content="https://blog.172767.xyz/posts/4bc94fac/image-20201110061457868.png">
 <meta property="og:image" content="https://blog.172767.xyz/posts/4bc94fac/image-20201110061347850.png">
 <meta property="og:image" content="https://blog.172767.xyz/posts/4bc94fac/image-20201110063029206.png">
 <meta property="article:published_time" content="2021-08-01T17:24:20.000Z">
-<meta property="article:modified_time" content="2024-01-05T13:02:40.956Z">
+<meta property="article:modified_time" content="2024-01-08T12:34:07.523Z">
 <meta property="article:author" content="∞亼">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://blog.172767.xyz/posts/4bc94fac/e1a2029b3539506dd33ab73f7862c2bf_1440w.jpg">
@@ -179,13 +181,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
   </nav>
@@ -265,7 +267,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-01-05 21:02:40" itemprop="dateModified" datetime="2024-01-05T21:02:40+08:00">2024-01-05</time>
+        <time title="修改时间：2024-01-08 20:34:07" itemprop="dateModified" datetime="2024-01-08T20:34:07+08:00">2024-01-08</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -309,14 +311,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>5.6k</span>
+      <span>7.3k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>19 分钟</span>
+      <span>24 分钟</span>
     </span>
 </div>
 
@@ -505,37 +507,80 @@
 </ul>
 <img data-src="/posts/4bc94fac/image-20201107235631208.png" alt="image-20201107235631208" style="zoom:50%;">
 <p>mac 外接 2k 显示器, 会若使用2560x1440分辨率, 字体过小; 若使用1920x1080分辨率, 则字体模糊, 这是因为, mac 没有给2k显示器开HiDPI. 需要自己开HiDPI, 开方法如下. <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/36913571">参考</a>.</p>
-<h2 id="法一-一键脚本-RDM-推荐-免费-简洁"><a class="header-anchor" href="#法一-一键脚本-RDM-推荐-免费-简洁"></a>法一, <a target="_blank" rel="noopener" href="https://github.com/xzhih/one-key-hidpi/">一键脚本</a>+RDM (推荐, 免费, 简洁)</h2>
+<h2 id="法一-一键脚本-RDM-推荐-免费-简洁"><a class="header-anchor" href="#法一-一键脚本-RDM-推荐-免费-简洁"></a>法一, 一键脚本+RDM (推荐, 免费, 简洁)</h2>
+<p>一键开启hidpi的脚本：<a target="_blank" rel="noopener" href="https://github.com/xzhih/one-key-hidpi/">github项目</a></p>
 <ul>
-<li>暂时关闭SIP</li>
-</ul>
+<li>
+<p>暂时关闭SIP</p>
 <p>重启电脑，并在开机声响起后按住command+R, 直到出现苹果logo, 进入recovery mode</p>
 <p>开Terminal，在终端输入关闭SIP的命令行语句：<code>csrutil disable</code></p>
-<ul>
-<li>开启系统的HiDPI选项</li>
-</ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> defaults <span class="token function">write</span> /Library/Preferences/com.apple.windowserver.plist DisplayResolutionEnabled -bool <span class="token boolean">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>若开启成功, 则</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">defaults <span class="token builtin class-name">read</span> /Library/Preferences/com.apple.windowserver.plist DisplayResolutionEnabled<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>返回的是 <code>1</code> 或 <code>true</code></p>
-<ul>
+</li>
 <li>
 <p>运行如下命令, 选择显示器, 选择是否开HiDPI,</p>
-<p><img data-src="/posts/4bc94fac/run-zh.jpg" alt="运行"></p>
 </li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">bash</span> -c <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -fsSL https://raw.githubusercontent.com/xzhih/one-key-hidpi/master/hidpi.sh<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<ul>
-<li>
-<p>可以在最后一步, 手动添加你需要的分别率,  可自行定制任何分辨率的HiDPI <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/bcb0f04bfd96">参考</a></p>
-<p>添加 2mx2n, 会开启mxn的HiDPI版, 和2mx2n 的普通版(即强行缩放版, 会模糊)</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> -c <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -fsSL https://raw.githubusercontent.com/xzhih/one-key-hidpi/master/hidpi.sh<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-none"><code class="language-none">bash -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;xzhih&#x2F;one-key-hidpi&#x2F;master&#x2F;hidpi.sh)&quot;
+  _    _   _____   _____    _____    _____
+ | |  | | |_   _| |  __ \  |  __ \  |_   _|
+ | |__| |   | |   | |  | | | |__) |   | |
+ |  __  |   | |   | |  | | |  ___&#x2F;    | |
+ | |  | |  _| |_  | |__| | | |       _| |_
+ |_|  |_| |_____| |_____&#x2F;  |_|      |_____|
+
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+
+                      显示器
+--------------------------------------------------------
+   序号   |   供应商ID   |   产品ID   |   显示器名称
+--------------------------------------------------------
+    1    |    0610    |     a03d    |  Apple Display
+    2    |    699f    |     2701    |  Lc
+
+--------------------------------------------------------
+选择显示器: 2
+您的显示器 供应商ID:产品ID: 699f:2701
+
+(1) 开启HIDPI
+(2) 开启HIDPI(同时注入EDID)
+(3) 关闭HIDPI
+
+输入你的选择 [1~3]: 1
+
+-------------------------------------
+|********** 选择显示器ICON ***********|
+-------------------------------------
+
+(1) iMac
+(2) MacBook
+(3) MacBook Pro
+(4) LG 显示器
+(5) Pro Display XDR
+(6) 保持原样
+
+输入你的选择 [1~6]: 3
+
+------------------------------------------
+|********** 选择分辨率配置 ***********|
+------------------------------------------
+(1) 1920x1080 显示屏
+(2) 1920x1080 显示屏 (使用 1424x802 分辨率，修复睡眠唤醒后的屏幕缩小问题)
+(3) 1920x1200 显示屏
+(4) 2560x1440 显示屏
+(5) 3000x2000 显示屏
+(6) 手动输入分辨率
+
+输入你的选择: 6
+输入想要开启的 HIDPI 分辨率，用空格隔开，就像这样：1680x945 1600x900 1440x810
+:2192x1233 1920x1080
+开启成功，重启生效
+首次重启开机logo会变得巨大，之后就不会了<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在最后一步若选<code>(6) 手动输入分辨率</code>，则可自行定制任何分辨率的HiDPI。</p>
+<p>只需手动输入<code>mxn</code>，无需手动输入<code>mxn</code>和<code>2mx2n</code>，这个脚本就会自动开启mxn的HiDPI版 和 2mx2n 的普通版(即强行缩放版, 会模糊)，以实现mxn的HiDPI版。</p>
 <blockquote>
 <p>因为这个是前者的2倍，只有添加这个，前者才能以HIDPI的形式被打开，原理应该是强制让系统运行在 2mx2x 的分辨率下再打开的 mxn 的HIDPI，通过全屏截图的分辨率来看猜想是正确的，所以对机器显卡性能有点要求</p>
 </blockquote>
-</li>
-<li>
-<p>下载<a target="_blank" rel="noopener" href="http://avi.alkalay.net/software/RDM/">RDM</a>安装之.</p>
-</li>
+<ul>
 <li>
 <p>然后重启系统, 调整到你想要分辨率.</p>
 </li>
@@ -543,6 +588,28 @@
 <p>开SIP</p>
 <p>重启电脑，并在开机声响起后按住command+R, 直到出现苹果logo, 进入recovery mode</p>
 <p>开Terminal，在终端输入关闭SIP的命令行语句：<code>csrutil enable</code></p>
+</li>
+</ul>
+<p><strong>说明：</strong></p>
+<ul>
+<li>
+<p>恢复原始分辨率：</p>
+<p>上述脚本安装的回复脚本，能选择一台显示屏恢复原始分辨率</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token environment constant">$HOME</span>/.hidpi-disable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>这个脚本会自动开启系统的HiDPI选项，无需像下面这样手动开启</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> defaults <span class="token function">write</span> /Library/Preferences/com.apple.windowserver.plist DisplayResolutionEnabled -bool <span class="token boolean">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若开启成功, 则</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">defaults <span class="token builtin class-name">read</span> /Library/Preferences/com.apple.windowserver.plist DisplayResolutionEnabled<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>返回的是 <code>1</code> 或 <code>true</code></p>
+</li>
+<li>
+<p>此脚本无需 RDM 软件也可切换分辨率，在系统显示器设置中设置即可。例如：</p>
+<p><img data-src="/posts/4bc94fac/iShot_2024-01-08_19.07.12.png" alt="iShot_2024-01-08_19.07.12"></p>
+<p>此脚本兼容RDM软件，也可以下载<a target="_blank" rel="noopener" href="http://avi.alkalay.net/software/RDM/">RDM</a>安装之。当RDM运行时，系统显示器设置菜单则变为下图。需要在RDM的菜单里切换分辨率。</p>
+<p><img data-src="/posts/4bc94fac/iShot_2024-01-08_19.07.12-4712253.png" alt="iShot_2024-01-08_19.07.12"></p>
+<p><img data-src="/posts/4bc94fac/image-20240108191227568.png" alt="image-20240108191227568"></p>
 </li>
 </ul>
 <h2 id="法二-徒手配置显示器文件-RDM-不推荐-当法一三无效时-用此法总能生效"><a class="header-anchor" href="#法二-徒手配置显示器文件-RDM-不推荐-当法一三无效时-用此法总能生效"></a>法二, 徒手配置显示器文件+RDM (不推荐, 当法一三无效时, 用此法总能生效)</h2>
@@ -565,6 +632,12 @@
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ioreg -lw0 <span class="token operator">|</span> <span class="token function">grep</span> IODisplayPrefsKey <span class="token operator">|</span> <span class="token function">grep</span> -v AppleBacklightDisplay <span class="token operator">|</span> perl -pe <span class="token string">'s/^.+\-([0-9a-f]+)\-([0-9a-f]+)"$/DisplayVendorID-\1\nDisplayProductID-\2/g'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
 <li>
+<p>安装配置文件</p>
+<ul>
+<li>
+<p>手动操作</p>
+<ul>
+<li>
 <p>访问:<a target="_blank" rel="noopener" href="https://comsysto.github.io/Display-Override-PropertyList-File-Parser-and-Generator-with-HiDPI-Support-For-Scaled-Resolutions/">配置文件生成网站</a> 填入: DisplayProductName, DisplayProductID, DisplayVendorID。其中DisplayProductID, DisplayVendorID需以16进制填入。</p>
 </li>
 <li>
@@ -575,9 +648,11 @@
 <p>因为这个是前者的2倍，只有添加这个，前者才能以HIDPI的形式被打开，原理应该是强制让系统运行在 2nx2m 的分辨率下再打开的 mxn 的HIDPI，通过全屏截图的分辨率来看猜想是正确的，所以对机器显卡性能有点要求</p>
 </blockquote>
 </li>
+</ul>
+</li>
 <li>
 <p>点击下载</p>
-</li>
+<ul>
 <li>
 <p>安装配置文件</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># sudo mount -uw / # 克服系统目录'/'是只读的问题</span>
@@ -596,6 +671,14 @@
 <span class="token function">sudo</span> <span class="token function">cp</span> ~/Downloads/DisplayProductID-<span class="token variable">$&#123;Product_ID&#125;</span>.plist <span class="token variable">$&#123;CONF_PATH&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意要cp完的文件是没有<code>.plist</code>扩展名的</p>
 </li>
+</ul>
+</li>
+<li>
+<p>等效的脚本操作，在我本地电脑上将下述命令alias为<code>hidpi</code>命令了</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">bash</span> /Users/mac/macENV/hidpi/hidpi.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+</li>
 <li>
 <p>下载<a target="_blank" rel="noopener" href="http://avi.alkalay.net/software/RDM/">RDM</a>, 安装之.</p>
 </li>
@@ -611,12 +694,14 @@
 <h2 id="法三-SwitchResX-也推荐-功能强大"><a class="header-anchor" href="#法三-SwitchResX-也推荐-功能强大"></a>法三, **SwitchResX **(也推荐, 功能强大)</h2>
 <p>收费软件, 有<a target="_blank" rel="noopener" href="https://xclient.info/s/switchresx.html">破解版</a>. <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/35300978/answer/68752378">用法参见</a>.</p>
 <ul>
-<li>暂时关闭SIP</li>
-</ul>
+<li>
+<p>暂时关闭SIP</p>
 <p>重启电脑，并在开机声响起后按住command+R, 直到出现苹果logo, 进入recovery mode</p>
 <p>开Terminal，在终端输入关闭SIP的命令行语句：<code>csrutil disable</code></p>
-<ul>
-<li>开启系统的HiDPI选项</li>
+</li>
+<li>
+<p>开启系统的HiDPI选项</p>
+</li>
 </ul>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> defaults <span class="token function">write</span> /Library/Preferences/com.apple.windowserver.plist DisplayResolutionEnabled -bool <span class="token boolean">true</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <ul>
@@ -654,8 +739,8 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/e8cf39d2/" rel="prev" title="禁止safar从http跳转到https">
-                  <i class="fa fa-chevron-left"></i> 禁止safar从http跳转到https
+                <a href="/posts/1c9a41fc/" rel="prev" title="注销icloud后桌面文件消失">
+                  <i class="fa fa-chevron-left"></i> 注销icloud后桌面文件消失
                 </a>
             </div>
             <div class="post-nav-item">
@@ -694,13 +779,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">338k</span>
+    <span title="站点总字数">347k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">18:45</span>
+    <span title="站点阅读时长">19:16</span>
   </span>
 </div>
 <div class="busuanzi-count">
