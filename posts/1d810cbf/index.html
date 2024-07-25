@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="tmux 使用    窗口进程管理 即使终端关闭（cmd+Q&#x2F;W），tmux的窗口依旧运行 打开一个tmux窗口  tmux new -s 窗口名字 将该tmux窗口放入后台 ctrl+b d 查看所有tmux窗口的方法 tmux ls 唤出（使后台的窗口显示）tmux窗口 tmux a -t 窗口名字 显示最后放入后台的窗口 tmux a 杀死tmux窗口的方法 tmux kill-sessio">
+<meta property="og:type" content="article">
+<meta property="og:title" content="tmux配置与使用">
+<meta property="og:url" content="https://hyliang96.github.io/posts/1d810cbf/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="tmux 使用    窗口进程管理 即使终端关闭（cmd+Q&#x2F;W），tmux的窗口依旧运行 打开一个tmux窗口  tmux new -s 窗口名字 将该tmux窗口放入后台 ctrl+b d 查看所有tmux窗口的方法 tmux ls 唤出（使后台的窗口显示）tmux窗口 tmux a -t 窗口名字 显示最后放入后台的窗口 tmux a 杀死tmux窗口的方法 tmux kill-sessio">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
+<meta property="article:modified_time" content="2022-03-23T09:14:46.165Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/1d810cbf/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/1d810cbf/","path":"posts/1d810cbf/","title":"tmux配置与使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>tmux配置与使用 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tmux-%E4%BD%BF%E7%94%A8"><span class="nav-text">tmux 使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tmux%E9%85%8D%E7%BD%AE"><span class="nav-text">tmux配置</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/1d810cbf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          tmux配置与使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E7%BB%88%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">终端</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/1d810cbf/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/1d810cbf/" data-xid="/posts/1d810cbf/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>7 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="tmux-使用"><a class="header-anchor" href="#tmux-使用"></a>tmux 使用</h2>
+<ul>
+<li>
+<ul>
+<li>窗口进程管理<br>
+即使终端关闭（<code>cmd+Q/W</code>），tmux的窗口依旧运行<br>
+打开一个tmux窗口</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">tmux new -s 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>将该tmux窗口放入后台</p>
+<pre class="line-numbers language-none"><code class="language-none">ctrl+b d<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>查看所有tmux窗口的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux ls<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>唤出（使后台的窗口显示）tmux窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux a -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>显示最后放入后台的窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux a<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>杀死tmux窗口的方法</p>
+<pre class="line-numbers language-none"><code class="language-none">tmux kill-session -t 窗口名字<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>杀死当前窗口</p>
+<pre class="line-numbers language-none"><code class="language-none">ctrl+b &amp;
+选择y （yes）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>窗口分区管理</p>
+</li>
+<li>
+<p>页面<br>
+单个程序只给一屏用于输出，超出此范围，要翻页查看：<br>
+<code>ctrl+b [   fn+↑/↓  esc</code><br>
+进入拷贝模式：拷贝模式中，新输出的文字不会显示<br>
+<code>ctrl+b [</code>	：进入拷贝模式<br>
+<code>fn+上/下键</code>	：翻页<br>
+<code>esc</code>			：退出拷贝模式<br>
+进入黏贴模式<br>
+<code>ctrl+b ]</code></p>
+</li>
+</ul>
+<h2 id="tmux配置"><a class="header-anchor" href="#tmux配置"></a>tmux配置</h2>
+<p>我的<code>~/.tmux.conf</code>文件</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token comment"># --- base --- #</span>
+<span class="token builtin class-name">set</span> -g default-terminal <span class="token string">"screen-256color"</span>
+<span class="token builtin class-name">set</span> -g display-time <span class="token number">3000</span>
+<span class="token builtin class-name">set</span> -g history-limit <span class="token number">10000</span>
+<span class="token builtin class-name">set</span> -g base-index <span class="token number">1</span>
+<span class="token builtin class-name">set</span> -g pane-base-index <span class="token number">1</span>
+<span class="token builtin class-name">set</span> -s escape-time <span class="token number">0</span>
+<span class="token comment"># set -g mouse on # 打开以下各个鼠标功能</span>
+
+<span class="token comment"># set -g mode-mouse on # 支持鼠标选取文本等</span>
+<span class="token comment"># set -g mouse-resize-pane on # 支持鼠标拖动调整面板的大小(通过拖动面板间的分割线)</span>
+<span class="token comment"># set -g mouse-select-pane on # 支持鼠标选中并切换面板</span>
+<span class="token comment"># set -g mouse-select-window on # 支持鼠标选中并切换窗口(通过点击状态栏窗口名称)</span>
+<span class="token comment"># 允许用鼠标（含触控板）翻页，但会把vim的鼠标翻页给劫持走</span>
+
+<span class="token comment"># 复制黏贴</span>
+<span class="token comment"># set-option -g default-command "reattach-to-user-namespace -l bash"</span>
+<span class="token comment"># setw -g mode-keys vi</span>
+<span class="token comment"># bind-key -t vi-copy v begin-selection</span>
+<span class="token comment"># bind-key -t vi-copy y copy-pipe "reattach-to-user-namespace pbcopy"</span>
+
+<span class="token comment"># ctrl-a [ 进入 vi 模式</span>
+<span class="token comment"># q：退出vi模式</span>
+<span class="token comment"># 使用 hjkl，wb 等 vi 快捷键移动到目标位置</span>
+<span class="token comment"># v ：进入 Visual模式(即选词模式) ，开始选择内容</span>
+<span class="token comment"># 使用 vi 快捷键移动，直到要复制的内容被选中</span>
+<span class="token comment"># y：复制操作系统的粘贴板</span>
+<span class="token comment"># 粘贴：tmux内ctrl+]，在操作系统内Cmd-V</span>
+
+<span class="token comment"># ctrl+r : reload my change in this file (~/.tmux.conf)</span>
+<span class="token builtin class-name">bind</span> r source-file ~/.tmux.conf <span class="token punctuation">\</span><span class="token punctuation">;</span> display <span class="token string">"Reloaded!"</span>
+
+<span class="token comment"># 分割窗口</span>
+<span class="token builtin class-name">bind</span> <span class="token punctuation">\</span> split-window -h <span class="token comment"># prefix+\ : 竖分</span>
+unbind %
+<span class="token builtin class-name">bind</span> - split-window -v <span class="token comment"># prefix+-横分</span>
+unbind <span class="token string">'"'</span>
+
+<span class="token comment"># 窗口间移动</span>
+<span class="token builtin class-name">bind</span> h select-pane -L
+<span class="token builtin class-name">bind</span> j select-pane -D
+<span class="token builtin class-name">bind</span> k select-pane -U
+<span class="token builtin class-name">bind</span> l select-pane -R
+
+<span class="token comment"># 窗口改大小</span>
+<span class="token builtin class-name">bind</span> -r ^k resizep -U <span class="token number">5</span> <span class="token comment"># upward (prefix Ctrl+k)</span>
+<span class="token builtin class-name">bind</span> -r ^j resizep -D <span class="token number">5</span> <span class="token comment"># downward (prefix Ctrl+j)</span>
+<span class="token builtin class-name">bind</span> -r ^h resizep -L <span class="token number">5</span> <span class="token comment"># to the left (prefix Ctrl+h)</span>
+<span class="token builtin class-name">bind</span> -r ^l resizep -R <span class="token number">5</span> <span class="token comment"># to the right (prefix Ctrl+l)</span>
+
+<span class="token builtin class-name">bind</span> -r e lastp <span class="token comment"># 选择最后一个面板</span>
+<span class="token builtin class-name">bind</span> -r ^e last <span class="token comment"># 选择最后一个窗口</span>
+
+<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">[</span> swapp -U <span class="token comment"># 与前一个面板交换位置: ctrl+a+[(ctrl不松手)</span>
+<span class="token builtin class-name">bind</span> -r ^<span class="token punctuation">]</span> swapp -D <span class="token comment"># 与后一个面板交换位置：ctrl+a+](ctrl不松手)</span>
+
+<span class="token comment"># select the last pane (prefix e)</span>
+<span class="token builtin class-name">bind</span> e lastp
+<span class="token comment"># select the last window (prefix Ctrl+e)</span>
+<span class="token builtin class-name">bind</span> ^e last
+
+<span class="token comment"># kill pane (prefix q)</span>
+<span class="token builtin class-name">bind</span> q killp
+<span class="token comment"># kill window (prefix Ctrl+q)</span>
+<span class="token builtin class-name">bind</span> -r ^q killw
+<span class="token builtin class-name">bind</span> Q kill-session
+
+<span class="token comment"># 显示会话列表</span>
+unbind w
+<span class="token builtin class-name">bind</span> w display-panes
+unbind s
+unbind ^s
+unbind S
+<span class="token builtin class-name">bind</span> s choose-window
+<span class="token builtin class-name">bind</span> -r ^s choose-session
+<span class="token builtin class-name">bind</span> S choose-tree
+<span class="token comment"># list-windows -a</span>
+
+<span class="token comment"># 显示窗口列表</span>
+
+<span class="token comment"># 修改进入命令模式按键</span>
+<span class="token comment"># remap prefix to Control + a</span>
+<span class="token builtin class-name">set</span> -g prefix C-a
+unbind C-b
+<span class="token builtin class-name">bind</span> C-a send-prefix<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/983e68f/" rel="prev" title="Pycharm安装配置教程">
+                  <i class="fa fa-chevron-left"></i> Pycharm安装配置教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/e9538bec/" rel="next" title="iterm2配置与使用">
+                  iterm2配置与使用 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/1d810cbf/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

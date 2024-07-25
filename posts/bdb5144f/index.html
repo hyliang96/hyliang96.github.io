@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="sshfs教程 在linux或mac上，加载远程Linux服务器上的文件目录 [TOC]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="sshfs">
+<meta property="og:url" content="https://hyliang96.github.io/posts/bdb5144f/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="sshfs教程 在linux或mac上，加载远程Linux服务器上的文件目录 [TOC]">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyliang96.github.io/posts/bdb5144f/1.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/bdb5144f/2.png">
+<meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
+<meta property="article:modified_time" content="2022-03-23T09:14:46.152Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyliang96.github.io/posts/bdb5144f/1.png">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/bdb5144f/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/bdb5144f/","path":"posts/bdb5144f/","title":"sshfs"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>sshfs | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#sshfs%E6%95%99%E7%A8%8B"><span class="nav-text">sshfs教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#macfuse"><span class="nav-text">macfuse</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sshfs"><span class="nav-text">sshfs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#macfusion"><span class="nav-text">macfusion</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0"><span class="nav-text">更新</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7Mojave%E5%90%8E%E4%BD%BF%E7%94%A8sshfs%E8%A6%81%E6%B1%82%E5%8D%87%E7%BA%A7FUSE"><span class="nav-text">升级Mojave后使用sshfs要求升级FUSE</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%9D%E8%AF%95%E5%9C%A8%E7%B3%BB%E7%BB%9F%E5%81%8F%E5%A5%BD%E8%AE%BE%E7%BD%AE%E4%B8%AD%E5%8D%87%E7%BA%A7FUSE"><span class="nav-text">尝试在系统偏好设置中升级FUSE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E5%BE%80osxfuse-github-io%E4%B8%8B%E8%BD%BD"><span class="nav-text">前往osxfuse.github.io下载</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ui%E7%94%A8%E6%B3%95"><span class="nav-text">ui用法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sshfs%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%94%A8%E6%B3%95"><span class="nav-text">sshfs命令行用法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8C%82%E8%BD%BD"><span class="nav-text">挂载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%B8%E6%8C%82%EF%BC%88%E4%BA%8C%E8%80%85%E7%AD%89%E6%95%88%EF%BC%89"><span class="nav-text">卸挂（二者等效）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B3%95%E4%B8%80-%E7%94%A8%E5%9B%BE%E5%83%8F%E7%95%8C%E9%9D%A2%E6%8E%A8%E5%87%BA"><span class="nav-text">法一 用图像界面推出</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B3%95%E4%BA%8C-%E5%91%BD%E4%BB%A4%E6%8E%A8%E5%87%BA"><span class="nav-text">法二 命令推出</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%8D%E5%AF%86"><span class="nav-text">免密</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sshfs%E7%9A%84bug%E5%A4%84%E7%90%86"><span class="nav-text">sshfs的bug处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%AD%E8%BF%9E-%E2%80%93-%E2%80%9C%E4%BF%9D%E5%AD%98%E8%B7%AF%E5%BE%84%E4%B8%8D%E5%AD%98%E5%9C%A8%E2%80%9D-%E6%97%A0%E6%B3%95ls-Input-output-error-%E6%97%A0%E6%B3%95-rm-Operation-not-permitted"><span class="nav-text">服务器断连 – “保存路径不存在” &#x2F; 无法ls (Input&#x2F;output error) &#x2F;无法 rm (Operation not permitted)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%89%E6%96%87%E4%BB%B6%E5%9C%A8%E7%94%A8-%E2%80%93-%E6%97%A0%E6%B3%95umount-Resource-busy"><span class="nav-text">有文件在用 – 无法umount (Resource busy)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A4%E8%B7%AF%E5%BE%84%E6%B2%A1%E6%8C%82%E8%BD%BD-%E2%80%93-%E6%97%A0%E6%B3%95umount-not-currently-mounted"><span class="nav-text">此路径没挂载 – 无法umount (not currently mounted)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A4%E8%B7%AF%E5%BE%84%E5%B7%B2%E6%8C%82%E8%BD%BD-%E2%80%93-%E6%97%A0%E6%B3%95mount-is-itself-on-a-OSXFUSE-volume"><span class="nav-text">此路径已挂载 – 无法mount(is itself on a OSXFUSE volume)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ls-rm-%E6%8C%82%E7%A9%BA%E4%BA%86%E7%9A%84%E8%B7%AF%E5%BE%84-%E2%80%93-%EF%BC%88Device-not-configured%EF%BC%89"><span class="nav-text">ls&#x2F;rm 挂空了的路径 – （Device not configured）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9C%80%E6%89%8B%E5%8A%A8%E6%9D%80%E8%BF%9B%E7%A8%8B"><span class="nav-text">需手动杀进程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Macfusion%E7%9A%84bug%E5%A4%84%E7%90%86"><span class="nav-text">Macfusion的bug处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Macfusion%E6%98%BE%E7%A4%BAFailed-to-Mount"><span class="nav-text">Macfusion显示Failed to Mount</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Macfusion%E5%88%97%E8%A1%A8%E5%85%A8%E7%99%BD"><span class="nav-text">Macfusion列表全白</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8B%A5%E5%86%8D%E6%AC%A1%E8%BF%9B%E5%85%A5%E7%9B%AE%E5%BD%95%E4%BB%8D%E6%8A%A5%E9%94%99%E3%80%81%E6%88%96%E5%8D%B8%E6%8C%82%E5%A4%B1%E8%B4%A5%EF%BC%8C%E9%9C%80%E6%9D%80%E6%8E%89sshfs%E4%B9%8B%E8%BF%9B%E7%A8%8B%EF%BC%9A"><span class="nav-text">若再次进入目录仍报错、或卸挂失败，需杀掉sshfs之进程：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BB%8D%E4%B8%8D%E8%A1%8C"><span class="nav-text">如仍不行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E8%A7%A3%E5%86%B3%E7%9A%84bug"><span class="nav-text">为解决的bug</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/bdb5144f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          sshfs
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/" itemprop="url" rel="index"><span itemprop="name">服务器连接</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/bdb5144f/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/bdb5144f/" data-xid="/posts/bdb5144f/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>19 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="sshfs教程"><a class="header-anchor" href="#sshfs教程"></a>sshfs教程</h1>
+<p>在linux或mac上，加载远程Linux服务器上的文件目录</p>
+<p>[TOC]</p>
+<h2 id="安装"><a class="header-anchor" href="#安装"></a>安装</h2>
+<p>需依次安装以下三软件</p>
+<h3 id="macfuse"><a class="header-anchor" href="#macfuse"></a>macfuse</h3>
+<p>功能：使mac可用读取linux、windows的文件系统，应用于：</p>
+<ul>
+<li>mac读写它们的U盘/移动硬盘</li>
+<li>mac加载服务器上文件目录</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://osxfuse.github.io">官网</a>     <a target="_blank" rel="noopener" href="https://github.com/osxfuse/osxfuse/releases">下载</a></p>
+<h3 id="sshfs"><a class="header-anchor" href="#sshfs"></a>sshfs</h3>
+<p>功能：从Mac加载Linux服务器上的文件目录</p>
+<ul>
+<li>依赖于macfuse</li>
+<li>只有命令行</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://github.com/osxfuse/osxfuse/wiki/SSHFS">官网</a>    <a target="_blank" rel="noopener" href="https://github.com/osxfuse/sshfs/releases">下载</a></p>
+<h3 id="macfusion"><a class="header-anchor" href="#macfusion"></a>macfusion</h3>
+<p>功能：sshfs的图形界面</p>
+<p><a target="_blank" rel="noopener" href="http://macfusionapp.org">官网</a>已不再维护该软件，其版本不支持OSX Serria及以上系统</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/macfusion-ng/macfusion2/releases">可用的fork版本</a>: 我已验证，其<code>Sierra Pre-release 3</code>版本，OSX Serria和OSX Hgih Serria可用</p>
+<h2 id="更新"><a class="header-anchor" href="#更新"></a>更新</h2>
+<h3 id="升级Mojave后使用sshfs要求升级FUSE"><a class="header-anchor" href="#升级Mojave后使用sshfs要求升级FUSE"></a>升级Mojave后使用sshfs要求升级FUSE</h3>
+<p>编辑文章</p>
+<p>升级Mojave后，使用sshfs挂载远程目录失败，弹出对话框显示报错</p>
+<blockquote>
+<p>Unsupported macOS Version FuseThe installed version of FUSE is too old for the operating system. Please upgrade your FUSE installation to one that is compatible with the currently running version of macOS.</p>
+</blockquote>
+<h4 id="尝试在系统偏好设置中升级FUSE"><a class="header-anchor" href="#尝试在系统偏好设置中升级FUSE"></a>尝试在系统偏好设置中升级FUSE</h4>
+<p>打开<code>系统偏好设置</code>，点<code>FUSE</code></p>
+<p><img data-src="/posts/bdb5144f/1.png" alt="1"></p>
+<p><img data-src="/posts/bdb5144f/2.png" alt="2"></p>
+<p>提示无可用更新，更新失败。</p>
+<h4 id="前往osxfuse-github-io下载"><a class="header-anchor" href="#前往osxfuse-github-io下载"></a>前往osxfuse.github.io下载</h4>
+<p>前往<a target="_blank" rel="noopener" href="https://osxfuse.github.io/">https://osxfuse.github.io</a>，下载<code>Stable Releases</code>中的<code>FUSE for macOS 3.8.2</code>，安装之</p>
+<p>而后sshfs可用使用了。</p>
+<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
+<h3 id="ui用法"><a class="header-anchor" href="#ui用法"></a><a target="_blank" rel="noopener" href="https://meiriyitie.com/2015/05/29/using-sshfs-on-linux-and-macos-x/">ui用法</a></h3>
+<h3 id="sshfs命令行用法"><a class="header-anchor" href="#sshfs命令行用法"></a><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/31205b26deff">sshfs命令行用法</a></h3>
+<p>优点：使用此方法挂载后，从一处把笔记本带到另一处，连到另一个网后，挂载依然不断</p>
+<h4 id="挂载"><a class="header-anchor" href="#挂载"></a>挂载</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sshfs <span class="token operator">&lt;</span>user<span class="token operator">></span>@<span class="token operator">&lt;</span>host<span class="token operator">></span>:<span class="token operator">&lt;</span>path<span class="token operator">></span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span> -o <span class="token assign-left variable">volname</span><span class="token operator">=</span><span class="token operator">&lt;</span>volume_name<span class="token operator">></span> -C -o reconnect -o transform_symlinks -o follow_symlinks <span class="token comment">#  -o local</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>-C：压缩，即-o compression=yes<br>
+-o reconnect：自动重连<br>
+-o transform_symlinks：表示转换绝对链接符号为相对链接符号<br>
+-o follow_symlinks：沿用服务器上的链接符号</p>
+<p>-o local：视为本地磁盘，会在Finder/侧栏/设备 和 桌面 下出现图标名为volume_name</p>
+</blockquote>
+<ul>
+<li><code>&lt;user&gt;@&lt;host&gt;</code> 可以用~/.ssh/config中的服务器别名</li>
+<li>需先创建空文件夹<code>&lt;mount_path&gt;</code>
+<ul>
+<li>若无此文件夹，则不会自动创建，mount失败</li>
+<li>若非空，mount期间，文件夹中原有的东西看不见了，但umount后又能看见</li>
+</ul>
+</li>
+<li><code>&lt;mount_path&gt;</code>与<code>&lt;volume_name&gt;</code>可以同名</li>
+</ul>
+<h4 id="卸挂（二者等效）"><a class="header-anchor" href="#卸挂（二者等效）"></a>卸挂（二者等效）</h4>
+<h5 id="法一-用图像界面推出"><a class="header-anchor" href="#法一-用图像界面推出"></a>法一 用图像界面推出</h5>
+<p>在Finder中，戳到<code>&lt;mount_path&gt;/..</code>或<code>MacBook Air</code>下，右键<code>&lt;mount_path&gt;</code>，点“推出”</p>
+<p>若设了<code>-o local</code>，还可</p>
+<ul>
+<li>
+<p>或在Finder/侧栏/设备/&lt;volume_name&gt; 的右侧有个向上箭头，是推出按钮，按之即推出（推荐）</p>
+</li>
+<li>
+<p>或从桌面/&lt;volume_name&gt;，右键<code>&lt;mount_path&gt;</code>，点“推出”</p>
+</li>
+</ul>
+<h5 id="法二-命令推出"><a class="header-anchor" href="#法二-命令推出"></a>法二 命令推出</h5>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">umount</span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>
+<span class="token comment"># 等效于</span>
+fusermount -u <span class="token operator">&lt;</span>mount_path<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>在mac是<code>&lt;fusermount&gt;</code>命令找不到，但<code>umount</code>可以用</li>
+<li>在服务器上，<code>umount</code>需要sudo，但<code>fusermount -u</code>可以用</li>
+<li>注意不是<code>unmount</code></li>
+</ul>
+<h4 id="免密"><a class="header-anchor" href="#免密"></a>免密</h4>
+<p>这样子每次挂载的时候，都需要输入密码，可以设置成免密码登录：<br>
+<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/31cbbbc5f9fa/">将公钥追加到远程服务器：</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> .ssh/id_rsa.pub <span class="token operator">|</span> <span class="token function">ssh</span> username@server <span class="token string">"cat - >>.ssh/authorized_keys"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>登录：</p>
+<pre class="line-numbers language-none"><code class="language-none">sshfs username@server:path local_path
+umount mount_path<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="sshfs的bug处理"><a class="header-anchor" href="#sshfs的bug处理"></a>sshfs的bug处理</h2>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/8723ba79f35a">参考</a></p>
+<h3 id="服务器断连-–-“保存路径不存在”-无法ls-Input-output-error-无法-rm-Operation-not-permitted"><a class="header-anchor" href="#服务器断连-–-“保存路径不存在”-无法ls-Input-output-error-无法-rm-Operation-not-permitted"></a>服务器断连 – “保存路径不存在” / 无法ls (Input/output error) /无法 rm (Operation not permitted)</h3>
+<p><strong>症状</strong> 当 mac 休眠、重启、换了个网络环境，可能与服务器断连（也可能保持连接）</p>
+<ul>
+<li>在软件（如sublime）里，之前打开的所mount目录下的文件，此时保存文件，会显示“保存路径不存在”</li>
+<li><code>ls</code> mac上用于mount的文件夹（如<code>/Users/$USER/Desktop/mount/mounted_server</code>）会报错</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> /Users/<span class="token environment constant">$USER</span>/Desktop/mount
+<span class="token comment"># 或</span>
+<span class="token function">ls</span> /Users/<span class="token environment constant">$USER</span>/Desktop/mount/mounted_server
+<span class="token comment"># 返回 ls: cannot access '/Users/$USER/Desktop/mount/mounted_server': Input/output error</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li><code>rm</code> mac上用于mount的文件夹，会报错</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> /Users/<span class="token environment constant">$USER</span>/Desktop/mount/mounted_server -rf
+<span class="token comment"># 返回 rm: cannot remove '/Users/$USER/Desktop/mount/mounted_server': Operation not permitted</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>以上症状出现任意一个，说明已经与远处服务器断开连接，但本地未umount</p>
+<p><strong>对策</strong> 依次做如下操作</p>
+<ul>
+<li>检查mac的网络连接</li>
+<li>关掉所有在用mount目录下文件的软件</li>
+<li><code>umount  &lt;mount_path&gt;</code></li>
+<li>再重新<code>sshfs &lt;user&gt;@&lt;host&gt;:&lt;path&gt; &lt;mount_path&gt;</code></li>
+</ul>
+<h3 id="有文件在用-–-无法umount-Resource-busy"><a class="header-anchor" href="#有文件在用-–-无法umount-Resource-busy"></a>有文件在用 – 无法umount (Resource busy)</h3>
+<p>若显示</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">umount</span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>
+或
+fusemount -u <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>
+<span class="token comment"># 返回 umount(&lt;mount_path>): Resource busy -- try 'diskutil unmount'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>则说明此时mac上仍有软件在打开了所mount的文件夹下的文件</p>
+<ul>
+<li>
+<p>法一：关闭软件再安全卸载</p>
+<ul>
+<li>
+<p>实时监测哪些进程占用了<code>&lt;mount_path&gt;</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">watch</span> -n <span class="token number">0.1</span> <span class="token function">lsof</span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>   <span class="token comment"># 按 ctrl+c 结束</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>需在那个软件中，在使用mount的文件夹下的文件的窗口内，<code>⌘+W</code>关闭窗口，再</p>
+  <pre class="line-numbers language-none"><code class="language-none">umount &lt;mount_path&gt;
+或
+fusemount -u &lt;mount_path&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>可成功</p>
+</li>
+<li>
+<p>若还不行，<code>⌘+Q</code>退出整个软件，再<code>umont  &lt;mount_path&gt;</code>或<code>fusemount -u &lt;mount_path&gt;</code></p>
+</li>
+</ul>
+</li>
+<li>
+<p>法二：强制卸载</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">umount</span> -l <span class="token operator">&lt;</span>mount_path<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<p>umount -h:</p>
+<p>-l, --lazy              detach the filesystem now, clean up things later</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="此路径没挂载-–-无法umount-not-currently-mounted"><a class="header-anchor" href="#此路径没挂载-–-无法umount-not-currently-mounted"></a>此路径没挂载 – 无法umount (not currently mounted)</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">umount</span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span> <span class="token comment"># 返回 umount: local_dir: not currently mounted</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>说明没有sshfs进程从&lt;mount_path&gt; 挂载。要想在&lt;mount_path&gt; 挂载，直接<code>sshfs &lt;user&gt;@&lt;host&gt;:&lt;path&gt; &lt;mount_path&gt; </code>即可</p>
+<h3 id="此路径已挂载-–-无法mount-is-itself-on-a-OSXFUSE-volume"><a class="header-anchor" href="#此路径已挂载-–-无法mount-is-itself-on-a-OSXFUSE-volume"></a>此路径已挂载 – 无法mount(is itself on a OSXFUSE volume)</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sshfs <span class="token operator">&lt;</span>user<span class="token operator">></span>@<span class="token operator">&lt;</span>host<span class="token operator">></span>:<span class="token operator">&lt;</span>path<span class="token operator">></span> <span class="token operator">&lt;</span>mount_path<span class="token operator">></span>
+<span class="token comment"># 返回 mount_osxfuse: mount point &lt;mount_path> is itself on a OSXFUSE volume</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>说明此时已有mount进程使用了&lt;mount_path&gt; ，&lt;mount_path&gt; 成为了挂载磁盘</p>
+<p>可列出所有在sshfs进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pgrep -lf sshfs<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="ls-rm-挂空了的路径-–-（Device-not-configured）"><a class="header-anchor" href="#ls-rm-挂空了的路径-–-（Device-not-configured）"></a>ls/rm 挂空了的路径 – （Device not configured）</h3>
+<p>若先前执行了</p>
+<pre class="line-numbers language-none"><code class="language-none">sshfs &lt;mount_path&gt; :.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后ctrl-c或进程自动结束，则此时&lt;mount_path&gt;依旧sshfs被占用，称&lt;mount_path&gt;“挂空”</p>
+<p>此时<code>ls(或rm) &lt;mount_path&gt;(及其下的路径)</code>，会返回</p>
+<pre class="line-numbers language-none"><code class="language-none">ls(或rm): cannot open directory &#39;&#x2F;Users&#x2F;$USER&#x2F;Desktop&#x2F;mount&#x2F;&#39;: Device not configured<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>需要<code>umount &lt;mount_path&gt;</code>，解除sshfs对&lt;mount_path&gt;的占用</p>
+<p>而后<code>ls(或rm) &lt;mount_path&gt;</code>正常返回</p>
+<h3 id="需手动杀进程"><a class="header-anchor" href="#需手动杀进程"></a>需手动杀进程</h3>
+<p>以上操作均解决不了，则需手动杀sshfs进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pgrep -lf sshfs
+<span class="token comment"># 会显示你sshfs时的命令，如</span>
+<span class="token comment"># 38371 sshfs -o transform_symlinks -o follow_symlinks &lt;hostname>:/ /Users/$USER/Desktop/mount/mounted_server -o volname=&lt;hostname> -o reconnect -o local</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>然后杀掉相应的挂载进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 <span class="token operator">&lt;</span>相应的pid <span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>之后重新挂载响应的目录即可</p>
+<h2 id="Macfusion的bug处理"><a class="header-anchor" href="#Macfusion的bug处理"></a>Macfusion的bug处理</h2>
+<h3 id="Macfusion显示Failed-to-Mount"><a class="header-anchor" href="#Macfusion显示Failed-to-Mount"></a>Macfusion显示<code>Failed to Mount</code></h3>
+<ul>
+<li>检测本机已经联网</li>
+<li>检查本机mount路径，知否有与所mount盘同名的文件夹（可能是mount该盘，从mac打开其中文件，断开连接后，又保存该文件，从而创建同名文件夹），请将此文件夹改名，再次mount即可成功</li>
+<li>如仍不行，或见所mount的磁盘图标变成蓝+灰色，而非绿色，则关闭sshfs程序mount此服务器的进程</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> aux <span class="token operator">|</span> <span class="token function">grep</span> <span class="token operator">&lt;</span>该服务器在Macfision工具栏中的名字<span class="token operator">></span>（如cpu4） 或 <span class="token operator">&lt;</span>usr@server_address<span class="token operator">></span>（如someone@some.place.com）<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>返回</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">mac   <span class="token number">24715</span>   <span class="token number">0.6</span>  <span class="token number">0.0</span>  <span class="token number">4267752</span>    <span class="token number">876</span> s004  S+    <span class="token number">9</span>:08下午   <span class="token number">0</span>:00.01 <span class="token function">grep</span> --color cpu4
+mac   <span class="token number">24093</span>   <span class="token number">0.0</span>  <span class="token number">0.0</span>   <span class="token number">729280</span>   <span class="token number">1516</span>   ??  S     <span class="token number">8</span>:54下午   <span class="token number">0</span>:00.08 /Applications/Macfusion.app/Contents/PlugIns/sshfs.mfplugin/Contents/Resources/sshfs-static someone@some.place.com: /Users/<span class="token environment constant">$USER</span>/Desktop/mount/cpu4 -p4514 -oNumberOfPasswordPrompts<span class="token operator">=</span><span class="token number">1</span> -ocompression<span class="token operator">=</span>yes -ofollow_symlinks -odefer_permissions -oauto_cache -f -ovolname<span class="token operator">=</span>cpu4 -ovolicon<span class="token operator">=</span>/Applications/Macfusion.app/Contents/PlugIns/sshfs.mfplugin/Contents/Resources/sshfs_icon.icns<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>输入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 <span class="token number">24093</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在Macfusion中重新mount该服务器</p>
+<h3 id="Macfusion列表全白"><a class="header-anchor" href="#Macfusion列表全白"></a>Macfusion列表全白</h3>
+<p>需要重启Macfusion——<code>command+Q</code> 只能关闭Macfusiion的前台，无法关闭其后台。重启后台需如下操作：</p>
+<ul>
+<li>法一 （等效于法二）</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">killall</span> macfusionAgent<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>法二</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">ps aux | grep macfusion<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>返回</p>
+<pre class="line-numbers language-none"><code class="language-none">USER PID     %CPU %MEM     VSZ    RSS   TT  STAT  STARTED      TIME COMMAND
+mac  24105   0.0  0.0  4277992    916 s004  S+    8:54下午   0:00.01 grep --color macfusion
+mac  24090   0.0  0.4  4345112  14996   ??  S     8:54下午   0:00.21 &#x2F;Applications&#x2F;Macfusion.app&#x2F;Contents&#x2F;Resources&#x2F;macfusionAgent.app&#x2F;Contents&#x2F;MacOS&#x2F;macfusionAgent<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>输入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 <span class="token number">24105</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>重新点开Macfusion的图标</p>
+<h3 id="若再次进入目录仍报错、或卸挂失败，需杀掉sshfs之进程："><a class="header-anchor" href="#若再次进入目录仍报错、或卸挂失败，需杀掉sshfs之进程："></a>若再次进入目录仍报错、或卸挂失败，需杀掉sshfs之进程：</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pgrep -lf sshfs <span class="token comment"># 列出</span>
+<span class="token function">pkill</span> -9 sshfs  <span class="token comment"># 杀死</span>
+pgrep -lf sshfs <span class="token comment"># 再列出，若空则杀尽</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>再重新挂载。</p>
+<h3 id="如仍不行"><a class="header-anchor" href="#如仍不行"></a>如仍不行</h3>
+<p>重启mac</p>
+<h3 id="为解决的bug"><a class="header-anchor" href="#为解决的bug"></a>为解决的bug</h3>
+<ul>
+<li>
+<p>显示</p>
+<p>点<code>Mount</code>后，弹出对话框显示</p>
+<pre class="line-numbers language-none"><code class="language-none">Could not mount filesystem: Mount process has terminated unexpectedly.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Macfusion主界面显示</p>
+<p><code>gpu7 (Failed to Mount)</code>                             <code>Edit</code>  <code>Mount</code></p>
+<p>自检：</p>
+<p>本机原来gpu7处，没有名为gpu7/的（可见或隐藏）文件夹或磁盘图标</p>
+<p><code>ps aux | grep gpu7</code> <code>ps aux | grep &lt;server_url&gt;</code> 都显示空</p>
+<p><code>killall macfusionAgent </code>后，从图标重启macfusionAgent.app，然后再mount gpu7，依然上述报错</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/de6bda9/" rel="prev" title="vnc安装方法">
+                  <i class="fa fa-chevron-left"></i> vnc安装方法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/2e77fc3e/" rel="next" title="ssh配置">
+                  ssh配置 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/bdb5144f/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

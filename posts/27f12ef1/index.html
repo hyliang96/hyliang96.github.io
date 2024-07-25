@@ -1,0 +1,1554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="其他vim的配置项目 vim化做sublime https:&#x2F;&#x2F;github.com&#x2F;fatih&#x2F;subvim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim配置日志">
+<meta property="og:url" content="https://hyliang96.github.io/posts/27f12ef1/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="其他vim的配置项目 vim化做sublime https:&#x2F;&#x2F;github.com&#x2F;fatih&#x2F;subvim">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
+<meta property="article:modified_time" content="2022-03-23T09:14:46.177Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/27f12ef1/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/27f12ef1/","path":"posts/27f12ef1/","title":"vim配置日志"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>vim配置日志 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B6%E4%BB%96vim%E7%9A%84%E9%85%8D%E7%BD%AE%E9%A1%B9%E7%9B%AE"><span class="nav-text">其他vim的配置项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim%E5%8C%96%E5%81%9Asublime"><span class="nav-text">vim化做sublime</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AD%97%E4%BD%93"><span class="nav-text">字体</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vim-plug"><span class="nav-text">vim-plug</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vim-%E6%8F%92%E4%BB%B6"><span class="nav-text">vim 插件</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%E6%90%9C%E7%B4%A2%E6%8F%92%E4%BB%B6"><span class="nav-text">全局搜索插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%85%A8%E5%B1%80%E6%A8%A1%E7%B3%8A%E6%90%9C%E7%B4%A2"><span class="nav-text">搜索全局模糊搜索</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%86%85%E5%AE%B9%E6%90%9C%E7%B4%A2-%E8%B7%B3%E8%BD%AC"><span class="nav-text">文件内容搜索+跳转</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%90%9C%E7%B4%A2%E5%90%8E%E7%AB%AF%E7%9A%84%E5%AE%89%E8%A3%85-%E5%8D%B8%E8%BD%BD%E6%96%B9%E6%B3%95"><span class="nav-text">搜索后端的安装&#x2F;卸载方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ag-%E5%8F%88%E5%90%8D-the-silver-searcher"><span class="nav-text">ag (又名 the_silver_searcher)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ack"><span class="nav-text">ack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rg"><span class="nav-text">rg</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LeaderF"><span class="nav-text">LeaderF</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-LeaderF-%E4%BB%8B%E7%BB%8D"><span class="nav-text">1. LeaderF 介绍</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-%E5%B8%B8%E7%94%A8%E5%8A%9F%E8%83%BD"><span class="nav-text">3. 常用功能</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">4. 参考资料</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git%E6%8F%92%E4%BB%B6"><span class="nav-text">git插件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vim-Gitgutter"><span class="nav-text">Vim Gitgutter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fugitive-vim-%E6%95%99%E7%A8%8B"><span class="nav-text">Fugitive.vim 教程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nerdtree-git-plugin"><span class="nav-text">nerdtree-git-plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Surround"><span class="nav-text">Surround</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#YCM%E7%BC%96%E8%AF%91%E6%8A%A5%E9%94%99"><span class="nav-text">YCM编译报错</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Your-C-compiler-does-NOT-fully-support-C-17"><span class="nav-text">Your C++ compiler does NOT fully support C++17.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A5%E9%94%99cregex-does-not-appear-to-contain-CMakeLists-txt"><span class="nav-text">报错cregex&quot; does not appear to contain CMakeLists.txt.</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A5%E9%94%99-Unexpected-exit-code-11"><span class="nav-text">报错 Unexpected exit code -11</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#YouCompleteMe-%E6%8F%92%E4%BB%B6-MacOS-%E5%AE%89%E8%A3%85"><span class="nav-text">YouCompleteMe 插件 MacOS 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E7%BC%96%E8%AF%91ycm"><span class="nav-text">手动编译ycm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A5%E9%94%99CMake-Error-cmake-61-message"><span class="nav-text">报错CMake Error; cmake:61 (message):</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83"><span class="nav-text">环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8A%A5%E9%94%99"><span class="nav-text">报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E7%AD%96%EF%BC%9A%E5%88%9Bconda%E7%8E%AF%E5%A2%83%E7%BC%96%E8%AF%91ycm"><span class="nav-text">对策：创conda环境编译ycm</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BAconda%E7%8E%AF%E5%A2%83%E7%94%A8%E4%BA%8E%E7%BC%96%E8%AF%91ycm"><span class="nav-text">创建conda环境用于编译ycm</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%80%E5%90%AFconda%E7%9A%84gcc%E5%92%8Cg"><span class="nav-text">开启conda的gcc和g++</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%BC%96%E8%AF%91ycm"><span class="nav-text">编译ycm</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95"><span class="nav-text">测试</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7vim"><span class="nav-text">升级vim</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#vim%E7%89%88%E6%9C%AC%E5%A4%AA%E8%80%81%E4%BC%9A%E5%87%BA%E7%8E%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">vim版本太老会出现的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%80%E5%90%AFvim%E6%97%B6%E6%8A%A5%E9%94%99"><span class="nav-text">开启vim时报错</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#utf8%E4%B8%8D%E6%94%AF%E6%8C%81"><span class="nav-text">utf8不支持</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#conda%E5%AE%89%E8%A3%85vim"><span class="nav-text">conda安装vim</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85vim-gnome"><span class="nav-text">安装vim-gnome</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#conda%E5%AE%89%E8%A3%85neovim"><span class="nav-text">conda安装neovim</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Supertab"><span class="nav-text">Supertab</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ultisnip"><span class="nav-text">Ultisnip</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ctrlsf"><span class="nav-text">ctrlsf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim-which-key-%E6%8C%89%E9%94%AE%E6%8F%90%E7%A4%BA"><span class="nav-text">vim-which-key 按键提示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#surround-%E6%8B%AC%E5%8F%B7%E5%8C%B9%E9%85%8D%E4%BF%AE%E6%94%B9"><span class="nav-text">surround 括号匹配修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim-multiple-cursors-%E5%A4%9A%E8%A1%8C%E7%BC%96%E8%BE%91%E6%8F%92%E4%BB%B6"><span class="nav-text">vim-multiple-cursors 多行编辑插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim-airline-vim-airline-%E6%A0%87%E7%AD%BE%E9%A1%B5%E5%92%8C%E4%B8%8B%E6%96%B9%E7%8A%B6%E6%80%81%E6%A0%8F"><span class="nav-text">vim-airline&#x2F;vim-airline 标签页和下方状态栏</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vim-airline-vim-airline-themes-%E6%A0%87%E7%AD%BE%E9%A1%B5%E5%92%8C%E4%B8%8B%E6%96%B9%E7%8A%B6%E6%80%81%E6%A0%8F%E9%85%8D%E8%89%B2"><span class="nav-text">vim-airline&#x2F;vim-airline-themes 标签页和下方状态栏配色</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ctrlP"><span class="nav-text">ctrlP</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%99%E7%A8%8B"><span class="nav-text">教程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%BB%98%E8%AE%A4%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-text">默认快捷键</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vim%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86"><span class="nav-text">vim基础知识</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%AE%BE%E7%BD%AE"><span class="nav-text">vim快捷键设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vim%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C"><span class="nav-text">vim基础操作</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%89%E9%94%AE"><span class="nav-text">按键</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B2%E7%AA%81%E7%9A%84"><span class="nav-text">冲突的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">解决方案</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#alt-%E9%94%AE%E7%9A%84%E6%98%A0%E5%B0%84"><span class="nav-text">alt+键的映射</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mac%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">mac的解决方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E4%BA%8E%E8%8B%B1%E6%96%87%E8%BE%93%E5%85%A5%E6%B3%95"><span class="nav-text">依赖于英文输入法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E7%94%A8%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-text">可用的快捷键</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E7%94%A8%E4%B8%94%E4%B8%8D%E4%B8%8D%E5%90%8C"><span class="nav-text">可用且不不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A2%AB%E5%8D%A0%E7%94%A8%E7%9A%84"><span class="nav-text">被占用的</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E7%94%A8%E7%9A%84"><span class="nav-text">不可用的</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%85%E5%8A%9E"><span class="nav-text">待办</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#vim-multiple-cursors-%E5%A4%9A%E8%A1%8C%E7%BC%96%E8%BE%91%E6%8F%92%E4%BB%B6-_2"><span class="nav-text">vim-multiple-cursors 多行编辑插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E5%85%A5vim-multiple-cursors%E7%9A%84visual%E3%80%81normal%E6%A8%A1%E5%BC%8F"><span class="nav-text">进入vim-multiple-cursors的visual、normal模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8F%90%E7%A4%BA%E6%A0%8F"><span class="nav-text">提示栏</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%84%E6%A8%A1%E5%BC%8F"><span class="nav-text">各模式</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vim%E7%9A%84%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-text">vim的常用函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6"><span class="nav-text">转义字符</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E5%89%AA%E5%88%87%E6%9D%BF"><span class="nav-text">系统剪切板</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#bug"><span class="nav-text">bug</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95"><span class="nav-text">安装方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95-_2"><span class="nav-text">安装方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%A6%E8%A7%A3"><span class="nav-text">详解</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/27f12ef1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vim配置日志
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/" itemprop="url" rel="index"><span itemprop="name">编辑器IDE</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/27f12ef1/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/27f12ef1/" data-xid="/posts/27f12ef1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>43k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2:24</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="其他vim的配置项目"><a class="header-anchor" href="#其他vim的配置项目"></a>其他vim的配置项目</h1>
+<h3 id="vim化做sublime"><a class="header-anchor" href="#vim化做sublime"></a>vim化做sublime</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/fatih/subvim">https://github.com/fatih/subvim</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/grigio/vim-sublime">https://github.com/grigio/vim-sublime</a></p>
+<h1 id="字体"><a class="header-anchor" href="#字体"></a><a target="_blank" rel="noopener" href="https://github.com/oldratlee/vim-practice/blob/master/font-config/README.md">字体</a></h1>
+<h1 id="vim-plug"><a class="header-anchor" href="#vim-plug"></a>vim-plug</h1>
+<p>vim-plug是增强版的vundle，新支持：并行、动态加载插件，节约内存</p>
+<p>教程：<a target="_blank" rel="noopener" href="https://vim.ink/vim-plug.html">https://vim.ink/vim-plug.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/junegunn/vim-plug/wiki/tutorial">https://github.com/junegunn/vim-plug/wiki/tutorial</a></p>
+<p>安装</p>
+<pre class="line-numbers language-none"><code class="language-none">curl -fLo ~&#x2F;.vim&#x2F;autoload&#x2F;plug.vim --create-dirs https:&#x2F;&#x2F;raw.githubusercontent.com&#x2F;junegunn&#x2F;vim-plug&#x2F;master&#x2F;plug.vim<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>配置插件</p>
+<pre class="line-numbers language-none"><code class="language-none">call plug#begin(&#39;~&#x2F;.vim&#x2F;plugged&#39;)
+Plug &#39;junegunn&#x2F;vim-easy-align&#39;
+Plug &#39;https:&#x2F;&#x2F;github.com&#x2F;junegunn&#x2F;vim-github-dashboard.git&#39;
+Plug &#39;SirVer&#x2F;ultisnips&#39; | Plug &#39;honza&#x2F;vim-snippets&#39;
+Plug &#39;scrooloose&#x2F;nerdtree&#39;, &#123; &#39;on&#39;:  &#39;NERDTreeToggle&#39; &#125;
+Plug &#39;tpope&#x2F;vim-fireplace&#39;, &#123; &#39;for&#39;: &#39;clojure&#39; &#125;
+Plug &#39;rdnetto&#x2F;YCM-Generator&#39;, &#123; &#39;branch&#39;: &#39;stable&#39; &#125;
+Plug &#39;nsf&#x2F;gocode&#39;, &#123; &#39;tag&#39;: &#39;v.20150303&#39;, &#39;rtp&#39;: &#39;vim&#39; &#125;
+Plug &#39;junegunn&#x2F;fzf&#39;, &#123; &#39;dir&#39;: &#39;~&#x2F;.fzf&#39;, &#39;do&#39;: &#39;.&#x2F;install --all&#39; &#125;
+Plug &#39;~&#x2F;my-prototype-plugin&#39;
+call plug#end()<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在Vim命令行模式下，使用命令 <code>:PlugInstall</code> 可安装vim配置文件中所有配置的vim插件；也可以使用 <code>PlugInstall [name ...]</code> 来指定安装某一个或某几个vim插件。</p>
+<h1 id="vim-插件"><a class="header-anchor" href="#vim-插件"></a>vim 插件</h1>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/58816186">VIM 插件推荐</a></p>
+<p><a target="_blank" rel="noopener" href="http://blog.guorongfei.com/2015/10/06/vim-plugin/">利器系列之 —— 编辑利器 Vim 之插件配置</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000014560645">https://segmentfault.com/a/1190000014560645</a></p>
+<p>好几种插件：<a target="_blank" rel="noopener" href="https://www.zlovezl.cn/articles/vim-plugins-cannot-live-without/">https://www.zlovezl.cn/articles/vim-plugins-cannot-live-without/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/923aec861af3">https://www.jianshu.com/p/923aec861af3</a></p>
+<h2 id="全局搜索插件"><a class="header-anchor" href="#全局搜索插件"></a>全局搜索插件</h2>
+<p>快速grep工具目前有ack, ag, rg, pt, sift, ucg等。</p>
+<h3 id="搜索全局模糊搜索"><a class="header-anchor" href="#搜索全局模糊搜索"></a>搜索全局模糊搜索</h3>
+<p>目前<code>LeaderF</code>最快最准确，依赖python(2019-5评)</p>
+<p>在grep结果的基础上再通过模糊匹配的方式进行二次过滤</p>
+<p><strong>速度,准确度</strong>：<code>ctrlp</code> &lt; <a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF"><code>LeaderF</code></a></p>
+<p><code>ctrlp</code> ：快速打开文件或定位某个buffer、最近使用的文件（mru）、tags（包括函数、类、变量等）；已经过时了(2019-5评)</p>
+<p><code>LeaderF</code>：快速打开文件或定位某个buffer、最近使用的文件（mru）、tags（包括函数、类、变量等）、命令历史、文件中的某一行、vim的help、marks等等+跳转</p>
+<p><code>fzf</code>：后端是fzf，需要另外安装</p>
+<pre class="line-numbers language-none"><code class="language-none">skim<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="文件内容搜索-跳转"><a class="header-anchor" href="#文件内容搜索-跳转"></a>文件内容搜索+跳转</h3>
+<p><strong>速度</strong>：<code>vimgrep</code> (vim自带的全局搜搜) &lt;<code>ack.vim</code>插件 &lt;<code>ag.vim</code> 插件</p>
+<p><code>ctrlsf</code> 插件：支持 ack/ag/pt/rg 四种搜索后端，支持跳转，支持异步搜索(即搜索时不影响当前编辑)</p>
+<p><a target="_blank" rel="noopener" href="https://blog.burntsushi.net/ripgrep/">后端的比较</a></p>
+<p>推荐<code>rg</code></p>
+<ul>
+<li>速度和准确率: ack, pt &lt; ag &lt; rg (命令行下最快的文件内容搜索)</li>
+<li>rg支持Unicode，跨linux/windows/mac平台</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/archofortune/article/details/86490649">对比</a></p>
+<blockquote>
+<p>2019年01月15日</p>
+<p>vim有很多著名的grep插件，我使用过的有ack.vim，ag.vim和ctrlsf.vim，它们应该也是目前用户最多的几个了。</p>
+<p><strong>ack.vim</strong></p>
+<p>起步比较早，早期后端grep工具是ack，后来也支持ag(the_silver_searcher)，pt(the_platinum_searcher)，rg(ripgrep)等工具了。它是一个比较传统的grep插件，不支持异步，要等到grep结束后才能显示结果，在大的项目中grep会卡好一阵子。它貌似也不再维护，我N久前提交的pull request还挂在那，它最近的代码更新在11个月前。</p>
+<p><strong>ag.vim</strong></p>
+<p>它其实是抄袭ack.vim，没错，是抄袭。在早期ack.vim还不支持ag时，它的作者在ack.vim代码的基础上稍微改了改，支持了ag。后来被ack.vim的作者给怼了，就放弃了对ag.vim的维护。目前功能上小于ack.vim。</p>
+<p><strong>ctrlsf.vim</strong></p>
+<p>这是国人开发的一个插件, 后端grep工具支持ack/ag/pt/rg，同时也支持异步，不过需要Vim 8.0.1039+或者NeoVim才支持异步。这个插件很好用，在我开发Leaderf rg之前一直使用的是它。</p>
+</blockquote>
+<blockquote>
+<p>作者：Sainnhepark</p>
+<p>链接：<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/23590572/answer/546352496">https://www.zhihu.com/question/23590572/answer/546352496</a></p>
+<p>来源：知乎</p>
+<p>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<p>异步Fuzzy Finder：<br>
+vim的fuzzy finder可不是只能像命令行里的fzf那样简单地fuzzy match，下面推荐的几个fuzzy finder插件你可以用它来：搜索字符串，对grep结果进行过滤(不需要其它grep插件了)，浏览和跳转tags(不需要tagbar了)，浏览、跳转以及管理buffer、files，跳转最近使用的文件(MRU)，搜索历史剪切板内容，切换color scheme，甚至浏览你的github星标版本库。</p>
+<p><strong>denite.nvim</strong><br>
+最高的可定制度，最高的可扩展性，最多的source，也最不好上手。依赖python。</p>
+<p><strong>fzf.vim</strong><br>
+开箱即用，新手友好，无需太多配置，source也足够多。但它实际上fzf的一个vim前端，并不是一个典型的vim插件，你需要安装fzf才能使用，不过也正是因为如此，它用起来非常丝滑。另外它缺乏官方文档，可定制度也较差。不依赖python。</p>
+<p><strong>LeaderF</strong><br>
+开箱即用，新手友好，无需太多配置。它的算法非常厉害（个人觉得只有fzy能和它比），另外它也提供了很多非常实用的选项（比如正则过滤），但是source相比前两者较少。依赖python。</p>
+<p>2018.12.20<br>
+最近的一个32万行代码的模糊匹配测试中，对下面几个模糊匹配工具进行了测试：<br>
+leaderf, fzf, skim, ctrlp的默认matcher, denite的默认matcher，cpsm（denite和ctrlp的matcher之一）, fruzzy（denite和ctrlp的matcher之一）<br>
+<strong>按匹配精准度和匹配速度来衡量它们的性能的话，leaderf的表现是最好的。</strong><br>
+Note: leaderf的关键部分是用c写的</p>
+<p>另外，关于ctrlp。ctrlp已经有了异步模式，但是它的性能和leaderf, fzf不在一个档次，并且群里有大佬说它的异步还有很多bug。<br>
+如果你的vim没有python支持，个人推荐用fzf</p>
+</blockquote>
+<h2 id="搜索后端的安装-卸载方法"><a class="header-anchor" href="#搜索后端的安装-卸载方法"></a>搜索后端的安装/卸载方法</h2>
+<h3 id="ag-又名-the-silver-searcher"><a class="header-anchor" href="#ag-又名-the-silver-searcher"></a>ag (又名 the_silver_searcher)</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># mac 安装 ag</span>
+brew <span class="token function">install</span> the_silver_searcher
+<span class="token comment"># mac 卸载 ag</span>
+brew uninstall the_silver_searcher<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="ack"><a class="header-anchor" href="#ack"></a>ack</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># mac 安装 ack</span>
+brew <span class="token function">install</span> ack
+<span class="token comment"># mac 卸载 ack</span>
+brew uninstall ack<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="rg"><a class="header-anchor" href="#rg"></a>rg</h3>
+<p>参加 <a target="_blank" rel="noopener" href="https://github.com/BurntSushi/ripgrep#installation">安装rg的方法</a></p>
+<ul>
+<li>mac</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># mac 安装 rg</span>
+brew <span class="token function">install</span> ripgrep
+<span class="token comment"># mac 卸载 rg</span>
+brew uninstall ripgrep<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p>Unbuntu</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> ripgrep<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若报错曰apt没有找到ripgrep包</p>
+<p>则先执行</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> add-apt-repository ppa:x4121/ripgrep
+<span class="token function">sudo</span> <span class="token function">apt-get</span> update
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> ripgrep<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p><strong>Debian</strong> 及其派生( 如 <strong>Ubuntu</strong>)</p>
+</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://gist.github.com/kostaz/6e0cf1eee35a34cd6589ec15b58e682c">https://gist.github.com/kostaz/6e0cf1eee35a34cd6589ec15b58e682c</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016170184">https://segmentfault.com/a/1190000016170184</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.hi-linux.com/posts/29245.html">推荐一款命令行下最快的文本搜索神器 RipGrep</a></p>
+<pre class="line-numbers language-none"><code class="language-none">curl -LO https:&#x2F;&#x2F;github.com&#x2F;BurntSushi&#x2F;ripgrep&#x2F;releases&#x2F;download&#x2F;11.0.1&#x2F;ripgrep_11.0.1_amd64.deb
+sudo dpkg -i ripgrep_11.0.1_amd64.deb<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>上述release最新版本见https://github.com/BurntSushi/ripgrep/releases</p>
+<h2 id="LeaderF"><a class="header-anchor" href="#LeaderF"></a>LeaderF</h2>
+<p><a target="_blank" rel="noopener" href="https://www.v2ex.com/t/388940">https://www.v2ex.com/t/388940</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/53680291">https://zhuanlan.zhihu.com/p/53680291</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF">https://github.com/Yggdroot/LeaderF</a></p>
+<p>使用教程<a target="_blank" rel="noopener" href="http://www.manongjc.com/article/94716.html">http://www.manongjc.com/article/94716.html</a></p>
+<p>gtags功能：<a target="_blank" rel="noopener" href="https://learnku.com/articles/28249">https://learnku.com/articles/28249</a></p>
+<ul>
+<li>MAC上面使用homebrew安装gtags</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">brew install global<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h6 id="1-LeaderF-介绍"><a class="header-anchor" href="#1-LeaderF-介绍"></a>1. LeaderF 介绍</h6>
+<p><a target="_blank" rel="noopener" href="https://github.com/Yggdroot/LeaderF/blob/master/CHANGELOG.md">LeaderF</a> 是一个问世很长时间的 Vim 插件了，可是我直到最近才发现它，大有相见恨晚之感。它的基本功能是提供了文件、buffers、mrus（most recently used）、tags 的检索，速度很快且是异步查找。检索过程中支持正则表达式、模糊匹配，并可以实时的过滤结果。</p>
+<p>LeaderF 是用 Python 实现的，因此需要 Vim 支持 Python Feature。可以通过 vim –version 来查看是否支持 Python。</p>
+<h6 id="3-常用功能"><a class="header-anchor" href="#3-常用功能"></a>3. 常用功能</h6>
+<ul>
+<li>检索文件：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&lt;leader&gt;f<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>检索 buffer：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&lt;leader&gt;b<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>在 LeaderF 运行起来以后（在正常检索的模式下），可以执行下面的一些操作：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&lt;C-C&gt;, &lt;ESC&gt; : 退出 LeaderF.
+&lt;C-R&gt; : 在模糊匹配和正则式匹配之间切换
+&lt;C-F&gt; : 在全路径搜索和名字搜索之间切换
+&lt;Tab&gt; : 在检索模式和选择模式之间切换
+&lt;C-J&gt;, &lt;C-K&gt; : 在结果列表里选择
+&lt;C-X&gt; : 在水平窗口打开
+&lt;C-]&gt; : 在垂直窗口打开
+&lt;C-T&gt; : 在新标签打开
+&lt;C-P&gt; : 预览结果<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>在 LeaderF 检索文件的模式下，如果按 Tab 进入选择列表之后，会有其他的快捷键，可以通过 F1 来查看。</li>
+<li>集成 ripgrep 进行检索是 LeaderF 很强大的一个功能，rg 是异步的，比 vimgrep 要好很多。而且，对结果可以进行二次过滤：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">:LeaderfRgRecall 显示上次 rg 的结果
+:Leaderf rg 实时检索
+:Leaderf rg [option] 后面的 [option] 和 rg 的语法保持一致<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h6 id="4-参考资料"><a class="header-anchor" href="#4-参考资料"></a>4. 参考资料</h6>
+<ul>
+<li>可以在 vim 中使用 :help LeaderF 来查看其帮助文档。</li>
+<li><a target="_blank" rel="noopener" href="https://vim-china.org/topic/24/vim%E7%9A%84grep%E6%8F%92%E4%BB%B6-leaderf-rg-grep%E5%92%8C%E6%A8%A1%E7%B3%8A%E5%8C%B9%E9%85%8D%E7%9A%84%E5%AE%8C%E7%BE%8E%E7%BB%93%E5%90%88">LeaderF rg 介绍</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/BurntSushi/ripgrep/releases">ripgrep</a></li>
+<li><a target="_blank" rel="noopener" href="https://docs.rs/globset/0.3.0/globset/#syntax">rg 路径匹配语法</a>：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">Standard Unix-style glob syntax is supported:
+
+? matches any single character. (If the literal_separator option is enabled, then ? can never match a path separator.)
+* matches zero or more characters. (If the literal_separator option is enabled, then * can never match a path separator.)
+** recursively matches directories but are only legal in three situations. First, if the glob starts with **&#x2F;, then it matches all directories. For example, **&#x2F;foo matches foo and bar&#x2F;foo but not foo&#x2F;bar. Secondly, if the glob ends with &#x2F;**, then it matches all sub-entries. For example, foo&#x2F;** matches foo&#x2F;a and foo&#x2F;a&#x2F;b, but not foo. Thirdly, if the glob contains &#x2F;**&#x2F; anywhere within the pattern, then it matches zero or more directories. Using ** anywhere else is illegal (N.B. the glob ** is allowed and means &quot;match everything&quot;).
+&#123;a,b&#125; matches a or b where a and b are arbitrary glob patterns. (N.B. Nesting &#123;...&#125; is not currently allowed.)
+[ab] matches a or b where a and b are characters. Use [!ab] to match any character except for a and b.
+Metacharacters such as * and ? can be escaped with character class notation. e.g., [*] matches *.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="git插件"><a class="header-anchor" href="#git插件"></a>git插件</h2>
+<p><a target="_blank" rel="noopener" href="https://jakobgm.com/posts/vim/git-integration/">vim的git插件比较</a></p>
+<h3 id="Vim-Gitgutter"><a class="header-anchor" href="#Vim-Gitgutter"></a>Vim Gitgutter</h3>
+<p><a target="_blank" rel="noopener" href="http://developer.51cto.com/art/201902/592448.htm">http://developer.51cto.com/art/201902/592448.htm</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/airblade/vim-gitgutter">Vim Gitgutter</a> 插件对使用 Git 作为版本控制工具的人来说非常有用。它会在 Vim 的行号列旁显示 <code>git diff</code> 的差异标记。假设你有如下已提交过的代码：</p>
+<p>另外，Vim Gitgutter 允许你用 <code>[c</code> 和 <code>]c</code> 在多个有修改的块之间跳转，甚至可以用 <code>Leader+hs</code> 来暂存某个变更集。</p>
+<h3 id="Fugitive-vim-教程"><a class="header-anchor" href="#Fugitive-vim-教程"></a>Fugitive.vim 教程</h3>
+<p><a target="_blank" rel="noopener" href="http://vimcasts.org/episodes/fugitive-vim-working-with-the-git-index/">http://vimcasts.org/episodes/fugitive-vim-working-with-the-git-index/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.vim.org/scripts/script.php?script_id=2975">Vim Fugitive</a> 是另一个将 Git 工作流集成到 Vim 中的超棒插件。它对 Git 做了一些封装，可以让你在 Vim 里直接执行 Git 命令并将结果集成在 Vim 界面里。这个插件有超多的特性，更多信息请访问它的 <a target="_blank" rel="noopener" href="https://github.com/tpope/vim-fugitive">GitHub</a> 项目页面。</p>
+<p>这里有一个使用 Vim Fugitive 的基础 Git 工作流示例。设想我们已经对下面的 Go 代码做出修改，你可以用 <code>:Gblame</code> 调用 <code>git blame</code> 来查看每行最后的提交信息：</p>
+<h2 id="nerdtree-git-plugin"><a class="header-anchor" href="#nerdtree-git-plugin"></a>nerdtree-git-plugin</h2>
+<p>在目录树中显示 git 状态，依赖于 <a target="_blank" rel="noopener" href="https://www.dreamxu.com/books/vim/plugin/nerdtree.html">The NERD Tree</a></p>
+<p>可改变显示符号：</p>
+<pre class="line-numbers language-none"><code class="language-none">let g:NERDTreeIndicatorMapCustom &#x3D; &#123;
+\ &quot;Modified&quot;  : &quot;✹&quot;,
+\ &quot;Staged&quot;    : &quot;✚&quot;,
+\ &quot;Untracked&quot; : &quot;✭&quot;,
+\ &quot;Renamed&quot;   : &quot;➜&quot;,
+\ &quot;Unmerged&quot;  : &quot;═&quot;,
+\ &quot;Deleted&quot;   : &quot;✖&quot;,
+\ &quot;Dirty&quot;     : &quot;✗&quot;,
+\ &quot;Clean&quot;     : &quot;✔︎&quot;,
+\ &quot;Unknown&quot;   : &quot;?&quot;
+\ &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Surround"><a class="header-anchor" href="#Surround"></a>Surround</h2>
+<p>使用教程 <a target="_blank" rel="noopener" href="https://gist.github.com/wilon/ac1fc66f4a79e7b0c161c80877c75c94">https://gist.github.com/wilon/ac1fc66f4a79e7b0c161c80877c75c94</a></p>
+<h2 id="YCM编译报错"><a class="header-anchor" href="#YCM编译报错"></a>YCM编译报错</h2>
+<h3 id="Your-C-compiler-does-NOT-fully-support-C-17"><a class="header-anchor" href="#Your-C-compiler-does-NOT-fully-support-C-17"></a>Your C++ compiler does NOT fully support C++17.</h3>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013187057/article/details/80116782">ubuntu下gcc和g++编译器修改</a></p>
+<p>Ubuntu18, 2020-11-30, 编译ycm (哈希 4496153, 2020-11-27) 时报错如下，</p>
+<pre class="line-numbers language-none"><code class="language-none">-- Detecting C compile features - done
+-- Check for working CXX compiler: &#x2F;usr&#x2F;bin&#x2F;c++
+-- Check for working CXX compiler: &#x2F;usr&#x2F;bin&#x2F;c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+CMake Error at CMakeLists.txt:232 (message):
+  Your C++ compiler does NOT fully support C++17.
+
+
+-- Configuring incomplete, errors occurred!
+See also &quot;&#x2F;tmp&#x2F;ycm_build__rb87zu9&#x2F;CMakeFiles&#x2F;CMakeOutput.log&quot;.
+ERROR: the build failed.
+
+NOTE: it is *highly* unlikely that this is a bug but rather
+that this is a problem with the configuration of your system
+or a missing dependency. Please carefully read CONTRIBUTING.md
+and if you&#39;re sure that it is a bug, please raise an issue on the
+issue tracker, including the entire output of this script
+and the invocation line used to run it.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>原因: gcc和g++版本太低, 对策: 升级到至少8.0以上</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> gcc<span class="token punctuation">;</span> <span class="token function">ls</span> -l <span class="token variable"><span class="token variable">$(</span><span class="token function">which</span> gcc<span class="token variable">)</span></span>
+<span class="token function">which</span> g++<span class="token punctuation">;</span> <span class="token function">ls</span> -l <span class="token variable"><span class="token variable">$(</span><span class="token function">which</span> g++<span class="token variable">)</span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<blockquote>
+<p>/usr/bin/gcc<br>
+lrwxrwxrwx 1 root root 21 Nov 30 20:23 /usr/bin/gcc -&gt; /etc/bin/gcc-7<br>
+/usr/bin/g++<br>
+lrwxrwxrwx 1 root root 21 Nov 30 20:23 /usr/bin/g++ -&gt; /etc/bin/gcc-7</p>
+</blockquote>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">gcc –version
+g++ –version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<blockquote>
+<p>gcc (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0<br>
+Copyright © 2017 Free Software Foundation, Inc.<br>
+This is free software; see the source for copying conditions.  There is NO<br>
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>
+<p>g+±7 (Ubuntu 7.5.0-3ubuntu1~18.04) 7.5.0<br>
+Copyright © 2017 Free Software Foundation, Inc.<br>
+This is free software; see the source for copying conditions.  There is NO<br>
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.</p>
+</blockquote>
+<p>安装高版本的gcc和g++</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo apt-get install gcc-8 g++-8<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>更换gcc和g++的链接</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43512663/article/details/104475199?utm_medium=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-BlogCommendFromBaidu-3.control">linux 软件版本切换命令 update-alternatives 使用心得</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u013187057/article/details/84996127">ubuntu系统使用update-alternatives 管理多版本gcc/g++</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 <span class="token number">40</span> --slave /usr/bin/g++ g++ /usr/bin/g++-7
+<span class="token function">sudo</span> update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8  <span class="token number">50</span> --slave /usr/bin/g++ g++ /usr/bin/g++-8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>而后  /usr/bin/gcc -&gt; /etc/alternatives/gcc -&gt; /usr/bin/gcc-8, /usr/bin/g++ -&gt; /etc/alternatives/g++ -&gt; /usr/bin/g+±8</p>
+<p>编译ycm能成功</p>
+<h3 id="报错cregex-does-not-appear-to-contain-CMakeLists-txt"><a class="header-anchor" href="#报错cregex-does-not-appear-to-contain-CMakeLists-txt"></a>报错<code>cregex&quot; does not appear to contain CMakeLists.txt.</code></h3>
+<p>编译ycm时报错如下，但依旧可以使用ycm，可以无需按tab就显示自动补全下拉菜单</p>
+<pre class="line-numbers language-none"><code class="language-none">Searching Python 3.7 libraries...
+Found Python library: &#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;libpython3.7m.so
+Found Python headers folder: &#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;include&#x2F;python3.7m
+-- The C compiler identification is GNU 5.4.0
+-- The CXX compiler identification is GNU 5.4.0
+-- Check for working C compiler: &#x2F;usr&#x2F;bin&#x2F;cc
+-- Check for working C compiler: &#x2F;usr&#x2F;bin&#x2F;cc -- works
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Check for working CXX compiler: &#x2F;usr&#x2F;bin&#x2F;c++
+-- Check for working CXX compiler: &#x2F;usr&#x2F;bin&#x2F;c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found PythonLibs: &#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;libpython3.7m.so (found suitable version &quot;3.7.3&quot;, minimum required is &quot;3.5&quot;)
+-- NOT using libclang, no semantic completion for C&#x2F;C++&#x2F;ObjC will be available
+-- NOT using clang-tidy for static analysis.
+-- Configuring done
+-- Generating done
+-- Build files have been written to: &#x2F;tmp&#x2F;ycm_build_mdfikwuq
+Scanning dependencies of target BoostParts
+[  2%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;filesystem&#x2F;src&#x2F;unique_path.cpp.o
+[  4%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;filesystem&#x2F;src&#x2F;path_traits.cpp.o
+[  7%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;filesystem&#x2F;src&#x2F;portability.cpp.o
+[  9%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;filesystem&#x2F;src&#x2F;operations.cpp.o
+[ 11%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;filesystem&#x2F;src&#x2F;windows_file_codecvt.cpp.o
+[ 14%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;filesystem&#x2F;src&#x2F;codecvt_error_category.cpp.o
+[ 16%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;filesystem&#x2F;src&#x2F;utf8_codecvt_facet.cpp.o
+[ 19%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;filesystem&#x2F;src&#x2F;path.cpp.o
+[ 21%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;static_mutex.cpp.o
+[ 23%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;regex_traits_defaults.cpp.o
+[ 26%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;regex_debug.cpp.o
+[ 30%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;posix_api.cpp.o
+[ 30%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;cregex.cpp.o
+[ 33%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;cpp_regex_traits.cpp.o
+[ 35%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;winstances.cpp.o
+[ 38%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;instances.cpp.o
+[ 40%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;usinstances.cpp.o
+[ 42%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;c_regex_traits.cpp.o
+[ 45%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;wc_regex_traits.cpp.o
+[ 47%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;regex_raw_buffer.cpp.o
+[ 50%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;fileiter.cpp.o
+[ 52%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;regex.cpp.o
+[ 54%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;icu.cpp.o
+[ 57%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;wide_posix_api.cpp.o
+[ 59%] Building CXX object BoostParts&#x2F;CMakeFiles&#x2F;BoostParts.dir&#x2F;libs&#x2F;regex&#x2F;src&#x2F;w32_regex_traits.cpp.o
+[ 61%] Linking CXX static library libBoostParts.a
+[ 61%] Built target BoostParts
+Scanning dependencies of target ycm_core
+[ 64%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;Word.cpp.o
+[ 66%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;PythonSupport.cpp.o
+[ 71%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;CodePoint.cpp.o
+[ 71%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;Character.cpp.o
+[ 73%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;Candidate.cpp.o
+[ 76%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;versioning.cpp.o
+[ 78%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;CodePointRepository.cpp.o
+[ 80%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;IdentifierCompleter.cpp.o
+[ 83%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;CandidateRepository.cpp.o
+[ 85%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;Utils.cpp.o
+[ 88%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;ycm_core.cpp.o
+[ 90%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;IdentifierDatabase.cpp.o
+[ 92%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;CharacterRepository.cpp.o
+[ 95%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;IdentifierUtils.cpp.o
+[ 97%] Building CXX object ycm&#x2F;CMakeFiles&#x2F;ycm_core.dir&#x2F;Result.cpp.o
+[100%] Linking CXX shared library &#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;app_config&#x2F;vim_plug&#x2F;YouCompleteMe&#x2F;third_party&#x2F;ycmd&#x2F;ycm_core.so
+[100%] Built target ycm_core
+CMake Error: The source directory &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;app_config&#x2F;vim_plug&#x2F;YouCompleteMe&#x2F;third_party&#x2F;ycmd&#x2F;third_party&#x2F;cregex&quot; does not appear to contain CMakeLists.txt.
+Specify --help for usage, or press the help button on the CMake GUI.
+ERROR: the build failed.
+
+NOTE: it is *highly* unlikely that this is a bug but rather
+that this is a problem with the configuration of your system
+or a missing dependency. Please carefully read CONTRIBUTING.md
+and if you&#39;re sure that it is a bug, please raise an issue on the
+issue tracker, including the entire output of this script
+and the invocation line used to run it.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这是因为子模块<code>third_party/ycmd/third_party/cregex</code>被改动了，里面没有包含<code>CMakeLists.txt.</code>，故而无法编译。</p>
+<p>对策：重新<code>git clone</code> <code>cregex</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~/.vim/plugged/YouCompleteMe
+<span class="token function">rm</span> -rf third_party/ycmd/third_party/cregex
+<span class="token function">git</span> clone https://github.com/ycm-core/regex.git third_party/ycmd/third_party/cregex<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>其中<code>https://github.com/ycm-core/regex.git</code> 取自 <code>~/.vim/vim_plug/YouCompleteMe/third_party/ycmd/.gitmodules</code>中的<code>third_party/cregex</code> 对应的url。</p>
+<p>而后手动编译ycm会成功</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./install.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="报错-Unexpected-exit-code-11"><a class="header-anchor" href="#报错-Unexpected-exit-code-11"></a>报错 <code>Unexpected exit code -11</code></h3>
+<p>vim开启立即底栏报错</p>
+<pre class="line-numbers language-none"><code class="language-none">The ycmd server SHUT DOWN (restart with &#39;:YcmRestartServer&#39;). Unexpected exit code -11. Type &#39;:YcmToggleLogs ycmd_50129_stderr_riih2wlh.log&#39; to check the logs.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>且无法使用ycm，这是因为conda安装的python 常常不兼容 YCM所用的预编译 libclang</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ycm-core/YouCompleteMe#ycm-does-not-work-with-my-anaconda-python-setup">对策</a>：</p>
+<ul>
+<li>在<code>YouCompleteMe/</code>下，用非conda的python进行手动编译</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">[非conda的python] install.py
+# 如 &#x2F;usr&#x2F;bin&#x2F;python install.py # mac系统自带的python2
+# 或 &#x2F;usr&#x2F;local&#x2F;bin&#x2F;python3 install.py  # 2020年2月开始, YCM已经报警, 即将不支持python2编译, 故用此python3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>此python3此homebrew所装</p>
+<p><code>/usr/local/bin/python3</code> -&gt;</p>
+<p><code>/usr/local/Cellar/python/3.7.3/bin/python3</code> -&gt;</p>
+<p><code>/usr/local/Frameworks/Python.framework/Versions/3.7/bin/python3</code> -&gt;</p>
+<p><code>/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/bin/python3</code> -&gt;</p>
+<p><code>/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7/bin/python3.7</code> -&gt;</p>
+<p>其中 <code>/usr/local/Frameworks/Python.framework/Versions</code> -&gt; <code>/usr/local/Cellar/python/3.7.3/Frameworks/Python.framework/Versions/3.7</code></p>
+<ul>
+<li>若必想用conda的python来编辑，则需在<code>.ycm_extra_conf.py</code> 中任意处添加以下代码，来指定<code>interpreter_path</code> 为conda的python，如</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">def Settings(**kwargs):
+    return &#123;
+        &#39;interpreter_path&#39;: &#39;&#x2F;path&#x2F;to&#x2F;anaconda&#x2F;python&#39;
+    &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>而后在<code>./install.py</code>以编译。</p>
+<p>详见 <a target="_blank" rel="noopener" href="https://github.com/ycm-core/YouCompleteMe#python-semantic-completion">the Python Semantic Completion section</a></p>
+<h3 id="YouCompleteMe-插件-MacOS-安装"><a class="header-anchor" href="#YouCompleteMe-插件-MacOS-安装"></a>YouCompleteMe 插件 MacOS 安装</h3>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/edc4bbed92ca">https://www.jianshu.com/p/edc4bbed92ca</a></p>
+<pre class="line-numbers language-none"><code class="language-none">brew install cmake<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后在 <code>/.vimrc</code>文件中加入</p>
+<pre class="line-numbers language-none"><code class="language-none">Plug &#39;Valloric&#x2F;YouCompleteMe&#39;, &#123;&#39;do&#39;:&#39;python3 install.py&#39;&#125;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="手动编译ycm"><a class="header-anchor" href="#手动编译ycm"></a>手动编译ycm</h3>
+<ul>
+<li>mac上</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">brew install cmake
+.&#x2F;install.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>linux上</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">sudo apt-get install cmake
+sudo apt-get install build-essential
+sudo apt-get install python python-dev
+apt-get install llvm-3.9 clang-3.9 libclang-3.9-dev libboost-all-dev # 如果不需要 C 家族的语义化补全，则可跳过这一步
+.&#x2F;install.py
+python3 .&#x2F;install.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="报错CMake-Error-cmake-61-message"><a class="header-anchor" href="#报错CMake-Error-cmake-61-message"></a>报错<code>CMake Error; cmake:61 (message):</code></h3>
+<h4 id="环境"><a class="header-anchor" href="#环境"></a>环境</h4>
+<p>时间：2019-12-7</p>
+<p>系统环境</p>
+<ul>
+<li>服务器：实验室集群的 <code>cpu3</code></li>
+<li>系统：Ubuntu 14.04.6 LTS</li>
+<li>cmake：<code>/usr/bin/cmake -v</code>  cmake version 2.8.12.2</li>
+<li>gcc: <code>/usr/bin/gcc -v</code> gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.4)</li>
+<li>g++: <code>/usr/bin/g++ -v</code> gcc version 4.8.4 (Ubuntu 4.8.4-2ubuntu1~14.04.4)</li>
+<li><code>apt list --installed build-essential</code>: build-essential/trusty,now 11.6ubuntu6 amd64 [installed]</li>
+<li><code>apt list --installed python</code>:  python/trusty,now 2.7.5-5ubuntu3 amd64 [installed], Python 2.7.6</li>
+<li><code>apt list --installed python-dev</code> python-dev/trusty,now 2.7.5-5ubuntu3 amd64 [installed]</li>
+</ul>
+<p>conda环境：在<code>base</code>环境，仅安装了python</p>
+<ul>
+<li>python: <code>/home/haoyu/ENV/localENV/anaconda3/bin/python -v</code>: Python 3.7.3</li>
+</ul>
+<h4 id="报错"><a class="header-anchor" href="#报错"></a>报错</h4>
+<p>在<code>base</code>环境，执行<code>~/.vim/plugged/YouCompleteMe/install.pys</code> 手动编译ycm失败，报错如下</p>
+<pre class="line-numbers language-none"><code class="language-none">Searching Python 3.6 libraries...
+Found Python library: &#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;lib&#x2F;libpython3.6m.so
+Found Python headers folder: &#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;include&#x2F;python3.6m
+-- The C compiler identification is GNU 4.8.5
+-- The CXX compiler identification is GNU 4.8.5
+-- Check for working C compiler: &#x2F;usr&#x2F;bin&#x2F;cc
+-- Check for working C compiler: &#x2F;usr&#x2F;bin&#x2F;cc -- broken
+CMake Error at &#x2F;usr&#x2F;share&#x2F;cmake-2.8&#x2F;Modules&#x2F;CMakeTestCCompiler.cmake:61 (message):
+The C compiler &quot;&#x2F;usr&#x2F;bin&#x2F;cc&quot; is not able to compile a simple test program.
+
+It fails with the following output:
+
+Change Dir: &#x2F;tmp&#x2F;ycm_build_i9zudbsb&#x2F;CMakeFiles&#x2F;CMakeTmp
+
+
+
+Run Build Command:&#x2F;usr&#x2F;bin&#x2F;make &quot;cmTryCompileExec2070396260&#x2F;fast&quot;
+
+&#x2F;usr&#x2F;bin&#x2F;make -f CMakeFiles&#x2F;cmTryCompileExec2070396260.dir&#x2F;build.make
+CMakeFiles&#x2F;cmTryCompileExec2070396260.dir&#x2F;build
+
+make[1]: Entering directory &#96;&#x2F;tmp&#x2F;ycm_build_i9zudbsb&#x2F;CMakeFiles&#x2F;CMakeTmp&#39;
+
+&#x2F;usr&#x2F;bin&#x2F;cmake -E cmake_progress_report
+&#x2F;tmp&#x2F;ycm_build_i9zudbsb&#x2F;CMakeFiles&#x2F;CMakeTmp&#x2F;CMakeFiles 1
+
+Building C object
+CMakeFiles&#x2F;cmTryCompileExec2070396260.dir&#x2F;testCCompiler.c.o
+
+&#x2F;usr&#x2F;bin&#x2F;cc -o CMakeFiles&#x2F;cmTryCompileExec2070396260.dir&#x2F;testCCompiler.c.o
+-c &#x2F;tmp&#x2F;ycm_build_i9zudbsb&#x2F;CMakeFiles&#x2F;CMakeTmp&#x2F;testCCompiler.c
+
+Linking C executable cmTryCompileExec2070396260
+
+&#x2F;usr&#x2F;bin&#x2F;cmake -E cmake_link_script
+CMakeFiles&#x2F;cmTryCompileExec2070396260.dir&#x2F;link.txt --verbose&#x3D;1
+
+&#x2F;usr&#x2F;bin&#x2F;cc CMakeFiles&#x2F;cmTryCompileExec2070396260.dir&#x2F;testCCompiler.c.o -o
+cmTryCompileExec2070396260 -rdynamic
+
+&#x2F;usr&#x2F;bin&#x2F;ld:
+&#x2F;usr&#x2F;lib&#x2F;gcc&#x2F;x86_64-linux-gnu&#x2F;4.8&#x2F;..&#x2F;..&#x2F;..&#x2F;x86_64-linux-gnu&#x2F;crti.o:
+unrecognized relocation (\0x2a) in section &#96;.init&#39;
+
+&#x2F;usr&#x2F;bin&#x2F;ld: final link failed: Bad value
+
+collect2: error: ld returned 1 exit status
+
+make[1]: Leaving directory &#96;&#x2F;tmp&#x2F;ycm_build_i9zudbsb&#x2F;CMakeFiles&#x2F;CMakeTmp&#39;
+
+make[1]: *** [cmTryCompileExec2070396260] Error 1
+
+make: *** [cmTryCompileExec2070396260&#x2F;fast] Error 2
+
+
+
+
+
+CMake will not be able to correctly generate this project.
+Call Stack (most recent call first):
+CMakeLists.txt:26 (project)
+
+
+-- Configuring incomplete, errors occurred!
+See also &quot;&#x2F;tmp&#x2F;ycm_build_i9zudbsb&#x2F;CMakeFiles&#x2F;CMakeOutput.log&quot;.
+See also &quot;&#x2F;tmp&#x2F;ycm_build_i9zudbsb&#x2F;CMakeFiles&#x2F;CMakeError.log&quot;.
+ERROR: the build failed.
+
+NOTE: it is *highly* unlikely that this is a bug but rather
+that this is a problem with the configuration of your system
+or a missing dependency. Please carefully read CONTRIBUTING.md
+and if you&#39;re sure that it is a bug, please raise an issue on the
+issue tracker, including the entire output of this script
+and the invocation line used to run it.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这是因为，系统自带的<code>gcc</code>损坏。在没有sudo权限、或不想改动系统<code>gcc</code>的情况下，建议采用此策略。</p>
+<h4 id="对策：创conda环境编译ycm"><a class="header-anchor" href="#对策：创conda环境编译ycm"></a>对策：创conda环境编译ycm</h4>
+<p>此策略不仅能解决上述报错，还能应对各种ycm编译失败的问题。</p>
+<h5 id="创建conda环境用于编译ycm"><a class="header-anchor" href="#创建conda环境用于编译ycm"></a>创建conda环境用于编译ycm</h5>
+<p>创建build_ycm环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda create -n build_ycm <span class="token assign-left variable">python</span><span class="token operator">=</span><span class="token number">3.8</span>.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>进入build_ycm环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda activate build_ycm<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a target="_blank" rel="noopener" href="https://anaconda.org/anaconda/cmake">anacoda安装cmake</a></p>
+<pre class="line-numbers language-none"><code class="language-none">conda install -c anaconda cmake<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>此命令的源的cmake会更新，我当时装的是cmake 3.14.0</p>
+<p>执行<code>which cmake</code>会返回<code>/home/haoyu/ENV/localENV/anaconda3/envs/build_ycm/bin/cmake</code></p>
+<p><a target="_blank" rel="noopener" href="https://anaconda.org/anaconda/gxx_linux-64">conda安装g++及gcc - for linux 64位</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c anaconda gxx_linux-64<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>此命令的源的gcc/g<ins>会更新，我当时装的是gcc 7.3.0/g</ins> 7.3.0</p>
+<p>此时，虽然<code>which gcc或g++</code> 返回的是<code>/usr/bin/gcc或g++</code>，但在编译时却实际用conda的gcc与g++（位于<code>/home/haoyu/ENV/localENV/anaconda3/envs/build_ycm/bin/x86_64-conda_cos6-linux-gnu-gcc或g++</code>）</p>
+<h5 id="开启conda的gcc和g"><a class="header-anchor" href="#开启conda的gcc和g"></a>开启conda的gcc和g++</h5>
+<p>根据<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/53030539/conda-gcc-does-not-replace-system-gcc">参考</a>，需要执行以下代码，但我实际操作中发现这一步可以不用</p>
+<p>退出然后重新进入build_ycm环境，以开启conda的gcc和g++</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda deactivate
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">CONDA_BUILD</span><span class="token operator">=</span><span class="token number">1</span>
+conda activate build_ycm<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>会输出</p>
+<pre class="line-numbers language-none"><code class="language-none">INFO: activate-binutils_linux-64.sh made the following environmental changes:
++ADDR2LINE&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-addr2line
++AR&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-ar
++AS&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-as
++CXXFILT&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-c++filt
++ELFEDIT&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-elfedit
++GPROF&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-gprof
++HOST&#x3D;x86_64-conda_cos6-linux-gnu
++LD_GOLD&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-ld.gold
++LD&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-ld
++NM&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-nm
++OBJCOPY&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-objcopy
++OBJDUMP&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-objdump
++RANLIB&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-ranlib
++READELF&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-readelf
++SIZE&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-size
++STRINGS&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-strings
++STRIP&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-strip
+INFO: activate-gcc_linux-64.sh made the following environmental changes:
++CC&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-cc
++CFLAGS&#x3D;-march&#x3D;nocona -mtune&#x3D;haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -I&#x2F;include -fdebug-prefix-map&#x3D;&#x3D;&#x2F;usr&#x2F;local&#x2F;src&#x2F;conda&#x2F;- -fdebug-prefix-map&#x3D;&#x3D;&#x2F;usr&#x2F;local&#x2F;src&#x2F;conda-prefix
++CMAKE_PREFIX_PATH&#x3D;::&#x2F;x86_64-conda_cos6-linux-gnu&#x2F;sysroot&#x2F;usr
++_CONDA_PYTHON_SYSCONFIGDATA_NAME&#x3D;_sysconfigdata_x86_64_conda_cos6_linux_gnu
++CPPFLAGS&#x3D;-DNDEBUG -D_FORTIFY_SOURCE&#x3D;2 -O2 -I&#x2F;include
++CPP&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-cpp
++DEBUG_CFLAGS&#x3D;-march&#x3D;nocona -mtune&#x3D;haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -I&#x2F;include -fdebug-prefix-map&#x3D;&#x3D;&#x2F;usr&#x2F;local&#x2F;src&#x2F;conda&#x2F;- -fdebug-prefix-map&#x3D;&#x3D;&#x2F;usr&#x2F;local&#x2F;src&#x2F;conda-prefix
++DEBUG_CPPFLAGS&#x3D;-D_DEBUG -D_FORTIFY_SOURCE&#x3D;2 -Og -I&#x2F;include
++GCC_AR&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-gcc-ar
++GCC&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-gcc
++GCC_NM&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-gcc-nm
++GCC_RANLIB&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-gcc-ranlib
++LDFLAGS&#x3D;-Wl,-O2 -Wl,--sort-common -Wl,--as-needed -Wl,-z,relro -Wl,-z,now -Wl,--disable-new-dtags -Wl,--gc-sections -Wl,-rpath,&#x2F;lib -Wl,-rpath-link,&#x2F;lib -L&#x2F;lib
+INFO: activate-gxx_linux-64.sh made the following environmental changes:
++CXXFLAGS&#x3D;-fvisibility-inlines-hidden -std&#x3D;c++17 -fmessage-length&#x3D;0 -march&#x3D;nocona -mtune&#x3D;haswell -ftree-vectorize -fPIC -fstack-protector-strong -fno-plt -O2 -ffunction-sections -pipe -I&#x2F;include -fdebug-prefix-map&#x3D;&#x3D;&#x2F;usr&#x2F;local&#x2F;src&#x2F;conda&#x2F;- -fdebug-prefix-map&#x3D;&#x3D;&#x2F;usr&#x2F;local&#x2F;src&#x2F;conda-prefix
++CXX&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-c++
++DEBUG_CXXFLAGS&#x3D;-fvisibility-inlines-hidden -std&#x3D;c++17 -fmessage-length&#x3D;0 -march&#x3D;nocona -mtune&#x3D;haswell -ftree-vectorize -fPIC -fstack-protector-all -fno-plt -Og -g -Wall -Wextra -fvar-tracking-assignments -ffunction-sections -pipe -I&#x2F;include -fdebug-prefix-map&#x3D;&#x3D;&#x2F;usr&#x2F;local&#x2F;src&#x2F;conda&#x2F;- -fdebug-prefix-map&#x3D;&#x3D;&#x2F;usr&#x2F;local&#x2F;src&#x2F;conda-prefix
++GXX&#x3D;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;envs&#x2F;build_ycm&#x2F;bin&#x2F;x86_64-conda_cos6-linux-gnu-g++<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此时<code>which gcc或g++</code> 依旧返回的是<code>/usr/bin/gcc或g++</code>，</p>
+<h5 id="编译ycm"><a class="header-anchor" href="#编译ycm"></a>编译ycm</h5>
+<p>开始编译</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~/.vim/plugged/YouCompleteMe
+./install.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h5 id="测试"><a class="header-anchor" href="#测试"></a>测试</h5>
+<p>然后回到conda的base环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda decativate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装neovim</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> neovim<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>测试neovim上是否能使用ycm</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">neovim <span class="token operator">&lt;</span>test-file.sh<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>输入一些内容，看看是否能不按tab就自动补全，若能则ycm编译成功。我通过上法成功了。</p>
+<h3 id="升级vim"><a class="header-anchor" href="#升级vim"></a>升级vim</h3>
+<h4 id="vim版本太老会出现的问题"><a class="header-anchor" href="#vim版本太老会出现的问题"></a>vim版本太老会出现的问题</h4>
+<h5 id="开启vim时报错"><a class="header-anchor" href="#开启vim时报错"></a>开启<code>vim</code>时报错</h5>
+<ul>
+<li>Python (2.7.1+ or 3.4+)</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">YouCompleteMe unavailable: requires Vim compiled with Python (2.7.1+ or 3.4+) support.
+UltiSnips requires py &gt;&#x3D; 2.7 or py3<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>是因为当前用的(n)vim版本不支持python2与python3。</p>
+<p>vim的判断方法：执行<code>vim --version</code> ，显示有<code>-python</code> 和 <code>-python3</code>（减号表示不支持，加号表示支持）, 则皆不支持。</p>
+<ul>
+<li>Python (3.6.0+)</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">YouCompleteMe unavailable: requires Vim compiled with Python (3.6.0+) support.<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>是因为当前用的(n)vim版本不支持python3 (&gt;=3.6.0)。</p>
+<p>vim的判断方法：执行<code>vim --version</code> ，显示有 <code>-python3</code>（减号表示不支持，加号表示支持）, 则不支持。</p>
+<ul>
+<li>对策</li>
+</ul>
+<p>需要安装新版本的vim来解决此问题。</p>
+<p>mac上的nvim:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew upgrade nvim<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="utf8不支持"><a class="header-anchor" href="#utf8不支持"></a>utf8不支持</h5>
+<p>若vim没有python2,python3,clipboard, 有conceal，并不会出现utf8不支持，应当是其他原因造成的</p>
+<h4 id="conda安装vim"><a class="header-anchor" href="#conda安装vim"></a>conda安装vim</h4>
+<pre class="line-numbers language-none"><code class="language-none">conda install -c conda-forge vim<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="安装vim-gnome"><a class="header-anchor" href="#安装vim-gnome"></a>安装vim-gnome</h4>
+<p>安装vim-gnome</p>
+<pre class="line-numbers language-none"><code class="language-none">sudo apt-get install vim-gnome<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在服务器<code>sshost2</code>上装好后，有python3, clipboard, conceal，无python2，上述一切问题没有</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source">手动make vim-gnome</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./configure --with-gui<span class="token operator">=</span>gtk2 <span class="token comment"># or gnome</span>
+<span class="token function">make</span> -j <span class="token number">4</span>
+<span class="token function">sudo</span> <span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="conda安装neovim"><a class="header-anchor" href="#conda安装neovim"></a>conda安装neovim</h4>
+<p><a target="_blank" rel="noopener" href="https://anaconda.org/conda-forge/neovim">github/neovim</a></p>
+<p><a target="_blank" rel="noopener" href="https://gist.github.com/yeekeiji/8143b9174f87715f95aa14dd99679b5f">安装脚本参考</a></p>
+<p>我用conda安装neovim的方法</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c conda-forge neovim
+<span class="token function">find</span> anaconda3 -name neovim<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="Supertab"><a class="header-anchor" href="#Supertab"></a><a target="_blank" rel="noopener" href="http://www.10tiao.com/html/568/201610/2650829602/1.html">Supertab</a></h2>
+<h2 id="Ultisnip"><a class="header-anchor" href="#Ultisnip"></a><a target="_blank" rel="noopener" href="https://vimzijun.net/2016/10/30/ultisnip/">Ultisnip</a></h2>
+<p>默认加载代码段的文件夹：UltiSnips，即.vim下任意名为UltiSnips的文件夹下任意层的.snippets文件：<br>
+用户自定义的代码段在 ~/.vim/UltiSnips<br>
+vim-snippets 的在.vim/plugged/{vim-snippets, UltiSnips}<br>
+手动添加其他目录</p>
+<pre class="line-numbers language-none"><code class="language-none">let g:UltiSnipsSnippetDirectories &#x3D; [&#39;其他代码段目录&#39;, &#39;UltiSnips&#39; ]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>snippet写法，在<code>~/.vim/UltiSnips/语言.snippets</code>中，添加一段</p>
+<pre class="line-numbers language-none"><code class="language-none">snippet 关键词 “提示” 设定
+内容
+endsnippet<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>设定（更多详见<code>:help ultisnip</code>）</p>
+<pre class="line-numbers language-none"><code class="language-none">b 代表只有关键词出现在行首的时候，才可以被展开
+A 代表自动展开
+w 代表可以展开这个 “词”，具体 “词” 的定义可以查看 :help iskeyword。直观感觉就是，这个关键词是单独的，和其他文字分开的。比如前后都是空格。
+i 代表可以忽略前后字节，直接展开关键词。（这个设定比 w 要更松）<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="ctrlsf"><a class="header-anchor" href="#ctrlsf"></a><a target="_blank" rel="noopener" href="https://github.com/dyng/ctrlsf.vim">ctrlsf</a></h2>
+<pre class="line-numbers language-none"><code class="language-none">:CtrlSF
+[-I不分大小写|-S分大小写|default&#x3D;smart]
+[-R正则表达式|default&#x3D;literally]
+[-W整词|default&#x3D;非整词]
+&quot;PATTERN&quot;
+[搜索哪些文件的通配符，默认为所有可见文件(夹)|&#123;*,.*&#125;所有文件|*.py 所有可见.py文件|% 当前文件]
+(不支持搜索所有打开的文件)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li><code>-R</code> - Use regular expression pattern.</li>
+<li><code>-I</code>, <code>-S</code> - Search case-insensitively (<code>-I</code>) or case-sensitively (<code>-S</code>).</li>
+<li><code>-C</code>, <code>-A</code>, <code>-B</code> - Specify how many context lines to be printed, identical to their counterparts in Ag/Ack.</li>
+<li><code>-W</code> - Only match whole words.</li>
+</ul>
+<h2 id="vim-which-key-按键提示"><a class="header-anchor" href="#vim-which-key-按键提示"></a><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016661599">vim-which-key</a> 按键提示</h2>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000016661599">https://segmentfault.com/a/1190000016661599</a></p>
+<h2 id="surround-括号匹配修改"><a class="header-anchor" href="#surround-括号匹配修改"></a>surround 括号匹配修改</h2>
+<p><a target="_blank" rel="noopener" href="http://zuyunfei.com/2013/04/17/killer-plugin-of-vim-surround/">参考</a></p>
+<h2 id="vim-multiple-cursors-多行编辑插件"><a class="header-anchor" href="#vim-multiple-cursors-多行编辑插件"></a>vim-multiple-cursors 多行编辑插件</h2>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23262156">https://zhuanlan.zhihu.com/p/23262156</a></p>
+<h2 id="vim-airline-vim-airline-标签页和下方状态栏"><a class="header-anchor" href="#vim-airline-vim-airline-标签页和下方状态栏"></a>vim-airline/vim-airline 标签页和下方状态栏</h2>
+<h2 id="vim-airline-vim-airline-themes-标签页和下方状态栏配色"><a class="header-anchor" href="#vim-airline-vim-airline-themes-标签页和下方状态栏配色"></a>vim-airline/vim-airline-themes 标签页和下方状态栏配色</h2>
+<h2 id="ctrlP"><a class="header-anchor" href="#ctrlP"></a>ctrlP</h2>
+<p>ctrlp:<a target="_blank" rel="noopener" href="http://zuyunfei.com/2013/08/26/vim-plugin-ctrlp/">http://zuyunfei.com/2013/08/26/vim-plugin-ctrlp/</a></p>
+<p>提供的命令<a target="_blank" rel="noopener" href="http://blog.collin2.xyz/index.php/archives/99/">http://blog.collin2.xyz/index.php/archives/99/</a></p>
+<h3 id="教程"><a class="header-anchor" href="#教程"></a>教程</h3>
+<p>进入ctrlp模式</p>
+<ul>
+<li><code>:CtrlP</code>或者<code>CtrlP [起始目录]</code>: 在查找文件模式下调用CtrlP</li>
+<li><code>:CtrlPBuffer</code>或<code>:CtrlPMRU</code>: 在查找缓冲区调用CtrlP或者查找MRU文件模式</li>
+</ul>
+<p>进入ctrlp模式后</p>
+<p>模式</p>
+<ul>
+<li><code>&lt;S-Left&gt;</code>、<code>&lt;S-right&gt;</code>: 左、右移动切换模式(文件 file/最近打开的文件 MRU/ctrlp打开的历史 buff)</li>
+<li><code>&lt;c-f&gt;</code>: 开关到仅文件名搜索而不是完整路径搜索</li>
+<li><code>&lt;c-r&gt;</code>: 开关切换到正则表达式模式</li>
+</ul>
+<p>选择</p>
+<ul>
+<li><code>Up</code>、<code>Down</code>:　在文件列表中上下移动</li>
+<li><code>&lt;c-z&gt;</code>:　勾选/勾除记多个文件</li>
+</ul>
+<p>更新</p>
+<ul>
+<li><code>&lt;F5&gt;</code>: 清除当前目录的缓存以获取新文件，删除已删除的文件并应用新的忽略选项</li>
+<li><code>&lt;F7&gt;</code>：</li>
+<li>MRU下直接按它清空所有文件</li>
+<li>MRU下先<code>&lt;c-z&gt;</code>勾选文件在按它清之</li>
+<li>buffer下按它清除所在行的文件</li>
+<li><code>&lt;c-z&gt;</code>,<code>&lt;c-s-z&gt;</code>:　撤销、重做于ctrlp中</li>
+</ul>
+<p>打开命令</p>
+<ul>
+<li><code>&lt;cr&gt;</code>、<code>&lt;c-t&gt;</code>、<code>&lt;c-v&gt;</code>、<code>&lt;c-h&gt;</code>: 开在本窗口（现在的文件就关了）、新Tab、横分屏、竖分屏</li>
+<li><code>&lt;c-o&gt;</code>：打开，ctrlp会问你用上述哪种方法打开</li>
+</ul>
+<p>输入路径</p>
+<ul>
+<li><code>&lt;s-tab&gt;</code>：开关输入栏</li>
+<li><code>tab</code>: 自动补全</li>
+<li><code>left</code>、<code>right</code>：在自己输入的path中左右移动光标</li>
+<li><code>&lt;c-\&gt;</code>：输入栏在光标处插入内容，会弹出选项，问从系统剪切板插入啥</li>
+<li><code>..</code> 回车，上走一级目录，n个<code>.</code>后回车，上走n-1个目录</li>
+<li>标记文件后，输<code>:number</code>，不回车，按打开命令，会打开并跳到指定行数</li>
+<li>输入[父目录/父目录/]新文件名，<code>&lt;c-n&gt;</code> ，创建一个新文件及其父目录</li>
+<li>默认是绝对路径，相对路径请用<code>./</code>开头</li>
+<li>但貌似不能创建文件夹</li>
+<li>对比文件：勾选多个文件</li>
+<li>输入<code>:diffthis</code>，不回车，按打开命令（通常竖分屏） /或按<code>&lt;c-o&gt;</code>来竖分屏</li>
+<li>或直接输入<code>&lt;C-d&gt;</code>，竖分屏</li>
+</ul>
+<p>文档：<a target="_blank" rel="noopener" href="https://github.com/hyliang96/ctrlp.vim/blob/master/doc/ctrlp.cnx">https://github.com/hyliang96/ctrlp.vim/blob/master/doc/ctrlp.cnx</a></p>
+<p>帮助</p>
+<ul>
+<li><code>:help ctrlp-options</code>: 获取帮助文档</li>
+<li><code>:help ctrlp-mappings</code>：按键帮助</li>
+<li><code>:help ctrlp-commands</code>：获取ctrlp命令的帮助</li>
+</ul>
+<h3 id="默认快捷键"><a class="header-anchor" href="#默认快捷键"></a>默认快捷键</h3>
+<pre class="line-numbers language-none"><code class="language-none">let g:ctrlp_prompt_mappings &#x3D; &#123;
+\ &#39;PrtBS()&#39;:              [&#39;&lt;bs&gt;&#39;, &#39;&lt;c-]&gt;&#39;],
+\ &#39;PrtDelete()&#39;:          [&#39;&lt;del&gt;&#39;],
+\ &#39;PrtDeleteWord()&#39;:      [&#39;&lt;c-w&gt;&#39;],
+\ &#39;PrtClear()&#39;:           [&#39;&lt;c-u&gt;&#39;],
+\ &#39;PrtSelectMove(&quot;j&quot;)&#39;:   [&#39;&lt;c-j&gt;&#39;, &#39;&lt;down&gt;&#39;],
+\ &#39;PrtSelectMove(&quot;k&quot;)&#39;:   [&#39;&lt;c-k&gt;&#39;, &#39;&lt;up&gt;&#39;],
+\ &#39;PrtSelectMove(&quot;t&quot;)&#39;:   [&#39;&lt;Home&gt;&#39;, &#39;&lt;kHome&gt;&#39;],
+\ &#39;PrtSelectMove(&quot;b&quot;)&#39;:   [&#39;&lt;End&gt;&#39;, &#39;&lt;kEnd&gt;&#39;],
+\ &#39;PrtSelectMove(&quot;u&quot;)&#39;:   [&#39;&lt;PageUp&gt;&#39;, &#39;&lt;kPageUp&gt;&#39;],
+\ &#39;PrtSelectMove(&quot;d&quot;)&#39;:   [&#39;&lt;PageDown&gt;&#39;, &#39;&lt;kPageDown&gt;&#39;],
+\ &#39;PrtHistory(-1)&#39;:       [&#39;&lt;c-n&gt;&#39;],
+\ &#39;PrtHistory(1)&#39;:        [&#39;&lt;c-p&gt;&#39;],
+
+\ &#39;AcceptSelection(&quot;e&quot;)&#39;: [&#39;&lt;cr&gt;&#39;, &#39;&lt;2-LeftMouse&gt;&#39;],
+\ &#39;AcceptSelection(&quot;h&quot;)&#39;: [&#39;&lt;c-x&gt;&#39;, &#39;&lt;c-cr&gt;&#39;, &#39;&lt;c-s&gt;&#39;],
+\ &#39;AcceptSelection(&quot;t&quot;)&#39;: [&#39;&lt;c-t&gt;&#39;],
+\ &#39;AcceptSelection(&quot;v&quot;)&#39;: [&#39;&lt;c-v&gt;&#39;, &#39;&lt;RightMouse&gt;&#39;],
+
+\ &#39;ToggleFocus()&#39;:        [&#39;&lt;s-tab&gt;&#39;],
+\ &#39;ToggleRegex()&#39;:        [&#39;&lt;c-r&gt;&#39;],
+\ &#39;ToggleByFname()&#39;:      [&#39;&lt;c-d&gt;&#39;],
+\ &#39;ToggleType(1)&#39;:        [&#39;&lt;c-f&gt;&#39;, &#39;&lt;c-up&gt;&#39;],
+\ &#39;ToggleType(-1)&#39;:       [&#39;&lt;c-b&gt;&#39;, &#39;&lt;c-down&gt;&#39;],
+\ &#39;PrtExpandDir()&#39;:       [&#39;&lt;tab&gt;&#39;],
+\ &#39;PrtInsert(&quot;c&quot;)&#39;:       [&#39;&lt;MiddleMouse&gt;&#39;, &#39;&lt;insert&gt;&#39;],
+
+\ &#39;PrtInsert()&#39;:          [&#39;&lt;c-\&gt;&#39;],
+
+\ &#39;PrtCurStart()&#39;:        [&#39;&lt;c-a&gt;&#39;],
+\ &#39;PrtCurEnd()&#39;:          [&#39;&lt;c-e&gt;&#39;],
+\ &#39;PrtCurLeft()&#39;:         [&#39;&lt;c-h&gt;&#39;, &#39;&lt;left&gt;&#39;, &#39;&lt;c-^&gt;&#39;],
+\ &#39;PrtCurRight()&#39;:        [&#39;&lt;c-l&gt;&#39;, &#39;&lt;right&gt;&#39;],
+\ &#39;PrtClearCache()&#39;:      [&#39;&lt;F5&gt;&#39;],
+\ &#39;PrtDeleteEnt()&#39;:       [&#39;&lt;F7&gt;&#39;],
+
+\ &#39;CreateNewFile()&#39;:      [&#39;&lt;c-y&gt;&#39;],
+\ &#39;MarkToOpen()&#39;:         [&#39;&lt;c-z&gt;&#39;],
+\ &#39;OpenMulti()&#39;:          [&#39;&lt;c-o&gt;&#39;],
+\ &#39;PrtExit()&#39;:            [&#39;&lt;esc&gt;&#39;, &#39;&lt;c-c&gt;&#39;, &#39;&lt;c-g&gt;&#39;],
+\ &#125;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="vim基础知识"><a class="header-anchor" href="#vim基础知识"></a>vim基础知识</h1>
+<h3 id="vim快捷键设置"><a class="header-anchor" href="#vim快捷键设置"></a>vim快捷键设置</h3>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2c9a85277d49">https://www.jianshu.com/p/2c9a85277d49</a></p>
+<h3 id="vim基础操作"><a class="header-anchor" href="#vim基础操作"></a>vim基础操作</h3>
+<p><a target="_blank" rel="noopener" href="http://vim.wikia.com/wiki/All_the_right_moves">http://vim.wikia.com/wiki/All_the_right_moves</a></p>
+<h1 id="按键"><a class="header-anchor" href="#按键"></a>按键</h1>
+<h2 id="冲突的"><a class="header-anchor" href="#冲突的"></a>冲突的</h2>
+<p>enter=ctrl+m</p>
+<p>tab=ctrl+i</p>
+<p>ctrl+tab!=ctrl+i</p>
+<p>Ctrl+3=ESC</p>
+<p>delete=ctrl+d</p>
+<h4 id="解决方案"><a class="header-anchor" href="#解决方案"></a>解决方案</h4>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14641942/how-to-unmap-tab-and-do-not-make-ctrl-i-invalid-in-vim">https://stackoverflow.com/questions/14641942/how-to-unmap-tab-and-do-not-make-ctrl-i-invalid-in-vim</a></p>
+<p>需要你的终端发送不同的 <em>termcap</em> code</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3985341/how-do-vims-control-o-and-control-i-work">https://stackoverflow.com/questions/3985341/how-do-vims-control-o-and-control-i-work</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000012060333">jumplist及多次跳跃的教程</a></p>
+<p>:h jumplist</p>
+<p>ctrl+o：去上次光标位置，会跨越文件</p>
+<p>ctrl+i：去下次光标位置，会跨越文件</p>
+<h2 id="alt-键的映射"><a class="header-anchor" href="#alt-键的映射"></a>alt+键的映射</h2>
+<h3 id="mac的解决方案"><a class="header-anchor" href="#mac的解决方案"></a>mac的解决方案</h3>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim">https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim</a></p>
+<p>alt+键，shift+alt+键 皆可用，不会混</p>
+<h3 id="依赖于英文输入法"><a class="header-anchor" href="#依赖于英文输入法"></a>依赖于英文输入法</h3>
+<p>我使用的是ABC英文输入法</p>
+<ul>
+<li>其alt+键对应特殊字符的映射最通用</li>
+<li>按 ^ ~ 等键不会滞留等待输入下一个键</li>
+</ul>
+<p>而<code>美式键盘（国际）</code>会滞留，例如，输入^ 会显示<code>^</code>并滞留</p>
+<ul>
+<li>若再输<code>a</code>，则出来$\hat{a}$</li>
+<li>若再输空格，才出^</li>
+</ul>
+<p><code>ABC（国际）</code>输入alt+z/^ 等键会出现滞留间，例如输入alt+^ 会显示<code>^</code>并滞留</p>
+<ul>
+<li>若再输<code>a</code>，则出来$\hat{a}$</li>
+<li>若再输空格，才出^</li>
+</ul>
+<h2 id="可用的快捷键"><a class="header-anchor" href="#可用的快捷键"></a>可用的快捷键</h2>
+<h3 id="可用且不不同"><a class="header-anchor" href="#可用且不不同"></a>可用且不不同</h3>
+<p><code>&lt;Home&gt;</code>=<code>Fn+Left</code>, <code>End</code>=<code>Fn+Right</code>,<code>S-Home/End</code>， <code>C-Home/End</code>，,<code>S-C-Home/End</code>， <code>S-C-Home/End</code>，</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;PageUp&#x2F;PageDown&gt;&#96;&#x3D;&#96;Fn+Up&#x2F;Down
+F1&#96; &#96;&lt;S-F1&gt;&#96;  &#96;&lt;C-F1&gt;&#96; &#96;&lt;C-S-F1&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="被占用的"><a class="header-anchor" href="#被占用的"></a>被占用的</h3>
+<p><code>S-PageUp/PageDown</code> =（似乎）<code>C-PageUp/PageDown</code> 开/关下小栏</p>
+<h2 id="不可用的"><a class="header-anchor" href="#不可用的"></a>不可用的</h2>
+<h1 id="待办"><a class="header-anchor" href="#待办"></a>待办</h1>
+<ul>
+<li>insert 模式下，在行尾ctrl+v插入，再ctrl+z撤销，则会前移一格</li>
+<li>insert 模式下，在行中ctrl+v插入或输入一段文字，再ctrl+z撤销，再重做ctrl+r，则光标相比于撤销后未动，而没有回到撤销前的光标位置</li>
+<li>insert paste 模式下，ctrl+s出现^S，而没有保存</li>
+<li>实现在insert模式，输入tab，若在单词尾，则自动补全，否则输入tab</li>
+<li>insert paste 模式下，按tab键，会出tab；换行后自动缩进也出tab</li>
+<li>insert 模式，行首输入<code>\</code>，会出现<code>【三个缩进】\</code>，但在行中不会有这个问题</li>
+<li>用<code>inoremap \ &lt;space&gt;&lt;backspace&gt;\</code>能解决，需对文件做二分法来找出原因</li>
+<li>用<code>inoremap \ &lt;任意其他字符&gt;&lt;backspace&gt;\</code>不能解决</li>
+</ul>
+<h3 id="vim-multiple-cursors-多行编辑插件-_2"><a class="header-anchor" href="#vim-multiple-cursors-多行编辑插件-_2"></a>vim-multiple-cursors 多行编辑插件</h3>
+<h4 id="进入vim-multiple-cursors的visual、normal模式"><a class="header-anchor" href="#进入vim-multiple-cursors的visual、normal模式"></a>进入vim-multiple-cursors的visual、normal模式</h4>
+<ul>
+<li>bug：先ctrl+d选定一个词，在S-d选所有相同词时，会出现bug</li>
+<li><code>shift+左</code> <code>Fn+右</code>输入后不立即奏效，需再输入一个键才左移一词或右移到行尾</li>
+</ul>
+<p>但<code>shift+右</code> <code>Fn+左</code>输入后立即奏效</p>
+<ul>
+<li><code>S-C-Up/Down</code>能用</li>
+<li>在insert模式上述都能用</li>
+</ul>
+<h4 id="提示栏"><a class="header-anchor" href="#提示栏"></a>提示栏</h4>
+<ul>
+<li>底栏不显示现在在vim-multiple-cursors的visual或normal状态，但现实在insert状态</li>
+</ul>
+<h4 id="各模式"><a class="header-anchor" href="#各模式"></a>各模式</h4>
+<ul>
+<li>ctrl+b不能退出，esc才能退出</li>
+</ul>
+<h1 id="vim的常用函数"><a class="header-anchor" href="#vim的常用函数"></a>vim的常用函数</h1>
+<ul>
+<li>行号 <code>line('.')</code></li>
+<li>下一个空白行的行号 <code>search(&quot;^$&quot;) - 1</code></li>
+<li>getline(start, end)，获得字符串</li>
+<li>判断是否在行尾</li>
+<li>n、v模式：<code>virtcol(&quot;.&quot;) == virtcol(&quot;$&quot;)-1</code></li>
+<li>i模式：<code>virtcol(&quot;.&quot;) == virtcol(&quot;$&quot;)</code></li>
+<li>virtcol显示的是字符宽度，而非bite数</li>
+<li><code>call feedkeys(&quot;\&lt;C-x&gt;xxx\&lt;Esc&gt;&quot;)</code></li>
+<li>必需首字母大写</li>
+<li>必需双引号</li>
+<li><code>:h terminal-key-codes</code>查看key code，例如</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">t_%i	&lt;S-Right&gt;	shift arrow right		*t_%i* *&#39;t_%i&#39;*
+t_#4	&lt;S-Left&gt;	shift arrow left		*t_#4* *&#39;t_#4&#39;*<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>显示时，输入<code>:echo &quot;\&lt;S-Left&gt;&quot;</code>，输出<code>&lt;80&gt;#4</code></p>
+<ul>
+<li>在终端，输入<code>cat -v</code>或<code>sed -n l</code> 或按<code>ctrl+v</code> 然后输入组合键，会<strong>显示快捷键的键码</strong></li>
+<li>在vim ，输入<code>:echo getchar()</code>回车，然后输入快捷键，会显示在vim下的编码。</li>
+<li>如按PageUp，显示<code>&lt;80&gt;kP</code>，其含义是unicode为 \u80-k-P，即<code>getchar()=~'^[\u80]kP$'</code>为真</li>
+<li>按S-PageUp，显示<code>&lt;80&gt;&lt;fc&gt;^D&lt;80&gt;&lt;fd&gt;^D</code>，其含义是unicode为<code>\u90-\ufc-^D-\u80-\ufd-^D</code>，即<code>getchar()=~&quot;^[\\u80][\\ufc]\&lt;C-D&gt;[\\u80][\\ufd]\&lt;C-D&gt;$&quot;</code>为真</li>
+</ul>
+<h3 id="转义字符"><a class="header-anchor" href="#转义字符"></a>转义字符</h3>
+<ul>
+<li>单引号不转义，双引号转义。转义字符如下</li>
+<li>第一类：<code>\\</code>表示<code>\</code>，<code>\n</code>换行，<code>\t</code>tab</li>
+<li>第二类：按键：<code>\&lt;C-Up&gt;</code>, <code>\&lt;up&gt;</code></li>
+<li>第三类：正则表达式中的转义字符，单引号内写作<code>\某</code>，双引号内写作<code>\\某</code></li>
+<li>正则表达式的转义:</li>
+<li><code>\(</code>表示<code>(</code>,<code>\)</code>表示<code>)</code>,<code>\|</code> 表示<code>|</code>即“或”</li>
+<li><code>\a</code>表示字母，即<code>[a-zA-Z]</code>，<code>\d</code>表示数字，即<code>[0-9]</code></li>
+</ul>
+<p>例如<code>match('asd','\(\a\|\d\)')</code>返回0，<code>match('213','\(\a\|\d\)')</code>返回0，<code>match('-+\','\(\a\|\d\)')</code>返回-1</p>
+<ul>
+<li>
+<p>正则表达式中的<code>[</code> <code>]</code> <code>+</code> <code>*</code>皆不需要前加<code>\</code></p>
+</li>
+<li>
+<p>例如</p>
+</li>
+<li>
+<p>正则表达式转义字符，单引号内写作<code>\某</code>，双引号内写作<code>\\某</code></p>
+</li>
+</ul>
+<p>如 <code>'\(\a\|\d\)'</code> 等价于 <code>&quot;\\(\\a\\|\\d\\)&quot;</code></p>
+<ul>
+<li>第一、二类转义字符，只能用双引号；第三类转义字符，单双引号皆可用。</li>
+</ul>
+<h1 id="系统剪切板"><a class="header-anchor" href="#系统剪切板"></a>系统剪切板</h1>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/19863631">https://www.zhihu.com/question/19863631</a></p>
+<p><a target="_blank" rel="noopener" href="http://os.51cto.com/art/201808/580326.htm?mobile">http://os.51cto.com/art/201808/580326.htm?mobile</a></p>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;home&#x2F;$USER
+git clone https:&#x2F;&#x2F;github.com&#x2F;vim&#x2F;vim.git
+cd vim&#x2F;src
+md &#x2F;home&#x2F;$USER&#x2F;ENV&#x2F;vim
+.&#x2F;configure --prefix&#x3D;&#x2F;home&#x2F;$USER&#x2F;ENV&#x2F;vim
+make
+make install<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>删减vimrc中被注释掉的</li>
+<li>剪切板：<a target="_blank" rel="noopener" href="http://os.51cto.com/art/201808/580326.htm?mobile">http://os.51cto.com/art/201808/580326.htm?mobile</a></li>
+<li><a target="_blank" rel="noopener" href="https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim">https://vi.stackexchange.com/questions/84/how-can-i-copy-text-to-the-system-clipboard-from-vim</a></li>
+<li>xclip源代码：<a target="_blank" rel="noopener" href="https://github.com/astrand/xclip">https://github.com/astrand/xclip</a></li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">.&#x2F;configure # --prefix&#x3D;&#x2F;home&#x2F;$USER&#x2F;ENV&#x2F;xclip
+make
+make install prefix&#x3D;&#x2F;home&#x2F;$USER&#x2F;ENV&#x2F;xclip<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>如果要使用Xclip，请粘贴以下行：</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">alias pbcopy&#x3D;&#39;xclip -selection clipboard&#39;  alias pbpaste&#x3D;&#39;xclip -selection clipboard -o&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果要使用xsel，请在?/.bashrc文件中粘贴以下行:</p>
+<pre class="line-numbers language-none"><code class="language-none">alias pbcopy&#x3D;&#39;xsel --clipboard --input&#39;  alias pbpaste&#x3D;&#39;xsel --clipboard --output&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后保存并关闭.bashrc文件。</p>
+<ul>
+<li>安装xclip</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">sudo apt-get install xclip
+:call system(&#39;xclip -selection clipboard&#39;, @&quot;)
+:call system(&#39;xclip -selection clipboard -o&#39;, @&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><a target="_blank" rel="noopener" href="https://coderwall.com/p/hmki3q/vim-copy-paste">https://coderwall.com/p/hmki3q/vim-copy-paste</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/erickzanardo/vim-xclip">https://github.com/erickzanardo/vim-xclip</a></p>
+<ul>
+<li>clip：conda install</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="http://procrastinatingdev.com/clip/">http://procrastinatingdev.com/clip/</a></p>
+<pre class="line-numbers language-none"><code class="language-none">conda install -c travis clip<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>xsel</li>
+</ul>
+<p>make：<a target="_blank" rel="noopener" href="https://gist.github.com/houtianze/7ba320bc250589fdd35ad4082e52133f">https://gist.github.com/houtianze/7ba320bc250589fdd35ad4082e52133f</a></p>
+<pre class="line-numbers language-none"><code class="language-none">yum install -y automake autoconf git libtool
+curl -OL http:&#x2F;&#x2F;www.vergenet.net&#x2F;~conrad&#x2F;software&#x2F;xsel&#x2F;download&#x2F;xsel-1.2.0.tar.gz
+tar -xzf xsel-1.2.0.tar.gz
+cd xsel-1.2.0
+# .&#x2F;autogen.sh --prefix&#x3D;&#x2F;home&#x2F;$USER&#x2F;ENV&#x2F;xsel
+.&#x2F;configure --prefix&#x3D;&#x2F;home&#x2F;$USER&#x2F;ENV&#x2F;xsel
+make
+make check
+sudo make install
+# make distclean<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://vi.stackexchange.com/questions/332/define-custom-commands-for-the-and-registers">https://vi.stackexchange.com/questions/332/define-custom-commands-for-the-and-registers</a></li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">function! ClipboardOrXclip(command, register)
+if a:register !~ &#39;[+*]&#39; || has(&#39;xterm_clipboard&#39;) || has(&#39;gui_running&#39;)
+&quot; Just return the original command if the clipboard is accessible
+&quot; or it&#39;s not a register that should be handled by xsel
+return a:command
+endif
+if a:register &#x3D;&#x3D; &#39;+&#39;
+return &quot;&lt;Esc&gt;:r !xsel -bo&lt;CR&gt;&quot;
+else
+return &quot;&lt;Esc&gt;:r !xsel -po&lt;CR&gt;&quot;
+endif
+endfunction
+
+nnoremap &lt;silent&gt; &lt;expr&gt; p ClipboardOrXclip(&#39;p&#39;, v:register)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>conda装vim 8.0</li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://anaconda.org/conda-forge/vim">https://anaconda.org/conda-forge/vim</a></p>
+<pre class="line-numbers language-none"><code class="language-none">conda install -c conda-forge vim<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h1 id="bug"><a class="header-anchor" href="#bug"></a>bug</h1>
+<p>已经解决</p>
+<ul>
+<li>
+<p>多光标的各个模式都不支持 S-down，可能是键盘翻译不成功</p>
+</li>
+<li>
+<p>但都支持pageup， pagedown，S-UP</p>
+</li>
+<li>
+<p>原因是，mc中的map没有区分noremap和map，因此全都是可以反复翻译的，S-Down会映射为$ctrl-d，而ctrl-d是添加搜索下一个关键词</p>
+</li>
+<li>
+<p>按S-C-Up，需要等待输入下一个键才执行，找出何处在等待输入空</p>
+</li>
+<li>
+<p>在insert模式</p>
+</li>
+<li>
+<p>在文件头，按S+left，S+up，会切换到normal模式：这是因为<code>inoremap &lt;S-Left&gt; &lt;esc&gt;gEa</code>执行到一半，发现<code>gE</code>无法执行，就卡在n模式了。故应当修改为<code>inoremap &lt;S-Left&gt; &lt;left&gt;&lt;c-o&gt;gE&lt;right&gt;</code>，使得执行到一半，就回到v模式。</p>
+</li>
+<li>
+<p>所有imap，inoremap都不要写<code>&lt;esc&gt;...i或a</code>，要写<code>&lt;c-o&gt;</code>，则可避免上述问题</p>
+</li>
+<li>
+<p>按left, up, S+C+up、PageUp，Home不会</p>
+</li>
+<li>
+<p>在insert模式下，按ctrl+z撤销，与vimrc中更精细的undo不兼容</p>
+</li>
+<li>
+<p>多光标的visual模式下，pagedown按过一次后，再按则只能向下移动一行；normal和插入模式则正常</p>
+</li>
+<li>
+<p>多光标的各个模式不支持alt+up/down，但都支持alt+m</p>
+</li>
+<li>
+<p>air-line 的tab标头，在关闭tab后，还会留着一个空壳标头</p>
+</li>
+</ul>
+<p>未解决</p>
+<ul>
+<li>vim双击或v+移动 选中后，翻页时会推着光标走，从而选区变大，这是因为vim不支持off-screen cursor</li>
+<li>精细的撤销：backspace和del连续按，</li>
+<li>第一次按backspace或del，则标记一个节点</li>
+<li>backsapce删到一个空格，则标记一个节点</li>
+</ul>
+<p>待办</p>
+<ul>
+<li>
+<p>写翻墙服务器的一键安装脚本</p>
+</li>
+<li>
+<p>把翻墙服务器的aliases写成专门的一个脚本，然后在~/.alias里source它</p>
+</li>
+<li>
+<p>将系统安装脚本，输出写到log</p>
+</li>
+<li>
+<p>比较实验室、笔记本、开发服务器上的共享dot文件的异同，将开发服务器没有添加得到开发服务器上面</p>
+</li>
+<li>
+<p>将serverENV和shareENV装到实验室服务器上，并完善其自动安装脚本</p>
+</li>
+</ul>
+<h1 id="安装方法"><a class="header-anchor" href="#安装方法"></a>安装方法</h1>
+<h2 id="安装方法-_2"><a class="header-anchor" href="#安装方法-_2"></a>安装方法</h2>
+<ul>
+<li>备份</li>
+</ul>
+<p>把目录清空</p>
+<pre class="line-numbers language-none"><code class="language-none">rm &#x2F;home&#x2F;$USER&#x2F;backup_before_install -rf
+mkdir &#x2F;home&#x2F;$USER&#x2F;backup_before_install
+mv &#x2F;home&#x2F;$USER&#x2F;&#123;*,.*&#125; &#x2F;home&#x2F;$USER&#x2F;backup_before_install<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>或者全部清空【危险】</p>
+<pre class="line-numbers language-none"><code class="language-none">rm &#x2F;home&#x2F;$USER&#x2F;* -rf
+rm &#x2F;home&#x2F;$USER&#x2F;.* -rf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>重新登录，进入bash</p>
+<ul>
+<li>安装</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">cd &#x2F;home&#x2F;$USER
+git clone https:&#x2F;&#x2F;github.com&#x2F;hyliang96&#x2F;system-template.git
+cp &#x2F;home&#x2F;$USER&#x2F;system-template&#x2F;&#123;*,.*&#125; &#x2F;home&#x2F;$USER -r
+rm &#x2F;home&#x2F;$USER&#x2F;system-template -rf
+bash &#x2F;home&#x2F;$USER&#x2F;init_script&#x2F;install_sys.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>再次登录则是zsh，并开机安装zsh</p>
+<ul>
+<li>ssh设置</li>
+<li>笔记本上</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">ssh-copy-id -i ~&#x2F;.ssh&#x2F;&lt;私钥名&gt;（如id_rsa） &lt;服务器别名&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>安装软件</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">bash &#x2F;home&#x2F;$USER&#x2F;init_script&#x2F;cpu_software.sh
+或
+bash &#x2F;home&#x2F;$USER&#x2F;init_script&#x2F;gpu_software.sh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>修改系统时间</li>
+<li>个人用户修改</li>
+</ul>
+<p>获得修改指令</p>
+<pre class="line-numbers language-none"><code class="language-none">tzselect<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>一路选择地区，得到返回<code>export TZ='Asia/Shanghai'</code></p>
+<p>append this to <code>~/.env</code></p>
+<pre class="line-numbers language-none"><code class="language-none">export TZ&#x3D;&#39;Asia&#x2F;Shanghai&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>系统修改</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">date -R # 再次查看时间
+sudo cp &#x2F;usr&#x2F;share&#x2F;zoneinfo&#x2F;Asia&#x2F;Shanghai  &#x2F;etc&#x2F;localtime
+date -R # 再次查看时间，确认已经修改为北京时间
+sudo hwclock --systohc # 修改硬件CMOS的时间，如果没有这一步的话，后面时间还是不准<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>服务器上</li>
+</ul>
+<p>当确认服务器运行正常，将其<code>.ssh/id_ras.pub</code>公钥添加到github上，则可以同步shareENV、serverENV</p>
+<h2 id="详解"><a class="header-anchor" href="#详解"></a>详解</h2>
+<ul>
+<li>自动脚本</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">git clone https:&#x2F;&#x2F;github.com&#x2F;hyliang96&#x2F;shareENV.git &#x2F;home&#x2F;$USER&#x2F;ENV&#x2F;shareENV
+git clone https:&#x2F;&#x2F;github.com&#x2F;hyliang96&#x2F;serverENV.git &#x2F;home&#x2F;$USER&#x2F;ENV&#x2F;serverENV
+zsh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>zsh是为了用antigen自动安装zsh的插件</p>
+<p>用git@github.com则会permission denied，用https://github.com/hyliang96则需要输入密码</p>
+<p>之后脚本中</p>
+<pre class="line-numbers language-none"><code class="language-none">cd $shareENV
+git remote set-url origin git@github.com:hyliang96&#x2F;shareENV
+cd $serverENV
+git remote set-url origin git@github.com:hyliang96&#x2F;serverENV<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>zsh compinit: insecure directories and files, run compaudit for list.</li>
+<li>法一：保留原来的.antigen，但将<code>.antigen/init.zsh</code>中的<code>hyliang</code>改为<code>$USER</code>，会出现bug</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;home&#x2F;test&#x2F;ENV&#x2F;CONF&#x2F;.antigen&#x2F;init.zsh:source:74: no such file or directory: &#x2F;home&#x2F;test&#x2F;ENV&#x2F;CONF&#x2F;.antigen&#x2F;bundles&#x2F;rupa&#x2F;z&#x2F;z.sh
+&#x2F;home&#x2F;test&#x2F;ENV&#x2F;CONF&#x2F;.antigen&#x2F;init.zsh:source:75: no such file or directory: &#x2F;home&#x2F;test&#x2F;ENV&#x2F;CONF&#x2F;.antigen&#x2F;bundles&#x2F;zsh-users&#x2F;zsh-autosuggestions&#x2F;zsh-autosuggestions.plugin.zsh
+&#x2F;home&#x2F;test&#x2F;ENV&#x2F;CONF&#x2F;.antigen&#x2F;init.zsh:source:76: no such file or directory: &#x2F;home&#x2F;test&#x2F;ENV&#x2F;CONF&#x2F;.antigen&#x2F;bundles&#x2F;zsh-users&#x2F;zsh-completions&#x2F;zsh-completions.plugin.zsh
+&#x2F;home&#x2F;test&#x2F;ENV&#x2F;CONF&#x2F;.antigen&#x2F;init.zsh:source:77: no such file or directory: &#x2F;home&#x2F;test&#x2F;ENV&#x2F;CONF&#x2F;.antigen&#x2F;bundles&#x2F;willghatch&#x2F;zsh-cdr&#x2F;cdr.plugin.zsh
+&#x2F;home&#x2F;test&#x2F;ENV&#x2F;CONF&#x2F;.antigen&#x2F;init.zsh:source:79: no such file or directory: &#x2F;home&#x2F;test&#x2F;ENV&#x2F;CONF&#x2F;.antigen&#x2F;bundles&#x2F;zsh-users&#x2F;zsh-syntax-highlighting&#x2F;zsh-syntax-highlighting.plugin.zsh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>法二：重新安装后的zsh，没有git提示（使用之）</li>
+</ul>
+<p>需要</p>
+<pre class="line-numbers language-none"><code class="language-none">rm ~&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;themes&#x2F;&#123;agnoster.zsh-theme,agnoster.zsh-theme.antigen-compat&#125;
+ln -s $shareENV&#x2F;shell_config&#x2F;&#123;agnoster.zsh-theme,agnoster.zsh-theme.antigen-compat&#125; ~&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;themes
+~&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;themes&#x2F;my_agnoster.zsh-theme
+~&#x2F;.antigen&#x2F;bundles&#x2F;robbyrussell&#x2F;oh-my-zsh&#x2F;themes&#x2F;my_agnoster.zsh-theme.antigen-compat<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>看看如何将其利用我的github，能独立安装antigen安装，并能用我的更换配色</p>
+<ul>
+<li>autojump不安全</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">zsh compinit: insecure directories and files, run compaudit for list.
+Ignore insecure directories and files and continue [y] or abort compinit [n]? ncompinit: initialization aborted
+_antigen_compinit:1: command not found: compdef<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>重装autojump</p>
+<pre class="line-numbers language-none"><code class="language-none">cd $my
+git clone git:&#x2F;&#x2F;github.com&#x2F;joelthelion&#x2F;autojump.git
+cd autojump
+.&#x2F;install.py
+cd ..
+rm autojump -rf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>更换链接</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">bash init_script&#x2F;add_link.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装完后不要在git pull，不然会把链接换回去</p>
+<ul>
+<li>安装vim 插件，会启动vim，可能需要后台运行，运行完自动关闭</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">vim +PlugInstall +qall<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>更换zsh</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">chsh -s &#96;which zsh&#96;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>退出重新登录，看看各个东西能不能用</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/218adcf6/" rel="prev" title="TensorboardX：在pytorch上用Tensorboard">
+                  <i class="fa fa-chevron-left"></i> TensorboardX：在pytorch上用Tensorboard
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/9a4ae6c6/" rel="next" title="vscode安装配置">
+                  vscode安装配置 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/27f12ef1/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

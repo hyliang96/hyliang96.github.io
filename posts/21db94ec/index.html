@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="GIT学习笔记 教程 猴子都能看懂的GIT入门">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git学习笔记">
+<meta property="og:url" content="https://hyliang96.github.io/posts/21db94ec/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="GIT学习笔记 教程 猴子都能看懂的GIT入门">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyliang96.github.io/posts/21db94ec/ScreenShot%202020-01-11%2002.19.49.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/21db94ec/ScreenShot%202020-01-11%2002.59.11.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/21db94ec/ScreenShot%202020-01-11%2003.03.33.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/21db94ec/ScreenShot%202020-01-11%2003.05.22.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/21db94ec/ScreenShot%202020-01-11%2003.01.04.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/21db94ec/ScreenShot%202020-01-11%2002.28.46.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/21db94ec/ScreenShot%202020-01-11%2002.25.59.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/21db94ec/ScreenShot%25202020-01-11%252002.28.46.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/21db94ec/ScreenShot%202020-01-13%2016.21.31.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/21db94ec/image-20200113214519713.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/21db94ec/image-20200113214619559.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/21db94ec/image-20200113213842403.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/21db94ec/ScreenShot%202020-01-13%2021.37.05.png">
+<meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
+<meta property="article:modified_time" content="2022-03-23T09:14:46.123Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyliang96.github.io/posts/21db94ec/ScreenShot%202020-01-11%2002.19.49.png">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/21db94ec/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/21db94ec/","path":"posts/21db94ec/","title":"git学习笔记"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>git学习笔记 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GIT%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><span class="nav-text">GIT学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%99%E7%A8%8B"><span class="nav-text">教程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%BD%E7%95%A5"><span class="nav-text">忽略</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%80%E4%B8%AArepo"><span class="nav-text">一个repo</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%A8%E5%B1%80%EF%BC%88%E6%95%B4%E4%B8%AA%E7%94%B5%E8%84%91%EF%BC%89"><span class="nav-text">全局（整个电脑）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%9C%E7%94%A8"><span class="nav-text">作用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-text">文件的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#checkout%E7%9A%84%E9%80%BB%E8%BE%91"><span class="nav-text">checkout的逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%94%B9%E5%8A%A8%E5%8F%AF%E5%90%A6%E5%B8%A6%E8%B5%B0"><span class="nav-text">改动可否带走</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8E%E5%8E%86%E5%8F%B2%E8%8A%82%E7%82%B9%E5%BC%80%E5%88%86%E6%94%AF"><span class="nav-text">从历史节点开分支</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%BB%E5%8E%86%E5%8F%B2%E8%8A%82%E7%82%B9%E8%AF%95%E7%9D%80%E4%BF%AE%E6%94%B9"><span class="nav-text">去历史节点试着修改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E4%BF%AE%E6%94%B9%E5%AD%98%E6%88%90%E5%88%86%E6%94%AF"><span class="nav-text">将修改存成分支</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#stash"><span class="nav-text">stash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%82%A8%E8%97%8F"><span class="nav-text">储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E5%82%A8%E8%97%8F"><span class="nav-text">查看储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E5%87%BA%E5%82%A8%E8%97%8F"><span class="nav-text">取出储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%96%E6%B6%88apply%E5%82%A8%E8%97%8F"><span class="nav-text">取消apply储藏</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%95%E4%B8%80"><span class="nav-text">法一</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%95%E4%BA%8C"><span class="nav-text">法二</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rebase"><span class="nav-text">rebase</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E6%AF%94rebase-merge%E7%9A%84%E5%8C%96%E8%A7%A3%E5%86%B2%E7%AA%81"><span class="nav-text">对比rebase&#x2F;merge的化解冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#merge"><span class="nav-text">merge</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rebase-_2"><span class="nav-text">rebase</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rebase%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="nav-text">rebase的缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#git-rebase-%E7%9A%84%E4%BE%8B%E5%AD%90"><span class="nav-text">git rebase 的例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cherry-pick"><span class="nav-text">cherry-pick</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/21db94ec/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          git学习笔记
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/git/" itemprop="url" rel="index"><span itemprop="name">git</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/21db94ec/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/21db94ec/" data-xid="/posts/21db94ec/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>7.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>26 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="GIT学习笔记"><a class="header-anchor" href="#GIT学习笔记"></a>GIT学习笔记</h1>
+<h2 id="教程"><a class="header-anchor" href="#教程"></a>教程</h2>
+<p><a target="_blank" rel="noopener" href="https://backlog.com/git-tutorial/cn/">猴子都能看懂的GIT入门</a></p>
+<h2 id="配置"><a class="header-anchor" href="#配置"></a>配置</h2>
+<h3 id="忽略"><a class="header-anchor" href="#忽略"></a>忽略</h3>
+<h4 id="一个repo"><a class="header-anchor" href="#一个repo"></a>一个repo</h4>
+<p>vim repo的根目录 <strong>或 其下任意一个文件夹中</strong>，创建<code>.gitignore</code>，则适用于<code>.gitignore</code>所在的文件夹</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 注释</span>
+<span class="token comment"># 以下文件会被忽略</span>
+
+<span class="token comment"># 相对本.gitignore文件所在文件夹的 路径</span>
+/path/relative/to/here
+<span class="token comment"># 相对本.gitignore文件所在文件夹下 任意这样结尾的路径</span>
+tail/of/path
+
+<span class="token comment"># 文件或文件夹</span>
+xx/x/xxx
+/xx/x/xxx
+<span class="token comment"># 文件夹</span>
+xx/x/xxx/
+/xx/x/xxx/
+
+<span class="token comment"># 通配符</span>
+xx/xx*xx/xx
+xx/xx*
+*xx/xx
+
+
+<span class="token comment"># 不可写成 `ignore-this-dir`, 这样整个ignore-this-dir文件夹被忽略了, 下面的例外无法生效</span>
+ignore-this-dir/*
+<span class="token comment"># 例外，即不忽略</span>
+<span class="token operator">!</span>ignore-this-dir/exception<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="全局（整个电脑）"><a class="header-anchor" href="#全局（整个电脑）"></a>全局（整个电脑）</h4>
+<p>vim ~/.gitignore_global</p>
+<ul>
+<li>代码行尾勿加注释，会无法执行那一行</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none"># attention: 代码行尾勿加注释，会无法执行那一行
+
+# Windows
+Thumbs.db
+ # Thumbnail cache files
+desktop.ini
+# Folder view configuration files
+
+# OS X
+.DS_Store
+# Folder view configuration files
+.Spotlight-V100
+# Files that might appear on external disks
+.Trashes
+# Files that might appear on external disks
+._*
+# Thumbnail cache files
+
+# Compiled Python files
+*.pyc
+
+# Compiled C++ files
+*.out
+
+# Application specific files
+venv
+node_modules
+.sass-cache
+
+# Temp File
+*.swp
+*.swa
+*.swo
+
+# github merge file
+*.orig
+
+# vscode
+.vscode<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>vim ~/.gitconfig, 添加如下</p>
+<pre class="line-numbers language-none"><code class="language-none">[core]
+        excludesfile &#x3D; .gitignore_global
+        # 其他core配置...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>适用于电脑上所有repo</p>
+<h4 id="作用"><a class="header-anchor" href="#作用"></a>作用</h4>
+<p>Mac系统</p>
+<ul>
+<li>._*: Mac系统打开windows或linux系统的文件，会把的文件xxx.xx的附属信息，写入&quot;._xxx.xx&quot;二进制文件</li>
+<li>.DS_Store: 记录该文件夹下各文件在访达下的布局</li>
+<li>在Mac用Macfusion访问linux服务器上的git项目，需ignore上述文件</li>
+</ul>
+<h2 id="文件的状态"><a class="header-anchor" href="#文件的状态"></a>文件的状态</h2>
+<p>其中 ignore是忽略的文件, HEAD是当前所在节点的那次提交版本, index是暂存( <code>git add</code> 即 <code>git stage</code>)所生成的文件索引, wkdir是工作目录</p>
+<p>ignore/HEAD/index/wkdir[file] = None if 其中无此file else 其中此file的内容</p>
+<p>文件的状态分如下几种, git的判断机制是</p>
+<ul>
+<li>不存在的文件: ignore[file] == HEAD[file] == index[file] == wkdir[file] == None</li>
+<li>存在的文件: ! ( ignore[file] == HEAD[file] == index[file] == wkdir[file] == None)
+<ul>
+<li>忽略的文件:  None != ignore[file]</li>
+<li>未被忽略的文件:  None == ignore[file]  and ! (HEAD[file] == index[file] == wkdir[file] == None)</li>
+</ul>
+</li>
+</ul>
+<p>其中未被忽略的文件进一步判断:</p>
+<ul>
+<li>
+<p>提交文件 <code>commited</code>: None != HEAD[file] == index[file] == wkdir[file]</p>
+</li>
+<li>
+<p>未提交/不干净的文件 <code>uncommited</code>: index[file] != wkdir[file]  or  HEAD[file] != index[file]</p>
+<ul>
+<li>
+<p>未跟踪: <code>untracked</code>: None == index[file]  != wkdir[file]</p>
+</li>
+<li>
+<p>未暂存: None != index[file]  != wkdir[file]</p>
+<p><code>unstaged modified</code>: None != index[file] != wkdir[file] != None</p>
+<p><code>unstaged deleted</code>: None != index[file] !=  wkdir[file] == None</p>
+</li>
+<li>
+<p>暂存: HEAD[file] != index[file]</p>
+<p><code>staged new file</code>: None == HEAD[file]  != index[file]</p>
+<p><code>staged modified</code>: None !=  HEAD[file] != index[file] != None</p>
+<p><code>staged deleted</code>: None !=  HEAD[file] != index[file] == None     and    HEAD[file] != index[f] for any f in index</p>
+<p><code>staged renamed: file1-&gt; file2</code>:  None != HEAD[file1] != index[file1] == None    and  HEAD[file1] == index[file2]</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="checkout的逻辑"><a class="header-anchor" href="#checkout的逻辑"></a>checkout的逻辑</h2>
+<h3 id="改动可否带走"><a class="header-anchor" href="#改动可否带走"></a>改动可否带走</h3>
+<p>执行上述两命令成功的充要条件为: 一切当前不干净的文件(未跟踪/跟踪未暂存/暂存未提交), 在<code>git checkout</code>去往节点和<code>HEAD</code>节点中完全一样(是否被跟踪一样, 文件内容一样)</p>
+<p>执行后, 原来不干净的文件, 其内容/是否被跟踪/是否被暂存 均完全未变</p>
+<h3 id="从历史节点开分支"><a class="header-anchor" href="#从历史节点开分支"></a>从历史节点开分支</h3>
+<h4 id="去历史节点试着修改"><a class="header-anchor" href="#去历史节点试着修改"></a>去历史节点试着修改</h4>
+<p>checkout到历史的节点，可以试着做改动，然后提交(<code>git commit</code>)，会变成一个临时分支，而不改动历史。</p>
+<p>这个临时分支，只有一个节点hash码、没有分支名。例如下图，checkout到历史节点<code>cf8e102</code>，修改完一些文件再提交，产生临时分支节点<code>883ed24</code></p>
+<p>![屏幕快照 2019-08-19 20.12.00](assets/屏幕快照 2019-08-19 20.12.00.png)</p>
+<h4 id="将修改存成分支"><a class="header-anchor" href="#将修改存成分支"></a>将修改存成分支</h4>
+<p>处在临时分支节点，可以执行<code>git branch 分支 &amp;&amp; git checkout 分支</code> （等价于 <code>git checkout -b 分支</code>），从而使得临时分支变成一个有名字的分支。</p>
+<p>若checkout到别的节点，再<code>git log</code>就不显示这个临时节点了，但是仍然可以<code>git checkout [临时节点的hash码]</code>到这个临时节点。</p>
+<h2 id="stash"><a class="header-anchor" href="#stash"></a>stash</h2>
+<blockquote>
+<p>我们有时会遇到这样的情况，正在dev分支开发新功能，做到一半时有人过来反馈一个bug，让马上解决，但是新功能做到了一半你又不想提交，这时就可以使用git stash命令先把当前进度保存起来，然后切换到另一个分支去修改bug，修改完提交后，再切回dev分支，使用git stash pop来恢复之前的进度继续开发新功能。下面来看一下git stash命令的常见用法.</p>
+</blockquote>
+<h3 id="参考"><a class="header-anchor" href="#参考"></a>参考</h3>
+<p><a target="_blank" rel="noopener" href="https://www.yiibai.com/git/git_stash.html">https://www.yiibai.com/git/git_stash.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32452623/article/details/76100140">https://blog.csdn.net/qq_32452623/article/details/76100140</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/daguanjia11/article/details/73810577">https://blog.csdn.net/daguanjia11/article/details/73810577</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.softwhy.com/article-8630-1.html">git stash save与git stash push区别</a>:</p>
+<p>save是阉割版的push, 当前推荐使用git stash push命令,  save不能指定只存哪个目录, save 写mesage的格式和push不同</p>
+<h3 id="储藏"><a class="header-anchor" href="#储藏"></a>储藏</h3>
+<pre class="line-numbers language-none"><code class="language-none">git stash [push [--patch] [-k|--[no-]keep-index] [-q|--quiet]
+               [-u|--include-untracked] [-a|--all] [-m &lt;message&gt;]
+               [-- &lt;pathspec&gt;...]]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>无 <code>-u</code>无<code>-a</code>:  不存未跟踪的文件; 只存跟踪且修改了的文件(不论是否add)</li>
+</ul>
+<p><img data-src="/posts/21db94ec/ScreenShot%202020-01-11%2002.19.49.png" alt="ScreenShot 2020-01-11 02.19.49"></p>
+<ul>
+<li>加<code>-u</code>无<code>-a</code>: 还存未跟踪的文件, 但不存忽略的文件</li>
+<li>有<code>-a</code>: 还存未跟踪的文件, 也不存忽略的文件, 故<code>-a</code> 包含了<code>-u</code></li>
+</ul>
+<p><img data-src="/posts/21db94ec/ScreenShot%202020-01-11%2002.59.11.png" alt="ScreenShot 2020-01-11 02.59.11"></p>
+<ul>
+<li>被存的文件都回到HEAD时的样子(包括文件的有无,文件的内容); 未跟踪的文件不变</li>
+</ul>
+<h3 id="查看储藏"><a class="header-anchor" href="#查看储藏"></a>查看储藏</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> stash list<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>会显示整个分支图中(不仅仅是HEAD的)的所有储藏</li>
+</ul>
+<p><img data-src="/posts/21db94ec/ScreenShot%202020-01-11%2003.03.33.png" alt="ScreenShot 2020-01-11 03.03.33"></p>
+<p>其中 <code>stash@&#123;0&#125;</code>等, 是stash编号; 在glg中显示的节点hash ( 位于 三角 的最顶上的那个点) 也可以做stash编号</p>
+<ul>
+<li>
+<p><code>glg</code> 只显示  <code>stash@&#123;0&#125;</code> , 此即当前的stash, 整个分支图中仅此一个. 此stash即<code>git stash</code>各个命令里可缺省的stash编号</p>
+<p><img data-src="/posts/21db94ec/ScreenShot%202020-01-11%2003.05.22.png" alt="ScreenShot 2020-01-11 03.05.22"></p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> stash show <span class="token punctuation">[</span><span class="token operator">&lt;</span>stash编号<span class="token operator">></span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>会显示跟踪的文件的增删改</p>
+<p><img data-src="/posts/21db94ec/ScreenShot%202020-01-11%2003.01.04.png" alt="ScreenShot 2020-01-11 03.01.04"></p>
+</li>
+</ul>
+<h3 id="取出储藏"><a class="header-anchor" href="#取出储藏"></a>取出储藏</h3>
+<p>当当前目录有储藏的文件改动了, 则无法取出储藏</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> stash pop <span class="token punctuation">[</span>stash编号<span class="token punctuation">]</span> <span class="token punctuation">[</span>--index<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>等价于 <code>git stash apply [stash编号] [--index]; git stash drop [stash编号] </code></p>
+<ul>
+<li>不加—index: 原来跟踪且修改的文件还原, 现在都没git add</li>
+<li>加 index: 原来跟踪且修改的文件还原, 分别还原到add和没add的状态</li>
+<li><code>glg</code> 和 <code>git stash list</code>中看不到这个储藏了</li>
+</ul>
+<p><img data-src="/posts/21db94ec/ScreenShot%202020-01-11%2002.28.46.png" alt="ScreenShot 2020-01-11 02.28.46"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> stash apply <span class="token punctuation">[</span>stash编号<span class="token punctuation">]</span> <span class="token punctuation">[</span>--index<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>不加—index: 原来跟踪且修改的文件还原, 现在都没git add</li>
+<li>加 index: 原来跟踪且修改的文件还原, 分别还原到add和没add的状态</li>
+<li>glg 和 <code>git stash list</code>中还能到这个储藏了</li>
+</ul>
+<p><img data-src="/posts/21db94ec/ScreenShot%202020-01-11%2002.25.59.png" alt="ScreenShot 2020-01-11 02.25.59"></p>
+<pre class="line-numbers language-none"><code class="language-none">git stash drop [stash编号]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>当前文件的状态不变</li>
+<li>glg 和 <code>git stash list</code>中不能到这个储藏了</li>
+</ul>
+<p><img data-src="/posts/21db94ec/ScreenShot%25202020-01-11%252002.28.46.png" alt="ScreenShot 2020-01-11 02.28.46"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> stash <span class="token function">clear</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>等价于 <code>git stash drop [stash编号] </code> 对于所有 <code>[stash编号] </code></li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> stash branch <span class="token operator">&lt;</span>branchname<span class="token operator">></span> <span class="token punctuation">[</span><span class="token operator">&lt;</span>stash编号<span class="token operator">></span><span class="token punctuation">]</span> <span class="token punctuation">[</span>--index<span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>等价于 <code>git stash pop [&lt;stash编号&gt;] [--index]; gb &lt;branchname&gt; </code></p>
+<h3 id="取消apply储藏"><a class="header-anchor" href="#取消apply储藏"></a>取消apply储藏</h3>
+<p>在某些情况下，可能想应用储藏的修改，在进行了一些其他的修改后，又要取消之前所应用储藏的修改。Git没有提供类似于 <code>stash unapply</code>的命令，但是可以通过取消该储藏的补丁达到同样的效果：</p>
+<h3 id="法一"><a class="header-anchor" href="#法一"></a>法一</h3>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> stash show -p <span class="token punctuation">[</span>stash编号<span class="token punctuation">]</span> <span class="token operator">|</span> <span class="token function">git</span> apply -R<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>可能会想要新建一个別名，在你的 Git 里增加一个 <code>stash-unapply</code>命令，这样更有效率。例如：</p>
+<pre class="line-numbers language-shell" data-language="shell"><code class="language-shell"><span class="token function">git</span> config --global alias.stash-unapply <span class="token string">'!git stash show -p | git apply -R'</span>
+<span class="token function">git</span> stash apply <span class="token comment"># 不能有 --index</span>
+<span class="token comment"># (... work work work # 不能改储藏的文件)</span>
+<span class="token function">git</span> stash-unapply <span class="token comment"># 不会还原 git stash push -u 所储存的未跟踪文件</span>
+<span class="token comment"># 回到干净的目录</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="法二"><a class="header-anchor" href="#法二"></a>法二</h3>
+<p>如果在应用储藏前, 目录是干净的, 则可直接</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> <span class="token string">"<span class="token variable"><span class="token variable">`</span><span class="token function">git</span> rev-parse --show-toplevel<span class="token variable">`</span></span>"</span>  <span class="token comment"># 来到当前repo的根目录</span>
+<span class="token function">git</span> reset HEAD  <span class="token comment"># 取消暂存(git add)的所有文件</span>
+<span class="token function">git</span> checkout  <span class="token builtin class-name">.</span> <span class="token comment"># 取消被跟踪文件的所有修改</span>
+<span class="token function">git</span> clean -df  <span class="token comment"># 删除未跟踪也未被忽略的文件夹(-d)和文件(-f)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="rebase"><a class="header-anchor" href="#rebase"></a>rebase</h2>
+<p>带上sub-branch一起rebase</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/32652293/automatically-rebase-git-sub-branches">https://stackoverflow.com/questions/32652293/automatically-rebase-git-sub-branches</a></p>
+<p><a target="_blank" rel="noopener" href="http://voidcanvas.com/how-to-rebase-a-branch-when-the-parent-is-rebased-with-another/">http://voidcanvas.com/how-to-rebase-a-branch-when-the-parent-is-rebased-with-another/</a></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/43711961/rebase-a-branch-that-has-child-branches">https://stackoverflow.com/questions/43711961/rebase-a-branch-that-has-child-branches</a></p>
+<p>rebase 一棵树 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14504029/git-rebase-subtree/45861361#45861361">https://stackoverflow.com/questions/14504029/git-rebase-subtree/45861361#45861361</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout dev
+<span class="token function">git</span> rebase --preserve-merges master<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p><img data-src="/posts/21db94ec/ScreenShot%202020-01-13%2016.21.31.png" alt="ScreenShot 2020-01-13 16.21.31"></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/15915430/what-exactly-does-gits-rebase-preserve-merges-do-and-why">What exactly does git’s “rebase --preserve-merges” do (and why?)</a></p>
+<p>Rebase a tree: <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/17315285/rebasing-a-tree-a-commit-branch-and-all-its-children">https://stackoverflow.com/questions/17315285/rebasing-a-tree-a-commit-branch-and-all-its-children</a></p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/17106840/git-rebase-with-branches-whole-tree">https://stackoverflow.com/questions/17106840/git-rebase-with-branches-whole-tree</a></p>
+<h3 id="对比rebase-merge的化解冲突"><a class="header-anchor" href="#对比rebase-merge的化解冲突"></a>对比rebase/merge的化解冲突</h3>
+<p><a target="_blank" rel="noopener" href="https://bitmingw.com/2017/02/16/git-merge-rebase-ours-and-theirs/">参考</a></p>
+<h4 id="merge"><a class="header-anchor" href="#merge"></a>merge</h4>
+<p>初始状态: 当前分支是A</p>
+<pre class="line-numbers language-none"><code class="language-none">o-A(ours,HEAD)
+
+ o-o-B(theirs)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>执行  <code>git merge B</code>, 得到最终状态:</p>
+<pre class="line-numbers language-none"><code class="language-none">o-o(ours:原A)-A(HEAD)
+             &#x2F;
+ o-o-B(theirs)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>若中间发生冲突, 文件中显示</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+A的内容
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+B的内容
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; B分支名<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>解决冲突的方法</strong></p>
+<ul>
+<li>
+<p>手动修改冲突的文件</p>
+</li>
+<li>
+<p>只保留A, 或只保留B</p>
+</li>
+</ul>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout --ours 冲突的文件<span class="token punctuation">(</span>夹<span class="token punctuation">)</span>名       <span class="token comment"># => 保留A的内容</span>
+<span class="token function">git</span> checkout --theirs 冲突的文件<span class="token punctuation">(</span>夹<span class="token punctuation">)</span>名     <span class="token comment"># => 保留B的内容</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>若要对repo内所有文件采样上述策略, 则 <code>冲突的文件(夹)名</code> 写作 <code>&quot;$(git rev-parse --show-toplevel 2&gt; /dev/null)”</code></p>
+<ul>
+<li><s>整个repo都保留B的内容, 也可执行 <code>git merge —skip</code></s>, 这个命令不存在, 只能</li>
+</ul>
+<p>解决完冲突, 执行 <code>git add -A &quot;$(git rev-parse --show-toplevel 2&gt; /dev/null)&quot;</code>, 然后 <code>git commit</code> , 则来到最终状态. 注: <code>git merge --continue</code>命令在老版本的git没有, 如git2.7.4没有, git2.20.1有.</p>
+<p>若放弃merge, 则执行 <code>git merge --abort</code>, 则回到初始状态.</p>
+<h4 id="rebase-_2"><a class="header-anchor" href="#rebase-_2"></a>rebase</h4>
+<p>初始状态: 当前分支是A</p>
+<pre class="line-numbers language-none"><code class="language-none">   A1-A2-A(HEAD)
+ &#x2F;
+o-o-B<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>执行 <code>git rebase A</code></p>
+<p>则git内部会先 <code>git checkout B</code>, 得到<strong>中间状态</strong>:</p>
+<pre class="line-numbers language-none"><code class="language-none">   A1-A2-A(theirs)
+ &#x2F;
+o-o-B(ours,HEAD)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>再将A分支rebase, 然后 <code>git checkout A</code> , 从而变成最终状态:</p>
+<pre class="line-numbers language-none"><code class="language-none">      A1-A2-A(HEAD)
+     &#x2F;
+o-o-B<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>若发生冲突, 则当前处在中间状态. 冲突的文件所显示如下, HEAD所指的分支正好和merge冲突时相反</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+B的内容
+&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+A的内容
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 当前所rebase的A的某次提交的message (即A1或A2的message)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>解决冲突的方法:</strong></p>
+<ul>
+<li>
+<p>手动修改冲突的文件</p>
+</li>
+<li>
+<p>只保留A, 或只保留B: 解决冲突的命令中, ours和theirs 也与merge冲突时相反</p>
+</li>
+</ul>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> checkout --ours 冲突的文件<span class="token punctuation">(</span>夹<span class="token punctuation">)</span>名    <span class="token comment"># => 保留B的内容</span>
+<span class="token function">git</span> checkout --theirs 冲突的文件<span class="token punctuation">(</span>夹<span class="token punctuation">)</span>名  <span class="token comment"># => 保留A的内容</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>若要对repo内所有文件采样上述策略, 则则 <code>冲突的文件(夹)名</code> 写作 <code>&quot;$(git rev-parse --show-toplevel 2&gt; /dev/null)”</code></p>
+<ul>
+<li>
+<p>整个repo都保留A的内容, 也可执行 <code>git rebase —skip</code>. 区别如下</p>
+<p><code>git rebase —skip</code> (推荐 ): 若某文件, B 分支删除 而A分支当前冲突的commit有, 则此命令会删除此文件<br>
+<code>git checkout --ours &quot;$(git rev-parse --show-toplevel 2&gt; /dev/null)&quot;</code>: 若某文件, B 分支删除 而A分支当前冲突的commit有, 则此命令不会删除此文件</p>
+</li>
+</ul>
+<p>解决完冲突, 执行 <code>git add -A &quot;$(git rev-parse --show-toplevel 2&gt; /dev/null)&quot;</code>, 然后<code>git rebase --continue</code>, 则来到最终状态</p>
+<p>若放弃merge, 则执行 <code>git rebase --abort</code>, 则回到初始状态.</p>
+<p><strong>批量化解冲突:</strong></p>
+<p><a target="_blank" rel="noopener" href="https://gist.github.com/bitmingw/414c1781412f4ece07087ab6f2ce42f8">一个批量处理脚本</a>。这个脚本根据设定的规则自动执行指令，让我在三分钟之内完成了一个14步（以 <code>git rebase --continue</code> 计）</p>
+<h3 id="rebase的缺点"><a class="header-anchor" href="#rebase的缺点"></a>rebase的缺点</h3>
+<ul>
+<li>
+<p>git rebase会产生连环冲突，git merge不会</p>
+<p>这是因为</p>
+<pre class="line-numbers language-none"><code class="language-none">  A1-A2-A3(A)
+ &#x2F;
+B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>在A, <code>git rebase B</code>, 则会依次将 A1, A2, A3 rebase 到 B3. 若B3中某文件与A1-A3均冲突, 就会连环冲突.</p>
+<p>例如B1中有文件a, B3中无文件a, 而A1-A3均修改了文件a, 则要保留B3的文件, 则会连环冲突, 中间有三次要执行若<code>git rebase —skip</code> `来化解冲突, 保留B3的文件. 最终rebase结束将无a文件.</p>
+</li>
+<li>
+<p>有时git rebase会产生冲突，git merge不会</p>
+<p>如</p>
+<pre class="line-numbers language-none"><code class="language-none">  A1-A2(A)
+ &#x2F;
+B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>B1有文件a, B2,B3未动a, 动了别的文件; A1将a删除, A2将a恢复了a.</p>
+<p>则在A, <code>git merge B</code>, 不会出冲突. 而 <code>git rebase B</code> 则在rebase A1时会冲突.</p>
+</li>
+<li>
+<p>push后merge可以原样保留正确运行的历史commit，而rebase不会</p>
+<p>例如</p>
+<pre class="line-numbers language-none"><code class="language-none">  A1-A2(A)
+ &#x2F;
+B1-B2-B3(B)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>在A, <code>git rebase B</code>, 则得到的A1节点, 是由 B3  <code>git merge A1</code>所得. 故A1节点内容可能发生变化, 从而未被能正确运行.</p>
+<p>而在A, <code>git merge B</code>, 则A1节点未改动, 故A1还能正确运行.</p>
+</li>
+</ul>
+<h3 id="git-rebase-的例子"><a class="header-anchor" href="#git-rebase-的例子"></a>git rebase 的例子</h3>
+<ul>
+<li>当前</li>
+</ul>
+<p><img data-src="/posts/21db94ec/image-20200113214519713.png" alt="image-20200113214519713"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> rebase dev
+<span class="token comment"># 或</span>
+<span class="token function">git</span> rebase --onto dev a2405ce f1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>得到</p>
+<p><img data-src="/posts/21db94ec/image-20200113214619559.png" alt="image-20200113214619559"></p>
+<ul>
+<li>当前</li>
+</ul>
+<p><img data-src="/posts/21db94ec/image-20200113213842403.png" alt="image-20200113213842403"></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"> <span class="token function">git</span> rebase dev
+ <span class="token comment"># 或</span>
+<span class="token function">git</span> rebase --onto dev a2405ce f1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>得到</p>
+<p><img data-src="/posts/21db94ec/ScreenShot%202020-01-13%2021.37.05.png" alt="ScreenShot 2020-01-13 21.37.05"></p>
+<h2 id="cherry-pick"><a class="header-anchor" href="#cherry-pick"></a>cherry-pick</h2>
+<p>教程: <a target="_blank" rel="noopener" href="https://blog.csdn.net/FightFightFight/article/details/81039050">git cherry-pick的使用</a>  <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32452623/article/details/79449534">cherry-pick 挑好看的小樱桃</a></p>
+<p>不存在<code>git cherry-pick —squash</code>, 得用 <code>git cherry-pick -n</code>, <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/35123108/cherry-pick-and-squash-a-range-of-commits-into-a-subdirectory-or-subtree">详见</a></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/e8880219/" rel="prev" title="docker使用教程">
+                  <i class="fa fa-chevron-left"></i> docker使用教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/aa44836f/" rel="next" title="github多帐号">
+                  github多帐号 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/21db94ec/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

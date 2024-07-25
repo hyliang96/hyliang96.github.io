@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="[TOC] 在服务器和本机上通用的Vim配置 先安装依赖配置，以下依赖文件可直接复制到~&#x2F;.vimrc文件（若无该文件，则vim ~&#x2F;.vimrc创建该文件）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim配置">
+<meta property="og:url" content="https://hyliang96.github.io/posts/dba3bb35/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="[TOC] 在服务器和本机上通用的Vim配置 先安装依赖配置，以下依赖文件可直接复制到~&#x2F;.vimrc文件（若无该文件，则vim ~&#x2F;.vimrc创建该文件）">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
+<meta property="article:modified_time" content="2023-08-29T05:30:12.114Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/dba3bb35/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/dba3bb35/","path":"posts/dba3bb35/","title":"vim配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>vim配置 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%92%8C%E6%9C%AC%E6%9C%BA%E4%B8%8A%E9%80%9A%E7%94%A8%E7%9A%84Vim%E9%85%8D%E7%BD%AE"><span class="nav-text">在服务器和本机上通用的Vim配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#vimrc%E6%96%87%E4%BB%B6%E7%A4%BA%E4%BE%8B"><span class="nav-text">.vimrc文件示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BE%9D%E8%B5%96%E9%85%8D%E7%BD%AE"><span class="nav-text">依赖配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Vim%E4%BD%BF%E7%94%A8molokai%E9%85%8D%E8%89%B2"><span class="nav-text">Vim使用molokai配色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9F%E6%95%88"><span class="nav-text">功效</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E6%9C%8D%E5%8A%A1%E5%99%A8VIM-%E5%A4%8D%E5%88%B6-%E5%89%AA%E5%88%87%E5%88%B0%E6%9C%AC%E6%9C%BA%E7%B3%BB%E7%BB%9F%E5%89%AA%E8%B4%B4%E6%9D%BF"><span class="nav-text">从服务器VIM 复制&#x2F;剪切到本机系统剪贴板</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85clipper"><span class="nav-text">安装clipper</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%BC%94%E7%A4%BA"><span class="nav-text">简单演示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E8%BF%9C%E7%A8%8B%E4%B8%BB%E6%9C%BA%E7%9A%84VIM%E9%87%8C%E5%A4%8D%E5%88%B6%E5%86%85%E5%AE%B9"><span class="nav-text">在远程主机的VIM里复制内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%A5%E9%94%99"><span class="nav-text">报错</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E4%B8%8A%E7%AB%AF%E5%8F%A3%E5%8D%A0%E7%94%A8"><span class="nav-text">服务器上端口占用</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/dba3bb35/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vim配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-08-29 13:30:12" itemprop="dateModified" datetime="2023-08-29T13:30:12+08:00">2023-08-29</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/" itemprop="url" rel="index"><span itemprop="name">编辑器IDE</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/dba3bb35/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/dba3bb35/" data-xid="/posts/dba3bb35/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>17k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>56 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>[TOC]</p>
+<h1 id="在服务器和本机上通用的Vim配置"><a class="header-anchor" href="#在服务器和本机上通用的Vim配置"></a>在服务器和本机上通用的Vim配置</h1>
+<p>先安装依赖配置，以下依赖文件可直接复制到<code>~/.vimrc</code>文件（若无该文件，则<code>vim ~/.vimrc</code>创建该文件）</p>
+<p>不用激活该文件，直接打开vi或vim，设置即可生效</p>
+<h2 id="vimrc文件示例"><a class="header-anchor" href="#vimrc文件示例"></a>.vimrc文件示例</h2>
+<p>当前在用的是<code>模板.vim/, .vimrc进入查看隐藏文件</code>/{<code>.vim/</code>,<code>.vimrc</code>}，适用于linux服务器和macvim</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token string">"=========================================================================
+"</span> DesCRiption: 适合自己使用的vimrc文件，for Linux/Windows, GUI/Console
+<span class="token string">" Last Change: 2010年08月02日 15时13分
+"</span> Version:     <span class="token number">1.80</span>
+<span class="token string">" Source: http://www.cnblogs.com/zourrou/archive/2011/04/16/2018493.html
+"</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>
+<span class="token builtin class-name">set</span> nocompatible            <span class="token string">" 关闭 vi 兼容模式
+syntax on                   "</span> 自动语法高亮
+colorscheme molokai         <span class="token string">" 设定配色方案
+"</span> <span class="token builtin class-name">set</span> number                  <span class="token string">" 显示行号
+set cursorline              "</span> 突出显示当前行
+<span class="token builtin class-name">set</span> ruler                   <span class="token string">" 打开状态栏标尺
+set shiftwidth=4            "</span> 设定 <span class="token operator">&lt;&lt;</span> 和 <span class="token operator">>></span> 命令移动时的宽度为 <span class="token number">4</span>
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">softtabstop</span><span class="token operator">=</span><span class="token number">4</span>           <span class="token string">" 使得按退格键时可以一次删掉 4 个空格
+set tabstop=4               "</span> 设定 tab 长度为 <span class="token number">4</span>
+<span class="token builtin class-name">set</span> nobackup                <span class="token string">" 覆盖文件时不备份
+set autochdir               "</span> 自动切换当前目录为当前文件所在的目录
+filetype plugin indent on   <span class="token string">" 开启插件
+set backupcopy=yes          "</span> 设置备份时的行为为覆盖
+<span class="token builtin class-name">set</span> ignorecase smartcase    <span class="token string">" 搜索时忽略大小写，但在有一个或以上大写字母时仍保持对大小写敏感
+set nowrapscan              "</span> 禁止在搜索到文件两端时重新搜索
+<span class="token builtin class-name">set</span> incsearch               <span class="token string">" 输入搜索内容时就显示搜索结果
+set hlsearch                "</span> 搜索时高亮显示被找到的文本
+<span class="token builtin class-name">set</span> noerrorbells            <span class="token string">" 关闭错误信息响铃
+set novisualbell            "</span> 关闭使用可视响铃代替呼叫
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">t_vb</span><span class="token operator">=</span>                   <span class="token string">" 置空错误铃声的终端代码
+"</span> <span class="token builtin class-name">set</span> showmatch               <span class="token string">" 插入括号时，短暂地跳转到匹配的对应括号
+"</span> <span class="token builtin class-name">set</span> <span class="token assign-left variable">matchtime</span><span class="token operator">=</span><span class="token number">2</span>             <span class="token string">" 短暂跳转到匹配括号的时间
+set magic                   "</span> 设置魔术
+<span class="token builtin class-name">set</span> hidden                  <span class="token string">" 允许在有未保存的修改时切换缓冲区，此时的修改由 vim 负责保存
+set guioptions-=T           "</span> 隐藏工具栏
+<span class="token builtin class-name">set</span> guioptions-<span class="token operator">=</span>m           <span class="token string">" 隐藏菜单栏
+set smartindent             "</span> 开启新行时使用智能自动缩进
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">backspace</span><span class="token operator">=</span>indent,eol,start
+                            <span class="token string">" 不设定在插入状态无法用退格键和 Delete 键删除回车符
+set cmdheight=1             "</span> 设定命令行的行数为 <span class="token number">1</span>
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">laststatus</span><span class="token operator">=</span><span class="token number">2</span>            <span class="token string">" 显示状态栏 (默认值为 1, 无法显示状态栏)
+set statusline=\ %&lt;%F[%1*%M%*%n%R%H]%=\ %y\ %0(%&#123;&amp;fileformat&#125;\ %&#123;&amp;encoding&#125;\ %c:%l/%L%)\
+                            "</span> 设置在状态行显示的信息
+<span class="token builtin class-name">set</span> foldenable              <span class="token string">" 开始折叠
+set foldmethod=syntax       "</span> 设置语法折叠
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">foldcolumn</span><span class="token operator">=</span><span class="token number">0</span>            <span class="token string">" 设置折叠区域的宽度
+setlocal foldlevel=1        "</span> 设置折叠层数为
+<span class="token string">" set foldclose=all           "</span> 设置为自动关闭折叠
+<span class="token string">" nnoremap &lt;space> @=<span class="token variable"><span class="token punctuation">((</span>foldclosed<span class="token punctuation">(</span>line<span class="token punctuation">(</span>'.'<span class="token punctuation">))</span></span> &lt; 0) ? 'zc' : 'zo')&lt;CR>
+                            "</span> 用空格键来开关折叠
+<span class="token string">" return OS type, eg: windows, or linux, mac, et.st..
+function! MySys()
+    if has("</span>win16<span class="token string">") || has("</span>win32<span class="token string">") || has("</span>win64<span class="token string">") || has("</span>win95<span class="token string">")
+        return "</span>windows<span class="token string">"
+    elseif has("</span>unix<span class="token string">")
+        return "</span>linux<span class="token string">"
+    endif
+endfunction
+"</span> 用户目录变量<span class="token variable">$VIMFILES</span>
+<span class="token keyword">if</span> MySys<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"windows"</span>
+    <span class="token builtin class-name">let</span> <span class="token variable">$VIMFILES</span> <span class="token operator">=</span> <span class="token variable">$VIM</span><span class="token builtin class-name">.</span><span class="token string">'/vimfiles'</span>
+elseif MySys<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"linux"</span>
+    <span class="token builtin class-name">let</span> <span class="token variable">$VIMFILES</span> <span class="token operator">=</span> <span class="token environment constant">$HOME</span><span class="token builtin class-name">.</span><span class="token string">'/.vim'</span>
+endif
+<span class="token string">" 设定doc文档目录
+let helptags=<span class="token variable">$VIMFILES</span>.'/doc'
+"</span> 设置字体 以及中文支持
+<span class="token keyword">if</span> has<span class="token punctuation">(</span><span class="token string">"win32"</span><span class="token punctuation">)</span>
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">guifont</span><span class="token operator">=</span>Inconsolata:h12:cANSI
+endif
+<span class="token string">" 配置多语言环境
+if has("</span>multi_byte<span class="token string">")
+    "</span> UTF-8 编码
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">encoding</span><span class="token operator">=</span>utf-8
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">termencoding</span><span class="token operator">=</span>utf-8
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">formatoptions</span><span class="token operator">+=</span>mM
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">fencs</span><span class="token operator">=</span>utf-8,gbk
+    <span class="token keyword">if</span> v:lang <span class="token operator">=~</span>? <span class="token string">'^\(zh\)\|\(ja\)\|\(ko\)'</span>
+        <span class="token builtin class-name">set</span> <span class="token assign-left variable">ambiwidth</span><span class="token operator">=</span>double
+    endif
+    <span class="token keyword">if</span> has<span class="token punctuation">(</span><span class="token string">"win32"</span><span class="token punctuation">)</span>
+        <span class="token builtin class-name">source</span> <span class="token variable">$VIMRUNTIME</span>/delmenu.vim
+        <span class="token builtin class-name">source</span> <span class="token variable">$VIMRUNTIME</span>/menu.vim
+        language messages zh_CN.utf-8
+    endif
+<span class="token keyword">else</span>
+    echoerr <span class="token string">"Sorry, this version of (g)vim was not compiled with +multi_byte"</span>
+endif
+<span class="token string">" Buffers操作快捷方式!
+nnoremap &lt;C-RETURN> :bnext&lt;CR>
+nnoremap &lt;C-S-RETURN> :bprevious&lt;CR>
+"</span> Tab操作快捷方式<span class="token operator">!</span>
+nnoremap <span class="token operator">&lt;</span>C-TAB<span class="token operator">></span> :tabnext<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>C-S-TAB<span class="token operator">></span> :tabprev<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">"关于tab的快捷键
+"</span> map tn :tabnext<span class="token operator">&lt;</span>cr<span class="token operator">></span>
+<span class="token string">" map tp :tabprevious&lt;cr>
+"</span> map td :tabnew .<span class="token operator">&lt;</span>cr<span class="token operator">></span>
+<span class="token string">" map te :tabedit
+"</span> map tc :tabclose<span class="token operator">&lt;</span>cr<span class="token operator">></span>
+<span class="token string">"窗口分割时,进行切换的按键热键需要连接两次,比如从下方窗口移动
+"</span>光标到上方窗口,需要<span class="token operator">&lt;</span>c-w<span class="token operator">></span><span class="token operator">&lt;</span>c-w<span class="token operator">></span>k,非常麻烦,现在重映射为<span class="token operator">&lt;</span>c-k<span class="token operator">></span>,切换的
+<span class="token string">"时候会变得非常方便.
+nnoremap &lt;C-h> &lt;C-w>h
+nnoremap &lt;C-j> &lt;C-w>j
+nnoremap &lt;C-k> &lt;C-w>k
+nnoremap &lt;C-l> &lt;C-w>l
+"</span>一些不错的映射转换语法（如果在一个文件中混合了不同语言时有用）
+nnoremap <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token number">1</span> :set <span class="token assign-left variable">filetype</span><span class="token operator">=</span>xhtml<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token number">2</span> :set <span class="token assign-left variable">filetype</span><span class="token operator">=</span>css<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token number">3</span> :set <span class="token assign-left variable">filetype</span><span class="token operator">=</span>javascript<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+nnoremap <span class="token operator">&lt;</span>leader<span class="token operator">></span><span class="token number">4</span> :set <span class="token assign-left variable">filetype</span><span class="token operator">=</span>php<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">" set fileformats=unix,dos,mac
+"</span> nmap <span class="token operator">&lt;</span>leader<span class="token operator">></span>fd :se <span class="token assign-left variable">fileformat</span><span class="token operator">=</span>dos<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">" nmap &lt;leader>fu :se fileformat=unix&lt;CR>
+"</span> use Ctrl+<span class="token punctuation">[</span>l<span class="token operator">|</span>n<span class="token operator">|</span>p<span class="token operator">|</span>cc<span class="token punctuation">]</span> to list<span class="token operator">|</span>next<span class="token operator">|</span>previous<span class="token operator">|</span>jump to count the result
+<span class="token string">" map &lt;C-x>l &lt;ESC>:cl&lt;CR>
+"</span> map <span class="token operator">&lt;</span>C-x<span class="token operator">></span>n <span class="token operator">&lt;</span>ESC<span class="token operator">></span>:cn<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">" map &lt;C-x>p &lt;ESC>:cp&lt;CR>
+"</span> map <span class="token operator">&lt;</span>C-x<span class="token operator">></span>c <span class="token operator">&lt;</span>ESC<span class="token operator">></span>:cc<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">" 让 Tohtml 产生有 CSS 语法的 html
+"</span> syntax/2html.vim，可以用:runtime<span class="token operator">!</span> syntax/2html.vim
+<span class="token builtin class-name">let</span> <span class="token assign-left variable">html_use_css</span><span class="token operator">=</span><span class="token number">1</span>
+<span class="token string">" Python 文件的一般设置，比如不要 tab 等
+autocmd FileType python set tabstop=4 shiftwidth=4 expandtab
+autocmd FileType python map &lt;F12> :!python %&lt;CR>
+"</span> 选中状态下 Ctrl+c 复制
+vmap <span class="token operator">&lt;</span>C-c<span class="token operator">></span> <span class="token string">"+y
+"</span> 打开javascript折叠
+<span class="token builtin class-name">let</span> b:javascript_fold<span class="token operator">=</span><span class="token number">1</span>
+<span class="token string">" 打开javascript对dom、html和css的支持
+let javascript_enable_domhtmlcss=1
+"</span> 设置字典 ~/.vim/dict/文件的路径
+autocmd filetype javascript <span class="token builtin class-name">set</span> <span class="token assign-left variable">dictionary</span><span class="token operator">=</span><span class="token variable">$VIMFILES</span>/dict/javascript.dict
+autocmd filetype css <span class="token builtin class-name">set</span> <span class="token assign-left variable">dictionary</span><span class="token operator">=</span><span class="token variable">$VIMFILES</span>/dict/css.dict
+autocmd filetype php <span class="token builtin class-name">set</span> <span class="token assign-left variable">dictionary</span><span class="token operator">=</span><span class="token variable">$VIMFILES</span>/dict/php.dict
+<span class="token string">"-----------------------------------------------------------------
+"</span> plugin - bufexplorer.vim Buffers切换
+<span class="token string">" <span class="token entity" title="\b">\b</span>e 全屏方式查看全部打开的文件列表
+"</span> <span class="token punctuation">\</span>bv 左右方式查看   <span class="token punctuation">\</span>bs 上下方式查看
+<span class="token string">"-----------------------------------------------------------------
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin - taglist.vim  查看函数列表，需要ctags程序
+"</span> F4 打开隐藏taglist窗口
+<span class="token string">"-----------------------------------------------------------------
+if MySys() == "</span>windows<span class="token string">"                "</span> 设定windows系统中ctags程序的位置
+    <span class="token builtin class-name">let</span> Tlist_Ctags_Cmd <span class="token operator">=</span> <span class="token string">'"'</span><span class="token builtin class-name">.</span><span class="token variable">$VIMRUNTIME</span><span class="token builtin class-name">.</span><span class="token string">'/ctags.exe"'</span>
+elseif MySys<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">"linux"</span>              <span class="token string">" 设定windows系统中ctags程序的位置
+    let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+endif
+nnoremap &lt;silent>&lt;F4> :TlistToggle&lt;CR>
+let Tlist_Show_One_File = 1            "</span> 不同时显示多个文件的tag，只显示当前文件的
+<span class="token builtin class-name">let</span> Tlist_Exit_OnlyWindow <span class="token operator">=</span> <span class="token number">1</span>          <span class="token string">" 如果taglist窗口是最后一个窗口，则退出vim
+let Tlist_Use_Right_Window = 1         "</span> 在右侧窗口中显示taglist窗口
+<span class="token builtin class-name">let</span> <span class="token assign-left variable">Tlist_File_Fold_Auto_Close</span><span class="token operator">=</span><span class="token number">1</span>       <span class="token string">" 自动折叠当前非编辑文件的方法列表
+let Tlist_Auto_Open = 0
+let Tlist_Auto_Update = 1
+let Tlist_Hightlight_Tag_On_BufEnter = 1
+let Tlist_Enable_Fold_Column = 0
+let Tlist_Process_File_Always = 1
+let Tlist_Display_Prototype = 0
+let Tlist_Compact_Format = 1
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin - mark.vim 给各种tags标记不同的颜色，便于观看调式的插件。
+"</span> <span class="token punctuation">\</span>m  mark or unmark the word under <span class="token punctuation">(</span>or before<span class="token punctuation">)</span> the cursor
+<span class="token string">" <span class="token entity" title="\r">\r</span>  manually input a regular expression. 用于搜索.
+"</span> <span class="token punctuation">\</span>n  <span class="token function">clear</span> this mark <span class="token punctuation">(</span>i.e. the mark under the cursor<span class="token punctuation">)</span>, or <span class="token function">clear</span> all highlighted marks <span class="token builtin class-name">.</span>
+<span class="token string">" \*  当前MarkWord的下一个     \#  当前MarkWord的上一个
+"</span> <span class="token punctuation">\</span>/  所有MarkWords的下一个    <span class="token punctuation">\</span>?  所有MarkWords的上一个
+<span class="token string">"-----------------------------------------------------------------
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin - NERD_tree.vim 以树状方式浏览系统中的文件和目录
+"</span> :ERDtree 打开NERD_tree         :NERDtreeClose    关闭NERD_tree
+<span class="token string">" o 打开关闭文件或者目录         t 在标签页中打开
+"</span> T 在后台标签页中打开           <span class="token operator">!</span> 执行此文件
+<span class="token string">" p 到上层目录                   P 到根目录
+"</span> K 到第一个节点                 J 到最后一个节点
+<span class="token string">" u 打开上层目录                 m 显示文件系统菜单（添加、删除、移动操作）
+"</span> r 递归刷新当前目录             R 递归刷新当前根目录
+<span class="token string">"-----------------------------------------------------------------
+"</span> F3 NERDTree 切换
+map <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">3</span>></span> :NERDTreeToggle<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+imap <span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">3</span>></span> <span class="token operator">&lt;</span>ESC<span class="token operator">></span>:NERDTreeToggle<span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">"-----------------------------------------------------------------
+"</span> plugin - NERD_commenter.vim   注释代码用的，
+<span class="token string">" [count],cc 光标以下count行逐行添加注释(7,cc)
+"</span> <span class="token punctuation">[</span>count<span class="token punctuation">]</span>,cu 光标以下count行逐行取消注释<span class="token punctuation">(</span><span class="token number">7</span>,cu<span class="token punctuation">)</span>
+<span class="token string">" [count],cm 光标以下count行尝试添加块注释(7,cm)
+"</span> ,cA 在行尾插入 /* */,并且进入插入模式。 这个命令方便写注释。
+<span class="token string">" 注：count参数可选，无则默认为选中行或当前行
+"</span>-----------------------------------------------------------------
+<span class="token builtin class-name">let</span> <span class="token assign-left variable">NERDSpaceDelims</span><span class="token operator">=</span><span class="token number">1</span>       <span class="token string">" 让注释符与语句之间留一个空格
+let NERDCompactSexyComs=1   "</span> 多行注释时样子更好看
+<span class="token string">"-----------------------------------------------------------------
+"</span> plugin - DoxygenToolkit.vim  由注释生成文档，并且能够快速生成函数标准注释
+<span class="token string">"-----------------------------------------------------------------
+let g:DoxygenToolkit_authorName="</span>Asins - asinsimple AT gmail DOT com<span class="token string">"
+let g:DoxygenToolkit_briefTag_funcName="</span><span class="token function">yes</span><span class="token string">"
+map &lt;leader>da :DoxAuthor&lt;CR>
+map &lt;leader>df :Dox&lt;CR>
+map &lt;leader>db :DoxBlock&lt;CR>
+map &lt;leader>dc a /*  */&lt;LEFT>&lt;LEFT>&lt;LEFT>
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin – ZenCoding.vim 很酷的插件，HTML代码生成
+"</span> 插件最新版：http://github.com/mattn/zencoding-vim
+<span class="token string">" 常用命令可看：http://nootn.com/blog/Tool/23/
+"</span>-----------------------------------------------------------------
+<span class="token string">"-----------------------------------------------------------------
+"</span> plugin – checksyntax.vim    JavaScript常见语法错误检查
+<span class="token string">" 默认快捷方式为 F5
+"</span>-----------------------------------------------------------------
+<span class="token builtin class-name">let</span> g:checksyntax_auto <span class="token operator">=</span> <span class="token number">0</span> <span class="token string">" 不自动检查
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin - NeoComplCache.vim    自动补全插件
+"</span>-----------------------------------------------------------------
+<span class="token builtin class-name">let</span> g:AutoComplPop_NotEnableAtStartup <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_EnableAtStartup <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_SmartCase <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_TagsAutoUpdate <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_EnableInfo <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_EnableCamelCaseCompletion <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_MinSyntaxLength <span class="token operator">=</span> <span class="token number">3</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_EnableSkipCompletion <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_SkipInputTime <span class="token operator">=</span> <span class="token string">'0.5'</span>
+<span class="token builtin class-name">let</span> g:NeoComplCache_SnippetsDir <span class="token operator">=</span> <span class="token variable">$VIMFILES</span><span class="token builtin class-name">.</span><span class="token string">'/snippets'</span>
+<span class="token string">" &lt;TAB> completion.
+inoremap &lt;expr>&lt;TAB> pumvisible() ? "</span><span class="token punctuation">\</span><span class="token operator">&lt;</span>C-n<span class="token operator">></span><span class="token string">" : "</span><span class="token punctuation">\</span><span class="token operator">&lt;</span>TAB<span class="token operator">></span><span class="token string">"
+"</span> snippets <span class="token function">expand</span> key
+imap <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>C-e<span class="token operator">></span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>neocomplcache_snippets_expand<span class="token punctuation">)</span>
+smap <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>C-e<span class="token operator">></span> <span class="token operator">&lt;</span>Plug<span class="token operator">></span><span class="token punctuation">(</span>neocomplcache_snippets_expand<span class="token punctuation">)</span>
+<span class="token string">"-----------------------------------------------------------------
+"</span> plugin - matchit.vim   对%命令进行扩展使得能在嵌套标签和语句之间跳转
+<span class="token string">" % 正向匹配      g% 反向匹配
+"</span> <span class="token punctuation">[</span>% 定位块首     <span class="token punctuation">]</span>% 定位块尾
+<span class="token string">"-----------------------------------------------------------------
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin - vcscommand.vim   对%命令进行扩展使得能在嵌套标签和语句之间跳转
+"</span> SVN/git管理工具
+<span class="token string">"-----------------------------------------------------------------
+"</span>-----------------------------------------------------------------
+<span class="token string">" plugin – a.vim
+"</span>-----------------------------------------------------------------<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>另一套.vimrc <a target="_blank" rel="noopener" href="https://github.com/bjjvvv/vim/blob/master/.vimrc">https://github.com/bjjvvv/vim/blob/master/.vimrc</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">set</span> nocp <span class="token string">" 非vi
+
+let mapleader = "</span><span class="token punctuation">\</span><span class="token punctuation">\</span>"
+lef g:mapleader <span class="token operator">=</span> <span class="token string">"<span class="token entity" title="\\">\\</span>"</span>
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">t_Co</span><span class="token operator">=</span><span class="token number">256</span>
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">path</span><span class="token operator">=</span>.,/usr/include,**
+
+<span class="token string">"解决编码问题
+if has("</span>multi_byte<span class="token string">")
+    "</span> UTF-8 编码
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">encoding</span><span class="token operator">=</span>utf-8
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">termencoding</span><span class="token operator">=</span>utf-8
+    <span class="token builtin class-name">set</span> <span class="token assign-left variable">fileencodings</span><span class="token operator">=</span>ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1 <span class="token string">" 编码
+    if v:lang =~? '^/(zh/)/|/(ja/)/|/(ko/)'
+        set ambiwidth=double
+    endif
+    if has("</span>win32<span class="token string">")
+        source <span class="token variable">$VIMRUNTIME</span>/delmenu.vim
+        source <span class="token variable">$VIMRUNTIME</span>/menu.vim
+        language messages zh_CN.utf-8
+    else
+        "</span>Ubuntu <span class="token number">14.04</span>下GVIM的字体间距过宽
+        <span class="token builtin class-name">set</span> <span class="token assign-left variable">guifont</span><span class="token operator">=</span>Meslo<span class="token punctuation">\</span> LG<span class="token punctuation">\</span> S<span class="token punctuation">\</span> DZ<span class="token punctuation">\</span> for<span class="token punctuation">\</span> Powerline<span class="token punctuation">\</span> <span class="token number">12</span>
+    endif
+<span class="token keyword">else</span>
+    echoerr <span class="token string">"Sorry, this version of (g)vim was not compiled with +multi_byte"</span>
+endif
+
+
+<span class="token string">"----------------------------------------Voudle
+if filereadable(expand("</span>~/.vim/.vimrc.bundles<span class="token string">"))
+source ~/.vim/.vimrc.bundles
+endif
+"</span>----------------------------------------Voudle
+
+<span class="token string">"-------------------------------语法
+syntax enable
+syntax enable "</span> 开启
+syntax on <span class="token string">" 语法高亮
+"</span>---------------------------------------
+
+<span class="token string">"----------------------------------------显示
+colorscheme solarized "</span> 设置主题
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">background</span><span class="token operator">=</span>dark
+<span class="token builtin class-name">set</span> cursorcolumn
+<span class="token builtin class-name">set</span> cursorline
+<span class="token builtin class-name">set</span> hls <span class="token string">" 匹配高亮
+set incsearch "</span> 增量搜索（实时匹配）
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">laststatus</span><span class="token operator">=</span><span class="token number">2</span> <span class="token string">" 状态栏
+set number "</span> 行号
+<span class="token builtin class-name">set</span> number <span class="token string">" 行号
+"</span><span class="token builtin class-name">set</span> relativenumber
+<span class="token builtin class-name">set</span> ruler <span class="token string">" 标尺
+set showcmd "</span> 显示当前输入命令
+<span class="token string">" set scrolloff=8 "</span> 屏幕上下保留
+<span class="token string">" 清屏同时清除高亮
+nnoremap &lt;silent> &lt;C-l>  :&lt;C-u>nohlsearch&lt;Cr>&lt;C-l>
+"</span>------------------------------------
+
+<span class="token string">"----------------------------------------缩进
+filetype plugin indent on
+set sw=4 "</span> 缩进4个空格
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">ts</span><span class="token operator">=</span><span class="token number">4</span> <span class="token string">" tab为4个字符
+set et "</span> tab替换为空格
+<span class="token builtin class-name">set</span> smarttab <span class="token string">" 删除tab的4个空格
+set nospell "</span> 拼写检查
+<span class="token builtin class-name">set</span> wrap
+<span class="token builtin class-name">set</span> nolbr
+<span class="token string">" set tw=78 "</span> 设置光标超过78的时候折行
+<span class="token string">" set lbr "</span> 不在单词中间折断
+<span class="token string">" set fo+=mB "</span> 汉字断行处理
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">backspace</span><span class="token operator">=</span>start,eol,indent<span class="token string">" 删除行尾，回车，缩进
+set whichwrap=b,s,h,l,&lt;,>,[,] "</span> 支持左右跨行移动
+<span class="token string">" set sm "</span> 括号配对
+<span class="token builtin class-name">set</span> cin <span class="token string">" 打开c/c++自动缩进
+"</span> <span class="token builtin class-name">set</span> ai <span class="token string">" 自动缩进
+"</span> 基于缩进或语法进行代码折叠
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">foldmethod</span><span class="token operator">=</span>indent
+<span class="token string">"set foldmethod=syntax
+"</span> 启动 <span class="token function">vim</span> 时关闭折叠代码
+<span class="token builtin class-name">set</span> nofoldenable
+<span class="token string">"---------------------------------------
+
+
+"</span>---------------------------------------map
+<span class="token string">" 用空格来当mapleader
+map &lt;Space> &lt;Leader>
+"</span> quick switch background color between dark and light
+map  <span class="token operator">&lt;</span>silent<span class="token operator">></span> <span class="token operator">&lt;</span>Leader<span class="token operator">></span>bg :let <span class="token operator">&amp;</span>background <span class="token operator">=</span> <span class="token punctuation">(</span> <span class="token operator">&amp;</span>background <span class="token operator">==</span> <span class="token string">"dark"</span>? <span class="token string">"light"</span> <span class="token builtin class-name">:</span> <span class="token string">"dark"</span> <span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+<span class="token string">" 使 &lt;C-p> &lt;C-n> 支持历史过滤
+cnoremap &lt;C-p> &lt;Up>
+cnoremap &lt;C-n> &lt;Down>
+"</span> ex命令中%%转换为当前缓存文件目录路径
+cnoremap <span class="token operator">&lt;</span>expr<span class="token operator">></span> %% getcmdtype<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token string">':'</span> ? expand<span class="token punctuation">(</span><span class="token string">'%:h'</span><span class="token punctuation">)</span>.<span class="token string">'/'</span> <span class="token builtin class-name">:</span> <span class="token string">'%%'</span>
+nnoremap  <span class="token operator">&lt;</span>leader<span class="token operator">></span>cn  :<span class="token operator">&lt;</span>C-u<span class="token operator">></span>cnext<span class="token operator">&lt;</span>Cr<span class="token operator">></span> <span class="token string">" quicklist next
+nnoremap  &lt;leader>cp  :&lt;C-u>cprevious&lt;Cr> "</span> quicklist previous
+<span class="token string">"---------------------------
+
+
+"</span>-------------------------------实用
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">pastetoggle</span><span class="token operator">=</span><span class="token operator">&lt;</span>F<span class="token operator"><span class="token file-descriptor important">5</span>></span>
+<span class="token builtin class-name">set</span> ignorecase <span class="token string">" 忽略忽略大小写
+set smartcase "</span> 和 ignorecase 一起智能
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">history</span><span class="token operator">=</span><span class="token number">200</span>
+<span class="token builtin class-name">set</span> <span class="token assign-left variable">wildignore</span><span class="token operator">+=</span>*/tmp/*,*.so,*.swp,*.zip,*.py<span class="token punctuation">[</span>oc<span class="token punctuation">]</span>     <span class="token string">" MacOSX/Linux
+"</span>-------------------------------------
+
+<span class="token string">"-------------------autocmd
+"</span> Delete trailing white space on save, useful <span class="token keyword">for</span> Python and CoffeeScript <span class="token punctuation">;</span><span class="token punctuation">)</span>
+func<span class="token operator">!</span> DeleteTrailingWS<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  exe <span class="token string">"normal mz"</span>
+  %s/<span class="token punctuation">\</span>s<span class="token punctuation">\</span>+$//ge
+  exe "normal `z<span class="token string">"
+endfunc
+autocmd BufWrite *.py :call DeleteTrailingWS()
+autocmd BufWrite *.coffee :call DeleteTrailingWS()
+"</span>-------------------------------------
+
+<span class="token string">"------------------------来自《Vim 实用技巧》
+"</span>runtime macros/matchit.vim
+<span class="token builtin class-name">set</span> hidden <span class="token string">" 缓存切换位保存不提醒
+if has("</span>autocmd<span class="token string">")
+    autocmd FileType ruby setlocal ts=2 sts=2 sw=2 expandtab
+endif
+"</span> :Qargs 将quickfix 列表中的文件加入 args 列表中
+command<span class="token operator">!</span> -nargs<span class="token operator">=</span><span class="token number">0</span> -bar Qargs execute <span class="token string">'args'</span> QuickfixFilenames<span class="token punctuation">(</span><span class="token punctuation">)</span>
+function<span class="token operator">!</span> QuickfixFilenames<span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token string">" Building a hash ensures we get each buffer only once
+  let buffer_numbers = &#123;&#125;
+  for quickfix_item in getqflist()
+    let bufnr = quickfix_item['bufnr']
+    "</span> Lines without files will appear as <span class="token assign-left variable">bufnr</span><span class="token operator">=</span><span class="token number">0</span>
+    <span class="token keyword">if</span> bufnr <span class="token operator">></span> <span class="token number">0</span>
+      <span class="token builtin class-name">let</span> buffer_numbers<span class="token punctuation">[</span>bufnr<span class="token punctuation">]</span> <span class="token operator">=</span> bufname<span class="token punctuation">(</span>bufnr<span class="token punctuation">)</span>
+    endif
+  endfor
+  <span class="token builtin class-name">return</span> join<span class="token punctuation">(</span>map<span class="token punctuation">(</span>values<span class="token punctuation">(</span>buffer_numbers<span class="token punctuation">)</span>, <span class="token string">'fnameescape(v:val)'</span><span class="token punctuation">))</span>
+endfunction
+
+<span class="token string">" makes * and # work on visual mode too.
+function! s:VSetSearch(cmdtype)
+  let temp = @s
+  norm! gv"</span>sy
+  <span class="token builtin class-name">let</span> @/ <span class="token operator">=</span> <span class="token string">'\V'</span> <span class="token builtin class-name">.</span> substitute<span class="token punctuation">(</span>escape<span class="token punctuation">(</span>@s, a:cmdtype.<span class="token string">'\'</span><span class="token punctuation">)</span>, <span class="token string">'\n'</span>, <span class="token string">'\\n'</span>, <span class="token string">'g'</span><span class="token punctuation">)</span>
+  <span class="token builtin class-name">let</span> @s <span class="token operator">=</span> temp
+endfunction
+
+xnoremap * :<span class="token operator">&lt;</span>C-u<span class="token operator">></span>call <span class="token operator">&lt;</span>SID<span class="token operator">></span>VSetSearch<span class="token punctuation">(</span><span class="token string">'/'</span><span class="token punctuation">)</span><span class="token operator">&lt;</span>CR<span class="token operator">></span>/<span class="token operator">&lt;</span>C-R<span class="token operator">>=</span>@/<span class="token operator">&lt;</span>CR<span class="token operator">></span><span class="token operator">&lt;</span>CR<span class="token operator">></span>
+xnoremap <span class="token comment"># :&lt;C-u>call &lt;SID>VSetSearch('?')&lt;CR>?&lt;C-R>=@/&lt;CR>&lt;CR></span>
+
+<span class="token string">" recursively vimgrep for word under cursor or selection if you hit leader-star
+nmap &lt;leader>* :execute 'noautocmd vimgrep /\V' . substitute(escape(expand("</span><span class="token operator">&lt;</span>cword<span class="token operator">></span><span class="token string">"), '\'), '<span class="token entity" title="\n">\n</span>', '<span class="token entity" title="\\">\\</span>n', 'g') . '/ **'&lt;CR>
+vmap &lt;leader>* :&lt;C-u>call &lt;SID>VSetSearch('/')&lt;CR>:execute 'noautocmd vimgrep /' . @/ . '/ **'&lt;CR>
+
+"</span>-------------------------------------<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="依赖配置"><a class="header-anchor" href="#依赖配置"></a>依赖配置</h2>
+<h3 id="Vim使用molokai配色"><a class="header-anchor" href="#Vim使用molokai配色"></a><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/418ec70e7aed">Vim使用molokai配色</a></h3>
+<ul>
+<li>复制以下全部命令，到命令行执行</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 下载molokai主题(https://github.com/tomasr/molokai)</span>
+<span class="token function">wget</span> https://github.com/tomasr/molokai/archive/master.zip --no-check-certificate
+<span class="token function">unzip</span> master.zip
+<span class="token comment"># 将molokai.vim拷贝到 ~/.vim/colors/</span>
+<span class="token function">cp</span> molokai-master/colors/molokai.vim  ~/.vim/colors/
+<span class="token comment"># 若无~/.vim/，或无~/.vim/colors/，则mkdir他们</span>
+
+<span class="token comment"># 在 ~/.vimrc 中添加：colorscheme molokai</span>
+<span class="token comment"># 由于上述.vimrc文件中有这下句，故此处注释掉</span>
+<span class="token comment"># echo 'colorscheme molokai' >> ~/.vimrc</span>
+
+<span class="token comment"># 扫尾</span>
+<span class="token function">rm</span> master.zip
+<span class="token function">rm</span> molokai-master -rf<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>tmux与vim配色冲突：在tmux里进入vim，文字自带不透明纯黑底色，为无文字处的底色是<code>dark</code>色。为了使得文字也变成透明底色，需设置<code>vim ~/.vim/colors/molokai.vim  </code>，将全文中，所有<code>hi Normal ... ctermbg=xxx</code>改为<code>hi Normal ... ctermbg=NONE    </code>。这样修改，对macvim没有干扰。</li>
+</ul>
+<h2 id="功效"><a class="header-anchor" href="#功效"></a>功效</h2>
+<p>此配置可解决原生（.vimrc是空的）vim的以下问题：</p>
+<ul>
+<li>输入模式下，按上下左右键会出<code>A</code> <code>B</code>乱码，无法上下左右移动光标</li>
+<li><code>cmd+V</code>黏贴（mac客户端的操作），会在粘完之后，出现<code>A</code> <code>B</code>乱码</li>
+</ul>
+<h1 id="从服务器VIM-复制-剪切到本机系统剪贴板"><a class="header-anchor" href="#从服务器VIM-复制-剪切到本机系统剪贴板"></a>从服务器VIM 复制/剪切到本机系统剪贴板</h1>
+<p><a target="_blank" rel="noopener" href="https://hiberabyss.github.io/2017/11/30/vim-remote-copy/">参考</a></p>
+<h2 id="安装clipper"><a class="header-anchor" href="#安装clipper"></a>安装clipper</h2>
+<ul>
+<li>
+<p>在个人电脑 安装clipper，MacOS使用  <code>brew install clipper</code> 安装</p>
+</li>
+<li>
+<p>用brew将clipper为开机自启 <code>brew services start clipper</code></p>
+</li>
+<li>
+<p>检查clipper否正常启动</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> -ef <span class="token operator">|</span> <span class="token function">grep</span> clipper
+<span class="token comment"># 返回 502   463     1   0  3:07PM ??         0:00.09 /usr/local/opt/clipper/bin/clipper</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="简单演示"><a class="header-anchor" href="#简单演示"></a>简单演示</h2>
+<ul>
+<li>clipper启动后，通过下面的命令连接到远程机器：</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> 用户名@网址或ip -R <span class="token number">8377</span>:localhost:8377<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>-R 服务器端口:localhost:本机端口</code>其含义是在ssh时，将此服务器端口将转发到此本地端口。</p>
+<p>clipper默认从<code>8377</code>读取远程传来的文本，将其写入到本机系统剪切板。</p>
+<ul>
+<li>确认远程机器上安装有 <code>nc</code></li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">nc</span>
+<span class="token comment"># 返回</span>
+<span class="token comment"># usage: nc [-46AacCDdEFhklMnOortUuvz] [-K tc] [-b boundif] [-i interval] [-p source_port] # [--apple-delegate-pid pid] [--apple-delegate-uuid uuid]</span>
+<span class="token comment">#     [-s source_ip_address] [-w timeout] [-X proxy_version]</span>
+<span class="token comment">#     [-x proxy_address[:port]] [hostname] [port[s]]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>简单演示</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> hello,world <span class="token operator">|</span> <span class="token function">timeout</span> <span class="token number">0.1</span> <span class="token function">nc</span> localhost <span class="token number">8377</span> <span class="token comment"># 服务器端口</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>则 “hello,world” 字符转已经成功复制到本机的剪贴板了，可以<code>command+v</code>贴出。</p>
+<ul>
+<li><code>timeout 0.1</code>表示0.1秒内发出去，超时就结束连接，不管对面收没收到</li>
+</ul>
+<p>若不加此参数，在我用的nc版本</p>
+<pre class="line-numbers language-none"><code class="language-none">OpenBSD netcat (Debian patchlevel 1.187-1ubuntu0.1)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>命令行下敲完<code>echo hello,world | nc localhost 8377 </code>，会一致等待，而不允许输入下一行命令，除非ctrl+C结束。</p>
+<ul>
+<li>配置ssh设置</li>
+</ul>
+<p>为免去每次登录加 <code>-R 8377:localhost:8377</code> 参数，可修改 <code>~/.ssh/config</code> 文件，其中每个Host配置下加一句<code>RemoteForward 8377 localhost:8377</code>（<code>RemoteForward 服务器端口 localhost:本机端口</code>）。完整的一个Host配置例如：</p>
+<pre class="line-numbers language-none"><code class="language-none">Host 别名
+    HostName 网址或ip
+    Port 端口号
+    User 用户名
+    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
+    RemoteForward 8377 localhost:8377<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="在远程主机的VIM里复制内容"><a class="header-anchor" href="#在远程主机的VIM里复制内容"></a>在远程主机的VIM里复制内容</h2>
+<ul>
+<li>我们可以利用 <code>:[range]w[rite] [++opt] !&#123;cmd&#125;</code> 来实现文件内容的复制：
+<ul>
+<li>复制当前行：在 VIM 中执行 <code>:.w !nc localhost 8377</code></li>
+<li>复制选中的行：选中要复制的行后，执行 <code>:'&lt;,'&gt;w !nc localhost 8377</code> ( vy选中后，进入命令行模式后 VIM 会自动帮忙填充 <code>'&lt;,'&gt;</code>)</li>
+<li>复制整个文件：在 VIM 中执行 <code>:%w !nc localhost 8377</code></li>
+<li>复制 VIM 默认 register 的内容：在 VIM 中执行 <code>:call system('nc localhost 8377', @&quot;)</code></li>
+</ul>
+</li>
+<li>为方便起见，在<code>~/.vimrc</code>加入</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">&quot; 从服务器的vim里复制&#x2F;剪切文字到本地电脑的剪切板
+&quot; v,y复制&#x2F;v,d剪切&#x2F;(数字)dd 整行剪切，发送到笔记本的系统剪切板，但不清空vim的寄存器
+vmap y y:call system(&#39;timeout 0.1 nc localhost 8377&#39;, @&quot;)&lt;CR&gt;
+vmap d d:call system(&#39;timeout 0.1 nc localhost 8377&#39;, @&quot;)&lt;CR&gt;
+nmap dd dd:call system(&#39;timeout 0.1 nc localhost 8377&#39;, @&quot;)&lt;CR&gt;
+&quot; ctrl+a 整个文件发送到笔记本的系统剪切板
+map &lt;C-a&gt; :%w !timeout 0.1 nc localhost 8377&lt;CR&gt;&lt;CR&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>其中<code>@&quot;</code>表示vim的<code>&quot;</code>剪切板中的内容，在原生的vim中，每次按<code>y</code> <code>yy</code> <code>d</code> <code>dd</code> <code>c</code> <code>cc</code>操作，都会写到这个剪切板</p>
+<h2 id="报错"><a class="header-anchor" href="#报错"></a>报错</h2>
+<h3 id="服务器上端口占用"><a class="header-anchor" href="#服务器上端口占用"></a>服务器上端口占用</h3>
+<ul>
+<li>症状</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span>  user@host -R <span class="token number">8377</span>:localhost:8377
+<span class="token comment"># 返回如下</span>
+Warning: remote port forwarding failed <span class="token keyword">for</span> listen port <span class="token number">8377</span>   <span class="token comment"># 服务器上8377端口占用</span>
+Welcome to Ubuntu <span class="token number">16.04</span>.4 LTS <span class="token punctuation">(</span>GNU/Linux <span class="token number">4.4</span>.0-112-generic x86_64<span class="token punctuation">)</span>
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  System information as of Fri Aug <span class="token number">10</span> <span class="token number">17</span>:19:13 CST <span class="token number">2018</span>
+
+  System load:  <span class="token number">4.79</span>              Processes:              <span class="token number">819</span>
+  Usage of /:   <span class="token number">55.2</span>% of <span class="token number">3</span>.52TB   Users logged in:        <span class="token number">11</span>
+  Memory usage: <span class="token number">61</span>%               IP address <span class="token keyword">for</span> em1:     <span class="token number">192.168</span>.245.157
+  Swap usage:   <span class="token number">3</span>%                IP address <span class="token keyword">for</span> docker0: <span class="token number">172.17</span>.0.1
+
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+<span class="token number">176</span> packages can be updated.
+<span class="token number">105</span> updates are security updates.
+
+*** System restart required ***
+Last login: Fri Aug <span class="token number">10</span> <span class="token number">17</span>:16:27 <span class="token number">2018</span> from <span class="token number">117.43</span>.160.228<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>登录后，若强行在vim中进行v-y, v-d, dd操作，本机剪切板收不到发来的文字，服务器端会在vim的底栏返回</p>
+<pre class="line-numbers language-none"><code class="language-none">:call system(&#39;nc localhost 8377&#39;, @&quot;)<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>一直卡在这里（这个操作阻塞了），做不了任何vim的操作（<code>:q</code>也不行），需要<code>ctrl+c</code>才能结束恢复各种vim操作。</p>
+<ul>
+<li>
+<p>解决方法</p>
+<p>在服务器上，用sudo权限（若不用sudo权限则看不完全）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">lsof</span> -i:8377 <span class="token comment"># 返回占用8377端口的进程，取出其pid</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其返回如下</p>
+<pre class="line-numbers language-none"><code class="language-none">COMMAND   PID    USER   FD   TYPE  DEVICE SIZE&#x2F;OFF NODE NAME
+sshd    17188 myusername    9u  IPv6 4032419      0t0  TCP ip6-localhost:8377 (LISTEN)
+sshd    17188 myusername   10u  IPv4 4032420      0t0  TCP localhost:8377 (LISTEN)
+sshd    17188 myusername   14u  IPv4 4051809      0t0  TCP localhost:8377-&gt;localhost:40802 (CLOSE_WAIT)
+sshd    17188 myusername   17u  IPv4 4058793      0t0  TCP localhost:8377-&gt;localhost:40828 (CLOSE_WAIT)
+sshd    17188 myusername   18u  IPv4 4054593      0t0  TCP localhost:8377-&gt;localhost:40832 (CLOSE_WAIT)
+sshd    17188 myusername   19u  IPv4 4054699      0t0  TCP localhost:8377-&gt;localhost:40840 (CLOSE_WAIT)
+sshd    17188 myusername   20u  IPv4 4054757      0t0  TCP localhost:8377-&gt;localhost:40848 (CLOSE_WAIT)
+sshd    17188 myusername   21u  IPv4 4054765      0t0  TCP localhost:8377-&gt;localhost:40850 (CLOSE_WAIT)
+sshd    17188 myusername   22u  IPv4 4054894      0t0  TCP localhost:8377-&gt;localhost:40864 (CLOSE_WAIT)
+sshd    17188 myusername   23u  IPv4 4057945      0t0  TCP localhost:8377-&gt;localhost:40874 (CLOSE_WAIT)
+sshd    17188 myusername   24u  IPv4 4058045      0t0  TCP localhost:8377-&gt;localhost:40882 (CLOSE_WAIT)
+sshd    17188 myusername   25u  IPv4 4063283      0t0  TCP localhost:8377-&gt;localhost:40892 (CLOSE_WAIT)
+sshd    17188 myusername   26u  IPv4 4063384      0t0  TCP localhost:8377-&gt;localhost:40902 (CLOSE_WAIT)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>杀进程</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">kill</span> -9 <span class="token operator">&lt;</span>其pid<span class="token operator">></span> <span class="token comment"># 上述案例pid=17188</span>
+<span class="token function">sudo</span> <span class="token function">lsof</span> -i:8377
+<span class="token comment"># 若返回空，说明杀干净了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>然后需退出服务器，重新登录服务器，进入vim，测试一下v-y, v-d, dd操作，本机剪切板能收到发来的文字，则成功解决。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/9a4ae6c6/" rel="prev" title="vscode安装配置">
+                  <i class="fa fa-chevron-left"></i> vscode安装配置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/cdbb6a98/" rel="next" title="服务器上安装pytorch">
+                  服务器上安装pytorch <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/dba3bb35/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

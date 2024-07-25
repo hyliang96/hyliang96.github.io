@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="tdqm用法 官方文档 显示进度条">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用tqdm显示进度条">
+<meta property="og:url" content="https://hyliang96.github.io/posts/5ec581f7/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="tdqm用法 官方文档 显示进度条">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyliang96.github.io/posts/5ec581f7/1.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/5ec581f7/2.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/5ec581f7/3.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/5ec581f7/4.png">
+<meta property="article:published_time" content="2019-06-03T15:01:00.000Z">
+<meta property="article:modified_time" content="2022-03-23T09:14:46.143Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyliang96.github.io/posts/5ec581f7/1.png">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/5ec581f7/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/5ec581f7/","path":"posts/5ec581f7/","title":"用tqdm显示进度条"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>用tqdm显示进度条 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tdqm%E7%94%A8%E6%B3%95"><span class="nav-text">tdqm用法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="nav-text">显示进度条</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%80%80%E5%87%BA%E6%97%B6%E6%B8%85%E9%99%A4%E6%AD%A4%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="nav-text">退出时清除此进度条</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%9A%E4%B8%AA%E8%BF%9B%E5%BA%A6%E6%9D%A1%E5%B9%B6%E8%A1%8C"><span class="nav-text">多个进度条并行</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E5%AE%9E%E6%97%B6%E6%9B%B4%E6%96%B0%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="nav-text">显示实时更新的字符串</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/5ec581f7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          用tqdm显示进度条
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-06-03 23:01:00" itemprop="dateCreated datePublished" datetime="2019-06-03T23:01:00+08:00">2019-06-03</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/5ec581f7/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/5ec581f7/" data-xid="/posts/5ec581f7/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.7k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>6 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="tdqm用法"><a class="header-anchor" href="#tdqm用法"></a>tdqm用法</h2>
+<p><a target="_blank" rel="noopener" href="https://tqdm.github.io/docs/tqdm/">官方文档</a></p>
+<h3 id="显示进度条"><a class="header-anchor" href="#显示进度条"></a>显示进度条</h3>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> tqdm <span class="token keyword">import</span> tqdm
+pbar <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span>重复次数<span class="token punctuation">,</span> dynamic_ncols<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">,</span> initial<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>重复次数<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    pbar<span class="token punctuation">.</span>set_description_str<span class="token punctuation">(</span>前缀字符串<span class="token punctuation">)</span>
+    <span class="token comment"># 等价于写 pbar.desc = 前缀字符串</span>
+    pbar<span class="token punctuation">.</span>set_postfix_str<span class="token punctuation">(</span>后缀字符串<span class="token punctuation">)</span>
+    <span class="token comment"># 等价于写 pbar.postfix = 后缀字符串</span>
+    pbar<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>
+pbar<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">prefix:  85%|█████████████▏        | 85&#x2F;100 [00:08&lt;00:01,  9.94it&#x2F;s, suffix]<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p>常用参数：</p>
+<ul>
+<li><code>dynamic_ncols</code>  ：默认False，请选为True以使终端宽度变化时，进度条会随着变化</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th><code>dynamic_ncols</code></th>
+<th>终端窗口变窄`</th>
+<th>终端窗口变宽</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>False</td>
+<td>1. 很多行，输出长度都是原窗口的宽度</td>
+<td>2. 输出长度不随着窗口变宽而增加</td>
+</tr>
+<tr>
+<td>True</td>
+<td>3. 原有的一行保留，然后空一行，在另起一行适配性的窗口输出</td>
+<td>4. 输出长度随着窗口变宽而增加</td>
+</tr>
+</tbody>
+</table>
+<ol>
+<li>
+<p><img data-src="/posts/5ec581f7/1.png" alt="屏幕快照 2019-09-05 16.14.35"></p>
+</li>
+<li>
+<p><img data-src="/posts/5ec581f7/2.png" alt="屏幕快照 2019-09-05 16.14.15"></p>
+</li>
+<li>
+<p><img data-src="/posts/5ec581f7/3.png" alt="屏幕快照 2019-09-05 16.15.31"></p>
+</li>
+<li>
+<p><img data-src="/posts/5ec581f7/4.png" alt="屏幕快照 2019-09-05 16.15.52"></p>
+</li>
+</ol>
+<ul>
+<li><code>initial</code>：进度条初始值，默认为0</li>
+</ul>
+<h4 id="退出时清除此进度条"><a class="header-anchor" href="#退出时清除此进度条"></a>退出时清除此进度条</h4>
+<ul>
+<li><code>pbar.close()</code>时<strong>保留</strong>此进度条</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pbar <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span>重复次数, <span class="token assign-left variable">leave</span><span class="token operator">=</span>True<span class="token punctuation">)</span>
+pbar <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span>重复次数<span class="token punctuation">)</span> <span class="token comment"># default leave=True</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li><code>pbar.close()</code>时<strong>清除</strong>此进度条</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">pbar <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span>重复次数<span class="token punctuation">,</span> leave<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="多个进度条并行"><a class="header-anchor" href="#多个进度条并行"></a>多个进度条并行</h4>
+<p>使用<code>position</code>参数，从0开始计算，position越大打印出来所在行最下</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pbar0 <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span>重复次数, <span class="token assign-left variable">leave</span><span class="token operator">=</span>False, <span class="token assign-left variable">position</span><span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+pbar1 <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span>重复次数, <span class="token assign-left variable">leave</span><span class="token operator">=</span>False, <span class="token assign-left variable">position</span><span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span>
+pbar3 <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span>重复次数, <span class="token assign-left variable">leave</span><span class="token operator">=</span>False, <span class="token assign-left variable">position</span><span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">)</span>
+
+<span class="token comment">## 同时更新pbar0，pbar1，pbar3</span>
+
+pbar0.close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+pbar1.close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+pbar2.close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>示例</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> tqdm <span class="token keyword">import</span> tqdm
+
+fruits <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'apple'</span><span class="token punctuation">,</span> <span class="token string">'banana'</span><span class="token punctuation">,</span> <span class="token string">'orange'</span><span class="token punctuation">]</span>
+pbars <span class="token operator">=</span> <span class="token punctuation">&#123;</span>fruit<span class="token punctuation">:</span> tqdm<span class="token punctuation">(</span>total<span class="token operator">=</span><span class="token number">100</span><span class="token punctuation">,</span> leave<span class="token operator">=</span><span class="token boolean">False</span><span class="token punctuation">,</span> position<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span>
+         <span class="token keyword">for</span> fruit <span class="token keyword">in</span> fruits<span class="token punctuation">&#125;</span>
+
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    fruit <span class="token operator">=</span> fruits<span class="token punctuation">[</span>i<span class="token operator">%</span><span class="token number">3</span><span class="token punctuation">]</span>
+    pbars<span class="token punctuation">[</span>fruit<span class="token punctuation">]</span><span class="token punctuation">.</span>set_description_str<span class="token punctuation">(</span>fruit<span class="token punctuation">)</span>
+    pbar<span class="token punctuation">.</span>set_postfix_str<span class="token punctuation">(</span>i<span class="token punctuation">)</span>
+    pbars<span class="token punctuation">[</span>fruit<span class="token punctuation">]</span><span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">for</span> pbar <span class="token keyword">in</span> pbars<span class="token punctuation">:</span>
+    pbar<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">apple:  27%|████████████▋                 | 27&#x2F;100 [00:07&lt;00:22,  3.32it&#x2F;s, 78]
+banana:  26%|███████████▉                 | 26&#x2F;100 [00:07&lt;00:22,  3.32it&#x2F;s, 76]
+orange:  26%|███████████▉                 | 26&#x2F;100 [00:07&lt;00:22,  3.32it&#x2F;s, 77]<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h3 id="显示实时更新的字符串"><a class="header-anchor" href="#显示实时更新的字符串"></a>显示实时更新的字符串</h3>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> tqdm <span class="token keyword">import</span> tqdm
+pbar <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>bar_format<span class="token operator">=</span><span class="token string">'&#123;desc&#125;'</span><span class="token punctuation">)</span> <span class="token comment"># 即不要进度条，只有description_str的意思</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>重复次数<span class="token punctuation">)</span><span class="token punctuation">:</span>
+    pbar<span class="token punctuation">.</span>set_description_str<span class="token punctuation">(</span>字符串<span class="token punctuation">)</span>
+    pbar<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>
+pbar<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>例如</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> tqdm <span class="token keyword">import</span> tqdm
+pbar <span class="token operator">=</span> tqdm<span class="token punctuation">(</span>bar_format<span class="token operator">=</span><span class="token string">'&#123;desc&#125;'</span><span class="token punctuation">)</span>
+<span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+    pbar<span class="token punctuation">.</span>set_description_str<span class="token punctuation">(</span><span class="token string">'prefix %d'</span><span class="token operator">%</span>i<span class="token punctuation">)</span>
+    pbar<span class="token punctuation">.</span>update<span class="token punctuation">(</span><span class="token punctuation">)</span>
+pbar<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">prefix 24<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/aa44836f/" rel="prev" title="github多帐号">
+                  <i class="fa fa-chevron-left"></i> github多帐号
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/97bf5f45/" rel="next" title="make编译">
+                  make编译 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/5ec581f7/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

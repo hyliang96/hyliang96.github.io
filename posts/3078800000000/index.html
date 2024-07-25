@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="文件夹组织 cuda_cudnn&#x2F;     cuda&#x2F;         各个版本的cuda安装包     cudnn&#x2F;         各个版本的cuda对应的各个版本的cudnn的安装包     README.md cuDNN与cuda之间的关系">
+<meta property="og:type" content="article">
+<meta property="og:title" content="cuda安装教程">
+<meta property="og:url" content="https://hyliang96.github.io/posts/3078800000000/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="文件夹组织 cuda_cudnn&#x2F;     cuda&#x2F;         各个版本的cuda安装包     cudnn&#x2F;         各个版本的cuda对应的各个版本的cudnn的安装包     README.md cuDNN与cuda之间的关系">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-01T17:24:20.000Z">
+<meta property="article:modified_time" content="2024-07-24T08:25:22.106Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/3078800000000/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/3078800000000/","path":"posts/3078800000000/","title":"cuda安装教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>cuda安装教程 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%84%E7%BB%87"><span class="nav-text">文件夹组织</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cuDNN%E4%B8%8Ecuda%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">cuDNN与cuda之间的关系</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E7%94%A8apt%E5%AE%89%E8%A3%85"><span class="nav-text">直接用apt安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%92%E6%89%8B%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B"><span class="nav-text">徒手安装教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8ENVIDIA%E5%AE%98%E7%BD%91%E4%B8%8B%E8%BD%BD%E5%AE%89%E8%A3%85%E5%8C%85%E7%9A%84%E6%8A%80%E5%B7%A7"><span class="nav-text">从NVIDIA官网下载安装包的技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85cuda"><span class="nav-text">安装cuda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95cuda"><span class="nav-text">测试cuda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85cudnn"><span class="nav-text">安装cudnn</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%95%E4%B8%80-dpkg%E5%AE%89%E8%A3%85"><span class="nav-text">法一 dpkg安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%95%E4%BA%8C-cp%E5%AE%89%E8%A3%85"><span class="nav-text">法二 cp安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95cudnn"><span class="nav-text">测试cudnn</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%8E%B7%E5%BE%97%E6%B5%8B%E8%AF%95%E4%BB%A3%E7%A0%81"><span class="nav-text">获得测试代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E5%A7%8B%E6%B5%8B%E8%AF%95"><span class="nav-text">开始测试</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85nccl"><span class="nav-text">安装nccl</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8B%E8%AF%95nccl"><span class="nav-text">测试nccl</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E7%89%88%E6%9C%AC"><span class="nav-text">查看版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%93%E9%97%A8%E7%9A%84%E6%B5%8B%E8%AF%95%E7%A8%8B%E5%BA%8F"><span class="nav-text">专门的测试程序</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%96%E8%AF%91"><span class="nav-text">编译</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Usage"><span class="nav-text">Usage</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Quick-examples"><span class="nav-text">Quick examples</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E7%89%88%E6%9C%ACcuda%E7%9A%84%E7%AE%A1%E7%90%86"><span class="nav-text">多版本cuda的管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4cuda%E7%89%88%E6%9C%AC"><span class="nav-text">设置默认cuda版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%9D%9E%E9%BB%98%E8%AE%A4%E7%89%88%E6%9C%AC%E7%9A%84cuda"><span class="nav-text">使用非默认版本的cuda</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%A5%E9%94%99%E6%97%A5%E5%BF%97%E4%B8%8E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">报错日志与解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cuda-8-0-%E5%AE%89%E8%A3%85"><span class="nav-text">cuda-8.0 安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cudnn-%E6%B5%8B%E8%AF%95"><span class="nav-text">cudnn 测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E8%AF%91-_2"><span class="nav-text">编译</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C"><span class="nav-text">运行</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/3078800000000/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          cuda安装教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-02 01:24:20" itemprop="dateCreated datePublished" datetime="2021-08-02T01:24:20+08:00">2021-08-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2024-07-24 16:25:22" itemprop="dateModified" datetime="2024-07-24T16:25:22+08:00">2024-07-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/" itemprop="url" rel="index"><span itemprop="name">linux杂项</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/3078800000000/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/3078800000000/" data-xid="/posts/3078800000000/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>14k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>47 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="文件夹组织"><a class="header-anchor" href="#文件夹组织"></a>文件夹组织</h1>
+<pre class="line-numbers language-none"><code class="language-none">cuda_cudnn&#x2F;
+    cuda&#x2F;
+        各个版本的cuda安装包
+    cudnn&#x2F;
+        各个版本的cuda对应的各个版本的cudnn的安装包
+    README.md<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="cuDNN与cuda之间的关系"><a class="header-anchor" href="#cuDNN与cuda之间的关系"></a>cuDNN与cuda之间的关系</h1>
+<p>cuda：显卡计算的加速库，可用于渲染、神经网络等等</p>
+<p>cudnn：神经网络加速库文件，依赖于cuda，大幅优化显卡上的神经网络计算，比cuda加速两倍以上</p>
+<p>nccl：多显卡通讯加速，可加速神经网络多卡训练</p>
+<h1 id="直接用apt安装"><a class="header-anchor" href="#直接用apt安装"></a>直接用apt安装</h1>
+<p><a target="_blank" rel="noopener" href="https://gist.github.com/bogdan-kulynych/f64eb148eeef9696c70d485a76e42c3a">参见</a></p>
+<h1 id="徒手安装教程"><a class="header-anchor" href="#徒手安装教程"></a>徒手安装教程</h1>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.rignitc.com/2018/12/29/install-cuda-10-with-ubuntu-16-04/">http://www.rignitc.com/2018/12/29/install-cuda-10-with-ubuntu-16-04/</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32408773/article/details/84112166">https://blog.csdn.net/qq_32408773/article/details/84112166</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/47330858">https://zhuanlan.zhihu.com/p/47330858</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38231807/article/details/83780336">https://blog.csdn.net/qq_38231807/article/details/83780336</a></li>
+</ul>
+<h2 id="从NVIDIA官网下载安装包的技巧"><a class="header-anchor" href="#从NVIDIA官网下载安装包的技巧"></a>从NVIDIA官网下载安装包的技巧</h2>
+<ul>
+<li>
+<p>需要翻墙开全局模式，才能下载链接/下载按钮才能工作</p>
+</li>
+<li>
+<p>可再本地用浏览器(w3m不可)登录账号、下载，传到服务器</p>
+</li>
+<li>
+<p>直接下载到服务器：</p>
+<ul>
+<li>
+<p>不可在网页上直接拷贝下载按钮的链接，去服务器wget，这样无法下载成功。</p>
+</li>
+<li>
+<p>必需用（本地）浏览器（<code>w3m</code>终端浏览器不可以）访问下载页，登录账号。</p>
+</li>
+<li>
+<p>再点下载网页上的按钮，开始下载了，再从浏览器的下载栏处复制链接。</p>
+</li>
+<li>
+<p>然后到服务器<code>wget [此链接]</code>，下载得到的文件名结尾有一串乱码，形如</p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">&#39;cudnn-10.1-linux-x64-v7.6.3.30.tgz?ziMqZ3giGG1v5v90de6Of-_NpBtGVRLIR4O7hkSQ4Hu5RE_Qr-qxE98NFILK6B89iL1xitgZGQMy1ZH_o3ayiKsoYVbK1K3GmYUbNkFKUTn-jDCpEv726d61fCYT5SC6rI17tKt8hDVHxC-4zDH5XJtEjSovwJn5obx_04zS72ohX8HvmNEI8MxqTrq97Jq55krHcKU5l&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p>只需 <code>mv  cudnn-10.1-linux-x64-v7.6.3.30.tgz?xxxxxxx cudnn-10.1-linux-x64-v7.6.3.30.tgz</code></p>
+</li>
+<li>
+<p>之后解压必需用<code>tar -xzvf  cudnn-x.x-linux-x64-vxx.tgz</code>，用其他<code>7z</code>解压会得到一个文件而不是文件夹。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="安装cuda"><a class="header-anchor" href="#安装cuda"></a>安装cuda</h2>
+<p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-90-download-archive">cuda-9.0下载cuda</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">sh</span> cuda_x.x.x_xxx.xx_linux.run<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>⌃C</code>滑到协议的结尾，然后依下选项选择</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Do you accept the previously <span class="token builtin class-name">read</span> EULA?
+accept/decline/quit: accept
+
+Install NVIDIA Accelerated Graphics Driver <span class="token keyword">for</span> Linux-x86_64 <span class="token number">384.81</span>?
+<span class="token punctuation">(</span>y<span class="token punctuation">)</span>es/<span class="token punctuation">(</span>n<span class="token punctuation">)</span>o/<span class="token punctuation">(</span>q<span class="token punctuation">)</span>uit: n  <span class="token comment"># 这是因为已经安装了NVIDIA的驱动</span>
+
+Install the CUDA <span class="token number">9.0</span> Toolkit?
+<span class="token punctuation">(</span>y<span class="token punctuation">)</span>es/<span class="token punctuation">(</span>n<span class="token punctuation">)</span>o/<span class="token punctuation">(</span>q<span class="token punctuation">)</span>uit: y
+
+Enter Toolkit Location
+ <span class="token punctuation">[</span> default is /usr/local/cuda-9.0 <span class="token punctuation">]</span>: <span class="token comment"># 直接回车</span>
+
+Do you want to <span class="token function">install</span> a symbolic <span class="token function">link</span> at /usr/local/cuda?
+<span class="token punctuation">(</span>y<span class="token punctuation">)</span>es/<span class="token punctuation">(</span>n<span class="token punctuation">)</span>o/<span class="token punctuation">(</span>q<span class="token punctuation">)</span>uit: y
+
+Install the CUDA <span class="token number">9.0</span> Samples?
+<span class="token punctuation">(</span>y<span class="token punctuation">)</span>es/<span class="token punctuation">(</span>n<span class="token punctuation">)</span>o/<span class="token punctuation">(</span>q<span class="token punctuation">)</span>uit: y
+
+Enter CUDA Samples Location
+ <span class="token punctuation">[</span> default is /home/xxxx <span class="token punctuation">]</span>: <span class="token comment"># 直接回车</span>
+
+Installing the CUDA Toolkit <span class="token keyword">in</span> /usr/local/cuda-9.0 <span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>安装完成返回</p>
+<blockquote>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Installing the CUDA Toolkit <span class="token keyword">in</span> /usr/local/cuda-9.0 <span class="token punctuation">..</span>.
+Installing the CUDA Samples <span class="token keyword">in</span> /home/haoyu <span class="token punctuation">..</span>.
+Copying samples to /home/haoyu/NVIDIA_CUDA-9.0_Samples now<span class="token punctuation">..</span>.
+Finished copying samples.
+
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>
+<span class="token operator">=</span> Summary <span class="token operator">=</span>
+<span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">==</span><span class="token operator">=</span>
+
+Driver:   Not Selected <span class="token comment"># 这是因为上面 Install NVIDIA Accelerated Graphics Driver 选了n</span>
+Toolkit:  Installed <span class="token keyword">in</span> /usr/local/cuda-9.0
+Samples:  Installed <span class="token keyword">in</span> /home/haoyu
+
+Please <span class="token function">make</span> sure that
+ -   <span class="token environment constant">PATH</span> includes /usr/local/cuda-9.0/bin
+ -   LD_LIBRARY_PATH includes /usr/local/cuda-9.0/lib64, or, <span class="token function">add</span> /usr/local/cuda-9.0/lib64 to /etc/ld.so.conf and run ldconfig as root
+
+To uninstall the CUDA Toolkit, run the uninstall script <span class="token keyword">in</span> /usr/local/cuda-9.0/bin
+
+Please see CUDA_Installation_Guide_Linux.pdf <span class="token keyword">in</span> /usr/local/cuda-9.0/doc/pdf <span class="token keyword">for</span> detailed information on setting up CUDA.
+
+***WARNING: Incomplete installation<span class="token operator">!</span> This installation did not <span class="token function">install</span> the CUDA Driver. A driver of version at least <span class="token number">384.00</span> is required <span class="token keyword">for</span> CUDA <span class="token number">9.0</span> functionality to work.
+To <span class="token function">install</span> the driver using this installer, run the following command, replacing <span class="token operator">&lt;</span>CudaInstaller<span class="token operator">></span> with the name of this run file:
+    <span class="token function">sudo</span> <span class="token operator">&lt;</span>CudaInstaller<span class="token operator">></span>.run -silent -driver
+
+Logfile is /tmp/cuda_install_51161.log
+Signal caught, cleaning up<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h2 id="测试cuda"><a class="header-anchor" href="#测试cuda"></a>测试cuda</h2>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /usr/local/cuda/samples/1_Utilities/deviceQuery
+<span class="token function">sudo</span> <span class="token function">make</span> clean <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">make</span>
+./deviceQuery<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>返回</p>
+<blockquote>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">></span> Peer access from GeForce GTX TITAN X <span class="token punctuation">(</span>GPU0<span class="token punctuation">)</span> -<span class="token operator">></span> GeForce GTX TITAN X <span class="token punctuation">(</span>GPU1<span class="token punctuation">)</span> <span class="token builtin class-name">:</span> Yes
+<span class="token operator">></span> Peer access from GeForce GTX TITAN X <span class="token punctuation">(</span>GPU0<span class="token punctuation">)</span> -<span class="token operator">></span> GeForce GTX TITAN X <span class="token punctuation">(</span>GPU2<span class="token punctuation">)</span> <span class="token builtin class-name">:</span> No
+<span class="token operator">></span> Peer access from GeForce GTX TITAN X <span class="token punctuation">(</span>GPU0<span class="token punctuation">)</span> -<span class="token operator">></span> GeForce GTX TITAN X <span class="token punctuation">(</span>GPU3<span class="token punctuation">)</span> <span class="token builtin class-name">:</span> No
+<span class="token operator">></span> Peer access from GeForce GTX TITAN X <span class="token punctuation">(</span>GPU1<span class="token punctuation">)</span> -<span class="token operator">></span> GeForce GTX TITAN X <span class="token punctuation">(</span>GPU0<span class="token punctuation">)</span> <span class="token builtin class-name">:</span> Yes
+<span class="token operator">></span> Peer access from GeForce GTX TITAN X <span class="token punctuation">(</span>GPU1<span class="token punctuation">)</span> -<span class="token operator">></span> GeForce GTX TITAN X <span class="token punctuation">(</span>GPU2<span class="token punctuation">)</span> <span class="token builtin class-name">:</span> No
+<span class="token operator">></span> Peer access from GeForce GTX TITAN X <span class="token punctuation">(</span>GPU1<span class="token punctuation">)</span> -<span class="token operator">></span> GeForce GTX TITAN X <span class="token punctuation">(</span>GPU3<span class="token punctuation">)</span> <span class="token builtin class-name">:</span> No
+<span class="token operator">></span> Peer access from GeForce GTX TITAN X <span class="token punctuation">(</span>GPU2<span class="token punctuation">)</span> -<span class="token operator">></span> GeForce GTX TITAN X <span class="token punctuation">(</span>GPU0<span class="token punctuation">)</span> <span class="token builtin class-name">:</span> No
+<span class="token operator">></span> Peer access from GeForce GTX TITAN X <span class="token punctuation">(</span>GPU2<span class="token punctuation">)</span> -<span class="token operator">></span> GeForce GTX TITAN X <span class="token punctuation">(</span>GPU1<span class="token punctuation">)</span> <span class="token builtin class-name">:</span> No
+<span class="token operator">></span> Peer access from GeForce GTX TITAN X <span class="token punctuation">(</span>GPU2<span class="token punctuation">)</span> -<span class="token operator">></span> GeForce GTX TITAN X <span class="token punctuation">(</span>GPU3<span class="token punctuation">)</span> <span class="token builtin class-name">:</span> Yes
+<span class="token operator">></span> Peer access from GeForce GTX TITAN X <span class="token punctuation">(</span>GPU3<span class="token punctuation">)</span> -<span class="token operator">></span> GeForce GTX TITAN X <span class="token punctuation">(</span>GPU0<span class="token punctuation">)</span> <span class="token builtin class-name">:</span> No
+<span class="token operator">></span> Peer access from GeForce GTX TITAN X <span class="token punctuation">(</span>GPU3<span class="token punctuation">)</span> -<span class="token operator">></span> GeForce GTX TITAN X <span class="token punctuation">(</span>GPU1<span class="token punctuation">)</span> <span class="token builtin class-name">:</span> No
+<span class="token operator">></span> Peer access from GeForce GTX TITAN X <span class="token punctuation">(</span>GPU3<span class="token punctuation">)</span> -<span class="token operator">></span> GeForce GTX TITAN X <span class="token punctuation">(</span>GPU2<span class="token punctuation">)</span> <span class="token builtin class-name">:</span> Yes
+
+deviceQuery, CUDA Driver <span class="token operator">=</span> CUDART, CUDA Driver Version <span class="token operator">=</span> <span class="token number">10.1</span>, CUDA Runtime Version <span class="token operator">=</span> <span class="token number">9.0</span>, NumDevs <span class="token operator">=</span> <span class="token number">4</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>结果最后一行若有<code>Result = PASS</code>则测试成功</p>
+<h2 id="安装cudnn"><a class="header-anchor" href="#安装cudnn"></a>安装cudnn</h2>
+<p>参考：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html#installlinux-deb">官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_32408773/article/details/84112166">https://blog.csdn.net/qq_32408773/article/details/84112166</a></li>
+</ul>
+<p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/rdp/cudnn-archive">下载cudnn官网</a></p>
+<ul>
+<li>进入网页首先需要注册账号</li>
+</ul>
+<h3 id="法一-dpkg安装"><a class="header-anchor" href="#法一-dpkg安装"></a>法一 dpkg安装</h3>
+<p>下载<code>[cuDNN Runtime Library for UbuntuXX.X (Deb)]</code></p>
+<p>然后执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> dpkg -i libcudnnX_X.X.X.XX-X+cudaX.X_amd64.deb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>即完成安装</p>
+<h3 id="法二-cp安装"><a class="header-anchor" href="#法二-cp安装"></a>法二 cp安装</h3>
+<ul>
+<li>
+<p>请选择下载</p>
+<p><code>Download cuDNN vx.x.x (月 日, 年), for CUDA x.x</code></p>
+<ul>
+<li><code>cuDNN vx.x.x Library for Linux</code> cuDNN 动态库文件</li>
+<li><code>cuDNN vx.x.x Developer Library for Ubuntu16.04 (Deb)</code> cuDNN 测试代码</li>
+</ul>
+</li>
+<li>
+<p>下载得到<code>.tar</code>文件，解压之</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">tar</span> -xzvf cudnn-x.x-linux-x64-vxx.tgz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>进入解压的文件夹后</strong></p>
+<p>通过拷贝来安装cudnn，并修改权限</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token assign-left variable">CUDA_TO_INSTALL</span><span class="token operator">=</span>cuda-x.x  <span class="token comment"># 设置版本号</span>
+<span class="token function">sudo</span> <span class="token function">cp</span> cuda/include/cudnn.h /usr/local/<span class="token variable">$CUDA_TO_INSTALL</span>/include/
+<span class="token function">sudo</span> <span class="token function">cp</span> cuda/lib64/libcudnn* /usr/local/<span class="token variable">$CUDA_TO_INSTALL</span>/lib64/
+<span class="token function">sudo</span> <span class="token function">chmod</span> a+r /usr/local/<span class="token variable">$CUDA_TO_INSTALL</span>/include/cudnn.h
+<span class="token function">sudo</span> <span class="token function">chmod</span> a+r /usr/local/<span class="token variable">$CUDA_TO_INSTALL</span>/lib64/libcudnn*
+<span class="token function">sudo</span> ldconfig /usr/local/<span class="token variable">$CUDA_TO_INSTALL</span>/lib64<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="测试cudnn"><a class="header-anchor" href="#测试cudnn"></a><a target="_blank" rel="noopener" href="https://docs.nvidia.com/deeplearning/sdk/cudnn-install/index.html">测试cudnn</a></h2>
+<p>cuDNN v7.0 Code Samples and User Guide for Ubuntu16.04 (Deb)</p>
+<h3 id="获得测试代码"><a class="header-anchor" href="#获得测试代码"></a>获得测试代码</h3>
+<ul>
+<li>法一，从官网获得：下载方法见[安装cudnn]-[cuDNN 测试代码]</li>
+</ul>
+<p>测试cuDNN</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> dpkg -i cudnn7.1.4_for_cuda9.0_sample_and_doc.deb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>返回</p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">(Reading database ... 263943 files and directories currently installed.)
+Preparing to unpack cudnn7.1.4_for_cuda9.0_sample_and_doc.deb ...
+Unpacking libcudnn7-doc (7.1.4.18-1+cuda9.0) over (7.1.4.18-1+cuda9.0) ...
+dpkg: dependency problems prevent configuration of libcudnn7-doc:
+ libcudnn7-doc depends on libcudnn7-dev; however:
+  Package libcudnn7-dev is not installed.
+
+dpkg: error processing package libcudnn7-doc (--install):
+ dependency problems - leaving unconfigured
+Errors were encountered while processing:
+ libcudnn7-doc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>虽然上面报错，但不影响，因为这一步已经把<code>/usr/src/cudnn_samples_v7/</code>创建好，可以开始测试了</p>
+<p>Copy the cuDNN sample to a writable path.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">cp</span> -r /usr/src/cudnn_samples_v7/ /home/<span class="token environment constant">$USER</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>法二：<code>本目录/cudnn/cudnn_samples_v7</code>，适用于所有<code>cudnn7.x.x_for_cudax.x</code></li>
+</ul>
+<p>Copy the cuDNN sample to a writable path.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cp</span> -r ./cudnn/cudnn_samples_v7/ /home/<span class="token environment constant">$USER</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="开始测试"><a class="header-anchor" href="#开始测试"></a>开始测试</h3>
+<p>Go to the writable path.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /home/<span class="token environment constant">$USER</span>/cudnn_samples_v7/mnistCUDNN<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Compile the mnistCUDNN sample.</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">make</span> clean <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">make</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Run the mnistCUDNN sample</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./mnistCUDNN<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">
+Test passed!
+
+Testing half precision (math in single precision)
+Loading image data&#x2F;one_28x28.pgm
+Performing forward propagation ...
+Testing cudnnGetConvolutionForwardAlgorithm ...
+Fastest algorithm is Algo 1
+Testing cudnnFindConvolutionForwardAlgorithm ...
+^^^^ CUDNN_STATUS_SUCCESS for Algo 1: 0.024896 time requiring 3464 memory
+^^^^ CUDNN_STATUS_SUCCESS for Algo 0: 0.030912 time requiring 0 memory
+^^^^ CUDNN_STATUS_SUCCESS for Algo 2: 0.039712 time requiring 28800 memory
+^^^^ CUDNN_STATUS_SUCCESS for Algo 7: 0.098592 time requiring 2057744 memory
+^^^^ CUDNN_STATUS_SUCCESS for Algo 5: 0.149504 time requiring 203008 memory
+Resulting weights from Softmax:
+0.0000001 1.0000000 0.0000001 0.0000000 0.0000563 0.0000001 0.0000012 0.0000017 0.0000010 0.0000001
+Loading image data&#x2F;three_28x28.pgm
+Performing forward propagation ...
+Resulting weights from Softmax:
+0.0000000 0.0000000 0.0000000 1.0000000 0.0000000 0.0000714 0.0000000 0.0000000 0.0000000 0.0000000
+Loading image data&#x2F;five_28x28.pgm
+Performing forward propagation ...
+Resulting weights from Softmax:
+0.0000000 0.0000008 0.0000000 0.0000002 0.0000000 1.0000000 0.0000154 0.0000000 0.0000012 0.0000006
+
+Result of classification: 1 3 5
+
+Test passed!<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>此即测试成功</p>
+<h2 id="安装nccl"><a class="header-anchor" href="#安装nccl"></a><a target="_blank" rel="noopener" href="https://docs.nvidia.com/deeplearning/sdk/nccl-install-guide/index.html#usingnccl">安装nccl</a></h2>
+<p>NCCL是Nvidia Collective multi-GPU Communication Library的简称，它是一个实现多GPU的collective communication通信库，Nvidia做了很多优化，以在PCIe、Nvlink、InfiniBand上实现较高的通信速度。</p>
+<p><a target="_blank" rel="noopener" href="https://docs.ksyun.com/documents/2594">参考</a> <a target="_blank" rel="noopener" href="https://docs.ksyun.com/documents/2593">参考</a></p>
+<ul>
+<li>
+<p>访问<a target="_blank" rel="noopener" href="https://developer.nvidia.com/nccl/nccl-download">官方下载页</a>注册、登录、选择和cuda、系统适配的安装包、下载</p>
+<ul>
+<li>下载<code> local NCCL repository</code> 必需用浏览器(w3m不可)登录账号、下载，传到服务器。不可在网页上直接拷贝下载按钮的链接，去服务器wget，这样无法下载成功。</li>
+<li>下载<code>For the network repository </code>可以直接在网页上的下载按钮复制下载链接用wget获取。</li>
+</ul>
+</li>
+<li>
+<p>Install the repository.</p>
+<ul>
+<li>For the local NCCL repository:</li>
+</ul>
+  <pre class="line-numbers language-none"><code class="language-none">sudo dpkg -i nccl-repo-&lt;version&gt;.deb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>For the network repository:</li>
+</ul>
+  <pre class="line-numbers language-none"><code class="language-none">sudo dpkg -i nvidia-machine-learning-repo-&lt;version&gt;.deb<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>Update the APT database:</p>
+  <pre class="line-numbers language-none"><code class="language-none">sudo apt update<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>Install the libnccl2 package with APT. Additionally, if you need to compile applications with NCCL, you can install the libnccl-dev package as well:</p>
+<ul>
+<li>If you are using the network repository, the following command will upgrade CUDA to the latest version.</li>
+</ul>
+  <pre class="line-numbers language-none"><code class="language-none">sudo apt install libnccl2 libnccl-dev<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>装不是全网最新版本的cuda的nccl，则需执行</li>
+</ul>
+  <pre class="line-numbers language-none"><code class="language-none">sudo apt install libnccl2&#x3D;2.0.0-1+cuda8.0 libnccl-dev&#x3D;2.0.0-1+cuda8.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="测试nccl"><a class="header-anchor" href="#测试nccl"></a>测试nccl</h2>
+<h3 id="查看版本"><a class="header-anchor" href="#查看版本"></a>查看版本</h3>
+<pre class="line-numbers language-none"><code class="language-none">python -c &#39;import torch; print(torch.cuda.nccl.version())&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="专门的测试程序"><a class="header-anchor" href="#专门的测试程序"></a><a target="_blank" rel="noopener" href="https://github.com/NVIDIA/nccl-tests">专门的测试程序</a></h3>
+<p>These tests check both the performance and the correctness of <a target="_blank" rel="noopener" href="http://github.com/nvidia/nccl">NCCL</a> operations.</p>
+<p>下载</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">git</span> clone https://github.com/NVIDIA/nccl-tests.git<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="编译"><a class="header-anchor" href="#编译"></a>编译</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> nccl-tests
+<span class="token function">make</span> clean
+<span class="token function">make</span> <span class="token comment"># (我们的服务器就跑这个)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>If CUDA is not installed in <code>/usr/local/cuda</code>, you may specify CUDA_HOME. Similarly, if NCCL is not installed in <code>/usr</code>, you may specify NCCL_HOME.</p>
+<pre class="line-numbers language-none"><code class="language-none">make CUDA_HOME&#x3D;&#x2F;path&#x2F;to&#x2F;cuda NCCL_HOME&#x3D;&#x2F;path&#x2F;to&#x2F;nccl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>NCCL tests rely on MPI to work on multiple processes, hence multiple nodes. If you want to compile the tests with MPI support, you need to set MPI=1 and set MPI_HOME to the path where MPI is installed. (我们的服务器无需跑这个)</p>
+<pre class="line-numbers language-none"><code class="language-none">make MPI&#x3D;1 MPI_HOME&#x3D;&#x2F;path&#x2F;to&#x2F;mpi CUDA_HOME&#x3D;&#x2F;path&#x2F;to&#x2F;cuda NCCL_HOME&#x3D;&#x2F;path&#x2F;to&#x2F;nccl<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>make</code>成功会返回</p>
+<pre class="line-numbers language-none"><code class="language-none">make -C src build
+make[1]: Entering directory &#39;&#x2F;home&#x2F;haoyu&#x2F;nccl-tests&#x2F;src&#39;
+Compiling  all_reduce.cu                       &gt; ..&#x2F;build&#x2F;all_reduce.o
+Compiling  common.cu                           &gt; ..&#x2F;build&#x2F;common.o
+Linking  ..&#x2F;build&#x2F;all_reduce.o               &gt; ..&#x2F;build&#x2F;all_reduce_perf
+Compiling  all_gather.cu                       &gt; ..&#x2F;build&#x2F;all_gather.o
+Linking  ..&#x2F;build&#x2F;all_gather.o               &gt; ..&#x2F;build&#x2F;all_gather_perf
+Compiling  broadcast.cu                        &gt; ..&#x2F;build&#x2F;broadcast.o
+Linking  ..&#x2F;build&#x2F;broadcast.o                &gt; ..&#x2F;build&#x2F;broadcast_perf
+Compiling  reduce_scatter.cu                   &gt; ..&#x2F;build&#x2F;reduce_scatter.o
+Linking  ..&#x2F;build&#x2F;reduce_scatter.o           &gt; ..&#x2F;build&#x2F;reduce_scatter_perf
+Compiling  reduce.cu                           &gt; ..&#x2F;build&#x2F;reduce.o
+Linking  ..&#x2F;build&#x2F;reduce.o                   &gt; ..&#x2F;build&#x2F;reduce_perf
+make[1]: Leaving directory &#39;&#x2F;home&#x2F;haoyu&#x2F;nccl-tests&#x2F;src&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="Usage"><a class="header-anchor" href="#Usage"></a>Usage</h4>
+<p>NCCL tests can run on multiple processes, multiple threads, and multiple CUDA devices per thread. The number of process is managed by MPI and is therefore not passed to the tests as argument. The total number of ranks (=CUDA devices) will be equal to (number of processes)<em>(number of threads)</em>(number of GPUs per thread).</p>
+<h4 id="Quick-examples"><a class="header-anchor" href="#Quick-examples"></a>Quick examples</h4>
+<p>Run on 8 GPUs (<code>-g 8</code>), scanning from 8 Bytes to 128MBytes : (我们的服务器就跑这个)</p>
+<pre class="line-numbers language-none"><code class="language-none">.&#x2F;build&#x2F;all_reduce_perf -b 8 -e 128M -f 2 -g 8<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>Run with MPI on 40 processes (potentially on multiple nodes) with 4 GPUs each :</p>
+<pre class="line-numbers language-none"><code class="language-none">mpirun -np 40 .&#x2F;build&#x2F;all_reduce_perf -b 8 -e 128M -f 2 -g 4<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>测试结果会返回</p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none"># nThread 1 nGpus 8 minBytes 8 maxBytes 134217728 step: 2(factor) warmup iters: 5 iters: 20 validation: 1
+#
+# Using devices
+#   Rank  0 Pid  12164 on   jungpu30 device  0 [0x1a] GeForce RTX 2080 Ti
+#   Rank  1 Pid  12164 on   jungpu30 device  1 [0x1b] GeForce RTX 2080 Ti
+#   Rank  2 Pid  12164 on   jungpu30 device  2 [0x3d] GeForce RTX 2080 Ti
+#   Rank  3 Pid  12164 on   jungpu30 device  3 [0x3e] GeForce RTX 2080 Ti
+#   Rank  4 Pid  12164 on   jungpu30 device  4 [0x88] GeForce RTX 2080 Ti
+#   Rank  5 Pid  12164 on   jungpu30 device  5 [0x89] GeForce RTX 2080 Ti
+#   Rank  6 Pid  12164 on   jungpu30 device  6 [0xb1] GeForce RTX 2080 Ti
+#   Rank  7 Pid  12164 on   jungpu30 device  7 [0xb2] GeForce RTX 2080 Ti
+#
+#                                                     out-of-place                       in-place
+#       size         count    type   redop     time   algbw   busbw  error     time   algbw   busbw  error
+#        (B)    (elements)                     (us)  (GB&#x2F;s)  (GB&#x2F;s)            (us)  (GB&#x2F;s)  (GB&#x2F;s)
+           8             2   float     sum    35.93    0.00    0.00  1e-07    35.72    0.00    0.00  1e-07
+          16             4   float     sum    37.01    0.00    0.00  1e-07    36.77    0.00    0.00  1e-07
+          32             8   float     sum    36.74    0.00    0.00  6e-08    36.44    0.00    0.00  6e-08
+          64            16   float     sum    37.21    0.00    0.00  6e-08    36.61    0.00    0.00  6e-08
+         128            32   float     sum    36.98    0.00    0.01  6e-08    36.97    0.00    0.01  6e-08
+         256            64   float     sum    37.26    0.01    0.01  3e-08    36.42    0.01    0.01  3e-08
+         512           128   float     sum    37.47    0.01    0.02  3e-08    37.28    0.01    0.02  3e-08
+        1024           256   float     sum    37.54    0.03    0.05  1e-07    36.81    0.03    0.05  1e-07
+        2048           512   float     sum    38.50    0.05    0.09  2e-07    37.57    0.05    0.10  2e-07
+        4096          1024   float     sum    38.97    0.11    0.18  2e-07    38.46    0.11    0.19  2e-07
+        8192          2048   float     sum    39.49    0.21    0.36  2e-07    38.23    0.21    0.37  2e-07
+       16384          4096   float     sum    41.20    0.40    0.70  2e-07    40.58    0.40    0.71  2e-07
+       32768          8192   float     sum    67.22    0.49    0.85  2e-07    67.61    0.48    0.85  2e-07
+       65536         16384   float     sum    124.9    0.52    0.92  2e-07    126.4    0.52    0.91  2e-07
+      131072         32768   float     sum    237.0    0.55    0.97  2e-07    236.7    0.55    0.97  2e-07
+      262144         65536   float     sum    207.2    1.27    2.21  2e-07    204.7    1.28    2.24  2e-07
+      524288        131072   float     sum    325.5    1.61    2.82  2e-07    325.4    1.61    2.82  2e-07
+     1048576        262144   float     sum    615.4    1.70    2.98  2e-07    613.0    1.71    2.99  2e-07
+     2097152        524288   float     sum   1289.4    1.63    2.85  2e-07   1290.3    1.63    2.84  2e-07
+     4194304       1048576   float     sum   2740.9    1.53    2.68  2e-07   2740.6    1.53    2.68  2e-07
+     8388608       2097152   float     sum   5830.5    1.44    2.52  2e-07   5829.7    1.44    2.52  2e-07
+    16777216       4194304   float     sum    11991    1.40    2.45  2e-07    11981    1.40    2.45  2e-07
+    33554432       8388608   float     sum    23923    1.40    2.45  2e-07    23913    1.40    2.46  2e-07
+    67108864      16777216   float     sum    47784    1.40    2.46  2e-07    47781    1.40    2.46  2e-07
+   134217728      33554432   float     sum    95470    1.41    2.46  2e-07    95477    1.41    2.46  2e-07
+# Out of bounds values : 0 OK
+# Avg bus bandwidth    : 1.20304
+#<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>见此状完整的结果，即通过测试。</p>
+<h2 id="多版本cuda的管理"><a class="header-anchor" href="#多版本cuda的管理"></a>多版本cuda的管理</h2>
+<h3 id="设置默认cuda版本"><a class="header-anchor" href="#设置默认cuda版本"></a>设置默认cuda版本</h3>
+<ul>
+<li>当装了多个版本的cuda，要设置哪个版本的cuda为系统默认的cuda，只需修改<code>/usr/local/cuda</code></li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">rm</span> /usr/local/cuda <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/local/cuda-x.x /usr/local/cuda<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>当<code>/usr/local/cuda</code>链接变更后，需要更新共享库缓存</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> ldconfig /usr/local/cuda/lib64<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>lbconfig</code>是一个动态链接库管理命令，为了让动态链接库为系统所共享。linux下的共享库机制采用了类似于高速缓存的机制，即将库信息保存在<code>/etc/ld.so.cache</code>文件里边。运行上述命令，可搜索<code>/usr/local/cuda/lib64</code>内<code>lib*.so.*</code>文件，将其路径等信息添加到<code>/etc/ld.so.cache</code>文件里。</p>
+<h3 id="使用非默认版本的cuda"><a class="header-anchor" href="#使用非默认版本的cuda"></a>使用非默认版本的cuda</h3>
+<p>一个用户若想使用非默认版本的cuda, 则在当前终端执行如下命令, 修改环境变量:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>/usr/local/cuda-x.x/bin:<span class="token environment constant">$PATH</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span>/usr/local/cuda-x.x/lib64:<span class="token variable">$LD_LIBRARY_PATH</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>这样, 此终端将使用<code>cuda-x.x</code>版本运行各种程序. 此时若执行 <code>nvcc -V</code> 查看cuda版本会返回此版本.</p>
+<h1 id="报错日志与解决方案"><a class="header-anchor" href="#报错日志与解决方案"></a>报错日志与解决方案</h1>
+<h2 id="cuda-8-0-安装"><a class="header-anchor" href="#cuda-8-0-安装"></a>cuda-8.0 安装</h2>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /home/xxx/NVIDIA_CUDA-8.0_Samples
+<span class="token function">make</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>报错</p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">nvcc warning : The &#39;compute_20&#39;, &#39;sm_20&#39;, and &#39;sm_21&#39; architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+In file included from &#x2F;usr&#x2F;local&#x2F;cuda-8.0&#x2F;bin&#x2F;..&#x2F;&#x2F;include&#x2F;cuda_runtime.h:78:0,
+                 from &lt;command-line&gt;:0:
+&#x2F;usr&#x2F;local&#x2F;cuda-8.0&#x2F;bin&#x2F;..&#x2F;&#x2F;include&#x2F;host_config.h:119:2: error: #error -- unsupported GNU version! gcc versions later than 5 are not supported!
+ #error -- unsupported GNU version! gcc versions later than 5 are not supported!
+  ^~~~~
+Makefile:250: recipe for target &#39;simplePrintf.o&#39; failed
+make[1]: *** [simplePrintf.o] Error 1
+make[1]: Leaving directory &#39;&#x2F;usr&#x2F;local&#x2F;cuda-8.0&#x2F;samples&#x2F;0_Simple&#x2F;simplePrintf&#39;
+Makefile:52: recipe for target &#39;0_Simple&#x2F;simplePrintf&#x2F;Makefile.ph_build&#39; failed
+make: *** [0_Simple&#x2F;simplePrintf&#x2F;Makefile.ph_build] Error 2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<p>解决办法：手动给cuda-8.0添加gcc和g++（版本&lt;5）的链接</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> gcc-4.9 g++-4.9
+<span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/bin/g++-4.9 /usr/local/cuda-8.0/bin/g++
+<span class="token function">sudo</span> <span class="token function">ln</span> -s /usr/bin/gcc-4.9 /usr/local/cuda-8.0/bin/gcc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="cudnn-测试"><a class="header-anchor" href="#cudnn-测试"></a>cudnn 测试</h2>
+<h3 id="编译-_2"><a class="header-anchor" href="#编译-_2"></a>编译</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">make</span> clean <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">make</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>返回</p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;usr&#x2F;bin&#x2F;ld:&#x2F;usr&#x2F;local&#x2F;cuda&#x2F;lib64&#x2F;libcudnn.so: file format not recognized; treating as linker script<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p><strong><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33144323/article/details/85465975">解决方法</a></strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> /usr/local/cuda/lib64
+<span class="token function">ls</span> -l <span class="token operator">|</span> <span class="token function">grep</span> libcudnn.so<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">rm</span> -rf libcudnn.so libcudnn.so.7
+<span class="token function">sudo</span> <span class="token function">ln</span> -s libcudnn.so.7.x.x libcudnn.so.7
+<span class="token function">sudo</span> <span class="token function">ln</span> -s libcudnn.so.7 libcudnn.so<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>然后回到测试代码的目录</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">make</span> clean <span class="token operator">&amp;&amp;</span> <span class="token function">sudo</span> <span class="token function">make</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>即编译成功</p>
+<h3 id="运行"><a class="header-anchor" href="#运行"></a>运行</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./mnistCUDNN<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>返回</p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">.&#x2F;mnistCUDNN: error while loading shared libraries: libcudart.so.9.0: cannot open shared object file: No such file or directory<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</blockquote>
+<p><strong><a target="_blank" rel="noopener" href="https://github.com/BVLC/caffe/issues/4944">解决方法</a></strong></p>
+<p>这是由于装了多个版本的cuda，当链接<code>/usr/local/cuda-&gt;cuda-x.x</code>变更后，需要再进行如下操作</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> ldconfig /usr/local/cuda/lib64<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;sbin&#x2F;ldconfig.real: &#x2F;usr&#x2F;local&#x2F;cuda-10.1&#x2F;targets&#x2F;x86_64-linux&#x2F;lib&#x2F;libcudnn.so.7 is not a symbolic link
+
+&#x2F;sbin&#x2F;ldconfig.real: &#x2F;usr&#x2F;local&#x2F;cuda-10.1&#x2F;targets&#x2F;x86_64-linux&#x2F;lib&#x2F;libcudnn.so.5 is not a symbolic link<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./mnistCUDNN<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>则测试成功</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/bd0cccac/" rel="prev" title="磁盘配额设置">
+                  <i class="fa fa-chevron-left"></i> 磁盘配额设置
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/3a096ee1/" rel="next" title="检索指标">
+                  检索指标 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/3078800000000/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

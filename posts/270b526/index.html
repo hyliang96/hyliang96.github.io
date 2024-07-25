@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="[TOC] 基础命令 mkdir">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux系统知识">
+<meta property="og:url" content="https://hyliang96.github.io/posts/270b526/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="[TOC] 基础命令 mkdir">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyliang96.github.io/posts/270b526/182233000819052.png">
+<meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
+<meta property="article:modified_time" content="2022-03-23T09:14:46.168Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyliang96.github.io/posts/270b526/182233000819052.png">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/270b526/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/270b526/","path":"posts/270b526/","title":"linux系统知识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>linux系统知识 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="nav-text">基础命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mkdir"><span class="nav-text">mkdir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84"><span class="nav-text">路径</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%AF%B9%E4%BA%8E%E7%BB%9D%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="nav-text">相对于绝对路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%B8%AD%E5%86%99"><span class="nav-text">程序中写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AF%E9%93%BE%E6%8E%A5"><span class="nav-text">软链接</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%93%BE%E6%8E%A5"><span class="nav-text">创建链接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E9%93%BE%E6%8E%A5%E5%AF%B9%E8%B1%A1"><span class="nav-text">查看链接对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E8%A6%81%E6%B1%82"><span class="nav-text">使用要求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A5%E4%B8%8B%E6%93%8D%E4%BD%9C%E8%BD%AF%E8%BF%9E%E6%8E%A5%E4%BC%9A%E5%A4%B1%E6%95%88"><span class="nav-text">以下操作软连接会失效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AF%E8%BF%9E%E6%8E%A5%E8%87%AA%E8%BA%AB%E5%8F%AF%E4%BB%A5"><span class="nav-text">软连接自身可以</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A0%E9%99%A4%E9%93%BE%E6%8E%A5"><span class="nav-text">删除链接</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD"><span class="nav-text">下载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#wget"><span class="nav-text">wget</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0"><span class="nav-text">断点续传</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#w3m%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="nav-text">w3m浏览器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6"><span class="nav-text">安装软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#make%E7%BC%96%E8%AF%91"><span class="nav-text">make编译</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#configure"><span class="nav-text">configure</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%89%E9%A1%B9"><span class="nav-text">选项</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#make"><span class="nav-text">make</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%80%89%E9%A1%B9-_2"><span class="nav-text">选项</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%8A%A5%E9%94%99"><span class="nav-text">报错</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#make-install"><span class="nav-text">make install</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%8B%A5%E6%9C%89configure%E6%96%87%E4%BB%B6"><span class="nav-text">若有configure文件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%8B%A5%E6%97%A0configure%E6%96%87%E4%BB%B6"><span class="nav-text">若无configure文件</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%B9%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-text">改环境变量</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E7%8E%AF%E5%A2%83%E8%AE%BE%E7%BD%AE"><span class="nav-text">我的环境设置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%88-PATH%EF%BC%89"><span class="nav-text">环境变量（$PATH）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9PATH%E7%9A%84%E8%AF%AD%E5%8F%A5"><span class="nav-text">修改PATH的语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F"><span class="nav-text">修改环境变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E7%AE%A1%E7%90%86"><span class="nav-text">进程管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86"><span class="nav-text">用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E7%94%A8%E6%88%B7"><span class="nav-text">开用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E7%AE%A1%E7%90%86%E5%91%98%E6%9D%83%E9%99%90"><span class="nav-text">加管理员权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E7%9B%B8%E5%85%B3%E7%9A%84%E6%96%87%E4%BB%B6"><span class="nav-text">用户管理相关的文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86%E7%9B%B8%E5%85%B3%E7%9A%84%E5%91%BD%E4%BB%A4"><span class="nav-text">用户管理相关的命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#useradd%E5%8F%82%E6%95%B0"><span class="nav-text">useradd参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#usermod%E5%8F%82%E6%95%B0"><span class="nav-text">usermod参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#chage%E5%8F%82%E6%95%B0"><span class="nav-text">chage参数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%97%B6%E5%8C%BA%E4%BF%AE%E6%94%B9"><span class="nav-text">时区修改</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9hostname"><span class="nav-text">修改hostname</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/270b526/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          linux系统知识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/linux%E6%9D%82%E9%A1%B9/" itemprop="url" rel="index"><span itemprop="name">linux杂项</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/270b526/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/270b526/" data-xid="/posts/270b526/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>22 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>[TOC]</p>
+<h2 id="基础命令"><a class="header-anchor" href="#基础命令"></a>基础命令</h2>
+<h2 id="mkdir"><a class="header-anchor" href="#mkdir"></a>mkdir</h2>
+<p>检查文件夹路径存在否，若不存在则创建路径中各级文件夹，若存在则啥也不做也不报错</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> -p <span class="token operator">&lt;</span>新建文件夹路径<span class="token operator">></span>
+<span class="token function">mkdir</span> <span class="token operator">&lt;</span>新建文件夹路径<span class="token operator">></span> -p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="路径"><a class="header-anchor" href="#路径"></a>路径</h2>
+<h3 id="相对于绝对路径"><a class="header-anchor" href="#相对于绝对路径"></a>相对于绝对路径</h3>
+<p>绝对: /xx/xxx/xxx</p>
+<p>相对：xx/xx/xxx</p>
+<h3 id="程序中写"><a class="header-anchor" href="#程序中写"></a>程序中写</h3>
+<ul>
+<li>
+<p>python代码中：表示路径，使用的是相对程序文件所在目录的路径。</p>
+<p>如：/home/somebody/WGAN/main.py中写的“data/figure/”，是/home/somebody/WGAN/data/figure/</p>
+</li>
+</ul>
+<h2 id="软链接"><a class="header-anchor" href="#软链接"></a>软链接</h2>
+<h3 id="创建链接"><a class="header-anchor" href="#创建链接"></a>创建链接</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ln</span> -s <span class="token operator">&lt;</span>被链接对象<span class="token operator">></span> <span class="token operator">&lt;</span>链接名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>&lt;被链接对象&gt; 可以是本机/网络上 文件夹/任何文件</li>
+<li>&lt;链接名&gt;省略，则名为&lt;被链接对象&gt;</li>
+</ul>
+<h3 id="查看链接对象"><a class="header-anchor" href="#查看链接对象"></a>查看链接对象</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span> -l
+ll -l
+la -l
+l -l<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>-l 查看链接</li>
+</ul>
+<h3 id="使用要求"><a class="header-anchor" href="#使用要求"></a>使用要求</h3>
+<h4 id="以下操作软连接会失效"><a class="header-anchor" href="#以下操作软连接会失效"></a>以下操作软连接会失效</h4>
+<p>&lt;被链接对象&gt; -&gt; &lt;被链接对象&gt;的地址<br>
+&lt;被链接对象&gt;不能改名，不能移动目录，不能改目录中的文件夹名字</p>
+<h4 id="软连接自身可以"><a class="header-anchor" href="#软连接自身可以"></a>软连接自身可以</h4>
+<p>改名/移动/复制</p>
+<h3 id="删除链接"><a class="header-anchor" href="#删除链接"></a>删除链接</h3>
+<ul>
+<li>
+<p><code>rm 链接</code></p>
+<p>只删除链接，留被链接目标</p>
+</li>
+<li>
+<p><code>rm -rf 链接</code></p>
+<p>只删除链接，留被链接目标</p>
+</li>
+<li>
+<p><code>rm -rf 链接/</code></p>
+<ul>
+<li>被链接的是文件：删链接，留被链接目标</li>
+<li>被链接的是文件夹：<strong>删除被链接的文件夹下所有东西</strong>，留链接、留被链接的文件夹空壳</li>
+</ul>
+<p>故此操作危险，严禁<code>rm -rf 链接/</code>也严禁<code>rm -rf 链接</code>，以免误删</p>
+</li>
+<li>
+<p><code>rm -rf 某文件夹/</code>或<code>rm -rf 某文件夹</code>，<code>链接</code>在<code>某文件夹/</code>中</p>
+<ul>
+<li>删除<code>某文件夹/</code>，故其下<code>链接</code>删除，但留被链接目标</li>
+</ul>
+</li>
+</ul>
+<h2 id="下载"><a class="header-anchor" href="#下载"></a>下载</h2>
+<h3 id="wget"><a class="header-anchor" href="#wget"></a>wget</h3>
+<h4 id="断点续传"><a class="header-anchor" href="#断点续传"></a>断点续传</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> -c -t <span class="token number">0</span> -O new_name.tar.gz http://www.cnscn.org/old_name.tar.gz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>参数解释：</p>
+<ul>
+<li>-c      断点续传</li>
+<li>-t 0   反复尝试的次数，0为不限次数</li>
+<li>-O name_name.tar.gz     把下载的文件命名为new_name.tar.gz</li>
+<li><a target="_blank" rel="noopener" href="http://www.cnscn.org/old_name.tar.gz">http://www.cnscn.org/old_name.tar.gz</a>      要下载的文件的网址</li>
+</ul>
+<p>其他参数：</p>
+<ul>
+<li>–passive-ftp                            使用pasv即被动模式下载，只有在搭配保全系统而遇到问题时，才要加此参数</li>
+<li>–proxy-user=【username】设置登陆代理服务器的用户名</li>
+<li>–proxy-passwd=【密码】     设置登陆代理服务器的密码</li>
+<li>–retr-symlinks                        下载FTP的符号链接</li>
+</ul>
+<h3 id="w3m浏览器"><a class="header-anchor" href="#w3m浏览器"></a>w3m浏览器</h3>
+<p>这是一个纯文本浏览器</p>
+<p>若访问下载链接需要登录网、输入账号、密码等，wget会失效，可用w3m</p>
+<ul>
+<li>访问方法</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">w3m <span class="token operator">&lt;</span>网址<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>w3m下载文件到当前目录（即，你在哪里打开w3m）</p>
+</li>
+<li>
+<p>安装情况</p>
+<p>已安装于：cpu1, gpu5</p>
+<p>未安装于：gpu4</p>
+</li>
+</ul>
+<h2 id="安装软件"><a class="header-anchor" href="#安装软件"></a>安装软件</h2>
+<h3 id="make编译"><a class="header-anchor" href="#make编译"></a>make编译</h3>
+<p><a target="_blank" rel="noopener" href="https://my.oschina.net/surjur/blog/349464">参考资料</a></p>
+<p>将安装包加压到任意路径得&lt;源文件夹&gt;</p>
+<h4 id="configure"><a class="header-anchor" href="#configure"></a>configure</h4>
+<p>执行<code>configure</code>脚本，依给定的参数和系统环境，自动生成<code>Makefile</code>文件</p>
+<p>若<code>&lt;源文件夹&gt;/unix/</code> 或<code>&lt;源文件夹&gt;</code>下有<code>configure</code>文件，则cd过去，之后一直在这个目录下操作到make install；若无<code>configure</code>文件，则免去此步</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">./configure --prefix<span class="token operator">=</span><span class="token operator">&lt;</span>安装路径<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="选项"><a class="header-anchor" href="#选项"></a>选项</h5>
+<ul>
+<li><code>--prefix=&lt;安装路径&gt;</code>
+<ul>
+<li>默认/usr/local（<code>make install</code>需要sudo权限）</li>
+<li>自己的目录下，如 /home/somebody/ENV/shareENV/local，/home/somebody/ENV/localENV/local，无需sudo权限</li>
+</ul>
+</li>
+<li><code>--sys-config=&lt;参数&gt; </code> 指定软件的配置文件</li>
+<li><code>--with、--enable、--without、--disable</code> 控制编译</li>
+<li><code> ./configure --help</code> 察看`` ./configure`的帮助</li>
+</ul>
+<h4 id="make"><a class="header-anchor" href="#make"></a>make</h4>
+<p>依<code>Makefile</code>用<code>make</code>命令，编译产生可执行文件、资源文件，需调用 <a target="_blank" rel="noopener" href="http://www.icultivator.com/tag/gcc">gcc</a> 、ld、其他编译依赖程序</p>
+<p>大数源码用次编译，perl或python源码调perl或python编译</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">make</span> clean <span class="token comment"># 新下载解压的安装包免此步，曾make过的则</span>
+<span class="token function">make</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h5 id="选项-_2"><a class="header-anchor" href="#选项-_2"></a>选项</h5>
+<p><code>Makefile</code>文件可能设置多种编译选项，如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">make</span> <span class="token function">install</span>   <span class="token comment"># 安装， 也即 make</span>
+<span class="token function">make</span> uninstall <span class="token comment"># 卸载软件</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h5 id="报错"><a class="header-anchor" href="#报错"></a>报错</h5>
+<p>报error ，则记下错误代码（不仅在最后一行），原因有：</p>
+<ul>
+<li>缺依赖库</li>
+<li>可向开发者提交 bugreport（一般在 INSTALL 里有提交地址）</li>
+</ul>
+<h4 id="make-install"><a class="header-anchor" href="#make-install"></a>make install</h4>
+<p>自动拷贝&lt;源文件夹&gt;编译成品到&lt;安装路径&gt;下相应文件夹：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;源文件夹&gt;&#x2F;
+    bin&#x2F;
+        软件名         名可执行(二进制)文件
+    share&#x2F;            资源文件
+        软件名&#x2F;
+            各种资源文件
+    man&#x2F;
+        man1&#x2F;
+            软件名.1   帮助文件
+        man2&#x2F;
+    lib&#x2F;              静、动态库文件
+        软件名.so
+    include&#x2F;
+    	软件名&#x2F;
+            .hpp .h 文件<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h5 id="若有configure文件"><a class="header-anchor" href="#若有configure文件"></a>若有<code>configure</code>文件</h5>
+<p>之前已运行<code>configure</code>文件，故此处无需指定安装路径</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="若无configure文件"><a class="header-anchor" href="#若无configure文件"></a>若无<code>configure</code>文件</h5>
+<p>此处需指定安装路径</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">make</span> <span class="token function">install</span> <span class="token assign-left variable">prefix</span><span class="token operator">=~</span>/ENV/local  <span class="token comment"># 复制二进制文件到bin/,man/</span>
+<span class="token comment"># ~/ENV/local 为自定义安装路径，如没有，则安装到/usr/bin,/usr/man，这需要sudo权限</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="改环境变量"><a class="header-anchor" href="#改环境变量"></a>改环境变量</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:<span class="token operator">&lt;</span>安装路径<span class="token operator">></span>/bin <span class="token operator">>></span> ~/.bashrc <span class="token comment"># 修改环境变量</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="我的环境设置"><a class="header-anchor" href="#我的环境设置"></a>我的环境设置</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ENV/
+    local/
+        bin/
+        man/
+        share/
+        lib/
+        include/
+        <span class="token punctuation">..</span>.
+    Anaconda3/
+    mfsENV/ ——<span class="token operator">></span> mfs/server_config/mfsENV/
+        local/
+            bin/
+            man/
+            share/
+            lib/
+            include/
+            <span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="环境变量（-PATH）"><a class="header-anchor" href="#环境变量（-PATH）"></a>环境变量（$PATH）</h2>
+<h3 id="修改PATH的语句"><a class="header-anchor" href="#修改PATH的语句"></a>修改PATH的语句</h3>
+<ul>
+<li>
+<p>添加路径</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span>:新加路径<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>$PATH是当前&quot;路径1:路径2:路径3&quot;，在后面追加&quot;:新加路径&quot;，把此新路径集赋值给PATH</li>
+<li><code>export</code>以导出变量，当即令系统更新PATH，<strong>关闭终端后失效</strong>，<code>source .bashrc</code>后失效</li>
+</ul>
+</li>
+<li>
+<p>删改路径</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token environment constant">$PATH</span> <span class="token comment"># 先显示环境变量</span>
+<span class="token comment"># 返回 路径1:路径2:路径3:路径4</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>路径1:路径2:路径3 <span class="token comment"># 在改环境变量</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h3 id="修改环境变量"><a class="header-anchor" href="#修改环境变量"></a>修改环境变量</h3>
+<p>常用3种方法:</p>
+<ul>
+<li>
+<p>直接在命令行输入语句</p>
+<p>只对当前shell有用，关终端就失效</p>
+</li>
+<li>
+<p>在普通文件(常命名为为.sh脚本文件,也可无后缀)中写语句</p>
+<p>source此文件生效，常用在安装软件和交叉编译</p>
+</li>
+<li>
+<p>在系统文件(如.bashrc)中写语句</p>
+<p>source此文件或重启shell生效；删除此语句，再source此文件或重启shell，则可恢复</p>
+<ul>
+<li>在<code>/etc/bashrc</code> 写 <code>export PATH=$PATH:新加路径</code>，对所有用户有效</li>
+<li>在<code>~/.bashrc</code> 写 <code>export PATH=$PATH:新加路径</code>，对自己这个用户有效</li>
+</ul>
+</li>
+</ul>
+<h2 id="进程管理"><a class="header-anchor" href="#进程管理"></a><a target="_blank" rel="noopener" href="http://www.cnblogs.com/kaituorensheng/p/3980334.html">进程管理</a></h2>
+<p>fg、bg、jobs、&amp;、nohup、ctrl+z、ctrl+c 命令</p>
+<p><strong>一、&amp;</strong></p>
+<p>加在一个命令的最后，可以把这个命令放到后台执行，如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">watch</span>  -n <span class="token number">10</span> <span class="token function">sh</span>  test.sh  <span class="token operator">&amp;</span>  <span class="token comment">#每10s在后台执行一次test.sh脚本</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>二、ctrl + z</strong></p>
+<p>可以将一个正在前台执行的命令放到后台，并且处于暂停状态。</p>
+<p><strong>三、jobs</strong></p>
+<p>查看当前有多少在后台运行的命令</p>
+<p>jobs -l选项可显示所有任务的PID，jobs的状态可以是running, stopped, Terminated。但是如果任务被终止了（kill），shell 从当前的shell环境已知的列表中删除任务的进程标识。</p>
+<p><strong>四、fg</strong></p>
+<p>将后台中的命令调至<strong>前台</strong>继续运行。如果后台中有多个命令，可以用fg %jobnumber（是命令编号，不是进程号）将选中的命令调出。</p>
+<p><img data-src="/posts/270b526/182233000819052.png" alt="182233000819052"></p>
+<p><strong>五、bg</strong></p>
+<p>将一个在后台暂停的命令，变成在<strong>后台</strong>继续执行。如果后台中有多个命令，可以用bg %jobnumber将选中的命令调出。</p>
+<p><strong>六、kill</strong></p>
+<ul>
+<li>法子1：通过jobs命令查看job号（假设为num），然后执行kill %num</li>
+<li>法子2：通过ps命令查看job的进程号（PID，假设为pid），然后执行kill pid</li>
+</ul>
+<p>前台进程的终止：Ctrl+c</p>
+<p><strong>七、nohup</strong></p>
+<p>如果让程序始终在后台执行，即使关闭当前的终端也执行（之前的&amp;做不到），这时候需要nohup。该命令可以在你退出帐户/关闭终端之后继续运行相应的进程。关闭中断后，在另一个终端jobs已经无法看到后台跑得程序了，此时利用ps（进程查看命令）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ps</span> -aux <span class="token operator">|</span> <span class="token function">grep</span> <span class="token string">"test.sh"</span>  <span class="token comment">#a:显示所有程序 u:以用户为主的格式来显示 x:显示所有程序，不以终端机来区分</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="用户管理"><a class="header-anchor" href="#用户管理"></a>用户管理</h2>
+<p><a target="_blank" rel="noopener" href="https://blog.51cto.com/zlfwmm/1764264">教程</a></p>
+<h3 id="开用户"><a class="header-anchor" href="#开用户"></a>开用户</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">su</span>
+<span class="token comment"># 输入密码</span>
+adduser <span class="token operator">&lt;</span>用户名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="加管理员权限"><a class="header-anchor" href="#加管理员权限"></a>加管理员权限</h3>
+<ul>
+<li>Ubuntu专用方法（推荐，方便）</li>
+</ul>
+<p>将用户加入sudo用户组，使其获得sudo权限。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">usermod</span> -aG <span class="token function">sudo</span> <span class="token operator">&lt;</span>用户名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>其中</p>
+<pre class="line-numbers language-none"><code class="language-none">-a, --append                  append the user to the supplemental GROUPS
+                              mentioned by the -G option without removing
+                              him&#x2F;her from other groups
+-G, --groups GROUPS           new list of supplementary GROUPS<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此方法不会修改<code>/etc/sudoers</code>文件，仅修改 <code>/etc/group</code> 文件中的 <code>sudo</code> 用户组，会变为</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">sudo:x:27:<span class="token operator">&lt;</span>用户名<span class="token operator"><span class="token file-descriptor important">1</span>></span>,<span class="token operator">&lt;</span>用户名<span class="token operator"><span class="token file-descriptor important">2</span>></span>,<span class="token operator">&lt;</span>用户名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>其他linux系统</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">vim</span> /etc/sudoers<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># User privilege specification</span>
+root <span class="token assign-left variable">ALL</span><span class="token operator">=</span><span class="token punctuation">(</span>ALL<span class="token punctuation">)</span> ALL
+<span class="token operator">&lt;</span>用户名<span class="token operator">></span> <span class="token assign-left variable">ALL</span><span class="token operator">=</span><span class="token punctuation">(</span>ALL<span class="token punctuation">)</span> ALL<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>退出vim按</p>
+<pre class="line-numbers language-none"><code class="language-none">:wq!<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="用户管理相关的文件"><a class="header-anchor" href="#用户管理相关的文件"></a>用户管理相关的文件</h3>
+<p><a target="_blank" rel="noopener" href="https://blog.51cto.com/zhaoyulin/1787708">参考</a></p>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>/etc/passwd</td>
+<td>存放用户名和用户信息</td>
+</tr>
+<tr>
+<td>/etc/shadow</td>
+<td>存放用户密码</td>
+</tr>
+<tr>
+<td>/etc/group</td>
+<td>存放用户组名称和组信息</td>
+</tr>
+<tr>
+<td>/etc/gshadow</td>
+<td>存放用户组密码</td>
+</tr>
+<tr>
+<td>/etc/skel</td>
+<td>默认创建用户时，把该目录下的环境变量文件拷贝到新创建的用户家目录下</td>
+</tr>
+<tr>
+<td>/etc/default/useradd</td>
+<td>useradd的默认配置文件，useradd在创建信用股时会优先读取该文件，会根据这个文件的设置进行处理，</td>
+</tr>
+<tr>
+<td>/etc/login.defs</td>
+<td>文件主要定义了用户初始化的邮件地址、umask值、用户使用期限。用户UID值等等，这个文件一般不需要改，<strong>主要用于普通用户</strong></td>
+</tr>
+<tr>
+<td>/etc/sudoers</td>
+<td>sudo授权配置文件，root可在该配置文件给普通用户授权；vim /etc/sudoers=visudo</td>
+</tr>
+<tr>
+<td>/var/db/sudo/……</td>
+<td>下面是以sudo授权用户命名的时间戳文件</td>
+</tr>
+</tbody>
+</table>
+<h3 id="用户管理相关的命令"><a class="header-anchor" href="#用户管理相关的命令"></a>用户管理相关的命令</h3>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>useradd</td>
+<td>添加用户</td>
+</tr>
+<tr>
+<td>userdel</td>
+<td>删除用户</td>
+</tr>
+<tr>
+<td>usermod</td>
+<td>修改用户属性，修改用户的基本信息</td>
+</tr>
+<tr>
+<td>groupadd</td>
+<td>添加用户组</td>
+</tr>
+<tr>
+<td>groupdel</td>
+<td>删除用户组</td>
+</tr>
+<tr>
+<td>groupmod</td>
+<td>修改用户组属性</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>修改密码</td>
+</tr>
+<tr>
+<td>chage</td>
+<td>用来修改账号和密码的有效时间，更改密码属性</td>
+</tr>
+<tr>
+<td>su</td>
+<td>切换工具</td>
+</tr>
+<tr>
+<td>sudo</td>
+<td>root授权普通用户命令</td>
+</tr>
+</tbody>
+</table>
+<p>**说明：**这些命令有很多功能都是一样的，所以挑几个偏重要的命令坐下范例</p>
+<h3 id="useradd参数"><a class="header-anchor" href="#useradd参数"></a>useradd参数</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-u</td>
+<td>指定创建用户的uid</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>指定用户所属的组</td>
+</tr>
+<tr>
+<td>-G</td>
+<td>指定用户所属的附加群组（一对多组）</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>指定用户说明（就是passwd文件每行以冒号分割第5列）</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>指定登录shell （/etc/passwd文件每行后面的‘/bin/bash’）</td>
+</tr>
+<tr>
+<td>-e</td>
+<td>指定账号的有效期限  useradd –e“2016/04/05” 日期格式0000/00/00</td>
+</tr>
+<tr>
+<td>-M</td>
+<td>不要自动建立用户的登录目录</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>设定用户的家目录（指定）</td>
+</tr>
+<tr>
+<td>-D</td>
+<td>修改useradd创建用户时的配置文件/etc/default/useradd</td>
+</tr>
+</tbody>
+</table>
+<h3 id="usermod参数"><a class="header-anchor" href="#usermod参数"></a>usermod参数</h3>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-u</td>
+<td>更改账户UID</td>
+</tr>
+<tr>
+<td>-g</td>
+<td>更改用户所属的组（组必须事先存在）</td>
+</tr>
+<tr>
+<td>-G</td>
+<td>更改用户属于的附加组（一对多组）</td>
+</tr>
+<tr>
+<td>-c</td>
+<td>增加用户说明（就是passwd文件每行以冒号分割第5列，也可以手工修改）</td>
+</tr>
+<tr>
+<td>-s</td>
+<td>修改shell （/etc/passwd文件每行后面的‘/bin/bash’）</td>
+</tr>
+<tr>
+<td>-e</td>
+<td><strong>修改过期时间</strong>。加上用户账号、停止日期  日期格格式：0000/00/00</td>
+</tr>
+<tr>
+<td>-d</td>
+<td><strong>指定用户新的家目录</strong>，如果给定-m参数，用户旧的家目录会搬到新的家目录去，如果旧的家目录不存在则会建个新的</td>
+</tr>
+<tr>
+<td>-f</td>
+<td><strong>账号过期几日后永久停权</strong>，当值为0时账号则会呗立刻停权，而值为-1时则会关闭此功能，预设值为-1</td>
+</tr>
+<tr>
+<td>-l</td>
+<td><strong>变更用户名</strong>，其余信息不变  （实例2） [root@beita /]#usermod -l oldboy10 oldboy（改名字差不多，将oldboy改为oldboy10）</td>
+</tr>
+<tr>
+<td>-L</td>
+<td>**冻结用户密码，<strong>让其无法登录，实际上就是间接修改/etc/shadow，在密码栏的开头加上</strong>！**即表示冻结</td>
+</tr>
+<tr>
+<td>-U</td>
+<td><strong>取消冻结用户的密码</strong>，使之恢复登录；其实就是间接修改/etc/shadow，在密码栏的开头去掉**！**即表示恢复</td>
+</tr>
+</tbody>
+</table>
+<p><strong>passwd参数</strong></p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>–stdin</td>
+<td>从标准输入读取密码（只能root使用） echo  “密码” | passwd - -stdin 用户名</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>列出密码的相关信息，仅有系统管理员才能使用</td>
+</tr>
+<tr>
+<td>-n</td>
+<td>在n天内不能改密码（最小）</td>
+</tr>
+<tr>
+<td>-x</td>
+<td>在n天内必须改密码（最大）</td>
+</tr>
+<tr>
+<td>-w</td>
+<td>密码过期n天后警告</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>是设定密码过期几日后后停权</td>
+</tr>
+<tr>
+<td>-d</td>
+<td>删除密码，只有系统管理者才能使用</td>
+</tr>
+<tr>
+<td>-i</td>
+<td>锁住密码</td>
+</tr>
+<tr>
+<td>-u</td>
+<td>解开已上锁的账号</td>
+</tr>
+</tbody>
+</table>
+<h3 id="chage参数"><a class="header-anchor" href="#chage参数"></a>chage参数</h3>
+<p>和passwd的参数大同小异</p>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-E</td>
+<td>给账户设“过期日期”，日期写法：0000/00/00</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>查看账户的信息（小写L）</td>
+</tr>
+<tr>
+<td>-M</td>
+<td>密码保持有效的最大天数</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>密码保持有效期的最小天数（在n天之内不能改密码）</td>
+</tr>
+<tr>
+<td>-W</td>
+<td>账户密码到期前。提前收到警告信息的天数</td>
+</tr>
+<tr>
+<td>-I（大写i）</td>
+<td>停滞时刻：如果一个密码已过期这些天，那么此账号将不可用（<strong>设置过期 N天后停权</strong>）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="时区修改"><a class="header-anchor" href="#时区修改"></a>时区修改</h2>
+<ul>
+<li>查看时间</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">date</span> <span class="token string">"+%Y-%m-%d-%H:%M:%S"</span>
+<span class="token comment"># 返回 2019-03-06-16:52:38</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>个人用户修改</li>
+</ul>
+<p>获得修改指令</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">tzselect<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>一路选择地区，直到得到返回<code>export TZ='Asia/Shanghai'</code>，即为修改指令。</p>
+<p>将修改指令加到<code>~/.zshenv</code>，则每次用户使用zshenv，时间为此种时间。</p>
+<ul>
+<li>整个系统修改</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">date</span> -R <span class="token comment"># 再次查看时间</span>
+<span class="token function">sudo</span> <span class="token function">cp</span> /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
+<span class="token function">date</span> -R <span class="token comment"># 再次查看时间，确认已经修改为北京时间</span>
+<span class="token function">sudo</span> hwclock --systohc <span class="token comment"># 修改硬件CMOS的时间，不然后面时间还是不准</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="修改hostname"><a class="header-anchor" href="#修改hostname"></a>修改hostname</h2>
+<p><a target="_blank" rel="noopener" href="https://www.cyberciti.biz/faq/ubuntu-change-hostname-command/">参考</a></p>
+<p><a target="_blank" rel="noopener" href="https://support.rackspace.com/how-to/centos-hostname-change/">https://support.rackspace.com/how-to/centos-hostname-change/</a></p>
+<p>永久修改hostname</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function-name function">hostname_change</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token builtin class-name">local</span> <span class="token assign-left variable">new_hostname</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$1</span>"</span>
+    <span class="token builtin class-name">local</span> <span class="token assign-left variable">old_hostname</span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">hostname</span><span class="token variable">)</span></span>"</span>
+    <span class="token function">sudo</span> hostnamectl set-hostname <span class="token string">"<span class="token variable">$&#123;new_hostname&#125;</span>"</span>
+    <span class="token builtin class-name">echo</span> <span class="token string">"current hostname: "</span>
+    hostnamectl <span class="token operator">|</span> <span class="token function">head</span> -n <span class="token number">1</span>
+    <span class="token builtin class-name">echo</span>
+    <span class="token function">sudo</span> <span class="token function">sed</span> -E -i <span class="token string">"s/(\s)<span class="token variable">$&#123;old_hostname&#125;</span>(\s|$)/<span class="token entity" title="\1">\1</span><span class="token variable">$&#123;new_hostname&#125;</span><span class="token entity" title="\2">\2</span>/g"</span> /etc/hosts
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"$(cat /etc/hosts | grep -E "\s<span class="token variable">$&#123;new_hostname&#125;</span>(\s|$)"</span><span class="token punctuation">)</span><span class="token string">" = '' ]
+    then
+        &#123;
+            echo "</span><span class="token number">127.0</span>.0.1 <span class="token variable">$&#123;new_hostname&#125;</span><span class="token string">"
+            cat /etc/hosts
+        &#125; | sudo tee /etc/hosts > /dev/null
+    fi
+    echo "</span>current /etc/hosts:"
+    <span class="token function">cat</span> /etc/hosts <span class="token operator">|</span> <span class="token function">grep</span> --color <span class="token number">127.0</span>.0.1
+<span class="token punctuation">&#125;</span>
+
+hostname_change <span class="token operator">&lt;</span>新hostname<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/7c14f85c/" rel="prev" title="压缩解压工具">
+                  <i class="fa fa-chevron-left"></i> 压缩解压工具
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/e8880219/" rel="next" title="docker使用教程">
+                  docker使用教程 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/270b526/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

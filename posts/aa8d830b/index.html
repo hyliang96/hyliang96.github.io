@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="[TOC] ipython安装配置使用 配置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ipython与jupyter_notebook安装配置使用">
+<meta property="og:url" content="https://hyliang96.github.io/posts/aa8d830b/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="[TOC] ipython安装配置使用 配置">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
+<meta property="article:modified_time" content="2022-03-23T09:14:46.138Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/aa8d830b/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/aa8d830b/","path":"posts/aa8d830b/","title":"ipython与jupyter_notebook安装配置使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ipython与jupyter_notebook安装配置使用 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ipython%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8"><span class="nav-text">ipython安装配置使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">生成配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%88%E7%AB%AF%E4%B8%8Bipython%E7%9A%84%E9%85%8D%E8%89%B2"><span class="nav-text">终端下ipython的配色</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E9%85%8D%E8%89%B2%E6%96%B9%E6%A1%88"><span class="nav-text">更换配色方案</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9%E9%AB%98%E4%BA%AE"><span class="nav-text">手动修改高亮</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#jupyter-notebook-%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E4%BD%BF%E7%94%A8"><span class="nav-text">jupyter notebook 安装配置使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-text">配置方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-_2"><span class="nav-text">配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6-_2"><span class="nav-text">生成配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%BD%91%E7%BB%9C%E8%AF%81%E4%B9%A6"><span class="nav-text">生成网络证书</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90notebook%E7%99%BB%E5%BD%95%E5%AF%86%E7%A0%81"><span class="nav-text">生成notebook登录密码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9B%B4%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="nav-text">更改配置文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8notebook"><span class="nav-text">启动notebook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AEnotebook"><span class="nav-text">访问notebook</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%84%9A%E6%9C%AC%E6%89%93%E5%BC%80"><span class="nav-text">脚本打开</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%9D%E6%8C%81%E5%BC%80%E5%90%AF%E7%8A%B6%E6%80%81"><span class="nav-text">保持开启状态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8tmux"><span class="nav-text">使用tmux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%96%B9%E6%B3%95"><span class="nav-text">普通方法</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/aa8d830b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ipython与jupyter_notebook安装配置使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/aa8d830b/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/aa8d830b/" data-xid="/posts/aa8d830b/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>20 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>[TOC]</p>
+<h1 id="ipython安装配置使用"><a class="header-anchor" href="#ipython安装配置使用"></a>ipython安装配置使用</h1>
+<h2 id="配置"><a class="header-anchor" href="#配置"></a>配置</h2>
+<h3 id="生成配置文件"><a class="header-anchor" href="#生成配置文件"></a>生成配置文件</h3>
+<p>若ipython的配置文件<code>~/.ipython/profile_default/&#123;ipython_config.py,ipython_kernel_config.py&#125;</code>不存在，则执行如下命令以创建之</p>
+<pre class="line-numbers language-javascript" data-language="javascript"><code class="language-javascript">ipython profile create<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>会返回</p>
+<blockquote>
+<p>[ProfileCreate] Generating default config file: ‘~/.ipython/profile_default/ipython_config.py’<br>
+[ProfileCreate] Generating default config file: ‘~/.ipython/profile_default/ipython_kernel_config.py’</p>
+</blockquote>
+<h3 id="终端下ipython的配色"><a class="header-anchor" href="#终端下ipython的配色"></a>终端下ipython的配色</h3>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/14129278/how-do-i-customize-text-color-in-ipython">参考</a></p>
+<h4 id="更换配色方案"><a class="header-anchor" href="#更换配色方案"></a>更换配色方案</h4>
+<p>默认的终端下ipython配色，<code>__class__</code>等显示为深蓝色，当你的终端背景是深色时容易，深蓝字难看清，建议修改配色方案。在<code>~/.ipython/profile_default/ipython_config.py</code>，找到如下两行，删除其行首”#“，并将等号后修改为</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>InteractiveShell<span class="token punctuation">.</span>colors <span class="token operator">=</span> <span class="token string">'Linux'</span>
+c<span class="token punctuation">.</span>TerminalInteractiveShell<span class="token punctuation">.</span>highlighting_style <span class="token operator">=</span> <span class="token string">'monokai'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p><code>c.InteractiveShell.colors</code>是指在ipython报错用的配色</p>
+</li>
+<li>
+<p><code>c.TerminalInteractiveShell.highlighting_style</code>是指python代码的配色。配色方案在定义在</p>
+<p><code>/Users/mac/anaconda/lib/python3.6/site-packages/pygments/styles/&lt;配色方案名称&gt;.py</code></p>
+<p>这里， &lt;配色方案名称monokai，是我找到<code>styles/</code>下较友好的配色了。</p>
+</li>
+</ul>
+<h4 id="手动修改高亮"><a class="header-anchor" href="#手动修改高亮"></a>手动修改高亮</h4>
+<p>若对所选配色方案还有不满意的地方，可以手动修改指定语法成分的高亮</p>
+<p>搜索<code>c.TerminalInteractiveShell.highlighting_style_overrides</code>，然后如下改写</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> pygments<span class="token punctuation">.</span>token <span class="token keyword">import</span> Token<span class="token punctuation">,</span> Keyword<span class="token punctuation">,</span> Name<span class="token punctuation">,</span> Comment<span class="token punctuation">,</span> String<span class="token punctuation">,</span> Error<span class="token punctuation">,</span> \
+     Number<span class="token punctuation">,</span> Operator<span class="token punctuation">,</span> Generic<span class="token punctuation">,</span> Whitespace
+<span class="token comment">## Override highlighting format for specific tokens</span>
+c<span class="token punctuation">.</span>TerminalInteractiveShell<span class="token punctuation">.</span>highlighting_style_overrides <span class="token operator">=</span> <span class="token punctuation">&#123;</span>
+
+    <span class="token comment">## Standard Pygments tokens (are all used by IPython ?)</span>
+
+    <span class="token comment"># Whitespace:                "#bbbbbb",</span>
+    <span class="token comment"># Comment:                   "italic #008800",</span>
+    <span class="token comment"># Comment.Preproc:           "noitalic",</span>
+    <span class="token comment"># Comment.Special:           "noitalic bold",</span>
+
+    Keyword<span class="token punctuation">:</span>                     <span class="token string">"bold #5fd4f9"</span><span class="token punctuation">,</span> <span class="token comment">#  8ce98c</span>
+    <span class="token comment"># Keyword.Pseudo:            "nobold",</span>
+    <span class="token comment"># Keyword.Type:              "bold #00BB00",</span>
+
+    <span class="token comment"># Operator:                  "#ff736f",   #</span>
+    <span class="token comment"># Operator.Word:             "bold #AA22FF",</span>
+
+    Name<span class="token punctuation">.</span>Builtin<span class="token punctuation">:</span>                <span class="token string">"#5fd4f9"</span><span class="token punctuation">,</span>
+    <span class="token comment"># Name.Function:             "#99f46a", #</span>
+    <span class="token comment"># Name.Class:                "#99f46a", #</span>
+    <span class="token comment"># Name.Namespace:            "bold #99f46a", #</span>
+    <span class="token comment"># Name.Exception:            "italic bold #89f9fc",</span>
+    Name<span class="token punctuation">.</span>Variable<span class="token punctuation">:</span>               <span class="token string">"italic"</span><span class="token punctuation">,</span> <span class="token comment">#</span>
+    <span class="token comment"># Name.Constant:             "#880000",</span>
+    <span class="token comment"># Name.Label:                "#A0A000",</span>
+    <span class="token comment"># Name.Entity:               "bold #999999",</span>
+    <span class="token comment"># Name.Attribute:            "#BB4444",</span>
+    <span class="token comment"># Name.Tag:                  "bold #008000",</span>
+    <span class="token comment"># Name.Decorator:            "#AA22FF",</span>
+
+
+    <span class="token comment"># String:                    "#f7f86c",</span>
+    <span class="token comment"># String.Doc:                "italic",</span>
+    <span class="token comment"># String.Interpol:           "bold #BB6688",</span>
+    <span class="token comment"># String.Escape:             "bold #BB6622",</span>
+    <span class="token comment"># String.Regex:              "#BB6688",</span>
+    <span class="token comment"># String.Symbol:             "#71f3f6", #</span>
+    <span class="token comment"># String.Other:              "#008000",</span>
+    <span class="token comment"># Number:                    "#cf97f2", #</span>
+
+    <span class="token comment"># Generic.Heading:           "bold #000080",</span>
+    <span class="token comment"># Generic.Subheading:        "bold #800080",</span>
+    <span class="token comment"># Generic.Deleted:           "#A00000",</span>
+    <span class="token comment"># Generic.Inserted:          "#5affb4", #</span>
+    <span class="token comment"># Generic.Error:             "#FF0000",</span>
+    <span class="token comment"># Generic.Emph:              "italic",</span>
+    <span class="token comment"># Generic.Strong:            "bold",</span>
+    <span class="token comment"># Generic.Prompt:            "bold #000080",</span>
+    <span class="token comment"># Generic.Output:            "#888",</span>
+    <span class="token comment"># Generic.Traceback:         "#04D",</span>
+
+    <span class="token comment"># Error:                     "border:#ff0000",</span>
+
+    <span class="token comment">## IPython</span>
+
+    <span class="token comment"># Token.Number: '#ffffff',</span>
+    <span class="token comment"># Token.Operator: 'noinherit',</span>
+    <span class="token comment"># Token.String: '#8b8',</span>
+    <span class="token comment"># Token.Name.Function: '#2080D0',</span>
+    <span class="token comment"># Token.Name.Class: 'bold #2080D0',</span>
+    <span class="token comment"># Token.Name.Namespace: 'bold #2080D0',</span>
+    <span class="token comment"># Token.Prompt: '#ffffff bold',</span>
+    <span class="token comment"># Token.PromptNum: '#888888 bold',</span>
+    Token<span class="token punctuation">.</span>OutPrompt<span class="token punctuation">:</span> <span class="token string">'#ff5753'</span><span class="token punctuation">,</span>
+    Token<span class="token punctuation">.</span>OutPromptNum<span class="token punctuation">:</span> <span class="token string">'#ff5753 bold'</span><span class="token punctuation">,</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="jupyter-notebook-安装配置使用"><a class="header-anchor" href="#jupyter-notebook-安装配置使用"></a>jupyter notebook 安装配置使用</h1>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/23110830">参考</a></p>
+<p>已经验证此配置方法可用的环境：实验室服务器juncluster、jungpu</p>
+<h2 id="配置方法"><a class="header-anchor" href="#配置方法"></a>配置方法</h2>
+<p>ssh登录服务器</p>
+<h3 id="安装"><a class="header-anchor" href="#安装"></a>安装</h3>
+<p>进入python虚拟环境</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>检查是否安装jupyter</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如返回未安装，则安装之</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>已安装则升级之</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U jupyter<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="配置-_2"><a class="header-anchor" href="#配置-_2"></a>配置</h3>
+<h4 id="生成配置文件-_2"><a class="header-anchor" href="#生成配置文件-_2"></a>生成配置文件</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter notebook --generate-config
+<span class="token comment"># 返回 Writing default config to: ~/.jupyter/jupyter_notebook_config.py</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>会自动创建文件夹<code>~/.jupyter</code>与配置文件<code>~/.jupyter/jupyter_notebook_config.py</code></p>
+<p>命令行会返回此【配置文件路径】，请保存</p>
+<h4 id="生成网络证书"><a class="header-anchor" href="#生成网络证书"></a>生成网络证书</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">cd</span> ~/.jupyter
+<span class="token comment"># openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem</span>
+openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days <span class="token number">3650</span> -out mycert.pem<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>回车系统会要求你填写：国家、省份、城市、单位、项目、邮箱，按真实填写之即可。<br>
+保存【证书路径】=<code>~/.jupyter/mycert.pem</code>，【密钥路径】=<code>~/.jupyter/key.pem</code></p>
+<h4 id="生成notebook登录密码"><a class="header-anchor" href="#生成notebook登录密码"></a>生成notebook登录密码</h4>
+<p>若想给notebook设置登录密码，则做此事。可以在任何电脑上做，生成的密文是一样的</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">ipython
+In <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token keyword">from</span> notebook<span class="token punctuation">.</span>auth <span class="token keyword">import</span> passwd
+In <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> passwd<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">#  创建一个密文的密码</span>
+Enter password<span class="token punctuation">:</span> <span class="token comment"># 在此处设置notebook的【登录密码】</span>
+Verify password<span class="token punctuation">:</span> <span class="token comment"># 重复密码</span>
+Out<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">:</span> <span class="token string">'sha1:adsasdasd:34da7adasdas87d0as8d70asda8sdaasd076f018'</span> <span class="token comment"># 会生成一个形如它的【哈希密码】</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>将登录密码与哈希密码保存</p>
+<h4 id="更改配置文件"><a class="header-anchor" href="#更改配置文件"></a>更改配置文件</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> /home/<span class="token environment constant">$USER</span>/.jupyter/jupyter_notebook_config.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>通用配置</p>
+<p>进入文件后</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 加在文件开头</span>
+<span class="token keyword">import</span> os
+<span class="token comment">#【证书新路径】</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>certfile <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>expanduser<span class="token punctuation">(</span><span class="token string">u'~/.jupyter/mycert.pem'</span><span class="token punctuation">)</span>
+<span class="token comment">#【密钥路径】</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>keyfile <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>expanduser<span class="token punctuation">(</span><span class="token string">u'~/.jupyter/key.pem'</span><span class="token punctuation">)</span>
+<span class="token comment"># NotebookApp的ip，'0.0.0.0'莫写成"*"。</span>
+<span class="token comment"># 写成"*"有时会报错”socket.gaierror: [Errno -5] No address associated with hostname“</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>ip <span class="token operator">=</span> <span class="token string">'0.0.0.0'</span>
+<span class="token comment"># 使得服务器上输入'jupyter notebook'命令后，不会立即进入它的浏览器</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>open_browser <span class="token operator">=</span> <span class="token boolean">False</span>
+<span class="token comment"># 在浏览器访问notebook，要在浏览器中输入密码，才能登陆</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>password <span class="token operator">=</span> <span class="token string">u'【哈希密码】'</span>
+<span class="token comment"># 将该【服务器端口】保存，使用固定端口号，可以随便设置，建议用不常见的，以免与其他任务的端口号冲突</span>
+<span class="token comment">#  注：若别的任务先占用了该端口，输入'jupyter notebook'命令，则会自动用该端口+1，再不行+2，以此类推</span>
+c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>port <span class="token operator">=</span> <span class="token number">11328</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>ipython notebook的配置</p>
+<p>老的版本的ipython，使用的是ipython notebook；新版本的ipython，已将notebook给了jupyter，故使用的是jupyter notebook</p>
+<p>ipython notebook则还需要更</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c <span class="token operator">=</span> get_config<span class="token punctuation">(</span><span class="token punctuation">)</span>
+c<span class="token punctuation">.</span>IPKernelApp<span class="token punctuation">.</span>pylab <span class="token operator">=</span> <span class="token string">'inline'</span>  <span class="token comment"># if you want plotting support always</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>jupyter notebook替代“c.IPKernelApp.pylab = ‘inline’”的配置如下，这是默认设置，不用更改</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># DISABLED: use %pylab or %matplotlib in the notebook to enable matplotlib.</span>
+<span class="token comment"># c.NotebookApp.pylab = 'disabled'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>取消jupyter notebook密码</p>
+<p>这样访问notebook就可以不需要密码</p>
+<p>把</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># c.NotebookApp.token = '&lt;generated>'</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>改为</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">c<span class="token punctuation">.</span>NotebookApp<span class="token punctuation">.</span>token <span class="token operator">=</span> <span class="token string">''</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
+<h3 id="启动notebook"><a class="header-anchor" href="#启动notebook"></a>启动notebook</h3>
+<ul>
+<li>
+<p>转接</p>
+<p>服务器若设了防火墙，浏览器无法直接访问服务器的notebook【服务器端口】，只能经ssh转接</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> 【服务器】 -L127.0.0.1:11327:127.0.0.1:11328<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>注：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token string">'-L127.0.0.1:【代理端口】:127.0.0.1:【服务器端口】'</span>
+<span class="token comment"># 用户端的localhost:【代理端口】 转接到 服务器端的localhost:【服务器端口】</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>登录服务器后，这个转接终端不要关，直到不用notebook</p>
+</li>
+<li>
+<p>进入虚拟环境</p>
+<p>若jupyter装在virtualenv里，才需要这一步</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> bin/activate<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>启动notebook</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">jupyter notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<h3 id="访问notebook"><a class="header-anchor" href="#访问notebook"></a>访问notebook</h3>
+<p>在本地电脑，使用浏览器访问<code>https://localhost:【代理端口】 </code></p>
+<ul>
+<li>
+<p>必须是https，jupyter不支持http</p>
+</li>
+<li>
+<p>浏览器的选择</p>
+<p>支持：qq浏览器/chrome浏览器/firefox浏览器<br>
+不支持：safari(可以登陆notebook的文件管理界面；但.ipynb文件的编辑界面下，无法连接到服务器的python内核)</p>
+</li>
+<li>
+<p>浏览器警告&quot;访问不安全&quot;</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/ZhYQ-Note/p/8493848.html">参考</a></p>
+<ul>
+<li>chrome:  高级&gt;&gt;继续前往（不安全），即可访问，但即使此证书到钥匙串，chrome每次访问<strong>依旧警告</strong></li>
+<li>safari：详细信息&gt;&gt;访问此网站&gt;&gt;接下来跟着提示步骤操作，会提示“以添加此证书到钥匙串”，之后用safari查看此网页，都<strong>不再警告</strong></li>
+<li>firefox：高级&gt;&gt;添加例外&gt;&gt;勾选永远添加此例外&gt;&gt;确认安全例外，之后firefox查看此网页，都<strong>不再警告</strong></li>
+</ul>
+<p><strong>相关技术</strong></p>
+<p>手动添加网页的证书</p>
+<ul>
+<li>导出证书：firefox访问此网页，显示访问不安全，点高级&gt;&gt;添加例外&gt;&gt;确认安全例外&gt;&gt;证书状态-查看&gt;&gt;详细详细&gt;&gt;导出，导出到随便什么地方</li>
+<li>打开 钥匙串访问.app，左栏分别选 登录+证书
+<ul>
+<li>若之前用safari信任了此证书，则可见你条件的证书</li>
+<li>若没，则将导出的证书拖到这里，然后双击此证书，再点”信任“，全调整为“总是信任”，然后之前导出的证书可以删了</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>弹出jupyter页面，要求输入【登录密码】</p>
+<p>只有服务器上notebook程序重启，再次登录该网页，才需要再输入密码。<br>
+服务器上notebook程序未关，本地即便断网重连，过数天重连，同一个浏览器不用再次输入密码。</p>
+</li>
+</ul>
+<h3 id="脚本打开"><a class="header-anchor" href="#脚本打开"></a>脚本打开</h3>
+<p>上述启动、访问操作可以用shell或Python脚本打开实现</p>
+<h2 id="保持开启状态"><a class="header-anchor" href="#保持开启状态"></a>保持开启状态</h2>
+<h3 id="使用tmux"><a class="header-anchor" href="#使用tmux"></a>使用tmux</h3>
+<p>推荐此法，用tmux保持转接进程和jupyter notebook一直开启</p>
+<ul>
+<li>本机开个tmux session，用来ssh -L转接</li>
+<li>服务器上开个tmux session，用来开jupyter notebook</li>
+</ul>
+<h3 id="普通方法"><a class="header-anchor" href="#普通方法"></a>普通方法</h3>
+<ul>
+<li>
+<p>暂停jupyter notebook<br>
+服务器上按<code>ctrl+z</code>，会出现</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Stopped                 jupyter notebook<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>表示jupyter notebook暂停，本地浏览器上无法访问Notebook网页</p>
+</li>
+<li>
+<p>放入后台运行</p>
+<p>服务器上输入</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bg</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>会出现</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+ jupyter notebook <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>表示jupyter notebook变成后台运行。</p>
+</li>
+<li>
+<p>查看进程</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">jobs</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若返回有</p>
+ <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span>+  Running                 jupyter notebook <span class="token operator">&amp;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>则为jupyter notebook在后台运行</p>
+</li>
+<li>
+<p>退出登录</p>
+<p><code>ctrl+Q/W</code> 退出服务器的登录，则jupyter notebook立即停止</p>
+<p><code>exit</code>或<code>logout</code>退出服务器的登录，则jupyter notebook不会立即停止</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/1a6992ea/" rel="prev" title="anaconda安装与使用">
+                  <i class="fa fa-chevron-left"></i> anaconda安装与使用
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/6f7822e5/" rel="next" title="mac的移动硬盘分区方案">
+                  mac的移动硬盘分区方案 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/aa8d830b/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

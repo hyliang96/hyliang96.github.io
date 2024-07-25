@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="我的配置 浏览器插件 当Zotero.app打开时，可以在浏览器中添加条目到zotero，使用方法详见">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Zotero安装与配置">
+<meta property="og:url" content="https://hyliang96.github.io/posts/6349216c/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="我的配置 浏览器插件 当Zotero.app打开时，可以在浏览器中添加条目到zotero，使用方法详见">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/ScreenShot%202019-12-10%2012.13.33.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/ScreenShot%202019-12-10%2012.15.36.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/ScreenShot%202019-12-10%2012.27.43.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/ScreenShot%202019-12-10%2012.54.22.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/ScreenShot%202019-12-10%2012.36.54.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/ScreenShot%202019-12-10%2012.38.28.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/ScreenShot%202019-12-10%2014.07.24.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/iShot_2024-06-11_15.09.51.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/image-20240611143812288.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/image-20240611144542387.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/c75bca1d4adf6c7e34947fa97c97d6b9.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/image-20240611150220138.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/f9627142d8818467bb229067d77bf27c.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/1cc96c94d21b244a235a1aba6755a4fe.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/ac8ada609dc2729dbd9e4c8424657927.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/aab34a6d2533c2f39613ff32f68a7ee7.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/image-20240611154607939.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/9506672eea714088cab7d79702ce5528.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/66c4b7137999001225938d7880d6e283.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/7e27159d9c187be2e1e389df91462b0e.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/ff8ae0969594739af14a47948cb7166d.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/6349216c/487f94ce1d583ec6379e736bccb4b21c.png">
+<meta property="article:published_time" content="2021-07-30T13:17:59.000Z">
+<meta property="article:modified_time" content="2024-07-21T07:52:43.274Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyliang96.github.io/posts/6349216c/ScreenShot%202019-12-10%2012.13.33.png">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/6349216c/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/6349216c/","path":"posts/6349216c/","title":"Zotero安装与配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Zotero安装与配置 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-text">我的配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8F%92%E4%BB%B6"><span class="nav-text">浏览器插件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5"><span class="nav-text">同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A6%82%E5%BF%B5%E8%A7%A3%E9%87%8A"><span class="nav-text">概念解释</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%A1%E7%9B%AE%E7%9A%84%E9%99%84%E4%BB%B6"><span class="nav-text">条目的附件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AD%98%E5%82%A8%E7%9B%AE%E5%BD%95"><span class="nav-text">存储目录</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E6%96%B9%E5%BC%8F"><span class="nav-text">同步方式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E7%9A%84%E5%90%8C%E6%AD%A5%E8%AE%BE%E7%BD%AE"><span class="nav-text">我的同步设置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E7%AD%96%E7%95%A5"><span class="nav-text">同步策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E6%96%B9%E6%B3%95"><span class="nav-text">设置方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A7%BB%E5%8A%A8%E9%99%84%E4%BB%B6"><span class="nav-text">移动附件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ipad%E9%98%85%E8%AF%BB%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-text">ipad阅读工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E9%80%89%E6%8B%A9%E5%BE%85%E8%AF%BB%E6%96%87%E4%BB%B6"><span class="nav-text">手动选择待读文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%96%B9%E6%A1%88%EF%BC%9AZotfile-Tablet"><span class="nav-text">其他方案：Zotfile - Tablet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%A8%E6%96%87%E6%90%9C%E7%B4%A2"><span class="nav-text">全文搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E9%98%85%E8%AF%BB%E5%99%A8"><span class="nav-text">设置默认阅读器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zotero%E8%87%AA%E5%B8%A6%E7%9A%84pdf%E9%98%85%E8%A7%88%E5%99%A8"><span class="nav-text">Zotero自带的pdf阅览器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pdf%E6%B3%A8%E9%87%8A"><span class="nav-text">pdf注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%A4%E7%A7%8Dpdf%E6%B3%A8%E9%87%8A"><span class="nav-text">两种pdf注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%E4%B8%A4%E7%A7%8D%E6%B3%A8%E9%87%8A%E7%9A%84%E6%96%B9%E5%BC%8F"><span class="nav-text">转换两种注释的方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9C%A8zotero%E7%9A%84pdf%E9%98%85%E8%AF%BB%E5%99%A8%E5%86%85%E8%BD%AC%E6%8D%A2"><span class="nav-text">在zotero的pdf阅读器内转换</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%86%85%E5%B5%8C%E6%B3%A8%E9%87%8A%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%88%86%E7%A6%BB%E6%B3%A8%E9%87%8A"><span class="nav-text">内嵌注释转换为分离注释</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%86%E7%A6%BB%E6%B3%A8%E9%87%8A%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%86%85%E5%B5%8C%E6%B3%A8%E9%87%8A"><span class="nav-text">分离注释转换为内嵌注释</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%89%B9%E9%87%8F%E5%AF%BC%E5%87%BA%E5%B8%A6%E6%B3%A8%E9%87%8A%E7%9A%84pdf"><span class="nav-text">批量导出带注释的pdf</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%86%E6%B3%A8%E9%87%8A%E4%BF%9D%E5%AD%98%E5%88%B0%E9%99%84%E4%BB%B6%EF%BC%88pdf%E6%96%87%E4%BB%B6%EF%BC%89"><span class="nav-text">将注释保存到附件（pdf文件）</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Zotero%E9%98%85%E8%AF%BB%E5%99%A8%E5%86%85%E8%87%AA%E5%B8%A6%E7%9A%84%E8%BD%AC%E6%8D%A2%E5%8A%9F%E8%83%BD"><span class="nav-text">使用Zotero阅读器内自带的转换功能</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#zotero-IF%E6%8F%92%E4%BB%B6"><span class="nav-text">zotero IF插件</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">参考资料</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/6349216c/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Zotero安装与配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-07-30 21:17:59" itemprop="dateCreated datePublished" datetime="2021-07-30T21:17:59+08:00">2021-07-30</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2024-07-21 15:52:43" itemprop="dateModified" datetime="2024-07-21T15:52:43+08:00">2024-07-21</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E6%96%87%E7%8C%AE%E7%AE%A1%E7%90%86/" itemprop="url" rel="index"><span itemprop="name">文献管理</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/6349216c/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/6349216c/" data-xid="/posts/6349216c/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>17 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="我的配置"><a class="header-anchor" href="#我的配置"></a>我的配置</h1>
+<h2 id="浏览器插件"><a class="header-anchor" href="#浏览器插件"></a>浏览器插件</h2>
+<p>当Zotero.app打开时，可以在浏览器中添加条目到zotero，使用方法<a target="_blank" rel="noopener" href="https://www.yangzhiping.com/tech/zotero1.html">详见</a></p>
+<p>Safari&lt;=12: 安装<code>Zotero Connector</code>: 点<code>工具</code>-<code> 安装浏览器插件</code>，弹出网页点<code>install</code></p>
+<p>Safari&gt;=13: <a target="_blank" rel="noopener" href="https://www.zotero.org/support/kb/safari_compatibility">beta版Zotero Connector</a></p>
+<h2 id="同步"><a class="header-anchor" href="#同步"></a>同步</h2>
+<p>本段参考 <a target="_blank" rel="noopener" href="https://github.com/specter119/RefTools/blob/master/zotero/sync.md">zotero跨平台使用教程：多种同步方案</a> 编写</p>
+<h3 id="概念解释"><a class="header-anchor" href="#概念解释"></a>概念解释</h3>
+<h4 id="条目的附件"><a class="header-anchor" href="#条目的附件"></a>条目的附件</h4>
+<p>Zotero 附件类型包括</p>
+<p><code>文件附件</code></p>
+<ul>
+<li>图标为系统默认图标或者 adobe 红</li>
+<li>是 Zotero 默认的附件格式。当从finder拖拽文件至条目上，则复制文件副本创建<code>文件附件</code>。也可<code>选择条目-右键-附件-添加文件副本</code>创建</li>
+<li>存放在<code>&lt;数据存储位置&gt;/storage/&lt;8位数字和字母编码&gt;/</code></li>
+</ul>
+<p><code>链接附件</code></p>
+<ul>
+<li>图标为白色 加小铁链</li>
+<li>可<code>选择条目-右键-附件-添加文件链接</code>，或由 ZotFile 生成</li>
+<li>实际保存在<code>&lt;链接附件的根目录&gt;</code>下</li>
+</ul>
+<p><code>url附件</code></p>
+<ul>
+<li>图标为蓝色 加小铁链</li>
+<li>可<code>选择条目-右键-附件-添加url链接</code>创建</li>
+<li>实际为文件的网址，联网时才能打开</li>
+<li>保存在<code>&lt;数据存储位置&gt;/zotero.sqlite</code></li>
+</ul>
+<p>因此，本地只保存有<code>文件</code>与<code>文件链接</code>类型的附件。</p>
+<h4 id="存储目录"><a class="header-anchor" href="#存储目录"></a>存储目录</h4>
+<p><code>&lt;数据存储位置&gt;/</code> ：默认是<code>~/Zotero</code></p>
+<p><code>&lt;数据存储位置&gt;/zotero.sqlite</code> 文件</p>
+<ul>
+<li>包含分类层级，条目的元数据、标签、分类等， <code>文件附件</code>的8位编码、<code>链接附件</code>的路径、<code>url附件</code>的url、笔记 等</li>
+<li>只能用zotero官方服务来同步，<a target="_blank" rel="noopener" href="https://blog.yesmryang.net/zotero-dropbox-sync/">采用第三方云盘同步会造成冲突</a></li>
+</ul>
+<p><code>&lt;数据存储位置&gt;/storage/</code></p>
+<ul>
+<li>
+<p>其下均为名为 8位数字和字母的编码 的子文件夹，子文件夹内是一个<code>文件附件</code>的所有组成文件</p>
+<p>组成文件：如pdf型<code>文件附件</code>，则是一个pdf文件；网页快照型<code>文件附件</code>，则是构成网页的所有文件</p>
+</li>
+<li>
+<p>此文件夹可采用第三方云盘同步</p>
+</li>
+</ul>
+<p><code>&lt;链接附件的根目录&gt;/</code></p>
+<ul>
+<li>包含<code>链接附件</code>·，可以自由组织其目录结构</li>
+<li>此文件夹可采用第三方云盘同步</li>
+</ul>
+<h4 id="同步方式"><a class="header-anchor" href="#同步方式"></a>同步方式</h4>
+<p>从附件类型上来看，Zotero 实现同步的方式不外乎两类：</p>
+<ul>
+<li>同步<code>文件附件</code>，包括：
+<ul>
+<li>Zotero 官网同步服务：同步<code>zotero.sqlite</code>和<code>&lt;数据存储位置&gt;/storage/</code> ，免费限300MB</li>
+<li>Webdav 同步</li>
+<li>软链接配合同步盘</li>
+</ul>
+</li>
+<li>同步<code>链接附件</code>，包括：
+<ul>
+<li>ZotFile 配合同步盘</li>
+</ul>
+</li>
+</ul>
+<p>两类方法使用上的优劣：</p>
+<ul>
+<li>同步<code>文件附件</code>：
+<ul>
+<li>劣势：路径自定义程度低，<code>&lt;数据存储位置&gt;/storage</code>或<code>软链接</code>内8位数字和字母组成的子目录，不可读</li>
+<li>优势：删除条目，附件随之删除</li>
+</ul>
+</li>
+<li>同步<code>链接附件</code> (特指由 ZotFile 生成)
+<ul>
+<li>优势：路径自定义程度高、可读，便于在ipad上进入目录，用任意第三方标注软件阅读、批注文件</li>
+<li>劣势：删除条目，附件不会随之删除，<code>链接附件的根目录</code>概念略费解。</li>
+</ul>
+</li>
+</ul>
+<h3 id="我的同步设置"><a class="header-anchor" href="#我的同步设置"></a>我的同步设置</h3>
+<h4 id="同步策略"><a class="header-anchor" href="#同步策略"></a>同步策略</h4>
+<table>
+<thead>
+<tr>
+<th>附件类型</th>
+<th>同步方法</th>
+<th>依赖</th>
+<th>支持平台</th>
+<th>工作方式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>单文件的附件(如pdf)</td>
+<td>同步<code>链接附件</code></td>
+<td>ZotFile 插件 + Dropbox</td>
+<td>mac、win、Linux、iPad、iOS、android</td>
+<td>在iPad上用任意软件阅读批注pdf</td>
+</tr>
+<tr>
+<td>多文件的附件(如网页快照)</td>
+<td>同步<code>文件附件</code></td>
+<td>Dropbox</td>
+<td>mac、win、Linux</td>
+<td>在电脑上阅读</td>
+</tr>
+</tbody>
+</table>
+<p>同步到ipad的其他解决方案：<a target="_blank" rel="noopener" href="https://taozhaojun.github.io/2017/08/02/ipad/">papership+Webdav</a></p>
+<h4 id="设置方法"><a class="header-anchor" href="#设置方法"></a>设置方法</h4>
+<ul>
+<li>
+<p>设置软连接</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">mkdir</span> /Users/mac/Dropbox/Zotero_sync/
+<span class="token comment"># 创建 &lt;链接附件目录> 为 Zotero_sync/linked_files</span>
+<span class="token function">mkdir</span> /Users/mac/Dropbox/Zotero_sync/linked_files
+<span class="token comment"># &lt;数据存储位置>/storage  移动并链接到   Zotero_sync/storage</span>
+<span class="token builtin class-name">cd</span> <span class="token operator">&lt;</span>数据存储位置<span class="token operator">></span>
+<span class="token function">mv</span> storage /Users/mac/Dropbox/Zotero_sync/storage
+<span class="token function">ln</span> -s /Users/mac/Dropbox/Zotero_sync/storage storage<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>设置zotero存储目录</p>
+<p>勾选<code>首选项</code>-<code>高级-</code>文件和文件夹`，填入以下两路径</p>
+<p><img data-src="/posts/6349216c/ScreenShot%202019-12-10%2012.13.33.png" alt="ScreenShot 2019-12-10 12.13.33"></p>
+</li>
+<li>
+<p>设置zotero官方同步</p>
+<p>购买服务后，勾选<code>首选项</code>-<code>同步</code>-<code>设置</code>，设置成如下</p>
+<p><img data-src="/posts/6349216c/ScreenShot%202019-12-10%2012.15.36.png" alt="ScreenShot 2019-12-10 12.15.36"></p>
+</li>
+<li>
+<p>安装zotfile</p>
+<p>在<a target="_blank" rel="noopener" href="https://github.com/jlegewie/zotfile/releases/l">zotfile的github</a>下载最新的<code>zotfile-x.x.x--fx.xpi</code>, 下载后在 Zotero 中打开<code>工具</code>→<code>插件</code>，按右上角齿轮选择<code>Install Add-on Form Fil</code>，选中刚刚下载的 <code>zotfile-x.x.x-fx.xpi</code></p>
+</li>
+<li>
+<p>设置zotfile存储目录</p>
+<p><code>工具</code>-<code>Zotfile Preference</code>-<code>General Settings</code></p>
+<p><img data-src="/posts/6349216c/ScreenShot%202019-12-10%2012.27.43.png" alt="ScreenShot 2019-12-10 12.27.43"></p>
+<p>其中自定义附件所在子文件夹：写<code>/%c/&#123;</code> <code>%t&#125;&#123;-%y&#125;&#123;-%a&#125;</code>，意为：</p>
+<p>条目<code>&lt;subfolder1&gt;/&lt;subfolder2&gt;/.../&lt;subfoldern&gt;/&lt;item&gt;</code> 的<code>链接附件</code>存放在<code>自定义目录</code>=</p>
+<p><code>&lt;链接附件根目录&gt;/&lt;subfolder1&gt;/&lt;subfolder2&gt;/.../&lt;subfoldern&gt;/&lt;item的标题&gt;-&lt;年份&gt;-&lt;作者&gt;/</code> (若年份、作者没有 则略去)</p>
+</li>
+<li>
+<p>设置用zotfile同步的文件格式</p>
+<p><code>工具</code>-<code>Zotfile Preference</code>-<code>Advanced Settings</code>，填写下栏文件格式</p>
+<p><img data-src="/posts/6349216c/ScreenShot%202019-12-10%2012.54.22.png" alt="ScreenShot 2019-12-10 12.54.22"></p>
+</li>
+<li>
+<p>zotfile关闭重命名</p>
+<p>效果：此设置后，用zotfile重命名附件时，<code>附件文件</code>的文件名不会改，仅移动它到上述<code>自定义目录</code>中</p>
+<p>好处：当条目有多个<code>附件文件</code>时（如 正文.pdf, 翻译.pdf)，不会被zotfile自动重命名成 <code>&lt;item的标题&gt;-&lt;年份&gt;-&lt;作者&gt;n.pdf</code> (n=‘',2,3,4…)</p>
+<p>勾选<code>首选项</code>→<code>高级</code>→<code>常规</code>，点<code>设置编辑器</code></p>
+<p><img data-src="/posts/6349216c/ScreenShot%202019-12-10%2012.36.54.png" alt="ScreenShot 2019-12-10 12.36.54"></p>
+<p>查找<code>extensions.zotfile.disable_renaming</code>，值改成<code>true</code></p>
+<p><img data-src="/posts/6349216c/ScreenShot%202019-12-10%2012.38.28.png" alt="ScreenShot 2019-12-10 12.38.28"></p>
+</li>
+</ul>
+<h4 id="移动附件"><a class="header-anchor" href="#移动附件"></a>移动附件</h4>
+<ul>
+<li>
+<p>测试：完成上述配置后，先选中任意一个有pdf附件的条目，点<code>右键-Manage Attachments-Rename Attachments</code>，看看在<code>自定义目录</code>有无该附件、文件名是否未被改动，在zotero里点击该附件看看能否用pdf浏览器打开。若测试成功，则进行下一步。</p>
+</li>
+<li>
+<p>移动所有附件到<code>自定义目录</code>：<code>我的文库</code>-<code>⌘A</code> 全选条目，点<code>右键-Manage Attachments-Rename Attachments</code>。</p>
+</li>
+</ul>
+<h2 id="ipad阅读工作流程"><a class="header-anchor" href="#ipad阅读工作流程"></a>ipad阅读工作流程</h2>
+<h3 id="手动选择待读文件"><a class="header-anchor" href="#手动选择待读文件"></a>手动选择待读文件</h3>
+<ul>
+<li>新建分类“待读”</li>
+<li>选中待读条目，拖拽到“待读”，以使“待读”中也添加此条目</li>
+<li>选刚才的条目，<code>右键</code>-<code>Manage Attachments</code>-<code>Rename Attachments</code>，弹出对话框问选择哪个分类作为<code>自定义路径</code>，选“待读”</li>
+<li>在iPad上打开<code>Dropbox/Zotero_sync/linked_files/待读/&lt;item&gt;/附件名</code>，开始批注；亦可同时用mac来批注</li>
+<li>当此文件读完，进入“待读”，选择此条目，<code>右键</code>-<code>Manage Attachments</code>-<code>Rename Attachments</code>，弹出对话框问选择哪个分类作为<code>自定义路径</code>，皆不选“待读”；然后选择此条目，<code>右键</code>-<code>从分类中移除条目</code></li>
+</ul>
+<p>优点：可以避免下述tablet的两个缺点</p>
+<h3 id="其他方案：Zotfile-Tablet"><a class="header-anchor" href="#其他方案：Zotfile-Tablet"></a>其他方案：Zotfile - Tablet</h3>
+<p>配置：<code>工具</code>-<code>Zotfile Preference</code>-<code>Tablet Settings</code>, 填写如下</p>
+<p><img data-src="/posts/6349216c/ScreenShot%202019-12-10%2014.07.24.png" alt="ScreenShot 2019-12-10 14.07.24"></p>
+<p>使用：</p>
+<ul>
+<li>
+<p>选中待读的条目或附件，<code>右键</code>-<code>Manage Attachments</code>-<code>Send To Tablet</code></p>
+<p>作用：在<code>Dropbox/Zotero_sync/tablet/</code> 下会添加此条目或附件，zotero的左栏中<code>Tablet Files</code>也会添加它</p>
+</li>
+<li>
+<p>在iPad上从Dropbox点开此文件，阅读批注之。当批注后，左栏中<code>Tablet Files (modified)</code>也会添加它。</p>
+</li>
+<li>
+<p>在左栏中<code>Tablet Files (modified)</code>选中批注完的文件，<code>右键</code>-<code>Manage Attachments</code>-<code>Get To Tablet</code></p>
+<p>作用：从<code>Dropbox/Zotero_sync/tablet/</code>移动附件到文库中相应条目，覆盖原附件， <code>Tablet Files</code>、<code>Tablet Files (modified)</code>中删除它</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>如果同时修改了tablet中的附件（用iPad）和 文库中对应的附件（用电脑），则<code>get from tablet</code>时会冲突，无法自动merge修改</li>
+<li>get from tablet 后 <code>&lt;tablet&gt;</code>目录下会留下空的子文件夹</li>
+</ul>
+<h2 id="全文搜索"><a class="header-anchor" href="#全文搜索"></a>全文搜索</h2>
+<p>Zotero可以搜索pdf中的英文，但不支持pdf中的中文</p>
+<p>搜索栏输入<code>“搜索内容”</code>，表示严格匹配；<code>搜索内容</code> 表示非严格匹配</p>
+<h2 id="设置默认阅读器"><a class="header-anchor" href="#设置默认阅读器"></a>设置默认阅读器</h2>
+<p>在zotero的<code>设置</code>-<code>常规</code>-<code>Reader</code>里，把<code>打开pdf使用</code>设置为<code>系统默认</code>或<code>自定义</code>，这样双击条目/pdf附件时，就能用选中的阅读器打开。</p>
+<p><img data-src="/posts/6349216c/iShot_2024-06-11_15.09.51.png" alt="iShot_2024-06-11_15.09.51"></p>
+<h2 id="Zotero自带的pdf阅览器"><a class="header-anchor" href="#Zotero自带的pdf阅览器"></a>Zotero自带的pdf阅览器</h2>
+<h3 id="pdf注释"><a class="header-anchor" href="#pdf注释"></a>pdf注释</h3>
+<p>参考：<a target="_blank" rel="noopener" href="https://www.zotero.org/support/kb/annotations_in_database">zotero官方说明：Why does Zotero store PDF annotations in its database instead of in the PDF file?</a></p>
+<h3 id="两种pdf注释"><a class="header-anchor" href="#两种pdf注释"></a><strong>两种pdf注释</strong></h3>
+<ul>
+<li>内嵌注释：由非zotero的pdf阅读器（如mac自带的Preview.app）添加，内嵌在pdf文件内，用非zotero的pdf阅读器和zotero的pdf阅读器打开都可以看见注释。在zotero的pdf阅读器内，内嵌注释在左侧栏中带有🔒标记。</li>
+<li>分离注释：Zotero&gt;=6.0增加了内置PDF阅读，同时实现了注释（annotation）和附件（如pdf文件）分离，<strong>注释存储在 Zotero 数据库</strong>、而非 PDF 文件内部，用非zotero的pdf阅读器打开附件是看不到注释，只有用pdf阅读器打开都才能看见注释。在zotero的pdf阅读器内，内嵌注释在左侧栏中不带有🔒标记。</li>
+</ul>
+<h3 id="转换两种注释的方式"><a class="header-anchor" href="#转换两种注释的方式"></a><strong>转换两种注释的方式</strong></h3>
+<p>分离注释存储在本地 Zotero 的开放 SQLite 数据库，可使用标准开源工具提取， Zotero 内的插件和外部工具也可以通过 Zotero Web API 访问它们</p>
+<h4 id="在zotero的pdf阅读器内转换"><a class="header-anchor" href="#在zotero的pdf阅读器内转换"></a>在zotero的pdf阅读器内转换</h4>
+<p>在zotero的pdf阅读器打开附件（pdf文件）后，执行下图操作。</p>
+<h5 id="内嵌注释转换为分离注释"><a class="header-anchor" href="#内嵌注释转换为分离注释"></a>内嵌注释转换为分离注释</h5>
+<p>在转换后，条目附件（pdf文件）将失去内嵌注释，用非zotero的pdf阅读器打开看不见注释，用zotero的pdf阅读器打开能看见附件，且🔒标记消失。</p>
+<p><img data-src="/posts/6349216c/image-20240611143812288.png" alt="image-20240611143812288"></p>
+<h5 id="分离注释转换为内嵌注释"><a class="header-anchor" href="#分离注释转换为内嵌注释"></a>分离注释转换为内嵌注释</h5>
+<p>点<code>文件</code>-<code>另存为</code>，即可在自己指定的目录另存一个内嵌注释的pdf文件；而非就地改写条目附件（pdf文件），使其注释都变成内嵌注释。</p>
+<p><img data-src="/posts/6349216c/image-20240611144542387.png" alt="image-20240611144542387"></p>
+<h4 id="批量导出带注释的pdf"><a class="header-anchor" href="#批量导出带注释的pdf"></a>批量导出带注释的pdf</h4>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44786971/article/details/127705556">参考</a></p>
+<p>选中需要导出的PDF的条目（可以批量选择），右键选择<code>导出条目</code>。</p>
+<p><img data-src="/posts/6349216c/c75bca1d4adf6c7e34947fa97c97d6b9.png" alt="image-20221104174150365"></p>
+<p>或在zotero内的条目分组浏览器中，选中<strong>一个分组</strong>（只能选中一个），然后点“导出分类”。</p>
+<p><img data-src="/posts/6349216c/image-20240611150220138.png" alt="image-20240611150220138"></p>
+<p>（2）勾选<code>导出文件</code>以及<code>包括注释</code>选项，点击右下角的<code>OK</code>按钮。</p>
+<p><img data-src="/posts/6349216c/f9627142d8818467bb229067d77bf27c.png" alt="image-20221104174301036"></p>
+<p>（3） 输入要保存的名字，以及需要导出的位置，点击<code>Save</code>导出。</p>
+<p><img data-src="/posts/6349216c/1cc96c94d21b244a235a1aba6755a4fe.png" alt="image-20221104174429227"></p>
+<p>（4） 然后打开文件夹，点击<code>file</code>文件。</p>
+<p><img data-src="/posts/6349216c/ac8ada609dc2729dbd9e4c8424657927.png" alt="image-20221104175302624"></p>
+<p>（5） 继续点击里边的子文件（如果批量导出的话，子文件有多个)。</p>
+<p><img data-src="/posts/6349216c/aab34a6d2533c2f39613ff32f68a7ee7.png" alt="image-20221104175332362"></p>
+<p>（6） 然后就能够看到导出的PDF文件了，用非zotero的pdf阅读器打开也能够看见在Zotero里的注释了。</p>
+<p>但是，导出分组后的文件夹，将失去分组层级结构，变成下面这个样子：</p>
+<pre class="line-numbers language-none"><code class="language-none">&lt;分组名称&gt;&#x2F;
+    &lt;分组名称&gt;.rdf
+    files&#x2F;
+        &lt;四位数字编码&gt;&#x2F;一个内嵌了注释的pdf附件 或 一个html附件
+        &lt;四位数字编码&gt;&#x2F;一个内嵌了注释的pdf附件 或 一个html附件
+        &lt;四位数字编码&gt;&#x2F;...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>因此，用这种方法导出批注，不便于迁移。建议设置默认pdf阅读器为非zotero的pdf阅读器。</p>
+<h4 id="将注释保存到附件（pdf文件）"><a class="header-anchor" href="#将注释保存到附件（pdf文件）"></a>将注释保存到附件（pdf文件）</h4>
+<h5 id="使用Zotero阅读器内自带的转换功能"><a class="header-anchor" href="#使用Zotero阅读器内自带的转换功能"></a>使用<a href="#%E5%88%86%E7%A6%BB%E6%B3%A8%E9%87%8A%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%86%85%E5%B5%8C%E6%B3%A8%E9%87%8A">Zotero阅读器内自带的转换功能</a></h5>
+<p>在文献库中打开文件，右键，点<code>show in folder</code>，</p>
+<p><img data-src="/posts/6349216c/image-20240611154607939.png" alt="image-20240611154607939"></p>
+<p>用zotero的pdf阅读器打开附件（pdf文件），点<code>文件</code>-<code>另存为</code>，会弹出一个文件浏览器选框，把前面Folder中的附件（pdf）拖入，即导出文件到附件的路径和名字，点<code>Save</code>，就能<strong>让附件（pdf文件）中的注释都变成内嵌注释</strong>。</p>
+<h5 id="zotero-IF插件"><a class="header-anchor" href="#zotero-IF插件"></a>zotero IF插件</h5>
+<p>说明：截止2024-6-11，Zotero IF插件对于Zotero7.0还没有开发<code>存储注释至PDF</code>功能，<a target="_blank" rel="noopener" href="https://github.com/qnscholar/zotero-if/issues/5">参见</a>。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44786971/article/details/127705556">参考</a></p>
+<p>（1） 下载并在Zotero里安装好<a target="_blank" rel="noopener" href="https://github.com/qnscholar/zotero-if">Zotero IF</a>插件。</p>
+<p><img data-src="/posts/6349216c/9506672eea714088cab7d79702ce5528.png" alt="image-20221105163512805"></p>
+<p>（2） 打开一篇文献，点击<code>工具</code>，选择<code>存储注释至PDF</code>。</p>
+<p><img data-src="/posts/6349216c/66c4b7137999001225938d7880d6e283.png" alt="image-20221105163728056"></p>
+<p>（3） 点击<code>OK</code>。</p>
+<p><img data-src="/posts/6349216c/7e27159d9c187be2e1e389df91462b0e.png" alt="image-20221105163818543"></p>
+<p>（4） 回到首页选择刚才打开的文献，右键选择<code>打开文件位置</code>。</p>
+<p><img data-src="/posts/6349216c/ff8ae0969594739af14a47948cb7166d.png" alt="img"></p>
+<p>（5） 可以发现注释已经存进了PDF中。</p>
+<p><img data-src="/posts/6349216c/487f94ce1d583ec6379e736bccb4b21c.png" alt="image-20221105164118086"></p>
+<h1 id="参考资料"><a class="header-anchor" href="#参考资料"></a>参考资料</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/specter119/RefTools">各种文献管理软件使用教程</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/specter119/RefTools/tree/master/zotero">zotero使用教程</a></p>
+<p>[#分离注释转换为内嵌注释]:<br>
+[# 分离注释转换为内嵌注释]:</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/85a6419c/" rel="prev" title="IPMI带外管理教程">
+                  <i class="fa fa-chevron-left"></i> IPMI带外管理教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/3ad41d06/" rel="next" title="mac上使用X11">
+                  mac上使用X11 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/6349216c/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="[TOC] 参考链接 conda文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="anaconda安装与使用">
+<meta property="og:url" content="https://hyliang96.github.io/posts/1a6992ea/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="[TOC] 参考链接 conda文档">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyliang96.github.io/posts/1a6992ea/conda%E5%AE%89%E8%A3%85.png">
+<meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
+<meta property="article:modified_time" content="2022-03-23T09:14:46.137Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyliang96.github.io/posts/1a6992ea/conda%E5%AE%89%E8%A3%85.png">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/1a6992ea/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/1a6992ea/","path":"posts/1a6992ea/","title":"anaconda安装与使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>anaconda安装与使用 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-text">参考链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85anaconda"><span class="nav-text">安装anaconda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BD"><span class="nav-text">卸载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#conda%E4%B8%8B%E5%AE%89%E8%A3%85%E5%8C%85-%E8%BD%AF%E4%BB%B6"><span class="nav-text">conda下安装包&#x2F;软件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#python%E7%9A%84%E5%8C%85"><span class="nav-text">python的包</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#conda%E5%91%BD%E4%BB%A4%E6%A6%82%E8%BF%B0"><span class="nav-text">conda命令概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8C%85%E7%9A%84%E7%AE%A1%E7%90%86"><span class="nav-text">包的管理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#conda%E4%B8%8Epip%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">conda与pip的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9Epython%E8%BD%AF%E4%BB%B6"><span class="nav-text">非python软件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%88%E6%9E%9C"><span class="nav-text">效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E7%BD%91%E9%A1%B5%E9%93%BE%E6%8E%A5%E4%B8%8E%E5%AE%89%E8%A3%85%E5%91%BD%E4%BB%A4"><span class="nav-text">安装网页链接与安装命令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-text">虚拟环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%85%BC%E5%AE%B9"><span class="nav-text">不兼容</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#matplotlib"><span class="nav-text">matplotlib</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8A%A5%E9%94%99"><span class="nav-text">报错</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#anaconda%E6%8A%A5%E9%94%99-ImportError-No-module-named-conda-cli"><span class="nav-text">anaconda报错 ImportError: No module named conda.cli</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%97%87%E7%8A%B6"><span class="nav-text">症状</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E7%AD%96"><span class="nav-text">对策</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9B%B4%E6%96%B0%E5%BC%8F%E9%87%8D%E8%A3%85"><span class="nav-text">更新式重装</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%87%8D%E8%A3%85"><span class="nav-text">重装</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/1a6992ea/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          anaconda安装与使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/1a6992ea/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/1a6992ea/" data-xid="/posts/1a6992ea/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>5.4k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>18 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>[TOC]</p>
+<h2 id="参考链接"><a class="header-anchor" href="#参考链接"></a>参考链接</h2>
+<p><a target="_blank" rel="noopener" href="https://conda.io/docs/">conda文档</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24664358">Linux下Anaconda的安装使用与卸载</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.jianshu.com/p/d2e15200ee9b">anaconda的使用和环境管理</a></p>
+<h2 id="安装anaconda"><a class="header-anchor" href="#安装anaconda"></a>安装anaconda</h2>
+<p>参见<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/24664358">Linux下Anaconda的安装使用与卸载</a></p>
+<ul>
+<li>
+<p>在PC上，去<a target="_blank" rel="noopener" href="https://www.continuum.io/downloads">Anaconda官网</a>，获得安装包的下载链接</p>
+<ul>
+<li>Download for Your Preferred Platform下，选Linux，根据需要选Python版本和操作系统位数</li>
+<li>右键点击下载按钮，选<code>复制链接</code>，如https://repo.continuum.io/archive/Anaconda2-4.4.0-Linux-x86_64.sh</li>
+</ul>
+</li>
+<li>
+<p>cd到服务器上自己d的用户目录</p>
+<ul>
+<li>
+<p>下载安装文件b</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> 上述链接<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>查看安装文件是否下载成功</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>看见有形如<code>	Anaconda3-4.0.0-Linux-x86_64.sh</code>的文件说明下载成功</p>
+</li>
+<li>
+<p>执行安装文件，如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> Anaconda2-4.4.0-Linux-x86_64.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>整个过程点几下回车，或者选yes就好了。</p>
+</li>
+<li>
+<p>但到最后一步，会提示是否把anaconda加入到系统环境变量中，选no（直接回车即可，默认就是no）</p>
+<p><img data-src="/posts/1a6992ea/conda%E5%AE%89%E8%A3%85.png" alt="conda安装"></p>
+</li>
+<li>
+<p>安装完成后，</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ls</span>
+<span class="token comment"># 会有anaconda2或者anaconda3文件夹， 分别对应python2 或 python3</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>此时若终端中输入conda，发现command not found。这是因为，尚未向用户环境变量加入ananconda</li>
+</ul>
+</li>
+</ul>
+<h2 id="配置"><a class="header-anchor" href="#配置"></a>配置</h2>
+<ul>
+<li>向用户环境变量加入ananconda</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 将anaconda的bin目录加入PATH，根据版本不同，也可能是~/anaconda3/bin</span>
+<span class="token builtin class-name">echo</span> <span class="token string">'export PATH=~/anaconda2/bin:$PATH'</span> <span class="token operator">>></span> ~/.bashrc
+<span class="token comment"># 激活bashrc以立即生效</span>
+<span class="token builtin class-name">source</span> ~/.bashrc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p>如用户登录服务器后，conda无l法使用</p>
+<ul>
+<li>症状：conda命令、conda虚拟环境、conda-forge安装的软件无法使用，ls显示的文件不是彩色的</li>
+<li>对策：重新激活bashrc</li>
+</ul>
+</li>
+<li>
+<p>此时，用户目录下就可以正常使用conda了。测试方法如下</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 调出conda</span>
+conda
+<span class="token comment"># 查看安装了那些包</span>
+conda list
+<span class="token comment"># 查看anaconda是否成功劫持python命令</span>
+<span class="token function">which</span> python
+<span class="token comment"># 若返回/home/$USER/anaconda2/bin/python则成功</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>测试anaconda预装的软件能否打开</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># jupter notebook</span>
+jupyter notebook
+<span class="token punctuation">[</span>I <span class="token number">11</span>:38:51.999 NotebookApp<span class="token punctuation">]</span> Serving notebooks from <span class="token builtin class-name">local</span> directory: /home/<span class="token variable">$USERliang</span>
+<span class="token punctuation">[</span>I <span class="token number">11</span>:38:51.999 NotebookApp<span class="token punctuation">]</span> <span class="token number">0</span> active kernels
+<span class="token punctuation">[</span>I <span class="token number">11</span>:38:51.999 NotebookApp<span class="token punctuation">]</span> The Jupyter Notebook is running at: http://localhost:8888/?token<span class="token operator">=</span>2f2a56290a357f0ab3aa3be983091614474113ca24f9edc1
+<span class="token punctuation">[</span>I <span class="token number">11</span>:38:52.000 NotebookApp<span class="token punctuation">]</span> Use Control-C to stop this server and shut down all kernels <span class="token punctuation">(</span>twice to skip confirmation<span class="token punctuation">)</span>.
+<span class="token punctuation">[</span>W <span class="token number">11</span>:38:52.000 NotebookApp<span class="token punctuation">]</span> No web browser found: could not <span class="token function">locate</span> runnable browser.
+<span class="token punctuation">[</span>C <span class="token number">11</span>:38:52.000 NotebookApp<span class="token punctuation">]</span>
+
+    Copy/paste this URL into your browser when you connect <span class="token keyword">for</span> the first time,
+    to login with a token:
+        http://localhost:8888/?token<span class="token operator">=</span>2f2a56290a357f0ab3aa3be983091614474113ca24f9edc1
+<span class="token comment"># spyder</span>
+spyder
+QXcbConnection: Could not connect to display
+Aborted <span class="token punctuation">(</span>core dumped<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="卸载"><a class="header-anchor" href="#卸载"></a>卸载</h2>
+<ul>
+<li>直接删除用户目录下的anaconda文件夹即可</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> -rf ~/anaconda2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>更改用户环境变量为系统的python</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">'export PATH=/usr/bin/:$PATH'</span> <span class="token operator">>></span> .bashrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>测试python能否使用</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> python
+<span class="token comment"># 得到 /usr/bin/python 则说明更改成功</span>
+python
+pip
+<span class="token comment"># 都能成功打开则说明成功</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="conda下安装包-软件"><a class="header-anchor" href="#conda下安装包-软件"></a>conda下安装包/软件</h2>
+<h3 id="python的包"><a class="header-anchor" href="#python的包"></a>python的包</h3>
+<h4 id="conda命令概述"><a class="header-anchor" href="#conda命令概述"></a>conda命令概述</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda 命令             <span class="token comment"># 在当前虚拟环境下执行</span>
+conda 命令 -n 虚拟环境名 <span class="token comment"># 在指定虚拟环境下执行</span>
+<span class="token comment"># 如 conda -n python2.7 list,  conda -n python2.7 install numpy</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h4 id="包的管理"><a class="header-anchor" href="#包的管理"></a>包的管理</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda list       <span class="token comment"># 查看已装包</span>
+conda search  包 <span class="token comment"># 查找包信息——从网上获取所有版本的这个包的列表，标 * 的是已装的</span>
+conda <span class="token function">install</span> 包 <span class="token comment"># 安装包</span>
+conda -c channel <span class="token function">install</span> 包 <span class="token comment"># 通过指定channel安装</span>
+<span class="token comment"># 如 conda -c conda-forge install tmux</span>
+<span class="token comment"># 如 conda install -c bioconda coreutils</span>
+conda update     <span class="token comment"># 更新包</span>
+conda remove     <span class="token comment"># 卸载包——会删除包所在的文件夹</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="conda与pip的区别"><a class="header-anchor" href="#conda与pip的区别"></a>conda与pip的区别</h4>
+<ul>
+<li>
+<p>install</p>
+<ul>
+<li>conda install会自动列出，要装某包，缺何版本的哪些依赖包，问你要不要一并装掉，只需按<code>y</code>，即自动安装。还能装非python的包，只要anaconda cloud上有。</li>
+<li>pip install遇到缺依赖包，则直接终端安装，且并不总能报错说缺什么包。只能装python的包。</li>
+</ul>
+<p>故，pip install装不上去的包，用conda install常能装上。</p>
+</li>
+<li>
+<p>list</p>
+<ul>
+<li>conda list可见pip list可见的所有包：最新版的conda从<code>conda/env/环境名称/lib/python3.6/site-packages/</code>文件夹中搜索已装的包，不依赖于pip，可显示各种方式（含pip安装、自己make的）安装的包</li>
+<li>pip list可见初创conda环境中所有的包，但不可见之后conda安装、和自己make的包</li>
+</ul>
+</li>
+<li>
+<p>uninstall</p>
+<ul>
+<li>conda不能卸载用pip安装的包：因为conda卸载时，要分析包的依赖。但pip装的包，conda不知其在conda上的来源，故无法分析。</li>
+<li>pip不能卸载环境创建后用conda安装的包：pip list 可见的包才可pip卸载</li>
+</ul>
+</li>
+<li>
+<p>克隆环境</p>
+<p>使用conda<a href="#%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83">克隆环境</a>（可以跨电脑克隆），只要在<code>conda/env/环境名称/lib/python3.6/site-packages/</code>下，不论以何种方式（如pip, conda, 自己make）安装的python包，都会克隆</p>
+</li>
+</ul>
+<h3 id="非python软件"><a class="header-anchor" href="#非python软件"></a>非python软件</h3>
+<p>anaconda是一个用户环境，而非单纯的python包管理器，其下不仅仅可以安装python的包，还可以通过conda forge/biconda等通道(channel)安装其他软件</p>
+<h4 id="安装"><a class="header-anchor" href="#安装"></a>安装</h4>
+<ul>
+<li>
+<p>登录<a target="_blank" rel="noopener" href="https://anaconda.org/search?q=">conda cloud</a>，在搜索栏搜索软件名称，如<code>tmux</code></p>
+</li>
+<li>
+<p>得到tmux软件列表，点击<a target="_blank" rel="noopener" href="https://anaconda.org/conda-forge"> conda-forge</a> 下的 <a target="_blank" rel="noopener" href="https://anaconda.org/conda-forge/tmux"><strong>tmux</strong> 2.3</a></p>
+</li>
+<li>
+<p>进入tmux2.3的安装网页，会显示安装命令，如<code>conda install -c conda-forge tmux</code></p>
+</li>
+<li>
+<p>在用户目录下执行上述命令</p>
+</li>
+</ul>
+<h4 id="效果"><a class="header-anchor" href="#效果"></a>效果</h4>
+<ul>
+<li>之后该用户登录后，不论在何目录下，均可运行tmux</li>
+</ul>
+<h4 id="安装网页链接与安装命令"><a class="header-anchor" href="#安装网页链接与安装命令"></a>安装网页链接与安装命令</h4>
+<p><a target="_blank" rel="noopener" href="https://anaconda.org/conda-forge/tmux">tmux</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c conda-forge tmux<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a target="_blank" rel="noopener" href="https://anaconda.org/conda-forge/htop">htop</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c conda-forge <span class="token function">htop</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><a target="_blank" rel="noopener" href="https://anaconda.org/bioconda/coreutils">coreutils</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -c bioconda coreutils<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装后，在htop中可见所有用户的进程</p>
+<h2 id="虚拟环境"><a class="header-anchor" href="#虚拟环境"></a>虚拟环境</h2>
+<p>参见<a target="_blank" rel="noopener" href="http://www.jianshu.com/p/d2e15200ee9b">anaconda的使用和环境管理</a></p>
+<ul>
+<li>
+<p>功能简介</p>
+<p>anaconda的各虚拟环境相互独立，可装有不同包，可为多个python版本（如python2，python3，不论你装的是anaconda2还是anaconda3）</p>
+</li>
+<li>
+<p>创建环境</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda create -n 环境的名字<span class="token punctuation">(</span>如conda_python2.7<span class="token punctuation">)</span> <span class="token assign-left variable">python</span><span class="token operator">=</span><span class="token number">2.7</span>
+<span class="token comment"># -n 即 --name</span>
+<span class="token comment"># 还可以写其他python版本号</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>查看环境</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda info -e                 <span class="token comment"># -e 即 --envs  , enviroments之意</span>
+root                  *  /home/<span class="token environment constant">$USER</span>/anaconda2 <span class="token comment"># * 表示当前处在这个环境下</span>
+<span class="token comment"># root环境，即用户环境变量中的python路径</span>
+conda_python2.7          /home/<span class="token environment constant">$USER</span>/anaconda2/envs/conda_python2.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>切换环境</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">source</span> activate 环境的名字<span class="token punctuation">(</span>如conda_python2.7<span class="token punctuation">)</span> <span class="token comment">#Linux，OS X</span>
+activate 环境的名字<span class="token punctuation">(</span>如conda_python2.7<span class="token punctuation">)</span> <span class="token comment"># Windows</span>
+<span class="token comment"># 效果如下</span>
+<span class="token punctuation">(</span>conda_python2.7<span class="token punctuation">)</span>conda info -e        <span class="token comment"># (conda_python2.7)表示处在虚拟环境里</span>
+root                     /home/<span class="token environment constant">$USER</span>/anaconda2         <span class="token comment"># * 表示当前处在这个环境下</span>
+conda_python2.7        * /home/<span class="token environment constant">$USER</span>/anaconda2/envs/conda_python2.7<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>返回root环境</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">(</span>conda_python2.7<span class="token punctuation">)</span>source deactivate <span class="token comment"># Linux，OS X</span>
+<span class="token punctuation">(</span>conda_python2.7<span class="token punctuation">)</span>deactivate <span class="token comment"># Windows</span>
+<span class="token comment"># 效果为 (conda_python2.7)消失，* 标记到 root</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>克隆环境</li>
+</ul>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda create -n 新环境名字 --clone 原环境名字或原环境所在路径<span class="token punctuation">(</span>anaconda/envs/原环境名<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>原环境名字 ：</p>
+<ul>
+<li>
+<p>“base” (等价于&quot;root&quot;): conda默认环境</p>
+</li>
+<li>
+<p>其他conda环境: anaconda/envs/下的文件夹名即是，或<code>conda info -e</code>可见</p>
+</li>
+</ul>
+<p>原环境所在路径：</p>
+<ul>
+<li>
+<p>可将别的电脑上<code>anaconda/envs/原环境名</code>文件夹拷过来，其环境下用conda和pip安装的python与非python包，克隆后仍皆可用   <span id="anchor">锚点</span></p>
+</li>
+<li>
+<p>也可是本机上的<code>anaconda/envs/原环境名</code>文件夹</p>
+</li>
+<li>
+<p>删除环境</p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda remove -n 环境名字 --all<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="不兼容"><a class="header-anchor" href="#不兼容"></a>不兼容</h2>
+<h3 id="matplotlib"><a class="header-anchor" href="#matplotlib"></a>matplotlib</h3>
+<ul>
+<li>
+<p>问题描述</p>
+<p>在<strong>mac系统</strong>上的<strong>虚拟环境</strong>（不论是anaconda还是virtualenv的）中，<strong>matplotlib</strong>无法使用：</p>
+<p>import matplotlib.pyplot时，显示</p>
+<blockquote>
+<p>RuntimeError: Python is not installed as a framework. The Mac OS X backend will not be able to function correctly if Python is not installed as a framework…(略)…See ‘Working with Matplotlib on OSX’ in the Matplotlib FAQ for more information.</p>
+</blockquote>
+</li>
+<li>
+<p>解决方法1</p>
+<p>在~/.matplotlib下，新建matplotlibrc文件，写入<code>&quot;backend : TkAgg&quot;</code></p>
+</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> <span class="token string">"backend : TkAgg"</span> <span class="token operator">></span> ~/.matplotlib/matplotlibrc<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>​	该方法可使得虚拟环境能用matplotlib，但不影响conda的root环境、操作系统的python使用matplotlib</p>
+<ul>
+<li>
+<p>解决方法2</p>
+<p>每次在虚拟环境下用matplotlib时，python代码中这样import</p>
+</li>
+</ul>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> matplotlib       <span class="token comment"># 先import它，以便下一行</span>
+matplotlib<span class="token punctuation">.</span>use<span class="token punctuation">(</span><span class="token string">'TkAgg'</span><span class="token punctuation">)</span> <span class="token comment"># 加入此行，之后可import matplotlib中的各种模块</span>
+<span class="token keyword">import</span> matplotlib<span class="token punctuation">.</span>pyplot <span class="token keyword">as</span> plt <span class="token comment"># 例如</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h1 id="报错"><a class="header-anchor" href="#报错"></a>报错</h1>
+<h2 id="anaconda报错-ImportError-No-module-named-conda-cli"><a class="header-anchor" href="#anaconda报错-ImportError-No-module-named-conda-cli"></a>anaconda报错 <code>ImportError: No module named conda.cli</code></h2>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011331731/article/details/89407914">参考</a></p>
+<h4 id="症状"><a class="header-anchor" href="#症状"></a>症状</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">Traceback (most recent call last):
+  File &quot;&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;bin&#x2F;conda&quot;, line 12, in &lt;module&gt;
+    from conda.cli import main
+ModuleNotFoundError: No module named &#39;conda&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+<h4 id="对策"><a class="header-anchor" href="#对策"></a>对策</h4>
+<h5 id="更新式重装"><a class="header-anchor" href="#更新式重装"></a>更新式重装</h5>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> Anaconda3-2018.12-Linux-x86_64.sh -u<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装过程中选择之前的<code>&lt;anaconda根目录&gt;</code></p>
+<p>注：<code>bash Anaconda3-2018.12-Linux-x86_64.sh -h </code>显示 <code>-u</code> 表示 “update an existing installation”，如此更新式重装anaconda，但anaconda的base环境及其他自定义环境均会保留</p>
+<h5 id="重装"><a class="header-anchor" href="#重装"></a>重装</h5>
+<p>若依旧不能解决上述bug，则删掉之前的<code>&lt;anaconda根目录&gt;</code>，然后重装anaconda</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> Anaconda3-2018.12-Linux-x86_64.sh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>anaconda的base环境及其他自定义环境均不会保留</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/b10b86e7/" rel="prev" title="jupyter_notebook更换配色">
+                  <i class="fa fa-chevron-left"></i> jupyter_notebook更换配色
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/aa8d830b/" rel="next" title="ipython与jupyter_notebook安装配置使用">
+                  ipython与jupyter_notebook安装配置使用 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/1a6992ea/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

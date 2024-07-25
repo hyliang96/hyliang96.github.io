@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Markdown软件对比    软件 Typora MarkText vscode插件Office Viewer(Markdown Editor) 浏览器端markdown编辑器vditor Obsidian     所见即所得 支持 支持 支持 支持 支持   左代码右预览 不支持 不支持 支持 支持 支持   第三方插件 支持(插件管理器的下载安装链接，但插件管理器bug多，社区不成熟） 计划">
+<meta property="og:type" content="article">
+<meta property="og:title" content="所见即所得的markdown编辑器">
+<meta property="og:url" content="https://hyliang96.github.io/posts/d2e1cbe8/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="Markdown软件对比    软件 Typora MarkText vscode插件Office Viewer(Markdown Editor) 浏览器端markdown编辑器vditor Obsidian     所见即所得 支持 支持 支持 支持 支持   左代码右预览 不支持 不支持 支持 支持 支持   第三方插件 支持(插件管理器的下载安装链接，但插件管理器bug多，社区不成熟） 计划">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyliang96.github.io/posts/d2e1cbe8/image-20240718144948659.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/d2e1cbe8/image-20240126164406069.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/d2e1cbe8/image-20240126165126318.png">
+<meta property="article:published_time" content="2024-01-16T16:07:37.000Z">
+<meta property="article:modified_time" content="2024-07-25T12:01:23.930Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyliang96.github.io/posts/d2e1cbe8/image-20240718144948659.png">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/d2e1cbe8/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/d2e1cbe8/","path":"posts/d2e1cbe8/","title":"所见即所得的markdown编辑器"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>所见即所得的markdown编辑器 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Markdown%E8%BD%AF%E4%BB%B6%E5%AF%B9%E6%AF%94"><span class="nav-text">Markdown软件对比</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EObsidian%E7%9A%84%E8%AF%B4%E6%98%8E"><span class="nav-text">关于Obsidian的说明</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Typora%E5%8D%A1%E9%A1%BF"><span class="nav-text">Typora卡顿</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3KaTex%E4%B8%8D%E6%94%AF%E6%8C%81-label-eqref-ref"><span class="nav-text">解决KaTex不支持\label \eqref \ref</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0html"><span class="nav-text">本地html</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vscode%E6%8F%92%E4%BB%B6Markdown-Math"><span class="nav-text">vscode插件Markdown+Math</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/d2e1cbe8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          所见即所得的markdown编辑器
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-01-17 00:07:37" itemprop="dateCreated datePublished" datetime="2024-01-17T00:07:37+08:00">2024-01-17</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2024-07-25 20:01:23" itemprop="dateModified" datetime="2024-07-25T20:01:23+08:00">2024-07-25</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E6%96%87%E6%A1%A3%E7%BC%96%E8%BE%91/" itemprop="url" rel="index"><span itemprop="name">文档编辑</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/d2e1cbe8/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/d2e1cbe8/" data-xid="/posts/d2e1cbe8/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>8.2k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>27 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Markdown软件对比"><a class="header-anchor" href="#Markdown软件对比"></a>Markdown软件对比</h1>
+<table>
+<thead>
+<tr>
+<th>软件</th>
+<th>Typora</th>
+<th>MarkText</th>
+<th>vscode插件<code>Office Viewer(Markdown Editor)</code></th>
+<th>浏览器端markdown编辑器<code>vditor</code></th>
+<th>Obsidian</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>所见即所得</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>左代码右预览</td>
+<td>不支持</td>
+<td>不支持</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>第三方插件</td>
+<td>支持(<a target="_blank" rel="noopener" href="https://github.com/typora-community-plugin/typora-community-plugin">插件管理器的下载安装链接</a>，但插件管理器bug多，社区不成熟）</td>
+<td><a target="_blank" rel="noopener" href="https://github.com/marktext/marktext/issues/224#issuecomment-385655314">计划在 v1.0.0 发布之后添加插件机制，以及自定义主题</a></td>
+<td>需要与其他vscode插件兼容</td>
+<td>不支持</td>
+<td>是</td>
+</tr>
+<tr>
+<td>官方下载链接</td>
+<td><a target="_blank" rel="noopener" href="https://typora.io">https://typora.io</a></td>
+<td><a target="_blank" rel="noopener" href="https://www.marktext.cc">https://www.marktext.cc</a></td>
+<td><a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-office">https://marketplace.visualstudio.com/items?itemName=cweijan.vscode-office</a></td>
+<td>在线工具： <a target="_blank" rel="noopener" href="https://vditor.vercel.app">https://vditor.vercel.app</a> ；支持本地部署，需要安装node</td>
+<td><a target="_blank" rel="noopener" href="https://obsidian.md/">https://obsidian.md/</a></td>
+</tr>
+<tr>
+<td>操作系统</td>
+<td>Mac、windows、Linux</td>
+<td>Mac、windows、Linux</td>
+<td>Mac、windows、Linux</td>
+<td>所有操作系统</td>
+<td>Mac、windows、Linux、iOS、安卓</td>
+</tr>
+<tr>
+<td>开源否</td>
+<td>2021年底前在beta版本期间开源、免费于https://github.com/typora；之后闭源、付费</td>
+<td>开源  <a target="_blank" rel="noopener" href="https://github.com/marktext/marktext">https://github.com/marktext/marktext</a></td>
+<td>开源 <a target="_blank" rel="noopener" href="https://github.com/cweijan/vscode-office">https://github.com/cweijan/vscode-office</a></td>
+<td>开源 <a target="_blank" rel="noopener" href="https://github.com/Vanessa219/vditor">https://github.com/Vanessa219/vditor</a></td>
+<td>闭源</td>
+</tr>
+<tr>
+<td>收费否</td>
+<td>过往版本(&lt;=0.11.18版本)免费，之后版本付费，或去<a target="_blank" rel="noopener" href="https://www.torrentmac.net">MacTorrents</a>下载破解版</td>
+<td>免费</td>
+<td>免费</td>
+<td>下同<code>Office Viewer(Markdown Editor)</code>，因为其内核是<code>vditor</code></td>
+<td>个人免费，商用组织收费</td>
+</tr>
+<tr>
+<td>表格</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td></td>
+<td>支持</td>
+</tr>
+<tr>
+<td>图</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td></td>
+<td>支持</td>
+</tr>
+<tr>
+<td>公式</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td></td>
+<td>支持</td>
+</tr>
+<tr>
+<td>内嵌html</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td></td>
+<td>支持</td>
+</tr>
+<tr>
+<td>中文界面</td>
+<td>支持</td>
+<td>原版不支持。请往<a target="_blank" rel="noopener" href="https://marktext.weero.net">汉化版官网</a>，但这个版本无法在打开文件夹时向当中的markdown文件内插图。</td>
+<td>不支持</td>
+<td></td>
+<td>支持，但界面汉化不充分</td>
+</tr>
+<tr>
+<td>流畅度</td>
+<td>图/公式/字数多时卡顿</td>
+<td>图/公式/字数多时流畅</td>
+<td>图/公式/字数多时流畅</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>用 <code>\tag&#123;&#125;</code> 手动编号</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td></td>
+<td>支持</td>
+</tr>
+<tr>
+<td>公式块中align或equation环境自动编号</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td></td>
+<td>不支持（除非安装下述插件，但不能设置只给equation和align环境自动编号）</td>
+</tr>
+<tr>
+<td>公式块全部自动编号</td>
+<td>支持，可在Typora设置里勾选</td>
+<td><strong>不支持</strong></td>
+<td><strong>不支持</strong></td>
+<td></td>
+<td>支持（但需要安装插件<code>MathLinks</code>和<code>LaTeX-like Theorem &amp; Equation Referencer</code>（<code>Mathlinks</code>是其依赖项），可以设置仅被引用的公式会自动编号、或任何公式都自动编号）</td>
+</tr>
+<tr>
+<td>公式中使用<code>\label</code> <code>\eqref</code> <code>\ref</code></td>
+<td>支持</td>
+<td><strong>不支持，整个公式块无法渲染 并报错</strong></td>
+<td><strong>不支持，整个公式块能渲染，但这几条命令处渲染错误并报错</strong></td>
+<td></td>
+<td><strong>不支持</strong>。偶尔能渲染正确，但一编辑公式，公式渲染和引用渲染就报错，<a target="_blank" rel="noopener" href="https://forum-zh.obsidian.md/t/topic/10411">参见</a>。安装<code>MathLinks</code>和<code>LaTeX-like Theorem &amp; Equation Referencer</code>后，敲<code>\eqref</code>后就会弹出下拉菜单，可以选择需要引用的公式，但是使用的是markdown方言：在公式下方添加<code>^公式hash</code>，用<code>[[#^公式hash]]</code>引用公式。</td>
+</tr>
+<tr>
+<td>公式是否支持诸如<code>\dd</code>这类的命令</td>
+<td>支持</td>
+<td>不支持。且无法像Obsidian那样<a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%AC%E5%BC%8F%E5%91%BD%E4%BB%A4">自定义公式命令</a></td>
+<td>不支持。且无法像Obsidian那样<a href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%85%AC%E5%BC%8F%E5%91%BD%E4%BB%A4">自定义公式命令</a>。但可以安装插件<code>*Markdown+Math</code>，在vscode的配置文件中，加入诸如下面的配置：<code>&quot;mdmath.macros&quot;: &#123;  &quot;\\dd&quot;: &quot;\\mathrm&#123;d&#125;&quot;, &quot;\\tr&quot;: &quot;\\mathrm&#123;tr&#125;&quot;&#125;</code>，这样就能支持。</td>
+<td></td>
+<td>不支持。Obsidian使用的公式引擎MathJax默认不支持这些命令。<strong>需要安装插件</strong><code>Extended MathJax</code>，并在仓库根目录自行创建 <code>preamble.sty</code>文件，然后用文本编辑器向其中<strong>写入需要加载的latex包，和自定义命令</strong>（诸如<code>\require&#123;包的名字&#125;</code> <code>\newcommand&#123;\dd&#125;&#123;\operatorname&#123;d&#125;&#125;</code>），然后重启Obsidian。</td>
+</tr>
+<tr>
+<td>在文件夹内显示<code>*.textbundle</code></td>
+<td><strong>不支持</strong></td>
+<td>支持</td>
+<td>支持</td>
+<td></td>
+<td>支持</td>
+</tr>
+<tr>
+<td>直接打开<code>*.textbundle</code></td>
+<td>支持（打开方式见下文说明）</td>
+<td>支持（打开方式同Typora）</td>
+<td>支持（无需额外设置）</td>
+<td></td>
+<td>支持，但必须在仓库内的才能打开。详见<a target="_blank" rel="noopener" href="https://forum.obsidian.md/t/textbundle-support/3585">TextBundle support</a></td>
+</tr>
+<tr>
+<td>通过拖拽/<code>⌘+V</code>向<code>*.textbundle/assets</code>插入图片</td>
+<td>支持（需要配置插图自动复制到<code>./assets</code>）</td>
+<td>支持不充分：<br>1. 原版：当设置插图路径为<code>assets</code>时：若打开一markdown文件，则把插图复制到此文件所在目录下的<code>assets</code>子文件夹内；但若打开一文件夹，则复制插图到文件夹根目录下的<code>assets</code>子文件夹内。详见 <a target="_blank" rel="noopener" href="https://github.com/marktext/marktext/blob/develop/docs/IMAGES.md">官方说明</a>。<br>2.<a target="_blank" rel="noopener" href="https://marktext.weero.net">汉化版</a>：不管如何设置插图路径，在打开文件夹时，都无法向当中的markdown文件内插图</td>
+<td>支持（需要配置插图自动复制到<code>./assets</code>，即向vscode的用户配置文件添加：<code>&quot;vscode-office.pasterImgPath&quot;: &quot;$&#123;workspaceDir&#125;/assets/$&#123;now&#125;.png&quot;, &quot;vscode-office.workspacePathAsImageBasePath&quot;: true,</code>）</td>
+<td></td>
+<td>支持，但需要对<strong>每一个仓库</strong>都修改<code>Preference</code>如下<img data-src="/posts/d2e1cbe8/image-20240718144948659.png" alt="image-20240718144948659"><br><strong>文件与链接</strong>：<br>* 内部链接类型：基于当前笔记的相对路径<br>* 使用wiki链接：关闭<br>* 附件默认存放路径：当前文件所在文件夹下指定的子文件夹<br>* 子文件夹名称：<code>assets</code></td>
+</tr>
+<tr>
+<td>在文件夹内搜索文本</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>打开<code>.markdown</code> <code>.txt</code>文件</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td></td>
+<td>支持（默认只能打开<code>md</code>文件；需要安装插件<code>Custom File Extensions</code>, 并设置<code>&#123; &quot;markdown&quot;: [ &quot;&quot;, &quot;md&quot;, &quot;markdown&quot;, &quot;txt&quot;, 等 ] &#125;</code> 表示这些后缀的文件都用markdown格式打开）</td>
+</tr>
+<tr>
+<td>打开任何位置的文件</td>
+<td>支持</td>
+<td>支持</td>
+<td>支持</td>
+<td></td>
+<td>不支持（除非安装<a target="_blank" rel="noopener" href="https://gitlab.com/BvdG/obsidian-everywhere">脚本</a>）</td>
+</tr>
+<tr>
+<td>sequence制图</td>
+<td>支持</td>
+<td>汉化版支持</td>
+<td>不支持</td>
+<td></td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>flow制图</td>
+<td>支持</td>
+<td>汉化版不支持</td>
+<td>不支持</td>
+<td></td>
+<td>不支持</td>
+</tr>
+<tr>
+<td>mermaid制图</td>
+<td>支持（但我的电脑上有bug，Typora 1.8.4，MacOS 10.15.7，会显示<code>Painting Diagram ...</code>）</td>
+<td>汉化版支持</td>
+<td>支持</td>
+<td></td>
+<td>支持</td>
+</tr>
+</tbody>
+</table>
+<p>说明：</p>
+<ul>
+<li>
+<p><code>*.textbundle</code>的打开方式方式：</p>
+<ul>
+<li>
+<p>Typora和MarkText打开<code>*.textbundle</code>的方式：</p>
+<ul>
+<li>
+<p>在Typora和MarkText内，点<code>文件</code>-<code>打开</code>(不论是以文件还是文件夹)，无法打开<code>*.textbundle</code></p>
+</li>
+<li>
+<p>在<code>Finder</code>-单击右键-<code>打开方式</code>-<code>其它</code>-选择用Typora或MarkText打开，可以打开。</p>
+</li>
+<li>
+<p>在<code>Finder</code>-单击右键-<code>显示简介</code>-<code>打开方式</code>-设置用Typora或MarkText打开，然后双击<code>*.textbundle</code>，可以打开。</p>
+</li>
+<li>
+<p>在终端，<code>open -a Typora或Marktext xxxx.textbundle</code>，可以打开。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>在vscode（使用插件<code>Office Viewer(Markdown Editor)</code>）中，上述方法都能打开<code>*.textbundle</code>。</p>
+</li>
+</ul>
+</li>
+<li>
+<p>vscode插件<code>Office Viewer(Markdown Editor)</code>插件的内核和前身：</p>
+<ul>
+<li>
+<p>vscode插件<code>Markdown Editor</code>  <a target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=zaaack.markdown-editor">https://marketplace.visualstudio.com/items?itemName=zaaack.markdown-editor</a> 在2021年后就不再更新发布了。不推荐使用。</p>
+</li>
+<li>
+<p>vscode插件<code>Office Viewer(Markdown Editor)</code>集成了<code>Markdown Editor</code> 的功能，并且还支持office文档（ppt、word、excel）的预览。更新发布至今（2023年底）。推荐使用。</p>
+</li>
+<li>
+<p><code>Markdown Editor</code>和<code>Office Viewer(Markdown Editor)</code>的内核都是 浏览器端markdown编辑器<code>vditor</code>。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="关于Obsidian的说明"><a class="header-anchor" href="#关于Obsidian的说明"></a>关于Obsidian的说明</h1>
+<ul>
+<li>
+<p>Obsidian的Preference（<code>⌘+,</code>）都是对仓库而言的，每个仓库的Preference相互独立，每开一个新仓库都要从头设置.</p>
+</li>
+<li>
+<p>MathJax支持的包：<a target="_blank" rel="noopener" href="https://docs.mathjax.org/en/latest/input/tex/extensions/index.html">详见</a>。现在（2024年7月）已经默认支持<code>mhchem</code>了，因而Obsidian的公式也支持使用<code>mhchem</code>包了。</p>
+</li>
+<li>
+<p>在Obsidian中，对单个md文件加载latex包/自定义公式命令的方法：在md文件开头，写形如下面的内容，就能让后面的公式使用这些包/命令。<a target="_blank" rel="noopener" href="https://forum.obsidian.md/t/import-custom-latex-commands-to-notes/13561">详见</a><a name="自定义公式命令"></a></p>
+  <pre class="line-numbers language-markdown" data-language="markdown"><code class="language-markdown">$\require&#123;需要加载的包&#125;$
+$\newcommand&#123;\dd&#125;&#123;\operatorname&#123;d&#125;&#125;$<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>obsidian如何同步笔记</p>
+<ul>
+<li>
+<p>每次 iPhone 打开 Obsidian 都需要同步 iCloud，当 vault 较大时，时间会很久。这个说法<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/531516583">来自</a>。</p>
+</li>
+<li>
+<p>obsidian官方的同步太贵，一个月：10美元（月付）/8美元（年付）。<a target="_blank" rel="noopener" href="https://publish.obsidian.md/chinesehelp/06+ob%E5%AE%98%E6%96%B9%E5%B8%AE%E5%8A%A9%E6%96%87%E6%A1%A3%EF%BC%88%E8%8A%82%E9%80%89%EF%BC%89/Obsidian+%E5%90%8C%E6%AD%A5%E6%9C%8D%E5%8A%A1+by+ob%E5%AE%98%E6%96%B9">使用方法参见</a>。</p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/531516583">用github同步</a></p>
+</li>
+<li>
+<p>第三方云盘全平台同步方案 ：Remotely save，<a target="_blank" rel="noopener" href="https://publish.obsidian.md/chinesehelp/03+%E6%95%99%E7%A8%8B/2022%E5%B9%B43%E6%9C%88%E5%A6%82%E4%BD%95%E5%90%8C%E6%AD%A5obsidian%E6%96%87%E4%BB%B6%EF%BC%88%E9%98%B6%E6%AE%B5%E6%80%A7%E6%80%BB%E7%BB%93%EF%BC%89">参见</a></p>
+<p>支持的云盘：</p>
+<ul>
+<li>Amazon S3 or S3-compatible (Cloudflare R2 / BackBlaze B2 / MinIO / …)</li>
+<li>Dropbox</li>
+<li>OneDrive for personal (App Folder)</li>
+<li>OneDrive for personal (Full) (PRO feature)</li>
+<li>Webdav (NextCloud / InfiniCloud / Synology webdav server / seafile（<strong>好像是支持清华云盘的，等结束休学后试试</strong>）…)</li>
+<li>Webdis</li>
+<li>Google Drive (GDrive) (PRO feature)</li>
+<li>Box (PRO feature)</li>
+<li>pCloud (PRO feature)</li>
+<li>Yandex Disk (PRO feature)</li>
+<li>Koofr (PRO feature)</li>
+<li>Azure Blob Storage (PRO feature)</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/remotely-save/remotely-save/blob/master/docs/services_connectable_or_not.md">Here</a> shows more connectable (or not-connectable) services in details.</li>
+</ul>
+<p>教程：<a target="_blank" rel="noopener" href="https://publish.obsidian.md/chinesehelp/01+2021%E6%96%B0%E6%95%99%E7%A8%8B/Remotely+save%EF%BC%88%E5%90%8C%E6%AD%A5%E6%8F%92%E4%BB%B6%EF%BC%89">Remotely save（同步插件）</a>是本周讨论最火的插件，教程中已经收录了许多内容：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://publish.obsidian.md/chinesehelp/01+2021%E6%96%B0%E6%95%99%E7%A8%8B/Obsidian+%E5%90%8C%E6%AD%A5+Remotely+Save+S3+%E9%85%8D%E7%BD%AE%E6%8C%87%E5%8D%97+by+%E6%81%90%E5%92%96%E5%85%B5%E7%B3%96">Obsidian 同步 Remotely Save S3 配置指南 by 恐咖兵糖</a></li>
+<li><a target="_blank" rel="noopener" href="https://publish.obsidian.md/chinesehelp/01+2021%E6%96%B0%E6%95%99%E7%A8%8B/%E7%AC%AC%E4%B8%89%E6%96%B9%E5%90%8C%E6%AD%A5%E6%8F%92%E4%BB%B6%EF%BC%88Remotely+save%E4%BB%8B%E7%BB%8D%EF%BC%89+by+%E8%BD%AF%E9%80%9A%E8%BE%BE">第三方同步插件（Remotely save介绍） by 软通达</a>:Dropbox</li>
+<li><a target="_blank" rel="noopener" href="https://publish.obsidian.md/chinesehelp/01+2021%E6%96%B0%E6%95%99%E7%A8%8B/Obsidian+Remotely+Save+%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E7%94%B5%E8%84%91%E5%92%8C%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%90%8C%E6%AD%A5+by+yaozhuwa">Obsidian Remotely Save 插件实现电脑和移动端同步 by yaozhuwa</a>:onedrive方式</li>
+<li><a target="_blank" rel="noopener" href="https://publish.obsidian.md/chinesehelp/01+2021%E6%96%B0%E6%95%99%E7%A8%8B/%E6%9C%80%E8%88%92%E6%9C%8D%E7%9A%84Obsidian%E7%AC%AC%E4%B8%89%E6%96%B9%E5%A4%9A%E7%AB%AF%E5%90%8C%E6%AD%A5+by+%E7%BB%B4%E5%AE%A2%E7%AC%94%E8%AE%B0">最舒服的Obsidian第三方多端同步 by 维客笔记</a>：Dropbox</li>
+<li><a target="_blank" rel="noopener" href="https://publish.obsidian.md/chinesehelp/01+2021%E6%96%B0%E6%95%99%E7%A8%8B/remotely%E6%8F%92%E4%BB%B6%E6%90%AD%E9%85%8D%E8%85%BE%E8%AE%AF%E4%BA%91cos%E6%95%99%E7%A8%8B+by+%E5%85%AB%E5%AE%9D%E5%91%A8">remotely插件搭配腾讯云cos教程 by 八宝周</a>：腾讯云，S3</li>
+<li><a target="_blank" rel="noopener" href="https://publish.obsidian.md/chinesehelp/01+2021%E6%96%B0%E6%95%99%E7%A8%8B/Obsidian%E9%80%9A%E8%BF%87Remotely+save%E6%8F%92%E4%BB%B6%E5%AE%9E%E7%8E%B0%E5%9D%9A%E6%9E%9C%E4%BA%91%E5%90%8C%E6%AD%A5+by+BCS">Obsidian通过Remotely save插件实现坚果云同步 by BCS</a>：坚果云，webdav</li>
+<li><a target="_blank" rel="noopener" href="https://publish.obsidian.md/chinesehelp/01+2021%E6%96%B0%E6%95%99%E7%A8%8B/Obsidian%E4%BD%BF%E7%94%A8Remotely+Save+%E5%92%8C%E9%98%BF%E9%87%8C%E4%BA%91+OSS+%E5%AE%9E%E7%8E%B0%E5%A4%9A%E5%B9%B3%E5%8F%B0%E5%90%8C%E6%AD%A5+by+zm">Obsidian使用Remotely Save 和阿里云 OSS 实现多平台同步 by zm</a>：阿里云oss，S3</li>
+<li><a target="_blank" rel="noopener" href="https://forum-zh.obsidian.md/t/topic/34268">Remotely Save+oneDrive</a></li>
+</ul>
+<p>推荐使用阿里云或腾讯云的s3服务。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Typora卡顿"><a class="header-anchor" href="#Typora卡顿"></a>Typora卡顿</h1>
+<p>解决Typora字数过多造成卡顿现象 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_46921028/article/details/131896316">https://blog.csdn.net/qq_46921028/article/details/131896316</a></p>
+<p>win10上Typora卡顿的问题及其解决方案 <a target="_blank" rel="noopener" href="https://blog.csdn.net/Mao_Jonah/article/details/120533879">https://blog.csdn.net/Mao_Jonah/article/details/120533879</a></p>
+<h1 id="解决KaTex不支持-label-eqref-ref"><a class="header-anchor" href="#解决KaTex不支持-label-eqref-ref"></a>解决KaTex不支持<code>\label</code> <code>\eqref</code> <code>\ref</code></h1>
+<ul>
+<li>
+<p>KaTex不打算官方支持<code>\label</code> <code>\eqref</code> <code>\ref</code></p>
+</li>
+<li>
+<p>可以自行修改KaTex配置</p>
+</li>
+</ul>
+<h2 id="本地html"><a class="header-anchor" href="#本地html"></a>本地html</h2>
+<p>参照 <a target="_blank" rel="noopener" href="https://github.com/KaTeX/KaTeX/issues/2003#issuecomment-843991794">#2033 (comment)</a>的思路 和 <a target="_blank" rel="noopener" href="https://github.com/KaTeX/KaTeX/issues/2003#issuecomment-1236245418">样例配置</a>，有如下demo代码。新建文件<code>demo.html</code>，将下面代码复制进去，然后用浏览器打开，</p>
+<pre class="line-numbers language-html" data-language="html"><code class="language-html"><span class="token doctype"><span class="token punctuation">&lt;!</span><span class="token doctype-tag">DOCTYPE</span> <span class="token name">html</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">http-equiv</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>Content-type<span class="token punctuation">"</span></span> <span class="token attr-name">content</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text/html; charset=utf-8<span class="token punctuation">"</span></span><span class="token punctuation">/></span></span>
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">></span></span>KaTeX-DOM Eq. Ref Test<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css<span class="token punctuation">"</span></span> <span class="token attr-name">integrity</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X<span class="token punctuation">"</span></span> <span class="token attr-name">crossorigin</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>anonymous<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">defer</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js<span class="token punctuation">"</span></span> <span class="token attr-name">integrity</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4<span class="token punctuation">"</span></span> <span class="token attr-name">crossorigin</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>anonymous<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">defer</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js<span class="token punctuation">"</span></span> <span class="token attr-name">integrity</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa<span class="token punctuation">"</span></span> <span class="token attr-name">crossorigin</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>anonymous<span class="token punctuation">"</span></span>
+          <span class="token special-attr"><span class="token attr-name">onload</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value javascript language-javascript"><span class="token function">renderMathInElement</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>body<span class="token punctuation">)</span><span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>main.js<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token script"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+
+        <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">></span></span><span class="token script"><span class="token language-javascript">
+            document<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"DOMContentLoaded"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+                <span class="token function">renderMathInElement</span><span class="token punctuation">(</span>document<span class="token punctuation">.</span>body<span class="token punctuation">,</span> <span class="token punctuation">&#123;</span>
+                    <span class="token comment">// auto-render specific keys</span>
+                    delimiters<span class="token operator">:</span> <span class="token punctuation">[</span>
+                        <span class="token punctuation">&#123;</span>left<span class="token operator">:</span> <span class="token string">'$$'</span><span class="token punctuation">,</span> right<span class="token operator">:</span> <span class="token string">'$$'</span><span class="token punctuation">,</span> display<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+                        <span class="token punctuation">&#123;</span>left<span class="token operator">:</span> <span class="token string">'$'</span><span class="token punctuation">,</span> right<span class="token operator">:</span> <span class="token string">'$'</span><span class="token punctuation">,</span> display<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+                        <span class="token punctuation">&#123;</span>left<span class="token operator">:</span> <span class="token string">'\\('</span><span class="token punctuation">,</span> right<span class="token operator">:</span> <span class="token string">'\\)'</span><span class="token punctuation">,</span> display<span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+                        <span class="token punctuation">&#123;</span>left<span class="token operator">:</span> <span class="token string">'\\['</span><span class="token punctuation">,</span> right<span class="token operator">:</span> <span class="token string">'\\]'</span><span class="token punctuation">,</span> display<span class="token operator">:</span> <span class="token boolean">true</span><span class="token punctuation">&#125;</span>
+                    <span class="token punctuation">]</span><span class="token punctuation">,</span>
+                    <span class="token comment">// render equation with bug</span>
+                    throwOnError <span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+                    <span class="token comment">// support eqref</span>
+                    <span class="token function-variable function">trust</span><span class="token operator">:</span> <span class="token punctuation">(</span><span class="token parameter">context</span><span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token punctuation">[</span><span class="token string">'\\htmlId'</span><span class="token punctuation">,</span> <span class="token string">'\\href'</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">includes</span><span class="token punctuation">(</span>context<span class="token punctuation">.</span>command<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                    macros<span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+                        <span class="token string">"\\eqref"</span><span class="token operator">:</span> <span class="token string">"\\href&#123;###1&#125;&#123;(\\text&#123;#1&#125;)&#125;"</span><span class="token punctuation">,</span>
+                        <span class="token string">"\\ref"</span><span class="token operator">:</span> <span class="token string">"\\href&#123;###1&#125;&#123;\\text&#123;#1&#125;&#125;"</span><span class="token punctuation">,</span>
+                        <span class="token string">"\\label"</span><span class="token operator">:</span> <span class="token string">"\\htmlId&#123;#1&#125;&#123;&#125;"</span>
+                    <span class="token punctuation">&#125;</span>
+                <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">&#125;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        </span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">></span></span>
+
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">></span></span>
+        In Eq. $\eqref&#123;eq:1&#125;$ or $\ref&#123;eq:1&#125;$.<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">/></span></span>
+
+        $$
+        \begin&#123;aligned&#125;
+        \sin 2\theta = 2\sin \theta \cos \theta \\ = \cfrac&#123;2 \tan \theta&#125;&#123;1+\tan^2 \theta&#125;
+        \end&#123;aligned&#125;
+        \label&#123;eq:1&#125; \tag&#123;1&#125;
+        $$
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>渲染结果如下：</p>
+<p><img data-src="/posts/d2e1cbe8/image-20240126164406069.png" alt="image-20240126164406069"></p>
+<p>但本法有个缺点： <code>$\ref&#123;eq:1&#125;$</code> <code>$\eqref&#123;eq:1&#125;$</code> 渲染为’eq:1’而非 ‘1’（即公式编号）。不知是否有方法修补此bug？或是否有其他支持\label \ref \eqref的方法可避免此bug?</p>
+<h2 id="vscode插件Markdown-Math"><a class="header-anchor" href="#vscode插件Markdown-Math"></a>vscode插件Markdown+Math</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/goessner/mdmath/issues/116#issuecomment-1296210637">思路来源</a></p>
+<p>安装vscode插件: <a target="_blank" rel="noopener" href="https://github.com/goessner/mdmath">Markdown+Math</a></p>
+<p>Reference: <a target="_blank" rel="noopener" href="https://github.com/KaTeX/KaTeX/issues/2003#issuecomment-843991794">KaTeX/KaTeX#2003 (comment)</a></p>
+<p>在vscode的配置文件中加入如下配置，则vscode的自带markdown分栏预览就能支持<code>\label</code> <code>\eqref</code> <code>\ref</code>，效果见下图</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"mdmath.katexoptions"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">"trust"</span><span class="token operator">:</span> <span class="token string">"(context) => ['\\htmlId', '\\href'].includes(context.command)"</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span>
+<span class="token property">"mdmath.macros"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+    <span class="token property">"\\eqref"</span><span class="token operator">:</span> <span class="token string">"\\href&#123;###1&#125;&#123;(\\text&#123;#1&#125;)&#125;"</span><span class="token punctuation">,</span>
+    <span class="token property">"\\ref"</span><span class="token operator">:</span> <span class="token string">"\\href&#123;###1&#125;&#123;\\text&#123;#1&#125;&#125;"</span><span class="token punctuation">,</span>
+    <span class="token property">"\\label"</span><span class="token operator">:</span> <span class="token string">"\\htmlId&#123;#1&#125;&#123;&#125;"</span>
+<span class="token punctuation">&#125;</span><span class="token punctuation">,</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><img data-src="/posts/d2e1cbe8/image-20240126165126318.png" alt="image-20240126165126318"></p>
+<p>相关讨论：</p>
+<ul>
+<li>
+<p>KaTex issue: Support \eqref and \label  <a target="_blank" rel="noopener" href="https://github.com/KaTeX/KaTeX/issues/2003">https://github.com/KaTeX/KaTeX/issues/2003</a></p>
+</li>
+<li>
+<p>Referencing formula numbers in articles <a target="_blank" rel="noopener" href="https://github.com/falgon/roki-web/issues/34">https://github.com/falgon/roki-web/issues/34</a></p>
+</li>
+<li>
+<p>vscode-markdown公式引用：<a target="_blank" rel="noopener" href="https://github.com/yzhang-gh/vscode-markdown/issues/985">https://github.com/yzhang-gh/vscode-markdown/issues/985</a></p>
+</li>
+<li>
+<p><a target="_blank" rel="noopener" href="https://github.com/yzhang-gh/vscode-markdown/issues/985#issuecomment-1108580333">https://github.com/yzhang-gh/vscode-markdown/issues/985#issuecomment-1108580333</a></p>
+<p>由于这是非官方的做法，不太可能加入到正式支持之中，但是你可以自行修改插件的本地文件在 <code>$HOME/.vscode/extensions/yzhang.markdown-all-in-one-3.4.x/dist/extension.js</code> 中搜索 <code>l=&#123;throwOnError:!1&#125;</code> 并替换为 <code>l=&#123;throwOnError:!1, trust: true&#125;</code></p>
+</li>
+</ul>
+<p>我的github评论：</p>
+<ul>
+<li>
+<p>demo html:</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/KaTeX/KaTeX/issues/2003#issuecomment-1911672998">https://github.com/KaTeX/KaTeX/issues/2003#issuecomment-1911672998</a></li>
+</ul>
+</li>
+<li>
+<p>Markdown+Math配置：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/falgon/roki-web/issues/34#issuecomment-1911694713">https://github.com/falgon/roki-web/issues/34#issuecomment-1911694713</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/yzhang-gh/vscode-markdown/issues/985#issuecomment-1911700106">https://github.com/yzhang-gh/vscode-markdown/issues/985#issuecomment-1911700106</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/9368dece/" rel="prev" title="github的身份验证方式">
+                  <i class="fa fa-chevron-left"></i> github的身份验证方式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/28e0288d/" rel="next" title="bundle文件包">
+                  bundle文件包 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/d2e1cbe8/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

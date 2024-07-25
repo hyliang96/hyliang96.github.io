@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="[TOC] 运行 命令行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="我的python使用tips">
+<meta property="og:url" content="https://hyliang96.github.io/posts/53bbc892/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="[TOC] 运行 命令行">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
+<meta property="article:modified_time" content="2024-01-18T06:30:25.955Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/53bbc892/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/53bbc892/","path":"posts/53bbc892/","title":"我的python使用tips"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>我的python使用tips | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E8%A1%8C"><span class="nav-text">运行</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C"><span class="nav-text">命令行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sublime%E5%86%85"><span class="nav-text">sublime内</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%88%E6%9C%AC"><span class="nav-text">版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8C%85%E7%9A%84%E5%AD%98%E6%94%BE%E4%BD%8D%E7%BD%AE"><span class="nav-text">包的存放位置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#import%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">import的方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E5%BD%93%E5%89%8Dpython%E7%9A%84-site-packages-%E4%BD%8D%E7%BD%AE"><span class="nav-text">如何确定当前python的&quot;site-packages&#x2F;&quot;位置</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%87%BA"><span class="nav-text">输出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E8%A1%8C%E8%BE%93%E5%87%BA"><span class="nav-text">整行输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E4%B8%80%E8%A1%8C%E5%8F%8D%E5%A4%8D%E8%BE%93%E5%87%BA"><span class="nav-text">同一行反复输出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%9B%E5%BA%A6%E6%9D%A1"><span class="nav-text">进度条</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E5%BE%84"><span class="nav-text">路径</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/53bbc892/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          我的python使用tips
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2024-01-18 14:30:25" itemprop="dateModified" datetime="2024-01-18T14:30:25+08:00">2024-01-18</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/python/" itemprop="url" rel="index"><span itemprop="name">python</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/53bbc892/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/53bbc892/" data-xid="/posts/53bbc892/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.3k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>11 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>[TOC]</p>
+<h2 id="运行"><a class="header-anchor" href="#运行"></a>运行</h2>
+<h3 id="命令行"><a class="header-anchor" href="#命令行"></a>命令行</h3>
+<p>mac/unix/Linux<br>
+进入：<code>python</code>、<code>ipython</code><br>
+退出：<code>ctrl+d</code>，显示是否退出，输y，回车<br>
+挂起：<code>ctrl+z</code><br>
+杀死：<code>ctrl+c</code></p>
+<h3 id="sublime内"><a class="header-anchor" href="#sublime内"></a>sublime内</h3>
+<p>长按<code>command</code>，调出sublime的快捷键清单，点击清单上的快捷键即可执行</p>
+<h2 id="版本"><a class="header-anchor" href="#版本"></a>版本</h2>
+<h3 id="包的存放位置"><a class="header-anchor" href="#包的存放位置"></a>包的存放位置</h3>
+<p>python的包存放在site-packages/文件夹内，包可以是文件夹（内含.py等文件）、单独的.py等文件。</p>
+<h4 id="import的方法"><a class="header-anchor" href="#import的方法"></a>import的方法</h4>
+<p>需要从当前python的site-packages开始，逐层写import。例如，要导入这个包：“当前python的site-packages/文件夹1/文件夹2/目标文件.py”，需写</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> 文件夹<span class="token number">1</span><span class="token punctuation">.</span>文件夹<span class="token number">2</span><span class="token punctuation">.</span>目标文件<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="如何确定当前python的-site-packages-位置"><a class="header-anchor" href="#如何确定当前python的-site-packages-位置"></a>如何确定当前python的&quot;site-packages/&quot;位置</h4>
+<p>即相当于确定<code>which python</code>那个python的site-packages/的位置</p>
+<p><strong>法一</strong> 在命令行中</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python -c <span class="token string">"from distutils.sysconfig import get_python_lib; print(get_python_lib())"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>法二</strong> 在python中</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> distutils<span class="token punctuation">.</span>sysconfig <span class="token keyword">import</span> get_python_lib<span class="token punctuation">;</span>
+<span class="token keyword">print</span><span class="token punctuation">(</span>get_python_lib<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>均会返回形如“/Users/mac/anaconda/lib/python3.6/site-packages”的地址。若在mac系统，按<code>command+shift+G</code>，输入该地址，回车即到达包所在目录。</p>
+<h2 id="输出"><a class="header-anchor" href="#输出"></a>输出</h2>
+<h3 id="整行输出"><a class="header-anchor" href="#整行输出"></a>整行输出</h3>
+<p>python的print输出的特性：</p>
+<ul>
+<li>
+<p>在出现换行符(可以是sleep 尾巴自带的，或字符串里的)前，不会输出</p>
+</li>
+<li>
+<p>要在未出现换行符时强行输出，有两种情况</p>
+<ul>
+<li>
+<p>用<code>sys.stdout.flush()</code>输出尽stdout所存，输出后换不行，光标在行尾</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+<span class="token keyword">import</span> sys
+<span class="token comment"># 先输出'a'并换行，过一秒才输出'bc'并换行</span>
+<span class="token keyword">print</span> <span class="token string">'a\nb'</span><span class="token punctuation">,</span> <span class="token comment"># 字符串里有'\n',print结尾不带'\n'</span>
+sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span> <span class="token string">'c'</span>     <span class="token comment"># pritn结尾有'\n'</span>
+
+<span class="token comment"># 先输出'a\nb'，过一秒在'b'后紧接着输出'c\n'</span>
+<span class="token keyword">print</span> <span class="token string">'a\nb'</span><span class="token punctuation">,</span> <span class="token comment"># 字符串里有'\n',print结尾不带'\n'</span>
+sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+sleep<span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span>
+<span class="token keyword">print</span> <span class="token string">'c'</span>     <span class="token comment"># pritn结尾有'\n'</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>python脚本执行完毕，输出尽stdout所存</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token comment"># 在ipython中</span>
+<span class="token keyword">print</span> <span class="token string">'abc\r'</span>   <span class="token comment"># 然后回车</span>
+<span class="token comment"># 输出</span>
+<span class="token comment"># abc</span>
+<span class="token comment">#       //下面换了一行</span>
+
+<span class="token keyword">print</span> <span class="token string">'abc\r'</span><span class="token punctuation">,</span>  <span class="token comment"># 然后回车</span>
+<span class="token comment"># 输出</span>
+<span class="token comment"># abc   //下面没有换一行了</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="同一行反复输出"><a class="header-anchor" href="#同一行反复输出"></a>同一行反复输出</h3>
+<ul>
+<li>
+<p><code>'\r'</code>表示光标回到屏幕上光标所在行之首，但不清除本行已输出字符，之后新输出的字符会覆盖已有字符。</p>
+</li>
+<li>
+<p>不是两个’\n’之间称为一行，而是屏幕上一行输出叫一行</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">print</span> <span class="token string">'---------------------------------------------------------------------------------------------------------------------\ra'</span>
+<span class="token comment"># 得到</span>
+<span class="token comment"># -------------------------------------------------------------------------------------</span>
+<span class="token comment"># a----------------------------------</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p><strong>同一行反复输出的方法</strong></p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys
+<span class="token comment"># 循环</span>
+    <span class="token keyword">print</span> <span class="token string">"就地覆盖的内容\r"</span><span class="token punctuation">,</span>
+ 	sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token comment"># 循环</span>
+    <span class="token keyword">print</span> <span class="token string">"不断向后延长的内容"</span><span class="token punctuation">,</span>
+  	sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="进度条"><a class="header-anchor" href="#进度条"></a>进度条</h4>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys
+
+<span class="token keyword">def</span> <span class="token function">progess_bar</span><span class="token punctuation">(</span>p<span class="token punctuation">,</span> precision<span class="token operator">=</span><span class="token number">2</span><span class="token punctuation">,</span>num_block<span class="token operator">=</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+<span class="token comment"># 输出到屏幕</span>
+<span class="token comment"># p 是[0,1]的float，表示百分之多少的进度</span>
+<span class="token comment"># precision小数点位数</span>
+<span class="token comment"># 进度条的'>'块数</span>
+    <span class="token comment"># 以防之前stdout修改，如"屏幕文件双向输出"功能</span>
+    original <span class="token operator">=</span> sys<span class="token punctuation">.</span>stdout
+    sys<span class="token punctuation">.</span>stdout <span class="token operator">=</span> sys<span class="token punctuation">.</span>__stdout__
+    <span class="token comment"># 右对齐输出百分数</span>
+    <span class="token keyword">print</span> <span class="token punctuation">(</span><span class="token string">'%%%ds'</span><span class="token operator">%</span><span class="token punctuation">(</span>precision<span class="token operator">+</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>  <span class="token operator">%</span> \
+        <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'%%.%df'</span><span class="token operator">%</span>precision<span class="token punctuation">)</span><span class="token operator">%</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token operator">*</span>p<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token string">'%'</span><span class="token punctuation">,</span>
+    <span class="token keyword">print</span> <span class="token string">'   |'</span><span class="token punctuation">,</span>
+    n <span class="token operator">=</span> <span class="token builtin">int</span><span class="token punctuation">(</span>p<span class="token operator">*</span>num_block<span class="token punctuation">)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span> <span class="token string">'>'</span><span class="token punctuation">,</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span>num_block<span class="token operator">-</span>n<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span> <span class="token string">' '</span><span class="token punctuation">,</span>
+    <span class="token keyword">if</span> p<span class="token operator">!=</span><span class="token number">1</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span> <span class="token string">'|\r'</span><span class="token punctuation">,</span>
+    <span class="token keyword">else</span><span class="token punctuation">:</span>
+        <span class="token keyword">print</span>
+    <span class="token comment"># 还原sys.stdout</span>
+    sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    sys<span class="token punctuation">.</span>stdout <span class="token operator">=</span> original
+
+<span class="token comment"># 效果</span>
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+<span class="token keyword">for</span> p <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">101</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    p<span class="token operator">=</span>p<span class="token operator">/</span><span class="token number">100.0</span>
+    progess_bar<span class="token punctuation">(</span>p<span class="token punctuation">,</span> precision<span class="token operator">=</span><span class="token number">3</span><span class="token punctuation">,</span>num_block<span class="token operator">=</span><span class="token number">20</span><span class="token punctuation">)</span>
+    sleep<span class="token punctuation">(</span><span class="token number">0.01</span><span class="token punctuation">)</span>
+<span class="token comment"># 0.01秒变化一下</span>
+<span class="token comment">#  94.000 %   | > > > > > > > > > > > > > > > > > >     |</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>一些对比实例</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> sys
+<span class="token keyword">from</span> time <span class="token keyword">import</span> sleep
+<span class="token comment"># 例1</span>
+<span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span> <span class="token string">'asdasdasdas'</span><span class="token punctuation">,</span>
+    <span class="token keyword">print</span> <span class="token string">"\r%d"</span><span class="token operator">%</span>x<span class="token punctuation">,</span>        <span class="token comment"># 回到行首</span>
+    <span class="token keyword">print</span> <span class="token string">"hahah\r"</span><span class="token punctuation">,</span>       <span class="token comment"># 光标回到行首</span>
+    sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出</span>
+<span class="token comment"># x ha  asdas</span>
+<span class="token comment"># x=0,1,2,...9 (每0.1秒一变化)</span>
+<span class="token comment"># asdas未被清除</span>
+
+<span class="token comment"># 例2</span>
+<span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span> <span class="token string">'asdasdasdas'</span><span class="token punctuation">,</span>
+    <span class="token keyword">print</span> <span class="token string">"%d"</span><span class="token operator">%</span>x<span class="token punctuation">,</span>        <span class="token comment"># 不回到行首</span>
+    <span class="token keyword">print</span> <span class="token string">"hahah\r"</span><span class="token punctuation">,</span>
+    sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出</span>
+<span class="token comment"># asdasdasdas x hahah</span>
+<span class="token comment"># x=0,1,2,...9 (每0.1秒一变化)</span>
+
+<span class="token comment"># 例3</span>
+<span class="token keyword">print</span> <span class="token string">'asdasdasdas'</span><span class="token punctuation">,</span>     <span class="token comment"># 未换行</span>
+<span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span> <span class="token string">"%d"</span><span class="token operator">%</span>x<span class="token punctuation">,</span>        <span class="token comment"># 不回到行首</span>
+    <span class="token keyword">print</span> <span class="token string">"hahah\r"</span><span class="token punctuation">,</span>
+    sys<span class="token punctuation">.</span>stdout<span class="token punctuation">.</span>flush<span class="token punctuation">(</span><span class="token punctuation">)</span>
+    sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+<span class="token comment"># 输出</span>
+<span class="token comment"># x hahahsdas 0 hahah</span>
+<span class="token comment"># x=1,2,...9 (每0.1秒一变化)</span>
+
+<span class="token comment"># 例4</span>
+<span class="token keyword">print</span> <span class="token string">'asdasdasdas'</span><span class="token punctuation">,</span>     <span class="token comment"># 未换行</span>
+<span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    <span class="token keyword">print</span> <span class="token string">"%d"</span><span class="token operator">%</span>x<span class="token punctuation">,</span>        <span class="token comment"># 不回到行首</span>
+    <span class="token keyword">print</span> <span class="token string">"hahah\r"</span><span class="token punctuation">,</span>
+    sleep<span class="token punctuation">(</span><span class="token number">0.1</span><span class="token punctuation">)</span>
+<span class="token comment"># 1秒后输出</span>
+<span class="token comment"># x hahahsdas 9 hahah</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="路径"><a class="header-anchor" href="#路径"></a>路径</h2>
+<p>获得当文件(而不是其所在文件夹)的绝对路径</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">dir_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>realpath<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>从路径取得文件名字</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token operator">&lt;</span>string<span class="token operator">></span> <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>basename<span class="token punctuation">(</span><span class="token operator">&lt;</span>filepath_string<span class="token operator">></span><span class="token punctuation">)</span>
+<span class="token comment"># Linux下相当于 &lt;filepath_string>.split('/')[-1]</span>
+<span class="token comment"># 若&lt;filepath_string>为文件路径，返回文件名(带扩展名)</span>
+<span class="token comment"># 若&lt;filepath_string>为文件夹路径，返回“”</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>从路径取得文件夹名字</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>dir_string<span class="token operator">></span> <span class="token operator">=</span> os.path.dirname<span class="token punctuation">(</span><span class="token operator">&lt;</span>path_string<span class="token operator">></span><span class="token punctuation">)</span>
+<span class="token comment"># 若&lt;path_string>为文件夹路径，则返回 &lt;path_string></span>
+<span class="token comment"># 若&lt;path_string>为文件路径，  则返回其所在文件夹的路径</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>一路向下创建文件夹</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">os.makedirs<span class="token punctuation">(</span><span class="token operator">&lt;</span>path_string<span class="token operator">></span><span class="token punctuation">)</span> <span class="token comment"># 此文件夹已经存在则报错</span>
+os.makedirs<span class="token punctuation">(</span><span class="token operator">&lt;</span>path_string<span class="token operator">></span>, <span class="token assign-left variable">exist_ok</span><span class="token operator">=</span>True<span class="token punctuation">)</span> <span class="token comment"># 此文件夹已经存在不报错</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>连接路径名，在不同操作系统下都work</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token operator">&lt;</span>path_string<span class="token operator">></span> <span class="token operator">=</span> os.path.join<span class="token punctuation">(</span><span class="token operator">&lt;</span>path_string<span class="token operator"><span class="token file-descriptor important">1</span>></span>,<span class="token operator">&lt;</span>path_string<span class="token operator"><span class="token file-descriptor important">2</span>></span>,<span class="token punctuation">..</span>.<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/Infinity/" rel="prev" title="bash及zsh语法">
+                  <i class="fa fa-chevron-left"></i> bash及zsh语法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/48c97705/" rel="next" title="virtualenv_教程">
+                  virtualenv_教程 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/53bbc892/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

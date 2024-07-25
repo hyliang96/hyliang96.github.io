@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="[TOC] ssh别名、免密登录 别名登陆">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ssh配置">
+<meta property="og:url" content="https://hyliang96.github.io/posts/2e77fc3e/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="[TOC] ssh别名、免密登录 别名登陆">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
+<meta property="article:modified_time" content="2022-03-23T09:14:46.153Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/2e77fc3e/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/2e77fc3e/","path":"posts/2e77fc3e/","title":"ssh配置"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>ssh配置 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh%E5%88%AB%E5%90%8D%E3%80%81%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="nav-text">ssh别名、免密登录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%AB%E5%90%8D%E7%99%BB%E9%99%86"><span class="nav-text">别名登陆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="nav-text">免密登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5"><span class="nav-text">生成密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E5%85%AC%E9%92%A5%E5%88%B0%E7%9B%AE%E6%A0%87%E6%9C%BA%E5%99%A8"><span class="nav-text">发送公钥到目标机器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95-_2"><span class="nav-text">免密登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bug"><span class="nav-text">bug</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bad-owner-or-permissions"><span class="nav-text">Bad owner or permissions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%BD%E8%AF%BB%E5%8F%96-ssh-config%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="nav-text">能读取~&#x2F;.ssh&#x2F;config的软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91"><span class="nav-text">端口转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%B3%E6%9D%BF%E8%BF%9E%E6%8E%A5"><span class="nav-text">跳板连接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh-%E9%87%8D%E5%90%AF"><span class="nav-text">ssh 重启</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux"><span class="nav-text">linux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%90%AFssh%E5%90%AF%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">重启ssh启服务端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mac"><span class="nav-text">mac</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8ssh%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">启动ssh服务端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AFssh%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">开机自启ssh服务端</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/2e77fc3e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          ssh配置
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/" itemprop="url" rel="index"><span itemprop="name">服务器连接</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/2e77fc3e/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/2e77fc3e/" data-xid="/posts/2e77fc3e/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>10 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>[TOC]</p>
+<h1 id="ssh别名、免密登录"><a class="header-anchor" href="#ssh别名、免密登录"></a>ssh别名、免密登录</h1>
+<h2 id="别名登陆"><a class="header-anchor" href="#别名登陆"></a>别名登陆</h2>
+<p><a target="_blank" rel="noopener" href="http://www.ttlsa.com/linux/ssh-config-aliases-server-access-tricks/">参考1</a>, <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5729d5e61c72">参考2</a></p>
+<p>本地电脑上，打开<code>~/.ssh/config</code>文件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> ~/.ssh/config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>编写格式如下</p>
+<pre class="line-numbers language-baah" data-language="baah"><code class="language-baah">Host 服务器别名1
+    HostName 服务器ip或网址1
+    Port 端口号1
+    User 用户名1
+    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
+
+Host 服务器别名2
+    HostName 服务器ip或网址2
+    Port 端口号2
+    User 用户名2
+    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
+
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>~/.ssh/id_rsa</code>即为本地私钥</p>
+<p>例如</p>
+<pre class="line-numbers language-none"><code class="language-none">Host myserver
+    HostName some.place.com
+    Port 4123
+    User pitter
+    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="免密登录"><a class="header-anchor" href="#免密登录"></a>免密登录</h2>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/m0_38003171/article/details/80625821">参考</a></p>
+<p>本地电脑上</p>
+<h3 id="生成密钥"><a class="header-anchor" href="#生成密钥"></a>生成密钥</h3>
+<ul>
+<li>交互模式</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后不断回车确认，<code>~/.ssh</code>下会生成两个文件：<code>id_rsa</code>（私钥）和<code>id_rsa.pub</code>（公钥）</p>
+<p>若显示已有密钥，问你要不要覆盖，则选不要</p>
+<ul>
+<li>非交互模式</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-keygen -t rsa -P <span class="token string">""</span> -f ~/.ssh/id_rsa -q <span class="token comment"># -b 2048 -C "注释"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在<code>~/.ssh/id_rsa</code>不存在时，运行这个不会产生输出。</p>
+<p>在<code>~/.ssh/id_rsa</code>存在时，运行这不会产生输出</p>
+<blockquote>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;home&#x2F;用户名&#x2F;.ssh&#x2F;id_rsa already exists.
+Overwrite (y&#x2F;n)?<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</blockquote>
+<p>参数说明：</p>
+<ul>
+<li>
+<p><code>-P &quot;&quot; </code>密码为空</p>
+</li>
+<li>
+<p><code>-f id_rsa </code>是指保存文件为<code>~/.ssh/id_rsa</code> 和<code>~/.ssh/id_rsa.pub</code></p>
+</li>
+<li>
+<p><code>-q</code> 静默模式，即不产生如下输出，除非报错</p>
+<blockquote>
+<pre class="line-numbers language-test" data-language="test"><code class="language-test">Generating public&#x2F;private rsa key pair.
+Your identification has been saved in &#x2F;home&#x2F;用户名&#x2F;.ssh&#x2F;id_rsa.
+Your public key has been saved in &#x2F;home&#x2F;用户名&#x2F;.ssh&#x2F;id_rsa.pub.
+The key fingerprint is:
+SHA256:DasvExxxxxxK&#x2F;&#x2F;JIqsxxxxxxxxxn4AdbabU 用户名@服务器
+The key&#39;s randomart image is:
++---[RSA 2048]----+
+| .. xxxxx    xx  |
+|... xxxxx xx     |
+|&#x3D; xxxxx    xx    |
+|ooxx .xxxxxxxxx  |
+|.  xxxxx    xx . |
+|. xxxxx    x  E  |
+|..o xxxxx    +   |
+|  xxxxx    xx    |
+|+ sssddx   .     |
++----[SHA256]-----+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</blockquote>
+</li>
+<li>
+<p><code>-b 位数</code>  默认是 2048，可以指定 1024 等</p>
+</li>
+<li>
+<p><code>-C 注释</code>  默认为<code>&quot;$USER@$(hostname)&quot;</code>提供一个新注释，</p>
+</li>
+</ul>
+<h3 id="发送公钥到目标机器"><a class="header-anchor" href="#发送公钥到目标机器"></a>发送公钥到目标机器</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id <span class="token punctuation">(</span>-i <span class="token punctuation">(</span>公钥或对应私钥路径<span class="token punctuation">))</span>  <span class="token punctuation">(</span>-p 端口号<span class="token punctuation">)</span> 用户名@服务器<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>或使用别名发送</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id <span class="token punctuation">(</span>-i <span class="token punctuation">(</span>公钥或对应私钥路径<span class="token punctuation">))</span> 服务器别名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后输入服务器密码，即可将本地公钥<code>公钥路径</code> （缺省为<code>~/.ssh/id_rsa.pub</code>）全文复制，粘贴进服务器的<code>~/.ssh/authorized_keys</code>文件中。凡可免密访此服之私钥，其对应公钥皆保存在<code>~/.ssh/authorized_keys</code>中。</p>
+<h3 id="免密登录-_2"><a class="header-anchor" href="#免密登录-_2"></a>免密登录</h3>
+<p>本地电脑</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token punctuation">(</span>-p 端口号<span class="token punctuation">)</span> 用户名@服务器<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>或</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> 别名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>皆可不用输入密码，直接登录</p>
+<h3 id="bug"><a class="header-anchor" href="#bug"></a>bug</h3>
+<h4 id="Bad-owner-or-permissions"><a class="header-anchor" href="#Bad-owner-or-permissions"></a>Bad owner or permissions</h4>
+<p>在执行ssh登录的时候，出现以下错误：</p>
+<pre class="line-numbers language-none"><code class="language-none">Bad owner or permissions on &#x2F;home&#x2F;haowt&#x2F;.ssh&#x2F;config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>此时只需在<code>~/.ssh/</code>下执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token number">600</span> config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>给<code>config</code>文件以“600”权限，则可ssh登录</p>
+<h2 id="能读取-ssh-config的软件"><a class="header-anchor" href="#能读取-ssh-config的软件"></a>能读取<code>~/.ssh/config</code>的软件</h2>
+<ul>
+<li>
+<p>能读取<code>~/.ssh/config</code>的软件</p>
+<p><code>ssh</code>，<code>sshfs</code>，<code>scp</code>，<code>sftp</code>，<code>rsync</code>，在iTerm2上对着远程的文件右键下载文件</p>
+</li>
+<li>
+<p>不能读取<code>~/.ssh/config</code>的软件</p>
+<p>待补充</p>
+</li>
+</ul>
+<h2 id="端口转发"><a class="header-anchor" href="#端口转发"></a>端口转发</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>LocalForward</th>
+<th>RemoteForward</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>功能</td>
+<td>把本地请求转发到远程</td>
+<td>为把远程请求转发到本地</td>
+</tr>
+<tr>
+<td>服务进程(多为守护进程)</td>
+<td>在远程</td>
+<td>在本地</td>
+</tr>
+<tr>
+<td>访问进程(如浏览器)</td>
+<td>在本地</td>
+<td>在远程</td>
+</tr>
+<tr>
+<td>例如</td>
+<td>本地访问远程的jupiter notebook</td>
+<td>远程用nc发送消息到本地的监听进程</td>
+</tr>
+<tr>
+<td><code>ssh config</code>的写法<code>xxxForward 请求端口 ip:接受端口</code></td>
+<td><code>LocalForward 本地端口 localhost:远程端口</code></td>
+<td><code>RemoteForward 服务器端口 localhost:本机端口</code></td>
+</tr>
+<tr>
+<td><code>ssh</code>命令的参数</td>
+<td><code>-L 本地端口:localhost:远程端口</code></td>
+<td><code>-R 服务器端口:localhost:本机端口</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="跳板连接"><a class="header-anchor" href="#跳板连接"></a>跳板连接</h2>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74193910">参考</a></p>
+<p>以<code>[跳板]</code>机器为跳板，连接<code>[目标]</code>机器，需在<code>~/.ssh/config</code>配置</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Host <span class="token punctuation">[</span>目标<span class="token punctuation">]</span>
+    HostName <span class="token punctuation">[</span>从跳板机访问目标机器用的ip<span class="token punctuation">]</span>
+    User <span class="token punctuation">[</span>目标机用户名<span class="token punctuation">]</span>
+    <span class="token comment"># 登陆目标机永用的私钥所在位置</span>
+    IdentityFile ~/.ssh/id_rsa
+    <span class="token comment"># 允许跳板机用本机私钥登录目标机器</span>
+    ForwardAgent <span class="token function">yes</span>
+
+    <span class="token comment"># 法一: OpenSSH 版本>= 7.3; 或 autossh</span>
+    ProxyJump <span class="token punctuation">[</span>跳板<span class="token punctuation">]</span>
+
+    <span class="token comment"># 法二: OpenSSH 版本&lt; 7.3, 不支持以使用ProxyJump, 可使用ProxyCommand; 但autossh不支持用ProxyCommand</span>
+    <span class="token comment"># ProxyCommand ssh -q -W %h:%p [跳板]</span>
+
+
+
+Host <span class="token punctuation">[</span>跳板<span class="token punctuation">]</span>
+  HostName <span class="token punctuation">[</span>从本地访问跳板机用的ip<span class="token punctuation">]</span>
+    User <span class="token punctuation">[</span>跳板机用户名<span class="token punctuation">]</span>
+    <span class="token comment"># 登陆跳板机的私钥所在位置</span>
+    IdentityFile ~/.ssh/id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样设置后，以下软件的用法和直接连接目标机器一样</p>
+<p><code>ssh</code>（包括端口转发功能），<code>sshfs</code>，<code>scp</code>，<code>sftp</code>，<code>rsync</code>，在iTerm2上对着远程的文件右键下载文件</p>
+<h1 id="ssh-重启"><a class="header-anchor" href="#ssh-重启"></a>ssh 重启</h1>
+<h2 id="linux"><a class="header-anchor" href="#linux"></a>linux</h2>
+<h3 id="重启ssh启服务端"><a class="header-anchor" href="#重启ssh启服务端"></a>重启ssh启服务端</h3>
+<p>每当修改完ssh服务端的设置文件 <code>/etc/ssh/sshd_config</code> 需要重启ssh服务端服务（即<code>sshd</code>）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">service</span> sshd restart<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>或</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemctl restart sshd.service<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>注：<code>systemctl</code> 兼容了 <code>service</code>， <a target="_blank" rel="noopener" href="https://www.cnblogs.com/shijingjing07/p/9301590.html">详见</a></p>
+<h2 id="mac"><a class="header-anchor" href="#mac"></a>mac</h2>
+<h3 id="启动ssh服务端"><a class="header-anchor" href="#启动ssh服务端"></a><a target="_blank" rel="noopener" href="https://www.feng.com/iPhone/news/2016-08-18/Mac-novice-skills-how-to-through-the-terminal-openingclosing-SSH_654852.shtml">启动ssh服务端</a></h3>
+<p>的较新 Mac 设备都会默认预装 SSH，不过 SSH 守护进程是默认禁用的。今天我们就来一起学习如何通过终端指令来开启和关闭 SSH。</p>
+<ul>
+<li>是否开启ssh服务端</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemsetup -getremotelogin
+<span class="token comment"># 如果已经开启的话，指令会显示 “Remote Login: On” ，反之就会显示“Remote Login: Off”。</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li>开启</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemsetup -setremotelogin on<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>关闭</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> systemsetup -setremotelogin off<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="开机自启ssh服务端"><a class="header-anchor" href="#开机自启ssh服务端"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liyuanhong/articles/6540106.html">开机自启ssh服务端</a></h3>
+<p>mac本身安装了ssh服务，默认情况下不会开机自启</p>
+<ul>
+<li>开机自启sshd服务：</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> launchctl load -w /System/Library/LaunchDaemons/ssh.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>开机不自启sshd服务：</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> launchctl unload -w /System/Library/LaunchDaemons/ssh.plist<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>查看是否开机自启：</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> launchctl list <span class="token operator">|</span> <span class="token function">grep</span> <span class="token function">ssh</span>
+<span class="token comment"># 如果看到下面的输出表示成功启动了</span>
+<span class="token comment"># - 0 com.openssh.sshd</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/bdb5144f/" rel="prev" title="sshfs">
+                  <i class="fa fa-chevron-left"></i> sshfs
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/5a22a187/" rel="next" title="rsync教程">
+                  rsync教程 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/2e77fc3e/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

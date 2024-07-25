@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="本教程是针对JUN集群的。其它场景仅供参考。 JUN集群中已经升级到节点 已经完成：cpu1-5, gpu1-11, gpu14-38">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安装YouCompleteMe编译的依赖-升级conda及其python">
+<meta property="og:url" content="https://hyliang96.github.io/posts/323dc66b/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="本教程是针对JUN集群的。其它场景仅供参考。 JUN集群中已经升级到节点 已经完成：cpu1-5, gpu1-11, gpu14-38">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-12-21T07:10:02.000Z">
+<meta property="article:modified_time" content="2024-01-16T14:39:34.299Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/323dc66b/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/323dc66b/","path":"posts/323dc66b/","title":"安装YouCompleteMe编译的依赖-升级conda及其python"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>安装YouCompleteMe编译的依赖-升级conda及其python | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JUN%E9%9B%86%E7%BE%A4%E4%B8%AD%E5%B7%B2%E7%BB%8F%E5%8D%87%E7%BA%A7%E5%88%B0%E8%8A%82%E7%82%B9"><span class="nav-text">JUN集群中已经升级到节点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85Youcomplete%E6%89%80%E9%9C%80%E7%9A%84%E4%BE%9D%E8%B5%96"><span class="nav-text">安装Youcomplete所需的依赖</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7python%E5%92%8C%E5%8D%87%E7%BA%A7conda"><span class="nav-text">升级python和升级conda</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85JUN%E9%9B%86%E7%BE%A4%E4%B8%8A%E6%89%80%E9%9C%80%E8%A6%81%E7%9A%84pip%E5%8C%85"><span class="nav-text">安装JUN集群上所需要的pip包</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu18-04%E4%B8%AD%E6%89%8B%E5%8A%A8%E5%AE%89%E8%A3%85cmake3-22"><span class="nav-text">Ubuntu18.04中手动安装cmake3.22</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8conda%E5%AE%89%E8%A3%85cmake-%E4%B8%8D%E6%8E%A8%E8%8D%90"><span class="nav-text">用conda安装cmake (不推荐)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85g-%C2%B18"><span class="nav-text">安装g+±8</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AE%E8%AE%A4%E6%89%80%E5%AE%89%E8%A3%85%E8%BD%AF%E4%BB%B6%E7%9A%84%E7%89%88%E6%9C%AC"><span class="nav-text">确认所安装软件的版本</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91YouCompleteMe"><span class="nav-text">编译YouCompleteMe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7conda%E5%8F%8A%E5%85%B6%E4%B8%AD%E7%9A%84python"><span class="nav-text">升级conda及其中的python</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7conda"><span class="nav-text">升级conda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E9%94%99%E8%AF%AF"><span class="nav-text">解决错误</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8B%A5conda%E5%8D%87%E7%BA%A7%E5%A4%B1%E8%B4%A5%EF%BC%8C%E5%8F%AF%E5%B0%9D%E8%AF%95%E5%85%88%E5%8D%87%E7%BA%A7python"><span class="nav-text">若conda升级失败，可尝试先升级python</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RemoveError-%E2%80%98setuptools%E2%80%99-is-a-dependency-of-conda"><span class="nav-text">RemoveError: ‘setuptools’ is a dependency of conda</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WARNING-A-newer-version-of-conda-exists"><span class="nav-text">WARNING: A newer version of conda exists.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E6%9E%9C%E8%BF%98%E6%98%AF%E6%B2%A1%E8%83%BD%E5%8D%87%E7%BA%A7"><span class="nav-text">如果还是没能升级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#The-environment-is-inconsistent"><span class="nav-text">The environment is inconsistent</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E8%BF%B0%E9%94%99%E8%AF%AF%E8%A7%A3%E5%86%B3%E5%90%8E%EF%BC%8C%E9%9C%80%E8%A6%81%E9%87%8D%E6%96%B0%E5%8D%87%E7%BA%A7conda"><span class="nav-text">上述错误解决后，需要重新升级conda</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/323dc66b/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          安装YouCompleteMe编译的依赖-升级conda及其python
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-12-21 15:10:02" itemprop="dateCreated datePublished" datetime="2023-12-21T15:10:02+08:00">2023-12-21</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2024-01-16 22:39:34" itemprop="dateModified" datetime="2024-01-16T22:39:34+08:00">2024-01-16</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/" itemprop="url" rel="index"><span itemprop="name">编辑器IDE</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/323dc66b/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/323dc66b/" data-xid="/posts/323dc66b/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>15 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>本教程是针对JUN集群的。其它场景仅供参考。</p>
+<h2 id="JUN集群中已经升级到节点"><a class="header-anchor" href="#JUN集群中已经升级到节点"></a>JUN集群中已经升级到节点</h2>
+<p>已经完成：cpu1-5, gpu1-11, gpu14-38</p>
+<p>正在进行：</p>
+<p>有待完成：gpu16</p>
+<p>坏了的机器：gpu16</p>
+<h2 id="安装Youcomplete所需的依赖"><a class="header-anchor" href="#安装Youcomplete所需的依赖"></a>安装Youcomplete所需的依赖</h2>
+<p>以下方法适用于Linux系统</p>
+<p>在g[x]:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda -V
+python -V
+cmake --version
+g++-8 --version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="升级python和升级conda"><a class="header-anchor" href="#升级python和升级conda"></a>升级python和升级conda</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -y <span class="token assign-left variable">python</span><span class="token operator">=</span><span class="token number">3.10</span>
+python -V
+
+conda update conda
+conda -V<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果上述升级过程遇到报错，请按照<a href="#%E5%8D%87%E7%BA%A7conda%E5%8F%8A%E5%85%B6%E4%B8%AD%E7%9A%84python">下文</a>的操作细节去安装。</p>
+<h4 id="安装JUN集群上所需要的pip包"><a class="header-anchor" href="#安装JUN集群上所需要的pip包"></a>安装JUN集群上所需要的pip包</h4>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">pip <span class="token function">install</span> -U pip
+pip <span class="token function">install</span> pretty_errors <span class="token operator">&amp;&amp;</span> python -m pretty_errors -s -p
+<span class="token assign-left variable">pretty_errors_config</span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>python -m pretty_errors -f <span class="token operator">|</span> <span class="token function">grep</span> pretty_errors.pth<span class="token variable">)</span></span>"</span>
+<span class="token punctuation">[</span> -f <span class="token string">"<span class="token variable">$pretty_errors_config</span>"</span> <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token function">ln</span> -sf <span class="token variable">$shareENV</span>/app_config/pretty_errors.pth <span class="token string">"<span class="token variable">$pretty_errors_config</span>"</span>
+pip <span class="token function">install</span> jupyter
+pip <span class="token function">install</span> jupyterthemes
+pip <span class="token function">install</span> shadowsocks
+<span class="token function">mkdir</span> /home/<span class="token variable">$&#123;<span class="token environment constant">USER</span>&#125;</span>/ENV/localENV/log/<span class="token punctuation">&#123;</span>polipo,shadowsocks<span class="token punctuation">&#125;</span>
+pip <span class="token function">install</span> pynvim <span class="token comment"># 在python>=3.7上，使用pynvim而不是neovim</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="Ubuntu18-04中手动安装cmake3-22"><a class="header-anchor" href="#Ubuntu18-04中手动安装cmake3-22"></a>Ubuntu18.04中手动安装cmake3.22</h3>
+<p>参考：</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7279346112317259831">https://juejin.cn/post/7279346112317259831</a></p>
+<p><a target="_blank" rel="noopener" href="https://blogca.cn/2022/07/13/ubuntu18-sheng-ji-an-zhuang-cmake-chao-xiang-xi-qin-ce-cheng-gong-2022-nian-7-yue-13-ri/">https://blogca.cn/2022/07/13/ubuntu18-sheng-ji-an-zhuang-cmake-chao-xiang-xi-qin-ce-cheng-gong-2022-nian-7-yue-13-ri/</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt</span> remove -y cmake<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 下载、解压</span>
+<span class="token comment"># 去https://cmake.org/files/下载所需版本的源码。也可以使用wget下载，例如：</span>
+<span class="token builtin class-name">cd</span> /home/<span class="token environment constant">$USER</span>
+<span class="token function">wget</span> https://cmake.org/files/v3.22/cmake-3.22.1.tar.gz
+<span class="token function">tar</span> -xvzf cmake-3.22.1.tar.gz
+<span class="token function">rm</span> cmake-3.22.1.tar.gz
+<span class="token function">sudo</span> <span class="token function">mv</span> cmake-3.22.1 /usr/local/bin/cmake
+
+<span class="token comment"># 手动编译</span>
+<span class="token builtin class-name">cd</span> /usr/local/bin/cmake
+<span class="token function">sudo</span> ./bootstrap
+<span class="token comment"># 使用-j4参数以加快编译速度，数字4表示同时使用4个核心</span>
+<span class="token function">sudo</span> <span class="token function">make</span> -j4
+<span class="token function">sudo</span> <span class="token function">make</span> <span class="token function">install</span>
+<span class="token function">sudo</span> <span class="token function">ln</span> -sf /usr/local/bin/cmake/bin/* /usr/bin/
+cmake --version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>若 sudo ./bootstrap 报错：</p>
+<blockquote>
+<p>“CMake Error at Utilities/cmcurl/CMakeLists.txt:562 (message):<br>
+Could not find OpenSSL.  Install an OpenSSL development package or<br>
+configure CMake with -DCMAKE_USE_OPENSSL=OFF to build without OpenSSL.“</p>
+</blockquote>
+<p>则执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y libssl-dev<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>然后执行上述的手动编译的命令。</p>
+<h4 id="用conda安装cmake-不推荐"><a class="header-anchor" href="#用conda安装cmake-不推荐"></a>用conda安装cmake (不推荐)</h4>
+<p>不推荐用conda安装cmake，因为前文方法安装的cmake可以给所有用户用，而用conda安装的cmake只能给本用户用。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> <span class="token assign-left variable">cmake</span><span class="token operator">=</span><span class="token number">3.14</span> <span class="token comment"># 但是，只有本用户可用，故不用</span>
+conda <span class="token function">install</span> gxx_linux-64 <span class="token comment"># 但是，会显示成haoyu@x86_64-conda-linux-gnu，故不用</span>
+cmake --version
+gxx --version
+python ~/.vim/plugged/YouCompleteMe/install.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="安装g-±8"><a class="header-anchor" href="#安装g-±8"></a>安装g+±8</h3>
+<p>参考 <a target="_blank" rel="noopener" href="https://blog.csdn.net/maoni99999/article/details/117378664">Your C++ compiler does NOT fully support C<ins>17，升级gcc到支持c</ins>17</a></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> <span class="token function">install</span> -y g++-8
+<span class="token function">sudo</span> update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 <span class="token number">700</span> --slave /usr/bin/g++ g++ /usr/bin/g++-7
+<span class="token function">sudo</span> update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 <span class="token number">800</span> --slave /usr/bin/g++ g++ /usr/bin/g++-8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="确认所安装软件的版本"><a class="header-anchor" href="#确认所安装软件的版本"></a>确认所安装软件的版本</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda -V
+python -V
+cmake --version
+g++-8 --version
+
+<span class="token function">which</span> python cmake g++-8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>返回如下（gpu36，Ubuntu 18.04.5 LTS，2023-12-21执行）</p>
+<pre class="line-numbers language-none"><code class="language-none">conda 23.11.0
+Python 3.10.13
+cmake version 3.22.1
+
+CMake suite maintained and supported by Kitware (kitware.com&#x2F;cmake).
+g++-8 (Ubuntu 8.4.0-1ubuntu1~18.04) 8.4.0
+Copyright (C) 2018 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+&#x2F;home&#x2F;haoyu&#x2F;ENV&#x2F;localENV&#x2F;anaconda3&#x2F;bin&#x2F;python
+&#x2F;usr&#x2F;bin&#x2F;cmake
+&#x2F;usr&#x2F;bin&#x2F;g++-8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="编译YouCompleteMe"><a class="header-anchor" href="#编译YouCompleteMe"></a>编译YouCompleteMe</h2>
+<p>在g[x]：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">rm</span> -rf <span class="token environment constant">$HOME</span>/.vim/plugged/*<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若有无法更新的包，则执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> -rf <span class="token environment constant">$HOME</span>/.vim/plugged/<span class="token operator">&lt;</span>包的名字<span class="token operator">></span>
+ivp<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>在已经成功下载YouCompleteMe及其子包的节点上（比如g49）:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ts /home/haoyu/.ssh g<span class="token punctuation">[</span>xx<span class="token punctuation">]</span>:.
+ts /home/haoyu/ENV/localENV/app_config/vim_plug/YouCompleteMe g<span class="token punctuation">[</span>x<span class="token punctuation">]</span>:/home/haoyu/ENV/localENV/app_config/vim_plug/
+<span class="token comment"># 其它包同理：</span>
+ts /home/haoyu/ENV/localENV/app_config/vim_plug/<span class="token operator">&lt;</span>未安装的包名字<span class="token operator">></span> g<span class="token punctuation">[</span>x<span class="token punctuation">]</span>:/home/haoyu/ENV/localENV/app_config/vim_plug/<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在g[x]:</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">uvp
+python <span class="token environment constant">$HOME</span>/.vim/plugged/YouCompleteMe/install.py
+vv
+<span class="token comment"># 测试一下vim是否能启用YouCompleteMe的自动补全</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="升级conda及其中的python"><a class="header-anchor" href="#升级conda及其中的python"></a>升级conda及其中的python</h2>
+<h3 id="升级conda"><a class="header-anchor" href="#升级conda"></a>升级conda</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看conda版本</span>
+conda -V
+
+<span class="token comment"># 首先更新 conda 到最新，测试中如果当前处在 conda activate 状态下，需要更新 conda 两次</span>
+conda update conda
+conda -V
+
+<span class="token comment"># 如果遇到更新失败，可尝试强制更新</span>
+conda update --force conda
+conda -V<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="解决错误"><a class="header-anchor" href="#解决错误"></a>解决错误</h3>
+<h4 id="若conda升级失败，可尝试先升级python"><a class="header-anchor" href="#若conda升级失败，可尝试先升级python"></a>若conda升级失败，可尝试先升级python</h4>
+<p>若直接升级conda失败，可以尝试先升级conda下的python，再升级conda</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 查看python版本</span>
+python -V
+<span class="token comment"># 升级python到最新版本</span>
+conda update python
+<span class="token comment"># 或升级python到指定版本</span>
+conda <span class="token function">install</span> <span class="token assign-left variable">python</span><span class="token operator">=</span><span class="token number">3.10</span>
+python -V
+
+<span class="token comment"># 升级conda</span>
+conda update conda<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此方法，会重新安装一个新版本的 python 在<code>$HOME/miniconda/lib/python3.10</code> 中，并把 base 使用的 python 指向新版本python。</p>
+<p>但是，新版本的 python 3.10 文件夹下没有就版本安装的第三方依赖（即pip包），需要重新安装。</p>
+<p>旧 python 仍然在<code>$HOME/miniconda/lib/python3.7</code>中，这里面有旧版本python的基础文件和pip包。用上述命令安装新版本python时，不会自动删除这个目录。如果不需要使用旧版本的python，<strong>可以在新版本python安装好后，删掉这个目录</strong>，即</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> -rf <span class="token environment constant">$HOME</span>/miniconda/lib/python3.7<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>因此，一般情况下不建议升级。可以通过<code>conda create env -n new python=3.10</code>创建新的虚拟环境。</p>
+<h4 id="RemoveError-‘setuptools’-is-a-dependency-of-conda"><a class="header-anchor" href="#RemoveError-‘setuptools’-is-a-dependency-of-conda"></a>RemoveError: ‘setuptools’ is a dependency of conda</h4>
+<p>报错</p>
+<blockquote>
+<p>RemoveError: ‘setuptools’ is a dependency of conda and cannot be removed from conda’s operating environme</p>
+</blockquote>
+<p>则执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> --force -c anaconda <span class="token function">git</span>
+conda update -n base -c defaults setuptools<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h4 id="WARNING-A-newer-version-of-conda-exists"><a class="header-anchor" href="#WARNING-A-newer-version-of-conda-exists"></a>WARNING: A newer version of conda exists.</h4>
+<p>报错</p>
+<blockquote>
+<p>==&gt; WARNING: A newer version of conda exists. &lt;==<br>
+current version: 4.7.10<br>
+latest version: 23.10.0<br>
+Please update conda by running<br>
+$ conda update -n base -c defaults conda</p>
+</blockquote>
+<p>则执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda update -n base -c defaults conda<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="如果还是没能升级"><a class="header-anchor" href="#如果还是没能升级"></a>如果还是没能升级</h4>
+<p>则执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda <span class="token function">install</span> -n base -c defaults <span class="token assign-left variable">conda</span><span class="token operator">=</span><span class="token number">23.9</span>.0<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="The-environment-is-inconsistent"><a class="header-anchor" href="#The-environment-is-inconsistent"></a>The environment is inconsistent</h4>
+<p>报错</p>
+<blockquote>
+<p>The environment is inconsistent, please check the package plan carefully. The following packages are causing the inconsistency.</p>
+</blockquote>
+<p>则执行</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda activate base
+conda update anaconda <span class="token comment"># 如果安装的是miniconds，则不要执行此命令</span>
+conda update --all<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="上述错误解决后，需要重新升级conda"><a class="header-anchor" href="#上述错误解决后，需要重新升级conda"></a>上述错误解决后，需要重新升级conda</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">conda update conda<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/76dbe307/" rel="prev" title="增删用户的sudo权限">
+                  <i class="fa fa-chevron-left"></i> 增删用户的sudo权限
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/9368dece/" rel="next" title="github的身份验证方式">
+                  github的身份验证方式 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/323dc66b/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

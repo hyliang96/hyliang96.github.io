@@ -1,0 +1,1605 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="环境：ubuntu 16 实验室服务器 时间：2018年8月6日 [TOC]">
+<meta property="og:type" content="article">
+<meta property="og:title" content="zsh安装配置教程">
+<meta property="og:url" content="https://hyliang96.github.io/posts/72862763/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="环境：ubuntu 16 实验室服务器 时间：2018年8月6日 [TOC]">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
+<meta property="article:modified_time" content="2023-10-26T09:14:51.490Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/72862763/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/72862763/","path":"posts/72862763/","title":"zsh安装配置教程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>zsh安装配置教程 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh%E5%AE%89%E8%A3%85"><span class="nav-text">zsh安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A5%E9%94%99"><span class="nav-text">报错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Insecure-completion-dependent-directories-detected"><span class="nav-text">Insecure completion-dependent directories detected</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8antigen-%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E6%8E%A8%E8%8D%90"><span class="nav-text">安装和使用antigen (普通用户推荐)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85antigen"><span class="nav-text">安装antigen</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E9%85%8D%E7%BD%AE"><span class="nav-text">导入配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E6%96%87%E4%BB%B6"><span class="nav-text">点文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zsh%E7%9A%84%E7%82%B9%E6%96%87%E4%BB%B6"><span class="nav-text">zsh的点文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%82%B9%E6%96%87%E4%BB%B6"><span class="nav-text">修改点文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC%E4%B8%8A-zshenv%E8%AE%BE%E7%9A%84-PATH%E5%89%8D%E8%A2%AB%E5%8A%A0%E5%88%AB%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="nav-text">MAC上.zshenv设的$PATH前被加别的路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%A2zsh%E7%9A%84%E4%B8%BB%E9%A2%98"><span class="nav-text">换zsh的主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87"><span class="nav-text">中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E9%85%8D%E8%89%B2"><span class="nav-text">命令行下配色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E6%8F%92%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%94%9F%E6%95%88"><span class="nav-text">使插件修改生效</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tmux%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AE"><span class="nav-text">tmux启动设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BDantigen"><span class="nav-text">卸载antigen</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90"><span class="nav-text">zsh插件推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fzf-%E6%A8%A1%E7%B3%8A%E6%9F%A5%E6%89%BE-%E5%8E%86%E5%8F%B2%E5%91%BD%E4%BB%A4-%E4%B8%8B%E6%96%B9%E8%B7%AF%E5%BE%84-%E7%AD%89"><span class="nav-text">fzf: 模糊查找 历史命令&#x2F;下方路径 等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%86%E5%8F%B2%E7%9B%AE%E5%BD%95%E8%B7%B3%E8%BD%AC"><span class="nav-text">历史目录跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#z-lua"><span class="nav-text">z.lua</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autojump"><span class="nav-text">autojump</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-_2"><span class="nav-text">使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE"><span class="nav-text">zsh语法高亮</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fast-syntax-highlighting"><span class="nav-text">fast-syntax-highlighting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zsh-syntax-highlighting"><span class="nav-text">zsh-syntax-highlighting</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="nav-text">zsh的自动补全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E7%94%A8%E7%8E%B0%E6%9C%89%E5%91%BD%E4%BB%A4%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="nav-text">复用现有命令的自动补全</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh%E8%AF%AD%E6%B3%95%E5%92%8Cbash%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">zsh语法和bash的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%9C%A8%E5%93%AA%E7%A7%8Dshell%E4%B8%8B"><span class="nav-text">判断是在哪种shell下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%9F%E5%8F%B9%E5%8F%B7"><span class="nav-text">感叹号</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shell%E7%9A%84%E7%8A%B6%E6%80%81%E7%B1%BB%E5%9E%8B"><span class="nav-text">shell的状态类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%E2%80%94%E2%80%94shell%E7%9A%84%E7%8A%B6%E6%80%81%E7%B1%BB%E5%9E%8B"><span class="nav-text">预备知识——shell的状态类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%96%B9%E6%B3%95"><span class="nav-text">判断方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh%E5%92%8Cbash%E5%85%B1%E5%AD%98%E7%9A%84%E7%94%A8%E6%88%B7%E7%9B%AE%E5%BD%95%E7%BB%84%E7%BB%87%E9%80%BB%E8%BE%91"><span class="nav-text">zsh和bash共存的用户目录组织逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84"><span class="nav-text">文件夹结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%82%B9%E6%96%87%E4%BB%B6%E7%9A%84%E5%8A%A0%E8%BD%BD%E9%80%BB%E8%BE%91"><span class="nav-text">我设计的点文件的加载逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E9%93%BE%E6%8E%A5"><span class="nav-text">软链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HOME"><span class="nav-text">$HOME&#x2F;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#home-USER"><span class="nav-text">&#x2F;home&#x2F;$USER&#x2F;</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/72862763/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          zsh安装配置教程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2023-10-26 17:14:51" itemprop="dateModified" datetime="2023-10-26T17:14:51+08:00">2023-10-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/72862763/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/72862763/" data-xid="/posts/72862763/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>19k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1:03</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>环境：ubuntu 16 实验室服务器</p>
+<p>时间：2018年8月6日</p>
+<p>[TOC]</p>
+<h2 id="介绍"><a class="header-anchor" href="#介绍"></a>介绍</h2>
+<p><code>zsh </code>：是一款强大的虚拟终端，用以他替代shell， 其配置较为复杂</p>
+<p><code>oh my zsh</code> ：zsh的一套强大配置</p>
+<p><a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fzsh-users%2Fantigen"><code>antigen</code></a> ：zsh的包（即插件）管理器，让我们以类似apt-get的方式来安装zsh的包。其官方会提供已经配置好的oh my zsh和一些常用zsh包。</p>
+<h2 id="zsh安装"><a class="header-anchor" href="#zsh安装"></a>zsh安装</h2>
+<ul>
+<li>
+<p>安装zsh</p>
+<ul>
+<li>实验室各台服务器上已安装zsh，如未安装，可叫管理员</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">apt-get</span> -y <span class="token function">install</span> <span class="token function">zsh</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>
+<p>mac上</p>
+<ul>
+<li>
+<p>mac系统自带的zsh</p>
+<p>在<code>/bin/zsh</code>，但版本老了，建议另外安装新版本</p>
+<p><code>zsh --version</code>，返回<code>zsh 5.3 (x86_64-apple-darwin18.0)</code></p>
+</li>
+<li>
+<p>另外安装新版本的zsh</p>
+<p>不覆盖系统自带的</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">zsh</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>安装到 <code>/usr/local/Cellar/zsh/版本号</code></p>
+<p>并会自动创建链接<code>/usr/local/bin/zsh -&gt; ../Cellar/zsh/5.7.1/bin/zsh*</code></p>
+<p>安装后，<code>zsh --version</code>，返回<code>/usr/local/bin/zsh</code></p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>修改为默认shell，即用zsh于替代shell，每次登陆或开新的终端都开zsh而不是shell</p>
+<ul>
+<li>
+<p>只改个人的</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">chsh -s <span class="token variable"><span class="token variable">`</span><span class="token function">which</span> <span class="token function">zsh</span><span class="token variable">`</span></span>
+<span class="token comment"># 然后输入个人的密码</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>改整个系统的</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> chsh -s <span class="token variable"><span class="token variable">`</span><span class="token function">which</span> <span class="token function">zsh</span><span class="token variable">`</span></span>
+<span class="token comment"># 然后输入root密码</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<p>重登服务器则生效</p>
+</li>
+<li>
+<p>如上述方法不生效，则修改在<code>~/.profile</code> 第一行中加入</p>
+</li>
+<li>
+<pre><code class="language-bash">if [ -t 1 ]; then
+# [ -t FD ]  如果文件描述符 FD 打开且指向一个终端则为真。
+# 文件描述符1表示stdout(即屏幕输出)
+# [ -t 1 ] = true (此脚本输出到屏幕)，false(其他，如此脚本输出到文件或pipe)
+	exec zsh
+	# exec含义：开zsh替代当前sehll
+fi
+<pre class="line-numbers language-none"><code class="language-none">
+  例如在WSL（windows的linux子系统）中，使用cmder打开shell，需要做此次修改。
+
+* 如果切换帐号后无法使用 zsh， 则&#96;. ~&#x2F;.zshrc&#96;
+
+## 直接安装oh-my-zsh (root下推荐)
+
+[oh-my-zsh安装方法](https:&#x2F;&#x2F;ohmyz.sh&#x2F;#install)
+
+适用于mac和linux
+
+&#96;&#96;&#96;bash
+sh -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.github.com&#x2F;ohmyzsh&#x2F;ohmyzsh&#x2F;master&#x2F;tools&#x2F;install.sh)&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+</code></pre>
+</li>
+</ul>
+<h3 id="报错"><a class="header-anchor" href="#报错"></a>报错</h3>
+<h4 id="Insecure-completion-dependent-directories-detected"><a class="header-anchor" href="#Insecure-completion-dependent-directories-detected"></a>Insecure completion-dependent directories detected</h4>
+<p>若给root安装oh-my-zsh, 运行  <code>sudo su</code> 报错</p>
+<pre class="line-numbers language-none"><code class="language-none">[oh-my-zsh] Insecure completion-dependent directories detected:
+drwxrwxrwx 7 hans admin 238 2 9 10:13 &#x2F;usr&#x2F;local&#x2F;share&#x2F;zsh
+drwxrwxrwx 6 hans admin 204 10 1 2017 &#x2F;usr&#x2F;local&#x2F;share&#x2F;zsh&#x2F;site-functions
+
+[oh-my-zsh] For safety, we will not load completions from these directories until
+[oh-my-zsh] you fix their permissions and ownership and restart zsh.
+[oh-my-zsh] See the above list for directories with group or other writability.
+
+[oh-my-zsh] To fix your permissions you can do so by disabling
+[oh-my-zsh] the write permission of &quot;group&quot; and &quot;others&quot; and making sure that the
+[oh-my-zsh] owner of these directories is either root or your current user.
+[oh-my-zsh] The following command may help:
+[oh-my-zsh] compaudit | xargs chmod g-w,o-w
+
+[oh-my-zsh] If the above didn&#39;t help or you want to skip the verification of
+[oh-my-zsh] insecure directories you can set the variable ZSH_DISABLE_COMPFIX to
+[oh-my-zsh] &quot;true&quot; before oh-my-zsh is sourced in your zshrc file.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>则依次尝试如下方法, 然后分别运行 <code>sudo su</code>,  直到 <code>sudo su</code> 不再如上报错</p>
+<ol>
+<li>执行</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token number">755</span> /usr/local/share/zsh
+<span class="token function">sudo</span> <span class="token function">chmod</span> <span class="token number">755</span> /usr/local/share/zsh/site-functions<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ol start="2">
+<li>执行</li>
+</ol>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> compaudit <span class="token operator">|</span> <span class="token function">xargs</span> <span class="token function">chmod</span> g-w,o-w<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ol start="3">
+<li>向root的 <code>.zshrc</code> 加入</li>
+</ol>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">ZSH_DISABLE_COMPFIX&#x3D;&quot;true&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="安装和使用antigen-普通用户推荐"><a class="header-anchor" href="#安装和使用antigen-普通用户推荐"></a>安装和使用antigen (普通用户推荐)</h2>
+<h3 id="安装antigen"><a class="header-anchor" href="#安装antigen"></a>安装antigen</h3>
+<h4 id="导入配置"><a class="header-anchor" href="#导入配置"></a>导入配置</h4>
+<p>从网上导入zsh的配置文件到<code>~/.zshrc</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">curl</span> -L https://raw.githubusercontent.com/skywind3000/vim/master/etc/zshrc.zsh <span class="token operator">></span> ~/.zshrc
+<span class="token comment">#   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span>
+<span class="token comment">#                                  Dload  Upload   Total   Spent    Left  Speed</span>
+<span class="token comment"># 100  5388  100  5388    0     0   8482      0 --:--:-- --:--:-- --:--:--  8607</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>然后输入<code>zsh</code>命令，即开始自动安装插件</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">zsh</span>
+<span class="token comment"># Installing antigen ...</span>
+<span class="token comment">#   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current</span>
+<span class="token comment">#                                  Dload  Upload   Total   Spent    Left  Speed</span>
+<span class="token comment">#   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0</span>
+<span class="token comment">#   0     0    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0</span>
+<span class="token comment"># 100 58503  100 58503    0     0  17045      0  0:00:03  0:00:03 --:--:-- 17045</span>
+<span class="token comment"># move /tmp/antigen.zsh to /Users/$USER/.local/bin/antigen.zsh</span>
+<span class="token comment"># Installing robbyrussell/oh-my-zsh!...</span>
+<span class="token comment"># Installing rupa/z!...</span>
+<span class="token comment"># Installing zsh-users/zsh-autosuggestions!...</span>
+<span class="token comment"># Installing zsh-users/zsh-completions!...</span>
+<span class="token comment"># Installing Vifon/deer!...</span>
+<span class="token comment"># Installing willghatch/zsh-cdr!...</span>
+<span class="token comment"># Installing zsh-users/zsh-syntax-highlighting!...</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>此<code>~/.zshrc</code>功效：</p>
+<ul>
+<li>
+<p>antigen未装则装之：创建<code>~/.antigen</code>, <code>~/.local</code>，导入antigen配置<code>curl -L git.io/antigen &gt;  .local/bin/antigen.zsh </code></p>
+</li>
+<li>
+<p>用antigen加载zsh包，你可根据需要修改<code>~/.zshrc</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">antigen bundle 包的名称 <span class="token comment"># 注释掉则不加载此包</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>该命令用于下载和安装插件，如果插件已安装，那么就加载该插件</p>
+</li>
+<li>
+<p>如果出现警告：zsh compinit: insecure directories, run compaudit for list.</p>
+<pre class="line-numbers language-ba&#39;sh" data-language="ba&#39;sh"><code class="language-ba&#39;sh">chmod -R 755 ~&#x2F;.antigen<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<h3 id="点文件"><a class="header-anchor" href="#点文件"></a>点文件</h3>
+<h4 id="zsh的点文件"><a class="header-anchor" href="#zsh的点文件"></a><a target="_blank" rel="noopener" href="https://unix.stackexchange.com/questions/71253/what-should-shouldnt-go-in-zshenv-zshrc-zlogin-zprofile-zlogout">zsh的点文件</a></h4>
+<table>
+<thead>
+<tr>
+<th>自上而下执行</th>
+<th>触发条件</th>
+<th>{ ssh登录<a href="zsh%E4%B8%BA%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%BB%98%E8%AE%A4shell">^ 1</a>、tmux开新窗口<a href="zsh%E4%B8%BAtmux%E7%9A%84%E9%BB%98%E8%AE%A4shell">^ 2</a> } [^3]</th>
+<th>ssh登出<a href="zsh%E4%B8%BA%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%BB%98%E8%AE%A4shell">^ 1</a></th>
+<th><code>zsh</code>开一个新的zsh窗口</th>
+<th><code>zsh 文件</code>或<code>zsh -c “命令”</code></th>
+<th><code>ssh 服务器  命令</code><a href="zsh%E4%B8%BA%E7%B3%BB%E7%BB%9F%E7%9A%84%E9%BB%98%E8%AE%A4shell">^ 1</a></th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>~/.zshenv</td>
+<td>启动zsh总执行</td>
+<td>执行</td>
+<td>x</td>
+<td>执行</td>
+<td>执行</td>
+<td>执行</td>
+<td>环境变量、alias</td>
+</tr>
+<tr>
+<td>~/.zprofile</td>
+<td>登录</td>
+<td>执行</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>登录设置，如文件同步</td>
+</tr>
+<tr>
+<td>~/.zshrc</td>
+<td>启动zsh交互</td>
+<td>执行</td>
+<td>x</td>
+<td>执行</td>
+<td>x</td>
+<td>x</td>
+<td>交互界面、zsh插件（都是交互用的）</td>
+</tr>
+<tr>
+<td>~/.zlogin</td>
+<td>登录</td>
+<td>执行</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>登录设置；与.zprofile仅执行先后不同，会都执行</td>
+</tr>
+<tr>
+<td>~/.zlogout</td>
+<td>登出</td>
+<td>x（不执行之意）</td>
+<td>执行</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>登出打扫</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>自动触发：上述点文件皆直接被“触发条件”触发，不用在一文件内要写<code>. 另一个点文件</code> ，该机制与bash不同</p>
+</li>
+<li>
+<p>不执行bash的点文件：zsh为系统的默认shell、zsh为tmux的默认shell时，每次登陆或开新tmux窗口时皆然</p>
+</li>
+</ul>
+<h4 id="修改点文件"><a class="header-anchor" href="#修改点文件"></a>修改点文件</h4>
+<p><strong>之前的触发关系是</strong></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">                                           开新shell
+                                               ↓
+登录 -<span class="token operator">></span> ~/.profile <span class="token punctuation">(</span>系统环境配置<span class="token punctuation">)</span>-<span class="token operator">></span> ~/.bashrc <span class="token punctuation">(</span>shell环境配置<span class="token punctuation">)</span> -<span class="token operator">></span> ~/.bash_aliases <span class="token punctuation">(</span>设置别名命令<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p><strong>若<code>chsh -s `which zsh` </code>修改成功</strong></p>
+<p>每次登录都直接进入zsh，则需改为如下触发关系</p>
+<pre class="line-numbers language-none"><code class="language-none">~&#x2F;.zshenv         ~&#x2F;.zshrc        ~&#x2F;.zprofile          ~&#x2F;.zlogout
+     ↓               ↓                                     ↓
+~&#x2F;.profile  →   ~&#x2F;.bash_aliases                       ~&#x2F;.bash_logout<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>做法如下：</p>
+<ul>
+<li><code>~/.profile</code>中的<code>. ~/bashrc</code> 改为<code>. ~/bash_aliases</code></li>
+<li><code>~/.bashrc</code> 不动，闲置不用了，被<code>~/.zshrc</code>代替</li>
+<li>修改<code>~/.zshrc</code></li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># .zshenv只写</span>
+<span class="token punctuation">[</span> -f ~/.profile <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">.</span> ~/.profile
+
+<span class="token comment"># 加在.zshrc开头，之后每次编辑~/.zshrc，请确保它在最开头</span>
+<span class="token punctuation">[</span> -f ~/.profile <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">.</span> ~/.profile
+<span class="token comment"># 加在.zshrc结尾，之后每次编辑~/.zshrc，请确保它在最结尾，不然zshrc中其他配置会覆盖其alias</span>
+<span class="token punctuation">[</span> -f ~/.bash_aliases <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">.</span> ~/.bash_aliases
+
+<span class="token comment"># ~/.zprofile 写登录同步文件的命令</span>
+
+<span class="token comment"># ~/.zlogout只写</span>
+<span class="token punctuation">[</span> -f ~/.bash_logout <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">.</span> ~/.bash_logout<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><strong>若<code>chsh -s `which zsh` </code>修改不成功</strong></p>
+<p>登录不自动进入zsh，则每次登录启动的是bash，运行的是<code>~/.profile</code></p>
+<p>需修改为如下触发关系</p>
+<pre class="line-numbers language-none"><code class="language-none">                           开新zsh
+                             ↓
+登录 -&gt;  ~&#x2F;.profile  -&gt;   ~&#x2F;.zshrc (zsh包，环境配置)
+                             \------&gt; ~&#x2F;.profile_for_zsh, ~&#x2F;.bash_aliases<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>方法如下</p>
+<ul>
+<li><code>cp ~/.profile ~/.profile_for_zsh</code></li>
+<li>删除<code>~/.profile_for_zsh</code>中的<code>. ~/.bashrc</code>和<code>. ~/.bash_aliases</code></li>
+<li>将<code>~/.profile</code>清空，只写入</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token keyword">if</span> <span class="token punctuation">[</span> -t <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+<span class="token comment"># 判断是否是交互shell</span>
+<span class="token comment"># whether file descriptor 1 (the shell's standard output) is connected to a terminal</span>
+    <span class="token builtin class-name">exec</span> <span class="token function">zsh</span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>修改<code>~/.zshrc</code></li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 加在.zshrc开头，之后每次编辑~/.zshrc，请确保它在最开头</span>
+<span class="token punctuation">[</span> -f ~/.profile_for_zsh <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">.</span> ~/.profile_for_zsh <span class="token comment"># 个人环境变量设置</span>
+
+<span class="token comment"># 加在.zshrc结尾，之后每次编辑~/.zshrc，请确保它在最结尾</span>
+<span class="token punctuation">[</span> -f ~/.bash_aliases <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span><span class="token builtin class-name">.</span> ~/.bash_aliases <span class="token comment"># 个人别名、小脚本设置</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="MAC上-zshenv设的-PATH前被加别的路径"><a class="header-anchor" href="#MAC上-zshenv设的-PATH前被加别的路径"></a>MAC上.zshenv设的$PATH前被加别的路径</h3>
+<p><strong>问题描述</strong></p>
+<p>在mac上，zsh登录式启动，在<code>.zshenv</code>中设置的PATH，前方覆盖了别的路径，例如：</p>
+<ul>
+<li>
+<p>在<code>~/.zshenv</code>中设置了</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span>  <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>/Users/<span class="token environment constant">$USER</span>/anaconda/bin:/Users/<span class="token environment constant">$USER</span>/shareENV/local/bin<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>但是zsh登录式启动后，<code>echo $PATH</code>，返回的头几行是</p>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;usr&#x2F;local&#x2F;bin
+&#x2F;usr&#x2F;bin
+&#x2F;bin
+&#x2F;usr&#x2F;sbin
+&#x2F;sbin
+&#x2F;Users&#x2F;$USER&#x2F;anaconda&#x2F;bin
+&#x2F;Users&#x2F;$USER&#x2F;shareENV&#x2F;local&#x2F;bin
+...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<p><strong>原因分析</strong></p>
+<ul>
+<li>
+<p>zsh登录式启动，执行顺序点文件顺序是</p>
+  <pre class="line-numbers language-none"><code class="language-none">... →&#96;~&#x2F;.zshenv&#96; → &#96;&#x2F;etc&#x2F;zprofile&#96; → &#96;~&#x2F;.zprofile&#96; → ...<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>在bash登录式启动，执行顺序点文件顺序是</p>
+<pre class="line-numbers language-none"><code class="language-none">... → &#x2F;etc&#x2F;profile → ~&#x2F;.profile
+ 		↓ 手动执行       ↓ 手动执行
+      &#x2F;etc&#x2F;bashrc    ~&#x2F;.bashrc<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>在Mac上， <code>/etc/zprofile</code>和<code>/etc/profile</code>都有以下内容（在linux上， <code>/etc/zprofile</code>为空）</p>
+</li>
+</ul>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># system-wide environment settings for zsh(1)</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -x /usr/libexec/path_helper <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">eval</span> <span class="token variable"><span class="token variable">`</span>/usr/libexec/path_helper -s<span class="token variable">`</span></span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p><code>/usr/libexec/path_helper</code>是Mac上专有的可执行文件，用于将别处设置的系统级的$PATH，添加到当前PATH的开头</p>
+<p>所添加的内容为</p>
+  <pre class="line-numbers language-none"><code class="language-none">---------------------------------------------
+                       &#x2F;etc&#x2F;paths文件中的路径
+&#x2F;usr&#x2F;local&#x2F;bin
+&#x2F;usr&#x2F;bin
+&#x2F;bin
+&#x2F;usr&#x2F;sbin
+&#x2F;sbin
+---------------------------------------------
+                       其他地方设置的系统$PATH
+&#x2F;Library&#x2F;TeX&#x2F;texbin
+&#x2F;usr&#x2F;local&#x2F;aria2&#x2F;bin
+&#x2F;opt&#x2F;X11&#x2F;bin<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>故zsh登录启动时，先执行<code>~/.zshenv</code>中的修改PATH，而后被path_helper在前面加上了系统级的$PATH</p>
+</li>
+<li>
+<p>而bash登录启动无此问题，因为是先执行path_helper，再执行<code>~/.profile</code>中的修改PATH</p>
+</li>
+</ul>
+<p><strong>解决办法</strong></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/sorin-ionescu/prezto/issues/381#issuecomment-294549773">参考</a></p>
+<ul>
+<li>
+<p>法一：若有root权限，<strong>建议用本法</strong>，所有用户可解决此问题, 对登录和非登录式的zsh均有效</p>
+<p>修改<code>/etc/zprofile</code>，把<code>$PATH</code>复制一份到<code>$PATH_SAVE</code>，执行<code>path_helper</code>修改<code>$$PATH</code>，然后再把<code>$PATH_SAVE</code>粘到<code>$PATH</code>前面</p>
+<p>将 <code>/etc/zprofile</code>中的</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># system-wide environment settings for zsh(1)</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -x /usr/libexec/path_helper <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">eval</span> <span class="token variable"><span class="token variable">`</span>/usr/libexec/path_helper -s<span class="token variable">`</span></span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>改为</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># save the $PATH set in ~/.zshenv, to prevent `path_helper` appand the</span>
+<span class="token comment"># paths in /etc/zprofile on the begining of $PATH</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">PATH_SAVE</span><span class="token operator">=</span><span class="token environment constant">$PATH</span>
+
+<span class="token comment"># system-wide environment settings for zsh(1)</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -x /usr/libexec/path_helper <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token builtin class-name">eval</span> <span class="token variable"><span class="token variable">`</span>/usr/libexec/path_helper -s<span class="token variable">`</span></span>
+<span class="token keyword">fi</span>
+
+<span class="token comment"># this block means</span>
+<span class="token comment">#     eport PATH=$PATH_SAVE:$PATH</span>
+<span class="token comment">#     and then remove repeated paths in PATH</span>
+<span class="token comment">#     and then unset PATH_SAVE</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token variable">$PATH_SAVE</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+  <span class="token assign-left variable">PATH_SAVE</span><span class="token operator">=</span>:<span class="token variable">$PATH_SAVE</span><span class="token builtin class-name">:</span><span class="token punctuation">;</span>
+  <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span>
+  <span class="token keyword">while</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$PATH</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+   <span class="token assign-left variable">x</span><span class="token operator">=</span><span class="token variable">$&#123;<span class="token environment constant">PATH</span><span class="token operator">%%</span><span class="token operator">:</span>*&#125;</span>  <span class="token comment"># the first remaining entry</span>
+   <span class="token keyword">case</span> <span class="token variable">$PATH_SAVE</span> <span class="token keyword">in</span>
+     *:<span class="token variable">$x</span>:*<span class="token punctuation">)</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token comment"># already there</span>
+     *<span class="token punctuation">)</span> <span class="token assign-left variable">PATH_SAVE</span><span class="token operator">=</span><span class="token variable">$PATH_SAVE</span><span class="token variable">$x</span><span class="token builtin class-name">:</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token comment"># not there yet</span>
+   <span class="token keyword">esac</span>
+   <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token variable">$&#123;<span class="token environment constant">PATH</span><span class="token operator">#</span>*<span class="token operator">:</span>&#125;</span>
+  <span class="token keyword">done</span>
+  <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token variable">$&#123;PATH_SAVE<span class="token operator">:</span>1<span class="token operator">:-</span>1&#125;</span>
+  <span class="token builtin class-name">unset</span> PATH_SAVE x
+  <span class="token builtin class-name">export</span> <span class="token environment constant">PATH</span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>法二：若无root权限, 可用本法, 但对非登录式的zsh无效</p>
+<p>在 <code>~/.zshenv</code>结尾写</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">PATH_SAVE</span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在 <code>~/.zprofile</code>开头写</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># this block means</span>
+<span class="token comment">#     eport PATH=$PATH_SAVE:$PATH</span>
+<span class="token comment">#     and then remove repeated paths in PATH</span>
+<span class="token comment">#     and then unset PATH_SAVE</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token variable">$PATH_SAVE</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+  <span class="token assign-left variable">PATH_SAVE</span><span class="token operator">=</span>:<span class="token variable">$PATH_SAVE</span><span class="token builtin class-name">:</span><span class="token punctuation">;</span>
+  <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token environment constant">$PATH</span><span class="token builtin class-name">:</span>
+  <span class="token keyword">while</span> <span class="token punctuation">[</span> -n <span class="token string">"<span class="token environment constant">$PATH</span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+   <span class="token assign-left variable">x</span><span class="token operator">=</span><span class="token variable">$&#123;<span class="token environment constant">PATH</span><span class="token operator">%%</span><span class="token operator">:</span>*&#125;</span>  <span class="token comment"># the first remaining entry</span>
+   <span class="token keyword">case</span> <span class="token variable">$PATH_SAVE</span> <span class="token keyword">in</span>
+     *:<span class="token variable">$x</span>:*<span class="token punctuation">)</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token comment"># already there</span>
+     *<span class="token punctuation">)</span> <span class="token assign-left variable">PATH_SAVE</span><span class="token operator">=</span><span class="token variable">$PATH_SAVE</span><span class="token variable">$x</span><span class="token builtin class-name">:</span> <span class="token punctuation">;</span><span class="token punctuation">;</span>  <span class="token comment"># not there yet</span>
+   <span class="token keyword">esac</span>
+   <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token variable">$&#123;<span class="token environment constant">PATH</span><span class="token operator">#</span>*<span class="token operator">:</span>&#125;</span>
+  <span class="token keyword">done</span>
+  <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token variable">$&#123;PATH_SAVE<span class="token operator">:</span>1<span class="token operator">:-</span>1&#125;</span>
+  <span class="token builtin class-name">unset</span> PATH_SAVE x
+  <span class="token builtin class-name">export</span> <span class="token environment constant">PATH</span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h3 id="换zsh的主题"><a class="header-anchor" href="#换zsh的主题"></a>换zsh的主题</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 搜索"antigen use oh-my-zsh"，其下一行加</span>
+antigen theme agnoster <span class="token comment"># 换主题 # ys , agnoster # 参考：https://github.com/robbyrussell/oh-my-zsh/wiki/themes</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="中文"><a class="header-anchor" href="#中文"></a>中文</h3>
+<p>若出现中文乱码，说明未设置zsh默认编码为utf8</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在~/.zshenv中</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">LC_ALL</span></span><span class="token operator">=</span>en_US.UTF-8
+<span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">LANG</span></span><span class="token operator">=</span>en_US.UTF-8<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="命令行下配色"><a class="header-anchor" href="#命令行下配色"></a>命令行下配色</h3>
+<p>Mac需要另外设置命令行下的配色，<code>vim ~/.zshrc</code>, 加在source ~/.bash_aliases之前</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 命令行下的配色</span>
+
+<span class="token comment"># -------------------- alias to ls -----------------</span>
+<span class="token comment"># 显(xxx)隐(.xxx) 文件(xxx)文件夹(xxx/) 用户名 大小 创建日期 大小用GMk格式</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ll</span><span class="token operator">=</span><span class="token string">'ls -alFGh'</span>
+<span class="token comment"># 显(xxx)隐(.xxx) 文件与文件夹不区分(xxx)</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">la</span><span class="token operator">=</span><span class="token string">'ls -AG'</span>
+<span class="token comment"># 显 文件(xxx)文件夹(xxx/)</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">l</span><span class="token operator">=</span><span class="token string">'ls -CFG'</span>
+<span class="token comment"># 上色 文件(白)文件夹(紫)</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls -G'</span>
+
+<span class="token comment"># -------------------- alias to grep ------------------</span>
+<span class="token comment"># 上色</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">grep</span><span class="token operator">=</span><span class="token string">'grep --color'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">egrep</span><span class="token operator">=</span><span class="token string">'egrep --color'</span>
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">fgrep</span><span class="token operator">=</span><span class="token string">'fgrep --color'</span>
+
+<span class="token comment"># ------------- 命令行使用Coreutils 配色方案 ----------</span>
+<span class="token comment"># 采用Coreutils的gdircolor配色，修改~/.dir_colors(自定义配色)</span>
+<span class="token comment"># 以修改ls命令使用的环境变量LS_COLORS（BSD是LSCOLORS）</span>
+<span class="token comment"># 效果：不同类型的文件有不同颜色，如图水红色，文件夹群青色...</span>
+<span class="token keyword">if</span> brew list <span class="token operator">|</span> <span class="token function">grep</span> coreutils <span class="token operator">></span> /dev/null <span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span><span class="token string">"<span class="token variable"><span class="token variable">$(</span>brew --prefix coreutils<span class="token variable">)</span></span>/libexec/gnubin:<span class="token environment constant">$PATH</span>"</span>
+    <span class="token builtin class-name">alias</span> <span class="token assign-left variable">ls</span><span class="token operator">=</span><span class="token string">'ls -F --show-control-chars --color=auto'</span>
+    <span class="token builtin class-name">eval</span> <span class="token variable"><span class="token variable">`</span>gdircolors -b <span class="token environment constant">$HOME</span>/.dir_colors<span class="token variable">`</span></span>
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="使用"><a class="header-anchor" href="#使用"></a>使用</h2>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/u011054333/article/details/79314095">详见</a></p>
+<h3 id="使插件修改生效"><a class="header-anchor" href="#使插件修改生效"></a>使插件修改生效</h3>
+<p>当修改了正在使用的antigen插件(包括主题)的源代码后, 要运行<code>antigen reset</code>, 以重新加载antigen插件, 而后登录一个新的shell, 才能更新此插件.</p>
+<h2 id="tmux启动设置"><a class="header-anchor" href="#tmux启动设置"></a>tmux启动设置</h2>
+<ul>
+<li>令tmux启动pane时开zsh，而不是开shell （Linux中会遇到，mac中不会，但也可做此设置）</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> ~/.tmux.conf<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>加一行</p>
+<pre class="line-numbers language-vim" data-language="vim"><code class="language-vim"># 开一个窗口，自动启动zsh作为<span class="token keyword">shell</span>
+<span class="token keyword">set</span><span class="token operator">-</span>option <span class="token operator">-</span>g default<span class="token operator">-</span><span class="token keyword">shell</span> <span class="token operator">/</span><span class="token builtin">bin</span><span class="token operator">/</span>zsh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>则重启tmux，或在tmux的窗口中，执行<code>ctrl+b :source-file ~/.tmux.conf</code>，更改即生效</p>
+<h2 id="卸载antigen"><a class="header-anchor" href="#卸载antigen"></a>卸载antigen</h2>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> ~/.antigen -rf
+<span class="token function">rm</span> ~/.local -rf <span class="token comment"># 删前手动检查一下，其下是否有不是antigen的文件</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h1 id="zsh插件推荐"><a class="header-anchor" href="#zsh插件推荐"></a>zsh插件推荐</h1>
+<p><a target="_blank" rel="noopener" href="https://github.com/unixorn/awesome-zsh-plugins">zsh插件推荐</a></p>
+<h2 id="fzf-模糊查找-历史命令-下方路径-等"><a class="header-anchor" href="#fzf-模糊查找-历史命令-下方路径-等"></a>fzf: 模糊查找 历史命令/下方路径 等</h2>
+<ul>
+<li>fzf的主项目: <a target="_blank" rel="noopener" href="https://github.com/junegunn/fzf.git">fzf的github</a></li>
+<li>fzf的周边: <a target="_blank" rel="noopener" href="https://github.com/junegunn/fzf/wiki/Related-projects">fzf相关项目</a>  <a target="_blank" rel="noopener" href="https://github.com/Aloxaf/fzf-tab">fzf-tab</a>  <a target="_blank" rel="noopener" href="https://github.com/ytet5uy4/fzf-widgets">fzf-widgets</a></li>
+</ul>
+<p><strong>安装方法</strong>:</p>
+<p><code>.zshrc</code>中加入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function-name function">check_fzf_install</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">uname</span><span class="token variable">)</span></span>"</span> <span class="token operator">=</span> <span class="token string">"Darwin"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token comment"># for mac</span>
+        <span class="token keyword">if</span> <span class="token operator">!</span> <span class="token punctuation">[</span> -x <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">command</span> -v fzf<span class="token variable">)</span></span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token comment"># if ! builtin type fzf >/dev/null 2>&amp;1; then</span>
+            <span class="token keyword">if</span> <span class="token punctuation">[</span> -x <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">command</span> -v brew<span class="token variable">)</span></span>"</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+                brew <span class="token function">install</span> fzf
+            <span class="token keyword">else</span>
+                <span class="token builtin class-name">echo</span> <span class="token string">'There is no brew on your mac; cannot `brew  install fzf`'</span> <span class="token operator">></span><span class="token file-descriptor important">&amp;2</span>
+            <span class="token keyword">fi</span>
+        <span class="token keyword">fi</span>
+    <span class="token keyword">else</span>
+    <span class="token comment">#  for unbuntu, debian</span>
+        <span class="token builtin class-name">export</span> <span class="token assign-left variable">FZF_BASE</span><span class="token operator">=</span><span class="token string">"~/.fzf"</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token operator">!</span> -x <span class="token variable">$FZF_BASE</span>/bin/fzf <span class="token punctuation">]</span> <span class="token operator"><span class="token file-descriptor important">2</span>></span><span class="token file-descriptor important">&amp;1</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+            <span class="token builtin class-name">echo</span> <span class="token string">'There is no fzf. Installing to '</span><span class="token string">"<span class="token variable">$FZF_BASE</span>"</span> <span class="token operator">></span><span class="token file-descriptor important">&amp;2</span>
+            <span class="token function">git</span> clone --depth <span class="token number">1</span> https://github.com/junegunn/fzf.git <span class="token variable">$FZF_BASE</span>
+            <span class="token variable">$FZF_BASE</span>/install --bin
+        <span class="token keyword">fi</span>
+    <span class="token keyword">fi</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment"># ....</span>
+
+check_fzf_install
+antigen bundle fzf
+
+<span class="token comment"># antigen bundle 其他zsh插件</span>
+
+antigen apply<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li>
+<p>无需执行: <code>$FZF_BASE/install</code>, 这个程序会:</p>
+<p>创建 <code>~/.fzf.zsh</code>:  以加载fzf, 定义快捷键 for 历史命令模糊搜索等的操作 在shell下,</p>
+<p>给 <code>~/&#123;.bashrc,.zshrc&#125;</code> 添加 <code> [ -f ~/.fzf.zsh ] &amp;&amp; source ~/.fzf.zsh</code></p>
+</li>
+<li>
+<p>而 <code>antigen bundle fzf</code> 命令同样会做上述操作</p>
+</li>
+</ul>
+<h2 id="历史目录跳转"><a class="header-anchor" href="#历史目录跳转"></a>历史目录跳转</h2>
+<p>比较各种历史目录跳转的插件, 推荐 <code>z.lua</code>:</p>
+<ul>
+<li>搜索速度: <code>z.lua</code> 是 <code>z</code> 的三倍, 是 <code>autojump</code> <code>fasd</code> 的十多倍</li>
+<li>调用 <code>fzf</code> 在交互模式下模糊查找历史路径: <code>z.lua</code> , <a target="_blank" rel="noopener" href="https://github.com/andrewferrier/fzf-z"><code>fzf-z</code></a> 都可以, 但 <code>fzf-z</code> 调用的是 <code>z</code></li>
+<li><code>z.lua</code> 功能最丰富: 可以搜 按近期且高频排序的历史路径, 按时间排序的历史路径, 当前路径子历史路径, 当前路径的父路径</li>
+</ul>
+<h3 id="z-lua"><a class="header-anchor" href="#z-lua"></a>z.lua</h3>
+<p><a target="_blank" rel="noopener" href="https://github.com/skywind3000/z.lua/blob/master/README.cn.md">z.lua 的 github - 详细介绍</a></p>
+<p><strong>安装方法</strong></p>
+<p>在 <code>.zshrc</code> 中加入</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># --------------------------------------------------------</span>
+
+antigen bundle skywind3000/z.lua
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">_ZL_ADD_ONCE</span><span class="token operator">=</span><span class="token number">1</span>   <span class="token comment"># 若为0 则prompt显示一次则计数加1, 若为1则 cd到目录一次则计数加1</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">_ZL_MATCH_MODE</span><span class="token operator">=</span><span class="token number">1</span> <span class="token comment"># 启用增强匹配模式</span>
+<span class="token builtin class-name">export</span> <span class="token assign-left variable">_ZL_NO_ALIASES</span><span class="token operator">=</span><span class="token number">0</span> <span class="token comment"># 不用预设alias, 用自己定义的alias</span>
+
+<span class="token comment"># antigen bundle 其他zsh插件</span>
+
+antigen apply
+
+<span class="token comment"># --------------------------------------------------------</span>
+<span class="token comment"># 定义z的alias</span>
+
+<span class="token builtin class-name">unalias</span> z
+<span class="token builtin class-name">alias</span> <span class="token assign-left variable">zz</span><span class="token operator">=</span>_zlua
+
+<span class="token function-name function">z</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=~</span> <span class="token string">'^(-h|--help)$'</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token function">cat</span> <span class="token operator">&lt;&lt;</span> <span class="token string">EOF
+_zlua [-c] 的封装的帮助:
+    z [options] [.] 路径中间字段 路径中间字段 路径结尾字段
+    z [options] [.] 路径中间字段 路径中间字段 路径未必结尾字段 $
+    z [options] [.] 路径中间字段 路径中间字段 /
+    加 . : 从当前路径往下匹配
+_zlua [其他option] 没有封装
+EOF</span>
+        <span class="token builtin class-name">echo</span>
+        <span class="token builtin class-name">echo</span> 原生的帮助:
+        _zlua -h
+    <span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=</span> <span class="token string">'.'</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token builtin class-name">shift</span>  <span class="token comment"># z匹配当前路径 的历史子路径 -> fzf模糊匹配</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> -eq <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+            _zlua -I -c <span class="token builtin class-name">.</span>
+        <span class="token keyword">else</span>
+            _zlua -I -c <span class="token string">"<span class="token variable">$@</span>"</span>
+        <span class="token keyword">fi</span>
+    <span class="token keyword">elif</span> <span class="token operator">!</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$1</span>"</span> <span class="token operator">=~</span> <span class="token string">'^-'</span> <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token comment"># z匹配历史路径, 按访问频率排序 -> fzf模糊匹配</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> -eq <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+            _zlua -I <span class="token builtin class-name">.</span>
+        <span class="token keyword">else</span>
+            _zlua -I <span class="token string">"<span class="token variable">$@</span>"</span>
+        <span class="token keyword">fi</span>
+    <span class="token keyword">else</span>
+        _zlua <span class="token string">"<span class="token variable">$@</span>"</span>
+    <span class="token keyword">fi</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token builtin class-name">alias</span> z<span class="token punctuation">..</span><span class="token operator">=</span><span class="token string">'_zlua -b'</span> <span class="token comment"># 跳转到父目录中 名称含foo的那一级</span>
+
+<span class="token function-name function">zh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>        <span class="token comment"># z匹配历史路径, 按之间排序 -> fzf模糊匹配</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token variable">$#</span> -eq <span class="token number">0</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        _zlua -I -t <span class="token builtin class-name">.</span>
+    <span class="token keyword">else</span>
+        _zlua -I -t <span class="token string">"<span class="token variable">$@</span>"</span>
+    <span class="token keyword">fi</span>
+<span class="token punctuation">&#125;</span>
+zle -N zh
+bindkey <span class="token string">'^h'</span> zh<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="autojump"><a class="header-anchor" href="#autojump"></a>autojump</h3>
+<p>antigen无法自动安装autojump，故需要手动安装之，然后加入autojump的搜索路径</p>
+<h4 id="安装"><a class="header-anchor" href="#安装"></a>安装</h4>
+<p>autojump 是一个命令行工具，它允许你可以直接跳转到你喜爱的目录，而不受当前所在目录的限制</p>
+<p>首先安装autojump，如果你用 Mac，可以使用 brew 安装：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> autojump<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>如果是 Linux，去下载 autojump 的最新版本</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 在任意一个目录下</span>
+<span class="token function">git</span> clone git://github.com/joelthelion/autojump.git
+<span class="token builtin class-name">cd</span> autojump
+./install.py<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>安装成功会返回如下，要用<code>autojump</code>命令，需先<code>. ~/.autojump/etc/profile.d/autojump.sh</code></p>
+<pre class="line-numbers language-text" data-language="text"><code class="language-text">Please manually add the following line(s) to ~/.zshrc:
+
+    [[ -s ~/.autojump/etc/profile.d/autojump.sh ]] &amp;&amp; source ~/.autojump/etc/profile.d/autojump.sh
+
+    autoload -U compinit &amp;&amp; compinit -u
+
+Please restart terminal(s) before running autojump.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>autojump 安装到<code>~/.autojump/</code>，下载得的 <code>autojump/</code>可删</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rm</span> autojump<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h4 id="配置"><a class="header-anchor" href="#配置"></a>配置</h4>
+<ul>
+<li>Linux需要先改antigen搜索autojump安装路径的脚本</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> ~/.antigen/bundles/robbyrussell/oh-my-zsh/plugins/autojump/autojump.plugin.zsh<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 文件开头改成</span>
+<span class="token keyword">if</span> <span class="token punctuation">[</span> -f <span class="token environment constant">$HOME</span>/.autojump/etc/profile.d/autojump.sh <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token comment"># manual user-local installation</span>
+    <span class="token builtin class-name">.</span> <span class="token environment constant">$HOME</span>/.autojump/etc/profile.d/autojump.sh
+<span class="token keyword">elif</span> <span class="token punctuation">[</span> <span class="token variable">$commands</span><span class="token punctuation">[</span>autojump<span class="token punctuation">]</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span> <span class="token comment"># check if autojump is installed</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>而后修改<code>~/.zshrc</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 搜索"antigen use oh-my-zsh"，其下一行加</span>
+antigen bundle autojump <span class="token comment"># 使用 antigen 加载 zsh；注释此行则不加载</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>若设置为要加载，重新登录zsh则<code>autojump</code>命令生效</p>
+<ul>
+<li>Mac直接改<code>~/.zshrc</code>即可</li>
+</ul>
+<h4 id="使用-_2"><a class="header-anchor" href="#使用-_2"></a>使用</h4>
+<p><a target="_blank" rel="noopener" href="https://linux.cn/article-3401-1.html">详见</a></p>
+<h2 id="zsh语法高亮"><a class="header-anchor" href="#zsh语法高亮"></a>zsh语法高亮</h2>
+<p>推荐 <code>fast-syntax-highlighting</code> , 它是 <code>zsh-syntax-highlighting</code> 的升级版, 支持更丰富的语法高亮</p>
+<h3 id="fast-syntax-highlighting"><a class="header-anchor" href="#fast-syntax-highlighting"></a>fast-syntax-highlighting</h3>
+<p><strong>安装方法</strong></p>
+<p>在 <code>.zshrc</code> 中加入</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">antigen bundle zdharma&#x2F;fast-syntax-highlighting    # zsh 命令的语法高亮
+# antigen bundle 其他zsh插件
+antigen apply
+
+# -----------------
+# 设置 zdharma&#x2F;fast-syntax-highlighting 的主题
+fast-theme &lt;fast-syntax-highlighting内置theme&gt; &gt;&#x2F;dev&#x2F;null
+fast-theme &lt;path-to-your-theme&gt;&#x2F;&lt;your_theme&gt;.ini &gt;&#x2F;dev&#x2F;null<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>自定义theme详见<a target="_blank" rel="noopener" href="https://github.com/zdharma/fast-syntax-highlighting/blob/master/THEME_GUIDE.md">fast-syntax-highlighting 的 github - 安装教程</a></p>
+<h3 id="zsh-syntax-highlighting"><a class="header-anchor" href="#zsh-syntax-highlighting"></a>zsh-syntax-highlighting</h3>
+<p><strong>安装方法</strong></p>
+<p>在 <code>.zshrc</code> 中加入</p>
+<pre class="line-numbers language-zsh" data-language="zsh"><code class="language-zsh">antigen bundle zsh-users&#x2F;zsh-syntax-highlighting # zsh 命令的语法高亮
+# antigen bundle 其他zsh插件
+antigen apply
+# -----------------
+# 设置 zsh-users&#x2F;zsh-syntax-highlighting 的主题
+
+# syntax color definition
+ZSH_HIGHLIGHT_HIGHLIGHTERS&#x3D;(main brackets pattern)
+
+typeset -A ZSH_HIGHLIGHT_STYLES
+
+ZSH_HIGHLIGHT_STYLES[default]&#x3D;none
+ZSH_HIGHLIGHT_STYLES[unknown-token]&#x3D;fg&#x3D;009
+ZSH_HIGHLIGHT_STYLES[reserved-word]&#x3D;fg&#x3D;red,bold  # &#x3D;fg&#x3D;009,standout
+ZSH_HIGHLIGHT_STYLES[alias]&#x3D;fg&#x3D;cyan,bold
+ZSH_HIGHLIGHT_STYLES[builtin]&#x3D;fg&#x3D;cyan,bold
+ZSH_HIGHLIGHT_STYLES[function]&#x3D;fg&#x3D;cyan,bold
+ZSH_HIGHLIGHT_STYLES[command]&#x3D;fg&#x3D;white,bold
+ZSH_HIGHLIGHT_STYLES[precommand]&#x3D;fg&#x3D;white,underline
+ZSH_HIGHLIGHT_STYLES[commandseparator]&#x3D;none
+ZSH_HIGHLIGHT_STYLES[hashed-command]&#x3D;fg&#x3D;009
+ZSH_HIGHLIGHT_STYLES[path]&#x3D;fg&#x3D;214,underline
+ZSH_HIGHLIGHT_STYLES[globbing]&#x3D;fg&#x3D;063
+ZSH_HIGHLIGHT_STYLES[history-expansion]&#x3D;fg&#x3D;white,underline
+ZSH_HIGHLIGHT_STYLES[single-hyphen-option]&#x3D;none
+ZSH_HIGHLIGHT_STYLES[double-hyphen-option]&#x3D;none
+ZSH_HIGHLIGHT_STYLES[back-quoted-argument]&#x3D;none
+ZSH_HIGHLIGHT_STYLES[single-quoted-argument]&#x3D;fg&#x3D;063
+ZSH_HIGHLIGHT_STYLES[double-quoted-argument]&#x3D;fg&#x3D;063
+ZSH_HIGHLIGHT_STYLES[dollar-double-quoted-argument]&#x3D;fg&#x3D;009
+ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]&#x3D;fg&#x3D;009
+ZSH_HIGHLIGHT_STYLES[assign]&#x3D;none<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="zsh的自动补全"><a class="header-anchor" href="#zsh的自动补全"></a>zsh的自动补全</h1>
+<h2 id="复用现有命令的自动补全"><a class="header-anchor" href="#复用现有命令的自动补全"></a>复用现有命令的自动补全</h2>
+<p>在<code>~/.bash_aliases</code>中设置</p>
+<ul>
+<li>凡如下设置的<code>[新命令]</code>会自动继承<code>[现有命令]</code>的zsh自动补全</li>
+</ul>
+<pre class="line-numbers language-none"><code class="language-none">alias [新命令]&#x3D;&#39;[现有命令] ...其他参数&#39;<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li><code>[新命令]</code>(函数)继承<code>[现有命令]</code>的zsh自动补全</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 该alias会使得 [新命令] 继承[现有命令]的zsh自动补全</span>
+<span class="token builtin class-name">alias</span> <span class="token punctuation">[</span>新命令<span class="token punctuation">]</span><span class="token operator">=</span><span class="token string">'[现有命令]'</span>
+<span class="token comment"># 该函数会覆盖'alias [新命令]'</span>
+<span class="token keyword">function</span> <span class="token punctuation">[</span>新命令<span class="token punctuation">]</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+  <span class="token punctuation">..</span>.
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="zsh语法和bash的区别"><a class="header-anchor" href="#zsh语法和bash的区别"></a>zsh语法和bash的区别</h1>
+<h3 id="判断是在哪种shell下"><a class="header-anchor" href="#判断是在哪种shell下"></a>判断是在哪种shell下</h3>
+<p>以下对 bash, zsh, sh均适用</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>flag 变量/flag命令</th>
+<th><code>$SHELL</code></th>
+<th><code>$ZSH_NAME </code> 或 <code>$ZSH_VERSION</code> 是否未定义</th>
+<th><code>$BASH_VERSION</code> 是否未定义</th>
+<th><code>ps -p $$ | tail -n1 | awk '&#123;printf $4&#125; | sed -E 's/^\-//‘'</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>非登录或非登录式 <br>交互式</td>
+<td>不论是登录shell1, 还是运行<code>&lt;shell1&gt;</code>进入shell1<br>在shell1下, 直接输出 flag 变量或运行flag命令</td>
+<td>shell1</td>
+<td>当且仅当shell1=zsh时有定义</td>
+<td>当且仅当shell1=bash时有定义</td>
+<td>返回字符串 <code>“&lt;shell1&gt;”</code></td>
+</tr>
+<tr>
+<td>登录式 <br>非交互式</td>
+<td>在shell0 下 执行<br><code>ssh &lt;服务器&gt;  echo flag变量</code><br><code>ssh &lt;服务器&gt;  flag命令</code><br>服务器默认用shell1</td>
+<td>shell1</td>
+<td>当且仅当shell1=zsh时有定义</td>
+<td>当且仅当shell1=bash时有定义</td>
+<td>返回字符串 <code>“&lt;shell1&gt;”</code></td>
+</tr>
+<tr>
+<td>非登录式 <br>非交互式</td>
+<td>在shell0下, 执行命令<code>&lt;shell1&gt; -c '命令'</code><br>在shell0下, 执行<code>&lt;shell1&gt; 文件</code><br>注意 <code>./文件</code> 等价于 <code>sh 文件</code></td>
+<td><strong>shell0</strong></td>
+<td>当且仅当<strong>shell0</strong>=zsh时有定义</td>
+<td>当且仅当<strong>shell0</strong>=bash时有定义</td>
+<td>返回字符串 <code>“&lt;shell1&gt;”</code></td>
+</tr>
+</tbody>
+</table>
+<p>建议:</p>
+<ul>
+<li><strong><code>ps -p $$ | tail -n1 | awk '&#123;printf $4&#125;' | sed -E 's/^\-//'</code>   会返回字符串 <code>“&lt;shell1&gt;”</code>, 适用最广的方法, shell1可以为sh/bash/zsh等, 一般就用之.</strong></li>
+<li><code>ps -p $$ | tail -n1 | awk '&#123;printf $4&#125;’ </code>    在交互式zsh下返回”-zsh”, 在非交互式zsh下返回”zsh”.</li>
+</ul>
+<p>注意:</p>
+<ul>
+<li>
+<p>单独运行  <code>&lt;shell1&gt; -c 'ps -p $$’</code>, 则会返回如下形式, 其中不包含<code>&lt;shell1&gt;</code></p>
+<pre class="line-numbers language-none"><code class="language-none"> PID TTY           TIME CMD
+75670 ttys007    0:00.03 ps -p 75670<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>运行  <code>&lt;shell1&gt; -c '一组命令’</code>, 一组命令里包含<code>ps -p $$</code></p>
+<p>一组命令:</p>
+<ul>
+<li>可以是用管道组合起来</li>
+<li>也可以是用<code>;</code>组合起来</li>
+<li>还可以是包含了重定向, 例如<code>ps -p $$ 2&gt;&amp;1</code></li>
+</ul>
+<p>则会返回如下形式, 其中包含<code>&lt;shell1&gt;</code></p>
+<pre class="line-numbers language-none"><code class="language-none">#  PID TTY           TIME CMD
+# 76074 ttys007    0:00.03 bash -c 一组命令<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>例如</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> -c <span class="token string">'ps -p $$ 2>&amp;1'</span>
+<span class="token comment"># 返回</span>
+<span class="token comment">#  PID TTY           TIME CMD</span>
+<span class="token comment"># 76074 ttys007    0:00.03 bash -c ps -p $$ 2>&amp;1</span>
+<span class="token function">bash</span> -c <span class="token string">'echo 1; ps -p $$'</span>
+<span class="token comment">#  PID TTY           TIME CMD</span>
+<span class="token comment"># 76147 ttys007    0:00.03 bash -c echo 1; ps -p $$</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h3 id="感叹号"><a class="header-anchor" href="#感叹号"></a>感叹号</h3>
+<p>zsh的感叹号不论是否在方括号内，都是表示历史记录功能</p>
+<p>bash的感叹号在方括号内表示非，不在方括号内时表示历史记录</p>
+<p>例如输出当前目录下所有隐藏文件与文件夹</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">echo</span> .<span class="token punctuation">[</span><span class="token operator">!</span>.<span class="token punctuation">]</span>*
+<span class="token comment"># bash下正常执行,输出当前目录下所有隐藏文件与文件夹</span>
+<span class="token comment"># zsh下报错</span>
+<span class="token comment">#     zsh: event not found: .]</span>
+<span class="token comment"># 这是因为zsh把`!.]`理解成以`.]`开头的历史命令</span>
+<span class="token builtin class-name">echo</span> .<span class="token punctuation">[</span><span class="token string">'!'</span>.<span class="token punctuation">]</span>*
+<span class="token comment"># bash下正常执行,输出当前目录下所有隐藏文件与文件夹</span>
+<span class="token comment"># bash下输出</span>
+<span class="token comment">#      ..</span>
+<span class="token comment"># 这是因为bash把`.['!'.]* `理解成第一个字符是"."，第二个字符是引号感叹号或句点，而后是任意字符(可空)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>zsh中：<code>.*</code>等价于<code>.['!'.]* </code>，都不包含<code>..</code>，只包含此目录下所有隐藏文件与文件夹</p>
+<p>bash中：<code>.*</code>包含都不包含<code>..</code>和此目录下所有隐藏文件与文件夹；<code>.[!.]* </code>才不包含<code>..</code>，只包含此目录下所有隐藏文件与文件夹</p>
+<h1 id="shell的状态类型"><a class="header-anchor" href="#shell的状态类型"></a>shell的状态类型</h1>
+<h3 id="预备知识——shell的状态类型"><a class="header-anchor" href="#预备知识——shell的状态类型"></a>预备知识——shell的状态类型</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>交互</th>
+<th>非交互</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>登录</td>
+<td>ssh登录服务器; 打开iTerm2登录笔记本</td>
+<td><code>ssh &lt;服务器&gt; &lt;命令&gt;</code></td>
+</tr>
+<tr>
+<td>非登录</td>
+<td><code>zsh或bash</code></td>
+<td><code>zsh或bash -c '&lt;命令&gt;'</code>或<code>zsh或bash 文件</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="判断方法"><a class="header-anchor" href="#判断方法"></a>判断方法</h3>
+<p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/47819029">千万别混淆 Bash/Zsh 的四种运行模式</a></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>bash</th>
+<th>zsh</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>是否是登录且交互</strong></td>
+<td><code>if [[ $0 = -* ]]</code> 或<code>if [[ $(shopt login_shell) = *on ]]</code></td>
+<td><code>if [[ -o login ]] </code></td>
+</tr>
+<tr>
+<td>是否交互</td>
+<td><code>if [[ $- = *i* ]]</code></td>
+<td><code>if [[ -o interactive ]]</code> 或 <code>if [[ $- = *i* ]]</code> 或 `if [ “${ZSH-no}” != no ]</td>
+</tr>
+</tbody>
+</table>
+<p>在任何bash环境下，以下两种的结果相同</p>
+<ul>
+<li>文件中写&lt;判断命令&gt;再<code>. 文件</code></li>
+<li>直接执行&lt;判断命令&gt;</li>
+</ul>
+<p><strong>示例</strong></p>
+<ul>
+<li>bash</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>场景 \  返回  \ &lt;命令&gt;</th>
+<th><code>echo $-</code></th>
+<th><code>echo $0</code></th>
+<th><code>echo $&#123;BASH-no&#125;</code></th>
+<th>是否是登录</th>
+<th>是否交互</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bash 为默认shell，ssh登录后，执行命令</td>
+<td>himBH</td>
+<td>-bash</td>
+<td>/bin/bash</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>ssh登录后，<code>bash</code> 后，执行命令</td>
+<td>himBH</td>
+<td>bash</td>
+<td>/bin/bash</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>ssh &lt;服务器&gt; &lt;命令&gt;</code>, bash 为服务器默认shell</td>
+<td>hBc</td>
+<td>bash</td>
+<td>/bin/bash</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>bash  -c '&lt;命令&gt;'</code></td>
+<td>hBc</td>
+<td>bash</td>
+<td>/bin/bash</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>在当前位置执行<code>bash 文件</code>，文件中有&lt;命令&gt;</td>
+<td>hB</td>
+<td>&lt;文件相对当前位置的路径&gt;</td>
+<td>/bin/bash</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>zsh</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>场景 \  返回  \ &lt;命令&gt;</th>
+<th><code>echo $-</code></th>
+<th><code>echo $0</code></th>
+<th><code>echo $&#123;ZSH-no&#125;</code> )</th>
+<th>是否是登录</th>
+<th>是否交互</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>zsh为默认shell，ssh登录后，执行命令</td>
+<td>3569JNRXZghiklms</td>
+<td>-zsh</td>
+<td>/Users/mac/.antigen/bundles/robbyrussell/oh-my-zsh</td>
+<td>yes</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>ssh登录后，<code>zsh</code> 后，执行命令</td>
+<td>3569JNRXZghikms</td>
+<td>zsh</td>
+<td>/Users/mac/.antigen/bundles/robbyrussell/oh-my-zsh</td>
+<td>no</td>
+<td>yes</td>
+</tr>
+<tr>
+<td><code>ssh &lt;服务器&gt; &lt;命令&gt;</code></td>
+<td>569X</td>
+<td>zsh</td>
+<td>no</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+<tr>
+<td><code>zsh  -c '&lt;命令&gt;'</code></td>
+<td>569X</td>
+<td>zsh</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+<tr>
+<td>在当前位置执行<code>zsh 文件</code>，文件中有&lt;命令&gt;</td>
+<td>569X</td>
+<td>&lt;文件相对当前位置的路径&gt;</td>
+<td>no</td>
+<td>no</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>注:</p>
+<ul>
+<li><code>$&#123;variable-xxxx&#125;</code>: 若变量 <code>variable</code>无定义, 则返回“xxxx”, 有定义则返回<code>$&#123;variable&#125;</code></li>
+</ul>
+<h1 id="zsh和bash共存的用户目录组织逻辑"><a class="header-anchor" href="#zsh和bash共存的用户目录组织逻辑"></a>zsh和bash共存的用户目录组织逻辑</h1>
+<ul>
+<li>各种shell的dot 文件</li>
+<li>CONF、shareENV、serverENV、localENV分开</li>
+</ul>
+<h3 id="文件夹结构"><a class="header-anchor" href="#文件夹结构"></a>文件夹结构</h3>
+<pre class="line-numbers language-none"><code class="language-none">&#x2F;home&#x2F;$USER&#x2F;
+    一堆软链接点文件，指向CONF下的文件，详见下[#软连接]
+    init_script&#x2F;
+        系统环境安装脚本
+    ENV&#x2F;
+        CONF&#x2F;
+            一堆软链接点文件，指向shareENV、serverENV、localENV下的文件，详见下[#软连接]
+        shareENV&#x2F;     ------- 一个repo，笔记本、服务器共用，每次登录登出时同步
+            local&#x2F;
+                bin&#x2F;
+                man&#x2F;
+                ...
+            script&#x2F;
+            shell_config&#x2F;
+                zsh、bash、所有shell通用的点文件
+            app_config&#x2F;
+                tmux、ipython、jupyter通用的点文件
+        serverENV&#x2F;    ------- 一个repo，服务器共用，每次登录登出时同步
+            (结构同shareENV&#x2F;)
+            app_config&#x2F;
+                .shadowsocks    : shadowsocks ips
+            nvim&#x2F;             : neovim 的镜像及其解压文件夹
+            ...
+        localENV&#x2F;     ------- 一个文件夹，该服务器自己用的，不同步
+            (结构同shareENV&#x2F;)
+        其他共享ENV ------- 一个repo，在我的一些电脑之间共用，每次登录登出时同步
+            (结构同shareENV&#x2F;)<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="我设计的点文件的加载逻辑"><a class="header-anchor" href="#我设计的点文件的加载逻辑"></a>我设计的点文件的加载逻辑</h3>
+<p>执行顺序从上到下</p>
+<table>
+<thead>
+<tr>
+<th>执行场景</th>
+<th>自定义共用文件</th>
+<th>zsh</th>
+<th>bash</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>总执行</td>
+<td>.env: 定义环境变量、定义登录登出的文件同步函数；非交互则加载.aliases</td>
+<td>.zshenv: <strong>总是触发</strong>; 加载.env</td>
+<td>.bash_env: <strong>登录但非交互 触发</strong>; 加载.env</td>
+</tr>
+<tr>
+<td></td>
+<td>.aliases: 包括别名和shell函数</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>登录</td>
+<td>.login: git pull共享文件</td>
+<td>.zprofile: <strong>登录触发</strong>;加载.login</td>
+<td>.bash_profile: <strong>登录触发</strong>; 加载.bash_env, .login, .bashrc</td>
+</tr>
+<tr>
+<td>交互</td>
+<td>无</td>
+<td>.zshrc: <strong>交互触发</strong>; 交互则加载.aliases</td>
+<td>.bashrc: <strong>非登录但交互 触发</strong>; 若非登录则加载.bash_env, 交互则加载.aliases</td>
+</tr>
+<tr>
+<td>登出</td>
+<td>.logout: git push共享文件; 打扫卫生</td>
+<td>.zlogout: <strong>登出触发</strong>;加载.logout</td>
+<td>.bash_logout: <strong>登出触发</strong>;加载.logout</td>
+</tr>
+</tbody>
+</table>
+<p>触发：即系统自动加载此文件的触发条件</p>
+<p>加载：即在此文件内，source了别的文件</p>
+<p>登出：不论是敲命令(<code>exit</code> <code>logout</code> <code>reboot</code>)登出，还是ssh连接中断(如客户端直接关闭iTerm窗口、断网)，都会触发登出文件。</p>
+<p><strong>特别设置</strong></p>
+<p>bash的非交互需要额外设置</p>
+<ul>
+<li>
+<p>登录式的非交互：                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           若bash是默认shell，<code>ssh &lt;服务器&gt; &lt;命令&gt;</code>，不执行<code>~/.bash_env</code>，<strong>没有找到办法</strong>；只能</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token operator">&lt;</span>服务器<span class="token operator">></span> '. ~/.bash_env <span class="token operator">&amp;&amp;</span> <span class="token operator">&lt;</span>命令<span class="token operator">></span>’<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+<li>
+<p>非登录式的非交互：<code>bash -c '&lt;命令&gt;'</code>或<code>bash 文件</code>，在.env中添加一行：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">BASH_ENV</span><span class="token operator">=~</span>/.bash_env   <span class="token comment"># 可登录后，非交互bash加载之</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+</li>
+</ul>
+<p>zsh 在上述情况都会自动加载<code>~/.zshenv</code>，无需另外设置</p>
+<h3 id="软链接"><a class="header-anchor" href="#软链接"></a>软链接</h3>
+<h4 id="HOME"><a class="header-anchor" href="#HOME"></a><code>$HOME/</code></h4>
+<p><code>$HOME=/home/$USER/ENV/CONF</code></p>
+<p><code>$shareENV=/home/$USER/ENV/shareENV</code></p>
+<p><code>$serverENV=/home/$USER/ENV/serverENV</code></p>
+<table>
+<thead>
+<tr>
+<th>源文件</th>
+<th>目标文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>$HOME/</code></td>
+<td><code>$shareENV/app/</code></td>
+</tr>
+<tr>
+<td>.gitignore_global</td>
+<td>…/shareENV/app_config/.gitignore_global</td>
+</tr>
+<tr>
+<td>.gitconfig</td>
+<td>…/shareENV/app_config/.gitconfig</td>
+</tr>
+<tr>
+<td>.ipython</td>
+<td>…/shareENV/app_config/.ipython/</td>
+</tr>
+<tr>
+<td>.jupyter</td>
+<td>…/shareENV/app_config/.jupyter/</td>
+</tr>
+<tr>
+<td>.tmux.conf</td>
+<td>…/shareENV/app_config/.tmux.conf</td>
+</tr>
+<tr>
+<td>.vimrc.bundles</td>
+<td>…/shareENV/app_config/vim/.vimrc.bundles</td>
+</tr>
+<tr>
+<td>.vim</td>
+<td>…/shareENV/app_config/vim/.vim/</td>
+</tr>
+<tr>
+<td>.vimrc</td>
+<td>…/shareENV/app_config/vim/.vimrc</td>
+</tr>
+<tr>
+<td><code>$HOME/</code></td>
+<td><code>$serverENV/app/</code></td>
+</tr>
+<tr>
+<td>.shadowsocks</td>
+<td>…/serverENV/app_config/.shadowsocks/</td>
+</tr>
+<tr>
+<td><code>$HOME/</code></td>
+<td><code>$shareENV/shell_config/</code></td>
+</tr>
+<tr>
+<td>.autojump</td>
+<td>…/shareENV/shell_config/.autojump/</td>
+</tr>
+<tr>
+<td><code>$HOME/</code></td>
+<td><code>$$ENV/.shell_config/</code></td>
+</tr>
+<tr>
+<td>.env</td>
+<td>…/CONF/.shell_config/.env</td>
+</tr>
+</tbody>
+</table>
+<h4 id="home-USER"><a class="header-anchor" href="#home-USER"></a><code>/home/$USER/</code></h4>
+<table>
+<thead>
+<tr>
+<th>源文件</th>
+<th>目标文件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/home/$USER/</code></td>
+<td><code>$HOME</code></td>
+</tr>
+<tr>
+<td>.bash_env</td>
+<td>ENV/CONF/.bash_env</td>
+</tr>
+<tr>
+<td>.bash_history</td>
+<td>ENV/CONF/.bash_history</td>
+</tr>
+<tr>
+<td>.cache</td>
+<td>ENV/CONF/.cache/</td>
+</tr>
+<tr>
+<td>.env</td>
+<td>ENV/CONF/.shell_config/.env</td>
+</tr>
+<tr>
+<td>.bash_profile</td>
+<td>ENV/CONF/.bash_profile</td>
+</tr>
+<tr>
+<td>.ssh</td>
+<td>ENV/CONF/.ssh/</td>
+</tr>
+<tr>
+<td>.zcompdump</td>
+<td>ENV/CONF/.zcompdump</td>
+</tr>
+<tr>
+<td>.zshenv</td>
+<td>ENV/CONF/.zshenv</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/5a22a187/" rel="prev" title="rsync教程">
+                  <i class="fa fa-chevron-left"></i> rsync教程
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/bb2bab3e/" rel="next" title="shell的参数解析">
+                  shell的参数解析 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">353k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">19:35</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/72862763/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
