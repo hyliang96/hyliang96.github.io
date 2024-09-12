@@ -21,15 +21,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="[TOC] ssh别名、免密登录 别名登陆">
+<meta name="description" content="[TOC] ssh只使用密码登陆 若直接执行下面的命令，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssh配置">
 <meta property="og:url" content="https://hyliang96.github.io/posts/2e77fc3e/index.html">
 <meta property="og:site_name" content="丹炉志">
-<meta property="og:description" content="[TOC] ssh别名、免密登录 别名登陆">
+<meta property="og:description" content="[TOC] ssh只使用密码登陆 若直接执行下面的命令，">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
-<meta property="article:modified_time" content="2022-03-23T09:14:46.153Z">
+<meta property="article:modified_time" content="2024-09-12T14:20:18.546Z">
 <meta property="article:author" content="∞亼">
 <meta name="twitter:card" content="summary">
 
@@ -151,7 +151,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh%E5%88%AB%E5%90%8D%E3%80%81%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="nav-text">ssh别名、免密登录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%AB%E5%90%8D%E7%99%BB%E9%99%86"><span class="nav-text">别名登陆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="nav-text">免密登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5"><span class="nav-text">生成密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E5%85%AC%E9%92%A5%E5%88%B0%E7%9B%AE%E6%A0%87%E6%9C%BA%E5%99%A8"><span class="nav-text">发送公钥到目标机器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95-_2"><span class="nav-text">免密登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bug"><span class="nav-text">bug</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bad-owner-or-permissions"><span class="nav-text">Bad owner or permissions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%BD%E8%AF%BB%E5%8F%96-ssh-config%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="nav-text">能读取~&#x2F;.ssh&#x2F;config的软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91"><span class="nav-text">端口转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%B3%E6%9D%BF%E8%BF%9E%E6%8E%A5"><span class="nav-text">跳板连接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh-%E9%87%8D%E5%90%AF"><span class="nav-text">ssh 重启</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux"><span class="nav-text">linux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%90%AFssh%E5%90%AF%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">重启ssh启服务端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mac"><span class="nav-text">mac</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8ssh%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">启动ssh服务端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AFssh%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">开机自启ssh服务端</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh%E5%8F%AA%E4%BD%BF%E7%94%A8%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86"><span class="nav-text">ssh只使用密码登陆</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh%E5%88%AB%E5%90%8D%E3%80%81%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="nav-text">ssh别名、免密登录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%AB%E5%90%8D%E7%99%BB%E9%99%86"><span class="nav-text">别名登陆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95"><span class="nav-text">免密登录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E5%AF%86%E9%92%A5"><span class="nav-text">生成密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%91%E9%80%81%E5%85%AC%E9%92%A5%E5%88%B0%E7%9B%AE%E6%A0%87%E6%9C%BA%E5%99%A8"><span class="nav-text">发送公钥到目标机器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95-_2"><span class="nav-text">免密登录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#bug"><span class="nav-text">bug</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Bad-owner-or-permissions"><span class="nav-text">Bad owner or permissions</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%BD%E8%AF%BB%E5%8F%96-ssh-config%E7%9A%84%E8%BD%AF%E4%BB%B6"><span class="nav-text">能读取~&#x2F;.ssh&#x2F;config的软件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91"><span class="nav-text">端口转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%B3%E6%9D%BF%E8%BF%9E%E6%8E%A5"><span class="nav-text">跳板连接</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ssh-%E9%87%8D%E5%90%AF"><span class="nav-text">ssh 重启</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#linux"><span class="nav-text">linux</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%87%8D%E5%90%AFssh%E5%90%AF%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">重启ssh启服务端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mac"><span class="nav-text">mac</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%AF%E5%8A%A8ssh%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">启动ssh服务端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%80%E6%9C%BA%E8%87%AA%E5%90%AFssh%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-text">开机自启ssh服务端</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -252,7 +252,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+        <time title="修改时间：2024-09-12 22:20:18" itemprop="dateModified" datetime="2024-09-12T22:20:18+08:00">2024-09-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -296,14 +296,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.1k</span>
+      <span>3.9k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>10 分钟</span>
+      <span>13 分钟</span>
     </span>
 </div>
 
@@ -315,25 +315,39 @@
     
     <div class="post-body" itemprop="articleBody">
         <p>[TOC]</p>
+<h1 id="ssh只使用密码登陆"><a class="header-anchor" href="#ssh只使用密码登陆"></a>ssh只使用密码登陆</h1>
+<p>若直接执行下面的命令，</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token operator">&lt;</span>用户名<span class="token operator">></span>@<span class="token operator">&lt;</span>服务器地址<span class="token operator">></span>
+<span class="token comment"># 或</span>
+<span class="token function">ssh</span> <span class="token operator">&lt;</span>服务器别名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>出现报错</p>
+<blockquote>
+<p>Received disconnect from &lt;服务器地址&gt; port &lt;端口号&gt;:2: Too many authentication failures</p>
+</blockquote>
+<p>则说明你的添加到钥匙串的ssh密钥太多了(<code>ssh-add -L</code>可以查看所有钥匙串里的密钥)，需要手动指定必须只用密码登陆，方法如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -o <span class="token assign-left variable">PreferredAuthentications</span><span class="token operator">=</span>password -o <span class="token assign-left variable">PubkeyAuthentication</span><span class="token operator">=</span>no <span class="token operator">&lt;</span>用户名<span class="token operator">></span>@<span class="token operator">&lt;</span>服务器地址<span class="token operator">></span>
+<span class="token comment"># 或</span>
+<span class="token function">ssh</span> -o <span class="token assign-left variable">PreferredAuthentications</span><span class="token operator">=</span>password -o <span class="token assign-left variable">PubkeyAuthentication</span><span class="token operator">=</span>no <span class="token operator">&lt;</span>服务器别名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>上述参数同样适用于 <code>ssh-copy-id</code>。</p>
 <h1 id="ssh别名、免密登录"><a class="header-anchor" href="#ssh别名、免密登录"></a>ssh别名、免密登录</h1>
 <h2 id="别名登陆"><a class="header-anchor" href="#别名登陆"></a>别名登陆</h2>
 <p><a target="_blank" rel="noopener" href="http://www.ttlsa.com/linux/ssh-config-aliases-server-access-tricks/">参考1</a>, <a target="_blank" rel="noopener" href="https://www.jianshu.com/p/5729d5e61c72">参考2</a></p>
 <p>本地电脑上，打开<code>~/.ssh/config</code>文件</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">vim</span> ~/.ssh/config<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>编写格式如下</p>
-<pre class="line-numbers language-baah" data-language="baah"><code class="language-baah">Host 服务器别名1
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Host 服务器别名1
     HostName 服务器ip或网址1
     Port 端口号1
     User 用户名1
-    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
+    IdentityFile ~/.ssh/id_rsa
 
 Host 服务器别名2
     HostName 服务器ip或网址2
     Port 端口号2
     User 用户名2
-    IdentityFile ~&#x2F;.ssh&#x2F;id_rsa
+    IdentityFile ~/.ssh/id_rsa
 
-...<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span class="token punctuation">..</span>.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><code>~/.ssh/id_rsa</code>即为本地私钥</p>
 <p>例如</p>
 <pre class="line-numbers language-none"><code class="language-none">Host myserver
@@ -399,15 +413,23 @@ The key&#39;s randomart image is:
 </li>
 </ul>
 <h3 id="发送公钥到目标机器"><a class="header-anchor" href="#发送公钥到目标机器"></a>发送公钥到目标机器</h3>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id <span class="token punctuation">(</span>-i <span class="token punctuation">(</span>公钥或对应私钥路径<span class="token punctuation">))</span>  <span class="token punctuation">(</span>-p 端口号<span class="token punctuation">)</span> 用户名@服务器<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>凡可免密访此服务器之私钥，其对应公钥皆保存在<code>~/.ssh/authorized_keys</code>中。</p>
+<p>以下命令可将本地公钥追加到服务器的<code>~/.ssh/authorized_keys</code>结尾：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id -o <span class="token assign-left variable">PreferredAuthentications</span><span class="token operator">=</span>password -o <span class="token assign-left variable">PubkeyAuthentication</span><span class="token operator">=</span>no <span class="token punctuation">[</span>-i <span class="token operator">&lt;</span>公钥或对应私钥路径<span class="token operator">></span><span class="token punctuation">]</span>  <span class="token punctuation">[</span>-p 端口号<span class="token punctuation">]</span> 用户名@服务器<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>或使用别名发送</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id <span class="token punctuation">(</span>-i <span class="token punctuation">(</span>公钥或对应私钥路径<span class="token punctuation">))</span> 服务器别名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>然后输入服务器密码，即可将本地公钥<code>公钥路径</code> （缺省为<code>~/.ssh/id_rsa.pub</code>）全文复制，粘贴进服务器的<code>~/.ssh/authorized_keys</code>文件中。凡可免密访此服之私钥，其对应公钥皆保存在<code>~/.ssh/authorized_keys</code>中。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id -o <span class="token assign-left variable">PreferredAuthentications</span><span class="token operator">=</span>password -o <span class="token assign-left variable">PubkeyAuthentication</span><span class="token operator">=</span>no <span class="token punctuation">[</span>-i <span class="token operator">&lt;</span>公钥或对应私钥路径<span class="token operator">></span><span class="token punctuation">]</span> 服务器别名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>若<code>&lt;公钥或对应私钥路径&gt;</code>指定，则将本地公钥<code>公钥路径</code> 全文复制，粘贴进服务器的<code>~/.ssh/authorized_keys</code>文件中。</p>
+<p>若<code>&lt;公钥或对应私钥路径&gt;</code>缺省：</p>
+<ul>
+<li>若钥匙串为空（即<code>ssh-add -L</code>返回为空白），则将<code>~/.ssh/id_rsa.pub</code>全文黏贴到服务器的<code>~/.ssh/authorized_keys</code>文件中。</li>
+<li>若钥匙串不空（即<code>ssh-add -L</code>返回有至少一条公钥）则将本地钥匙串中<strong>所有公钥</strong>的全文（即<code>ssh-add -L</code>所返回的），都黏贴到服务器的<code>~/.ssh/authorized_keys</code>文件中。</li>
+</ul>
+<p>因此，尽可能手动指定<code>-i &lt;公钥或对应私钥路径&gt;</code>。</p>
 <h3 id="免密登录-_2"><a class="header-anchor" href="#免密登录-_2"></a>免密登录</h3>
 <p>本地电脑</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token punctuation">(</span>-p 端口号<span class="token punctuation">)</span> 用户名@服务器<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token punctuation">[</span>-p <span class="token operator">&lt;</span>端口号<span class="token operator">></span><span class="token punctuation">]</span> <span class="token operator">&lt;</span>用户名<span class="token operator">></span>@<span class="token operator">&lt;</span>服务器<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>或</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> 别名<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> <span class="token operator">&lt;</span>服务器别名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>皆可不用输入密码，直接登录</p>
 <h3 id="bug"><a class="header-anchor" href="#bug"></a>bug</h3>
 <h4 id="Bad-owner-or-permissions"><a class="header-anchor" href="#Bad-owner-or-permissions"></a>Bad owner or permissions</h4>
@@ -471,28 +493,26 @@ The key&#39;s randomart image is:
 </table>
 <h2 id="跳板连接"><a class="header-anchor" href="#跳板连接"></a>跳板连接</h2>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74193910">参考</a></p>
-<p>以<code>[跳板]</code>机器为跳板，连接<code>[目标]</code>机器，需在<code>~/.ssh/config</code>配置</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Host <span class="token punctuation">[</span>目标<span class="token punctuation">]</span>
-    HostName <span class="token punctuation">[</span>从跳板机访问目标机器用的ip<span class="token punctuation">]</span>
-    User <span class="token punctuation">[</span>目标机用户名<span class="token punctuation">]</span>
+<p>以<code>&lt;跳板&gt;</code>机器为跳板，连接<code>&lt;目标&gt;</code>机器，需在<code>~/.ssh/config</code>配置</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Host <span class="token operator">&lt;</span>目标<span class="token operator">></span>
+    HostName <span class="token operator">&lt;</span>从跳板机访问目标机器用的ip<span class="token operator">></span>
+    User <span class="token operator">&lt;</span>目标机用户名<span class="token operator">></span>
     <span class="token comment"># 登陆目标机永用的私钥所在位置</span>
     IdentityFile ~/.ssh/id_rsa
     <span class="token comment"># 允许跳板机用本机私钥登录目标机器</span>
     ForwardAgent <span class="token function">yes</span>
 
     <span class="token comment"># 法一: OpenSSH 版本>= 7.3; 或 autossh</span>
-    ProxyJump <span class="token punctuation">[</span>跳板<span class="token punctuation">]</span>
+    ProxyJump <span class="token operator">&lt;</span>跳板<span class="token operator">></span>
 
     <span class="token comment"># 法二: OpenSSH 版本&lt; 7.3, 不支持以使用ProxyJump, 可使用ProxyCommand; 但autossh不支持用ProxyCommand</span>
-    <span class="token comment"># ProxyCommand ssh -q -W %h:%p [跳板]</span>
+    <span class="token comment"># ProxyCommand ssh -q -W %h:%p &lt;跳板></span>
 
-
-
-Host <span class="token punctuation">[</span>跳板<span class="token punctuation">]</span>
-  HostName <span class="token punctuation">[</span>从本地访问跳板机用的ip<span class="token punctuation">]</span>
-    User <span class="token punctuation">[</span>跳板机用户名<span class="token punctuation">]</span>
+Host <span class="token operator">&lt;</span>跳板<span class="token operator">></span>
+  HostName <span class="token operator">&lt;</span>从本地访问跳板机用的ip<span class="token operator">></span>
+    User <span class="token operator">&lt;</span>跳板机用户名<span class="token operator">></span>
     <span class="token comment"># 登陆跳板机的私钥所在位置</span>
-    IdentityFile ~/.ssh/id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+    IdentityFile ~/.ssh/id_rsa<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这样设置后，以下软件的用法和直接连接目标机器一样</p>
 <p><code>ssh</code>（包括端口转发功能），<code>sshfs</code>，<code>scp</code>，<code>sftp</code>，<code>rsync</code>，在iTerm2上对着远程的文件右键下载文件</p>
 <h1 id="ssh-重启"><a class="header-anchor" href="#ssh-重启"></a>ssh 重启</h1>
@@ -548,13 +568,13 @@ Host <span class="token punctuation">[</span>跳板<span class="token punctuatio
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/de6bda9/" rel="prev" title="vnc安装方法">
-                  <i class="fa fa-chevron-left"></i> vnc安装方法
+                <a href="/posts/27f12ef1/" rel="prev" title="vim配置日志">
+                  <i class="fa fa-chevron-left"></i> vim配置日志
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/bdb5144f/" rel="next" title="sshfs">
-                  sshfs <i class="fa fa-chevron-right"></i>
+                <a href="/posts/dba3bb35/" rel="next" title="vim配置">
+                  vim配置 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -588,13 +608,13 @@ Host <span class="token punctuation">[</span>跳板<span class="token punctuatio
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">357k</span>
+    <span title="站点总字数">360k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">19:52</span>
+    <span title="站点阅读时长">20:01</span>
   </span>
 </div>
 <div class="busuanzi-count">

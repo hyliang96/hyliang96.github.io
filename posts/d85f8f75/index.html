@@ -21,12 +21,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="以下原文在此备份一版本，以备不时之需  Mac 重启后自动 ssh-add 私钥 管理服务器有一些安全常识:  禁止 root 远程登录 禁止密码登录 使用 priviate &#x2F; public key 作为默认的登录方式。 修改 sshd 端口  From Linode: Securing your server 安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，">
+<meta name="description" content="钥匙串 钥匙串（SSH agent）是储存密钥的高速缓存。具体的可以参考 SSH Keys。 使用钥匙串">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mac永久添加私钥到keyChain">
+<meta property="og:title" content="钥匙串">
 <meta property="og:url" content="https://hyliang96.github.io/posts/d85f8f75/index.html">
 <meta property="og:site_name" content="丹炉志">
-<meta property="og:description" content="以下原文在此备份一版本，以备不时之需  Mac 重启后自动 ssh-add 私钥 管理服务器有一些安全常识:  禁止 root 远程登录 禁止密码登录 使用 priviate &#x2F; public key 作为默认的登录方式。 修改 sshd 端口  From Linode: Securing your server 安全级别上去后，问题随之而来，有一堆的私钥需要管理。每次 Macbook 升级系统，">
+<meta property="og:description" content="钥匙串 钥匙串（SSH agent）是储存密钥的高速缓存。具体的可以参考 SSH Keys。 使用钥匙串">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hyliang96.github.io/posts/d85f8f75/2017-06-02-ssh-add.jpeg">
 <meta property="og:image" content="https://hyliang96.github.io/posts/d85f8f75/2017-06-02-step1.jpeg">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="https://hyliang96.github.io/posts/d85f8f75/2017-06-02-step3.jpeg">
 <meta property="og:image" content="https://hyliang96.github.io/posts/d85f8f75/2017-06-02-step4.jpeg">
 <meta property="article:published_time" content="2019-08-25T12:17:00.000Z">
-<meta property="article:modified_time" content="2024-01-25T07:07:08.122Z">
+<meta property="article:modified_time" content="2024-09-12T14:22:42.682Z">
 <meta property="article:author" content="∞亼">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://hyliang96.github.io/posts/d85f8f75/2017-06-02-ssh-add.jpeg">
@@ -44,10 +44,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/d85f8f75/","path":"posts/d85f8f75/","title":"mac永久添加私钥到keyChain"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/d85f8f75/","path":"posts/d85f8f75/","title":"钥匙串"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>mac永久添加私钥到keyChain | 丹炉志</title>
+<title>钥匙串 | 丹炉志</title>
   
 
 
@@ -157,7 +157,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mac-%E9%87%8D%E5%90%AF%E5%90%8E%E8%87%AA%E5%8A%A8-ssh-add-%E7%A7%81%E9%92%A5"><span class="nav-text">Mac 重启后自动 ssh-add 私钥</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">新的解决方法</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%92%A5%E5%8C%99%E4%B8%B2"><span class="nav-text">钥匙串</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E9%92%A5%E5%8C%99%E4%B8%B2"><span class="nav-text">使用钥匙串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%91%E9%92%A5%E5%8C%99%E4%B8%B2%E6%B7%BB%E5%8A%A0%E5%AF%86%E9%92%A5"><span class="nav-text">向钥匙串添加密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%85%E7%A9%BA%E9%92%A5%E5%8C%99%E4%B8%B2"><span class="nav-text">清空钥匙串</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E9%92%A5%E5%8C%99%E4%B8%B2%E4%B8%AD%E5%AF%86%E9%92%A5"><span class="nav-text">查看钥匙串中密钥</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E9%92%A5%E5%8C%99%E4%B8%B2%E7%9A%84%E6%8A%A5%E9%94%99"><span class="nav-text">关于钥匙串的报错</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B2%A1%E6%9C%89%E8%83%BD%E7%99%BB%E9%99%86%E7%9A%84%E5%AF%86%E9%92%A5"><span class="nav-text">没有能登陆的密钥</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%86%E9%92%A5%E6%95%B0%E9%87%8F%E8%BF%87%E5%A4%9A"><span class="nav-text">密钥数量过多</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mac%E9%87%8D%E5%90%AF%E5%90%8E%E8%87%AA%E5%8A%A8ssh-add%E7%A7%81%E9%92%A5"><span class="nav-text">Mac重启后自动ssh-add私钥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">新的解决方法</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -240,7 +240,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          mac永久添加私钥到keyChain
+          钥匙串
         </h1>
 
         <div class="post-meta-container">
@@ -258,7 +258,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-01-25 15:07:08" itemprop="dateModified" datetime="2024-01-25T15:07:08+08:00">2024-01-25</time>
+        <time title="修改时间：2024-09-12 22:22:42" itemprop="dateModified" datetime="2024-09-12T22:22:42+08:00">2024-09-12</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -302,14 +302,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>409</span>
+      <span>3.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>10 分钟</span>
     </span>
 </div>
 
@@ -320,9 +320,83 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <p>以下<a target="_blank" rel="noopener" href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本，以备不时之需</p>
+        <h2 id="钥匙串"><a class="header-anchor" href="#钥匙串"></a>钥匙串</h2>
+<p>钥匙串（SSH agent）是储存密钥的高速缓存。具体的可以参考 <a target="_blank" rel="noopener" href="http://t.cn/zWlX7vR">SSH Keys</a>。</p>
+<h3 id="使用钥匙串"><a class="header-anchor" href="#使用钥匙串"></a>使用钥匙串</h3>
+<ul>
+<li>在ssh登陆时，<strong>如果没有指定密钥路径</strong>（不论是在<code>~/.ssh/config</code>里配置<code>IdentityFile &lt;密钥路径&gt;</code>，还是在<code>ssh</code>命令中加<code>-i &lt;密钥路径&gt;</code>参数），ssh会采用如下策略：
+<ul>
+<li>如果钥匙串是空的，就会使用默认密钥<code>~/.ssh/id_rsa</code></li>
+<li>如果钥匙串非空，就会<strong>将钥匙串中的密钥逐一尝试</strong>，直到超过服务器允许登陆时使用的密钥数目的上限。</li>
+</ul>
+</li>
+</ul>
+<h3 id="向钥匙串添加密钥"><a class="header-anchor" href="#向钥匙串添加密钥"></a>向钥匙串添加密钥</h3>
+<ul>
+<li>使用时自动添加：每当使用密钥登陆服务器（比如执行<code>ssh</code>、<code>ssh-copy-id</code>等命令），就会将当前使用的密钥添加到钥匙串中。</li>
+<li>手动添加：<code>ssh-add &lt;私钥路径&gt; </code></li>
+<li>开机自动添加：见下文<a href="#Mac%E9%87%8D%E5%90%AF%E5%90%8E%E8%87%AA%E5%8A%A8ssh-add%E7%A7%81%E9%92%A5">Mac重启后自动ssh-add私钥</a> (不推荐使用，会造成钥匙串中密钥过多，ssh登陆时超过服务器到密钥数量限制)</li>
+</ul>
+<h3 id="清空钥匙串"><a class="header-anchor" href="#清空钥匙串"></a>清空钥匙串</h3>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-add -D <span class="token comment"># 清空已有KeyChain</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="查看钥匙串中密钥"><a class="header-anchor" href="#查看钥匙串中密钥"></a>查看钥匙串中密钥</h3>
+<p>使用命令<code>ssh-add -l</code>可以看到所有的密钥列表：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-add -l
+<span class="token comment"># 2048 db:6a:da:46:6e:03:da:94:f0:2c:43:1d:91:8a:bd:67 yeungeek@gmail.com (RSA)</span>
+<span class="token comment"># 2048 07:59:9f:93:d2:e3:80:e1:df:77:ed:c9:5d:2e:3d:04 yeungeek@gmail.com (RSA)</span>
+<span class="token comment"># 2048 4f:ba:6c:00:12:41:0e:a8:50:be:f5:6e:2e:7a:10:91 yeungeek@gmail.com (RSA)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p><code>ssh-add -L</code>可以查产到所有密钥的公钥：</p>
+<pre class="line-numbers language-none"><code class="language-none">ssh-rsa wBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9MwBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9MwBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9MwBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9MwBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9MwBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9MwBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9MwBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9MwBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9MwBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9MwBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9MwBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9MwBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9MwBz&#x2F;y9oybSLYNEVVzoi+HdcO4CCQ7k9M mac@mac-MBP.local
+ssh-rsa +y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo+y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo+y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo+y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo+y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo+y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo+y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo+y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo+y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo+y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo+y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo+y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo+y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo+y6CL2IeCuvZMOPKSBx6+gvGkr1TmBLo mac@mac-MBP.local<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h2 id="关于钥匙串的报错"><a class="header-anchor" href="#关于钥匙串的报错"></a>关于钥匙串的报错</h2>
+<h3 id="没有能登陆的密钥"><a class="header-anchor" href="#没有能登陆的密钥"></a>没有能登陆的密钥</h3>
+<p>ssh登陆时，如果登陆失败，并出现如下报错，则说明本地钥匙串中没有能登陆服务器的密钥。</p>
 <blockquote>
-<h1 id="Mac-重启后自动-ssh-add-私钥"><a class="header-anchor" href="#Mac-重启后自动-ssh-add-私钥"></a><a target="_blank" rel="noopener" href="https://mednoter.com/ssh-add-automatically.html">Mac 重启后自动 ssh-add 私钥</a></h1>
+<p>Could not open a connection to your authentication agent</p>
+</blockquote>
+<p>可以尝试以下两种解决办法：</p>
+<ul>
+<li>向钥匙串中添加对应的密钥（不推荐，因为会造成钥匙串中密钥过多，ssh登陆时超过服务器到密钥数量限制）</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-agent <span class="token function">bash</span>
+ssh-add ~/.ssh/<span class="token operator">&lt;</span>密钥名字<span class="token operator">></span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<ul>
+<li><strong>手动指定密钥路径（推荐）</strong></li>
+</ul>
+<p>在<code>~/.ssh/config</code>里，配置如下，然后用<code>ssh &lt;服务器别名&gt;</code>登陆。</p>
+<pre class="line-numbers language-none"><code class="language-none">Host &lt;服务器别名&gt;
+     HostName &lt;服务器地址&gt;
+     User &lt;用户名&gt;
+     IdentityFile &lt;密钥路径&gt;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>或者</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -i <span class="token operator">&lt;</span>密钥路径<span class="token operator">></span> <span class="token operator">&lt;</span>用户名<span class="token operator">></span>@<span class="token operator">&lt;</span>服务器地址<span class="token operator">></span>
+<span class="token comment"># 或</span>
+<span class="token function">ssh</span> -i <span class="token operator">&lt;</span>密钥路径<span class="token operator">></span> <span class="token operator">&lt;</span>服务器别名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="密钥数量过多"><a class="header-anchor" href="#密钥数量过多"></a>密钥数量过多</h3>
+<p>ssh登陆或执行ssh-copy-id时，若出现报错</p>
+<blockquote>
+<p>Received disconnect from &lt;服务器地址&gt; port &lt;端口号&gt;:2: Too many authentication failures</p>
+</blockquote>
+<p>则说明钥匙串的ssh密钥太多了(<code>ssh-add -L</code>可以查看所有钥匙串里的密钥)，需要手动指定如何登陆：</p>
+<ul>
+<li><strong>只用密码登陆</strong>：</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -o <span class="token assign-left variable">PreferredAuthentications</span><span class="token operator">=</span>password -o <span class="token assign-left variable">PubkeyAuthentication</span><span class="token operator">=</span>no <span class="token operator">&lt;</span>用户名<span class="token operator">></span>@<span class="token operator">&lt;</span>服务器地址<span class="token operator">></span>
+<span class="token comment"># 或</span>
+<span class="token function">ssh</span> -o <span class="token assign-left variable">PreferredAuthentications</span><span class="token operator">=</span>password -o <span class="token assign-left variable">PubkeyAuthentication</span><span class="token operator">=</span>no <span class="token operator">&lt;</span>服务器别名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>上述参数同样适用于 <code>ssh-copy-id</code></p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">ssh-copy-id -o <span class="token assign-left variable">PreferredAuthentications</span><span class="token operator">=</span>password -o <span class="token assign-left variable">PubkeyAuthentication</span><span class="token operator">=</span>no -i <span class="token operator">&lt;</span>密钥路径<span class="token operator">></span> <span class="token operator">&lt;</span>用户名<span class="token operator">></span>@<span class="token operator">&lt;</span>服务器地址<span class="token operator">></span>
+<span class="token comment"># 或</span>
+ssh-copy-id -o <span class="token assign-left variable">PreferredAuthentications</span><span class="token operator">=</span>password -o <span class="token assign-left variable">PubkeyAuthentication</span><span class="token operator">=</span>no -i <span class="token operator">&lt;</span>密钥路径<span class="token operator">></span> <span class="token operator">&lt;</span>服务器别名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<ul>
+<li><strong>只用指定密钥登陆</strong>：</li>
+</ul>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> -i <span class="token operator">&lt;</span>密钥路径<span class="token operator">></span> <span class="token operator">&lt;</span>用户名<span class="token operator">></span>@<span class="token operator">&lt;</span>服务器地址<span class="token operator">></span>
+<span class="token comment"># 或</span>
+<span class="token function">ssh</span> -i <span class="token operator">&lt;</span>密钥路径<span class="token operator">></span> <span class="token operator">&lt;</span>服务器别名<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h2 id="Mac重启后自动ssh-add私钥"><a class="header-anchor" href="#Mac重启后自动ssh-add私钥"></a>Mac重启后自动ssh-add私钥</h2>
+<p>以下<a target="_blank" rel="noopener" href="https://mednoter.com/ssh-add-automatically.html">原文</a>在此备份一版本。该方法能实现mac永久添加私钥到钥匙串。</p>
+<blockquote>
 <p>管理服务器有一些安全常识:</p>
 <ul>
 <li>禁止 root 远程登录</li>
@@ -397,13 +471,13 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">357k</span>
+    <span title="站点总字数">360k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">19:52</span>
+    <span title="站点阅读时长">20:01</span>
   </span>
 </div>
 <div class="busuanzi-count">
