@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="现象及原因 VSCode&gt;1.85连接CentOS7&#x2F;Ubuntu18.04&#x2F;Ubuntu22.04可能会无法连接，出现如下报错  Waiting for server log…">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vscode remote报错Waiting for server log">
+<meta property="og:url" content="https://hyliang96.github.io/posts/f751cd7f/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="现象及原因 VSCode&gt;1.85连接CentOS7&#x2F;Ubuntu18.04&#x2F;Ubuntu22.04可能会无法连接，出现如下报错  Waiting for server log…">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyliang96.github.io/posts/f751cd7f/image-20240924213656026.png">
+<meta property="article:published_time" content="2024-09-24T13:15:58.000Z">
+<meta property="article:modified_time" content="2024-09-24T13:58:57.396Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyliang96.github.io/posts/f751cd7f/image-20240924213656026.png">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/f751cd7f/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/f751cd7f/","path":"posts/f751cd7f/","title":"vscode remote报错Waiting for server log"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>vscode remote报错Waiting for server log | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E8%B1%A1%E5%8F%8A%E5%8E%9F%E5%9B%A0"><span class="nav-text">现象及原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-text">解决办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%BB%BA%E8%AE%AE%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">不建议的解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7glibc%E5%88%B02-28"><span class="nav-text">升级glibc到2.28</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B"><span class="nav-text">案例</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">81</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/f751cd7f/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vscode remote报错Waiting for server log
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-24 21:15:58 / 修改时间：21:58:57" itemprop="dateCreated datePublished" datetime="2024-09-24T21:15:58+08:00">2024-09-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/" itemprop="url" rel="index"><span itemprop="name">编辑器IDE</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/f751cd7f/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/f751cd7f/" data-xid="/posts/f751cd7f/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>6.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>23 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="现象及原因"><a class="header-anchor" href="#现象及原因"></a>现象及原因</h2>
+<p>VSCode&gt;1.85连接CentOS7/Ubuntu18.04/Ubuntu22.04可能会无法连接，出现如下报错</p>
+<blockquote>
+<p>Waiting for server log…</p>
+</blockquote>
+<blockquote>
+<p>[00:26:32.554] Failed to parse remote port from server output</p>
+<p>[00:26:32.554] Terminating local server</p>
+<p>[00:26:32.569] Local server exit: 15</p>
+<p>[00:26:32.846] Exec server for ssh-remote+g50 failed: Error</p>
+<p>[00:26:32.846] Error opening exec server for ssh-remote+g50: Error</p>
+</blockquote>
+<p>原因是：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/remote/faq#_can-i-run-vs-code-server-on-older-linux-distributions">VSCode 1.86版本不再支持CentOS7</a>（包括Ubuntu18.04等），因此需要手动回退至<a target="_blank" rel="noopener" href="https://code.visualstudio.com/updates/v1_85">1.85版本</a>。</p>
+<p>参考文章：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/bigbaojian/article/details/136058326">VSCode&gt;1.85不支持连接远程的CentOS7和Ubuntu18.04</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/microsoft/vscode/issues/204326">Server failed to start on Ubuntu22.04</a></li>
+</ul>
+<h2 id="解决办法"><a class="header-anchor" href="#解决办法"></a>解决办法</h2>
+<ul>
+<li>
+<p>取消自动更新vscode：在本地vscode，按<code>cmd+,</code>，在设置页面搜索“Update: Mode”，将选项改为“none”：<img data-src="/posts/f751cd7f/image-20240924213656026.png" alt="image-20240924213656026"></p>
+</li>
+<li>
+<p>安装vscode 1.85，下载链接：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/updates/v1_85">1.85版本</a>，下载并安装它。</p>
+</li>
+<li>
+<p>打开vscode，在插件栏会看见，插件“Remote Development”及其下所有扩展包（包括插件“Remote - SSH”，负责vscode通过ssh连接远程服务器）的版本与vscode 1.85不适配。需要先卸载再重装插件“Remote Development”，而后“Remote Development”及其下所有扩展包都会重装为与vscode 1.85相适配的版本。</p>
+</li>
+<li>
+<p>然后在vscode里连接远程服务器就会成功。</p>
+</li>
+</ul>
+<h2 id="不建议的解决方法"><a class="header-anchor" href="#不建议的解决方法"></a>不建议的解决方法</h2>
+<h3 id="升级glibc到2-28"><a class="header-anchor" href="#升级glibc到2-28"></a>升级glibc到2.28</h3>
+<p>参见<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/remote/linux#_remote-host-container-wsl-linux-prerequisites">Linux Prerequisites for Visual Studio Code Remote Development</a>，vscode使用连接成功的前提是：</p>
+<ul>
+<li>对远程Linux系统通用的要求：需要 kernel &gt;= 4.18, glibc &gt;=2.28, libstdc++ &gt;= 3.4.25, tar</li>
+<li>对Ubuntu&gt;=20.04系统特别的要求：需要安装了libc6，libstdc++6，ca-certificates，tar</li>
+</ul>
+<p>引自<a target="_blank" rel="noopener" href="https://blog.csdn.net/bigbaojian/article/details/136058326">VSCode&gt;1.85不支持连接远程的CentOS7和Ubuntu18.04</a>，升级glibc到2.28的方法无效：</p>
+<blockquote>
+<p>参考<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/remote/faq#_what-linux-packages-or-libraries-need-to-be-installed-on-a-host-to-use-remote-development">Visual Studio Code Remote Development Frequently Asked Questions</a>，将glibc更新至2.28。但重启后问题仍未解决。<br>
+尝试删除<a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=%E6%9C%8D%E5%8A%A1%E5%99%A8&amp;spm=1001.2101.3001.7020">服务器</a>上的<code>.vscode-server</code>，重新连接VSCode仍然无效。同时，删除客户端<code>.ssh/known_hosts</code>中的相关条目也未产生效果。</p>
+</blockquote>
+<p>在Ubuntu18.04使用apt升级glibc到2.28的操作方法<a target="_blank" rel="noopener" href="https://cloud.baidu.com/article/3294956">详见</a>，该方法有安全隐患，不建议采用：</p>
+<blockquote>
+<p>[!WARNING]</p>
+<p>升级glibc可能会对系统稳定性产生影响，尤其是如果其他应用程序或库与新版本的glibc不兼容。在进行升级之前，请务必了解潜在的风险，并仔细考虑是否需要进行升级。</p>
+</blockquote>
+<h2 id="案例"><a class="header-anchor" href="#案例"></a>案例</h2>
+<p>我在2024年9月，在macbook pro 2020 intel上，访问ubuntu18和ubuntu22的服务器，都无法连接成功，会遇到如下报错，完整报错详见<a href="private.%E6%8A%A5%E9%94%99.txt">本textbundle内的附件</a>。</p>
+<pre class="line-numbers language-none"><code class="language-none">[00:25:50.468] Log Level: 2
+[00:25:50.583] SSH Resolver called for &quot;ssh-remote+g50&quot;, attempt 1
+[00:25:50.584] &quot;remote.SSH.useLocalServer&quot;: true
+[00:25:50.585] &quot;remote.SSH.useExecServer&quot;: true
+[00:25:50.585] &quot;remote.SSH.path&quot;: undefined
+[00:25:50.585] &quot;remote.SSH.configFile&quot;: undefined
+[00:25:50.586] &quot;remote.SSH.useFlock&quot;: true
+[00:25:50.586] &quot;remote.SSH.lockfilesInTmp&quot;: false
+[00:25:50.586] &quot;remote.SSH.localServerDownload&quot;: auto
+[00:25:50.586] &quot;remote.SSH.remoteServerListenOnSocket&quot;: false
+[00:25:50.586] &quot;remote.SSH.showLoginTerminal&quot;: false
+[00:25:50.587] &quot;remote.SSH.defaultExtensions&quot;: []
+[00:25:50.587] &quot;remote.SSH.loglevel&quot;: 2
+[00:25:50.587] &quot;remote.SSH.enableDynamicForwarding&quot;: true
+[00:25:50.591] &quot;remote.SSH.enableRemoteCommand&quot;: false
+[00:25:50.591] &quot;remote.SSH.serverPickPortsFromRange&quot;: &#123;&#125;
+[00:25:50.591] &quot;remote.SSH.serverInstallPath&quot;: &#123;&#125;
+[00:25:50.592] &quot;remote.SSH.permitPtyAllocation&quot;: false
+[00:25:50.592] &quot;remote.SSH.preferredLocalPortRange: undefined
+[00:25:50.592] &quot;remote.SSH.useCurlAndWgetConfigurationFiles: false
+[00:25:50.696] VS Code version: 1.93.1
+[00:25:50.696] Remote-SSH version: remote-ssh@0.114.3
+[00:25:50.696] darwin x64
+[00:25:50.708] SSH Resolver called for host: g50
+[00:25:50.708] Setting up SSH remote &quot;g50&quot;
+
+...
+
+&gt; OS: Ubuntu 22.04.2 LTS x86_64
+&gt; Host: R4230-8G GPU
+&gt; Kernel: 5.15.0-119-generic
+&gt; Uptime: 18 days, 7 hours, 55 mins
+&gt; Packages: 1312 (dpkg), 4 (snap)
+&gt; Shell: bash 5.1.16
+&gt; Resolution: 1024x768
+&gt; Terminal: run-parts
+&gt; CPU: Intel Xeon Gold 6330 (112) @ 3.100GHz
+&gt; GPU: NVIDIA GeForce RTX 4090
+&gt; GPU: NVIDIA GeForce RTX 4090
+&gt; GPU: NVIDIA GeForce RTX 4090
+&gt; GPU: NVIDIA GeForce RTX 4090
+&gt; GPU: NVIDIA GeForce RTX 4090
+&gt; GPU: NVIDIA GeForce RTX 4090
+&gt; GPU: NVIDIA GeForce RTX 4090
+&gt; GPU: NVIDIA GeForce RTX 4090
+&gt; Memory: 306801MiB &#x2F; 515601MiB
+&gt;
+&gt;
+&gt; zpool status:
+&gt;   all pools are healthy
+&gt;
+&gt; zpool usage:
+&gt;   datapool                       6% used out of 43.7T
+&gt;   [&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;]
+&gt;
+&gt;   System information as of Tue Sep 24 00:25:57 CST 2024
+&gt;
+&gt;   System load:    20.70263671875    Processes:                1484
+&gt;   Usage of &#x2F;home: 29.7% of 3.44TB   Users logged in:          3
+&gt;   Memory usage:   60%               IPv4 address for ens31f0: 166.111.153.129
+&gt;   Swap usage:     0%                IPv4 address for ens31f1: 192.168.0.2
+&gt;   Temperature:    53.0 C            IPv4 address for wg0:     10.0.0.150
+&gt; *** System restart required ***
+&gt; Ubuntu 18.04: jungpu[1-37] with nvidia-450, juncluster[1-4]
+[00:25:58.819] &gt; ready: b995d2eaba3e
+[00:25:58.835] &gt; Linux 5.15.0-119-generic #129-Ubuntu SMP Fri Aug 2 19:25:20 UTC 2024
+[00:25:58.836] Platform: linux
+[00:25:58.851] &gt; &#x2F;usr&#x2F;bin&#x2F;zsh
+[00:25:58.851] Parent Shell: zsh
+[00:25:58.851] Parent Shell pid: 4313
+[00:25:58.917] &gt; 4033820
+
+...
+
+&gt; Spawned remote CLI: 4035866
+[00:26:32.066] &gt; Waiting for server log...
+[00:26:32.097] &gt; Waiting for server log...
+[00:26:32.129] &gt; Waiting for server log...
+[00:26:32.162] &gt; Waiting for server log...
+[00:26:32.194] &gt; Waiting for server log...
+[00:26:32.227] &gt; Waiting for server log...
+[00:26:32.258] &gt; Waiting for server log...
+[00:26:32.290] &gt; Waiting for server log...
+[00:26:32.322] &gt; Waiting for server log...
+[00:26:32.354] &gt; Waiting for server log...
+[00:26:32.390] &gt; Waiting for server log...
+[00:26:32.419] &gt; Waiting for server log...
+[00:26:32.455] &gt; Waiting for server log...
+[00:26:32.485] &gt; Waiting for server log...
+[00:26:32.517] &gt; Waiting for server log...
+[00:26:32.550] &gt; 60891db1baba: start
+&gt; listeningOn&#x3D;&#x3D;&#x3D;&#x3D;
+&gt; osReleaseId&#x3D;&#x3D;ubuntu&#x3D;&#x3D;
+&gt; arch&#x3D;&#x3D;x86_64&#x3D;&#x3D;
+&gt; vscodeArch&#x3D;&#x3D;x64&#x3D;&#x3D;
+&gt; bitness&#x3D;&#x3D;64&#x3D;&#x3D;
+&gt; tmpDir&#x3D;&#x3D;&#x2F;run&#x2F;user&#x2F;10228&#x3D;&#x3D;
+&gt; platform&#x3D;&#x3D;linux&#x3D;&#x3D;
+[00:26:32.553] &gt; unpackResult&#x3D;&#x3D;&#x3D;&#x3D;
+&gt; didLocalDownload&#x3D;&#x3D;0&#x3D;&#x3D;
+&gt; downloadTime&#x3D;&#x3D;&#x3D;&#x3D;
+&gt; installTime&#x3D;&#x3D;&#x3D;&#x3D;
+&gt; serverStartTime&#x3D;&#x3D;488&#x3D;&#x3D;
+&gt; execServerToken&#x3D;&#x3D;a1a1111a-111a-1aa1-a11a-a1aa11111a11&#x3D;&#x3D;
+&gt; platformDownloadPath&#x3D;&#x3D;cli-alpine-x64&#x3D;&#x3D;
+&gt; 60891db1baba: end
+[00:26:32.553] Received install output:
+listeningOn&#x3D;&#x3D;&#x3D;&#x3D;
+osReleaseId&#x3D;&#x3D;ubuntu&#x3D;&#x3D;
+arch&#x3D;&#x3D;x86_64&#x3D;&#x3D;
+vscodeArch&#x3D;&#x3D;x64&#x3D;&#x3D;
+bitness&#x3D;&#x3D;64&#x3D;&#x3D;
+tmpDir&#x3D;&#x3D;&#x2F;run&#x2F;user&#x2F;10228&#x3D;&#x3D;
+platform&#x3D;&#x3D;linux&#x3D;&#x3D;unpackResult&#x3D;&#x3D;&#x3D;&#x3D;
+didLocalDownload&#x3D;&#x3D;0&#x3D;&#x3D;
+downloadTime&#x3D;&#x3D;&#x3D;&#x3D;
+installTime&#x3D;&#x3D;&#x3D;&#x3D;
+serverStartTime&#x3D;&#x3D;488&#x3D;&#x3D;
+execServerToken&#x3D;&#x3D;a1a1111a-111a-1aa1-a11a-a1aa11111a11&#x3D;&#x3D;
+platformDownloadPath&#x3D;&#x3D;cli-alpine-x64&#x3D;&#x3D;
+
+[00:26:32.554] Failed to parse remote port from server output
+[00:26:32.554] Terminating local server
+[00:26:32.569] Local server exit: 15
+[00:26:32.846] Exec server for ssh-remote+g50 failed: Error
+[00:26:32.846] Error opening exec server for ssh-remote+g50: Error<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>上述报错显示了服务器的登陆信息，说明本地vscode所使用的ssh config里指定的密钥对能登陆到服务器上，连接失败的原因可能是 VSCode&gt;1.85不支持连接远程的CentOS7和Ubuntu18.04、Ubuntu22.04。</p>
+<p>我把vscode降到1.85版本后，就能正常连接了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/2f5042d3/" rel="prev" title="OneDrive升级后无法在Catalina上运行">
+                  <i class="fa fa-chevron-left"></i> OneDrive升级后无法在Catalina上运行
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">367k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">20:24</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/f751cd7f/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
