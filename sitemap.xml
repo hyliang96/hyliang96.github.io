@@ -335,7 +335,7 @@
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/posts/e9538bec/</loc>
+    <loc>https://hyliang96.github.io/posts/1d810cbf/</loc>
     
     <lastmod>2022-03-23</lastmod>
     
@@ -344,7 +344,7 @@
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/posts/1d810cbf/</loc>
+    <loc>https://hyliang96.github.io/posts/e9538bec/</loc>
     
     <lastmod>2022-03-23</lastmod>
     
@@ -371,7 +371,7 @@
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/posts/72581c6a/</loc>
+    <loc>https://hyliang96.github.io/posts/218adcf6/</loc>
     
     <lastmod>2022-03-23</lastmod>
     
@@ -380,7 +380,7 @@
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/posts/218adcf6/</loc>
+    <loc>https://hyliang96.github.io/posts/72581c6a/</loc>
     
     <lastmod>2022-03-23</lastmod>
     
@@ -398,7 +398,7 @@
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/posts/5e7a227e/</loc>
+    <loc>https://hyliang96.github.io/posts/983e68f/</loc>
     
     <lastmod>2022-03-23</lastmod>
     
@@ -407,7 +407,7 @@
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/posts/983e68f/</loc>
+    <loc>https://hyliang96.github.io/posts/5e7a227e/</loc>
     
     <lastmod>2022-03-23</lastmod>
     
@@ -820,14 +820,14 @@
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/categories/%E5%99%A8/python/</loc>
+    <loc>https://hyliang96.github.io/categories/%E5%99%A8/shell/</loc>
     <lastmod>2024-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/categories/%E5%99%A8/shell/</loc>
+    <loc>https://hyliang96.github.io/categories/%E5%99%A8/python/</loc>
     <lastmod>2024-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -869,13 +869,6 @@
   </url>
   
   <url>
-    <loc>https://hyliang96.github.io/categories/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/</loc>
-    <lastmod>2024-10-08</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://hyliang96.github.io/categories/%E5%99%A8/%E7%A1%AC%E4%BB%B6/</loc>
     <lastmod>2024-10-08</lastmod>
     <changefreq>weekly</changefreq>
@@ -898,6 +891,13 @@
   
   <url>
     <loc>https://hyliang96.github.io/categories/%E5%99%A8/%E8%BE%93%E5%85%A5%E6%B3%95/</loc>
+    <lastmod>2024-10-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://hyliang96.github.io/categories/%E5%99%A8/%E7%BC%96%E8%BE%91%E5%99%A8IDE/</loc>
     <lastmod>2024-10-08</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
