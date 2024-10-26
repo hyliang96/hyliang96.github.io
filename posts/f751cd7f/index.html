@@ -21,16 +21,16 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="现象及原因 VSCode&gt;1.85连接CentOS7&#x2F;Ubuntu18.04&#x2F;Ubuntu22.04可能会无法连接，出现如下报错  Waiting for server log…">
+<meta name="description" content="现象及原因 我在macbook pro 2020 intel+macOS Catalina上，VSCode&gt;1.85连接CentOS7&#x2F;Ubuntu18.04&#x2F;Ubuntu20.04&#x2F;Ubuntu22.04可能会无法连接，出现如下报错 Waiting for server log...  [00:26:32.554] Failed to parse remote port from serv">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vscode remote报错Waiting for server log">
 <meta property="og:url" content="https://hyliang96.github.io/posts/f751cd7f/index.html">
 <meta property="og:site_name" content="丹炉志">
-<meta property="og:description" content="现象及原因 VSCode&gt;1.85连接CentOS7&#x2F;Ubuntu18.04&#x2F;Ubuntu22.04可能会无法连接，出现如下报错  Waiting for server log…">
+<meta property="og:description" content="现象及原因 我在macbook pro 2020 intel+macOS Catalina上，VSCode&gt;1.85连接CentOS7&#x2F;Ubuntu18.04&#x2F;Ubuntu20.04&#x2F;Ubuntu22.04可能会无法连接，出现如下报错 Waiting for server log...  [00:26:32.554] Failed to parse remote port from serv">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hyliang96.github.io/posts/f751cd7f/image-20240924213656026.png">
 <meta property="article:published_time" content="2024-09-24T13:15:58.000Z">
-<meta property="article:modified_time" content="2024-10-21T09:45:07.987Z">
+<meta property="article:modified_time" content="2024-10-22T08:21:05.440Z">
 <meta property="article:author" content="∞亼">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://hyliang96.github.io/posts/f751cd7f/image-20240924213656026.png">
@@ -168,7 +168,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">82</span>
+          <span class="site-state-item-count">83</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -254,7 +254,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-10-21 17:45:07" itemprop="dateModified" datetime="2024-10-21T17:45:07+08:00">2024-10-21</time>
+        <time title="修改时间：2024-10-22 16:21:05" itemprop="dateModified" datetime="2024-10-22T16:21:05+08:00">2024-10-22</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -298,14 +298,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>6.8k</span>
+      <span>8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>23 分钟</span>
+      <span>27 分钟</span>
     </span>
 </div>
 
@@ -317,22 +317,28 @@
     
     <div class="post-body" itemprop="articleBody">
         <h2 id="现象及原因"><a class="header-anchor" href="#现象及原因"></a>现象及原因</h2>
-<p>VSCode&gt;1.85连接CentOS7/Ubuntu18.04/Ubuntu22.04可能会无法连接，出现如下报错</p>
-<blockquote>
-<p>Waiting for server log…</p>
-</blockquote>
-<blockquote>
-<p>[00:26:32.554] Failed to parse remote port from server output</p>
-<p>[00:26:32.554] Terminating local server</p>
-<p>[00:26:32.569] Local server exit: 15</p>
-<p>[00:26:32.846] Exec server for ssh-remote+g50 failed: Error</p>
-<p>[00:26:32.846] Error opening exec server for ssh-remote+g50: Error</p>
-</blockquote>
-<p>原因是：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/remote/faq#_can-i-run-vs-code-server-on-older-linux-distributions">VSCode 1.86版本不再支持CentOS7</a>（包括Ubuntu18.04等），因此需要手动回退至<a target="_blank" rel="noopener" href="https://code.visualstudio.com/updates/v1_85">1.85版本</a>。</p>
+<p>我在macbook pro 2020 intel+macOS Catalina上，VSCode&gt;1.85连接CentOS7/Ubuntu18.04/Ubuntu20.04/Ubuntu22.04可能会无法连接，出现如下报错</p>
+<pre class="line-numbers language-none"><code class="language-none">Waiting for server log...
+
+[00:26:32.554] Failed to parse remote port from server output
+[00:26:32.554] Terminating local server
+[00:26:32.569] Local server exit: 15
+[00:26:32.846] Exec server for ssh-remote+g50 failed: Error
+[00:26:32.846] Error opening exec server for ssh-remote+g50: Error<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>或</p>
+<pre class="line-numbers language-none"><code class="language-none">[15:53:18.927] Local server exit: 15
+[15:53:21.045] Opening exec server for ssh-remote+g38
+[15:53:21.566] Acquiring local install lock: &#x2F;var&#x2F;folders&#x2F;wc&#x2F;cp7yvqdn2n9dhfck78qf2_8m0000gn&#x2F;T&#x2F;vscode-remote-ssh-939ac7f5-install.lock
+[15:53:21.567] Initizing new exec server for ssh-remote+g38
+[15:53:21.731] Looking for existing server data file at &#x2F;Users&#x2F;mac&#x2F;Library&#x2F;Application Support&#x2F;Code&#x2F;User&#x2F;globalStorage&#x2F;ms-vscode-remote.remote-ssh&#x2F;vscode-ssh-host-939ac7f5-384ff7382de624fb94dbaf6da11977bba1ecd427-0.115.0-es&#x2F;data.json
+[15:53:21.766] No existing data file
+[15:53:21.767] Using commit id &quot;384ff7382de624fb94dbaf6da11977bba1ecd427&quot; and quality &quot;stable&quot; for server
+[15:53:21.804] Opening exec server for ssh-remote+g38<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>网上查到可能的原因是：<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/remote/faq#_can-i-run-vs-code-server-on-older-linux-distributions">VSCode 1.86版本不再支持CentOS7</a>（包括Ubuntu18.04等），因此需要手动回退至<a target="_blank" rel="noopener" href="https://code.visualstudio.com/updates/v1_85">1.85版本</a>。</p>
 <p>参考文章：</p>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/bigbaojian/article/details/136058326">VSCode&gt;1.85不支持连接远程的CentOS7和Ubuntu18.04</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/microsoft/vscode/issues/204326">Server failed to start on Ubuntu22.04</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/microsoft/vscode/issues/204326">Server failed to start on Ubuntu22.04</a>å</li>
 </ul>
 <h2 id="解决办法"><a class="header-anchor" href="#解决办法"></a>解决办法</h2>
 <ul>
@@ -353,9 +359,10 @@
 <h3 id="升级glibc到2-28"><a class="header-anchor" href="#升级glibc到2-28"></a>升级glibc到2.28</h3>
 <p>参见<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/remote/linux#_remote-host-container-wsl-linux-prerequisites">Linux Prerequisites for Visual Studio Code Remote Development</a>，vscode使用连接成功的前提是：</p>
 <ul>
-<li>对远程Linux系统通用的要求：需要 kernel &gt;= 4.18, glibc &gt;=2.28, libstdc++ &gt;= 3.4.25, tar</li>
-<li>对Ubuntu&gt;=20.04系统特别的要求：需要安装了libc6，libstdc++6，ca-certificates，tar</li>
+<li>对远程Linux系统通用的要求：需要 kernel &gt;= 4.18（查看内核版本的命令<code>cat /proc/version</code>）, glibc &gt;=2.28 (查看版本的命令<code>ldd --version</code>), libstdc++ &gt;= 3.4.25 (查看版本的命令<code>strings /lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX</code>), tar</li>
+<li>对Ubuntu&gt;=20.04系统特别的要求：需要安装了libc6，libstdc++6，ca-certificates，tar （查看版本的命令<code>apt show &lt;软件名&gt;</code>）</li>
 </ul>
+<p><strong>尽管我所登陆的服务器满足上述要求</strong>，但还是在macbook pro 2020 intel上，vscode连接Ubuntu20.04和ubuntu22的服务器均失败。我怀疑是其他原因，即vscode&gt;1.85不支持macbook pro 2020 intel+macOS Catalina使用remote-SSH插件，<strong>或许需要升级macOS才能解决，又或许需要苹果芯片的电脑才能解决</strong>。我选择不升级操作系统，不买新电脑，而是把vscode降级到1.85，来解决这个问题。</p>
 <p>引自<a target="_blank" rel="noopener" href="https://blog.csdn.net/bigbaojian/article/details/136058326">VSCode&gt;1.85不支持连接远程的CentOS7和Ubuntu18.04</a>，升级glibc到2.28的方法无效：</p>
 <blockquote>
 <p>参考<a target="_blank" rel="noopener" href="https://code.visualstudio.com/docs/remote/faq#_what-linux-packages-or-libraries-need-to-be-installed-on-a-host-to-use-remote-development">Visual Studio Code Remote Development Frequently Asked Questions</a>，将glibc更新至2.28。但重启后问题仍未解决。<br>
@@ -367,7 +374,7 @@
 <p>升级glibc可能会对系统稳定性产生影响，尤其是如果其他应用程序或库与新版本的glibc不兼容。在进行升级之前，请务必了解潜在的风险，并仔细考虑是否需要进行升级。</p>
 </blockquote>
 <h2 id="案例"><a class="header-anchor" href="#案例"></a>案例</h2>
-<p>我在2024年9月，在macbook pro 2020 intel上，访问ubuntu18和ubuntu22的服务器，都无法连接成功，会遇到如下报错，完整报错详见<a href="private.%E6%8A%A5%E9%94%99.txt">本textbundle内的附件</a>。</p>
+<p>我在2024年9月，在macbook pro 2020 intel上，vscode连接ubuntu18、Ubuntu20.04和ubuntu22的服务器，都无法连接成功，会遇到如下报错，完整报错详见<a href="private.%E6%8A%A5%E9%94%99.txt">本textbundle内的附件</a>。</p>
 <pre class="line-numbers language-none"><code class="language-none">[00:25:50.468] Log Level: 2
 [00:25:50.583] SSH Resolver called for &quot;ssh-remote+g50&quot;, attempt 1
 [00:25:50.584] &quot;remote.SSH.useLocalServer&quot;: true
@@ -494,7 +501,7 @@ platformDownloadPath&#x3D;&#x3D;cli-alpine-x64&#x3D;&#x3D;
 [00:26:32.569] Local server exit: 15
 [00:26:32.846] Exec server for ssh-remote+g50 failed: Error
 [00:26:32.846] Error opening exec server for ssh-remote+g50: Error<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>上述报错显示了服务器的登陆信息，说明本地vscode所使用的ssh config里指定的密钥对能登陆到服务器上，连接失败的原因可能是 VSCode&gt;1.85不支持连接远程的CentOS7和Ubuntu18.04、Ubuntu22.04。</p>
+<p>上述报错显示了服务器的登陆信息，说明本地vscode所使用的ssh config里指定的密钥对能登陆到服务器上，连接失败的原因可能是 VSCode&gt;1.85不支持连接远程的CentOS7和Ubuntu18.04、Ubuntu20.04、Ubuntu22.04。</p>
 <p>我把vscode降到1.85版本后，就能正常连接了。</p>
 
     </div>
@@ -514,6 +521,9 @@ platformDownloadPath&#x3D;&#x3D;cli-alpine-x64&#x3D;&#x3D;
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/posts/7770c192/" rel="next" title="给mac上的app更换图标">
+                  给mac上的app更换图标 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
     </footer>
@@ -546,13 +556,13 @@ platformDownloadPath&#x3D;&#x3D;cli-alpine-x64&#x3D;&#x3D;
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">370k</span>
+    <span title="站点总字数">373k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">20:32</span>
+    <span title="站点阅读时长">20:44</span>
   </span>
 </div>
 <div class="busuanzi-count">
