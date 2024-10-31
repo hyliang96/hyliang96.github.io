@@ -29,7 +29,7 @@
 <meta property="og:description" content="有的服务器设置了ssh登录时必须使用密码（要么是既要使用密钥又要输入密码，要么是禁止使用密钥只能输入密码），此时，每次在终端ssh登陆、以及使用vscode的remote ssh功能连接服务器时，都要输入密码，很麻烦。用sshpass可以实现自动密码登陆远程ssh，能够解决这一问题。  [!CAUTION] 使用sshpass登陆服务器，需要在本地明文保存密码，会降低安全性。因此建议只在网络环境和">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-31T10:01:57.000Z">
-<meta property="article:modified_time" content="2024-10-31T10:02:07.903Z">
+<meta property="article:modified_time" content="2024-10-31T10:04:18.317Z">
 <meta property="article:author" content="∞亼">
 <meta name="twitter:card" content="summary">
 
@@ -151,7 +151,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95%EF%BC%88%E7%94%A8Homebrew%EF%BC%89"><span class="nav-text">安装方法（用Homebrew）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mac"><span class="nav-text">mac</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#centos"><span class="nav-text">centos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%8C%85%E5%AE%89%E8%A3%85"><span class="nav-text">源码包安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86"><span class="nav-text">用密码登陆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E5%AD%98%E6%94%BE%E5%AF%86%E7%A0%81%E7%9A%84%E6%96%87%E4%BB%B6%E7%99%BB%E9%99%86"><span class="nav-text">用存放密码的文件登陆</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86%E9%85%8D%E7%BD%AE"><span class="nav-text">免密登陆配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">免密登陆服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86%E8%B7%B3%E6%9D%BF%E6%9C%BA%E5%86%8D%E7%99%BB%E9%99%86%E5%85%B6%E4%BB%96%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">免密登陆跳板机再登陆其他服务器</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E6%96%B9%E6%B3%95%EF%BC%88%E7%94%A8Homebrew%EF%BC%89"><span class="nav-text">安装方法（用Homebrew）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mac"><span class="nav-text">mac</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Ubuntu"><span class="nav-text">Ubuntu</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#centos"><span class="nav-text">centos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BA%90%E7%A0%81%E5%8C%85%E5%AE%89%E8%A3%85"><span class="nav-text">源码包安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">使用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E5%AF%86%E7%A0%81%E7%99%BB%E9%99%86"><span class="nav-text">用密码登陆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%A8%E5%AD%98%E6%94%BE%E5%AF%86%E7%A0%81%E7%9A%84%E6%96%87%E4%BB%B6%E7%99%BB%E9%99%86"><span class="nav-text">用存放密码的文件登陆</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86%E9%85%8D%E7%BD%AE"><span class="nav-text">免密登陆配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86%E5%90%91%E5%85%AC%E7%BD%91%E5%BC%80%E6%94%BE%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">免密登陆向公网开放的服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%8D%E5%AF%86%E7%99%BB%E9%99%86%E8%B7%B3%E6%9D%BF%E6%9C%BA%E5%86%8D%E7%99%BB%E9%99%86%E5%86%85%E7%BD%91%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="nav-text">免密登陆跳板机再登陆内网服务器</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -246,7 +246,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-10-31 18:01:57 / 修改时间：18:02:07" itemprop="dateCreated datePublished" datetime="2024-10-31T18:01:57+08:00">2024-10-31</time>
+      <time title="创建时间：2024-10-31 18:01:57 / 修改时间：18:04:18" itemprop="dateCreated datePublished" datetime="2024-10-31T18:01:57+08:00">2024-10-31</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -290,7 +290,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>2.3k</span>
+      <span>2.4k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -357,7 +357,7 @@ sshpass -f <span class="token operator">&lt;</span>存放密码的文件的路�
 <p>为了能够<code>ssh &lt;host别名&gt;</code>自动使用密码登陆服务器，以及vscode的remote ssh功能能够自动加载<code>~/.ssh/config</code>并自动使用密码登陆服务器，需要把sshpass登陆服务器配置到<code>~/.ssh/config</code>里面。</p>
 <p>首先，创建用来保存密码的文件<code>~/.ssh/password-file</code>，在其中只写一行内容，就是密码。然后设置其为只有自己可读写：</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">chmod</span> <span class="token number">600</span> ~/.ssh/password-file<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="免密登陆服务器"><a class="header-anchor" href="#免密登陆服务器"></a>免密登陆服务器</h3>
+<h3 id="免密登陆向公网开放的服务器"><a class="header-anchor" href="#免密登陆向公网开放的服务器"></a>免密登陆向公网开放的服务器</h3>
 <p>若某服务器host1向<strong>公网开放</strong>。</p>
 <ul>
 <li>
@@ -387,7 +387,8 @@ Host host1
     ProxyCommand sshpass -f ~/.ssh/password-file <span class="token function">ssh</span> host0 -W %h:%p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这样，就可以登陆host1时无需输入密码了</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> host1<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<h3 id="免密登陆跳板机再登陆其他服务器"><a class="header-anchor" href="#免密登陆跳板机再登陆其他服务器"></a>免密登陆跳板机再登陆其他服务器</h3>
+<p>vscode的remote ssh功能连接服务器时，选择host1，也不用输入密码。</p>
+<h3 id="免密登陆跳板机再登陆内网服务器"><a class="header-anchor" href="#免密登陆跳板机再登陆内网服务器"></a>免密登陆跳板机再登陆内网服务器</h3>
 <p>若某服务器host2<strong>不向公网开放</strong>，需要<strong>先登陆host0进入内网</strong>，才能登陆host2。</p>
 <ul>
 <li>
@@ -415,6 +416,7 @@ Host host2
     ProxyCommand sshpass -f ~/.ssh/password-file <span class="token function">ssh</span> host0 -W %h:%p<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>这样，就可以经由host0登陆host2时，就无需输入host0的密码了</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">ssh</span> host2<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>vscode的remote ssh功能连接服务器时，选择host2，也不用输入密码。</p>
 
     </div>
 
@@ -471,7 +473,7 @@ Host host2
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">20:54</span>
+    <span title="站点阅读时长">20:55</span>
   </span>
 </div>
 <div class="busuanzi-count">
