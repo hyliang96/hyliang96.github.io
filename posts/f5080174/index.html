@@ -29,7 +29,7 @@
 <meta property="og:description" content="zsh的自动补全 zsh-completions是zsh官方支持的自动补全包 使用antigen管理zsh插件的话，zsh-completions的路径在~&#x2F;.antigen&#x2F;bundles&#x2F;zsh-users&#x2F;zsh-completions&#x2F;src，其下有众多文件名如_xxx，分别定义了xxx命令的补全。">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-08-01T17:24:20.000Z">
-<meta property="article:modified_time" content="2022-03-23T09:14:46.150Z">
+<meta property="article:modified_time" content="2024-11-27T09:01:05.122Z">
 <meta property="article:author" content="∞亼">
 <meta name="twitter:card" content="summary">
 
@@ -151,7 +151,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="nav-text">zsh的自动补全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E7%90%86"><span class="nav-text">机理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E7%94%A8zsh%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E5%87%BD%E6%95%B0"><span class="nav-text">复用zsh的自动补全函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-text">基本原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-text">配置示例</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="nav-text">zsh的自动补全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%BA%E7%90%86"><span class="nav-text">机理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E7%94%A8zsh%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8%E5%87%BD%E6%95%B0"><span class="nav-text">复用zsh的自动补全函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%8E%9F%E7%90%86"><span class="nav-text">基本原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-text">配置示例</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%96%87%E4%BB%B6%E5%88%97%E8%A1%A8%E5%81%9A%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="nav-text">用文件列表做自动补全</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -252,7 +252,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+        <time title="修改时间：2024-11-27 17:01:05" itemprop="dateModified" datetime="2024-11-27T17:01:05+08:00">2024-11-27</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -296,14 +296,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>4k</span>
+      <span>5k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>13 分钟</span>
+      <span>17 分钟</span>
     </span>
 </div>
 
@@ -432,6 +432,43 @@ compdef _tmux tmux_itm
     <span class="token keyword">fi</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>注意：复用<code>foo &lt;n个参数&gt;</code>，要仿照上面的代码，把前n个参数过掉。</p>
+<h2 id="用文件列表做自动补全"><a class="header-anchor" href="#用文件列表做自动补全"></a>用文件列表做自动补全</h2>
+<p>用<code>$base_dir</code>下面的子文件夹 的 名称（而不是绝对路径）作为 自定义函数<code>f</code> 的自动补全。在zsh和bash下的补全函数写法，分别如下：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 自定义函数</span>
+<span class="token function-name function">f</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span> <span class="token for-or-select variable">i</span> <span class="token keyword">in</span> <span class="token string">"<span class="token variable">$@</span>"</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+        <span class="token builtin class-name">echo</span> <span class="token string">"subdir: <span class="token variable">$i</span>"</span>
+    <span class="token keyword">done</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token comment"># 用$base_dir下面的子文件夹 的 名称（而不是绝对路径）作为 f 的自动补全</span>
+<span class="token assign-left variable">current_shell</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token function">ps</span> -p $$ -o <span class="token assign-left variable">comm</span><span class="token operator">=</span><span class="token variable">)</span></span>
+
+<span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$current_shell</span>"</span> <span class="token operator">==</span> <span class="token string">"-zsh"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span> <span class="token builtin class-name">command</span> -v compdef <span class="token operator">&amp;></span>/dev/null <span class="token punctuation">)</span> <span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token comment">#  当前是交互式zsh 且存在compdef命令</span>
+    <span class="token comment"># -zsh 表示交互式zsh</span>
+    <span class="token function-name function">_f_zsh_completion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token comment"># 列出$base_dir目录下的所有子文件夹</span>
+        <span class="token builtin class-name">local</span> <span class="token assign-left variable">dirs</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token variable"><span class="token variable">$(</span><span class="token function">find</span> $base_dir -mindepth <span class="token number">1</span> -maxdepth <span class="token number">1</span> -type d -exec <span class="token function">basename</span> <span class="token punctuation">&#123;</span><span class="token punctuation">&#125;</span> <span class="token punctuation">\</span><span class="token punctuation">;</span><span class="token variable">)</span></span><span class="token punctuation">)</span>
+        <span class="token comment"># 在zsh中，若dirs中包括特殊字符，如@，不会影响显示自动补全</span>
+        _describe <span class="token string">'directory'</span> <span class="token function">dirs</span>
+    <span class="token punctuation">&#125;</span>
+    compdef _f_zsh_completion f
+    
+<span class="token keyword">elif</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$current_shell</span>"</span> <span class="token operator">==</span> <span class="token string">"bash"</span> <span class="token punctuation">]</span><span class="token punctuation">]</span>  <span class="token operator">&amp;&amp;</span> <span class="token punctuation">(</span> <span class="token builtin class-name">command</span> -v complete <span class="token operator">&amp;></span>/dev/null <span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+    <span class="token comment">#  当前是bash（不论交互还是非交互式） 且存在complete命令</span>
+    <span class="token function-name function">_f_bash_completion</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+        <span class="token builtin class-name">local</span> cur opts <span class="token comment"># prev</span>
+        <span class="token assign-left variable">cur</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$&#123;COMP_WORDS<span class="token punctuation">[</span>COMP_CWORD<span class="token punctuation">]</span>&#125;</span>"</span>
+        <span class="token comment"># prev="$&#123;COMP_WORDS[COMP_CWORD - 1]&#125;"   # 当前参数前的一个参数</span>
+
+        <span class="token assign-left variable">opts</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token variable"><span class="token variable">$(</span><span class="token function">find</span> $base_dir -mindepth <span class="token number">1</span> -maxdepth <span class="token number">1</span> -type d <span class="token operator">|</span> <span class="token function">xargs</span> -n1 <span class="token function">basename</span> <span class="token variable">)</span></span><span class="token punctuation">)</span>
+        <span class="token comment"># 在bash中，若dirs中包括特殊字符，如@，则因特殊符号符号的干扰，无法显示自动补全</span>
+        <span class="token assign-left variable">COMPREPLY</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token variable"><span class="token variable">$(</span>compgen -W <span class="token string">"<span class="token variable">$&#123;opts<span class="token punctuation">[</span>*<span class="token punctuation">]</span>&#125;</span>"</span>  -- <span class="token string">"<span class="token variable">$&#123;cur&#125;</span>"</span><span class="token variable">)</span></span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#125;</span>
+    <span class="token comment"># 将补全功能绑定到函数 f</span>
+    complete -F _f_bash_completion f
+<span class="token keyword">fi</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
     </div>
 
@@ -445,8 +482,8 @@ compdef _tmux tmux_itm
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/26c0d38/" rel="prev" title="github_pages绑定二级域名">
-                  <i class="fa fa-chevron-left"></i> github_pages绑定二级域名
+                <a href="/posts/3ad41d06/" rel="prev" title="mac上使用X11">
+                  <i class="fa fa-chevron-left"></i> mac上使用X11
                 </a>
             </div>
             <div class="post-nav-item">
@@ -485,13 +522,13 @@ compdef _tmux tmux_itm
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">380k</span>
+    <span title="站点总字数">381k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:05</span>
+    <span title="站点阅读时长">21:11</span>
   </span>
 </div>
 <div class="busuanzi-count">
