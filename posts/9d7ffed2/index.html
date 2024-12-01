@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.png">
+  <link rel="mask-icon" href="/images/favicon.svg" color="#222">
+  <meta name="google-site-verification" content="VYSqFXy4SdSulNvauNz8l6z0WDUa1-t62R0hKya9Xmw">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="在~&#x2F;.ssh&#x2F;config中配置了如下的跳板机连接，能实现scp -r target:&lt;path&gt; &lt;local-path&gt;和scp -r &lt;local-path&gt; target:&lt;path&gt; 正常上传&#x2F;下载文件和文件夹（测试版本scp&#x2F;ssh：OpenSSH_8.1p1, LibreSSL 2.7.3） # 跳板机 Host jumpserver">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iterm2的上传下载无法经跳板机使用">
+<meta property="og:url" content="https://hyliang96.github.io/posts/9d7ffed2/index.html">
+<meta property="og:site_name" content="丹炉志">
+<meta property="og:description" content="在~&#x2F;.ssh&#x2F;config中配置了如下的跳板机连接，能实现scp -r target:&lt;path&gt; &lt;local-path&gt;和scp -r &lt;local-path&gt; target:&lt;path&gt; 正常上传&#x2F;下载文件和文件夹（测试版本scp&#x2F;ssh：OpenSSH_8.1p1, LibreSSL 2.7.3） # 跳板机 Host jumpserver">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyliang96.github.io/posts/9d7ffed2/image-20241202000700917.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/9d7ffed2/image-20241202004302133.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/9d7ffed2/114293161-87f34000-9ac6-11eb-8f7e-1286718b16af.png">
+<meta property="og:image" content="https://hyliang96.github.io/posts/9d7ffed2/114293154-7316ac80-9ac6-11eb-8970-330b1f3e7b75.png">
+<meta property="article:published_time" content="2024-12-01T14:52:35.000Z">
+<meta property="article:modified_time" content="2024-12-01T16:48:50.158Z">
+<meta property="article:author" content="∞亼">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hyliang96.github.io/posts/9d7ffed2/image-20241202000700917.png">
+
+
+<link rel="canonical" href="https://hyliang96.github.io/posts/9d7ffed2/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/9d7ffed2/","path":"posts/9d7ffed2/","title":"iterm2的上传下载无法经跳板机使用"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>iterm2的上传下载无法经跳板机使用 | 丹炉志</title>
+  
+
+
+
+<link rel="dns-prefetch" href="https://waline-hyliang96.vercel.app">
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">丹炉志</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">深度学习及其运维日志</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>概览</a></li>
+        <li class="menu-item menu-item-tools"><a href="/categories/%E5%99%A8/" rel="section"><i class="fa fa-wrench fa-fw"></i>器</a></li>
+        <li class="menu-item menu-item-academics"><a href="/categories/%E6%9C%AF/" rel="section"><i class="fa fa-book fa-fw"></i>术</a></li>
+        <li class="menu-item menu-item-philosophy"><a href="/categories/%E9%81%93/" rel="section"><i class="fas fa-circle-notch fa-fw"></i>道</a></li>
+        <li class="menu-item menu-item-book"><a href="/categories/%E4%B9%A6%E7%B1%8D/" rel="section"><i class="fa fa-bookmark fa-fw"></i>书</a></li>
+        <li class="menu-item menu-item-movie"><a href="/categories/%E5%BD%B1/" rel="section"><i class="fa fa-film fa-fw"></i>影</a></li>
+        <li class="menu-item menu-item-photo"><a href="/categories/%E7%85%A7%E7%89%87/" rel="section"><i class="fas fa-photo-video fa-fw"></i>相</a></li>
+        <li class="menu-item menu-item-essay"><a href="/categories/%E9%9A%8F%E7%AC%94/" rel="section"><i class="fas fa-edit fa-fw"></i>杂谈</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%95%E4%B8%80%EF%BC%9Ascp-trigger%E3%80%90%E6%8E%A8%E8%8D%90%E3%80%91"><span class="nav-text">法一：scp trigger【推荐】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85bash%E8%84%9A%E6%9C%AC"><span class="nav-text">安装bash脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0iTerm2-Triggers%E8%A7%84%E5%88%99"><span class="nav-text">添加iTerm2 Triggers规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%95%E4%BA%8C%EF%BC%9Alszrz%E3%80%90%E4%B8%8D%E6%8E%A8%E8%8D%90%E3%80%91"><span class="nav-text">法二：lszrz【不推荐】</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%BC%BA%E7%82%B9"><span class="nav-text">优缺缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85lrzsz"><span class="nav-text">安装lrzsz</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%84%9A%E6%9C%AC"><span class="nav-text">创建脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0iTerm2-Triggers%E8%A7%84%E5%88%99-_2"><span class="nav-text">添加iTerm2 Triggers规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">使用方法</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="∞亼"
+      src="/images/heat.jpg">
+  <p class="site-author-name" itemprop="name">∞亼</p>
+  <div class="site-description" itemprop="description">一切节约归根到底是时间的节约</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">85</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hyliang96" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hyliang96" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hyliang96@gmail.com" title="E-Mail → mailto:hyliang96@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="返回顶部">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+
+  <a href="https://github.com/hyliang96" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/9d7ffed2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          iterm2的上传下载无法经跳板机使用
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-12-01 22:52:35" itemprop="dateCreated datePublished" datetime="2024-12-01T22:52:35+08:00">2024-12-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2024-12-02 00:48:50" itemprop="dateModified" datetime="2024-12-02T00:48:50+08:00">2024-12-02</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E7%BB%88%E7%AB%AF/" itemprop="url" rel="index"><span itemprop="name">终端</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/9d7ffed2/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/9d7ffed2/" data-xid="/posts/9d7ffed2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>4.1k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>14 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>在<code>~/.ssh/config</code>中配置了如下的跳板机连接，能实现<code>scp -r target:&lt;path&gt; &lt;local-path&gt;</code>和<code>scp -r &lt;local-path&gt; target:&lt;path&gt; </code>正常上传/下载文件和文件夹（测试版本scp/ssh：OpenSSH_8.1p1, LibreSSL 2.7.3）</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 跳板机</span>
+Host jumpserver
+    Hostname <span class="token operator">&lt;</span>host-ip/url<span class="token operator">></span>
+    User <span class="token operator">&lt;</span>username<span class="token operator">></span>
+    IdentityFile ~/.ssh/id_rsa
+    <span class="token comment"># 转发密钥</span>
+    ForwardAgent <span class="token function">yes</span>
+    
+Host target
+    HostName <span class="token operator">&lt;</span>内网ip<span class="token operator">></span>
+    User <span class="token operator">&lt;</span>username<span class="token operator">></span>
+    IdentityFile ~/.ssh/id_rsa
+    ProxyJump jumpserver
+    <span class="token comment"># ProxyJump jumpserver 等价于 ProxyCommand ssh jumpserver -W %h:%p</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>但是即便在<code>~/.ssh/config</code>中做了如上配置，iterm2（我测试过的version：Build 3.5.10），其自带的下载（cmd+点击）/上传（opt+拖拽）功能，仍<strong>不支持经过跳板机连接的服务器</strong>，会弹出如下报错</p>
+<p><img data-src="/posts/9d7ffed2/image-20241202000700917.png" alt="image-20241202000700917"></p>
+<p>我初步猜测：是因为iterm2用来支持此功能的内置scp版本过老，无法经过跳板机上传/下载。在2018年的<a target="_blank" rel="noopener" href="https://www.testwo.com/blog/8079">某帖子</a>和2021年的<a target="_blank" rel="noopener" href="https://github.com/islishude/blog/issues/249#issue-855220214">某帖子</a>都表示，scp无法用于有跳板机的情况。</p>
+<p>注：ssh 、 scp、 sftp 的安装<em>版本</em>都来自于OpenSSH的同一版本，<code>ssh -V</code>即可查看OpenSSH的版本。</p>
+<h2 id="法一：scp-trigger【推荐】"><a class="header-anchor" href="#法一：scp-trigger【推荐】"></a>法一：scp trigger【推荐】</h2>
+<p>优点：</p>
+<ul>
+<li>
+<p>在ssh远程终端下就能直接上传/下载文件，方便快捷</p>
+</li>
+<li>
+<p><strong>依赖少</strong>（只需要本地安装iterm2、ssh、scp），该方法无需在服务器和本机上安装其他软件，直接使用本地的scp来传输文件</p>
+</li>
+<li>
+<p>可以传输文件夹</p>
+</li>
+<li>
+<p>一次可以上传/下载多个文件/文件夹</p>
+</li>
+<li>
+<p>传输过程中有error才弹出错误提示，否则弹出成功提示</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>只适合小文件的传输，大文件建议单独开一个终端，使用 rsync/scp 等</li>
+</ul>
+<h3 id="安装bash脚本"><a class="header-anchor" href="#安装bash脚本"></a>安装bash脚本</h3>
+<p>在服务器上<code>~/.bashrc</code>或<code>~/.zshrc</code>中添加如下代码：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># down/up: ssh登陆服务器后，在远程的终端下输入down/up命令，实现下载/上传文件或文件夹</span>
+<span class="token function-name function">down</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    <span class="token builtin class-name">local</span> <span class="token assign-left variable">dirs</span><span class="token operator">=</span>
+    <span class="token builtin class-name">local</span> arg
+    <span class="token keyword">for</span> <span class="token for-or-select variable">arg</span> <span class="token keyword">in</span> <span class="token variable">$@</span><span class="token punctuation">;</span> <span class="token keyword">do</span>
+        <span class="token keyword">if</span> <span class="token punctuation">[</span> -e <span class="token variable">$arg</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+            <span class="token builtin class-name">local</span> <span class="token assign-left variable">path_arg</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span>abspath $arg<span class="token variable">)</span></span>
+            <span class="token assign-left variable">dirs</span><span class="token operator">=</span><span class="token string">"<span class="token variable">$dirs</span>,'<span class="token entity" title="\&quot;">\"</span><span class="token variable">$path_arg</span><span class="token entity" title="\&quot;">\"</span>'"</span>
+        <span class="token keyword">else</span>
+            <span class="token builtin class-name">echo</span> not exist: <span class="token variable">$arg</span>
+        <span class="token keyword">fi</span>
+    <span class="token keyword">done</span>
+    <span class="token comment"># 去掉dirs字符串开头的'; '</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$&#123;dirs<span class="token operator">:</span>0<span class="token operator">:</span>1&#125;</span>"</span> <span class="token operator">=</span> <span class="token string">","</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token assign-left variable">dirs</span><span class="token operator">=</span><span class="token variable">$&#123;dirs<span class="token operator">:</span>1&#125;</span>
+    <span class="token keyword">fi</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$dirs</span>"</span> <span class="token operator">=~</span> , <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token assign-left variable">dirs</span><span class="token operator">=</span><span class="token string">"&#123;<span class="token variable">$&#123;dirs&#125;</span>&#125;"</span>
+    <span class="token keyword">fi</span>
+    <span class="token keyword">if</span> <span class="token punctuation">[</span> <span class="token string">"<span class="token variable">$dirs</span>"</span> <span class="token operator">!=</span> <span class="token string">''</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+        <span class="token builtin class-name">echo</span> -e <span class="token string">"<span class="token entity" title="\033">\033</span>[38;5;8m[<span class="token entity" title="\U000026A1">\U000026A1</span>RUNCOMMAND<span class="token entity" title="\U000026A1">\U000026A1</span>]scp -r <span class="token environment constant">$USER</span>@<span class="token variable"><span class="token variable">`</span><span class="token function">hostname</span><span class="token variable">`</span></span>:<span class="token variable">$dirs</span> ~/Downloads &amp;&amp; osascript -e 'display notification <span class="token entity" title="\&quot;">\"</span>Download finished successfully.<span class="token entity" title="\&quot;">\"</span> with title <span class="token entity" title="\&quot;">\"</span>Download Finished<span class="token entity" title="\&quot;">\"</span>'[<span class="token entity" title="\U000026A1">\U000026A1</span>RUNCOMMANDEND<span class="token entity" title="\U000026A1">\U000026A1</span>]<span class="token entity" title="\033">\033</span>[0m"</span>
+    <span class="token keyword">fi</span>
+<span class="token punctuation">&#125;</span>
+
+<span class="token function-name function">up</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#123;</span>
+    <span class="token builtin class-name">local</span> <span class="token assign-left variable">dirs</span><span class="token operator">=</span><span class="token variable"><span class="token variable">$(</span><span class="token builtin class-name">printf</span> <span class="token string">"'%s' "</span> <span class="token string">"<span class="token variable">$@</span>"</span><span class="token variable">)</span></span>
+    <span class="token assign-left variable">dirs</span><span class="token operator">=</span><span class="token variable">$&#123;dirs<span class="token operator">:</span>0<span class="token operator">:</span>$&#123;<span class="token operator">#</span>dirs&#125;</span>-1<span class="token punctuation">&#125;</span>
+    <span class="token builtin class-name">echo</span> -e <span class="token string">"<span class="token entity" title="\033">\033</span>[38;5;8m[<span class="token entity" title="\U000026A1">\U000026A1</span>RUNCOMMAND<span class="token entity" title="\U000026A1">\U000026A1</span>]scp -r <span class="token variable">$dirs</span> <span class="token environment constant">$USER</span>@<span class="token variable"><span class="token variable">`</span><span class="token function">hostname</span><span class="token variable">`</span></span>:<span class="token variable"><span class="token variable">`</span><span class="token builtin class-name">pwd</span><span class="token variable">`</span></span> &amp;&amp; osascript -e 'display notification <span class="token entity" title="\&quot;">\"</span>Upload finished successfully.<span class="token entity" title="\&quot;">\"</span> with title <span class="token entity" title="\&quot;">\"</span>Upload Finished<span class="token entity" title="\&quot;">\"</span>'[<span class="token entity" title="\U000026A1">\U000026A1</span>RUNCOMMANDEND<span class="token entity" title="\U000026A1">\U000026A1</span>]<span class="token entity" title="\033">\033</span>[0m"</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="添加iTerm2-Triggers规则"><a class="header-anchor" href="#添加iTerm2-Triggers规则"></a>添加iTerm2 Triggers规则</h3>
+<p>Preference/Profiles/Advanced/Triggers 添加新规则：</p>
+<pre class="line-numbers language-none"><code class="language-none">Regular Expression: \[⚡RUNCOMMAND⚡\](.+?)\[⚡RUNCOMMANDEND⚡\]
+Action: Run Command
+Parameters: \1
+Instant: ✓
+Enable: ✓<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>Preference/Advanced/Number of screen lines to match against trigger regular expressions: 设置为10，或者别的较大的数字，它表示Trigger能匹配最多多少行（以当前终端分屏窗口的行计算）。该数字越大，则一次能上传/下载文件就越多、文件路径就越长。</p>
+<h3 id="使用"><a class="header-anchor" href="#使用"></a>使用</h3>
+<p>将文件夹/文件从本地<strong>上传</strong>到服务器：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">up  本地路径 <span class="token punctuation">[</span>本地路径 <span class="token punctuation">[</span>本地路径<span class="token punctuation">..</span>.<span class="token punctuation">]</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>本地路径必需是绝对路径，要获得本地绝对路径，可以在Finder中选中文件/文件夹后，cmd+C然后在iterm2中cmd+V，或者直接拖拽到iterm2中</li>
+</ul>
+<p>将文件夹/文件从服务器<strong>下载</strong>到本地：</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">down 远程路径 <span class="token punctuation">[</span>远程路径 <span class="token punctuation">[</span>远程路径<span class="token punctuation">..</span>.<span class="token punctuation">]</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<ul>
+<li>远程路径可以是绝对路径、或对于当前位置的相对路径</li>
+</ul>
+<h2 id="法二：lszrz【不推荐】"><a class="header-anchor" href="#法二：lszrz【不推荐】"></a>法二：lszrz【不推荐】</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/islishude/blog/issues/249">参考</a></p>
+<h3 id="优缺缺点"><a class="header-anchor" href="#优缺缺点"></a>优缺缺点</h3>
+<p>优点：</p>
+<ul>
+<li>在ssh远程终端下就能直接上传/下载文件，方便快捷</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>
+<p>依赖多：需要本地和服务器都安装了lrzsz</p>
+</li>
+<li>
+<p>sz/rz只能传输文件，<strong>不能传输文件夹</strong>，文件夹建议压缩后传输</p>
+</li>
+<li>
+<p>rz一次只能上传单个文件</p>
+</li>
+<li>
+<p>sz/rz只适合小文件的传输，大文件建议单独开一个终端，使用 rsync/scp 等</p>
+</li>
+<li>
+<p>sz/rz只有支持 zmodem 协议的软件（如iterm2）才可以使用</p>
+</li>
+<li>
+<p>sz/rz执行完后，不论是否无error，都会触发iterm2的错误通知，还会输出乱码（如下图）</p>
+<p><img data-src="/posts/9d7ffed2/image-20241202004302133.png" alt="image-20241202004302133"></p>
+</li>
+</ul>
+<h3 id="安装lrzsz"><a class="header-anchor" href="#安装lrzsz"></a>安装lrzsz</h3>
+<p><code>lrzsz</code> 是一个提供 <code>rz</code> 和 <code>sz</code> 命令的工具，用于通过 <code>zmodem</code> 协议进行文件传输。</p>
+<p>mac上安装lrzsz</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> lrzsz<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>服务器（Linux）上安装lrzsz</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 若有sudo权限</span>
+<span class="token function">sudo</span> <span class="token function">apt</span> <span class="token function">install</span> -y lrzsz <span class="token comment"># 对于基于 Debian 的系统（如 Ubuntu）</span>
+<span class="token function">sudo</span> yum <span class="token function">install</span> lrzsz <span class="token comment"># 对于基于 Red Hat 的系统（如 CentOS 或 Fedora）</span>
+<span class="token comment"># 若无sudo权限</span>
+conda <span class="token function">install</span> -c conda-forge lrzsz<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>从原码安装</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">wget</span> https://ohse.de/uwe/releases/lrzsz-0.12.20.tar.gz
+<span class="token function">tar</span> -xvzf lrzsz-0.12.20.tar.gz
+<span class="token builtin class-name">cd</span> lrzsz-0.12.20
+
+./configure --prefix<span class="token operator">=</span><span class="token operator">&lt;</span>安装路径<span class="token operator">></span> <span class="token comment"># 比如 /usr/local/lrzsz</span>
+<span class="token function">make</span>
+<span class="token function">make</span> <span class="token function">install</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>检查是否安装成功</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">rz --version
+sz --version<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<h3 id="创建脚本"><a class="header-anchor" href="#创建脚本"></a>创建脚本</h3>
+<p>然后安装脚本到 $PATH 或者其它目录，并使其可执行。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> <span class="token function">wget</span> -O /usr/local/bin/iterm2-zmodem https://gist.githubusercontent.com/islishude/716c59c2529cbd87babbb2fdaf49f3ae/raw/e642bbed611fa607335e9a9edf5a1609be3567dd/iterm2-zmodem
+
+<span class="token function">sudo</span> <span class="token function">chmod</span> +x /usr/local/bin/iterm2-zmodem<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<h3 id="添加iTerm2-Triggers规则-_2"><a class="header-anchor" href="#添加iTerm2-Triggers规则-_2"></a>添加iTerm2 Triggers规则</h3>
+<p>设置Iterm2的Tirgger特性，profiles-&gt;default-&gt;editProfiles-&gt;Advanced中的Tirgger配置：</p>
+<pre class="line-numbers language-none"><code class="language-none">Regular expression: \*\*B0100
+Action:             Run Coprocess
+Parameters:         &#x2F;usr&#x2F;local&#x2F;bin&#x2F;iterm2-zmodem sz
+instant: true
+enable: true
+
+Regular expression: \*\*B00000000000000
+Action:             Run Coprocess
+Parameters:         &#x2F;usr&#x2F;local&#x2F;bin&#x2F;iterm2-zmodem rz
+instant: true
+enable: true<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="使用方法"><a class="header-anchor" href="#使用方法"></a>使用方法</h3>
+<p><a target="_blank" rel="noopener" href="https://xujinzh.github.io/2023/02/20/linux-rz-sz-transfer-files/index.html">参考</a></p>
+<p>在远程服务器运行 <code>rz -be</code> ：本地就会弹出窗口要求选择要<strong>上传</strong>的文件（一次只能选择一个文件，不能选文件夹），选择后即上传</p>
+<p><a target="_blank" rel="noopener" href="https://user-images.githubusercontent.com/24730006/114293161-87f34000-9ac6-11eb-8f7e-1286718b16af.png"><img data-src="/posts/9d7ffed2/114293161-87f34000-9ac6-11eb-8f7e-1286718b16af.png" alt="image"></a></p>
+<p>在远程服务器运行 <code>sz -be filename1 filename2 … filenameN</code> （都只能是文件、不能是文件夹）：本地就会弹出窗口要求保存文件的本地路径，选择后即<strong>下载</strong>。</p>
+<p><a target="_blank" rel="noopener" href="https://user-images.githubusercontent.com/24730006/114293154-7316ac80-9ac6-11eb-8970-330b1f3e7b75.png"><img data-src="/posts/9d7ffed2/114293154-7316ac80-9ac6-11eb-8970-330b1f3e7b75.png" alt="image"></a></p>
+<p>参数：</p>
+<pre class="line-numbers language-none"><code class="language-none">-+, --append
+  将文件内容追加到已存在的同名文件
+-a, --ascii
+  以文本方式传输
+-b, --binary
+  以二进制方式传输，推荐使用
+--delay-startup N
+  等待 N 秒
+-e, --escape
+  对所有控制字符转义，建议使用
+-E, --rename
+  已存在同名文件则重命名新上传的文件，以点和数字作为后缀
+-p, --protect
+  对 ZMODEM 协议有效，如果目标文件已存在则跳过
+-q, --quiet
+  安静执行，不输出提示信息
+-v, --verbose
+  输出传输过程中的提示信息
+-y, --overwrite
+  存在同名文件则替换
+-X, --xmodem
+  使用 XMODEM 协议
+--ymodem
+  使用 YMODEM 协议
+-Z, --zmodem
+  使用 ZMODEM 协议
+--version
+  显示版本信息
+--h, --help
+  显示帮助信息<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/40390e52/" rel="prev" title="用sshpass自动使用密码登陆ssh">
+                  <i class="fa fa-chevron-left"></i> 用sshpass自动使用密码登陆ssh
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments" id="waline-comments"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">∞亼</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">386k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">21:25</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lozad@1.16.0/dist/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"all","js":{"url":"https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js","integrity":"sha256-r+3itOMtGGjap0x+10hu6jW/gZCzxHsoKrOd7gyRSGY="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+<script class="next-config" data-name="waline" type="application/json">{"lang":"zh-cn","enable":true,"serverURL":"https://waline-hyliang96.vercel.app","placeholder":"Jヾﾉ≧∀≦)o来啊，快活啊!","avatar":"mp","meta":["nick","mail","link"],"pageSize":10,"visitor":false,"comment_count":true,"requiredFields":["nick","mail"],"libUrl":"https://cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js","el":"#waline-comments","path":"/posts/9d7ffed2/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.waline.el).then(() => 
+    NexT.utils.getScript(CONFIG.waline.libUrl, { condition: window.Waline })
+  ).then(() => {
+    new Waline(CONFIG.waline);
+  });
+});
+</script>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"position":"right","width":150,"height":300,"hOffset":-25,"vOffset":-60},"mobile":{"show":false},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
