@@ -29,7 +29,7 @@
 <meta property="og:description" content="执行命令或文件 以下对zsh与bash同时成立 参考">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
-<meta property="article:modified_time" content="2024-12-01T10:47:57.813Z">
+<meta property="article:modified_time" content="2024-12-04T08:08:09.593Z">
 <meta property="article:author" content="∞亼">
 <meta name="twitter:card" content="summary">
 
@@ -252,7 +252,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-12-01 18:47:57" itemprop="dateModified" datetime="2024-12-01T18:47:57+08:00">2024-12-01</time>
+        <time title="修改时间：2024-12-04 16:08:09" itemprop="dateModified" datetime="2024-12-04T16:08:09+08:00">2024-12-04</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -303,7 +303,7 @@
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2:02</span>
+      <span>2:03</span>
     </span>
 </div>
 
@@ -1254,22 +1254,28 @@ EOF<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span>
 <p><code>&lt;&lt;-</code> 表示去掉多行内容再每行开头的所有 tab, <code>&lt;&lt;</code> 则不去掉</p>
 <ul>
 <li>结尾的 <code>EOF</code> 必需在行首, 无缩进</li>
-<li>不转义<code>\x</code>, 仅转义 <code>$&#123;xxx&#125;</code> <code>$xxx</code> <code>$(xxx)</code> <code>`xxx`</code>,  取消转义需 <code>$</code> 写做 <code>\$</code>, <code>`</code> 写做 <code>\`</code> .</li>
+</ul>
+</li>
+<li>
+<p><code>&lt;&lt;</code> / <code>&lt;&lt;-</code> 与 <code>EOF</code> 间的文本转义：</p>
+<ul>
+<li>不转义<code>\x</code>,</li>
+<li>会调用EOF文字块之外的变量（ <code>$&#123;xxx&#125;</code> <code>$xxx</code>），会在EOF文字块之外的环境下执行命令获得输出字符串（ <code>$(xxx)</code> <code>`xxx`</code>）。要取消这个效果，需 <code>$</code> 写做 <code>\$</code>, <code>`</code> 写做 <code>\`</code> .</li>
 </ul>
 </li>
 <li>
 <p>输出多行字符串:</p>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> <span class="token operator">&lt;&lt;</span><span class="token string">EOF
+</li>
+</ul>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> <span class="token operator">&lt;&lt;</span><span class="token string">EOF
   多行内容1
   多行内容2
 EOF</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <p>输出</p>
-<pre class="line-numbers language-none"><code class="language-none">多行内容1
+  <pre class="line-numbers language-none"><code class="language-none">多行内容1
 多行内容2<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-</li>
-<li>
-<p>取消tab缩进, 但空格缩进不会取消:</p>
-</li>
+<ul>
+<li>取消tab缩进, 但空格缩进不会取消:</li>
 </ul>
   <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> <span class="token operator">&lt;&lt;-</span><span class="token string">EOF
   多行内容1 # 开头是 tab, 不是空格
@@ -1287,9 +1293,9 @@ EOF</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span>
 <p>法一: <code>&gt;</code> 无法以 sudo 形式写入到文件</p>
 </li>
 </ul>
-  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">  <span class="token function">cat</span> <span class="token operator">></span> 文件 <span class="token operator">&lt;&lt;</span> <span class="token string">EOF
-    多行内容1
-    多行内容2
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">cat</span> <span class="token operator">></span> 文件 <span class="token operator">&lt;&lt;</span> <span class="token string">EOF
+  多行内容1
+  多行内容2
 EOF</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
 <ul>
 <li>法二 [更灵活, 推荐之] : 允许以 sudo 形式写入到文件</li>
@@ -2746,13 +2752,13 @@ EOF</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">386k</span>
+    <span title="站点总字数">392k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">21:25</span>
+    <span title="站点阅读时长">21:48</span>
   </span>
 </div>
 <div class="busuanzi-count">
