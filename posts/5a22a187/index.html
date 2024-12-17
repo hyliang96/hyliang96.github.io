@@ -29,7 +29,7 @@
 <meta property="og:description" content="mac 升级 rsync mac自带rsync在&#x2F;usr&#x2F;bin&#x2F;rsync，版本 rsync  version 2.6.9  protocol version 29太老，不支持用一条命令将多个远程文件传到本地，需要升级才支持。 升级方法：">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
-<meta property="article:modified_time" content="2022-03-23T09:14:46.151Z">
+<meta property="article:modified_time" content="2024-12-17T13:21:44.786Z">
 <meta property="article:author" content="∞亼">
 <meta name="twitter:card" content="summary">
 
@@ -252,7 +252,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2022-03-23 17:14:46" itemprop="dateModified" datetime="2022-03-23T17:14:46+08:00">2022-03-23</time>
+        <time title="修改时间：2024-12-17 21:21:44" itemprop="dateModified" datetime="2024-12-17T21:21:44+08:00">2024-12-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -296,7 +296,7 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>3.6k</span>
+      <span>3.7k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
@@ -320,6 +320,7 @@
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">brew <span class="token function">install</span> <span class="token function">rsync</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>安装在<code>/usr/local/bin/rsync</code>，版本<code>rsync  version 3.1.3  protocol version 31</code></p>
 <h2 id="用法"><a class="header-anchor" href="#用法"></a>用法</h2>
+<p>rsync只支持单向同步, 不支持双向同步, 即只有<code>&lt;收&gt;</code>会改变, <code>&lt;源&gt;</code>不改变</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">rsync</span> <span class="token punctuation">(</span>参数<span class="token punctuation">)</span>  <span class="token operator">&lt;</span>源<span class="token operator">></span> <span class="token operator">&lt;</span>收<span class="token operator">></span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="源-收路径写法"><a class="header-anchor" href="#源-收路径写法"></a>源/收路径写法</h3>
 <table>
@@ -490,13 +491,13 @@ rsync error: protocol incompatibility (code 2) at compat.c(185) [sender&#x3D;3.1
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/bdb5144f/" rel="prev" title="sshfs">
-                  <i class="fa fa-chevron-left"></i> sshfs
+                <a href="/posts/2e77fc3e/" rel="prev" title="ssh配置">
+                  <i class="fa fa-chevron-left"></i> ssh配置
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/62fe829c/" rel="next" title="mac安装与卸载系统自带Python">
-                  mac安装与卸载系统自带Python <i class="fa fa-chevron-right"></i>
+                <a href="/posts/bdb5144f/" rel="next" title="sshfs">
+                  sshfs <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
