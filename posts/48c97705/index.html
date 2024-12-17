@@ -23,13 +23,13 @@
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 <meta name="description" content="virtualenv 教程 参考资料： 安装与使用说明">
 <meta property="og:type" content="article">
-<meta property="og:title" content="virtualenv_教程">
+<meta property="og:title" content="virtualenv教程">
 <meta property="og:url" content="https://hyliang96.github.io/posts/48c97705/index.html">
 <meta property="og:site_name" content="丹炉志">
 <meta property="og:description" content="virtualenv 教程 参考资料： 安装与使用说明">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
-<meta property="article:modified_time" content="2024-12-16T16:41:22.787Z">
+<meta property="article:modified_time" content="2024-12-17T08:29:01.363Z">
 <meta property="article:author" content="∞亼">
 <meta name="twitter:card" content="summary">
 
@@ -38,10 +38,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/48c97705/","path":"posts/48c97705/","title":"virtualenv_教程"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://hyliang96.github.io/posts/48c97705/","path":"posts/48c97705/","title":"virtualenv教程"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>virtualenv_教程 | 丹炉志</title>
+<title>virtualenv教程 | 丹炉志</title>
   
 
 
@@ -151,7 +151,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#virtualenv-%E6%95%99%E7%A8%8B"><span class="nav-text">virtualenv 教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="nav-text">创建环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BD%A0%E6%9C%BA%E5%AD%90%E4%B8%8A%E4%B8%8D%E5%90%8C%E7%89%88%E6%9C%ACpython%E7%9A%84%E5%9C%B0%E5%9D%80"><span class="nav-text">查看你机子上不同版本python的地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-text">创建虚拟环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="nav-text">创建方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E4%B8%8D%E8%B6%B3"><span class="nav-text">权限不足</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85python%E7%9A%84%E5%8C%85"><span class="nav-text">安装python的包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8python%E5%8F%8Apython%E7%9A%84%E5%8C%85"><span class="nav-text">使用python及python的包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%AF%E7%A7%BB%E6%A4%8D%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="nav-text">可移植的环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#virtualenv-relocatable"><span class="nav-text">virtualenv --relocatable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%86%85%E6%96%87%E4%BB%B6"><span class="nav-text">手动修改虚拟环境内文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E7%BD%AEpython"><span class="nav-text">内置python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E6%95%88%E6%96%B9%E6%B3%95%EF%BC%9A%E6%89%8B%E5%8A%A8%E6%8B%B7%E8%B4%9Dconda%E7%8E%AF%E5%A2%83"><span class="nav-text">有效方法：手动拷贝conda环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0%E6%95%88%E6%96%B9%E6%B3%951-%E6%8B%B7%E8%B4%9Dpython%E6%96%87%E4%BB%B6"><span class="nav-text">无效方法1: 拷贝python文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0%E6%95%88%E6%96%B9%E6%B3%952%EF%BC%9A%E2%80%93always-copy%E5%8F%82%E6%95%B0"><span class="nav-text">无效方法2：–always-copy参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E7%BD%AElib"><span class="nav-text">内置lib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%8E%AF%E5%A2%83%E5%8F%AF%E7%A7%BB%E5%8A%A8"><span class="nav-text">环境可移动</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#venv%E5%91%BD%E4%BB%A4"><span class="nav-text">venv命令</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#virtualenv-%E6%95%99%E7%A8%8B"><span class="nav-text">virtualenv 教程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%8E%AF%E5%A2%83"><span class="nav-text">创建环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E4%BD%A0%E6%9C%BA%E5%AD%90%E4%B8%8A%E4%B8%8D%E5%90%8C%E7%89%88%E6%9C%ACpython%E7%9A%84%E5%9C%B0%E5%9D%80"><span class="nav-text">查看你机子上不同版本python的地址</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83"><span class="nav-text">创建虚拟环境</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%96%B9%E6%B3%95"><span class="nav-text">创建方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E4%B8%8D%E8%B6%B3"><span class="nav-text">权限不足</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85python%E7%9A%84%E5%8C%85"><span class="nav-text">安装python的包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8python%E5%8F%8Apython%E7%9A%84%E5%8C%85"><span class="nav-text">使用python及python的包</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%AF%E7%A7%BB%E6%A4%8D%E7%9A%84%E7%8E%AF%E5%A2%83"><span class="nav-text">可移植的环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#virtualenv-relocatable"><span class="nav-text">virtualenv --relocatable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%89%8B%E5%8A%A8%E4%BF%AE%E6%94%B9%E8%99%9A%E6%8B%9F%E7%8E%AF%E5%A2%83%E5%86%85%E6%96%87%E4%BB%B6"><span class="nav-text">手动修改虚拟环境内文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E7%BD%AEpython"><span class="nav-text">内置python</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9C%89%E6%95%88%E6%96%B9%E6%B3%95%EF%BC%9A%E6%89%8B%E5%8A%A8%E6%8B%B7%E8%B4%9Dconda%E7%8E%AF%E5%A2%83"><span class="nav-text">有效方法：手动拷贝conda环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0%E6%95%88%E6%96%B9%E6%B3%951-%E6%8B%B7%E8%B4%9Dpython%E6%96%87%E4%BB%B6"><span class="nav-text">无效方法1: 拷贝python文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%97%A0%E6%95%88%E6%96%B9%E6%B3%952%EF%BC%9A%E2%80%93always-copy%E5%8F%82%E6%95%B0"><span class="nav-text">无效方法2：–always-copy参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%86%85%E7%BD%AElib"><span class="nav-text">内置lib</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%9B%B8%E5%AF%B9%E8%B7%AF%E5%BE%84"><span class="nav-text">使用相对路径</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#venv%E5%91%BD%E4%BB%A4"><span class="nav-text">venv命令</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -234,7 +234,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          virtualenv_教程
+          virtualenv教程
         </h1>
 
         <div class="post-meta-container">
@@ -252,7 +252,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-12-17 00:41:22" itemprop="dateModified" datetime="2024-12-17T00:41:22+08:00">2024-12-17</time>
+        <time title="修改时间：2024-12-17 16:29:01" itemprop="dateModified" datetime="2024-12-17T16:29:01+08:00">2024-12-17</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -488,8 +488,8 @@ conda <span class="token function">install</span> -c conda-forge libsndfile
 <p>然后在<code>venv/bin/activate</code>中添加下面一行，使得激活venv环境时，就完成修改<code>LD_LIBRARY_PATH</code>，以调用这些lib文件。</p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable">LD_LIBRARY_PATH</span><span class="token operator">=</span><span class="token variable">$LD_LIBRARY_PATH</span><span class="token builtin class-name">:</span><span class="token variable">$VIRTUAL_ENV</span>/lib/libsndfile<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>如此，即便 apt/conda/手动 卸载了libsndfile，在venv中也还能使用libsndfile。</p>
-<h3 id="环境可移动"><a class="header-anchor" href="#环境可移动"></a>环境可移动</h3>
-<p>若跟进一步，还希望项目&lt;目录&gt; 或 <code>&lt;venv&gt;</code>重命名或移动（包括跨机器移动、但必须两台机器的操作系统相似）后，还能使用<code>venv/</code>虚拟环境。则在前述<a href="#%E5%86%85%E7%BD%AEpython">内置python</a>之外，还需要做如下修改：</p>
+<h3 id="使用相对路径"><a class="header-anchor" href="#使用相对路径"></a>使用相对路径</h3>
+<p>若跟进一步，还希望项目&lt;目录&gt; 或 <code>&lt;venv&gt;</code><strong>重命名</strong>或<strong>移动</strong>（包括跨机器移动、但必须两台机器的操作系统相似）后，还能使用<code>venv/</code>虚拟环境。则在前述<a href="#%E5%86%85%E7%BD%AEpython">内置python</a>和<a href="#%E5%86%85%E7%BD%AElib">内置lib</a>之外，还需要做如下修改：</p>
 <ul>
 <li>
 <p>修改<code>venv/bin/acitvate*</code>中变量<code>VIRTUAL_ENV</code>（或``virtual_env`）的定义：</p>
