@@ -28,12 +28,13 @@
 <meta property="og:site_name" content="丹炉志">
 <meta property="og:description" content="环境：ubuntu 16 实验室服务器 时间：2018年8月6日 [TOC]">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://hyliang96.github.io/posts/72862763/image-20250324180117943.png">
 <meta property="og:image" content="https://hyliang96.github.io/posts/72862763/17NoJ.png">
 <meta property="article:published_time" content="2019-05-24T20:03:03.000Z">
-<meta property="article:modified_time" content="2024-10-16T10:14:22.606Z">
+<meta property="article:modified_time" content="2025-03-24T10:14:37.781Z">
 <meta property="article:author" content="∞亼">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://hyliang96.github.io/posts/72862763/17NoJ.png">
+<meta name="twitter:image" content="https://hyliang96.github.io/posts/72862763/image-20250324180117943.png">
 
 
 <link rel="canonical" href="https://hyliang96.github.io/posts/72862763/">
@@ -153,7 +154,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh%E5%AE%89%E8%A3%85"><span class="nav-text">zsh安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A5%E9%94%99"><span class="nav-text">报错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Insecure-completion-dependent-directories-detected"><span class="nav-text">Insecure completion-dependent directories detected</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8antigen-%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E6%8E%A8%E8%8D%90"><span class="nav-text">安装和使用antigen (普通用户推荐)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85antigen"><span class="nav-text">安装antigen</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E9%85%8D%E7%BD%AE"><span class="nav-text">导入配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E6%96%87%E4%BB%B6"><span class="nav-text">点文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zsh%E7%9A%84%E7%82%B9%E6%96%87%E4%BB%B6"><span class="nav-text">zsh的点文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%82%B9%E6%96%87%E4%BB%B6"><span class="nav-text">修改点文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC%E4%B8%8A-zshenv%E8%AE%BE%E7%9A%84-PATH%E5%89%8D%E8%A2%AB%E5%8A%A0%E5%88%AB%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="nav-text">MAC上.zshenv设的$PATH前被加别的路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%A2zsh%E7%9A%84%E4%B8%BB%E9%A2%98"><span class="nav-text">换zsh的主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87"><span class="nav-text">中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E9%85%8D%E8%89%B2"><span class="nav-text">命令行下配色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E6%8F%92%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%94%9F%E6%95%88"><span class="nav-text">使插件修改生效</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tmux%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AE"><span class="nav-text">tmux启动设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BDantigen"><span class="nav-text">卸载antigen</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90"><span class="nav-text">zsh插件推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fzf-%E6%A8%A1%E7%B3%8A%E6%9F%A5%E6%89%BE-%E5%8E%86%E5%8F%B2%E5%91%BD%E4%BB%A4-%E4%B8%8B%E6%96%B9%E8%B7%AF%E5%BE%84-%E7%AD%89"><span class="nav-text">fzf: 模糊查找 历史命令&#x2F;下方路径 等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%86%E5%8F%B2%E7%9B%AE%E5%BD%95%E8%B7%B3%E8%BD%AC"><span class="nav-text">历史目录跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#z-lua"><span class="nav-text">z.lua</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autojump"><span class="nav-text">autojump</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-_2"><span class="nav-text">使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE"><span class="nav-text">zsh语法高亮</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fast-syntax-highlighting"><span class="nav-text">fast-syntax-highlighting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zsh-syntax-highlighting"><span class="nav-text">zsh-syntax-highlighting</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="nav-text">zsh的自动补全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E7%94%A8%E7%8E%B0%E6%9C%89%E5%91%BD%E4%BB%A4%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="nav-text">复用现有命令的自动补全</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh%E8%AF%AD%E6%B3%95%E5%92%8Cbash%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">zsh语法和bash的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%9C%A8%E5%93%AA%E7%A7%8Dshell%E4%B8%8B"><span class="nav-text">判断是在哪种shell下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%9F%E5%8F%B9%E5%8F%B7"><span class="nav-text">感叹号</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shell%E7%9A%84%E7%8A%B6%E6%80%81%E7%B1%BB%E5%9E%8B"><span class="nav-text">shell的状态类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%E2%80%94%E2%80%94shell%E7%9A%84%E7%8A%B6%E6%80%81%E7%B1%BB%E5%9E%8B"><span class="nav-text">预备知识——shell的状态类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%96%B9%E6%B3%95"><span class="nav-text">判断方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh%E5%92%8Cbash%E5%85%B1%E5%AD%98%E7%9A%84%E7%94%A8%E6%88%B7%E7%9B%AE%E5%BD%95%E7%BB%84%E7%BB%87%E9%80%BB%E8%BE%91"><span class="nav-text">zsh和bash共存的用户目录组织逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84"><span class="nav-text">文件夹结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%82%B9%E6%96%87%E4%BB%B6%E7%9A%84%E5%8A%A0%E8%BD%BD%E9%80%BB%E8%BE%91"><span class="nav-text">我设计的点文件的加载逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E9%93%BE%E6%8E%A5"><span class="nav-text">软链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HOME"><span class="nav-text">$HOME&#x2F;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#home-USER"><span class="nav-text">&#x2F;home&#x2F;$USER&#x2F;</span></a></li></ol></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8B%E7%BB%8D"><span class="nav-text">介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh%E5%AE%89%E8%A3%85"><span class="nav-text">zsh安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85zsh"><span class="nav-text">安装zsh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9B%B4%E6%8D%A2%E9%BB%98%E8%AE%A4shell%E4%B8%BAzsh"><span class="nav-text">更换默认shell为zsh</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#chsh"><span class="nav-text">chsh</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#chsh%E5%A4%B1%E6%95%88"><span class="nav-text">chsh失效</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B6%E4%BB%96%E6%9B%B4%E6%94%B9%E9%BB%98%E8%AE%A4shell%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">其他更改默认shell的方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#bash%E8%BD%AC%E6%8E%A5zsh"><span class="nav-text">bash转接zsh</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEshell%E7%9A%84%E5%85%A5%E5%8F%A3"><span class="nav-text">配置shell的入口</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E5%AE%89%E8%A3%85oh-my-zsh-root%E4%B8%8B%E6%8E%A8%E8%8D%90"><span class="nav-text">直接安装oh-my-zsh (root下推荐)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8A%A5%E9%94%99"><span class="nav-text">报错</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Insecure-completion-dependent-directories-detected"><span class="nav-text">Insecure completion-dependent directories detected</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8antigen-%E6%99%AE%E9%80%9A%E7%94%A8%E6%88%B7%E6%8E%A8%E8%8D%90"><span class="nav-text">安装和使用antigen (普通用户推荐)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E8%A3%85antigen"><span class="nav-text">安装antigen</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%BC%E5%85%A5%E9%85%8D%E7%BD%AE"><span class="nav-text">导入配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%82%B9%E6%96%87%E4%BB%B6"><span class="nav-text">点文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#zsh%E7%9A%84%E7%82%B9%E6%96%87%E4%BB%B6"><span class="nav-text">zsh的点文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9%E7%82%B9%E6%96%87%E4%BB%B6"><span class="nav-text">修改点文件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAC%E4%B8%8A-zshenv%E8%AE%BE%E7%9A%84-PATH%E5%89%8D%E8%A2%AB%E5%8A%A0%E5%88%AB%E7%9A%84%E8%B7%AF%E5%BE%84"><span class="nav-text">MAC上.zshenv设的$PATH前被加别的路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8D%A2zsh%E7%9A%84%E4%B8%BB%E9%A2%98"><span class="nav-text">换zsh的主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%AD%E6%96%87"><span class="nav-text">中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%91%BD%E4%BB%A4%E8%A1%8C%E4%B8%8B%E9%85%8D%E8%89%B2"><span class="nav-text">命令行下配色</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E6%8F%92%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%94%9F%E6%95%88"><span class="nav-text">使插件修改生效</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tmux%E5%90%AF%E5%8A%A8%E8%AE%BE%E7%BD%AE"><span class="nav-text">tmux启动设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B8%E8%BD%BDantigen"><span class="nav-text">卸载antigen</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh%E6%8F%92%E4%BB%B6%E6%8E%A8%E8%8D%90"><span class="nav-text">zsh插件推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#fzf-%E6%A8%A1%E7%B3%8A%E6%9F%A5%E6%89%BE-%E5%8E%86%E5%8F%B2%E5%91%BD%E4%BB%A4-%E4%B8%8B%E6%96%B9%E8%B7%AF%E5%BE%84-%E7%AD%89"><span class="nav-text">fzf: 模糊查找 历史命令&#x2F;下方路径 等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%86%E5%8F%B2%E7%9B%AE%E5%BD%95%E8%B7%B3%E8%BD%AC"><span class="nav-text">历史目录跳转</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#z-lua"><span class="nav-text">z.lua</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#autojump"><span class="nav-text">autojump</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E8%A3%85"><span class="nav-text">安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE"><span class="nav-text">配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-_2"><span class="nav-text">使用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zsh%E8%AF%AD%E6%B3%95%E9%AB%98%E4%BA%AE"><span class="nav-text">zsh语法高亮</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#fast-syntax-highlighting"><span class="nav-text">fast-syntax-highlighting</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#zsh-syntax-highlighting"><span class="nav-text">zsh-syntax-highlighting</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="nav-text">zsh的自动补全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%8D%E7%94%A8%E7%8E%B0%E6%9C%89%E5%91%BD%E4%BB%A4%E7%9A%84%E8%87%AA%E5%8A%A8%E8%A1%A5%E5%85%A8"><span class="nav-text">复用现有命令的自动补全</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh%E8%AF%AD%E6%B3%95%E5%92%8Cbash%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-text">zsh语法和bash的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%9C%A8%E5%93%AA%E7%A7%8Dshell%E4%B8%8B"><span class="nav-text">判断是在哪种shell下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%84%9F%E5%8F%B9%E5%8F%B7"><span class="nav-text">感叹号</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shell%E7%9A%84%E7%8A%B6%E6%80%81%E7%B1%BB%E5%9E%8B"><span class="nav-text">shell的状态类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E5%A4%87%E7%9F%A5%E8%AF%86%E2%80%94%E2%80%94shell%E7%9A%84%E7%8A%B6%E6%80%81%E7%B1%BB%E5%9E%8B"><span class="nav-text">预备知识——shell的状态类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E7%99%BB%E5%BD%95-%E4%BA%A4%E4%BA%92%E7%9A%84%E6%96%B9%E6%B3%95"><span class="nav-text">判断登录&#x2F;交互的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E6%98%AF%E5%90%A6%E7%9B%B4%E6%8E%A5%E8%BE%93%E5%87%BA%E5%88%B0%E7%BB%88%E7%AB%AF"><span class="nav-text">判断是否直接输出到终端</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zsh%E5%92%8Cbash%E5%85%B1%E5%AD%98%E7%9A%84%E7%94%A8%E6%88%B7%E7%9B%AE%E5%BD%95%E7%BB%84%E7%BB%87%E9%80%BB%E8%BE%91"><span class="nav-text">zsh和bash共存的用户目录组织逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%87%E4%BB%B6%E5%A4%B9%E7%BB%93%E6%9E%84"><span class="nav-text">文件夹结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%88%91%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%82%B9%E6%96%87%E4%BB%B6%E7%9A%84%E5%8A%A0%E8%BD%BD%E9%80%BB%E8%BE%91"><span class="nav-text">我设计的点文件的加载逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AF%E9%93%BE%E6%8E%A5"><span class="nav-text">软链接</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#HOME"><span class="nav-text">$HOME&#x2F;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#home-USER"><span class="nav-text">&#x2F;home&#x2F;$USER&#x2F;</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -254,7 +255,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-10-16 18:14:22" itemprop="dateModified" datetime="2024-10-16T18:14:22+08:00">2024-10-16</time>
+        <time title="修改时间：2025-03-24 18:14:37" itemprop="dateModified" datetime="2025-03-24T18:14:37+08:00">2025-03-24</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -298,14 +299,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>19k</span>
+      <span>21k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1:04</span>
+      <span>1:11</span>
     </span>
 </div>
 
@@ -324,9 +325,7 @@
 <p><code>oh my zsh</code> ：zsh的一套强大配置</p>
 <p><a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fzsh-users%2Fantigen"><code>antigen</code></a> ：zsh的包（即插件）管理器，让我们以类似apt-get的方式来安装zsh的包。其官方会提供已经配置好的oh my zsh和一些常用zsh包。</p>
 <h2 id="zsh安装"><a class="header-anchor" href="#zsh安装"></a>zsh安装</h2>
-<ul>
-<li>
-<p>安装zsh</p>
+<h3 id="安装zsh"><a class="header-anchor" href="#安装zsh"></a>安装zsh</h3>
 <ul>
 <li>实验室各台服务器上已安装zsh，如未安装，可叫管理员</li>
 </ul>
@@ -351,8 +350,8 @@
 </ul>
 </li>
 </ul>
-</li>
-<li>
+<h3 id="更换默认shell为zsh"><a class="header-anchor" href="#更换默认shell为zsh"></a>更换默认shell为zsh</h3>
+<h4 id="chsh"><a class="header-anchor" href="#chsh"></a>chsh</h4>
 <p>修改为默认shell，即用zsh于替代shell，每次登陆或开新的终端都开zsh而不是shell</p>
 <ul>
 <li>
@@ -366,36 +365,98 @@
 <span class="token comment"># 然后输入root密码</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 </li>
 </ul>
-<p>重登服务器则生效</p>
+<p>重登服务器则生效。</p>
+<h4 id="chsh失效"><a class="header-anchor" href="#chsh失效"></a>chsh失效</h4>
+<p><code>chsh -s $(which zsh) </code>操作在以下任意一种情况下<strong>无法生效</strong>：</p>
+<ul>
+<li>
+<p>在WSL（windows的linux子系统）中，使用cmder打开shell。</p>
 </li>
 <li>
-<p>如上述方法不生效，则修改在<code>~/.profile</code> 第一行中加入</p>
+<p>当前用户是非root用户，且当<strong>前用户没有密码</strong>（这是因为，管理员没给当前用户启用密码，即使当前用户执行<code>passwd</code>也无法改密成功，因为执行<code>passwd</code>要求输入当前密码，但当前又没密码）</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> <span class="token function">zsh</span> <span class="token comment"># 返回为 /bin/zsh 或 /usr/bin/zsh</span>
+
+chsh -s <span class="token variable"><span class="token variable">`</span><span class="token function">which</span> <span class="token function">zsh</span><span class="token variable">`</span></span> <span class="token comment"># 报错如下：</span>
+<span class="token operator">></span> chsh: PAM: Authentication failure
+
+<span class="token function">passwd</span> <span class="token comment"># 修改密码</span>
+<span class="token operator">></span> Changing password <span class="token keyword">for</span> xxx<span class="token punctuation">(</span>当前用户<span class="token punctuation">)</span>.
+<span class="token operator">></span> Current password: <span class="token comment"># 输入当前密码</span>
+<span class="token operator">></span> passwd: Authentication token manipulation error
+<span class="token operator">></span> passwd: password unchanged<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 <li>
-<pre><code class="language-bash">if [ -t 1 ]; then
-# [ -t FD ]  如果文件描述符 FD 打开且指向一个终端则为真。
-# 文件描述符1表示stdout(即屏幕输出)
-# [ -t 1 ] = true (此脚本输出到屏幕)，false(其他，如此脚本输出到文件或pipe)
-	exec zsh
-	# exec含义：开zsh替代当前sehll
-fi
-<pre class="line-numbers language-none"><code class="language-none">
-  例如在WSL（windows的linux子系统）中，使用cmder打开shell，需要做此次修改。
+<p>当前用户是非root用户，且<strong>系统没安装zsh</strong>（即没有<code>/bin/zsh</code>或<code>/usr/bin/zsh</code>）。此时，用户自己用conda安装的zsh，无法用<code>chsh -s</code>注册成默认shell：</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">which</span> <span class="token function">zsh</span> <span class="token comment"># 返回为空</span>
 
-* 如果切换帐号后无法使用 zsh， 则&#96;. ~&#x2F;.zshrc&#96;
+conda <span class="token function">install</span> conda-forge::zsh <span class="token comment"># 用户在自己的conda下安装的zsh，能安装成功</span>
 
-## 直接安装oh-my-zsh (root下推荐)
-
-[oh-my-zsh安装方法](https:&#x2F;&#x2F;ohmyz.sh&#x2F;#install)
-
-适用于mac和linux
-
-&#96;&#96;&#96;bash
-sh -c &quot;$(curl -fsSL https:&#x2F;&#x2F;raw.github.com&#x2F;ohmyzsh&#x2F;ohmyzsh&#x2F;master&#x2F;tools&#x2F;install.sh)&quot;<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-</code></pre>
+chsh -s <span class="token variable">$CONDA_PREFIX</span>/bin/zsh  <span class="token comment"># 报错如下。这是因为chsh -s只能使用/etc/shells文件中声明的shell，但当前用户没有root权限，无法将conda下的zsh写入/etc/shells。</span>
+<span class="token operator">></span> chsh: /home/xxx/anaconda/bin/zsh is an invalid shell<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 </li>
 </ul>
+<h4 id="其他更改默认shell的方法"><a class="header-anchor" href="#其他更改默认shell的方法"></a>其他更改默认shell的方法</h4>
+<p>如上述方法不生效，则可采用以下方法解决：</p>
+<h5 id="bash转接zsh"><a class="header-anchor" href="#bash转接zsh"></a>bash转接zsh</h5>
+<p>优点：以下修改对所有shell入口（包括ssh登录、tmux/vscode开新窗口）有效</p>
+<p>缺点：</p>
+<ul>
+<li>
+<p>会造成输入<code>bash</code>命令仍会打开zsh</p>
+</li>
+<li>
+<p>vscode 终端输入 exit，执行后，vscode右下角弹窗报错：“终端进程“/bin/bash”已终止，退出代码：1。&quot;</p>
+<p>解决办法见<a href="#%E9%85%8D%E7%BD%AEshell%E7%9A%84%E5%85%A5%E5%8F%A3">配置shell的入口</a> ，vscode中的服务器配置。</p>
+<p><img data-src="/posts/72862763/image-20250324180117943.png" alt="image-20250324180117943"></p>
+</li>
+</ul>
+<p>在<code>~/.profile</code> 第一行中加入如下配置，每次交互式+登录式开启bash时，<strong>如ssh登录</strong>，都转到登录式zsh。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>/data/nas/gaobo/environment/miniconda/bin:<span class="token environment constant">$PATH</span> <span class="token comment"># 如果`which zsh`返回为空，则执行conda install conda-forge::zsh ，并设置此行</span>
+<span class="token punctuation">[</span><span class="token punctuation">[</span> $- <span class="token operator">=</span> *i* <span class="token punctuation">]</span><span class="token punctuation">]</span>      <span class="token operator">&amp;&amp;</span> <span class="token punctuation">[</span> -z <span class="token string">"<span class="token variable">$ZSH_VERSION</span>"</span> <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">[</span> -x <span class="token variable"><span class="token variable">`</span><span class="token function">which</span> <span class="token function">zsh</span><span class="token variable">`</span></span> <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">SHELL</span></span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">which</span> <span class="token function">zsh</span><span class="token variable">`</span></span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">exec</span> <span class="token function">zsh</span> -l
+<span class="token comment"># 若当前是交互式shell  且 当前shell不是zsh      且   当前有zsh         则 变更SHELL为zsh         并 切换到登录式zsh</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>在<code>~/.bashrc</code> 第一行中加入如下配置，每次交互式+登录式开启bash时，<strong>如tmux/vscode开新窗口</strong>，都转到登录式zsh。</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">PATH</span></span><span class="token operator">=</span>/data/nas/gaobo/environment/miniconda/bin:<span class="token environment constant">$PATH</span> <span class="token comment"># 如果`which zsh`返回为空，则执行conda install conda-forge::zsh ，并设置此行</span>
+<span class="token punctuation">[</span><span class="token punctuation">[</span> $- <span class="token operator">=</span> *i* <span class="token punctuation">]</span><span class="token punctuation">]</span>          <span class="token operator">&amp;&amp;</span> <span class="token punctuation">[</span> -z <span class="token string">"<span class="token variable">$ZSH_VERSION</span>"</span> <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token punctuation">[</span> -x <span class="token variable"><span class="token variable">`</span><span class="token function">which</span> <span class="token function">zsh</span><span class="token variable">`</span></span> <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">export</span> <span class="token assign-left variable"><span class="token environment constant">SHELL</span></span><span class="token operator">=</span><span class="token variable"><span class="token variable">`</span><span class="token function">which</span> <span class="token function">zsh</span><span class="token variable">`</span></span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">exec</span> <span class="token function">zsh</span>
+<span class="token comment"># 若当前是交互式终端shell  且 当前shell不是zsh      且   当前有zsh         则 变更SHELL为zsh         并 切换到非登录式zsh</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>解释：</p>
+<ul>
+<li><code>exec</code>含义：开zsh替代当前shell，即原shell进程结束，完全切换到 Zsh。若在zsh中执行exit，则当前窗口会关闭，而不会回到原shell。</li>
+<li><code>exec zsh -l</code> : 登录式开启zsh，会执行<code>~/.zprofile</code>命令</li>
+<li><code>exec zsh</code> : 非登录式开启zsh，不会执行<code>~/.zprofile</code>命令</li>
+</ul>
+<h5 id="配置shell的入口"><a class="header-anchor" href="#配置shell的入口"></a>配置shell的入口</h5>
+<p>分别配置shell的各种入口，使其默认使用shell。这样，输入<code>bash</code>命令会打开bash而非bash。</p>
+<ul>
+<li>
+<p>本地的ssh配置：</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">Host <span class="token operator">&lt;</span>服务器alias<span class="token operator">></span>
+    <span class="token comment"># 登录使用zsh</span>
+    RequestTTY force
+    RemoteCommand /home/xxx/anaconda/bin/zsh -l <span class="token comment"># 写"$CONDA_PREFIX"无法生效，必须明写具体的路径</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>vscode中的服务器配置：</p>
+  <pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token punctuation">&#123;</span>
+    <span class="token property">"terminal.integrated.defaultProfile.linux"</span><span class="token operator">:</span> <span class="token string">"zsh"</span><span class="token punctuation">,</span>
+    <span class="token property">"terminal.integrated.profiles.linux"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+        <span class="token property">"zsh"</span><span class="token operator">:</span> <span class="token punctuation">&#123;</span>
+            <span class="token property">"path"</span><span class="token operator">:</span> <span class="token string">"/home/xxx/anaconda/bin/zsh"</span><span class="token punctuation">,</span> <span class="token comment">// 写"$CONDA_PREFIX"无法生效，必须明写具体的路径</span>
+            <span class="token property">"args"</span><span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token punctuation">&#125;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</li>
+<li>
+<p>tmux配置：</p>
+  <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token comment"># 若conda装了zsh，则使用它作为默认的SHELL，作为交互SHELL 和 执行可执行文件的SHELL</span>
+if-shell <span class="token string">"[ -f <span class="token variable">$CONDA_PREFIX</span>/bin/zsh ]"</span> <span class="token string">"set -g default-shell <span class="token variable">$CONDA_PREFIX</span>/bin/zsh; set -g default-command  <span class="token variable">$CONDA_PREFIX</span>/bin/zsh"</span>
+<span class="token comment"># 写"$CONDA_PREFIX"有效，前提是tmux的父shell（即ssh登录上去的shell）已激活conda环境，CONDA_PREFIX有定义</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h2 id="直接安装oh-my-zsh-root下推荐"><a class="header-anchor" href="#直接安装oh-my-zsh-root下推荐"></a>直接安装oh-my-zsh (root下推荐)</h2>
+<p><a target="_blank" rel="noopener" href="https://ohmyz.sh/#install">oh-my-zsh安装方法</a></p>
+<p>适用于mac和linux</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sh</span> -c <span class="token string">"<span class="token variable"><span class="token variable">$(</span><span class="token function">curl</span> -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh<span class="token variable">)</span></span>"</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <h3 id="报错"><a class="header-anchor" href="#报错"></a>报错</h3>
 <h4 id="Insecure-completion-dependent-directories-detected"><a class="header-anchor" href="#Insecure-completion-dependent-directories-detected"></a>Insecure completion-dependent directories detected</h4>
 <p>若给root安装oh-my-zsh, 运行  <code>sudo su</code> 报错</p>
@@ -577,19 +638,20 @@ drwxrwxrwx 6 hans admin 204 10 1 2017 &#x2F;usr&#x2F;local&#x2F;share&#x2F;zsh&#
 <span class="token comment"># ~/.zlogout只写</span>
 <span class="token punctuation">[</span> -f ~/.bash_logout <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">.</span> ~/.bash_logout<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p><strong>若<code>chsh -s `which zsh` </code>修改不成功</strong></p>
+<p>解决方法详见：<a href="#%E5%85%B6%E4%BB%96%E6%9B%B4%E6%94%B9%E9%BB%98%E8%AE%A4shell%E7%9A%84%E6%96%B9%E6%B3%95">其他更改默认shell的方法</a></p>
+<p>下面是简单说明解决方法。</p>
 <p>登录不自动进入zsh，则每次登录启动的是bash，运行的是<code>~/.profile</code></p>
 <p>需修改为如下触发关系</p>
 <pre class="line-numbers language-none"><code class="language-none">                           开新zsh
                              ↓
 登录 -&gt;  ~&#x2F;.profile  -&gt;   ~&#x2F;.zshrc (zsh包，环境配置)
                              \------&gt; ~&#x2F;.profile_for_zsh, ~&#x2F;.bash_aliases<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>方法如下</p>
 <ul>
 <li><code>cp ~/.profile ~/.profile_for_zsh</code></li>
 <li>删除<code>~/.profile_for_zsh</code>中的<code>. ~/.bashrc</code>和<code>. ~/.bash_aliases</code></li>
 <li>将<code>~/.profile</code>清空，只写入</li>
 </ul>
-<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token keyword">if</span> <span class="token punctuation">[</span> -t <span class="token number">1</span> <span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token keyword">if</span> <span class="token punctuation">[</span><span class="token punctuation">[</span> $- <span class="token operator">=</span> *i* <span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token keyword">then</span>
 <span class="token comment"># 判断是否是交互shell</span>
 <span class="token comment"># whether file descriptor 1 (the shell's standard output) is connected to a terminal</span>
     <span class="token builtin class-name">exec</span> <span class="token function">zsh</span>
@@ -1125,7 +1187,7 @@ ZSH_HIGHLIGHT_STYLES[assign]&#x3D;none<span aria-hidden="true" class="line-numbe
 </tr>
 </tbody>
 </table>
-<h3 id="判断方法"><a class="header-anchor" href="#判断方法"></a>判断方法</h3>
+<h3 id="判断登录-交互的方法"><a class="header-anchor" href="#判断登录-交互的方法"></a>判断登录/交互的方法</h3>
 <p>参考：<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/47819029">千万别混淆 Bash/Zsh 的四种运行模式</a></p>
 <table>
 <thead>
@@ -1272,6 +1334,16 @@ ZSH_HIGHLIGHT_STYLES[assign]&#x3D;none<span aria-hidden="true" class="line-numbe
 <ul>
 <li><code>$&#123;variable-xxxx&#125;</code>: 若变量 <code>variable</code>无定义, 则返回“xxxx”, 有定义则返回<code>$&#123;variable&#125;</code></li>
 </ul>
+<h3 id="判断是否直接输出到终端"><a class="header-anchor" href="#判断是否直接输出到终端"></a>判断是否直接输出到终端</h3>
+<p><code>[ -t 1 ]</code> 用于判断当前命令/脚本是否输出到终端，而非输出到pipe或文件。不能用来判断当前是否在交互式shell下。</p>
+<p>比如，在<code>temp.sh</code>文件写如下内容</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token punctuation">[</span> -t <span class="token number">1</span> <span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">echo</span> 直接输出到终端
+<span class="token punctuation">[</span><span class="token punctuation">[</span> $- <span class="token operator">=</span> *i* <span class="token punctuation">]</span><span class="token punctuation">]</span> <span class="token operator">&amp;&amp;</span> <span class="token builtin class-name">echo</span> 交互式终端<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>则</p>
+<pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">bash</span> temp.sh <span class="token comment"># 返回  直接输出到终端，不返回 交互式终端</span>
+<span class="token function">bash</span> temp.sh <span class="token operator">|</span> <span class="token function">cat</span> <span class="token comment"># 返回空</span>
+<span class="token function">bash</span> temp.sh <span class="token operator">></span> a<span class="token punctuation">;</span> <span class="token function">cat</span> a <span class="token comment"># 返回空</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>因此，<strong>不能用 <code>[ -t 1 ]</code>判断当前是否是交互式终端。</strong></p>
 <h1 id="zsh和bash共存的用户目录组织逻辑"><a class="header-anchor" href="#zsh和bash共存的用户目录组织逻辑"></a>zsh和bash共存的用户目录组织逻辑</h1>
 <ul>
 <li>各种shell的dot 文件</li>
@@ -1500,13 +1572,13 @@ ZSH_HIGHLIGHT_STYLES[assign]&#x3D;none<span aria-hidden="true" class="line-numbe
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/posts/5a22a187/" rel="prev" title="rsync教程">
-                  <i class="fa fa-chevron-left"></i> rsync教程
+                <a href="/posts/bb2bab3e/" rel="prev" title="shell的参数解析">
+                  <i class="fa fa-chevron-left"></i> shell的参数解析
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/posts/bb2bab3e/" rel="next" title="shell的参数解析">
-                  shell的参数解析 <i class="fa fa-chevron-right"></i>
+                <a href="/posts/e303a4a3/" rel="next" title="bash设置">
+                  bash设置 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -1540,13 +1612,13 @@ ZSH_HIGHLIGHT_STYLES[assign]&#x3D;none<span aria-hidden="true" class="line-numbe
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">398k</span>
+    <span title="站点总字数">401k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">22:06</span>
+    <span title="站点阅读时长">22:15</span>
   </span>
 </div>
 <div class="busuanzi-count">

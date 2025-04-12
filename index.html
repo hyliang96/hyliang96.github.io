@@ -217,6 +217,538 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/d4d0b33c/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/d4d0b33c/" class="post-title-link" itemprop="url">mac上app无法打开</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-01 16:10:08" itemprop="dateCreated datePublished" datetime="2022-03-01T16:10:08+08:00">2022-03-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2025-04-12 17:52:01" itemprop="dateModified" datetime="2025-04-12T17:52:01+08:00">2025-04-12</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/d4d0b33c/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/d4d0b33c/" data-xid="/posts/d4d0b33c/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>1.6k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>5 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="mac上app无法打开"><a class="header-anchor" href="#mac上app无法打开"></a>mac上app无法打开</h1>
+<p>下文摘自 <a target="_blank" rel="noopener" href="https://sysin.org/blog/macos-if-crashes-when-opening/">原文</a>.</p>
+<blockquote>
+<p>说明：本文描述问题同样适用于其他版本的 macOS，因历史原因在 Catalina 中出现问题的情况最多。</p>
+<h2 id="现象"><a class="header-anchor" href="#现象"></a>现象</h2>
+<p>提示：“应用程序” 已损坏，无法打开。您应该将它移到废纸篓。</p>
+  <img data-src="/posts/d4d0b33c/image-20241219235934711.png" alt="image-20241219235934711" style="zoom: 25%;">
+<p>提示：无法打开 “应用程序”，因为无法验证开发者。macOS 无法验证此 App 不包含恶意软件。</p>
+  <img data-src="/posts/d4d0b33c/image-20241219235956553.png" alt="image-20241219235956553" style="zoom:25%;">
+<p>提示：“应用程序” 将对您的电脑造成伤害。您应该将它移到废纸篓。</p>
+  <img data-src="/posts/d4d0b33c/image-20241220000016215.png" alt="image-20241220000016215" style="zoom:25%;">
+<h2 id="解决方法"><a class="header-anchor" href="#解决方法"></a>解决方法</h2>
+<p>请依次尝试, 直到成功打开app为止. 一般情况下, <strong>只需要 1 和 2 两步即可</strong>.</p>
+<h3 id="1-允许-“任何来源”-下载的-App-运行"><a class="header-anchor" href="#1-允许-“任何来源”-下载的-App-运行"></a>1. 允许 “任何来源” 下载的 App 运行</h3>
+<p>打开 “终端” 执行如下命令（根据提示输入您的密码即可）：</p>
+  <pre class="line-numbers language-none"><code class="language-none">sudo spctl --master-disable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>打开 “系统偏好设置…” - “安全性与隐私”，“通用” 标签页，如图勾选：</p>
+  <img data-src="/posts/d4d0b33c/image-20241220000055248.png" alt="image-20241220000055248" style="zoom:50%;">
+<p>macOS Ventura 略有变化，位于：系统设置 – 隐私和安全性，“安全性”（参看下述第 3 点截图）。</p>
+<h3 id="2-移除应用的安全隔离属性"><a class="header-anchor" href="#2-移除应用的安全隔离属性"></a>2. 移除应用的安全隔离属性</h3>
+<p>打开 “终端” 执行如下命令（根据提示输入您的密码即可）：</p>
+  <pre class="line-numbers language-none"><code class="language-none">sudo xattr -dr com.apple.quarantine &#x2F;Applications&#x2F;name.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><code>/Applications/name.app</code> 如果不知道该如何输入，将 App 直接拖拽 <code>sudo xattr -rd com.apple.quarantine</code>（中间有个空格）后面即可。</p>
+<p>一般情况下，多余的扩展属性都可以清除（个别应用例外）：</p>
+<p>可以直接输入：<code>sudo xattr -cr /Applications/*</code></p>
+<h3 id="3-macOS-Ventura-额外步骤"><a class="header-anchor" href="#3-macOS-Ventura-额外步骤"></a>3. macOS Ventura 额外步骤</h3>
+<p>macOS Ventura 的系统安全性又上升到一个新的高度，上述两个步骤后，需要在 “系统设置” 中打开应用。</p>
+<p>系统设置 – 隐私和安全性，“安全性” 下面出现提示，点击 “仍要打开”，当然该操作仅需要一次，以后可以正常打开。</p>
+  <img data-src="/posts/d4d0b33c/image-20241220000119737.png" alt="image-20241220000119737" style="zoom:50%;">
+<p>以上同样适用于 macOS Sonoma 和 macOS Sequoia。</p>
+<h3 id="4-重新签名"><a class="header-anchor" href="#4-重新签名"></a>4. 重新签名</h3>
+<p>多数情况下，App 已经可以正常运行了，很多和谐软件因为证书问题，仍然无法打开。此时可以重新签名。</p>
+<p>打开 “终端”，执行如下命令：</p>
+  <pre class="line-numbers language-none"><code class="language-none">codesign --force --deep --sign - &#x2F;Applications&#x2F;name.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p><strong>前提条件</strong>: 安装 Command Line Tools for Xcode</p>
+<p>此时会提示安装，或者使用终端命令在线安装：</p>
+  <pre class="line-numbers language-none"><code class="language-none">xcode-select --install<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>也可以到这里下载 Command Line Tools for Xcode：<a target="_blank" rel="noopener" href="https://sysin.org/blog/apple-xcode-14/">Xcode 14.3.1 (14E300c) - Apple 平台 IDE</a></p>
+<h3 id="5-覆盖恶意软件保护"><a class="header-anchor" href="#5-覆盖恶意软件保护"></a>5. 覆盖恶意软件保护</h3>
+<p>还有一种情况，</p>
+<p>提示：“应用程序” 将对您的电脑造成伤害。您应该将它移到废纸篓。</p>
+<p>以上步骤操作后还是无法打开。</p>
+<p>解决办法：</p>
+<p>访达 -&gt; 应用程序 -&gt; 右击软件 -&gt; 显示简介，勾选 “覆盖恶意软件保护”。</p>
+  <img data-src="/posts/d4d0b33c/image-20241220000151383.png" alt="image-20241220000151383" style="zoom: 50%;">
+<p>说明：正常应用不会出现这个选项</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/d4d0b33c/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/2e77fc3e/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/2e77fc3e/" class="post-title-link" itemprop="url">ssh配置</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2025-03-24 18:14:46" itemprop="dateModified" datetime="2025-03-24T18:14:46+08:00">2025-03-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/" itemprop="url" rel="index"><span itemprop="name">服务器连接</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/2e77fc3e/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/2e77fc3e/" data-xid="/posts/2e77fc3e/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>3.9k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>13 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>[TOC]</p>
+<h1 id="ssh只使用密码登陆"><a class="header-anchor" href="#ssh只使用密码登陆"></a>ssh只使用密码登陆</h1>
+<p>若直接执行下面的命令，</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/2e77fc3e/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/Infinity/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/Infinity/" class="post-title-link" itemprop="url">bash及zsh语法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2025-03-24 18:14:42" itemprop="dateModified" datetime="2025-03-24T18:14:42+08:00">2025-03-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/Infinity/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/Infinity/" data-xid="/posts/Infinity/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>37k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>2:03</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="执行命令或文件"><a class="header-anchor" href="#执行命令或文件"></a>执行命令或文件</h1>
+<p>以下对zsh与bash同时成立</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/solaraceboy/article/details/79131772">参考</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/Infinity/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/72862763/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/heat.jpg">
+      <meta itemprop="name" content="∞亼">
+      <meta itemprop="description" content="一切节约归根到底是时间的节约">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丹炉志">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/posts/72862763/" class="post-title-link" itemprop="url">zsh安装配置教程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2025-03-24 18:14:37" itemprop="dateModified" datetime="2025-03-24T18:14:37+08:00">2025-03-24</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
+        </span>
+    </span>
+
+  
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Waline：</span>
+  
+    <a title="waline" href="/posts/72862763/#waline-comments" itemprop="discussionUrl">
+      <span class="post-comments-count waline-comment-count" id="/posts/72862763/" data-xid="/posts/72862763/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+    <span class="post-meta-break"></span>
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>21k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>1:11</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>环境：ubuntu 16 实验室服务器</p>
+<p>时间：2018年8月6日</p>
+<p>[TOC]</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/posts/72862763/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/b812214a/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -691,172 +1223,6 @@ I couldn&#39;t open file name &#96;.xxx&#x2F;main.blg&#39;<span aria-hidden="tru
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/d4d0b33c/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="∞亼">
-      <meta itemprop="description" content="一切节约归根到底是时间的节约">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/d4d0b33c/" class="post-title-link" itemprop="url">mac上app无法打开</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2022-03-01 16:10:08" itemprop="dateCreated datePublished" datetime="2022-03-01T16:10:08+08:00">2022-03-01</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-12-20 00:28:07" itemprop="dateModified" datetime="2024-12-20T00:28:07+08:00">2024-12-20</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/mac/" itemprop="url" rel="index"><span itemprop="name">mac</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/posts/d4d0b33c/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/posts/d4d0b33c/" data-xid="/posts/d4d0b33c/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>1.2k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="mac上app无法打开"><a class="header-anchor" href="#mac上app无法打开"></a>mac上app无法打开</h1>
-<p>下文摘自 <a target="_blank" rel="noopener" href="https://sysin.org/blog/macos-if-crashes-when-opening/">原文</a>.</p>
-<blockquote>
-<p>说明：本文描述问题同样适用于其他版本的 macOS，因历史原因在 Catalina 中出现问题的情况最多。</p>
-<h2 id="现象"><a class="header-anchor" href="#现象"></a>现象</h2>
-<p>提示：“应用程序” 已损坏，无法打开。您应该将它移到废纸篓。</p>
-  <img data-src="/posts/d4d0b33c/image-20241219235934711.png" alt="image-20241219235934711" style="zoom: 25%;">
-<p>提示：无法打开 “应用程序”，因为无法验证开发者。macOS 无法验证此 App 不包含恶意软件。</p>
-  <img data-src="/posts/d4d0b33c/image-20241219235956553.png" alt="image-20241219235956553" style="zoom:25%;">
-<p>提示：“应用程序” 将对您的电脑造成伤害。您应该将它移到废纸篓。</p>
-  <img data-src="/posts/d4d0b33c/image-20241220000016215.png" alt="image-20241220000016215" style="zoom:25%;">
-<h2 id="解决方法"><a class="header-anchor" href="#解决方法"></a>解决方法</h2>
-<p>请依次尝试, 直到成功打开app为止. 一般情况下, <strong>只需要 1 和 2 两步即可</strong>.</p>
-<h3 id="1-允许-“任何来源”-下载的-App-运行"><a class="header-anchor" href="#1-允许-“任何来源”-下载的-App-运行"></a>1. 允许 “任何来源” 下载的 App 运行</h3>
-<p>打开 “终端” 执行如下命令（根据提示输入您的密码即可）：</p>
-  <pre class="line-numbers language-none"><code class="language-none">sudo spctl --master-disable<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>打开 “系统偏好设置…” - “安全性与隐私”，“通用” 标签页，如图勾选：</p>
-  <img data-src="/posts/d4d0b33c/image-20241220000055248.png" alt="image-20241220000055248" style="zoom:50%;">
-<p>macOS Ventura 略有变化，位于：系统设置 – 隐私和安全性，“安全性”（参看下述第 3 点截图）。</p>
-<h3 id="2-移除应用的安全隔离属性"><a class="header-anchor" href="#2-移除应用的安全隔离属性"></a>2. 移除应用的安全隔离属性</h3>
-<p>打开 “终端” 执行如下命令（根据提示输入您的密码即可）：</p>
-  <pre class="line-numbers language-none"><code class="language-none">sudo xattr -dr com.apple.quarantine &#x2F;Applications&#x2F;name.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><code>/Applications/name.app</code> 如果不知道该如何输入，将 App 直接拖拽 <code>sudo xattr -rd com.apple.quarantine</code>（中间有个空格）后面即可。</p>
-<p>一般情况下，多余的扩展属性都可以清除（个别应用例外）：</p>
-<p>可以直接输入：<code>sudo xattr -cr /Applications/*</code></p>
-<h3 id="3-macOS-Ventura-额外步骤"><a class="header-anchor" href="#3-macOS-Ventura-额外步骤"></a>3. macOS Ventura 额外步骤</h3>
-<p>macOS Ventura 的系统安全性又上升到一个新的高度，上述两个步骤后，需要在 “系统设置” 中打开应用。</p>
-<p>系统设置 – 隐私和安全性，“安全性” 下面出现提示，点击 “仍要打开”，当然该操作仅需要一次，以后可以正常打开。</p>
-  <img data-src="/posts/d4d0b33c/image-20241220000119737.png" alt="image-20241220000119737" style="zoom:50%;">
-<p>以上同样适用于 macOS Sonoma 和 macOS Sequoia。</p>
-<h3 id="4-重新签名"><a class="header-anchor" href="#4-重新签名"></a>4. 重新签名</h3>
-<p>多数情况下，App 已经可以正常运行了，很多和谐软件因为证书问题，仍然无法打开。此时可以重新签名。</p>
-<p>打开 “终端”，执行如下命令：</p>
-  <pre class="line-numbers language-none"><code class="language-none">codesign --force --deep --sign - &#x2F;Applications&#x2F;name.app<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p><strong>前提条件</strong>: 安装 Command Line Tools for Xcode</p>
-<p>此时会提示安装，或者使用终端命令在线安装：</p>
-  <pre class="line-numbers language-none"><code class="language-none">xcode-select --install<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>也可以到这里下载 Command Line Tools for Xcode：<a target="_blank" rel="noopener" href="https://sysin.org/blog/apple-xcode-14/">Xcode 14.3.1 (14E300c) - Apple 平台 IDE</a></p>
-<h3 id="5-覆盖恶意软件保护"><a class="header-anchor" href="#5-覆盖恶意软件保护"></a>5. 覆盖恶意软件保护</h3>
-<p>还有一种情况，</p>
-<p>提示：“应用程序” 将对您的电脑造成伤害。您应该将它移到废纸篓。</p>
-<p>以上步骤操作后还是无法打开。</p>
-<p>解决办法：</p>
-<p>访达 -&gt; 应用程序 -&gt; 右击软件 -&gt; 显示简介，勾选 “覆盖恶意软件保护”。</p>
-  <img data-src="/posts/d4d0b33c/image-20241220000151383.png" alt="image-20241220000151383" style="zoom: 50%;">
-<p>说明：正常应用不会出现这个选项</p>
-</blockquote>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/d4d0b33c/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/5a22a187/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1193,128 +1559,6 @@ I couldn&#39;t open file name &#96;.xxx&#x2F;main.blg&#39;<span aria-hidden="tru
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/4bc94fac/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/Infinity/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="∞亼">
-      <meta itemprop="description" content="一切节约归根到底是时间的节约">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/Infinity/" class="post-title-link" itemprop="url">bash及zsh语法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-12-04 16:08:09" itemprop="dateModified" datetime="2024-12-04T16:08:09+08:00">2024-12-04</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/posts/Infinity/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/posts/Infinity/" data-xid="/posts/Infinity/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>37k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>2:03</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="执行命令或文件"><a class="header-anchor" href="#执行命令或文件"></a>执行命令或文件</h1>
-<p>以下对zsh与bash同时成立</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/solaraceboy/article/details/79131772">参考</a></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/Infinity/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -2988,128 +3232,6 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/72862763/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="∞亼">
-      <meta itemprop="description" content="一切节约归根到底是时间的节约">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/72862763/" class="post-title-link" itemprop="url">zsh安装配置教程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-10-16 18:14:22" itemprop="dateModified" datetime="2024-10-16T18:14:22+08:00">2024-10-16</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/shell/" itemprop="url" rel="index"><span itemprop="name">shell</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/posts/72862763/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/posts/72862763/" data-xid="/posts/72862763/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>19k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1:04</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>环境：ubuntu 16 实验室服务器</p>
-<p>时间：2018年8月6日</p>
-<p>[TOC]</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/72862763/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/28b9a0fd/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -3815,128 +3937,6 @@ WARNING: Couldn’t create ‘yacctab’. [Errno 13] Permission denied: ‘/tmp/
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/posts/d85f8f75/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://hyliang96.github.io/posts/2e77fc3e/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/heat.jpg">
-      <meta itemprop="name" content="∞亼">
-      <meta itemprop="description" content="一切节约归根到底是时间的节约">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="丹炉志">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/posts/2e77fc3e/" class="post-title-link" itemprop="url">ssh配置</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2019-05-25 04:03:03" itemprop="dateCreated datePublished" datetime="2019-05-25T04:03:03+08:00">2019-05-25</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2024-09-12 22:33:53" itemprop="dateModified" datetime="2024-09-12T22:33:53+08:00">2024-09-12</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/" itemprop="url" rel="index"><span itemprop="name">器</span></a>
-        </span>
-          ，
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%99%A8/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%BF%9E%E6%8E%A5/" itemprop="url" rel="index"><span itemprop="name">服务器连接</span></a>
-        </span>
-    </span>
-
-  
-  
-  <span class="post-meta-item">
-    
-    <span class="post-meta-item-icon">
-      <i class="far fa-comment"></i>
-    </span>
-    <span class="post-meta-item-text">Waline：</span>
-  
-    <a title="waline" href="/posts/2e77fc3e/#waline-comments" itemprop="discussionUrl">
-      <span class="post-comments-count waline-comment-count" id="/posts/2e77fc3e/" data-xid="/posts/2e77fc3e/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  
-    <span class="post-meta-break"></span>
-    <span class="post-meta-item" title="本文字数">
-      <span class="post-meta-item-icon">
-        <i class="far fa-file-word"></i>
-      </span>
-      <span class="post-meta-item-text">本文字数：</span>
-      <span>3.9k</span>
-    </span>
-    <span class="post-meta-item" title="阅读时长">
-      <span class="post-meta-item-icon">
-        <i class="far fa-clock"></i>
-      </span>
-      <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>13 分钟</span>
-    </span>
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>[TOC]</p>
-<h1 id="ssh只使用密码登陆"><a class="header-anchor" href="#ssh只使用密码登陆"></a>ssh只使用密码登陆</h1>
-<p>若直接执行下面的命令，</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/posts/2e77fc3e/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -11440,13 +11440,13 @@ End: Fn + →<br>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">398k</span>
+    <span title="站点总字数">401k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">22:06</span>
+    <span title="站点阅读时长">22:15</span>
   </span>
 </div>
 <div class="busuanzi-count">
