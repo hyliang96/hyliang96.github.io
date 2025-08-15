@@ -21,16 +21,16 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"hyliang96.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="现象及原因 我在macbook pro 2020 intel+macOS Catalina上，VSCode&gt;1.85连接CentOS7&#x2F;Ubuntu18.04&#x2F;Ubuntu20.04&#x2F;Ubuntu22.04可能会无法连接，出现如下报错 Waiting for server log...  [00:26:32.554] Failed to parse remote port from serv">
+<meta name="description" content="Monterey上 我在2025年8月，mac OS从Catalina升级到Monterey，软件更新到如下版本：  macbook pro 2020 intel Monterey（macOS 12.7.4） VS Code&#x3D;1.103.1，开启自动更新 Remote Development&#x3D;0.26.0 ，它和它的子插件都开启自动更新 Remote - SSH&#x3D;0.120.0，开启自动更新">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vscode remote报错Waiting for server log">
 <meta property="og:url" content="https://hyliang96.github.io/posts/f751cd7f/index.html">
 <meta property="og:site_name" content="丹炉志">
-<meta property="og:description" content="现象及原因 我在macbook pro 2020 intel+macOS Catalina上，VSCode&gt;1.85连接CentOS7&#x2F;Ubuntu18.04&#x2F;Ubuntu20.04&#x2F;Ubuntu22.04可能会无法连接，出现如下报错 Waiting for server log...  [00:26:32.554] Failed to parse remote port from serv">
+<meta property="og:description" content="Monterey上 我在2025年8月，mac OS从Catalina升级到Monterey，软件更新到如下版本：  macbook pro 2020 intel Monterey（macOS 12.7.4） VS Code&#x3D;1.103.1，开启自动更新 Remote Development&#x3D;0.26.0 ，它和它的子插件都开启自动更新 Remote - SSH&#x3D;0.120.0，开启自动更新">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://hyliang96.github.io/posts/f751cd7f/image-20240924213656026.png">
 <meta property="article:published_time" content="2024-09-24T13:15:58.000Z">
-<meta property="article:modified_time" content="2025-08-15T10:18:11.547Z">
+<meta property="article:modified_time" content="2025-08-15T12:06:05.225Z">
 <meta property="article:author" content="∞亼">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://hyliang96.github.io/posts/f751cd7f/image-20240924213656026.png">
@@ -153,7 +153,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E8%B1%A1%E5%8F%8A%E5%8E%9F%E5%9B%A0"><span class="nav-text">现象及原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-text">解决办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%BB%BA%E8%AE%AE%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">不建议的解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7glibc%E5%88%B02-28"><span class="nav-text">升级glibc到2.28</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B"><span class="nav-text">案例</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Monterey%E4%B8%8A"><span class="nav-text">Monterey上</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Catalina%E4%B8%8A"><span class="nav-text">Catalina上</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8E%B0%E8%B1%A1%E5%8F%8A%E5%8E%9F%E5%9B%A0"><span class="nav-text">现象及原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95"><span class="nav-text">解决办法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%BB%BA%E8%AE%AE%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-text">不建议的解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%87%E7%BA%A7glibc%E5%88%B02-28"><span class="nav-text">升级glibc到2.28</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B"><span class="nav-text">案例</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -254,7 +254,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2025-08-15 18:18:11" itemprop="dateModified" datetime="2025-08-15T18:18:11+08:00">2025-08-15</time>
+        <time title="修改时间：2025-08-15 20:06:05" itemprop="dateModified" datetime="2025-08-15T20:06:05+08:00">2025-08-15</time>
       </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -298,14 +298,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>8k</span>
+      <span>8.8k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>27 分钟</span>
+      <span>29 分钟</span>
     </span>
 </div>
 
@@ -316,8 +316,33 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="现象及原因"><a class="header-anchor" href="#现象及原因"></a>现象及原因</h2>
-<p>我在macbook pro 2020 intel+macOS Catalina上，VSCode&gt;1.85连接CentOS7/Ubuntu18.04/Ubuntu20.04/Ubuntu22.04可能会无法连接，出现如下报错</p>
+        <h2 id="Monterey上"><a class="header-anchor" href="#Monterey上"></a>Monterey上</h2>
+<p>我在2025年8月，mac OS从Catalina升级到Monterey，软件更新到如下<strong>版本</strong>：</p>
+<ul>
+<li>macbook pro 2020 intel</li>
+<li>Monterey（macOS 12.7.4）</li>
+<li>VS Code=1.103.1，开启自动更新</li>
+<li>Remote Development=0.26.0 ，它和它的子插件都开启自动更新</li>
+<li>Remote - SSH=0.120.0，开启自动更新</li>
+</ul>
+<p><strong>问题</strong>：升级后，VS Code的Remote SSH仍无法连接服务器，报错与之前Catalina上的一样，<a href="#%E7%8E%B0%E8%B1%A1%E5%8F%8A%E5%8E%9F%E5%9B%A0">详见</a>。</p>
+<p><strong>解决办法</strong>：我使用如下所有方法后，就能连接到服务器：</p>
+<ul>
+<li>
+<p><code>⌘⇧P</code>，然后输入 <code>Remote-SSH: Kill VS Code Server on Host</code> ，再输入服务器名称，回车：这个命令会杀死服务器上的VS Code 服务器进程（位于<code>~/.vscode-server/</code>中），然后重新连接时，VS Code 会尝试重新安装和启动服务器。</p>
+</li>
+<li>
+<p>服务器上<code>mv ~/.vscode-server/ ~/vscode-server-back</code>：删除<code>.vscode-server/</code>后，再次vscode远程连接服务器，会创建新的<code>.vscode-server/</code>，下载了和新版Remote-SSH匹配的服务器端程序。</p>
+</li>
+<li>
+<p>本地vscode设置：以下配置缺一不可。</p>
+<pre class="line-numbers language-json" data-language="json"><code class="language-json"><span class="token property">"remote.SSH.useExecServer"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 连接到服务器时使用新的引导模式。如果出现连接问题，可关闭此模式</span>
+<span class="token property">"remote.SSH.useLocalServer"</span><span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span> <span class="token comment">// 启用使用在窗口之间共享的单个连接和跨窗口重新加载进行连接的模式。这样可以更快地打开新窗口，并减少需要输入密码的次数</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</li>
+</ul>
+<h1 id="Catalina上"><a class="header-anchor" href="#Catalina上"></a>Catalina上</h1>
+<h2 id="现象及原因"><a class="header-anchor" href="#现象及原因"></a>现象及原因</h2>
+<p>我在2024、2025年，macbook pro 2020 intel+macOS Catalina上，VSCode&gt;1.85连接CentOS7/Ubuntu18.04/Ubuntu20.04/Ubuntu22.04可能会无法连接，出现如下报错</p>
 <pre class="line-numbers language-none"><code class="language-none">Waiting for server log...
 
 [00:26:32.554] Failed to parse remote port from server output
@@ -562,7 +587,7 @@ platformDownloadPath&#x3D;&#x3D;cli-alpine-x64&#x3D;&#x3D;
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">22:16</span>
+    <span title="站点阅读时长">22:18</span>
   </span>
 </div>
 <div class="busuanzi-count">
